@@ -8,7 +8,7 @@
 <style>
   :root{
     --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
-    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a;
     --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
     --mono:'SF Mono',Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
@@ -16,7 +16,6 @@
   *{box-sizing:border-box;margin:0;padding:0}
   body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
   .wrap{display:flex;min-height:100vh}
-  /* barra lateral */
   aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
   .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
   .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
@@ -27,7 +26,6 @@
   .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
         border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
   .cname{font-size:.86rem;line-height:1.35}
-  /* contenido */
   main{flex:1;padding:38px 46px 90px;max-width:1000px}
   .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
   h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
@@ -37,34 +35,66 @@
   .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
   .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
   .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
   .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
-  section{display:none}
-  section.on{display:block}
+  section{display:none} section.on{display:block}
   .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
   .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
   h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
   h3 .n{font-family:var(--mono);color:var(--green);font-size:.85rem;margin-right:9px}
   p{margin-bottom:13px;color:var(--text-dim)}
   strong{color:var(--text);font-weight:600}
-  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)}
-  li{margin-bottom:7px}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
   table{width:100%;border-collapse:collapse;margin-bottom:26px;font-size:.88rem}
   th{text-align:left;font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;color:var(--text-faint);
      border-bottom:1px solid var(--line);padding:10px 12px 8px;font-weight:400}
   td{padding:11px 12px;border-bottom:1px solid rgba(31,42,38,.6);vertical-align:top;color:var(--text-dim)}
   td:first-child{color:var(--text);font-weight:600;width:24%}
   td:last-child{font-family:var(--mono);font-size:.74rem;color:var(--text-faint);width:30%}
+
   .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
-  .q .stem{color:var(--text);font-weight:600;margin-bottom:11px}
-  .opt{padding:5px 0 5px 20px;color:var(--text-dim);font-size:.92rem;position:relative}
-  .opt.ok{color:var(--green)}
-  .opt.ok::before{content:'✓';position:absolute;left:0}
-  .exp{margin-top:11px;padding-top:11px;border-top:1px solid var(--line);font-size:.86rem;color:var(--text-faint);font-style:italic}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;
+       transition:border-color .15s,background .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+
   .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
   .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
   .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
   .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
   .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
   footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
   @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
 </style>
@@ -100,7 +130,7 @@
 
   <div class="box">
     <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
-    <p>Esta unidad establece la distinción que sostiene todo el certificado: el periodismo no se define por el tema que trata, ni por quién lo publica, ni por la ausencia de opinión. Se define por un método. Kovach y Rosenstiel lo formulan en una sola frase: <strong>la esencia del periodismo es una disciplina de verificación</strong>. Todo lo que se enseña en los cinco cursos siguientes —datos, OSINT, derecho de prensa, transmedia, ciencia— son aplicaciones de ese método a materiales distintos.</p>
+    <p>Esta unidad establece la distinción que sostiene todo el certificado: el periodismo no se define por el tema que trata, ni por quién lo publica, ni por la ausencia de opinión. Se define por un método. Kovach y Rosenstiel lo formulan en una sola frase: <strong>la esencia del periodismo es una disciplina de verificación</strong>.</p>
     <p style="margin-bottom:0">La unidad separa tres conceptos que en el uso corriente se confunden: exactitud, verdad y objetividad. Al terminarla, el estudiante debe poder explicar por qué una cita textualmente exacta puede producir una nota falsa.</p>
   </div>
 
@@ -115,10 +145,8 @@
     <button class="tab" data-t="exa">Examen de Unidad</button>
   </div>
 
-  <!-- OBJETIVOS -->
   <section id="obj">
     <h3>Objetivos de aprendizaje</h3>
-    <p>Al concluir la Unidad 1, el estudiante será capaz de:</p>
     <ol>
       <li>Distinguir el periodismo de afirmación del periodismo de verificación, e identificar a cuál pertenece una pieza publicada.</li>
       <li>Aplicar los cinco principios intelectuales de la verificación de Kovach y Rosenstiel a un borrador propio.</li>
@@ -136,25 +164,23 @@
     </ul>
   </section>
 
-  <!-- DIAPOSITIVAS -->
   <section id="dia" class="on">
     <h3><span class="n">01</span>La primera obligación</h3>
     <p>El periodismo tiene un primer deber, y no es informar: es la verdad. Kovach y Rosenstiel colocan esta obligación como el primero de los diez elementos porque de ella se derivan todos los demás. Pero la formulación exige una precisión inmediata: no se trata de la verdad filosófica, absoluta y definitiva, sino de lo que ellos llaman <strong>verdad funcional</strong>.</p>
     <p>Un tribunal busca la verdad jurídica. Un laboratorio busca la verdad científica, siempre provisional. El periodismo busca una verdad utilizable: la que permite a un ciudadano tomar decisiones sobre su vida. Esa verdad es corregible, se construye por capas y admite que la nota de mañana enmiende la de hoy.</p>
-    <p>De ahí que la obligación con la verdad no sea un compromiso con la certeza, sino con un proceso. El periodista no promete tener razón. Promete haber hecho lo necesario para tenerla, y promete decir qué hizo.</p>
+    <div class="ej"><b>EJEMPLO</b>Un apagón se reporta el lunes como falla de una termoeléctrica. El martes se sabe que fueron dos unidades. El miércoles, que una llevaba meses sin mantenimiento. Ninguna de las tres notas es falsa: la verdad se completó por capas.</div>
 
     <h3><span class="n">02</span>Verdad funcional, no verdad definitiva</h3>
     <p>La verdad periodística se construye en capas sucesivas. La primera nota establece lo que se sabe en las primeras horas y suele contener errores. La segunda corrige. La tercera contextualiza. El proceso es acumulativo y público.</p>
-    <p>Esto tiene una consecuencia práctica que se enseña poco: <strong>la corrección no es el fracaso del método, es el método.</strong> Una redacción que nunca corrige no es una redacción exacta; es una redacción que no revisa. La disposición visible a enmendar es un indicador de rigor, no de debilidad.</p>
-    <p>Para el estudiante esto significa un cambio de hábito. La pregunta al cerrar una pieza no es «¿estoy seguro?», sino «¿qué haría falta para que esto resultara falso, y lo he buscado?».</p>
+    <p>Esto tiene una consecuencia práctica que se enseña poco: <strong>la corrección no es el fracaso del método, es el método.</strong> Una redacción que nunca corrige no es una redacción exacta; es una redacción que no revisa.</p>
+    <div class="ej"><b>EJERCICIO</b>La pregunta al cerrar una pieza no es «¿estoy seguro?», sino «¿qué haría falta para que esto resultara falso, y lo he buscado?». Escríbelo al pie de tu borrador antes de enviarlo.</div>
 
     <h3><span class="n">03</span>La objetividad era un método, no una persona</h3>
-    <p>El concepto de objetividad entra en el periodismo estadounidense en los años veinte del siglo pasado, y entra por una razón opuesta a la que hoy se le atribuye. Se formula precisamente porque se da por sentado que el periodista <strong>no</strong> es objetivo: tiene sesgos, historia y preferencias. La objetividad se propone entonces como un método consistente de comprobación que funcione a pesar del observador, del mismo modo que el método científico funciona a pesar de las preferencias del científico.</p>
-    <p>Con el tiempo el término se deslizó hasta significar lo contrario: una supuesta neutralidad del sujeto, un periodista sin opiniones. Kovach y Rosenstiel sostienen que esa deriva vació la palabra y dejó a la profesión sin el concepto que necesitaba.</p>
-    <p>La distinción importa porque la versión degradada es indefendible —nadie carece de perspectiva— mientras que la original es exigible y auditable: no se le pide al reportero que no piense, se le pide que compruebe de forma que otro pueda repetir la comprobación.</p>
+    <p>El concepto de objetividad entra en el periodismo estadounidense en los años veinte del siglo pasado, y entra por una razón opuesta a la que hoy se le atribuye. Se formula precisamente porque se da por sentado que el periodista <strong>no</strong> es objetivo: tiene sesgos, historia y preferencias. La objetividad se propone entonces como un método consistente de comprobación que funcione a pesar del observador.</p>
+    <p>Con el tiempo el término se deslizó hasta significar lo contrario: una supuesta neutralidad del sujeto. Esa deriva vació la palabra y dejó a la profesión sin el concepto que necesitaba. La versión degradada es indefendible —nadie carece de perspectiva— mientras que la original es exigible y auditable.</p>
+    <div class="ej"><b>EJEMPLO</b>Dos reporteros con posiciones políticas opuestas cubren la misma cifra oficial. Si ambos aplican el mismo procedimiento —pedir la serie completa, contrastar con el año anterior, buscar la metodología— llegan al mismo resultado. Eso es objetividad de método.</div>
 
     <h3><span class="n">04</span>Los cinco principios intelectuales</h3>
-    <p>Kovach y Rosenstiel formulan cinco principios que constituyen el núcleo operativo de la disciplina de verificación:</p>
     <ol>
       <li><strong>Nunca agregar nada que no estuviera ahí.</strong> Ni un detalle, ni un sonido ambiente, ni un pensamiento atribuido a alguien que no lo dijo.</li>
       <li><strong>Nunca engañar a la audiencia.</strong> Incluye el engaño por omisión, por montaje y por yuxtaposición.</li>
@@ -162,245 +188,105 @@
       <li><strong>Apoyarse en el reporteo propio.</strong> La cadena de terceros diluye la responsabilidad y multiplica el error.</li>
       <li><strong>Ejercer la humildad.</strong> Sobre lo que sabes y sobre tu propia capacidad de interpretarlo.</li>
     </ol>
-    <p>Los cinco son operativos, no aspiracionales: cada uno se puede convertir en una pregunta de control antes de enviar un texto.</p>
+    <div class="ej"><b>APLICACIÓN</b>Convierte cada principio en una casilla de control: ¿agregué algo? ¿puede esto inducir a error? ¿expliqué cómo lo sé? ¿lo reporté yo? ¿estoy sobreinterpretando? Cinco preguntas antes de enviar.</div>
 
     <h3><span class="n">05</span>Periodismo de afirmación y periodismo de verificación</h3>
-    <p>Kovach y Rosenstiel distinguen dos modos de producción que conviven en el mismo ecosistema. El <strong>periodismo de afirmación</strong> transmite lo que alguien dijo; su valor está en la velocidad y su control de calidad consiste en citar correctamente. El <strong>periodismo de verificación</strong> establece si lo dicho es cierto; su valor está en la fiabilidad y su control de calidad consiste en la prueba.</p>
-    <p>El primero no es ilegítimo: cubrir una declaración oficial es necesario. El problema aparece cuando el primero se presenta con la autoridad del segundo, y cuando el ciclo económico premia el volumen sobre la comprobación.</p>
-    <p>Ejercicio de reconocimiento: ante cualquier pieza, pregúntate si la nota afirma que <em>algo ocurrió</em> o que <em>alguien dijo que ocurrió</em>. Son dos afirmaciones distintas con dos cargas de prueba distintas, y confundirlas es el error más común del oficio.</p>
+    <p>El <strong>periodismo de afirmación</strong> transmite lo que alguien dijo; su valor está en la velocidad y su control de calidad consiste en citar correctamente. El <strong>periodismo de verificación</strong> establece si lo dicho es cierto; su valor está en la fiabilidad y su control de calidad consiste en la prueba.</p>
+    <p>El primero no es ilegítimo: cubrir una declaración oficial es necesario. El problema aparece cuando el primero se presenta con la autoridad del segundo.</p>
+    <div class="ej"><b>EJEMPLO</b>«El ministro dijo que hay siete mil contenedores retenidos» es afirmación. «Siete mil contenedores están retenidos, según registros portuarios que este medio revisó» es verificación. La segunda exige haber visto los registros.</div>
 
     <h3><span class="n">06</span>Exactitud no es verdad</h3>
     <p>Una cita puede ser textualmente exacta y producir una pieza falsa. Ocurre cuando se reproduce con fidelidad una afirmación falsa sin señalar que lo es, cuando se recorta el contexto que la modifica, o cuando se coloca junto a otra cita para sugerir una relación que no existe.</p>
-    <p>La exactitud es una propiedad de los elementos. La verdad es una propiedad del conjunto. Un texto donde cada dato es correcto puede mentir en su arquitectura: por lo que ordena, por lo que omite y por lo que insinúa al poner dos hechos uno junto al otro.</p>
-    <p>Por eso la verificación no termina cuando cada dato está confirmado. Hay una segunda comprobación, sobre el conjunto: ¿la impresión que deja este texto en un lector razonable corresponde a lo que sé que ocurrió?</p>
+    <p>La exactitud es una propiedad de los elementos. La verdad es una propiedad del conjunto.</p>
+    <div class="ej"><b>EJEMPLO</b>«El hospital recibió 400 millones» (cierto) junto a «el director compró una casa este año» (cierto) insinúa un delito que ninguna de las dos frases afirma. Cada dato es exacto; el párrafo miente.</div>
 
     <h3><span class="n">07</span>La transparencia como sustituto de la neutralidad</h3>
-    <p>Si el periodista no puede ser neutral, ¿qué ofrece a cambio? Kovach y Rosenstiel responden: el método a la vista. La transparencia consiste en decir de dónde salió la información, qué no se pudo confirmar, quién se negó a hablar y qué interés puede tener el que habló.</p>
-    <p>Esto convierte al lector en auditor. Una nota que dice «según tres documentos internos que este medio revisó y cuya autenticidad confirmó con dos fuentes independientes» permite evaluar la solidez de la afirmación. Una que dice «según fuentes» no permite nada.</p>
-    <p>La regla práctica: <strong>el lector debe poder reconstruir cómo llegaste a lo que afirmas.</strong> No siempre podrá repetirlo —hay fuentes que proteger—, pero debe poder juzgar el peso de la evidencia.</p>
+    <p>Si el periodista no puede ser neutral, ¿qué ofrece a cambio? El método a la vista. La transparencia consiste en decir de dónde salió la información, qué no se pudo confirmar, quién se negó a hablar y qué interés puede tener el que habló.</p>
+    <div class="ej"><b>COMPARA</b>«Según fuentes» no permite evaluar nada. «Según tres documentos internos que este medio revisó y cuya autenticidad confirmó con dos fuentes independientes» permite juzgar el peso de la evidencia. La segunda convierte al lector en auditor.</div>
 
     <h3><span class="n">08</span>La carga de la prueba</h3>
-    <p>En periodismo, la carga de la prueba recae siempre sobre quien afirma, y el periodista afirma cada vez que publica. No se traslada citando: escribir «X acusó a Y de corrupción» publica la acusación, y el medio responde por haberla difundido aunque no por su contenido.</p>
+    <p>En periodismo la carga de la prueba recae sobre quien afirma, y el periodista afirma cada vez que publica. No se traslada citando.</p>
     <ul>
-      <li>Buscar el descargo de la persona señalada y dejar constancia de que se buscó, incluso si no respondió.</li>
+      <li>Buscar el descargo de la persona señalada y dejar constancia de que se buscó.</li>
       <li>Distinguir en el texto entre lo probado, lo indiciario y lo alegado.</li>
       <li>No convertir la ausencia de desmentido en confirmación.</li>
     </ul>
-    <p>La proporción entre la gravedad de la afirmación y la solidez de la prueba debe ser explícita: cuanto más grave es lo que se dice, más sólida tiene que ser la evidencia y más visible debe estar en el texto.</p>
+    <div class="ej"><b>FÓRMULA CORRECTA</b>«Este medio buscó a la empresa por correo, teléfono y en sus oficinas entre el 3 y el 8 de julio. No obtuvo respuesta.» Deja constancia sin convertir el silencio en admisión.</div>
 
     <h3><span class="n">09</span>Verificación de material digital: la procedencia</h3>
-    <p>Bradshaw sistematiza la comprobación de material que el periodista no produjo —fotos, videos y documentos que llegan por redes o mensajería— alrededor de una pregunta central: la procedencia. No «¿parece auténtico?», sino «¿de dónde salió exactamente y quién lo tuvo antes que yo?».</p>
+    <p>La pregunta central no es «¿parece auténtico?», sino «¿de dónde salió exactamente y quién lo tuvo antes que yo?».</p>
     <ul>
-      <li><strong>Origen.</strong> ¿Es la primera publicación conocida del material o una copia? La búsqueda inversa de imagen suele revelar apariciones anteriores.</li>
-      <li><strong>Fuente.</strong> ¿Quién lo subió, qué historial tiene esa cuenta, qué publicó antes?</li>
-      <li><strong>Fecha.</strong> ¿Los metadatos coinciden con lo que se afirma? ¿El clima, la luz y la vegetación son compatibles?</li>
-      <li><strong>Lugar.</strong> ¿Los elementos fijos del encuadre —edificios, señales, montañas— coinciden con imágenes satelitales o de calle?</li>
+      <li><strong>Origen.</strong> ¿Es la primera publicación conocida o una copia? La búsqueda inversa de imagen revela apariciones anteriores.</li>
+      <li><strong>Fuente.</strong> ¿Quién lo subió, qué historial tiene esa cuenta?</li>
+      <li><strong>Fecha.</strong> ¿Los metadatos coinciden? ¿El clima, la luz y la vegetación son compatibles?</li>
+      <li><strong>Lugar.</strong> ¿Los elementos fijos del encuadre coinciden con imágenes satelitales?</li>
     </ul>
-    <p>Un material que no supera estas cuatro no se publica como hecho. Puede publicarse como afirmación de un tercero, señalando expresamente que no se pudo verificar.</p>
+    <div class="ej"><b>CASO TÍPICO</b>Un video de una protesta «de hoy» muestra árboles con follaje de otra estación y una fachada que fue demolida el año pasado. Dos comprobaciones bastaron para descartarlo.</div>
 
     <h3><span class="n">10</span>Síntesis: el método es la identidad</h3>
-    <p>La conclusión de la unidad es que la identidad profesional del periodista no descansa en una credencial, un empleador ni una plataforma. Descansa en un método comprobable que cualquiera puede aplicar y cuya aplicación cualquiera puede auditar.</p>
-    <p>Esto tiene una implicación incómoda y una liberadora. La incómoda: publicar en un medio prestigioso no vuelve periodístico un texto que no fue verificado. La liberadora: aplicar el método sí lo vuelve periodístico, aunque se publique en un blog.</p>
-    <p>En las tres unidades siguientes este método se aplicará a materiales concretos —fuentes de campo, decisiones éticas transfronterizas y flujos de verificación— pero el criterio no cambiará: la pregunta siempre será <em>cómo lo sabes</em> y <em>cómo puede saberlo el lector</em>.</p>
+    <p>La identidad profesional del periodista no descansa en una credencial, un empleador ni una plataforma. Descansa en un método comprobable que cualquiera puede aplicar y cuya aplicación cualquiera puede auditar.</p>
+    <p>La implicación incómoda: publicar en un medio prestigioso no vuelve periodístico un texto no verificado. La liberadora: aplicar el método sí lo vuelve periodístico, aunque se publique en un blog.</p>
   </section>
 
-  <!-- TÉRMINOS -->
   <section id="ter">
     <h3>Términos clave de la unidad</h3>
     <table>
       <tr><th>Término</th><th>Definición</th><th>Fuente</th></tr>
-      <tr><td>Disciplina de verificación</td><td>Conjunto de procedimientos comprobables que distingue al periodismo del entretenimiento, la propaganda y la ficción.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Verdad funcional</td><td>Verdad práctica y corregible, suficiente para que un ciudadano decida, por oposición a la verdad absoluta.</td><td>Kovach &amp; Rosenstiel, cap. 2</td></tr>
-      <tr><td>Periodismo de afirmación</td><td>Modo de producción que transmite lo dicho por una fuente sin establecer su veracidad.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Periodismo de verificación</td><td>Modo de producción que establece la veracidad de lo afirmado antes de publicarlo.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Objetividad de método</td><td>Formulación original del concepto: consistencia del procedimiento de comprobación, no neutralidad del sujeto.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Transparencia</td><td>Exposición pública de métodos, fuentes y limitaciones para que el lector audite la solidez de lo afirmado.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Humildad epistémica</td><td>Reconocimiento explícito de los límites del propio conocimiento y de la propia interpretación.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Procedencia</td><td>Trazabilidad de un material desde su origen hasta el periodista, incluyendo cada intermediario.</td><td>Bradshaw, Online Journalism Handbook</td></tr>
-      <tr><td>Carga de la prueba</td><td>Obligación de sustentar lo afirmado, que recae sobre quien publica y no se traslada por citar.</td><td>Ward, Global Journalism Ethics</td></tr>
-      <tr><td>Verificación de conjunto</td><td>Segunda comprobación sobre la impresión global del texto, posterior a la comprobación dato por dato.</td><td>Kovach &amp; Rosenstiel, cap. 2</td></tr>
-      <tr><td>Corrección</td><td>Enmienda pública y visible de un error propio; indicador de rigor del método, no de su fracaso.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Búsqueda inversa de imagen</td><td>Técnica de rastreo de apariciones previas de una imagen para determinar si es original o reciclada.</td><td>Briggs, Journalism Next</td></tr>
+      <tr><td>Disciplina de verificación</td><td>Procedimientos comprobables que distinguen al periodismo del entretenimiento, la propaganda y la ficción.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
+      <tr><td>Verdad funcional</td><td>Verdad práctica y corregible, suficiente para que un ciudadano decida.</td><td>Kovach &amp; Rosenstiel, cap. 2</td></tr>
+      <tr><td>Periodismo de afirmación</td><td>Transmite lo dicho por una fuente sin establecer su veracidad.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
+      <tr><td>Periodismo de verificación</td><td>Establece la veracidad de lo afirmado antes de publicarlo.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
+      <tr><td>Objetividad de método</td><td>Consistencia del procedimiento de comprobación, no neutralidad del sujeto.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
+      <tr><td>Transparencia</td><td>Exposición de métodos, fuentes y limitaciones para que el lector audite lo afirmado.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
+      <tr><td>Humildad epistémica</td><td>Reconocimiento de los límites del propio conocimiento e interpretación.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
+      <tr><td>Procedencia</td><td>Trazabilidad de un material desde su origen hasta el periodista.</td><td>Bradshaw, Online Journalism Handbook</td></tr>
+      <tr><td>Carga de la prueba</td><td>Obligación de sustentar lo afirmado; recae sobre quien publica.</td><td>Ward, Global Journalism Ethics</td></tr>
+      <tr><td>Verificación de conjunto</td><td>Comprobación sobre la impresión global del texto, posterior a la de cada dato.</td><td>Kovach &amp; Rosenstiel, cap. 2</td></tr>
+      <tr><td>Corrección</td><td>Enmienda pública de un error propio; indicador de rigor del método.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
+      <tr><td>Búsqueda inversa de imagen</td><td>Rastreo de apariciones previas de una imagen para saber si es original o reciclada.</td><td>Briggs, Journalism Next</td></tr>
     </table>
   </section>
 
-  <!-- PRUEBA -->
   <section id="pru">
     <h3>Prueba de la unidad</h3>
-
-    <div class="q"><div class="stem">1. Según Kovach y Rosenstiel, la esencia del periodismo es:</div>
-      <div class="opt">a) La imparcialidad del reportero</div>
-      <div class="opt ok">b) Una disciplina de verificación</div>
-      <div class="opt">c) La velocidad de publicación</div>
-      <div class="opt">d) El acceso a fuentes oficiales</div>
-      <div class="exp">Los autores desplazan la definición desde un rasgo del sujeto hacia un método comprobable. Es lo que permite auditar el trabajo con independencia de quién lo firme.</div></div>
-
-    <div class="q"><div class="stem">2. La objetividad, en su formulación original de los años veinte, exigía:</div>
-      <div class="opt">a) Que el periodista careciera de opiniones</div>
-      <div class="opt">b) Que se publicaran ambas versiones de todo conflicto</div>
-      <div class="opt ok">c) Un método consistente de comprobación, dado que el periodista sí tiene sesgos</div>
-      <div class="opt">d) La ausencia de adjetivos en el texto</div>
-      <div class="exp">El concepto nace del reconocimiento del sesgo, no de su negación. La versión que exige neutralidad personal es una deriva posterior y es indefendible.</div></div>
-
-    <div class="q"><div class="stem">3. Una nota donde cada dato es textualmente exacto:</div>
-      <div class="opt">a) Es por definición verdadera</div>
-      <div class="opt ok">b) Puede ser falsa por omisión, orden o yuxtaposición</div>
-      <div class="opt">c) No requiere corrección posterior</div>
-      <div class="opt">d) Cumple automáticamente el principio de transparencia</div>
-      <div class="exp">La exactitud es propiedad de los elementos; la verdad, del conjunto. De ahí la necesidad de una segunda comprobación sobre la impresión global.</div></div>
-
-    <div class="q"><div class="stem">4. ¿Cuál de estos NO es uno de los cinco principios intelectuales de la verificación?</div>
-      <div class="opt">a) Nunca agregar nada que no estuviera ahí</div>
-      <div class="opt">b) Ejercer la humildad</div>
-      <div class="opt ok">c) Mantener equidistancia entre las partes</div>
-      <div class="opt">d) Apoyarse en el reporteo propio</div>
-      <div class="exp">La equidistancia no figura entre los cinco principios y a menudo contradice la obligación con la verdad: dar el mismo peso a una afirmación probada y a una refutada desinforma.</div></div>
-
-    <div class="q"><div class="stem">5. Ante un video recibido por mensajería que no supera las comprobaciones de procedencia, corresponde:</div>
-      <div class="opt">a) Publicarlo señalando que circula en redes</div>
-      <div class="opt ok">b) Publicarlo como afirmación de un tercero, indicando expresamente que no se pudo verificar</div>
-      <div class="opt">c) Descartarlo sin dejar registro</div>
-      <div class="opt">d) Publicarlo si otro medio ya lo publicó</div>
-      <div class="exp">La opción (b) mantiene la distinción entre hecho establecido y afirmación no confirmada. La (d) sustituye la verificación por la conducta ajena, que es el mecanismo del error en cascada.</div></div>
-
-    <div class="q"><div class="stem">6. La corrección pública de un error propio indica:</div>
-      <div class="opt">a) Fallo del método de verificación</div>
-      <div class="opt ok">b) Funcionamiento del método</div>
-      <div class="opt">c) Necesidad de retirar la pieza completa</div>
-      <div class="opt">d) Responsabilidad legal automática</div>
-      <div class="exp">La verdad periodística es acumulativa y corregible. Una redacción que nunca corrige no es más exacta: es una que no revisa.</div></div>
-
-    <div class="q"><div class="stem">7. Escribir «X acusó a Y de corrupción» sin más:</div>
-      <div class="opt">a) Traslada la responsabilidad a X</div>
-      <div class="opt ok">b) Publica la acusación, y el medio responde por difundirla</div>
-      <div class="opt">c) Equivale a verificar la acusación</div>
-      <div class="opt">d) Cumple el principio de reporteo propio</div>
-      <div class="exp">La cita no neutraliza la difusión. Corresponde buscar el descargo de Y, dejar constancia de haberlo buscado y distinguir en el texto lo probado de lo alegado.</div></div>
-
-    <div class="q"><div class="stem">8. La transparencia sustituye a la neutralidad porque:</div>
-      <div class="opt">a) Es más fácil de cumplir</div>
-      <div class="opt ok">b) Permite al lector auditar la solidez de lo afirmado</div>
-      <div class="opt">c) Evita demandas por difamación</div>
-      <div class="opt">d) Reemplaza la necesidad de verificar</div>
-      <div class="exp">Convierte al lector en auditor del método. No sustituye a la verificación: la hace evaluable desde fuera.</div></div>
+    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
+    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <div id="quiz"></div>
 
     <h3>Ensayos</h3>
-    <div class="case">
-      <span class="tag">ENSAYO 1 · 600–800 PALABRAS</span>
-      <p style="margin:0">Elige una pieza publicada en los últimos treinta días por cualquier medio. Determina si pertenece al periodismo de afirmación o al de verificación, sustentando la clasificación con evidencia textual. Identifica las afirmaciones cuya carga de prueba no está satisfecha y reescribe dos párrafos aplicando el principio de transparencia.</p>
+    <div class="case"><span class="tag">ENSAYO 1 · 600–800 PALABRAS</span>
+      <p>Elige una pieza publicada en los últimos treinta días. Determina si pertenece al periodismo de afirmación o al de verificación, sustentando la clasificación con evidencia textual. Identifica las afirmaciones cuya carga de prueba no está satisfecha y reescribe dos párrafos aplicando transparencia.</p>
+      <button class="reveal">Ver respuesta modelo</button>
+      <div class="model"><b>RESPUESTA MODELO — FRAGMENTO</b>«La nota pertenece al periodismo de afirmación. De sus once párrafos, nueve comienzan con un verbo declarativo atribuido a una autoridad —"informó", "aseguró", "precisó"— y ninguno aporta un documento, un registro o un contraste independiente. La única cifra se atribuye a la propia empresa responsable del servicio, es decir, a la parte interesada en el dato. Reescritura aplicando transparencia: <em>La empresa informó una afectación de 2.230 MW. Este medio solicitó el desglose por unidad generadora el 31 de julio y no lo recibió; la cifra no pudo verificarse de forma independiente.</em>»</div>
     </div>
-    <div class="case">
-      <span class="tag">ENSAYO 2 · 600–800 PALABRAS</span>
-      <p style="margin:0">Kovach y Rosenstiel sostienen que la objetividad fue formulada porque el periodista <em>no</em> es objetivo. Explica en qué consistió la tergiversación posterior del concepto y argumenta si la versión original es exigible hoy en un entorno de publicación individual, donde no hay editor ni verificador institucional. Sostén tu posición con al menos dos ejemplos concretos.</p>
-    </div>
-  </section>
-
-  <!-- CASOS -->
-  <section id="cas">
-    <div class="case">
-      <span class="tag">CASO 1 · THE WASHINGTON POST · 1980–1981</span>
-      <h4>Janet Cooke, «Jimmy's World»</h4>
-      <p>El 28 de septiembre de 1980 el <em>Post</em> publicó el perfil de un niño de ocho años adicto a la heroína en Washington. La pieza ganó el Pulitzer de reportaje en abril de 1981. Dos días después de recibirlo, ante inconsistencias en la biografía de la autora y la imposibilidad de localizar al niño, Cooke admitió que el personaje no existía. El diario devolvió el premio.</p>
-      <p><strong>Preguntas.</strong> ¿Cuál de los cinco principios se violó primero? ¿Qué mecanismo de la redacción falló, además de la conducta individual? ¿Por qué la promesa de proteger a una fuente hizo el fraude más difícil de detectar, y qué control interno lo habría evitado sin romper esa protección?</p>
-      <div class="key"><b>LECCIÓN CLAVE</b>El anonimato de fuente protege a la fuente frente al público, no frente al editor. Una redacción necesita un mecanismo por el cual al menos una persona más conozca la identidad real de una fuente anónima.</div>
-    </div>
-
-    <div class="case">
-      <span class="tag">CASO 2 · THE NEW YORK TIMES · 2003</span>
-      <h4>Jayson Blair</h4>
-      <p>En mayo de 2003 el <em>Times</em> publicó una investigación sobre su propio reportero, que había fabricado escenas, inventado citas y plagiado material de otros medios en decenas de artículos, simulando viajes que nunca hizo. Renunciaron después el director y el subdirector del diario.</p>
-      <p><strong>Preguntas.</strong> ¿Qué señales existían antes y por qué no se actuó sobre ellas? ¿Qué papel tuvo la ausencia de reporteo propio en la posibilidad del fraude? ¿Cómo se verifica que un reportero estuvo donde dice haber estado, sin convertir la redacción en un aparato de vigilancia?</p>
-      <div class="key"><b>LECCIÓN CLAVE</b>El fraude prosperó donde no había rastro material del reporteo. Un método que deja registro —notas, recibos, grabaciones, contactos verificables— es también un método auditable.</div>
-    </div>
-
-    <div class="case">
-      <span class="tag">CASO 3 · DER SPIEGEL · 2018</span>
-      <h4>Claas Relotius</h4>
-      <p>En diciembre de 2018 <em>Der Spiegel</em> informó que uno de sus reporteros más premiados había fabricado total o parcialmente al menos 14 de cerca de 60 artículos publicados en la revista y su sitio. Incluían diálogos ficticios y «collages de personajes». La sospecha la levantó un colega que trabajó con él en un reportaje sobre la frontera entre Estados Unidos y México.</p>
-      <p><strong>Preguntas.</strong> <em>Der Spiegel</em> mantenía uno de los departamentos de comprobación de datos más grandes del mundo. ¿Por qué no lo detectó? ¿Qué tipo de afirmación resiste la comprobación de datos y aun así es falsa? ¿Qué papel jugó la calidad literaria de los textos en su credibilidad?</p>
-      <div class="key"><b>LECCIÓN CLAVE</b>La comprobación de datos verifica elementos, no arquitectura. Un texto puede tener cada nombre y cada fecha correctos y ser íntegramente falso en sus escenas. Y el reconocimiento profesional funciona como blindaje: cuanto más premiado el autor, más costoso es dudar de él.</div>
-    </div>
-
-    <div class="case">
-      <span class="tag">CASO 4 · CBS · 2004</span>
-      <h4>Los documentos Killian</h4>
-      <p>En septiembre de 2004 un programa de CBS presentó documentos supuestamente de los años setenta sobre el servicio militar de George W. Bush. En horas, analistas señalaron rasgos tipográficos difíciles de producir con las máquinas de la época. Una revisión externa encargada por la cadena concluyó que no se había autenticado el material adecuadamente. Hubo despidos y el presentador dejó su puesto poco después.</p>
-      <p><strong>Preguntas.</strong> ¿Qué comprobación de autenticidad material faltó? ¿Cómo influyó la presión de tiempo en la decisión de emitir? ¿Qué diferencia hay entre autenticar un documento y confirmar que su contenido es plausible?</p>
-      <div class="key"><b>LECCIÓN CLAVE</b>Un documento se autentica como objeto —soporte, tipografía, cadena de custodia— antes de discutir su contenido. Que lo que dice sea verosímil no prueba que sea auténtico.</div>
-    </div>
-
-    <div class="case">
-      <span class="tag">CASO 5 · BOSTON · 2013</span>
-      <h4>Identificación errónea tras el atentado del maratón</h4>
-      <p>Después del atentado en el maratón de Boston en abril de 2013, usuarios de foros y redes identificaron públicamente como sospechoso a un estudiante desaparecido que nada tenía que ver con el hecho. Varios medios amplificaron la identificación. El foro pidió disculpas públicamente. La familia del joven, que había desaparecido semanas antes, recibió acoso durante días.</p>
-      <p><strong>Preguntas.</strong> ¿Qué falló en la verificación colectiva que en teoría debía corregir el error? ¿Qué obligación tiene un medio profesional cuando la fuente es una multitud? ¿Cuál es el costo de una identificación errónea y quién lo paga?</p>
-      <div class="key"><b>LECCIÓN CLAVE</b>El volumen de personas mirando un material no es verificación. La coincidencia de muchos observadores no independientes multiplica el error en lugar de corregirlo, porque todos miran la misma imagen con la misma hipótesis.</div>
-    </div>
-
-    <div class="case">
-      <span class="tag">CASO 6 · BELLINGCAT · 2014 EN ADELANTE</span>
-      <h4>El vuelo MH17 y la verificación de fuente abierta</h4>
-      <p>Tras el derribo del vuelo MH17 en julio de 2014 sobre el este de Ucrania, un colectivo de investigadores reconstruyó con material abierto —fotos y videos publicados en redes, imágenes satelitales comerciales y registros públicos— la ruta del sistema antiaéreo implicado. Publicaron el método completo, paso por paso, permitiendo que terceros repitieran cada verificación. Investigaciones oficiales posteriores llegaron a conclusiones convergentes.</p>
-      <p><strong>Preguntas.</strong> ¿Por qué la publicación del método es aquí parte del resultado y no un anexo? ¿Qué hace que una conclusión obtenida sin fuentes confidenciales sea más robusta frente a la impugnación, y no menos? ¿Qué límites tiene este enfoque?</p>
-      <div class="key"><b>LECCIÓN CLAVE</b>Es el caso positivo de la unidad y el modelo del certificado: cuando el método completo se publica, la verificación deja de depender de la reputación del investigador. Cualquiera puede rehacerla. Esa es la forma más fuerte de transparencia.</div>
+    <div class="case"><span class="tag">ENSAYO 2 · 600–800 PALABRAS</span>
+      <p>Kovach y Rosenstiel sostienen que la objetividad fue formulada porque el periodista <em>no</em> es objetivo. Explica en qué consistió la tergiversación posterior y argumenta si la versión original es exigible hoy en un entorno de publicación individual, donde no hay editor ni verificador institucional.</p>
+      <button class="reveal">Ver respuesta modelo</button>
+      <div class="model"><b>RESPUESTA MODELO — FRAGMENTO</b>«La tergiversación consistió en trasladar la exigencia del procedimiento a la persona. Donde se pedía un método replicable se terminó pidiendo un sujeto sin convicciones, algo que no existe y que además nadie puede demostrar. En el entorno individual la versión original no solo sigue siendo exigible: es lo único que queda. Sin editor que revise ni verificador que compruebe, el único control disponible es que el autor publique su procedimiento junto con su conclusión, de modo que el lector pueda hacer la revisión que la institución ya no hace.»</div>
     </div>
   </section>
 
-  <!-- ROLES -->
-  <section id="rol">
-    <h3>Juegos de roles</h3>
-    <div class="case"><span class="tag">ESCENARIO 1</span><h4>La fuente que se retracta</h4>
-      <p>Una fuente confirmó un dato central en grabación y, dos horas antes del cierre, pide que no se use porque teme represalias laborales.</p>
-      <p><strong>Roles:</strong> reportero, editor, fuente. <strong>Decisión:</strong> si se publica, con qué formulación y qué se le debe a la fuente.</p>
-      <div class="key"><b>CRITERIO DE EVALUACIÓN</b>Distinguir entre lo prometido explícitamente y lo que la fuente supuso.</div></div>
+  <section id="cas"><h3>Casos de estudio</h3><div id="cases"></div></section>
+  <section id="rol"><h3>Juegos de roles</h3><div id="roles"></div></section>
 
-    <div class="case"><span class="tag">ESCENARIO 2</span><h4>El material sin procedencia</h4>
-      <p>Llega por mensajería un video que muestra un hecho de interés público evidente. No hay metadatos, no hay original, no se identifica al emisor. La competencia ya lo publicó.</p>
-      <p><strong>Roles:</strong> reportero, jefe de información, verificador.</p>
-      <div class="key"><b>CRITERIO DE EVALUACIÓN</b>La formulación exacta con que se publicaría, o la decisión razonada de no hacerlo.</div></div>
-
-    <div class="case"><span class="tag">ESCENARIO 3</span><h4>La cita descontextualizada</h4>
-      <p>Un funcionario dijo una frase grave dentro de una explicación que la matiza por completo. El fragmento breve es noticioso; el completo, no.</p>
-      <p><strong>Roles:</strong> reportero, editor, oficina de prensa del funcionario.</p>
-      <div class="key"><b>CRITERIO DE EVALUACIÓN</b>Aplicación del principio de no engañar por yuxtaposición.</div></div>
-
-    <div class="case"><span class="tag">ESCENARIO 4</span><h4>El error propio a las 48 horas</h4>
-      <p>Se publicó un dato incorrecto que ya circuló ampliamente. Corregirlo expone al medio; no hacerlo consolida un error en el registro público.</p>
-      <p><strong>Roles:</strong> reportero, director, lector afectado.</p>
-      <div class="key"><b>CRITERIO DE EVALUACIÓN</b>Forma, ubicación y visibilidad de la corrección.</div></div>
-
-    <div class="case"><span class="tag">ESCENARIO 5</span><h4>El descargo que no llega</h4>
-      <p>Se buscó a la persona señalada por tres vías durante cinco días sin respuesta. El plazo se agota.</p>
-      <p><strong>Roles:</strong> reportero, abogado del medio, editor.</p>
-      <div class="key"><b>CRITERIO DE EVALUACIÓN</b>Qué se escribe exactamente sobre el intento de contacto y cómo se evita convertir el silencio en confirmación.</div></div>
-
-    <div class="case"><span class="tag">ESCENARIO 6</span><h4>La exclusiva condicionada</h4>
-      <p>Una fuente ofrece documentos a cambio de aprobar la redacción final.</p>
-      <p><strong>Roles:</strong> reportero, fuente, editor.</p>
-      <div class="key"><b>CRITERIO DE EVALUACIÓN</b>Identificar en qué punto la condición vuelve la pieza inutilizable como periodismo, y qué contraoferta preserva el material sin ceder el control editorial.</div></div>
-  </section>
-
-  <!-- ENTREVISTA -->
   <section id="ent">
     <h3>Entrevista simulada</h3>
-    <div class="case">
-      <span class="tag">ESCENARIO</span>
-      <p>Entrevista de veinte minutos a un directivo de una empresa de servicios públicos sobre interrupciones prolongadas del suministro. El entrevistado dispone de argumentario preparado, tiende a responder con cifras agregadas y a devolver la pregunta.</p>
-      <p><strong>Objetivo del estudiante.</strong> Obtener tres datos verificables y una respuesta directa sobre responsabilidad, sin cerrar la puerta a futuras entrevistas.</p>
-      <p><strong>Restricciones.</strong> No se admiten preguntas con adjetivo valorativo. Cada pregunta debe poder responderse con un dato o un sí/no. Cuando el entrevistado responda con una cifra agregada, la siguiente pregunta debe desagregarla.</p>
-      <div class="key"><b>EVALUACIÓN</b>Proporción de preguntas cerradas frente a abiertas; número de datos obtenidos que resistirían comprobación documental posterior; manejo de la evasiva sin subir el tono; registro escrito del intercambio inmediatamente al terminar.</div>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista a un directivo de una empresa de servicios públicos sobre interrupciones prolongadas del suministro. El entrevistado tiene argumentario preparado, responde con cifras agregadas y devuelve la pregunta.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> Ninguna pregunta puede llevar adjetivo valorativo. Cada pregunta debe poder responderse con un dato o con sí/no. Si el entrevistado da una cifra agregada, la siguiente pregunta debe desagregarla.</p>
     </div>
+    <div id="iv"></div>
   </section>
 
-  <!-- EXAMEN -->
   <section id="exa">
     <h3>Examen de unidad</h3>
-    <div class="case"><span class="tag">PARTE A · 40%</span>
-      <p style="margin:0">Diez preguntas de opción múltiple sobre los cinco principios, la distinción afirmación/verificación y las comprobaciones de procedencia.</p></div>
-    <div class="case"><span class="tag">PARTE B · 30%</span>
-      <p style="margin:0">Análisis de una pieza publicada entregada el día del examen. Identificar: tipo de periodismo, afirmaciones con carga de prueba no satisfecha, y una reescritura de la entrada aplicando transparencia.</p></div>
-    <div class="case"><span class="tag">PARTE C · 30%</span>
-      <p style="margin:0">Caso práctico escrito. Se entrega un expediente con un video sin procedencia, dos testimonios contradictorios y un documento de autenticidad dudosa. El estudiante debe producir un memorando de decisión editorial: qué se publica, con qué formulación, qué queda fuera y por qué, y qué haría falta para publicar lo excluido.</p></div>
+    <div class="case"><span class="tag">PARTE A · 40%</span><p style="margin:0">Diez preguntas de opción múltiple sobre los cinco principios, la distinción afirmación/verificación y las comprobaciones de procedencia.</p></div>
+    <div class="case"><span class="tag">PARTE B · 30%</span><p style="margin:0">Análisis de una pieza publicada entregada el día del examen. Identificar tipo de periodismo, afirmaciones con carga de prueba no satisfecha, y reescribir la entrada aplicando transparencia.</p></div>
+    <div class="case"><span class="tag">PARTE C · 30%</span><p>Caso práctico. Se entrega un expediente con un video sin procedencia, dos testimonios contradictorios y un documento de autenticidad dudosa. El estudiante produce un memorando de decisión editorial.</p>
+      <button class="reveal">Ver estructura del memorando modelo</button>
+      <div class="model"><b>MEMORANDO MODELO — ESTRUCTURA</b>1. Qué se publica y con qué formulación exacta.<br>2. Qué queda fuera y por qué, elemento por elemento.<br>3. Qué comprobación adicional convertiría cada elemento excluido en publicable.<br>4. Qué se le dice al lector sobre lo que no se pudo confirmar.<br>5. Plazo y responsable de cada comprobación pendiente.</div>
+    </div>
     <p><strong>Aprobación:</strong> 75%, conforme a los requisitos de graduación del certificado.</p>
   </section>
 
@@ -412,15 +298,212 @@
 </div>
 
 <script>
-  document.querySelectorAll('.tab').forEach(function(b){
-    b.addEventListener('click', function(){
-      document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
-      document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
-      b.classList.add('on');
-      document.getElementById(b.dataset.t).classList.add('on');
-      window.scrollTo({top:0,behavior:'smooth'});
-    });
+const QUIZ=[
+ {q:"Según Kovach y Rosenstiel, la esencia del periodismo es:",
+  o:["La imparcialidad del reportero","Una disciplina de verificación","La velocidad de publicación","El acceso a fuentes oficiales"],c:1,
+  e:"Los autores desplazan la definición desde un rasgo del sujeto hacia un método comprobable. Es lo que permite auditar el trabajo con independencia de quién lo firme."},
+ {q:"La objetividad, en su formulación original de los años veinte, exigía:",
+  o:["Que el periodista careciera de opiniones","Que se publicaran ambas versiones de todo conflicto","Un método consistente de comprobación, dado que el periodista sí tiene sesgos","La ausencia de adjetivos en el texto"],c:2,
+  e:"El concepto nace del reconocimiento del sesgo, no de su negación. La versión que exige neutralidad personal es una deriva posterior y es indefendible."},
+ {q:"Una nota donde cada dato es textualmente exacto:",
+  o:["Es por definición verdadera","Puede ser falsa por omisión, orden o yuxtaposición","No requiere corrección posterior","Cumple automáticamente el principio de transparencia"],c:1,
+  e:"La exactitud es propiedad de los elementos; la verdad, del conjunto. De ahí la segunda comprobación sobre la impresión global."},
+ {q:"¿Cuál NO es uno de los cinco principios intelectuales de la verificación?",
+  o:["Nunca agregar nada que no estuviera ahí","Ejercer la humildad","Mantener equidistancia entre las partes","Apoyarse en el reporteo propio"],c:2,
+  e:"La equidistancia no figura entre los cinco y a menudo contradice la obligación con la verdad: dar el mismo peso a una afirmación probada y a una refutada desinforma."},
+ {q:"Ante un video que no supera las comprobaciones de procedencia, corresponde:",
+  o:["Publicarlo señalando que circula en redes","Publicarlo como afirmación de un tercero, indicando que no se pudo verificar","Descartarlo sin dejar registro","Publicarlo si otro medio ya lo publicó"],c:1,
+  e:"Mantiene la distinción entre hecho establecido y afirmación no confirmada. Publicar porque otro publicó sustituye la verificación por la conducta ajena: es el mecanismo del error en cascada."},
+ {q:"La corrección pública de un error propio indica:",
+  o:["Fallo del método de verificación","Funcionamiento del método","Necesidad de retirar la pieza completa","Responsabilidad legal automática"],c:1,
+  e:"La verdad periodística es acumulativa y corregible. Una redacción que nunca corrige no es más exacta: es una que no revisa."},
+ {q:"Escribir «X acusó a Y de corrupción» sin más:",
+  o:["Traslada la responsabilidad a X","Publica la acusación, y el medio responde por difundirla","Equivale a verificar la acusación","Cumple el principio de reporteo propio"],c:1,
+  e:"La cita no neutraliza la difusión. Corresponde buscar el descargo de Y, dejar constancia de haberlo buscado y distinguir lo probado de lo alegado."},
+ {q:"La transparencia sustituye a la neutralidad porque:",
+  o:["Es más fácil de cumplir","Permite al lector auditar la solidez de lo afirmado","Evita demandas por difamación","Reemplaza la necesidad de verificar"],c:1,
+  e:"Convierte al lector en auditor del método. No sustituye a la verificación: la hace evaluable desde fuera."}
+];
+
+const CASES=[
+ {tag:"CASO 1 · THE WASHINGTON POST · 1980–1981",t:"Janet Cooke, «Jimmy's World»",
+  d:"El 28 de septiembre de 1980 el <em>Post</em> publicó el perfil de un niño de ocho años adicto a la heroína en Washington. La pieza ganó el Pulitzer de reportaje en abril de 1981. Dos días después de recibirlo, ante inconsistencias en la biografía de la autora y la imposibilidad de localizar al niño, Cooke admitió que el personaje no existía. El diario devolvió el premio.",
+  ej:"La redacción aceptó que la reportera no revelara la dirección del niño alegando riesgo para la fuente. Nadie más en el diario supo nunca quién era. El argumento de protección funcionó como escudo del fraude.",
+  p:["¿Cuál de los cinco principios se violó primero?","¿Qué mecanismo de la redacción falló, además de la conducta individual?","¿Qué control interno lo habría evitado sin romper la protección de la fuente?"],
+  m:"El principio violado primero es «nunca agregar nada que no estuviera ahí»: el personaje entero fue agregado. Pero el fallo institucional es otro: no existía un procedimiento por el cual un editor conociera la identidad real de una fuente anónima. El control que lo habría evitado es el de doble conocimiento: al menos un editor debe conocer a la fuente y dejar constancia de haberla verificado, con la identidad protegida frente al público pero no frente a la casa.",
+  k:"El anonimato de fuente protege a la fuente frente al público, no frente al editor."},
+ {tag:"CASO 2 · THE NEW YORK TIMES · 2003",t:"Jayson Blair",
+  d:"En mayo de 2003 el <em>Times</em> publicó una investigación sobre su propio reportero, que había fabricado escenas, inventado citas y plagiado material de otros medios en decenas de artículos, simulando viajes que nunca hizo. Renunciaron después el director y el subdirector del diario.",
+  ej:"Blair firmaba desde ciudades donde no había estado, apoyándose en fotografías publicadas por otros medios para describir escenarios que nunca vio. Los gastos de viaje que no presentaba eran una señal contable disponible desde el primer mes.",
+  p:["¿Qué señales existían antes y por qué no se actuó sobre ellas?","¿Qué papel tuvo la ausencia de reporteo propio?","¿Cómo se verifica que un reportero estuvo donde dice, sin convertir la redacción en vigilancia?"],
+  m:"Las señales eran administrativas antes que editoriales: ausencia de gastos de viaje, ausencia de contactos locales en las notas, coincidencias textuales con despachos de agencia. No se actuó porque cada señal pertenecía a un departamento distinto y ninguno las cruzaba. La verificación razonable no es vigilancia: consiste en exigir que cada pieza de campo incluya al menos un contacto local verificable por el editor, lo cual es un requisito de reporteo, no de control del trabajador.",
+  k:"El fraude prosperó donde no había rastro material del reporteo. Un método que deja registro es también un método auditable."},
+ {tag:"CASO 3 · DER SPIEGEL · 2018",t:"Claas Relotius",
+  d:"En diciembre de 2018 <em>Der Spiegel</em> informó que uno de sus reporteros más premiados había fabricado total o parcialmente al menos 14 de cerca de 60 artículos publicados en la revista y su sitio. Incluían diálogos ficticios y «collages de personajes». La sospecha la levantó un colega que trabajó con él en un reportaje sobre la frontera entre Estados Unidos y México.",
+  ej:"La revista mantenía uno de los departamentos de comprobación de datos más grandes del mundo. Ese departamento verificaba que los nombres, las fechas y los lugares existieran. No verificaba que las escenas hubieran ocurrido.",
+  p:["¿Por qué no lo detectó la comprobación de datos?","¿Qué tipo de afirmación resiste esa comprobación y aun así es falsa?","¿Qué papel jugó la calidad literaria en su credibilidad?"],
+  m:"La comprobación de datos opera sobre elementos verificables por separado: un nombre existe, una calle existe, una fecha es coherente. Lo que no opera es sobre la escena, que es una afirmación compuesta e irrepetible: que dos personas dijeran eso en ese momento. Ese tipo de afirmación solo se verifica volviendo al lugar o contactando a los personajes, que es exactamente lo que un fabulador evita facilitar. La calidad literaria agravó el problema: los textos eran mejores que la realidad porque no estaban limitados por ella, y esa superioridad se leyó como talento en vez de como señal.",
+  k:"La comprobación de datos verifica elementos, no arquitectura. Cuanto más premiado el autor, más costoso resulta dudar de él."},
+ {tag:"CASO 4 · CBS · 2004",t:"Los documentos Killian",
+  d:"En septiembre de 2004 un programa de CBS presentó documentos supuestamente de los años setenta sobre el servicio militar de George W. Bush. En horas, analistas señalaron rasgos tipográficos difíciles de producir con las máquinas de la época. Una revisión externa encargada por la cadena concluyó que no se había autenticado el material adecuadamente. Hubo despidos y el presentador dejó su puesto poco después.",
+  ej:"El contenido de los documentos era coherente con lo que otras fuentes sostenían. Esa coherencia funcionó como sustituto de la autenticación: se dio por probado el objeto porque el mensaje encajaba.",
+  p:["¿Qué comprobación de autenticidad material faltó?","¿Cómo influyó la presión de tiempo?","¿Qué diferencia hay entre autenticar un documento y confirmar que su contenido es plausible?"],
+  m:"Faltó la autenticación del documento como objeto físico: soporte, tipografía, interlineado, y sobre todo la cadena de custodia —de quién salió y por qué manos pasó—. La presión de tiempo convirtió la plausibilidad en prueba, que es la inversión exacta del método. Autenticar es establecer que el objeto es lo que dice ser; confirmar plausibilidad es solo comprobar que su contenido no contradice lo que ya se sabe. Lo segundo no implica lo primero, y un falsificador competente construye precisamente contenido plausible.",
+  k:"Un documento se autentica como objeto antes de discutir su contenido. Que lo que dice sea verosímil no prueba que sea auténtico."},
+ {tag:"CASO 5 · BOSTON · 2013",t:"Identificación errónea tras el atentado del maratón",
+  d:"Después del atentado en el maratón de Boston en abril de 2013, usuarios de foros y redes identificaron públicamente como sospechoso a un estudiante desaparecido que nada tenía que ver con el hecho. Varios medios amplificaron la identificación. El foro pidió disculpas públicamente. La familia del joven, que había desaparecido semanas antes, recibió acoso durante días.",
+  ej:"Miles de personas examinaron las mismas fotografías buscando la misma coincidencia. Ninguna aportó información nueva: todas interpretaron el mismo material bajo la misma hipótesis, y la coincidencia se leyó como confirmación.",
+  p:["¿Qué falló en la verificación colectiva que debía corregir el error?","¿Qué obligación tiene un medio cuando la fuente es una multitud?","¿Cuál es el costo de una identificación errónea y quién lo paga?"],
+  m:"Falló el supuesto de independencia. La verificación colectiva corrige errores solo si los observadores acceden a evidencia distinta y razonan por separado; aquí todos miraban las mismas imágenes con la misma hipótesis, de modo que el volumen amplificó el sesgo en lugar de compensarlo. La obligación del medio no cambia porque la fuente sea numerosa: una multitud es una fuente única no verificada. El costo lo pagó íntegramente una familia que además estaba buscando a su hijo desaparecido, y ninguna corrección posterior lo revirtió.",
+  k:"El volumen de personas mirando un material no es verificación. Observadores no independientes multiplican el error."},
+ {tag:"CASO 6 · BELLINGCAT · 2014 EN ADELANTE",t:"El vuelo MH17 y la verificación de fuente abierta",
+  d:"Tras el derribo del vuelo MH17 en julio de 2014 sobre el este de Ucrania, un colectivo de investigadores reconstruyó con material abierto —fotos y videos publicados en redes, imágenes satelitales comerciales y registros públicos— la ruta del sistema antiaéreo implicado. Publicaron el método completo, paso por paso, permitiendo que terceros repitieran cada verificación. Investigaciones oficiales posteriores llegaron a conclusiones convergentes.",
+  ej:"Cada geolocalización se publicó con la imagen original, la imagen satelital de referencia y los puntos de coincidencia señalados. Un lector con conexión a internet podía rehacer la comprobación sin pedirle permiso a nadie.",
+  p:["¿Por qué la publicación del método es parte del resultado y no un anexo?","¿Qué hace más robusta una conclusión obtenida sin fuentes confidenciales?","¿Qué límites tiene este enfoque?"],
+  m:"El método publicado es el resultado porque sustituye la confianza por la comprobación: la conclusión no pide crédito al investigador, ofrece los pasos. Eso la vuelve más robusta frente a la impugnación, porque quien la niega debe refutar evidencia disponible para todos en lugar de atacar la credibilidad de una fuente que no puede mostrarse. Los límites son reales: el enfoque depende de que exista material publicado, no alcanza intenciones ni decisiones internas, y en entornos con poca conectividad o censura previa el rastro simplemente no existe.",
+  k:"Cuando el método completo se publica, la verificación deja de depender de la reputación del investigador."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La fuente que se retracta",
+  d:"Una fuente confirmó un dato central en grabación y, dos horas antes del cierre, pide que no se use porque teme represalias laborales.",
+  r:"Reportero · Editor · Fuente",
+  ej:"<span class='who'>FUENTE:</span> Te pido que no lo uses, me van a botar.<br><span class='who'>REPORTERO:</span> Cuando hablamos el martes, ¿acordamos que era en el récord?<br><span class='who'>FUENTE:</span> Sí, pero no pensé que iba a salir con mi cargo.<br><span class='who'>REPORTERO:</span> Entonces el problema no es el dato, es que se te identifique. Déjame proponerte algo.",
+  m:"Se publica el dato, no la identidad. El acuerdo original era en el récord y el interés público del dato no desaparece porque la fuente se arrepienta; retirarlo entero premiaría la presión y dejaría al lector sin información verificada. Pero la fuente supuso una exposición que el reportero no aclaró, y esa ambigüedad es responsabilidad de la casa. La salida es atribuir por función y no por nombre —«un trabajador del área de mantenimiento»— siempre que ese nivel de detalle no la identifique de facto, y decírselo antes de publicar, no después.",
+  c:"Distinguir entre lo prometido explícitamente y lo que la fuente supuso."},
+ {tag:"ESCENARIO 2",t:"El material sin procedencia",
+  d:"Llega por mensajería un video que muestra un hecho de interés público evidente. No hay metadatos, no hay original, no se identifica al emisor. La competencia ya lo publicó.",
+  r:"Reportero · Jefe de información · Verificador",
+  ej:"<span class='who'>JEFE:</span> Ya lo tienen los otros dos.<br><span class='who'>VERIFICADOR:</span> Y ninguno dice de dónde salió.<br><span class='who'>JEFE:</span> Entonces vamos tarde.<br><span class='who'>VERIFICADOR:</span> O vamos a ser los únicos que puedan sostenerlo mañana.",
+  m:"No se publica como hecho. Se publica, si acaso, como material en circulación con la limitación explícita: «Un video difundido por mensajería desde el jueves muestra lo que parece ser X. Este medio no pudo establecer su origen, su fecha ni su ubicación.» Que la competencia lo haya publicado no es una comprobación; es la conducta ajena, y si el material resulta falso el daño reputacional no se reparte. La ventaja competitiva real está en ser el medio que veinticuatro horas después no tiene que rectificar.",
+  c:"La formulación exacta con que se publicaría, o la decisión razonada de no hacerlo."},
+ {tag:"ESCENARIO 3",t:"La cita descontextualizada",
+  d:"Un funcionario dijo una frase grave dentro de una explicación que la matiza por completo. El fragmento breve es noticioso; el completo, no.",
+  r:"Reportero · Editor · Oficina de prensa",
+  ej:"<span class='who'>EDITOR:</span> Con la frase sola, el titular se escribe solo.<br><span class='who'>REPORTERO:</span> Y con el párrafo completo dice lo contrario.<br><span class='who'>EDITOR:</span> El párrafo completo no cabe en el titular.<br><span class='who'>REPORTERO:</span> Entonces el problema es el titular, no el párrafo.",
+  m:"Publicar el fragmento sin el matiz viola el segundo principio: engaña sin mentir. La prueba de control es preguntarse si el funcionario, al leer la pieza, podría sostener con razón que se le hizo decir algo que no dijo. Si la respuesta es sí, la pieza está mal construida aunque la cita sea exacta. La solución no es descartar la frase sino ubicarla: citarla completa, y si el titular no la resiste, cambiar el titular. Un titular que solo funciona amputando el contexto está describiendo una noticia que no ocurrió.",
+  c:"Aplicación del principio de no engañar por yuxtaposición."},
+ {tag:"ESCENARIO 4",t:"El error propio a las 48 horas",
+  d:"Se publicó un dato incorrecto que ya circuló ampliamente. Corregirlo expone al medio; no hacerlo consolida un error en el registro público.",
+  r:"Reportero · Director · Lector afectado",
+  ej:"<span class='who'>DIRECTOR:</span> Nadie se ha quejado.<br><span class='who'>REPORTERO:</span> El afectado sí, dos veces.<br><span class='who'>DIRECTOR:</span> ¿Y cuánta gente lo leyó?<br><span class='who'>REPORTERO:</span> Suficiente para que el error ya esté citado en otros tres sitios.",
+  m:"Se corrige, y se corrige con la misma visibilidad que tuvo el error: si estuvo en portada, la corrección va en portada. Una nota al pie de una pieza que ya nadie abre no es una corrección, es un trámite. El texto debe decir qué se publicó, qué es lo correcto y cuándo se supo, sin fórmulas que diluyan la responsabilidad —«se deslizó un error» no tiene sujeto—. Y hay que avisar a los medios que replicaron el dato: el error propio que circuló es también responsabilidad propia.",
+  c:"Forma, ubicación y visibilidad de la corrección."},
+ {tag:"ESCENARIO 5",t:"El descargo que no llega",
+  d:"Se buscó a la persona señalada por tres vías durante cinco días sin respuesta. El plazo se agota.",
+  r:"Reportero · Abogado del medio · Editor",
+  ej:"<span class='who'>ABOGADO:</span> ¿Cuántas veces lo intentaste?<br><span class='who'>REPORTERO:</span> Correo el lunes, teléfono el miércoles, en oficina el viernes.<br><span class='who'>ABOGADO:</span> ¿Está documentado?<br><span class='who'>REPORTERO:</span> Con acuse de los tres.",
+  m:"Se publica, y el texto describe el intento con precisión verificable: fechas, vías y ausencia de respuesta. La fórmula correcta es descriptiva —«Este medio buscó a la empresa por correo el 3 de julio, por teléfono el 5 y en sus oficinas el 7. No obtuvo respuesta»— y nunca interpretativa: escribir «prefirió no responder» o «guardó silencio» atribuye una intención que no se conoce y convierte la ausencia en admisión. El derecho de réplica queda abierto y se dice explícitamente que se publicará si llega.",
+  c:"Qué se escribe sobre el intento de contacto y cómo se evita convertir el silencio en confirmación."},
+ {tag:"ESCENARIO 6",t:"La exclusiva condicionada",
+  d:"Una fuente ofrece documentos a cambio de aprobar la redacción final.",
+  r:"Reportero · Fuente · Editor",
+  ej:"<span class='who'>FUENTE:</span> Te doy todo, pero lo leo antes de que salga.<br><span class='who'>REPORTERO:</span> Puedo leerte las citas tuyas para confirmar exactitud.<br><span class='who'>FUENTE:</span> Quiero ver la nota completa.<br><span class='who'>REPORTERO:</span> Eso ya no sería mi nota, sería la tuya con mi firma.",
+  m:"La condición vuelve la pieza inutilizable en el punto exacto en que la fuente obtiene poder de veto sobre el conjunto, porque a partir de ahí el lector ya no está leyendo el criterio del medio sino el de un interesado. La contraoferta que preserva el material sin ceder control es acotada y verificable: se le leen o se le muestran únicamente sus propias citas para confirmar exactitud, no para negociar su contenido; y se le ofrece conocer con antelación la fecha de publicación. Si rechaza, se busca el documento por otra vía y se deja constancia de la condición ofrecida, que es en sí misma información.",
+  c:"En qué punto la condición vuelve la pieza inutilizable, y qué contraoferta preserva el material sin ceder el control editorial."}
+];
+
+const IV=[
+ {q:"Buenas tardes. ¿Cuántas horas de interrupción acumuló el municipio de Santo Domingo en julio?",
+  m:"Respuesta previsible del entrevistado: «Trabajamos con un plan de afectación que se publica diariamente y la media nacional estuvo dentro de lo previsto.» Ha respondido con un promedio nacional a una pregunta municipal. Tu siguiente pregunta debe desagregar: «Le pregunto por Santo Domingo. ¿Cuántas horas?»"},
+ {q:"Usted mencionó una media nacional. ¿Cuál fue el valor de esa media y de qué registro sale?",
+  m:"Pregunta cerrada, sin adjetivo, que además obliga a nombrar la fuente del dato. Si responde «no lo tengo aquí», corresponde pedir el compromiso de enviarlo con fecha y dejar constancia por escrito de la petición: esa constancia es publicable."},
+ {q:"¿Cuántas de las unidades generadoras del sistema estaban fuera de servicio el 31 de julio?",
+  m:"Pregunta de dato único, verificable después contra el parte diario. Si responde con porcentajes de disponibilidad, la siguiente debe convertirlo a número absoluto: «¿Ese 68% equivale a cuántas unidades?»"},
+ {q:"¿Quién autoriza el plan de mantenimiento y cuándo se aprobó el vigente?",
+  m:"Establece responsabilidad sin acusación. El cargo y la fecha son datos comprobables en registros administrativos, y su ausencia también es información publicable."},
+ {q:"¿La empresa considera que hubo incumplimiento de su parte en julio? Sí o no.",
+  m:"Es la pregunta de responsabilidad y va al final, cuando ya se obtuvieron los datos. Formulada como sí/no impide la evasiva larga. Si responde con contexto, se repite una sola vez: «Entiendo el contexto. La pregunta es sí o no.» Repetirla más veces cierra la puerta a futuras entrevistas sin ganar nada."}
+];
+
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+let done=0, right=0;
+
+const quiz=document.getElementById('quiz');
+QUIZ.forEach((it,i)=>{
+  const card=el('<div class="q"><div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+  const opts=card.querySelector('.opts');
+  it.o.forEach((o,j)=>{
+    const b=document.createElement('button');
+    b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+    b.onclick=function(){
+      if(card.dataset.done) return;
+      card.dataset.done='1'; done++;
+      var kids=opts.children;
+      for(var k=0;k<kids.length;k++){
+        kids[k].classList.add('done');
+        if(k===it.c){kids[k].classList.add('ok'); kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+        else if(k===j){kids[k].classList.add('bad'); kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+      }
+      if(j===it.c) right++;
+      card.querySelector('.exp').classList.add('show');
+      document.getElementById('score').textContent='RESPONDIDAS '+done+' / '+QUIZ.length+' · CORRECTAS '+right;
+    };
+    opts.appendChild(b);
   });
+  quiz.appendChild(card);
+});
+
+const cw=document.getElementById('cases');
+CASES.forEach(function(c){
+  cw.appendChild(el('<div class="case"><span class="tag">'+c.tag+'</span><h4>'+c.t+'</h4><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>'));
+});
+
+const rw=document.getElementById('roles');
+ROLES.forEach(function(r){
+  rw.appendChild(el('<div class="case"><span class="tag">'+r.tag+'</span><h4>'+r.t+'</h4><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>'));
+});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'), rec=d.querySelector('.rec'),
+        ver=d.querySelector('.ver'), hint=d.querySelector('.hint'), mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show'); ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){ rec.disabled=true; rec.style.opacity=.4; hint.textContent='El dictado requiere Chrome o Edge'; }
+  else{
+    var r=null, on=false;
+    rec.onclick=function(){
+      if(on){ if(r) r.stop(); return; }
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('.reveal').forEach(function(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+});
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
 </script>
 </body>
 </html>
