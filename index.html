@@ -8,7 +8,7 @@
 <style>
   :root{
     --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
-    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
     --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
     --mono:'SF Mono',Menlo,Consolas,monospace;
     --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
@@ -52,6 +52,13 @@
   td:first-child{color:var(--text);font-weight:600;width:24%}
   td:last-child{font-family:var(--mono);font-size:.74rem;color:var(--text-faint);width:30%}
 
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+
   .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
   .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
   .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
@@ -66,6 +73,16 @@
   .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
   .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
 
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
   .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
   .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
   .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
@@ -230,21 +247,8 @@
 
   <section id="ter">
     <h3>Términos clave de la unidad</h3>
-    <table>
-      <tr><th>Término</th><th>Definición</th><th>Fuente</th></tr>
-      <tr><td>Disciplina de verificación</td><td>Procedimientos comprobables que distinguen al periodismo del entretenimiento, la propaganda y la ficción.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Verdad funcional</td><td>Verdad práctica y corregible, suficiente para que un ciudadano decida.</td><td>Kovach &amp; Rosenstiel, cap. 2</td></tr>
-      <tr><td>Periodismo de afirmación</td><td>Transmite lo dicho por una fuente sin establecer su veracidad.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Periodismo de verificación</td><td>Establece la veracidad de lo afirmado antes de publicarlo.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Objetividad de método</td><td>Consistencia del procedimiento de comprobación, no neutralidad del sujeto.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Transparencia</td><td>Exposición de métodos, fuentes y limitaciones para que el lector audite lo afirmado.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Humildad epistémica</td><td>Reconocimiento de los límites del propio conocimiento e interpretación.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Procedencia</td><td>Trazabilidad de un material desde su origen hasta el periodista.</td><td>Bradshaw, Online Journalism Handbook</td></tr>
-      <tr><td>Carga de la prueba</td><td>Obligación de sustentar lo afirmado; recae sobre quien publica.</td><td>Ward, Global Journalism Ethics</td></tr>
-      <tr><td>Verificación de conjunto</td><td>Comprobación sobre la impresión global del texto, posterior a la de cada dato.</td><td>Kovach &amp; Rosenstiel, cap. 2</td></tr>
-      <tr><td>Corrección</td><td>Enmienda pública de un error propio; indicador de rigor del método.</td><td>Kovach &amp; Rosenstiel, cap. 4</td></tr>
-      <tr><td>Búsqueda inversa de imagen</td><td>Rastreo de apariciones previas de una imagen para saber si es original o reciclada.</td><td>Briggs, Journalism Next</td></tr>
-    </table>
+    <p style="font-size:.88rem">Doce términos con su fuente exacta. Cada uno aparece en las diapositivas de esta unidad y entra en el examen.</p>
+    <div class="terms" id="terms"></div>
   </section>
 
   <section id="pru">
@@ -266,8 +270,14 @@
     </div>
   </section>
 
-  <section id="cas"><h3>Casos de estudio</h3><div id="cases"></div></section>
-  <section id="rol"><h3>Juegos de roles</h3><div id="roles"></div></section>
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
 
   <section id="ent">
     <h3>Entrevista simulada</h3>
@@ -416,8 +426,28 @@ const IV=[
   m:"Es la pregunta de responsabilidad y va al final, cuando ya se obtuvieron los datos. Formulada como sí/no impide la evasiva larga. Si responde con contexto, se repite una sola vez: «Entiendo el contexto. La pregunta es sí o no.» Repetirla más veces cierra la puerta a futuras entrevistas sin ganar nada."}
 ];
 
+const TERMS=[
+ {t:"Disciplina de Verificación",d:"Procedimientos comprobables que distinguen al periodismo del entretenimiento, la propaganda y la ficción.",s:"Kovach &amp; Rosenstiel, cap. 4"},
+ {t:"Verdad Funcional",d:"Verdad práctica y corregible, suficiente para que un ciudadano decida. No es la verdad filosófica ni la definitiva.",s:"Kovach &amp; Rosenstiel, cap. 2"},
+ {t:"Periodismo de Afirmación",d:"Transmite lo dicho por una fuente sin establecer su veracidad. Su control de calidad es citar bien.",s:"Kovach &amp; Rosenstiel, cap. 4"},
+ {t:"Periodismo de Verificación",d:"Establece la veracidad de lo afirmado antes de publicarlo. Su control de calidad es la prueba.",s:"Kovach &amp; Rosenstiel, cap. 4"},
+ {t:"Objetividad de Método",d:"Consistencia del procedimiento de comprobación, no neutralidad del sujeto. El concepto original de los años veinte.",s:"Kovach &amp; Rosenstiel, cap. 4"},
+ {t:"Transparencia",d:"Exposición de métodos, fuentes y limitaciones para que el lector audite la solidez de lo afirmado.",s:"Kovach &amp; Rosenstiel, cap. 4"},
+ {t:"Humildad Epistémica",d:"Reconocimiento de los límites del propio conocimiento y de la propia capacidad de interpretarlo.",s:"Kovach &amp; Rosenstiel, cap. 4"},
+ {t:"Procedencia",d:"Trazabilidad de un material desde su origen hasta el periodista, incluyendo cada intermediario.",s:"Bradshaw, Online Journalism Handbook"},
+ {t:"Carga de la Prueba",d:"Obligación de sustentar lo afirmado. Recae sobre quien publica y no se traslada por citar.",s:"Ward, Global Journalism Ethics"},
+ {t:"Verificación de Conjunto",d:"Comprobación sobre la impresión global del texto, posterior a la comprobación dato por dato.",s:"Kovach &amp; Rosenstiel, cap. 2"},
+ {t:"Corrección",d:"Enmienda pública y visible de un error propio. Indicador de rigor del método, no de su fracaso.",s:"Kovach &amp; Rosenstiel, cap. 4"},
+ {t:"Búsqueda Inversa de Imagen",d:"Rastreo de apariciones previas de una imagen para determinar si es original o reciclada.",s:"Briggs, Journalism Next"}
+];
+
 const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
 let done=0, right=0;
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){
+  tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'));
+});
 
 const quiz=document.getElementById('quiz');
 QUIZ.forEach((it,i)=>{
@@ -444,23 +474,45 @@ QUIZ.forEach((it,i)=>{
   quiz.appendChild(card);
 });
 
-const cw=document.getElementById('cases');
-CASES.forEach(function(c){
-  cw.appendChild(el('<div class="case"><span class="tag">'+c.tag+'</span><h4>'+c.t+'</h4><p>'+c.d+'</p>'+
+function pager(list, opts){
+  const body=document.getElementById(opts.body), nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label), tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1;
+    b.onclick=function(){show(i)};
+    nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
     '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
     '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
     '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
-    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>'));
-});
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
 
-const rw=document.getElementById('roles');
-ROLES.forEach(function(r){
-  rw.appendChild(el('<div class="case"><span class="tag">'+r.tag+'</span><h4>'+r.t+'</h4><p>'+r.d+'</p>'+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
     '<p><strong>Roles:</strong> '+r.r+'</p>'+
     '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
     '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
-    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>'));
-});
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
 
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 const ivw=document.getElementById('iv');
@@ -490,11 +542,7 @@ IV.forEach(function(it,i){
   ivw.appendChild(d);
 });
 
-document.querySelectorAll('.reveal').forEach(function(b){
-  b.dataset.o=b.textContent;
-  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
-    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
-});
+document.querySelectorAll('#pru .reveal, #exa .reveal').forEach(bindReveal);
 
 document.querySelectorAll('.tab').forEach(function(b){
   b.onclick=function(){
