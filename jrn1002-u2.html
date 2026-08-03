@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1002 · Unidad 2 — Limpieza de Datos y Auditoría de Planillas</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1002, Unidad 2.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course on" href="jrn1002-u2.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="#"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1002 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Limpieza de Datos y Auditoría de Planillas</h2>
+  <div class="sub">Unidad 2 de 4 · Periodismo de Datos y Visualización</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1002-u1.html">Unidad 1: Fundamentos del Periodismo de Datos de Vigilancia</a>
+    <span class="unit on">Unidad 2: Limpieza de Datos y Auditoría de Planillas</span>
+    <span class="unit">Unidad 3: Correlación Estadística y Análisis Causal</span>
+    <span class="unit">Unidad 4: Cartografía Interactiva y Visualización de Datos</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Entre el archivo que llega y la cifra que se publica hay un tramo de trabajo que casi nunca se describe y donde ocurren la mayoría de los errores publicados. Esta unidad trata ese tramo: qué se le hace a un conjunto de datos antes de analizarlo, y cómo se registra cada decisión para que un tercero pueda auditarla.</p>
+    <p style="margin-bottom:0">El eje es que <strong>limpiar no es corregir: es decidir</strong>. Cada duplicado que se elimina, cada categoría que se unifica y cada registro anómalo que se excluye es una decisión con efectos sobre el resultado. La diferencia entre un análisis defendible y uno indefendible no está en la ausencia de decisiones, sino en que estén registradas y sean reversibles.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Perfilar un conjunto de datos desconocido antes de analizarlo: valores ausentes, duplicados, rangos imposibles y categorías inconsistentes.</li>
+      <li>Distinguir un error de captura de un patrón informativo, y comprobar si lo que se excluye difiere de lo que se conserva.</li>
+      <li>Auditar una planilla ajena: rastrear fórmulas, rangos, referencias rotas y supuestos incrustados en celdas.</li>
+      <li>Documentar cada transformación en un cuaderno de análisis que permita reproducir el resultado y revertir cualquier decisión.</li>
+      <li>Reconocer las alteraciones silenciosas que introduce el software —conversión de tipos, truncamiento, límites de fila— y comprobarlas.</li>
+      <li>Redactar la nota metodológica que acompaña a una cifra publicada, con criterios de exclusión y sus efectos.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Jonathan Gray y Liliana Bounegru, <em>The Data Journalism Handbook</em> (2.ª ed., 2021) — capítulos sobre trabajo con datos y control de calidad</li>
+      <li>Paul Bradshaw, <em>The Online Journalism Handbook</em> (3.ª ed., 2023) — limpieza y comprobación de datos</li>
+      <li>Simon Rogers, <em>Facts are Sacred</em> (2013)</li>
+      <li>Craig Silverman (ed.), <em>Verification Handbook</em> — comprobación aplicada a material y registros</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>OpenRefine</h5>
+        <div class="def">Herramienta libre de limpieza y transformación de datos. Su rasgo decisivo para el periodismo es que registra cada operación en un historial exportable y reversible: la limpieza queda documentada por diseño.</div>
+        <p class="src">openrefine.org · proyecto de código abierto</p></div>
+      <div class="term"><h5>EuSpRIG — European Spreadsheet Risks Interest Group</h5>
+        <div class="def">Grupo académico que documenta desde 1999 errores de hoja de cálculo con consecuencias públicas y mantiene un repertorio de casos y de tasas de error medidas en auditorías.</div>
+        <p class="src">eusprig.org</p></div>
+      <div class="term"><h5>IFCN — Transparencia de metodología</h5>
+        <div class="def">Exige publicar la metodología con que se llega a una conclusión. Aplicado a la limpieza, significa declarar qué registros se excluyeron, con qué criterio y con qué efecto sobre el resultado.</div>
+        <p class="src">ifcncodeofprinciples.poynter.org</p></div>
+      <div class="term"><h5>HGNC — Nomenclatura de genes humanos</h5>
+        <div class="def">Comité que en 2020 revisó sus normas y renombró símbolos de genes precisamente porque las hojas de cálculo los convertían en fechas. Un caso donde la ciencia cambió sus nombres para adaptarse al software.</div>
+        <p class="src">genenames.org · Nature Genetics, 2020</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y una auditoría documentada de un conjunto de datos real. El <strong>Examen Integrador</strong> de JRN-1002 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Limpiar no es corregir: es decidir</h3>
+    <p>La palabra «limpieza» sugiere que hay una versión sucia y una limpia, y que el trabajo consiste en llegar a la segunda. Es una descripción falsa y peligrosa. Lo que existe es un conjunto de registros producido por un sistema con sus propias reglas, y una serie de decisiones que el periodista toma sobre ese conjunto para poder analizarlo.</p>
+    <p>Cada una de esas decisiones —unificar dos grafías, eliminar un duplicado, excluir un valor imposible— altera el resultado. Ninguna es neutral y ninguna es evitable: sin ellas no hay análisis posible. Lo que separa un trabajo defendible de uno indefendible no es la ausencia de decisiones, sino que estén registradas, justificadas y sean reversibles.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Si no puedes volver del archivo publicado al archivo original deshaciendo tus pasos uno a uno, no limpiaste: modificaste. La diferencia es la misma que en la Unidad 2 de JRN-1001 entre trabajar sobre una copia y editar el original.</div>
+
+    <h3>Perfilar antes de tocar</h3>
+    <p>El primer contacto con un conjunto de datos no es analítico sino descriptivo. Antes de calcular nada hay que saber qué hay dentro, y eso son cinco comprobaciones sistemáticas que se hacen siempre, en este orden.</p>
+    <ol>
+      <li><strong>Dimensiones.</strong> Cuántas filas y columnas, y si esa cifra coincide con lo que el organismo declara haber entregado.</li>
+      <li><strong>Valores ausentes.</strong> Cuántos por columna y si se concentran en algún período, dependencia o categoría.</li>
+      <li><strong>Duplicados.</strong> Filas idénticas y filas que representan el mismo caso con distinta grafía.</li>
+      <li><strong>Rangos.</strong> Máximos y mínimos de cada variable numérica y de cada fecha, buscando lo imposible.</li>
+      <li><strong>Categorías.</strong> Valores únicos de cada variable de texto, que casi siempre son más de los que el diccionario declara.</li>
+    </ol>
+    <div class="ej"><b>REGLA</b>El perfilado se hace antes de leer el diccionario de datos y otra vez después. La primera pasada dice qué hay; la segunda, qué debería haber. La distancia entre ambas es la primera pista de la investigación.</div>
+
+    <h3>Los ausentes no son ceros</h3>
+    <p>Un valor vacío puede significar cosas incompatibles entre sí: que el dato no existe, que existe y no se registró, que no aplica a ese caso, o que el sistema lo perdió. Tratarlos todos igual —o convertirlos en cero— produce resultados falsos con aritmética correcta.</p>
+    <p>La pregunta correcta nunca es cuántos faltan, sino si los que faltan se parecen entre sí. Si las ausencias se concentran en una dependencia, en un período o en una categoría, no son ruido: son un patrón, y con frecuencia son la historia.</p>
+    <div class="ej"><b>CASO TÍPICO</b>Un registro de inspecciones con el campo «resultado» vacío en el 30% de los casos. Si esos vacíos se reparten al azar, es un problema de calidad del dato. Si se concentran en las inspecciones a un solo grupo de empresas, es otra cosa.</div>
+
+    <h3>Duplicados, o el mismo caso con dos caras</h3>
+    <p>El duplicado exacto es el caso fácil y el menos frecuente. El difícil es el mismo sujeto escrito de varias maneras: razón social con y sin siglas, nombre con y sin tilde, dirección con abreviatura distinta, identificador con o sin ceros a la izquierda.</p>
+    <p>La consecuencia es siempre la misma y siempre subestima: cuando una empresa aparece bajo cuatro grafías, ninguna de las cuatro alcanza el umbral que la haría visible en el análisis. La concentración desaparece por fragmentación.</p>
+    <div class="ej"><b>MÉTODO</b>Agrupamiento por similitud —lo que OpenRefine llama <em>clustering</em>— para proponer conjuntos de valores probablemente equivalentes, seguido de revisión humana caso por caso. La máquina propone; el periodista decide y lo registra.</div>
+
+    <h3>Lo imposible y lo improbable</h3>
+    <p>Un valor imposible es el que no puede existir bajo ninguna interpretación: un día 32, una edad de 180 años, una fecha posterior a la extracción del archivo. Un valor improbable es raro pero admisible, y ahí está la trampa: la mayoría de los hallazgos periodísticos viven exactamente en esa zona.</p>
+    <p>Por eso los atípicos no se eliminan por definición. Se aíslan, se examinan uno a uno y se decide con criterio explícito. Un contrato mil veces mayor que la media puede ser un error de captura o puede ser la nota.</p>
+    <div class="ej"><b>ADVERTENCIA</b>La instrucción «eliminar valores extremos» es la manera más eficiente de borrar una investigación. Los extremos son sospechosos, no descartables.</div>
+
+    <h3>Lo que el software cambia sin avisar</h3>
+    <p>Las hojas de cálculo alteran datos por su cuenta al abrir un archivo, y lo hacen en silencio. Es un comportamiento documentado y con consecuencias medidas en la literatura científica.</p>
+    <ul>
+      <li><strong>Conversión de tipos.</strong> Textos que parecen fechas se convierten en fechas; identificadores con ceros a la izquierda los pierden; códigos largos pasan a notación científica.</li>
+      <li><strong>Truncamiento por límite de filas.</strong> Los formatos antiguos tienen techo. Al alcanzarlo, los registros sobrantes desaparecen sin mensaje de error.</li>
+      <li><strong>Separadores y codificación.</strong> Coma o punto decimal, y acentos que se convierten en símbolos ilegibles al abrir con la codificación equivocada.</li>
+    </ul>
+    <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>Contar las filas del archivo original con una herramienta ajena a la hoja de cálculo y comparar con lo que muestra la hoja abierta. Si no coinciden, el análisis está corriendo sobre un conjunto incompleto.</div>
+
+    <h3>Auditar una planilla ajena</h3>
+    <p>Cuando el material que llega no son datos sino una hoja con fórmulas —un presupuesto, un modelo, una proyección—, el objeto de la investigación cambia: ya no se audita el dato sino el cálculo.</p>
+    <ol>
+      <li>Localizar las celdas de entrada: qué números se introdujeron a mano y de dónde salieron.</li>
+      <li>Rastrear las fórmulas: qué rango abarca cada una y si ese rango cubre todas las filas que debería.</li>
+      <li>Buscar constantes incrustadas dentro de fórmulas, que son supuestos que nadie declaró.</li>
+      <li>Revisar hojas ocultas, filas ocultas y referencias a archivos externos que ya no existen.</li>
+      <li>Recalcular a mano dos o tres resultados clave con los datos de entrada.</li>
+    </ol>
+    <div class="ej"><b>POR QUÉ IMPORTA</b>El error de rango de una función de promedio —que no llega hasta la última fila— es invisible en pantalla, no produce ningún aviso y ha alterado decisiones de política pública. No es una hipótesis: está documentado.</div>
+
+    <h3>El cuaderno de análisis y la reversibilidad</h3>
+    <p>El cuaderno es el registro de cada paso entre el archivo original y la cifra publicada. No es un adorno metodológico: es lo que permite responder, meses después, por qué una cifra es la que es.</p>
+    <ul>
+      <li>Archivo original, con su procedencia, fecha de obtención y huella digital.</li>
+      <li>Cada transformación, con su motivo y el número de registros afectados.</li>
+      <li>Cada exclusión, con el criterio y una comprobación de si lo excluido difiere de lo conservado.</li>
+      <li>Los caminos que se probaron y se abandonaron, y por qué.</li>
+    </ul>
+    <div class="ej"><b>PRUEBA DE SUFICIENCIA</b>Entrega el archivo original y el cuaderno a alguien que no participó. Si no llega a tu misma cifra, el cuaderno está incompleto, y lo está aunque tu cifra sea correcta.</div>
+
+    <h3>Cuando el error del registro es la noticia</h3>
+    <p>La limpieza produce a menudo un hallazgo que no estaba en el plan: el propio registro está mal, y su modo de estar mal informa sobre quien lo lleva. Categorías que se usan de forma inconsistente entre dependencias, casos clasificados a la baja, campos obligatorios sistemáticamente vacíos en una oficina y no en otras.</p>
+    <p>En esos casos el trabajo de limpieza deja de ser preparatorio y se convierte en la investigación. La verificación consiste entonces en reconstruir casos individuales contra su documento de origen para demostrar que la clasificación es incorrecta, no solo distinta.</p>
+    <div class="ej"><b>UMBRAL DE PUBLICACIÓN</b>Para afirmar que un organismo clasifica mal no basta la anomalía estadística. Hacen falta casos concretos verificados contra el expediente original, y un criterio externo —una norma, un manual de clasificación— contra el cual medir el error.</div>
+
+    <h3>Lo que se publica de la limpieza</h3>
+    <p>La nota metodológica es el extracto público del cuaderno, y su función es que el lector pueda ponderar la solidez de la cifra sin tener que confiar en el medio.</p>
+    <p>Debe decir, en lenguaje llano: de dónde salió el archivo y cuándo; qué período abarca; qué registros se excluyeron, cuántos eran y con qué criterio; qué transformaciones se aplicaron; y qué no se pudo resolver. Ese último punto es el que más se omite y el que más credibilidad aporta.</p>
+    <div class="ej"><b>REGLA FINAL</b>Si la nota metodológica no permite a un lector competente reproducir tu cifra con el mismo archivo, no es una nota metodológica: es una declaración de buenas intenciones. Es el mismo principio de transparencia de la Unidad 1 de JRN-1001, aplicado a un archivo en lugar de a una entrevista.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista al responsable del sistema informático de un organismo cuyo registro presenta, según tu perfilado, un 30% de campos vacíos concentrados en una sola dependencia. Él sostiene que es un problema de carga y que no significa nada.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes afirmar que ocultan información: solo preguntar cómo funciona el sistema. Cada respuesta debe quedar anclada a un procedimiento, un manual o un registro de auditoría del propio sistema. Si te demuestra que tu perfilado está mal leído, tienes que poder reconocerlo.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">AUDITORÍA DOCUMENTADA · OBLIGATORIA</span>
+      <p>Toma un conjunto de datos público con al menos mil registros. Entrega: el perfilado completo de las cinco comprobaciones; el cuaderno de análisis con cada transformación, su motivo y el número de registros afectados; la comprobación de si lo excluido difiere de lo conservado; una nota metodológica de doscientas palabras redactada para el lector; y el archivo original intacto junto al procesado.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Perfilado completo y correctamente interpretado (20%) · Registro de cada decisión con su motivo y su efecto cuantificado (25%) · Tratamiento justificado de ausentes, duplicados y atípicos (20%) · Comprobación de sesgo en lo excluido (15%) · Nota metodológica reproducible y en lenguaje llano (20%). Un trabajo cuyo archivo procesado no pueda derivarse del original siguiendo el cuaderno no aprueba, aunque las cifras finales sean correctas.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 2</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1002-u1.html">← Unidad 1: Fundamentos del Periodismo de Datos de Vigilancia</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Perfilado",d:"Descripción sistemática de un conjunto antes de analizarlo: dimensiones, ausentes, duplicados, rangos y categorías. Se hace siempre y en ese orden.",s:"Gray &amp; Bounegru, Data Journalism Handbook"},
+ {t:"Valor Ausente",d:"Celda vacía cuyo significado es ambiguo: puede ser inexistente, no registrado, no aplicable o perdido. Nunca equivale a cero.",s:"Metodología estadística aplicada · Bradshaw"},
+ {t:"Patrón de Ausencia",d:"Concentración de valores vacíos en un período, dependencia o categoría. Cuando existe, la ausencia deja de ser ruido y es un hallazgo.",s:"Formulación docente · práctica de auditoría de datos"},
+ {t:"Duplicado por Grafía",d:"Mismo sujeto registrado con escrituras distintas. Fragmenta la concentración y hace que ninguna de sus versiones alcance el umbral de visibilidad.",s:"Bradshaw, Online Journalism Handbook"},
+ {t:"Agrupamiento por Similitud",d:"Procedimiento que propone conjuntos de valores probablemente equivalentes para revisión humana. La máquina propone, el periodista decide y lo registra.",s:"OpenRefine · práctica establecida"},
+ {t:"Valor Imposible",d:"El que no puede existir bajo ninguna interpretación: día 32, fecha futura, edad de 180 años. Se distingue del improbable, que es raro pero admisible.",s:"Práctica de control de calidad de datos"},
+ {t:"Atípico",d:"Valor muy alejado de la distribución. No se elimina: se aísla, se examina caso por caso y se decide con criterio explícito, porque ahí suelen estar los hallazgos.",s:"Gray &amp; Bounegru · metodología estadística"},
+ {t:"Conversión Silenciosa",d:"Alteración que el software aplica al abrir un archivo sin avisar: textos convertidos en fechas, ceros iniciales perdidos, códigos en notación científica.",s:"Ziemann, Eren y El-Osta, Genome Biology, 2016"},
+ {t:"Truncamiento por Límite",d:"Pérdida de registros al superar el techo de filas de un formato. No genera error visible: los datos sobrantes simplemente no están.",s:"Caso Public Health England, octubre de 2020"},
+ {t:"Auditoría de Planilla",d:"Examen de una hoja con fórmulas como objeto de investigación: celdas de entrada, rangos, constantes incrustadas, hojas ocultas y referencias externas.",s:"EuSpRIG · práctica de auditoría"},
+ {t:"Constante Incrustada",d:"Número escrito dentro de una fórmula en lugar de en una celda de entrada. Es un supuesto que nadie declaró y que nadie revisa.",s:"EuSpRIG · práctica establecida"},
+ {t:"Reversibilidad",d:"Propiedad de un proceso de limpieza que permite volver del archivo publicado al original deshaciendo cada paso. Sin ella no hubo limpieza sino modificación.",s:"OpenRefine · Gray &amp; Bounegru"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · UNIVERSIDAD DE MASSACHUSETTS AMHERST · ABRIL DE 2013",t:"Reinhart-Rogoff: el rango que no llegaba hasta abajo",
+  d:"En 2010 los economistas Carmen Reinhart y Kenneth Rogoff publicaron un trabajo del que se extrajo la conclusión de que el crecimiento económico se desploma cuando la deuda pública supera el 90% del PIB. La cifra se citó repetidamente en el debate político sobre políticas de austeridad. En abril de 2013, el doctorando Thomas Herndon y los profesores Michael Ash y Robert Pollin, del Political Economy Research Institute de la Universidad de Massachusetts Amherst, obtuvieron la hoja de cálculo original y publicaron su análisis: encontraron errores de codificación, exclusión selectiva de datos disponibles y una ponderación no convencional. Entre ellos, un rango de la función de promedio que se detenía en la fila 44 y dejaba fuera del cálculo a cinco países —Australia, Austria, Bélgica, Canadá y Dinamarca—. Reinhart y Rogoff reconocieron el error de codificación.",
+  ej:"El error no era conceptual ni ideológico. Era un rango que no se arrastró hasta la última fila al copiar la fórmula: exactamente el fallo que la auditoría de planillas busca en el paso de rastreo de fórmulas, y que en pantalla no se ve.",
+  p:["¿Por qué la revisión académica por pares no detectó el error y sí lo hizo quien pidió el archivo?","¿Qué habría cambiado si la hoja de cálculo hubiera sido pública desde 2010?","¿Qué comprobación concreta lo habría detectado?"],
+  m:"La revisión por pares evalúa el argumento, los métodos declarados y la coherencia del resultado, no el archivo de cálculo, que normalmente no se entrega. Herndon lo detectó porque hizo lo único que lo detecta: pedir el archivo y reproducir el cálculo desde los datos de entrada. Si la hoja hubiera sido pública desde el principio, el error habría durado semanas en lugar de tres años, y ese es el argumento fuerte a favor de publicar datos y código junto a la conclusión. La comprobación que lo detecta es elemental y forma parte del protocolo de auditoría: verificar que el rango de cada función agregada llega hasta la última fila con datos, y recalcular a mano dos o tres resultados clave.",
+  k:"La conclusión más citada de un trabajo puede depender de un rango mal arrastrado. Publicar el archivo no es transparencia decorativa: es la única forma de que alguien encuentre ese error."},
+
+ {tag:"CASO 2 · PUBLIC HEALTH ENGLAND · OCTUBRE DE 2020",t:"Los 15.841 casos que cayeron por el techo del archivo",
+  d:"Entre el 25 de septiembre y el 2 de octubre de 2020, Public Health England perdió 15.841 resultados positivos de covid-19. Los laboratorios enviaban sus resultados en archivos CSV que se importaban a un libro maestro de hoja de cálculo guardado en el formato antiguo .xls, cuyo techo es de 65.536 filas. Al llenarse el archivo, los registros siguientes dejaron de incorporarse sin generar ningún aviso de error. Los datos no llegaron al sistema de rastreo de contactos. Se estimó que decenas de miles de personas que habían tenido contacto estrecho con positivos no fueron localizadas. El formato .xlsx, disponible desde 2007, admite 1.048.576 filas.",
+  ej:"Nadie cometió un error de cálculo. El sistema funcionó exactamente como estaba diseñado, y el diseño incluía un límite que nadie comprobó. El fallo fue no contar las filas del archivo original y compararlas con las del archivo cargado.",
+  p:["¿Qué comprobación de rutina lo habría detectado el primer día?","¿Por qué es más peligroso un fallo silencioso que uno que produce un error visible?","¿Qué obligación tiene un periodista que recibe datos de un sistema así?"],
+  m:"Lo habría detectado contar los registros del archivo de origen con una herramienta ajena a la hoja de cálculo y compararlos con los del archivo cargado; una discrepancia obliga a detenerse. Un fallo silencioso es más peligroso porque el sistema sigue produciendo cifras plausibles: nadie sospecha de un número que se comporta como se espera, mientras que un error visible interrumpe el proceso y fuerza la revisión. El periodista que recibe datos de un sistema de este tipo tiene la obligación de preguntar por el formato de la cadena de tratamiento y por los límites técnicos de cada paso, y de comprobar el recuento total contra la fuente primaria antes de publicar cualquier cifra derivada.",
+  k:"El error más caro no es el que se ve: es el que produce una cifra plausible. Contar las filas es la comprobación más barata y la que más veces se omite."},
+
+ {tag:"CASO 3 · GENOME BIOLOGY · AGOSTO DE 2016",t:"Los genes que se convirtieron en fechas",
+  d:"Mark Ziemann, Yotam Eren y Assam El-Osta publicaron en <em>Genome Biology</em> un análisis programático de las listas de genes incluidas como material suplementario en revistas de genómica. Encontraron que aproximadamente una quinta parte de los trabajos con listas en hoja de cálculo contenía conversiones erróneas de nombres de genes: símbolos como SEPT1 o MARCH1 que el software convertía automáticamente en fechas, y otros que pasaban a notación científica. El problema se había señalado ya en 2004. En 2020, el comité de nomenclatura de genes humanos (HGNC) revisó sus normas y renombró los símbolos afectados —SEPT1 pasó a SEPTIN1, MARCH1 a MARCHF1— para que dejaran de ser autocorregidos.",
+  ej:"La comunidad científica no logró que el software dejara de alterar sus datos, de modo que cambió los nombres de los genes. Es la ilustración más literal de que la herramienta impone sus reglas sobre el contenido cuando nadie las comprueba.",
+  p:["¿Por qué un error conocido desde 2004 seguía apareciendo en 2016?","¿Qué tienen en común este caso y el de los identificadores con ceros a la izquierda?","¿Qué comprobación previene ambos?"],
+  m:"Persistió porque la conversión ocurre en el momento de abrir el archivo, sin intervención ni aviso, y porque el resultado sigue pareciendo un dato válido: una fecha en una celda no interrumpe nada. Comparte mecanismo con la pérdida de ceros iniciales en códigos e identificadores: en ambos casos el software interpreta el tipo del dato en lugar de conservarlo tal como está. La comprobación que previene ambos es importar declarando explícitamente cada columna como texto, y verificar después una muestra de valores contra el archivo original abierto en un editor de texto plano, que no interpreta nada.",
+  k:"El software no conserva los datos: los interpreta. Importar declarando el tipo de cada columna es la diferencia entre analizar lo que hay y analizar lo que la herramienta decidió que había."},
+
+ {tag:"CASO 4 · LOS ANGELES TIMES · 2014-2015",t:"La clasificación a la baja como hallazgo",
+  d:"Tras una investigación de seis meses, <em>Los Angeles Times</em> determinó que el Departamento de Policía de Los Ángeles había clasificado incorrectamente como delitos menores más de mil agresiones graves durante el período comprendido entre 2012 y 2013. Casi todos los casos mal clasificados eran agresiones con agravante —robos, palizas, apuñalamientos— que las directrices federales obligan a registrar como delitos graves. Según el análisis del diario, la tasa de delitos violentos de la ciudad habría sido un 7% superior a la reportada en el año terminado en septiembre de 2013, y las agresiones graves un 14% superiores. Un análisis posterior extendió el patrón a un período de ocho años.",
+  ej:"El hallazgo no salió de un cálculo agregado. Salió de reconstruir casos individuales contra el manual federal de clasificación y demostrar que la categoría asignada era incorrecta según ese criterio externo, no solo distinta de la que el periodista habría elegido.",
+  p:["¿Por qué no basta con la anomalía estadística para publicar esto?","¿Qué papel cumple el manual de clasificación en la verificación?","¿En qué se parece esto a la 'prueba de deducción' de JRN-1001?"],
+  m:"La anomalía estadística establece dónde mirar, no qué afirmar: una distribución inusual admite explicaciones alternativas —cambios de criterio, composición del delito, práctica de una comisaría— que hay que descartar antes de sostener que hay error. El manual de clasificación aporta el criterio externo contra el cual medir, y sin él la afirmación se reduce a la opinión del periodista sobre cómo debería haberse clasificado cada caso. El paralelo con JRN-1001 es de estructura: se define una prueba objetiva y comprobable antes de afirmar, en lugar de deducir la conclusión de la impresión general.",
+  k:"Para afirmar que un registro está mal hacen falta casos verificados contra su documento de origen y un criterio externo. La anomalía dice dónde buscar; no sustituye a la prueba."},
+
+ {tag:"CASO 5 · EuSpRIG · DESDE 1999",t:"El grupo que lleva la cuenta de los errores de planilla",
+  d:"El European Spreadsheet Risks Interest Group es un grupo académico y profesional que desde 1999 documenta errores de hoja de cálculo con consecuencias públicas y estudia sus tasas de aparición mediante auditorías de planillas en uso. Su repertorio de casos recoge errores en informes financieros, presupuestos públicos y modelos de decisión, y es la referencia habitual cuando se discute el riesgo operacional asociado a estas herramientas.",
+  ej:"La utilidad periodística del repertorio no es anecdótica: establece que los errores de planilla no son excepciones sino un fenómeno recurrente y medible, lo que convierte en razonable la pregunta «¿auditó alguien esta hoja?» ante cualquier decisión pública basada en una.",
+  p:["¿Qué cambia, periodísticamente, saber que estos errores son frecuentes y no excepcionales?","¿Qué preguntas permite hacer a un organismo que sustenta una decisión en una planilla?","¿Dónde está el límite entre el error y la manipulación?"],
+  m:"Que sean frecuentes desplaza la carga de la pregunta: deja de ser una acusación implícita preguntar si la hoja fue auditada y pasa a ser una comprobación de rutina, como preguntar por la metodología de una encuesta. Permite pedir el archivo, no el resultado; preguntar quién lo construyó, quién lo revisó y con qué procedimiento; y si existe una versión de control. El límite entre error y manipulación es de prueba, no de gravedad: para afirmar manipulación hace falta evidencia de intención —instrucciones, versiones anteriores, correspondencia—, y sin ella se describe el error y su efecto, que suele ser suficiente.",
+  k:"Los errores de planilla son un fenómeno documentado y medible. Preguntar por la auditoría de una hoja que sustenta una decisión pública es rutina, no insinuación."},
+
+ {tag:"CASO 6 · OPENREFINE · PROYECTO ABIERTO",t:"La limpieza que se documenta a sí misma",
+  d:"OpenRefine es una herramienta libre de limpieza y transformación de datos cuyo rasgo distintivo para el periodismo no es el conjunto de funciones sino el historial: cada operación aplicada queda registrada en una lista exportable, que puede aplicarse a otro archivo o revertirse paso a paso. Sus funciones de agrupamiento por similitud proponen conjuntos de valores probablemente equivalentes —variantes de grafía de un mismo nombre— para que una persona los revise y decida.",
+  ej:"El historial exportable convierte la reproducibilidad en el comportamiento por defecto, en lugar de depender de que alguien recuerde anotar lo que hizo. Es la diferencia entre un cuaderno que hay que escribir y uno que se escribe solo.",
+  p:["¿Por qué el historial importa más que las funciones?","¿Qué queda fuera del historial y hay que anotar aparte?","¿Puede una herramienta sustituir al cuaderno de análisis?"],
+  m:"El historial importa más porque las funciones existen en cualquier herramienta, mientras que la trazabilidad automática elimina la fuente de fallo más común: la omisión involuntaria. Lo que el historial no captura es el motivo de cada decisión, los caminos probados y abandonados, y la comprobación de si lo excluido difiere de lo conservado; todo eso sigue siendo trabajo del periodista. Ninguna herramienta sustituye al cuaderno: registra el qué con precisión, y el cuaderno existe para el porqué, que es lo que hay que poder defender meses después.",
+  k:"La herramienta registra qué hiciste; el cuaderno explica por qué. Solo lo segundo se puede defender ante una impugnación."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"Los extremos que el editor quiere borrar",
+  d:"Tu análisis de contrataciones arroja doce contratos mil veces mayores que la mediana. Tu editor sugiere excluirlos para que la distribución sea legible.",
+  r:"Reportera · Editor · Jefa de datos",
+  ej:"<span class='who'>EDITOR:</span> Esos doce te rompen todos los gráficos.<br><span class='who'>REPORTERA:</span> Rompen el gráfico. La pregunta es si son un error de captura o son la nota.<br><span class='who'>EDITOR:</span> ¿Y cómo lo sabes?<br><span class='who'>REPORTERA:</span> Buscando el expediente de cada uno. Son doce, no doce mil.",
+  m:"Los atípicos no se excluyen por su posición en la distribución sino tras examinarlos uno a uno. Con doce casos, la verificación individual contra el expediente de origen es viable y obligatoria: si son errores de captura se documentan y se excluyen declarándolo; si son reales, la distribución no es el problema sino el hallazgo. La legibilidad del gráfico se resuelve con escala logarítmica o con dos vistas, nunca eliminando casos. Excluir sin examinar es la forma más eficiente de borrar una investigación con un argumento estético.",
+  c:"Distinguir un problema de presentación de una decisión analítica, y no ceder la segunda a la primera."},
+
+ {tag:"ESCENARIO 2",t:"El 30% vacío en una sola dependencia",
+  d:"El campo «resultado de la inspección» está vacío en un tercio de los registros. Al desagregar, casi todos los vacíos corresponden a una única delegación provincial.",
+  r:"Reportera · Responsable del sistema · Editora",
+  ej:"<span class='who'>RESPONSABLE:</span> Es un problema de carga, no significa nada.<br><span class='who'>REPORTERA:</span> Puede ser. ¿El sistema registra quién dejó el campo vacío y cuándo?<br><span class='who'>RESPONSABLE:</span> Hay una bitácora, sí.<br><span class='who'>REPORTERA:</span> Entonces le solicito la bitácora de esa delegación para ese período.",
+  m:"La explicación del responsable es plausible y comprobable, que es lo que la vuelve útil: si es un problema de carga, la bitácora del sistema lo mostrará distribuido en el tiempo y entre operadores. Lo que no puede hacerse es aceptar la explicación ni descartarla sin la comprobación. Si la bitácora no existe o no se entrega, esa negativa es publicable y describe el sistema. Y la formulación en el texto describe lo verificable —la concentración de vacíos, el período, la delegación— sin atribuir intención.",
+  c:"Convertir una explicación en una hipótesis comprobable y no publicar interpretación donde puede haber descripción."},
+
+ {tag:"ESCENARIO 3",t:"Las cuatro grafías de la misma empresa",
+  d:"Una empresa aparece con cuatro razones sociales ligeramente distintas. Unificándolas pasa de ser un proveedor menor a ser el mayor adjudicatario del período.",
+  r:"Reportera · Verificadora · Abogada del medio",
+  ej:"<span class='who'>VERIFICADORA:</span> ¿Estás segura de que son la misma?<br><span class='who'>REPORTERA:</span> Mismo identificador fiscal en las cuatro.<br><span class='who'>ABOGADA:</span> Necesito que eso conste en el texto y en el cuaderno.<br><span class='who'>REPORTERA:</span> Y el criterio de unificación, para que cualquiera lo repita.",
+  m:"La unificación por similitud de nombre nunca basta para una afirmación grave: hace falta un identificador estable —fiscal, registral— que acredite que se trata del mismo sujeto. Con él, la unificación es un hecho verificable y no una inferencia del periodista. El criterio debe quedar en el cuaderno, en la nota metodológica y, resumido, en el texto, porque es exactamente lo que la empresa impugnará. Si el identificador no coincide en alguno de los casos, ese caso se trata aparte y se declara.",
+  c:"Exigir un identificador estable antes de unificar registros, y publicar el criterio con la afirmación que sostiene."},
+
+ {tag:"ESCENARIO 4",t:"La planilla del presupuesto municipal",
+  d:"Un concejal te entrega la hoja de cálculo con la que el municipio proyectó el ahorro de una reforma. La cifra de portada no se reproduce al recalcularla.",
+  r:"Reportera · Analista externo · Secretario de Hacienda",
+  ej:"<span class='who'>REPORTERA:</span> Recalculando desde las celdas de entrada me da otra cifra.<br><span class='who'>SECRETARIO:</span> El modelo es correcto, lo revisó el equipo.<br><span class='who'>REPORTERA:</span> ¿Puede indicarme de dónde sale el 0,87 que está dentro de esta fórmula?<br><span class='who'>SECRETARIO:</span> Tendría que consultarlo.",
+  m:"Una constante incrustada dentro de una fórmula es un supuesto que no aparece como supuesto y que por eso nadie revisó. La pregunta correcta no es si el modelo está bien, que es indefendible o irrefutable según quién responda, sino de dónde sale cada número que no procede de una celda de entrada. La discrepancia entre el recálculo y la cifra de portada se describe con precisión —qué se recalculó, con qué entradas, qué resultado— y se somete a un analista externo antes de publicar. La respuesta «tendría que consultarlo» se documenta con fecha y se recoge en el texto.",
+  c:"Auditar el cálculo y no el resultado, y localizar los supuestos que están escritos dentro de las fórmulas."},
+
+ {tag:"ESCENARIO 5",t:"El archivo que perdió filas al abrirse",
+  d:"El organismo declara haber entregado 84.000 registros. Tu hoja de cálculo muestra 65.536.",
+  r:"Reportera · Editor de datos · Oficina de acceso",
+  ej:"<span class='who'>EDITOR:</span> Trabaja con lo que hay, son suficientes.<br><span class='who'>REPORTERA:</span> No son una muestra. Son los primeros por orden de carga.<br><span class='who'>EDITOR:</span> ¿Y eso qué cambia?<br><span class='who'>REPORTERA:</span> Que faltan los más recientes, que es justo el período de la nota.",
+  m:"Una pérdida por truncamiento no produce una muestra aleatoria sino un corte por posición, de modo que lo ausente está sistemáticamente sesgado: normalmente son los registros más recientes o los de la última dependencia cargada. Lo primero es contar las filas del archivo de origen con una herramienta que no sea la hoja de cálculo, para determinar si el truncamiento es de la entrega o de la apertura. Si es de la apertura, se reimporta en un formato sin ese límite; si es de la entrega, se reclama y se documenta. Publicar con el conjunto truncado no es publicar con menos datos: es publicar con otros datos.",
+  c:"Reconocer el truncamiento silencioso y no confundir un corte por posición con una muestra."},
+
+ {tag:"ESCENARIO 6",t:"La nota metodológica que nadie quiere",
+  d:"Tu nota metodológica declara que se excluyó el 8% de los registros por fechas imposibles. El editor teme que esa cifra debilite la investigación.",
+  r:"Reportera · Editor · Director",
+  ej:"<span class='who'>EDITOR:</span> El 8% le da munición al organismo.<br><span class='who'>REPORTERA:</span> Se la da más si lo descubren ellos.<br><span class='who'>DIRECTOR:</span> ¿Comprobaste si esos registros se parecen a los demás?<br><span class='who'>REPORTERA:</span> Sí, y se concentran en 2019. Está en la nota.",
+  m:"Declarar una exclusión no debilita la investigación: la vuelve auditable, que es lo contrario. Lo que sí la debilitaría es que la exclusión apareciera después por vía ajena, porque entonces el problema deja de ser el 8% y pasa a ser la omisión. La pregunta del director es la correcta y es la comprobación obligatoria: si lo excluido difiere sistemáticamente de lo conservado, el hallazgo se acota a lo que el conjunto conservado permite sostener, y esa concentración en un año concreto es en sí misma un dato sobre el registro que merece un párrafo propio.",
+  c:"Sostener la transparencia de método frente a la presión de titular, y comprobar el sesgo de lo excluido antes de defenderla."}
+];
+
+const IV=[
+ {q:"¿Cuántos registros contiene exactamente el archivo que ustedes generaron, antes de cualquier exportación?",
+  m:"Abre por el recuento, no por el contenido. Fija una cifra verificable contra la que comparar tu propio conteo y detecta truncamientos antes de discutir nada más."},
+ {q:"¿En qué formato se genera el archivo en su sistema y en cuál se me entregó?",
+  m:"La cadena de formatos es donde ocurren las pérdidas silenciosas. Si el sistema exporta a un formato con límite de filas, ese límite es parte de la respuesta."},
+ {q:"El campo de resultado está vacío en un tercio de los registros. ¿Qué significa un campo vacío en su sistema?",
+  m:"Obliga a distinguir entre no aplicable, no registrado y perdido. Si el sistema no distingue estos casos, esa indistinción es publicable y explica por qué el dato no puede interpretarse."},
+ {q:"¿El sistema lleva bitácora de quién carga cada registro y cuándo? ¿Puedo solicitarla?",
+  m:"Convierte la explicación de «problema de carga» en una hipótesis comprobable. La negativa a entregar la bitácora, documentada, describe el sistema tanto como la bitácora misma."},
+ {q:"¿Existe un manual de clasificación que indique en qué categoría debe registrarse cada caso?",
+  m:"Sin criterio externo, cualquier afirmación sobre clasificación incorrecta es opinión del periodista. Con él, es una comparación verificable caso por caso."},
+ {q:"¿Se ha modificado en algún momento el catálogo de categorías o la definición de algún campo?",
+  m:"Los cambios de catálogo rompen la comparabilidad de la serie y casi nunca se anuncian. Preguntarlo antes de comparar previene el error más caro."},
+ {q:"¿Quién revisa los datos antes de publicarlos y con qué procedimiento?",
+  m:"Establece si existe control de calidad y de qué tipo. La ausencia de procedimiento es un hallazgo; la existencia de uno permite preguntar por sus informes."},
+ {q:"Si mi recuento no coincide con el suyo, ¿cómo lo resolvemos?",
+  m:"Cierra ofreciendo un procedimiento en lugar de una acusación. Deja constancia de que se dio oportunidad de reconciliar las cifras antes de publicar."}
+];
+
+const AUDIT=[
+ ["v","En abril de 2013 Thomas Herndon, Michael Ash y Robert Pollin, del Political Economy Research Institute de la Universidad de Massachusetts Amherst, identificaron en el trabajo de Reinhart y Rogoff errores de codificación, exclusión selectiva de datos y ponderación no convencional; el rango de la función de promedio se detenía en la fila 44 y dejaba fuera a Australia, Austria, Bélgica, Canadá y Dinamarca. Reinhart y Rogoff reconocieron el error de codificación.","Análisis del PERI (UMass Amherst), abril de 2013, y cobertura y réplicas publicadas. Verificado."],
+ ["v","Public Health England perdió 15.841 resultados positivos entre el 25 de septiembre y el 2 de octubre de 2020 por usar el formato .xls, con techo de 65.536 filas; los registros excedentes no generaron aviso de error y no llegaron al rastreo de contactos. El formato .xlsx admite 1.048.576 filas.","Cobertura de octubre de 2020 (BBC, The Register y otros). Verificado."],
+ ["v","Ziemann, Eren y El-Osta publicaron en <em>Genome Biology</em> en agosto de 2016 que aproximadamente una quinta parte de los trabajos con listas de genes en hoja de cálculo contenía conversiones erróneas de nombres; el problema se había señalado ya en 2004.","Genome Biology, DOI 10.1186/s13059-016-1044-7. Verificado."],
+ ["v","En 2020 el comité de nomenclatura de genes humanos (HGNC) revisó sus normas y renombró los símbolos autocorregidos por las hojas de cálculo: SEPT1 pasó a SEPTIN1 y MARCH1 a MARCHF1.","Nature Genetics, 2020, y genenames.org. Verificado."],
+ ["v","Tras una investigación de seis meses, <em>Los Angeles Times</em> determinó que el Departamento de Policía de Los Ángeles clasificó incorrectamente como delitos menores más de mil agresiones graves en 2012-2013; según su análisis la tasa de delitos violentos habría sido un 7% superior a la reportada en el año terminado en septiembre de 2013, y las agresiones graves un 14% superiores.","Los Angeles Times, 2014, y cobertura contemporánea. Verificado."],
+ ["v","El European Spreadsheet Risks Interest Group documenta desde 1999 errores de hoja de cálculo con consecuencias públicas y mantiene un repertorio público de casos.","eusprig.org. Verificado."],
+ ["b","OpenRefine registra cada operación en un historial exportable y reversible, y ofrece agrupamiento por similitud para proponer valores equivalentes a revisión humana.","Documentación del proyecto OpenRefine."],
+ ["b","El perfilado previo —dimensiones, ausentes, duplicados, rangos y categorías— es el primer paso obligatorio ante un conjunto desconocido.","Gray &amp; Bounegru, Data Journalism Handbook · Bradshaw."],
+ ["b","Un valor ausente puede significar inexistente, no registrado, no aplicable o perdido; tratarlos como cero produce resultados falsos con aritmética correcta.","Metodología estadística establecida · Bradshaw."],
+ ["b","Los valores atípicos se aíslan y examinan individualmente, no se eliminan por su posición en la distribución.","Gray &amp; Bounegru · práctica establecida de análisis."],
+ ["b","La limpieza debe ser reversible: si no se puede volver del archivo publicado al original deshaciendo cada paso, no hubo limpieza sino modificación.","Principio derivado de la cadena de custodia · OpenRefine."],
+ ["b","La nota metodológica publicada debe permitir a un lector competente reproducir la cifra con el mismo archivo.","IFCN, Código de Principios · Gray &amp; Bounegru."],
+ ["b","Para afirmar que un organismo clasifica incorrectamente hacen falta casos verificados contra su documento de origen y un criterio externo de clasificación.","Práctica establecida de investigación · derivado del caso Los Angeles Times."],
+ ["p","La afirmación de que las hojas de cálculo alteran datos al abrir un archivo se sostiene en la literatura citada y en la documentación de los formatos; no se ha realizado para esta unidad una comprobación experimental propia sobre versiones concretas del software.","Redactado sin atribuir comportamiento a una versión específica."]
+];
+
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Limpiar un conjunto de datos consiste en:",
+ o:["Corregir los errores del archivo hasta obtener su versión correcta","Tomar decisiones que alteran el conjunto, registrándolas de forma que sean reversibles","Eliminar los registros que no cumplen los criterios de calidad","Convertir el archivo a un formato apto para el análisis"],c:1,
+ w:["Supone que existe una versión correcta a la que se llega. Existe un registro producido por un sistema y una serie de decisiones tuyas sobre él.",
+    "",
+    "La eliminación es una de las decisiones posibles, no la definición del proceso, y aplicada sin criterio explícito es donde se pierden los hallazgos.",
+    "La conversión de formato es una operación técnica previa, no la limpieza."],
+ e:"Cada decisión altera el resultado y ninguna es evitable. Lo que separa un trabajo defendible de uno indefendible no es la ausencia de decisiones, sino que estén registradas, justificadas y sean reversibles."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un valor ausente en un registro administrativo puede significar:",
+ o:["Que el valor es cero","Que el dato no existe, no se registró, no aplica o se perdió: son significados incompatibles entre sí","Que el registro debe descartarse","Que hubo un fallo de captura"],c:1,
+ w:["Convertir vacíos en ceros es el error más frecuente y produce resultados falsos con aritmética impecable.",
+    "",
+    "Descartar el registro entero por un campo vacío elimina información válida en las demás variables e introduce sesgo.",
+    "El fallo de captura es solo una de las cuatro posibilidades, y suponerla cierra la pregunta antes de hacerla."],
+ e:"La ambigüedad es el problema. Y la pregunta correcta nunca es cuántos faltan, sino si los que faltan se parecen entre sí: cuando las ausencias se concentran, son un patrón y no ruido."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La diferencia entre un valor imposible y un valor atípico es que:",
+ o:["El imposible es muy raro y el atípico es simplemente alto","El imposible no puede existir bajo ninguna interpretación; el atípico es raro pero admisible","El imposible se elimina y el atípico se corrige","El imposible aparece en variables de fecha y el atípico en variables numéricas"],c:1,
+ w:["La rareza es cuestión de grado; la imposibilidad no. Un día 32 no es raro: no existe.",
+    "",
+    "Ninguno de los dos se corrige por conjetura. El imposible se documenta y se decide; el atípico se examina caso por caso.",
+    "Ambos aparecen en cualquier tipo de variable. La distinción no es de tipo de dato."],
+ e:"La instrucción «eliminar valores extremos» es la manera más eficiente de borrar una investigación: la mayoría de los hallazgos periodísticos viven precisamente en la zona de lo improbable pero posible."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una «constante incrustada» en una planilla es:",
+ o:["Un valor de referencia guardado en una celda fija y bloqueada","Un número escrito dentro de una fórmula, que funciona como supuesto sin declararse como tal","Un valor que se repite idéntico en muchas filas","Una celda protegida contra edición"],c:1,
+ w:["Una celda de entrada bloqueada es visible y auditable: exactamente lo contrario del problema.",
+    "",
+    "La repetición de un valor es un patrón del dato, no un supuesto del modelo.",
+    "La protección regula quién puede editar, no dónde está el supuesto."],
+ e:"El número escrito dentro de la fórmula no aparece como supuesto, y por eso nadie lo revisa. La pregunta de auditoría es de dónde sale cada valor que no procede de una celda de entrada."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La reversibilidad de un proceso de limpieza significa que:",
+ o:["Se conserva una copia de seguridad del archivo original","Se puede volver del archivo publicado al original deshaciendo cada paso registrado","Las transformaciones pueden aplicarse en cualquier orden","El archivo procesado conserva las columnas eliminadas"],c:1,
+ w:["La copia de seguridad conserva el punto de partida y no explica cómo se llegó al punto de llegada. Es necesaria e insuficiente.",
+    "",
+    "El orden de las transformaciones importa y a menudo es determinante: unificar antes o después de eliminar duplicados da resultados distintos.",
+    "Conservar columnas es una decisión de estructura, no una propiedad del proceso."],
+ e:"Si no puedes recorrer el camino de vuelta paso a paso, no limpiaste: modificaste. Es la misma distinción que en el trabajo de campo entre editar una copia y editar el original."},
+
+/* ---------- BLOQUE B · ESCENARIO ---------- */
+{blk:"BLOQUE B · DECISIÓN DE LIMPIEZA", t:"mcq",
+ s:"El organismo declara haber entregado 84.000 registros. Tu hoja de cálculo muestra exactamente 65.536.",
+ q:"¿Qué haces primero?",
+ o:["Reclamar la entrega completa: faltan casi 19.000 registros","Contar las filas del archivo de origen con una herramienta ajena a la hoja de cálculo, para saber si el truncamiento es de la entrega o de la apertura","Trabajar con los 65.536: es una muestra amplia","Pedir que reenvíen el archivo en varias partes"],c:1,
+ w:["Puede que la entrega esté completa y el corte sea tuyo, al abrir el archivo. Reclamar antes de comprobar te deja sin argumento si el fallo es propio.",
+    "",
+    "No es una muestra: es un corte por posición. Lo ausente está sistemáticamente sesgado, normalmente hacia los registros más recientes.",
+    "Fragmentar la entrega puede ser una solución posterior; primero hay que saber dónde se pierden los datos."],
+ e:"65.536 es exactamente el techo de un formato de hoja de cálculo antiguo. La cifra misma es el diagnóstico, y contar las filas del origen con una herramienta que no interprete el archivo es la comprobación que lo confirma."},
+
+{blk:"BLOQUE B · DECISIÓN DE LIMPIEZA", t:"mcq",
+ s:"Al abrir el archivo, la columna de identificadores muestra valores como «1,23E+11» y otra columna muestra fechas donde el diccionario declara códigos de producto.",
+ q:"¿Qué haces?",
+ o:["Reformatear las columnas al tipo correcto y continuar","Reimportar el archivo declarando cada columna como texto y verificar una muestra contra el original abierto en un editor de texto plano","Solicitar al organismo un archivo sin esos errores","Eliminar las dos columnas afectadas del análisis"],c:1,
+ w:["Reformatear después de la conversión no recupera lo perdido: los ceros a la izquierda y los dígitos truncados ya no están en el archivo.",
+    "",
+    "El error no está en el archivo del organismo sino en cómo lo abriste. Reclamar traslada un fallo propio.",
+    "Eliminar las columnas descarta justo los identificadores que permiten cruzar el conjunto con otros."],
+ e:"El software no conserva los datos: los interpreta. Importar declarando el tipo de cada columna, y verificar contra un editor que no interprete nada, es lo que separa analizar lo que hay de analizar lo que la herramienta decidió que había."},
+
+{blk:"BLOQUE B · DECISIÓN DE LIMPIEZA", t:"mcq",
+ s:"El campo «resultado» está vacío en el 30% de los registros. Al desagregar, casi todos los vacíos corresponden a una única delegación provincial. El responsable del sistema dice que es un problema de carga.",
+ q:"¿Qué corresponde hacer?",
+ o:["Publicar que la delegación oculta resultados: el patrón es demasiado claro para ser casual","Solicitar la bitácora del sistema para ese período y esa delegación, que permite comprobar si la explicación se sostiene","Excluir esa delegación del análisis y trabajar con el resto","Aceptar la explicación: los problemas de carga son frecuentes"],c:1,
+ w:["Es una atribución de intención que ningún dato acredita. La concentración es un patrón, no una prueba de ocultamiento.",
+    "",
+    "Excluir la delegación elimina precisamente el caso que motiva la investigación y sesga el resto del análisis.",
+    "La frecuencia de los problemas de carga no acredita que este lo sea. La explicación es plausible y comprobable: hay que comprobarla."],
+ e:"La explicación del responsable es útil justamente porque es comprobable: si fuera un problema de carga, la bitácora lo mostraría distribuido en el tiempo y entre operadores. Si la bitácora no existe o no se entrega, esa negativa documentada describe el sistema."},
+
+{blk:"BLOQUE B · DECISIÓN DE LIMPIEZA", t:"mcq",
+ s:"Una empresa aparece con cuatro razones sociales ligeramente distintas. Unificándolas pasa de proveedor menor a mayor adjudicatario del período.",
+ q:"¿Qué se requiere antes de publicar esa afirmación?",
+ o:["Que las cuatro grafías sean lo bastante similares como para no dejar duda razonable","Un identificador estable —fiscal o registral— que acredite que se trata del mismo sujeto, y el criterio de unificación publicado","La confirmación de la propia empresa","Que la herramienta de agrupamiento por similitud las haya reunido automáticamente"],c:1,
+ w:["La similitud de nombre es una pista, no una prueba. Dos empresas distintas pueden tener razones sociales casi idénticas, y a menudo la tienen deliberadamente.",
+    "",
+    "La confirmación de la empresa es deseable como derecho de réplica y no puede ser la base de la afirmación: su negativa no la desmentiría.",
+    "El agrupamiento propone conjuntos probables para revisión humana. Tomar su salida como conclusión es delegar la decisión en la herramienta."],
+ e:"La máquina propone y el periodista decide. Con un identificador estable la unificación es un hecho verificable; sin él es una inferencia, y es exactamente lo que la empresa impugnará."},
+
+{blk:"BLOQUE B · DECISIÓN DE LIMPIEZA", t:"mcq",
+ s:"Tu análisis de contrataciones arroja doce contratos mil veces mayores que la mediana. El editor propone excluirlos para que el gráfico sea legible.",
+ q:"¿Qué haces?",
+ o:["Excluirlos declarándolo en la nota metodológica","Verificar los doce contra su expediente de origen y decidir caso por caso; la legibilidad se resuelve con la escala del gráfico","Conservarlos sin examinarlos: alterar el conjunto sería manipular","Analizarlos aparte y no mencionarlos en la pieza principal"],c:1,
+ w:["Declarar una exclusión no la justifica. Excluir doce casos sin examinarlos puede estar borrando la investigación con un argumento de presentación.",
+    "",
+    "Conservarlos sin verificarlos es tan irresponsable como excluirlos sin verificarlos: si son errores de captura, contaminan todos los agregados.",
+    "Separarlos en un análisis paralelo que no llega al lector equivale a excluirlos sin decirlo."],
+ e:"Con doce casos la verificación individual es viable y obligatoria. Si son errores, se documentan y se excluyen declarándolo; si son reales, no son un problema de distribución sino el hallazgo. El gráfico se arregla con escala logarítmica o dos vistas."},
+
+{blk:"BLOQUE B · DECISIÓN DE LIMPIEZA", t:"mcq",
+ s:"Al recalcular desde las celdas de entrada, la cifra de ahorro que el municipio publicó en la portada de su modelo no se reproduce. Dentro de una fórmula encuentras un factor 0,87 que no procede de ninguna celda.",
+ q:"¿Cómo formulas la pregunta al responsable?",
+ o:["«¿Reconoce que el modelo contiene un error?»","«¿De dónde sale el factor 0,87 que está escrito dentro de esta fórmula?»","«¿Quién elaboró el modelo y con qué cualificación?»","«¿Está dispuesto a que un auditor externo revise la hoja?»"],c:1,
+ w:["Preguntar por el error invita a una negativa general que no aporta información. Además presupone la conclusión.",
+    "",
+    "La cualificación del autor es un argumento sobre personas, no sobre el cálculo, y desplaza la conversación.",
+    "Es una buena pregunta posterior. Antes hay que fijar el hecho concreto sobre el que se pedirá la auditoría."],
+ e:"Se audita el cálculo, no el resultado. La pregunta acotada a un valor concreto obliga a una respuesta verificable o a un «tendría que consultarlo» que se documenta con fecha y se recoge en el texto."},
+
+{blk:"BLOQUE B · DECISIÓN DE LIMPIEZA", t:"mcq",
+ s:"Excluiste el 8% de los registros por contener fechas imposibles. Al comprobarlo, esos registros se concentran casi todos en un mismo año.",
+ q:"¿Qué corresponde hacer con ese hallazgo?",
+ o:["Nada: la exclusión está justificada y documentada","Acotar el hallazgo a lo que el conjunto conservado permite sostener y dedicar un párrafo a la concentración, que es un dato sobre el registro","Reincorporar esos registros corrigiendo las fechas al valor más probable","Excluir también ese año completo para mantener la homogeneidad"],c:1,
+ w:["La exclusión está justificada y la comprobación acaba de producir información nueva que no puede quedarse en el cuaderno.",
+    "",
+    "Imputar fechas por conjetura es inventar información. Solo cabe con reglas declaradas y comprobables, nunca por estimación del periodista.",
+    "Eliminar un año entero por contener errores destruye la serie y oculta precisamente lo que se acaba de encontrar."],
+ e:"La comprobación de si lo excluido difiere de lo conservado es obligatoria, y aquí ha devuelto un hallazgo: algo ocurrió con el registro ese año. Declararlo refuerza la investigación en lugar de debilitarla."},
+
+{blk:"BLOQUE B · DECISIÓN DE LIMPIEZA", t:"mcq",
+ s:"Tu perfilado muestra que una categoría del catálogo se usa con criterios distintos en dos dependencias. Quieres afirmar que una de ellas clasifica incorrectamente.",
+ q:"¿Qué necesitas para sostenerlo?",
+ o:["La anomalía estadística, que ya es concluyente por su magnitud","Casos individuales verificados contra su documento de origen y un criterio externo —norma o manual— contra el cual medir el error","La declaración de un funcionario que reconozca la práctica","La comparación con la distribución nacional de esa categoría"],c:1,
+ w:["La anomalía establece dónde mirar. Admite explicaciones alternativas —composición distinta de los casos, cambio de criterio, práctica local— que hay que descartar.",
+    "",
+    "Una declaración es valiosa y no sustituye a la prueba documental: puede retractarse, y sin criterio externo tampoco acredita que la clasificación sea incorrecta.",
+    "La comparación con otras jurisdicciones refuerza el patrón sin acreditar que una clasificación concreta esté mal."],
+ e:"Es el método de la investigación del Los Angeles Times sobre clasificación de delitos: casos reconstruidos contra el manual federal de clasificación. Sin criterio externo, la afirmación se reduce a la opinión del periodista sobre cómo debería haberse clasificado."},
+
+/* ---------- BLOQUE C · DIAGNÓSTICO ---------- */
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"NOTA METODOLÓGICA: «Se depuró la base eliminando registros duplicados e inconsistentes.»",
+ q:"¿Qué falla?",
+ o:["Debería indicar la herramienta utilizada","No dice cuántos registros se eliminaron, con qué criterio ni con qué efecto sobre el resultado","Debería justificarse la eliminación de duplicados","Debería ir firmada por el analista"],c:1,
+ w:["La herramienta es el dato menos relevante: un procedimiento reproducible lo es con cualquier herramienta equivalente.",
+    "",
+    "Eliminar duplicados reales no necesita justificación conceptual; lo que necesita es criterio, cifra y efecto.",
+    "La firma acredita autoría, no reproducibilidad."],
+ e:"«Inconsistentes» no es un criterio: es una etiqueta. La nota debe permitir a un lector competente reproducir la cifra, y para eso necesita saber qué se consideró duplicado, cuántos eran y qué cambió al quitarlos."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«El 42% de las inspecciones no registró resultado, lo que revela una política deliberada de opacidad.»",
+ q:"¿Cuál es el defecto?",
+ o:["El porcentaje debería expresarse en cifras absolutas","Convierte una ausencia de datos en una intención, que ningún registro puede acreditar","Falta el período al que se refiere la cifra","Debería atribuirse el dato a la fuente"],c:1,
+ w:["La forma de expresar la cifra no tiene relación con el problema.",
+    "",
+    "El período es un elemento necesario de toda afirmación cuantitativa y su ausencia no es lo que invalida la frase.",
+    "El dato procede de tu propio análisis; atribuirlo a un tercero sería incorrecto."],
+ e:"El vacío es observable; la política deliberada no. Se describe la magnitud, la concentración y el período, y se recoge la explicación del organismo. Es la misma disciplina que impide escribir «guardó silencio» en lugar de «no respondió»."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Tras unificar las variantes de escritura, la empresa resultó ser la mayor adjudicataria, con 74 contratos.»",
+ q:"¿Qué falta para que la afirmación sea auditable?",
+ o:["El importe total de los 74 contratos","El criterio de unificación y el identificador que acredita que las variantes corresponden al mismo sujeto","El período que abarcan los contratos","El nombre completo de la empresa"],c:1,
+ w:["El importe enriquece la afirmación y no permite comprobar la operación que la sostiene.",
+    "",
+    "El período es imprescindible para la afirmación cuantitativa y no es lo que hace auditable la unificación.",
+    "El nombre está implícito y no acredita la equivalencia entre las variantes."],
+ e:"La unificación es la decisión que produce el hallazgo, y por eso es la que hay que exponer. Sin el identificador y el criterio, el lector no puede distinguir un hecho verificado de una inferencia del periodista."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Se excluyeron 1.240 registros por presentar valores atípicos en el importe.»",
+ q:"¿Qué problema tiene esta exclusión, tal como está descrita?",
+ o:["Ninguno: la exclusión está cuantificada y declarada","«Atípico» no es un criterio operativo, y excluir por posición en la distribución puede eliminar precisamente los casos de interés","Debería haberse excluido un porcentaje fijo","Falta indicar el importe medio de los excluidos"],c:1,
+ w:["Estar cuantificada y declarada la vuelve visible, no correcta. La transparencia no valida el criterio.",
+    "",
+    "Un umbral fijo arbitrario sería igual de indefendible y además menos informativo.",
+    "El importe medio de los excluidos es un dato útil que no corrige el criterio."],
+ e:"Los atípicos se aíslan y se examinan, no se eliminan por su posición. Con 1.240 casos la revisión individual no es viable, de modo que corresponde declarar un criterio operativo comprobable y analizar el subconjunto excluido aparte, no descartarlo."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Los datos fueron procesados con la herramienta estándar del sector y validados internamente.»",
+ q:"¿Qué falla?",
+ o:["No indica el nombre de la herramienta","Apela a la autoridad del procedimiento en lugar de exponerlo, de modo que nada puede comprobarse","Debería mencionarse quién realizó la validación interna","Es innecesariamente técnica para el lector"],c:1,
+ w:["El nombre de la herramienta no volvería comprobable la frase.",
+    "",
+    "Identificar al validador añade responsabilidad sin exponer el procedimiento.",
+    "El problema es el contrario: no hay contenido técnico alguno, solo afirmaciones de calidad."],
+ e:"«Estándar del sector» y «validados internamente» son autoelogios que sustituyen al método. La transparencia útil expone qué se hizo y qué quedó sin resolver, no asegura que se hizo bien."},
+
+/* ---------- BLOQUE D · SELECCIÓN Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe comprobarse al auditar una planilla ajena con fórmulas.",
+ o:["Qué celdas son de entrada manual y de dónde salieron esos números","Si el rango de cada función agregada cubre todas las filas que debería","Constantes numéricas escritas dentro de las fórmulas","El formato y la presentación de las celdas de resultado","Hojas ocultas, filas ocultas y referencias a archivos externos"],
+ c:[0,1,2,4],
+ w:["","","","El formato afecta a cómo se muestra un valor, no a cómo se calcula. Es la única comprobación de la lista que no toca el cálculo.",""],
+ e:"Entradas, rangos, constantes incrustadas y elementos ocultos. El error de rango que no llega a la última fila es invisible en pantalla, no produce ningún aviso y ha alterado decisiones de política pública."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las alteraciones que una hoja de cálculo puede introducir en silencio al abrir un archivo.",
+ o:["Convertir textos que parecen fechas en fechas","Eliminar los ceros a la izquierda de identificadores","Descartar registros al superar el límite de filas del formato","Reordenar las filas según la primera columna","Convertir códigos largos a notación científica"],
+ c:[0,1,2,4],
+ w:["","","","Reordenar no es un comportamiento automático: requiere que alguien lo ejecute.",""],
+ e:"Las cuatro son conversiones documentadas y ninguna produce aviso. La comprobación es siempre la misma: contar y verificar una muestra contra el archivo original abierto en un editor que no interprete nada."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las cinco comprobaciones del perfilado de un conjunto desconocido.",
+ o:["Dimensiones: filas y columnas, contra lo que el organismo declara haber entregado","Valores ausentes por columna y su distribución","Duplicados exactos y duplicados por grafía","Rangos: máximos y mínimos de cada variable numérica y de fecha","Categorías: valores únicos de cada variable de texto, contra el diccionario"],
+ c:[0,1,2,3,4],
+ e:"Las dimensiones van primero porque una discrepancia con lo declarado invalida todo lo demás: si faltan registros, no tiene sentido estudiar la distribución de los que quedan."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el tratamiento correcto de un conjunto de valores atípicos.",
+ o:["Aislarlos sin eliminarlos del conjunto","Examinarlos contra su documento de origen, caso por caso si el número lo permite","Decidir con criterio explícito qué hacer con cada uno","Registrar la decisión y su efecto en el cuaderno","Declarar en la nota metodológica cuántos fueron y con qué criterio"],
+ c:[0,1,2,3,4],
+ e:"Aislar antes de decidir es lo que impide que un hallazgo desaparezca por conveniencia de presentación. Un contrato mil veces mayor que la media puede ser un error de captura o puede ser la nota, y solo el expediente lo distingue."}
+];
+
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
