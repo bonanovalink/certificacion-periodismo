@@ -73,6 +73,18 @@
   .exp.show{display:block}
   .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
   .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
 
   .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
   .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
@@ -288,8 +300,8 @@
 
   <section id="pru">
     <h3>Prueba de la unidad</h3>
-    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
-    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
     <div id="quiz"></div>
 
     <h3>Ensayos</h3>
@@ -348,30 +360,208 @@
 
 <script>
 const QUIZ=[
- {q:"Según Kovach y Rosenstiel, la esencia del periodismo es:",
-  o:["La imparcialidad del reportero","Una disciplina de verificación","La velocidad de publicación","El acceso a fuentes oficiales"],c:1,
-  e:"Los autores desplazan la definición desde un rasgo del sujeto hacia un método comprobable. Es lo que permite auditar el trabajo con independencia de quién lo firme."},
- {q:"La objetividad, en su formulación original de los años veinte, exigía:",
-  o:["Que el periodista careciera de opiniones","Que se publicaran ambas versiones de todo conflicto","Un método consistente de comprobación, dado que el periodista sí tiene sesgos","La ausencia de adjetivos en el texto"],c:2,
-  e:"El concepto nace del reconocimiento del sesgo, no de su negación. La versión que exige neutralidad personal es una deriva posterior y es indefendible."},
- {q:"Una nota donde cada dato es textualmente exacto:",
-  o:["Es por definición verdadera","Puede ser falsa por omisión, orden o yuxtaposición","No requiere corrección posterior","Cumple automáticamente el principio de transparencia"],c:1,
-  e:"La exactitud es propiedad de los elementos; la verdad, del conjunto. De ahí la segunda comprobación sobre la impresión global."},
- {q:"¿Cuál NO es uno de los cinco principios intelectuales de la verificación?",
-  o:["Nunca agregar nada que no estuviera ahí","Ejercer la humildad","Mantener equidistancia entre las partes","Apoyarse en el reporteo propio"],c:2,
-  e:"La equidistancia no figura entre los cinco y a menudo contradice la obligación con la verdad: dar el mismo peso a una afirmación probada y a una refutada desinforma."},
- {q:"Ante un video que no supera las comprobaciones de procedencia, corresponde:",
-  o:["Publicarlo señalando que circula en redes","Publicarlo como afirmación de un tercero, indicando que no se pudo verificar","Descartarlo sin dejar registro","Publicarlo si otro medio ya lo publicó"],c:1,
-  e:"Mantiene la distinción entre hecho establecido y afirmación no confirmada. Publicar porque otro publicó sustituye la verificación por la conducta ajena: es el mecanismo del error en cascada."},
- {q:"La corrección pública de un error propio indica:",
-  o:["Fallo del método de verificación","Funcionamiento del método","Necesidad de retirar la pieza completa","Responsabilidad legal automática"],c:1,
-  e:"La verdad periodística es acumulativa y corregible. Una redacción que nunca corrige no es más exacta: es una que no revisa."},
- {q:"Escribir «X acusó a Y de corrupción» sin más:",
-  o:["Traslada la responsabilidad a X","Publica la acusación, y el medio responde por difundirla","Equivale a verificar la acusación","Cumple el principio de reporteo propio"],c:1,
-  e:"La cita no neutraliza la difusión. Corresponde buscar el descargo de Y, dejar constancia de haberlo buscado y distinguir lo probado de lo alegado."},
- {q:"La transparencia sustituye a la neutralidad porque:",
-  o:["Es más fácil de cumplir","Permite al lector auditar la solidez de lo afirmado","Evita demandas por difamación","Reemplaza la necesidad de verificar"],c:1,
-  e:"Convierte al lector en auditor del método. No sustituye a la verificación: la hace evaluable desde fuera."}
+/* ---------- BLOQUE A · RECALL ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Kovach y Rosenstiel enumeran diez elementos del periodismo. ¿Cuál de ellos identifican como su <em>esencia</em>?",
+ o:["La lealtad prioritaria hacia el ciudadano","Una disciplina de verificación","La independencia respecto de aquellos a quienes se cubre","Servir de foro público para la crítica"],c:1,
+ w:["Es uno de los diez elementos y es real, pero es una obligación de destinatario: dice para quién se trabaja, no cómo se establece que algo es cierto.",
+    "",
+    "También figura entre los diez y es genuina, pero describe una posición respecto de las fuentes, no el procedimiento que distingue al periodismo de otras formas de relato.",
+    "Es uno de los diez elementos, y describe una función social del periodismo. La esencia, en cambio, es lo que hace que ese foro tenga algo verificado que ofrecer."],
+ e:"Los cuatro son elementos reales de la lista. Solo la verificación es señalada como la <em>esencia</em>, porque es lo único que ninguna otra forma de comunicación practica: la propaganda también es leal a alguien y también ofrece un foro."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"¿Cuál de estas obligaciones NO forma parte de los cinco principios intelectuales de la verificación?",
+ o:["Nunca agregar nada que no estuviera ahí","Apoyarse en el reporteo propio","Conceder derecho de réplica al señalado","Ejercer la humildad"],c:2,
+ w:["Es el primero de los cinco.","Es el cuarto de los cinco.","",
+    "Es el quinto de los cinco."],
+ e:"El derecho de réplica es una obligación deontológica real y exigible, pero pertenece al trato con las personas, no a los cinco principios intelectuales, que describen cómo se establece la certeza."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"«Verdad funcional», en el sentido de Kovach y Rosenstiel, significa:",
+ o:["La que un tribunal puede acreditar como probada","La que resulta suficiente y corregible para que un ciudadano decida","La que coincide con lo que afirman las fuentes consultadas","La que se mantiene estable a lo largo del tiempo"],c:1,
+ w:["Confunde el estándar judicial con el periodístico. El tribunal busca certeza para sancionar; el periodismo, información utilizable a tiempo.",
+    "",
+    "Convierte el consenso de las fuentes en criterio de verdad. Si todas las fuentes disponibles se equivocan, el consenso es unánime y falso.",
+    "La verdad periodística es precisamente lo contrario: acumulativa y sujeta a corrección. La estabilidad no es su criterio."],
+ e:"Es una verdad práctica: la que permite decidir hoy, sabiendo que la nota de mañana puede enmendarla. Ni absoluta ni consensuada."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"En su formulación original de los años veinte, la objetividad periodística consistía en:",
+ o:["Un procedimiento que elimina los sesgos del periodista","Un procedimiento consistente de comprobación, adoptado <em>porque</em> el periodista tiene sesgos","La obligación de recoger todas las posiciones en conflicto","La separación tipográfica entre información y opinión"],c:1,
+ w:["Está muy cerca, y por eso es la respuesta más elegida. Pero el método no elimina el sesgo: funciona a pesar de él, igual que el método científico no vuelve neutral al científico.",
+    "",
+    "Es la norma de pluralidad, posterior y distinta. Recoger todas las posiciones puede incluso desinformar si se da igual peso a lo probado y a lo refutado.",
+    "Es una convención de diseño editorial útil, pero no es lo que el concepto de objetividad significaba."],
+ e:"El concepto nace del reconocimiento del sesgo, no de su negación. La diferencia con la opción (a) es sutil y decisiva: el método no purifica al observador, lo hace irrelevante."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La transparencia, como sustituto operativo de la neutralidad, consiste en:",
+ o:["Publicar la identidad de todas las fuentes utilizadas","Exponer métodos, límites y negativas para que el lector pondere la solidez","Publicar íntegros los documentos en que se basa la pieza","Declarar los intereses económicos del medio"],c:1,
+ w:["Sería incompatible con la protección de fuentes, que es una obligación de rango superior. La transparencia es sobre el método, no sobre las identidades.",
+    "",
+    "Es deseable cuando es posible, pero no siempre lo es —hay documentos que exponen a terceros— y no es lo que define el principio.",
+    "Es una práctica correcta y necesaria, pero se refiere a los conflictos de interés del medio, no al procedimiento seguido en la pieza."],
+ e:"El objetivo es que el lector pueda reconstruir cómo llegaste a lo que afirmas y juzgar el peso de la evidencia, no que vea todo lo que tú viste."},
+
+/* ---------- BLOQUE B · ESCENARIO ---------- */
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Una fuente confirmó en grabación, con acuerdo explícito de que era en el récord, el dato central de tu pieza. Dos horas antes del cierre te llama y pide que no lo uses porque teme perder el empleo. El dato es de interés público y no lo tienes por otra vía.",
+ q:"¿Qué haces?",
+ o:["Retirar el dato: la fuente cambió de opinión y hay que respetarla","Publicarlo con su nombre: el acuerdo era en el récord y quedó grabado","Publicarlo atribuido por función, tras comprobar que ese nivel de detalle no la identifique","Publicarlo sin atribución alguna, como información del medio"],c:2,
+ w:["Premia la presión de última hora y deja al lector sin información verificada. El arrepentimiento posterior no anula el acuerdo, aunque sí obliga a atender el riesgo.",
+    "Es defendible en estricto derecho y es una mala decisión: la fuente supuso una exposición que tú no aclaraste, y esa ambigüedad es responsabilidad de la casa.",
+    "",
+    "Convierte una afirmación con respaldo identificable en una afirmación sin origen. Empeora la transparencia y no protege más a la fuente."],
+ e:"Se preserva el dato y se traslada la protección a la atribución. La comprobación de que el cargo no la identifique de facto es obligatoria: sin ella, la protección es ficticia."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Recibes por mensajería un video de un hecho grave. No hay metadatos, el remitente no se identifica y no localizas publicaciones anteriores. Dos medios competidores ya lo publicaron como hecho.",
+ q:"¿Qué haces?",
+ o:["Publicarlo citando que otros medios ya lo difundieron","Publicarlo como material en circulación, indicando que no se pudo establecer su origen, fecha ni lugar","Esperar a que un tercero lo verifique y entonces publicarlo","Descartarlo y no informar del asunto"],c:1,
+ w:["Sustituye la verificación por la conducta ajena. Si el material es falso, el daño reputacional no se reparte entre los que lo publicaron.",
+    "",
+    "Delegar la verificación en un tercero indeterminado no es un método. Además pierdes el hecho comprobable, que es que el material está circulando.",
+    "La circulación del material es en sí misma un hecho verificable y de interés público. Descartarlo entero renuncia a informar de algo que sí puedes sostener."],
+ e:"Se publica la circulación —que es comprobable— y no el contenido, con la limitación dicha expresamente. Es la distinción entre afirmar que algo ocurrió y afirmar que alguien lo está difundiendo."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Un funcionario pronuncia una frase grave dentro de una explicación que, completa, la matiza hasta invertir su sentido. El fragmento breve da un titular potente; el párrafo completo, ninguno.",
+ q:"¿Qué haces?",
+ o:["Publicar la frase: es textual y él la dijo","Publicar la frase con el contexto completo, aunque el titular se debilite","No publicar nada porque el conjunto no es noticioso","Consultar con su oficina de prensa qué formulación prefiere"],c:1,
+ w:["La exactitud literal no salva la pieza. Es el segundo principio: no engañar a la audiencia, y el engaño por recorte no requiere mentir.",
+    "",
+    "El contexto completo puede no dar titular y aun así ser informativo. Renunciar a publicar por falta de impacto es una decisión comercial disfrazada de criterio.",
+    "Entrega el control editorial a la parte interesada. Confirmar exactitud es legítimo; negociar la formulación no lo es."],
+ e:"La prueba de control: ¿podría el funcionario sostener con razón que se le hizo decir algo que no dijo? Si sí, la pieza está mal construida aunque la cita sea exacta. Si el titular no resiste el contexto, se cambia el titular."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Cuarenta y ocho horas después de publicar detectas que un dato de tu pieza es incorrecto. Ya fue replicado por otros tres sitios. La conclusión general de la investigación no cambia.",
+ q:"¿Qué haces?",
+ o:["Añadir una nota al pie de la pieza original","Corregir con la misma visibilidad que tuvo el error y avisar a quienes lo replicaron","Actualizar el texto silenciosamente para no dañar la credibilidad","Esperar a que alguien lo reclame formalmente"],c:1,
+ w:["Una nota al pie de una pieza que ya nadie abre no es una corrección: es un trámite que deja el error circulando.",
+    "",
+    "La corrección silenciosa es el peor de los casos: mantiene el error en el registro público y añade una segunda falta, la de ocultarlo.",
+    "Condicionar la corrección a la reclamación convierte la exactitud en un servicio a quien protesta, no en una obligación con el lector."],
+ e:"La corrección es el método funcionando, no su fracaso. Y el error propio que circuló sigue siendo responsabilidad propia: avisar a quien lo replicó forma parte de repararlo."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Buscaste a la empresa señalada por correo el 3 de julio, por teléfono el 5 y en sus oficinas el 7. Tienes acuse de las tres gestiones. No hubo respuesta y el plazo se agota.",
+ q:"¿Cómo lo escribes?",
+ o:["«La empresa prefirió no responder a este medio»","«Este medio buscó a la empresa por correo el 3 de julio, por teléfono el 5 y en sus oficinas el 7. No obtuvo respuesta»","«La empresa guardó silencio ante las preguntas de este medio»","Publicar sin mencionar los intentos de contacto"],c:1,
+ w:["«Prefirió» atribuye una intención que no conoces. Puede no haber recibido los mensajes, o estar decidiendo. Convierte la ausencia en decisión.",
+    "",
+    "«Guardó silencio» es la misma interpretación con otra palabra: sugiere una elección deliberada y con carga negativa que los hechos no acreditan.",
+    "Omitirlo priva al lector del dato que le permite ponderar el equilibrio de la pieza, y deja al medio sin defensa si después se alega que no se buscó a la parte."],
+ e:"Se describe lo verificable —fechas, vías, ausencia de respuesta— y nunca se interpreta. La ausencia de desmentido no es confirmación, y el texto no debe insinuar que lo sea."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Una fuente te ofrece documentos decisivos a cambio de leer y aprobar la redacción final antes de publicar.",
+ q:"¿Qué contraoferta preserva el material sin ceder el control editorial?",
+ o:["Aceptar: el valor del material justifica la condición","Rechazar la condición y renunciar al material","Ofrecerle revisar únicamente sus propias citas para confirmar exactitud, y conocer la fecha de publicación","Aceptar verbalmente y no cumplir"],c:2,
+ w:["El poder de veto sobre el conjunto convierte la pieza en la versión de un interesado con tu firma. A partir de ahí el lector no está leyendo el criterio del medio.",
+    "Es íntegro pero prematuro: existe una contraoferta acotada que preserva el material sin ceder nada esencial. Rechazar sin explorarla pierde información de interés público.",
+    "",
+    "Engañar a una fuente destruye la relación y la reputación del medio, y es exactamente la conducta que el segundo principio prohíbe respecto de la audiencia."],
+ e:"Confirmar exactitud de las citas propias es control de calidad; aprobar el texto es control editorial. La frontera está en si la fuente puede modificar algo que no sea su propia declaración."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Dos personas te confirman por separado el mismo hecho. Al preguntarles cómo lo supieron, ambas mencionan a la misma tercera persona, que no está disponible.",
+ q:"¿Qué tienes?",
+ o:["Dos fuentes independientes: es triangulación válida","Una sola fuente; hay que localizar al origen o formularlo como no confirmado","Triangulación válida si sus versiones coinciden en el detalle","Confirmación suficiente si ambas son creíbles"],c:1,
+ w:["La independencia es el requisito, no el número de personas. Dos intermediarios del mismo origen no multiplican la evidencia.",
+    "",
+    "La coincidencia en el detalle es exactamente lo que cabe esperar si ambos repiten el mismo relato. Refuerza que hay un origen común, no que el hecho sea cierto.",
+    "La credibilidad de los intermediarios no dice nada sobre la fiabilidad del origen, que es donde está la afirmación."],
+ e:"Un origen común no se convierte en dos fuentes por pasar por dos bocas. Si no se localiza al origen, la afirmación se publica como lo que es: no confirmada."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Un video presentado como grabado esta semana muestra árboles con follaje que no corresponde a la estación actual. El contenido coincide con lo que describen otras fuentes.",
+ q:"¿Qué concluyes?",
+ o:["Que puede publicarse señalando la duda sobre la fecha","Que la incoherencia estacional refuta la fecha afirmada y no puede publicarse como material de esta semana","Que puede publicarse porque el contenido coincide con lo que otras fuentes describen","Que debe publicarse si la fuente confirma la fecha por escrito"],c:1,
+ w:["«Señalar la duda» no resuelve nada cuando ya tienes evidencia positiva de que la fecha es falsa. No es una duda: es una refutación.",
+    "",
+    "Es el error de los documentos Killian: la plausibilidad del contenido se toma por autenticación del objeto. Que lo que muestra encaje no prueba cuándo se grabó.",
+    "La confirmación por escrito de quien aporta el material no es verificación independiente; es la misma afirmación repetida en otro formato."],
+ e:"Una comprobación de procedencia que arroja una contradicción no deja el material en duda: lo descarta para el uso propuesto. Puede seguir siendo material válido de otra fecha."},
+
+/* ---------- BLOQUE C · DIAGNÓSTICO ---------- */
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Fuentes cercanas al caso confirmaron que el funcionario recibió el pago.»",
+ q:"¿Cuál es el defecto principal de esta formulación?",
+ o:["Falta el nombre del funcionario","«Confirmaron» atribuye una verificación a una fuente que el lector no puede ponderar","Falta la fecha en que se produjo el pago","Debería estar redactada en condicional"],c:1,
+ w:["El nombre puede omitirse legítimamente por muchas razones. El problema no es quién es, sino qué respalda la afirmación.",
+    "",
+    "La fecha añadiría precisión, pero la frase seguiría afirmando una confirmación que nadie puede evaluar.",
+    "El condicional convertiría un problema de respaldo en un problema de estilo. La cuestión no es la certeza gramatical sino la evidencia."],
+ e:"«Confirmar» describe un acto de verificación. Atribuirlo a «fuentes cercanas» sin decir cuántas, de qué tipo ni sobre qué base, presenta como verificado algo que el lector no puede juzgar."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«El hospital recibió 400 millones en el ejercicio anterior. Su director compró una casa este año.»",
+ q:"Ambas frases son ciertas. ¿Cuál es el defecto?",
+ o:["Falta el precio de la casa","La yuxtaposición insinúa una relación causal que ninguna de las dos frases afirma","Falta la fuente del segundo dato","El orden de las frases debería invertirse"],c:1,
+ w:["Añadir el precio agravaría el problema: reforzaría la insinuación sin aportar ninguna prueba del vínculo.",
+    "",
+    "Aunque ambas frases estuvieran perfectamente documentadas, el párrafo seguiría afirmando por montaje algo que no afirma por escrito.",
+    "Invertir el orden no elimina la sugerencia; solo cambia cuál de los dos hechos queda como premisa."],
+ e:"Es el engaño por yuxtaposición: cada dato es exacto y el conjunto miente. Si existe un vínculo, se prueba y se afirma; si no existe, las dos frases no pueden ir juntas."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«La empresa guardó silencio ante las preguntas de este medio.»",
+ q:"¿Qué falla?",
+ o:["Debería especificar cuántas preguntas se enviaron","Interpreta una intención en lugar de describir lo que efectivamente ocurrió","Falta el nombre del portavoz al que se preguntó","Debería ir al final de la pieza y no en el cuerpo"],c:1,
+ w:["El número de preguntas es un detalle útil, pero el problema persiste aunque se especifique: sigue habiendo una interpretación donde debe haber una descripción.",
+    "",
+    "El nombre del portavoz es irrelevante para el defecto: la frase seguiría atribuyendo una conducta deliberada.",
+    "La ubicación no cambia el contenido de la afirmación."],
+ e:"«Guardar silencio» describe una elección. Lo verificable es otra cosa: que se preguntó en tales fechas por tales vías y no hubo respuesta. La diferencia parece pequeña y es la que sostiene la pieza si la empresa reclama."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Santa Clara es la ciudad con más robos del país: 12.400 casos el año pasado.»",
+ q:"Varios elementos podrían mejorarse. ¿Cuál <em>invalida</em> la comparación que hace la frase?",
+ o:["No se indica la fuente del dato","No hay denominador poblacional que haga comparables las ciudades","No se define qué se cuenta como «robo»","No se precisa el año exacto"],c:1,
+ w:["La ausencia de fuente es un defecto real de transparencia, pero aunque se citara el organismo la comparación seguiría siendo inválida.",
+    "",
+    "La definición importa mucho —y sin ella la serie no es interpretable— pero afecta a qué se está midiendo, no a que se comparen cifras absolutas entre poblaciones distintas.",
+    "«El año pasado» es impreciso pero acotable por la fecha de publicación. No es lo que rompe la comparación."],
+ e:"Sin población de referencia, la ciudad más grande siempre encabeza cualquier recuento absoluto. Es el problema del denominador, y aquí convierte una cifra correcta en una afirmación falsa."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"TITULAR: «Siete mil contenedores retenidos en puertos del Caribe»<br>CUERPO: «Según el ministro, hay siete mil contenedores retenidos…»",
+ q:"¿Qué problema hay entre el titular y el cuerpo?",
+ o:["La cita del cuerpo está mal atribuida","El titular convierte en hecho establecido lo que el cuerpo presenta como afirmación de una parte","El titular debería incluir el nombre del ministro","El cuerpo debería usar «aseguró» en lugar de «según»"],c:1,
+ w:["La atribución del cuerpo es correcta. El problema está en la distancia entre lo que el cuerpo dice y lo que el titular afirma.",
+    "",
+    "Incluir el nombre no resolvería nada: el titular seguiría presentando la cifra como establecida si no marca que es una afirmación.",
+    "Es una cuestión de verbo. El titular seguiría afirmando el hecho por su cuenta."],
+ e:"El titular es una afirmación del medio. Si el cuerpo solo sostiene que alguien lo dijo, el titular debe decirlo también. Es la distinción entre periodismo de afirmación y de verificación aplicada a la titulación."},
+
+/* ---------- BLOQUE D · SELECCIÓN Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las comprobaciones que corresponden a la verificación de <em>procedencia</em> de un material digital.",
+ o:["Origen: si es la primera publicación conocida o una copia","Calidad técnica de la imagen o el sonido","Fuente: qué cuenta lo subió y qué historial tiene","Número de reproducciones y de veces compartido","Fecha: coherencia de metadatos, luz, clima y vegetación","Lugar: coincidencia de elementos fijos con imágenes satelitales"],
+ c:[0,2,4,5],
+ w:["","La calidad técnica no dice nada sobre el origen. Un montaje puede estar impecablemente producido y un material auténtico puede ser pésimo.","","La difusión mide circulación, no autenticidad. Es precisamente lo que hace peligroso al material falso en emergencias.","",""],
+ e:"Las cuatro comprobaciones de procedencia son origen, fuente, fecha y lugar. La calidad y la viralidad son propiedades del archivo y de su circulación, no de su procedencia."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las que son obligaciones antes de publicar un señalamiento grave contra una persona.",
+ o:["Buscar su descargo y dejar constancia documentada del intento","Obtener su autorización para publicar","Distinguir en el texto lo probado, lo indiciario y lo alegado","Esperar a que exista una causa judicial abierta","Comprobar que la gravedad de la afirmación se corresponde con la solidez de la prueba"],
+ c:[0,2,4],
+ w:["","La autorización del señalado no existe como requisito: haría imposible el periodismo de investigación. Lo exigible es el derecho de réplica, no el permiso.","","La existencia de causa judicial no es condición para publicar. El periodismo y el proceso penal tienen estándares y tiempos distintos.",""],
+ e:"Descargo documentado, distinción de estados de prueba y proporción entre gravedad y evidencia. Ni autorización ni causa judicial son requisitos, y confundirlos paraliza investigaciones legítimas."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el procedimiento correcto ante un material recibido de origen desconocido. Pulsa las opciones en el orden en que deben ejecutarse.",
+ o:["Preservar: descargar el original, no renombrarlo y registrar su origen","Comprobar procedencia: origen, fuente, fecha y lugar","Decidir la formulación publicable según lo que se pudo establecer","Publicar declarando expresamente lo que no se pudo confirmar"],
+ c:[0,1,2,3],
+ e:"Preservar va primero y casi siempre se olvida: si el remitente borra el material mientras verificas, desaparece la única copia. Solo después se comprueba, se decide y se publica con la limitación dicha."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las cinco comprobaciones finales antes de enviar un texto, según los cinco principios intelectuales.",
+ o:["¿Agregué algo que no estuviera ahí?","¿Puede este texto inducir a error por omisión o montaje?","¿Expliqué cómo lo sé?","¿Lo reporté yo o depende de terceros?","¿Estoy sobreinterpretando lo que tengo?"],
+ c:[0,1,2,3,4],
+ e:"El orden es el de los cinco principios: no agregar, no engañar, transparencia, reporteo propio y humildad. Convertirlos en cinco preguntas antes de enviar es lo que los vuelve operativos."}
 ];
 
 const CASES=[
@@ -505,67 +695,101 @@ const AUDIT=[
 ];
 
 const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
-let done=0, right=0;
-
-const aw=document.getElementById('audit');
-const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
-AUDIT.forEach(function(a){
-  aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div>'+
-    '<div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'));
-});
-const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
-aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">'+
-  'TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
-
-const tw=document.getElementById('terms');
-TERMS.forEach(function(x){
-  tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'));
-});
-
-const quiz=document.getElementById('quiz');
-QUIZ.forEach((it,i)=>{
-  const card=el('<div class="q"><div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
-  const opts=card.querySelector('.opts');
-  it.o.forEach((o,j)=>{
-    const b=document.createElement('button');
-    b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
-    b.onclick=function(){
-      if(card.dataset.done) return;
-      card.dataset.done='1'; done++;
-      var kids=opts.children;
-      for(var k=0;k<kids.length;k++){
-        kids[k].classList.add('done');
-        if(k===it.c){kids[k].classList.add('ok'); kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
-        else if(k===j){kids[k].classList.add('bad'); kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
-      }
-      if(j===it.c) right++;
-      card.querySelector('.exp').classList.add('show');
-      document.getElementById('score').textContent='RESPONDIDAS '+done+' / '+QUIZ.length+' · CORRECTAS '+right;
-    };
-    opts.appendChild(b);
-  });
-  quiz.appendChild(card);
-});
-
-function pager(list, opts){
-  const body=document.getElementById(opts.body), nums=document.getElementById(opts.nums),
-        lab=document.getElementById(opts.label), tit=document.getElementById(opts.title);
-  list.forEach(function(_,i){
-    const b=document.createElement('button');
-    b.className='pnum '+opts.color; b.textContent=i+1;
-    b.onclick=function(){show(i)};
-    nums.appendChild(b);
-  });
-  function show(i){
-    const x=list[i];
-    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
-    tit.textContent=x.t;
-    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
-    body.innerHTML=''; body.appendChild(el(opts.render(x)));
-    body.querySelectorAll('.reveal').forEach(bindReveal);
-  }
-  show(0);
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
 }
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++;
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
 
 function bindReveal(b){
   b.dataset.o=b.textContent;
