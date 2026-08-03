@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1004 · Unidad 1 — Libertad de Expresión y sus Límites</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1004, Unidad 1.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course on" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1004 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Libertad de Expresión y sus Límites</h2>
+  <div class="sub">Unidad 1 de 4 · Leyes de Prensa y Ética Comparada</div>
+
+  <div class="units">
+    <span class="unit on">Unidad 1: Libertad de Expresión y sus Límites</span>
+    <a class="unit" href="jrn1004-u2.html">Unidad 2: Difamación, Honor y Privacidad</a>
+    <a class="unit" href="jrn1004-u3.html">Unidad 3: Fuentes, Acceso a la Información y Secretos</a>
+    <a class="unit" href="jrn1004-u4.html">Unidad 4: Ética Comparada y Autorregulación</a>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>La libertad de expresión no es un permiso ilimitado ni una concesión revocable: es un derecho con una estructura jurídica precisa, con límites definidos y con una prueba concreta que toda restricción debe superar. Conocer esa estructura es lo que permite a un periodista distinguir una limitación legítima de un abuso, y argumentar la diferencia.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>toda restricción debe superar el test tripartito</strong>: estar prevista en una ley clara, perseguir uno de los fines legítimos taxativamente enumerados y ser necesaria y proporcionada en una sociedad democrática. Un límite que falla en cualquiera de los tres pasos es ilegítimo, por muy razonable que suene su justificación.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Identificar las normas internacionales que protegen la libertad de expresión y su alcance: universal, europea, interamericana y estadounidense.</li>
+      <li>Aplicar el test tripartito a una restricción concreta y determinar en qué paso falla.</li>
+      <li>Distinguir entre restricción previa y responsabilidad ulterior, y explicar por qué el derecho internacional trata a la primera con especial severidad.</li>
+      <li>Explicar por qué el discurso político y sobre asuntos de interés público goza de la protección más intensa.</li>
+      <li>Delimitar las categorías de expresión excluidas de protección y distinguirlas del discurso meramente ofensivo.</li>
+      <li>Argumentar con normas y jurisprudencia, y no solo con principios, frente a una restricción impuesta a la propia redacción.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Eric Barendt, <em>Freedom of Speech</em> (2.ª ed., Oxford University Press, 2005) — manual de referencia sobre fundamentos y límites</li>
+      <li>Geoffrey Robertson y Andrew Nicol, <em>Media Law</em> — manual profesional de derecho de los medios</li>
+      <li>Comité de Derechos Humanos de la ONU, <em>Observación General nº 34</em> (2011), sobre el artículo 19 del PIDCP</li>
+      <li>Corte Interamericana de Derechos Humanos, <em>Opinión Consultiva OC-5/85</em>, sobre colegiación obligatoria de periodistas</li>
+      <li>UNESCO, <em>Model Curricula for Journalism Education</em> — módulo de derecho de los medios</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>PIDCP, artículo 19 · Observación General nº 34</h5>
+        <div class="def">El Pacto Internacional de Derechos Civiles y Políticos, de 1966, protege la libertad de buscar, recibir y difundir informaciones. La Observación General nº 34, adoptada por el Comité de Derechos Humanos en 2011, interpreta ese artículo y fija el test que toda restricción debe superar.</div>
+        <p class="src">ONU · Comité de Derechos Humanos, 2011</p></div>
+      <div class="term"><h5>Convenio Europeo, artículo 10</h5>
+        <div class="def">Protege la libertad de expresión en los Estados del Consejo de Europa y somete sus restricciones a que estén previstas por ley, persigan un fin legítimo y sean necesarias en una sociedad democrática. El Tribunal Europeo de Derechos Humanos lo interpreta caso por caso.</div>
+        <p class="src">Consejo de Europa · TEDH</p></div>
+      <div class="term"><h5>Convención Americana, artículo 13</h5>
+        <div class="def">Protege la libertad de pensamiento y expresión y prohíbe expresamente la censura previa, salvo para la regulación del acceso de menores a espectáculos públicos. Es una de las formulaciones más protectoras del derecho comparado.</div>
+        <p class="src">OEA · Corte Interamericana de Derechos Humanos</p></div>
+      <div class="term"><h5>Relatorías especiales para la libertad de expresión</h5>
+        <div class="def">La ONU, la OEA, la OSCE y la Comisión Africana mantienen relatorías que publican declaraciones conjuntas anuales sobre problemas emergentes: desinformación, vigilancia, pluralismo y responsabilidad de las plataformas.</div>
+        <p class="src">ONU · OEA · OSCE · CADHP</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de un dictamen que aplique el test tripartito a una restricción real. El <strong>Examen Integrador</strong> de JRN-1004 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Un derecho con estructura, no un principio general</h3>
+    <p>La libertad de expresión suele invocarse como un valor genérico, y eso la debilita: frente a un juez o un regulador, apelar a un principio no sirve de mucho. Lo que sirve es su estructura jurídica, que está escrita, es exigible y tiene una prueba concreta.</p>
+    <p>Esa estructura protege dos cosas a la vez: el derecho de quien difunde y el derecho del público a recibir. La segunda dimensión es la que convierte una restricción a un medio en un problema de toda la sociedad y no en un conflicto privado entre el Estado y una empresa.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Cuando te restrinjan, no respondas con principios: responde con la norma aplicable y con el paso del test que la restricción no supera. Es lo único que se puede discutir en un expediente.</div>
+
+    <h3>El test tripartito</h3>
+    <p>Toda restricción a la libertad de expresión debe superar tres condiciones acumulativas, y basta que falle una para que sea ilegítima. Es el instrumento analítico central de esta materia.</p>
+    <ol>
+      <li><strong>Prevista por ley.</strong> Una norma accesible y suficientemente precisa para que cualquiera pueda prever qué conducta está prohibida. Una fórmula vaga no es ley a estos efectos.</li>
+      <li><strong>Fin legítimo.</strong> Solo los enumerados en la norma: derechos o reputación de terceros, seguridad nacional, orden público, salud o moral públicas. La lista es cerrada.</li>
+      <li><strong>Necesaria y proporcionada.</strong> Debe responder a una necesidad social apremiante y ser el medio menos restrictivo disponible para lograr el fin.</li>
+    </ol>
+    <div class="ej"><b>REGLA</b>El paso donde caen la mayoría de las restricciones no es el segundo sino el tercero: casi cualquier medida puede vestirse de fin legítimo, pero pocas resisten la pregunta de si existía una alternativa menos lesiva.</div>
+
+    <h3>Censura previa y responsabilidad ulterior</h3>
+    <p>El derecho internacional trata de forma muy distinta impedir que algo se publique y exigir responsabilidad después de publicado. Lo primero elimina el debate; lo segundo lo somete a revisión. Por eso la restricción previa se considera la injerencia más grave y solo se admite en supuestos excepcionalísimos.</p>
+    <p>La Convención Americana llega más lejos que otros textos y prohíbe expresamente la censura previa, con la única excepción de la regulación del acceso de menores a espectáculos públicos. Esa formulación explícita es una particularidad del sistema interamericano.</p>
+    <div class="ej"><b>PRECISIÓN</b>Una orden judicial que impide publicar es restricción previa. Una demanda posterior por lo publicado es responsabilidad ulterior. Confundirlas al argumentar debilita la defensa: los estándares aplicables son distintos.</div>
+
+    <h3>Ofender, chocar o inquietar</h3>
+    <p>El Tribunal Europeo de Derechos Humanos estableció desde 1976 que la libertad de expresión ampara no solo la información recibida con favor o indiferencia, sino también la que ofende, choca o inquieta, porque así lo exigen el pluralismo y la tolerancia sin los cuales no hay sociedad democrática.</p>
+    <p>La consecuencia práctica es directa: que un contenido resulte molesto, incómodo o impopular no es un motivo para restringirlo. La incomodidad no es un fin legítimo y no aparece en ninguna lista.</p>
+    <div class="ej"><b>APLICACIÓN</b>Ante la exigencia de retirar una pieza «por el revuelo que ha causado», la respuesta técnica es que el malestar público no figura entre los fines legítimos de restricción.</div>
+
+    <h3>Discurso político y control de los poderosos</h3>
+    <p>La protección no es uniforme: alcanza su intensidad máxima en el debate sobre asuntos de interés público y sobre quienes ejercen poder. La razón es funcional, no ideológica: es la expresión que permite a la ciudadanía controlar a sus gobernantes.</p>
+    <p>De ahí un criterio consolidado en la jurisprudencia europea: los límites de la crítica admisible son más amplios respecto de un político que de un particular, porque el primero se expone voluntariamente al escrutinio y dispone de medios para responder.</p>
+    <div class="ej"><b>EJEMPLO</b>La misma frase puede ser lícita dirigida a un ministro por su gestión e ilícita dirigida a un vecino sin proyección pública. No cambia el texto: cambia la posición del afectado y el interés público del asunto.</div>
+
+    <h3>Juicios de valor y hechos</h3>
+    <p>La distinción es decisiva en cualquier litigio: un hecho puede probarse verdadero o falso; un juicio de valor no admite prueba de veracidad, y exigirla vulnera la libertad de expresión. Lo que sí puede exigirse a una opinión es una base fáctica suficiente.</p>
+    <p>Esa asimetría cambia por completo la estrategia de defensa. Frente a una imputación de hechos hay que acreditar la diligencia y la veracidad; frente a un juicio de valor, mostrar que se apoya en hechos ciertos y que no es un insulto gratuito.</p>
+    <div class="ej"><b>REGLA DE REDACCIÓN</b>Separa en el texto lo que afirmas como hecho de lo que sostienes como valoración. Un titular que mezcla ambos convierte una opinión defendible en una imputación que habrá que probar.</div>
+
+    <h3>Lo que no está protegido</h3>
+    <p>Existen categorías de expresión que el propio derecho internacional excluye de la protección, y conviene conocerlas con precisión porque su invocación abusiva es la vía habitual para restringir el periodismo.</p>
+    <ul>
+      <li>La propaganda a favor de la guerra.</li>
+      <li>La apología del odio nacional, racial o religioso que constituya incitación a la discriminación, la hostilidad o la violencia.</li>
+      <li>Determinados contenidos que afectan a la infancia, con protección reforzada.</li>
+    </ul>
+    <div class="ej"><b>ADVERTENCIA</b>El umbral es la incitación, no la ofensa. Un contenido puede ser hiriente o repugnante sin alcanzar ese umbral, y equiparar ambas cosas es el argumento más usado para censurar crítica política legítima.</div>
+
+    <h3>Seguridad nacional: el fin más invocado</h3>
+    <p>La seguridad nacional es un fin legítimo y también la etiqueta más utilizada para justificar restricciones desproporcionadas. Por eso las normas internacionales exigen que se acredite un vínculo real y directo entre la expresión concreta y una amenaza efectiva, y no una alegación genérica.</p>
+    <p>La sanción a quien difunde información de interés público que ya circula, o el castigo al periodista por publicar lo que otro filtró, son los supuestos donde el examen de proporcionalidad suele fallar del lado del Estado.</p>
+    <div class="ej"><b>PREGUNTA DE CONTROL</b>¿Qué daño concreto e inminente produce esta publicación, quién lo ha acreditado y por qué no basta una medida menos lesiva? Si no hay respuesta, no hay proporcionalidad.</div>
+
+    <h3>Quién es periodista</h3>
+    <p>El derecho internacional ha abandonado la definición por credencial. La Corte Interamericana declaró en 1985 que la colegiación obligatoria de periodistas es incompatible con la Convención Americana cuando impide a cualquier persona el ejercicio pleno de la libertad de expresión, y la doctrina posterior ha extendido la protección a quien ejerce funciones periodísticas con independencia de su vínculo laboral.</p>
+    <p>Es la misma conclusión a la que llega la Unidad 1 de JRN-1001 desde el método: lo que define al periodismo es una función y un procedimiento, no una acreditación. El derecho ha ido en la misma dirección.</p>
+    <div class="ej"><b>CONSECUENCIA</b>Un colaborador independiente, un investigador de fuentes abiertas o quien documenta un hecho de interés público quedan amparados por la misma protección, y esa protección se argumenta con normas, no con carnés.</div>
+
+    <h3>Argumentar una restricción</h3>
+    <p>Frente a una orden de retirada, una multa o una prohibición, la respuesta útil sigue siempre el mismo esquema: identificar la norma invocada, comprobar si es suficientemente precisa, verificar si el fin alegado está en la lista cerrada y, sobre todo, exigir el análisis de necesidad y proporcionalidad.</p>
+    <p>Ese esquema sirve tanto ante un tribunal como ante un regulador, una plataforma o un departamento de comunicación. Y sirve también hacia dentro: obliga a la propia redacción a distinguir entre lo que le impiden hacer y lo que decide no hacer.</p>
+    <div class="ej"><b>REGLA FINAL</b>Escribe siempre la respuesta en términos del test: norma, fin, necesidad. Convierte una discusión sobre opiniones en un expediente donde la otra parte tiene que acreditar cada paso.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista al portavoz de un ministerio que ha solicitado la retirada de un reportaje invocando la seguridad nacional. No aporta una norma concreta ni describe el daño, y sostiene que la petición es «de sentido común».</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes anticipar si el medio retirará o no la pieza. Cada pregunta debe apuntar a un elemento del test tripartito. Si acredita un daño concreto e inminente, tienes que poder reconocerlo y trasladarlo a la redacción.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">DICTAMEN SOBRE UNA RESTRICCIÓN · OBLIGATORIO</span>
+      <p>Elige una restricción real a la libertad de expresión adoptada en los últimos dos años: una ley, una orden judicial, una sanción administrativa o una retirada de contenido. Entrega: la identificación de la norma invocada y su grado de precisión; el fin alegado y si figura entre los legítimos; el análisis de necesidad y proporcionalidad, con la medida alternativa menos lesiva que habría cabido; la distinción entre restricción previa y responsabilidad ulterior; y una conclusión de trescientas palabras que indique en qué paso falla el test, o por qué lo supera.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Identificación correcta de la norma y evaluación de su precisión (20%) · Encaje del fin alegado en la lista cerrada (20%) · Análisis de proporcionalidad con alternativa concreta (30%) · Distinción correcta entre restricción previa y ulterior (15%) · Conclusión argumentada con norma y jurisprudencia, no con principios generales (15%). Un dictamen que se limite a afirmar que la medida «vulnera la libertad de prensa» sin recorrer el test no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 1</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o doctrina establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1004-u2.html">Unidad 2: Difamación, Honor y Privacidad →</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Test Tripartito",d:"Prueba acumulativa que toda restricción debe superar: prevista por ley, fin legítimo y necesidad y proporcionalidad. Si falla un paso, la restricción es ilegítima.",s:"Observación General nº 34, ONU, 2011"},
+ {t:"Previsto por Ley",d:"Exigencia de que la norma restrictiva sea accesible y suficientemente precisa para permitir prever qué conducta está prohibida. Una fórmula vaga no cumple el requisito.",s:"TEDH, Sunday Times c. Reino Unido, 1979"},
+ {t:"Fin Legítimo",d:"Lista cerrada de objetivos que pueden justificar una restricción: derechos o reputación de terceros, seguridad nacional, orden público, salud o moral públicas.",s:"PIDCP, art. 19.3 · CEDH, art. 10.2"},
+ {t:"Necesidad Social Apremiante",d:"Estándar que exige que la restricción responda a una necesidad real y actual, no a una conveniencia ni a un riesgo hipotético.",s:"Jurisprudencia del TEDH sobre el art. 10"},
+ {t:"Proporcionalidad",d:"Exigencia de que la medida sea la menos restrictiva disponible para alcanzar el fin y guarde relación con la gravedad de lo que protege.",s:"Observación General nº 34 · Corte IDH"},
+ {t:"Censura Previa",d:"Impedimento de la difusión antes de que se produzca. Se considera la injerencia más grave; la Convención Americana la prohíbe expresamente salvo para el acceso de menores a espectáculos.",s:"Convención Americana, art. 13.2 y 13.4"},
+ {t:"Responsabilidad Ulterior",d:"Exigencia de responsabilidad después de la publicación. Es el régimen admitido, siempre que esté prevista por ley y sea necesaria y proporcionada.",s:"Convención Americana, art. 13.2 · PIDCP"},
+ {t:"Margen de Apreciación",d:"Espacio de valoración que el TEDH reconoce a los Estados, más amplio en materia de moral y muy estrecho en debate político y de interés público.",s:"Jurisprudencia del TEDH"},
+ {t:"Interés Público",d:"Criterio que gradúa la protección: alcanza su intensidad máxima en asuntos que permiten a la ciudadanía controlar el ejercicio del poder.",s:"TEDH · Corte IDH · doctrina establecida"},
+ {t:"Juicio de Valor",d:"Apreciación que no admite prueba de veracidad. Exigirle demostración vulnera la libertad de expresión; lo exigible es una base fáctica suficiente.",s:"TEDH, Lingens c. Austria, 1986"},
+ {t:"Base Fáctica Suficiente",d:"Conjunto de hechos ciertos sobre los que se apoya una opinión. Separa la crítica protegida del insulto gratuito.",s:"Jurisprudencia del TEDH sobre el art. 10"},
+ {t:"Umbral de Incitación",d:"Línea que separa la expresión ofensiva, protegida, de la apología del odio que constituye incitación a la discriminación, la hostilidad o la violencia.",s:"PIDCP, art. 20 · Observación General nº 34"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · TEDH · DICIEMBRE DE 1976",t:"Handyside: ofender, chocar o inquietar",
+  d:"En el asunto Handyside contra el Reino Unido, resuelto en diciembre de 1976, el Tribunal Europeo de Derechos Humanos examinó la incautación de un libro dirigido a adolescentes y la condena del editor conforme a la legislación británica sobre publicaciones obscenas. El Tribunal formuló en esa sentencia el principio que se ha convertido en la cita más repetida de la materia: la libertad de expresión ampara no solo las informaciones o ideas acogidas con favor o con indiferencia, sino también aquellas que ofenden, chocan o inquietan, porque así lo exigen el pluralismo, la tolerancia y el espíritu de apertura sin los cuales no hay sociedad democrática. Pese a ello, el Tribunal no apreció violación del artículo 10 en el caso concreto: consideró que, en materia de protección de la moral, los Estados disponen de un margen de apreciación amplio.",
+  ej:"La sentencia enuncia el principio más protector y, al mismo tiempo, admite la restricción. Esa aparente contradicción es la lección: el principio general no decide los casos; los decide el análisis de necesidad y proporcionalidad.",
+  p:["¿Por qué se cita tanto una sentencia que avaló la restricción?","¿Qué es el margen de apreciación y dónde es más estrecho?","¿Cómo se usa este precedente en una defensa?"],
+  m:"Se cita porque fija el estándar de partida: la incomodidad que produce un contenido no es motivo de restricción, y esa formulación se ha aplicado después en cientos de asuntos donde sí se apreció violación. El margen de apreciación es el espacio de valoración que el Tribunal reconoce a cada Estado, amplio en materia de moral —donde no hay consenso europeo— y muy estrecho en el debate político y de interés público, donde el control es intenso. En una defensa se emplea para desactivar el argumento del malestar público, y conviene invocarlo junto a la jurisprudencia posterior sobre asuntos políticos, no aislado, porque el propio caso terminó admitiendo la injerencia.",
+  k:"Que un contenido moleste no lo hace restringible. Pero el principio no gana casos por sí solo: los gana el examen de necesidad y proporcionalidad."},
+
+ {tag:"CASO 2 · TEDH · ABRIL DE 1979",t:"Sunday Times: qué significa «prevista por ley»",
+  d:"El asunto Sunday Times contra el Reino Unido, resuelto en abril de 1979, tuvo origen en la prohibición judicial de publicar un artículo sobre el fármaco talidomida y los acuerdos de indemnización a las familias afectadas, dictada por considerar que interferiría en un litigio pendiente. El Tribunal Europeo apreció violación del artículo 10 y desarrolló en esa sentencia el contenido del requisito de que una injerencia esté «prevista por la ley»: la norma debe ser accesible al ciudadano y estar formulada con precisión suficiente para permitirle prever, en grado razonable, las consecuencias de su conducta.",
+  ej:"El requisito parece formal y es sustantivo: una norma imprecisa permite al poder decidir después qué estaba prohibido, y ese efecto de autocensura es exactamente lo que la exigencia de previsibilidad pretende evitar.",
+  p:["¿Por qué una ley vaga es en sí misma un problema?","¿Qué relación tiene con las leyes de desinformación recientes?","¿Cómo se alega la imprecisión de una norma?"],
+  m:"Una ley vaga traslada al aplicador la definición de la conducta prohibida, de modo que el periodista no puede saber de antemano si su trabajo es lícito y termina renunciando a publicar por precaución: el daño se produce sin necesidad de sancionar a nadie. La discusión es idéntica en las normas recientes que sancionan la difusión de información falsa o que alarma a la población, cuyos términos indeterminados permiten alcanzar prácticamente cualquier cobertura crítica. La imprecisión se alega mostrando que dos aplicaciones razonables de la norma llevan a resultados opuestos, y que no existe criterio publicado que permita anticipar cuál se aplicará.",
+  k:"La primera pregunta ante una restricción no es si el fin es legítimo, sino si la norma que la ampara permite saber de antemano qué está prohibido."},
+
+ {tag:"CASO 3 · TEDH · JULIO DE 1986",t:"Lingens: hechos que se prueban, opiniones que no",
+  d:"En Lingens contra Austria, resuelto en julio de 1986, el Tribunal Europeo examinó la condena penal por difamación de un periodista que había criticado en duros términos al entonces canciller austriaco. La sentencia apreció violación del artículo 10 y estableció dos criterios que han estructurado toda la materia posterior: los límites de la crítica admisible son más amplios respecto de un político que de un particular, porque aquel se expone inevitablemente al escrutinio y dispone de medios para responder; y la distinción entre hechos, cuya existencia puede demostrarse, y juicios de valor, que no admiten prueba de veracidad, de modo que exigirla es incompatible con la libertad de opinión.",
+  ej:"La condena no cayó por ser dura, sino por exigir al periodista que probara la verdad de una valoración. La sentencia convirtió una discusión sobre el tono en una discusión sobre la naturaleza de la afirmación.",
+  p:["¿Qué se le puede exigir a un juicio de valor?","¿Por qué la protección del político es menor?","¿Cómo afecta esto a la redacción de una pieza?"],
+  m:"A un juicio de valor se le exige una base fáctica suficiente: hechos ciertos sobre los que se apoye la valoración, lo que lo distingue del insulto gratuito, que carece de esa base y no queda protegido. La protección del político es menor porque su exposición es voluntaria, su conducta afecta a la colectividad y dispone de acceso a los medios para responder, de manera que el control público sobre él es una función democrática y no una agresión personal. En la redacción esto obliga a separar con claridad lo afirmado como hecho de lo sostenido como valoración, porque un titular que los mezcla convierte una opinión defendible en una imputación que habrá que probar.",
+  k:"Un hecho se prueba; una opinión se fundamenta. Confundirlos en el texto es lo que traslada la carga de la prueba a donde no debía estar."},
+
+ {tag:"CASO 4 · CORTE INTERAMERICANA · NOVIEMBRE DE 1985",t:"OC-5/85: no hace falta carné para ejercer",
+  d:"En noviembre de 1985 la Corte Interamericana de Derechos Humanos emitió la Opinión Consultiva OC-5/85, solicitada por Costa Rica, sobre la compatibilidad de la colegiación obligatoria de periodistas con la Convención Americana. La Corte concluyó que la colegiación obligatoria, en cuanto impida a cualquier persona el ejercicio pleno de la libertad de expresión, es incompatible con el artículo 13. La opinión desarrolla además la doble dimensión del derecho: individual, de quien se expresa, y social, del conjunto de la sociedad a recibir informaciones y opiniones.",
+  ej:"La decisión desplaza la protección desde el gremio hacia la función. No protege a los periodistas por serlo: protege la actividad de informar, la ejerza quien la ejerza.",
+  p:["¿Qué consecuencias tiene para quien no trabaja en un medio?","¿Por qué importa la dimensión social del derecho?","¿Qué relación tiene con la definición del oficio por el método?"],
+  m:"Para el colaborador independiente, el investigador de fuentes abiertas o quien documenta un hecho de interés público, la consecuencia es que su protección no depende de un contrato ni de una acreditación, y que negarle acceso o sancionarlo por no estar colegiado es una restricción que debe superar el test como cualquier otra. La dimensión social importa porque convierte una restricción a un medio en una lesión al derecho de toda la población a recibir información, lo que amplía enormemente el alcance del argumento. Y coincide con lo que la Unidad 1 de JRN-1001 sostiene desde el método: el periodismo se define por un procedimiento comprobable y no por una credencial.",
+  k:"La protección sigue a la función, no al carné. Es el mismo criterio al que llega el oficio desde el método, formulado en términos jurídicos."},
+
+ {tag:"CASO 5 · TRIBUNAL SUPREMO DE EE. UU. · JUNIO DE 1971",t:"Pentagon Papers: la presunción contra la censura previa",
+  d:"En junio de 1971, en el caso New York Times Co. contra Estados Unidos, el Tribunal Supremo estadounidense resolvió el intento del Gobierno de impedir la publicación de un estudio interno clasificado sobre la actuación del país en Vietnam. El Tribunal falló contra la restricción, recordando que toda medida de restricción previa llega ante los tribunales con una fuerte presunción en contra de su validez y que el Gobierno soporta una pesada carga para justificarla. La decisión se adoptó con votos particulares de contenido diverso, lo que ha alimentado un debate posterior sobre su alcance exacto.",
+  ej:"El fallo no declaró que la publicación fuera inofensiva: declaró que impedirla exige un estándar altísimo que el Gobierno no alcanzó. La carga estaba del lado del Estado, no del periódico.",
+  p:["¿Por qué la restricción previa recibe un trato tan severo?","¿Qué diferencia hay con exigir responsabilidades después?","¿Qué pregunta hay que hacer ante una petición de no publicar?"],
+  m:"Porque impedir la publicación elimina el debate antes de que exista y hace imposible comprobar después si el daño alegado era real, mientras que la responsabilidad ulterior somete la conducta a revisión con todas las garantías y con el contenido ya en el espacio público. La diferencia es de estructura y no de grado: cambia quién soporta la carga, cuándo se decide y si hay algo que revisar. Ante una petición de no publicar, la pregunta es siempre la misma: qué daño concreto e inminente se producirá, quién lo acredita y por qué no basta una medida menos lesiva, como retrasar un detalle específico en lugar de suprimir la pieza.",
+  k:"Impedir una publicación exige acreditar un daño concreto e inminente. La molestia institucional, la vergüenza o el perjuicio político no son ese daño."},
+
+ {tag:"CASO 6 · COMITÉ DE DERECHOS HUMANOS · 2011",t:"Observación General nº 34: el manual del test",
+  d:"En 2011 el Comité de Derechos Humanos de la ONU adoptó la Observación General nº 34, dedicada a interpretar el artículo 19 del Pacto Internacional de Derechos Civiles y Políticos. El texto detalla el alcance del derecho a la libertad de opinión y de expresión, enumera de forma cerrada los fines que pueden justificar restricciones y desarrolla las exigencias de legalidad, necesidad y proporcionalidad. Aborda expresamente cuestiones que afectan a la prensa: las leyes que penalizan la crítica a autoridades, los sistemas de acreditación restrictivos y la protección de la expresión en internet.",
+  ej:"Su valor práctico es que convierte un principio en una lista de comprobación. Un dictamen sobre una restricción puede estructurarse literalmente siguiendo sus apartados.",
+  p:["¿Qué peso tiene una observación general?","¿Por qué la lista de fines legítimos es cerrada?","¿Cómo se usa en un país que no ha ratificado tratados regionales?"],
+  m:"No es un tratado ni una sentencia, sino la interpretación autorizada del órgano encargado de vigilar el cumplimiento del Pacto, y por eso se emplea como criterio de referencia ante tribunales y organismos nacionales aunque no tenga fuerza vinculante directa. La lista de fines es cerrada precisamente para impedir que se invente uno nuevo cada vez: si el objetivo alegado no encaja en la enumeración, la restricción cae en el segundo paso sin necesidad de discutir proporcionalidad. Y su utilidad es mayor en países fuera de sistemas regionales de protección, porque el Pacto tiene alcance universal y ofrece un estándar común cuando no hay jurisprudencia regional aplicable.",
+  k:"El test no es una construcción doctrinal: está escrito, es público y su estructura sirve para redactar la respuesta a cualquier restricción."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La llamada del ministerio",
+  d:"Un alto cargo llama a la editora pidiendo que se retire un reportaje «por razones de seguridad nacional». No concreta ni cita norma alguna.",
+  r:"Reportera · Editora · Portavoz del ministerio",
+  ej:"<span class='who'>PORTAVOZ:</span> Es evidente que esto compromete la seguridad del país.<br><span class='who'>EDITORA:</span> ¿Qué daño concreto se produciría y en qué plazo?<br><span class='who'>PORTAVOZ:</span> No puedo entrar en detalles.<br><span class='who'>EDITORA:</span> Sin ese detalle no podemos evaluar su petición, y quedará constancia de que la hicieron así.",
+  m:"La seguridad nacional es un fin legítimo y su sola invocación no acredita nada: el test exige un vínculo real y directo entre la publicación concreta y una amenaza efectiva. La respuesta correcta no es negarse ni ceder, sino pedir por escrito la norma invocada, el daño previsto y su inminencia, porque esa petición documenta el intento y obliga a la administración a concretar. Si el organismo acredita un riesgo específico —la identidad de una persona en peligro, por ejemplo—, cabe una medida menos lesiva, como omitir ese dato, en lugar de retirar la pieza entera.",
+  c:"Convertir una presión informal en un expediente con requisitos verificables."},
+
+ {tag:"ESCENARIO 2",t:"El titular que mezcla hecho y opinión",
+  d:"El titular propuesto afirma que un cargo «se enriqueció con el contrato». La documentación acredita el contrato y el patrimonio, no el nexo.",
+  r:"Reportera · Redactor de titulares · Asesor jurídico",
+  ej:"<span class='who'>TITULARES:</span> Es la conclusión que saca cualquiera.<br><span class='who'>REPORTERA:</span> Y como es una afirmación de hecho, tendremos que probarla nosotros.<br><span class='who'>JURÍDICO:</span> ¿Se puede formular como valoración?<br><span class='who'>REPORTERA:</span> Se puede formular como lo que sí tenemos, que ya es fuerte.",
+  m:"Un hecho imputado debe probarse; una valoración solo requiere base fáctica suficiente. Al escribir «se enriqueció con el contrato» se afirma un nexo causal que el material no acredita, y se asume una carga probatoria innecesaria. La formulación correcta expone los hechos documentados —adjudicación, importes, evolución patrimonial, cronología— y deja que el lector infiera, o bien atribuye la valoración a quien la sostiene con nombre. La fuerza de la pieza no disminuye: lo que disminuye es su vulnerabilidad.",
+  c:"Reformular sin perder contundencia, explicando la lógica probatoria al equipo."},
+
+ {tag:"ESCENARIO 3",t:"La ley nueva y ambigua",
+  d:"Entra en vigor una norma que sanciona la difusión de «información que genere alarma social». La redacción pregunta qué se puede publicar.",
+  r:"Reportera · Editora · Asesor jurídico",
+  ej:"<span class='who'>JURÍDICO:</span> Nadie sabe qué significa exactamente.<br><span class='who'>EDITORA:</span> Entonces vamos a autocensurarnos por si acaso.<br><span class='who'>REPORTERA:</span> Eso es justo lo que la imprecisión busca. ¿Documentamos el problema y lo publicamos?<br><span class='who'>JURÍDICO:</span> Y fijamos un criterio propio por escrito.",
+  m:"Una norma imprecisa produce su efecto principal sin aplicarse: la autocensura preventiva. Frente a eso caben dos respuestas simultáneas. La primera, informativa: documentar la indeterminación de la norma, sus aplicaciones posibles y su compatibilidad con el requisito de previsibilidad es en sí mismo un tema publicable. La segunda, interna: fijar por escrito un criterio editorial propio —qué se publica, con qué verificación y con qué formulación— de modo que las decisiones no dependan del miedo del día ni de la presión del caso concreto.",
+  c:"Responder a una amenaza difusa con un criterio escrito, en lugar de con prudencia improvisada."},
+
+ {tag:"ESCENARIO 4",t:"La orden de retirada de una plataforma",
+  d:"Una plataforma retira un reportaje alegando incumplimiento de sus normas comunitarias, sin especificar cuál ni ofrecer revisión humana.",
+  r:"Reportera · Responsable digital · Editora",
+  ej:"<span class='who'>DIGITAL:</span> Es su casa, pueden hacer lo que quieran.<br><span class='who'>REPORTERA:</span> Pueden, y nosotros podemos exigir que digan qué norma y quién decidió.<br><span class='who'>EDITORA:</span> ¿Y si no responden?<br><span class='who'>REPORTERA:</span> Entonces la negativa documentada es la noticia.",
+  m:"Las plataformas no son Estados y sus decisiones no se rigen directamente por el test tripartito, pero su capacidad de restringir el acceso a información es equivalente en efectos, y por eso los organismos internacionales han venido exigiéndoles transparencia, motivación y vía de revisión. La respuesta operativa consiste en solicitar por escrito la norma concreta aplicada y el procedimiento de apelación, agotar esa vía, y documentar cada paso. Si no hay respuesta, la falta de motivación y la ausencia de revisión son en sí mismas materia informativa, y conviene publicarlas con el detalle del intento.",
+  c:"Aplicar la lógica del test a un actor privado, sabiendo que el marco jurídico no es idéntico."},
+
+ {tag:"ESCENARIO 5",t:"El colaborador sin acreditación",
+  d:"Un organismo niega el acceso a una rueda de prensa a un colaborador independiente por no disponer de credencial profesional.",
+  r:"Colaborador · Responsable de prensa · Editora",
+  ej:"<span class='who'>PRENSA:</span> Solo entran periodistas acreditados.<br><span class='who'>COLABORADOR:</span> ¿Cuál es la norma que regula la acreditación y su procedimiento?<br><span class='who'>PRENSA:</span> Es un criterio interno.<br><span class='who'>COLABORADOR:</span> Entonces le pido que me lo entregue por escrito.",
+  m:"Los sistemas de acreditación no son ilegítimos en sí mismos, pero deben responder a criterios objetivos, publicados y no discriminatorios, y no pueden convertirse en un filtro que excluya a quien ejerce funciones periodísticas sin vínculo laboral con un medio. La doctrina interamericana desde 1985 y la observación general de 2011 apuntan en la misma dirección: la protección sigue a la función. La actuación correcta es pedir el criterio por escrito, porque un criterio interno no publicado es exactamente lo que el requisito de legalidad prohíbe, y su negativa documentada sostiene tanto una reclamación como una pieza informativa.",
+  c:"Exigir la formalización de una decisión discrecional, sin convertirlo en un conflicto personal."},
+
+ {tag:"ESCENARIO 6",t:"El contenido que ofende",
+  d:"Una campaña pide retirar un reportaje por ofensivo hacia un colectivo. No se alega falsedad de ningún dato, sino el malestar que produce.",
+  r:"Reportera · Editora · Defensor del lector",
+  ej:"<span class='who'>DEFENSOR:</span> Hay cientos de quejas. La gente está dolida.<br><span class='who'>REPORTERA:</span> ¿Alguna señala un dato falso?<br><span class='who'>DEFENSOR:</span> No, señalan el enfoque.<br><span class='who'>EDITORA:</span> Entonces respondemos al enfoque, no retiramos la pieza.",
+  m:"La incomodidad no figura entre los fines legítimos de restricción, y el estándar de 1976 es inequívoco: la protección alcanza a lo que ofende, choca o inquieta. Eso resuelve la cuestión jurídica y no cierra la ética: un medio puede revisar su enfoque, publicar réplicas, corregir un marco desafortunado o explicar sus decisiones, y hacerlo por convicción profesional y no por presión. Lo que no procede es retirar una pieza veraz por el volumen de las quejas, porque eso traslada la decisión editorial a quien grite más fuerte. Si alguna queja identifica un error factual, ese error se corrige de inmediato y con visibilidad.",
+  c:"Separar la respuesta jurídica de la respuesta ética, y dar las dos."}
+];
+
+const IV=[
+ {q:"¿En qué norma concreta se ampara su petición de retirada?",
+  m:"Fija el primer paso del test. Una petición sin norma identificada no puede evaluarse y su ausencia queda documentada."},
+ {q:"¿Qué daño concreto se produciría con la publicación y en qué plazo?",
+  m:"Traslada la carga de acreditar la necesidad. La generalidad de la respuesta es en sí misma informativa."},
+ {q:"¿Quién ha evaluado ese daño y con qué procedimiento?",
+  m:"Busca el soporte técnico de la afirmación. Un informe existente puede solicitarse; su inexistencia debilita la petición."},
+ {q:"¿Han considerado alguna medida menos lesiva, como la omisión de un dato específico?",
+  m:"Es la pregunta clave de proporcionalidad: si existe alternativa menos restrictiva, la retirada total no la supera."},
+ {q:"¿Es una petición o una orden? ¿Va acompañada de resolución administrativa o judicial?",
+  m:"Distingue entre presión informal y acto jurídico. La respuesta determina las vías de recurso y la cobertura posible."},
+ {q:"¿La información que les preocupa ya circula por otras vías?",
+  m:"Si el contenido es accesible, la restricción difícilmente será idónea, y esa falta de idoneidad se argumenta con hechos."},
+ {q:"¿Aceptarían explicar públicamente los motivos de esta solicitud?",
+  m:"Convierte una gestión reservada en un acto susceptible de escrutinio, y la negativa es publicable."},
+ {q:"¿Puede facilitarme la petición por escrito, con la norma y el daño alegados?",
+  m:"Cierra documentando. El escrito es la prueba de la injerencia y la base de cualquier reclamación posterior."}
+];
+
+const AUDIT=[
+ ["v","En Handyside contra el Reino Unido, resuelto en diciembre de 1976, el TEDH formuló que la libertad de expresión ampara también las ideas que ofenden, chocan o inquietan, y sin embargo no apreció violación del artículo 10 en el caso concreto, invocando el margen de apreciación estatal en materia de moral.","TEDH, sentencia de 7 de diciembre de 1976. Verificado."],
+ ["v","En Sunday Times contra el Reino Unido, de abril de 1979, originado en la prohibición de publicar un artículo sobre la talidomida, el TEDH apreció violación del artículo 10 y desarrolló el requisito de que la injerencia esté prevista por una ley accesible y previsible.","TEDH, sentencia de 26 de abril de 1979. Verificado."],
+ ["v","En Lingens contra Austria, de julio de 1986, el TEDH apreció violación del artículo 10 y estableció que los límites de la crítica admisible son más amplios respecto de un político, y que exigir prueba de veracidad a un juicio de valor es incompatible con la libertad de opinión.","TEDH, sentencia de 8 de julio de 1986. Verificado."],
+ ["v","La Corte Interamericana de Derechos Humanos concluyó en la Opinión Consultiva OC-5/85, de noviembre de 1985, que la colegiación obligatoria de periodistas es incompatible con el artículo 13 de la Convención Americana en cuanto impida el ejercicio pleno de la libertad de expresión, y desarrolló la doble dimensión individual y social del derecho.","Corte IDH, OC-5/85, 13 de noviembre de 1985. Verificado."],
+ ["v","En New York Times Co. contra Estados Unidos, de junio de 1971, el Tribunal Supremo estadounidense falló contra el intento gubernamental de impedir la publicación de un estudio clasificado sobre Vietnam, recordando la fuerte presunción contra la validez de toda restricción previa y la pesada carga que soporta el Gobierno.","U.S. Supreme Court, 403 U.S. 713 (1971). Verificado."],
+ ["v","El Comité de Derechos Humanos de la ONU adoptó en 2011 la Observación General nº 34 sobre el artículo 19 del PIDCP, que enumera de forma cerrada los fines legítimos de restricción y desarrolla las exigencias de legalidad, necesidad y proporcionalidad.","ONU, CCPR/C/GC/34, 2011. Verificado."],
+ ["v","La Convención Americana sobre Derechos Humanos prohíbe expresamente la censura previa en su artículo 13, con la excepción de la regulación del acceso de menores a espectáculos públicos.","Convención Americana, art. 13.2 y 13.4. Verificado."],
+ ["v","El artículo 20 del PIDCP obliga a prohibir la propaganda a favor de la guerra y la apología del odio que constituya incitación a la discriminación, la hostilidad o la violencia.","PIDCP, art. 20. Verificado."],
+ ["b","Toda restricción debe superar acumulativamente los tres pasos del test; el fallo de uno solo la hace ilegítima.","Observación General nº 34 · jurisprudencia del TEDH y de la Corte IDH."],
+ ["b","La restricción previa recibe un trato más severo que la responsabilidad ulterior porque impide el debate en lugar de someterlo a revisión.","Doctrina establecida · Convención Americana, art. 13."],
+ ["b","La protección de la expresión alcanza su intensidad máxima en el debate político y sobre asuntos de interés público.","Jurisprudencia consolidada del TEDH y de la Corte IDH."],
+ ["b","A un juicio de valor no puede exigírsele prueba de veracidad, sino base fáctica suficiente que lo distinga del insulto gratuito.","TEDH, Lingens y jurisprudencia posterior."],
+ ["b","La invocación genérica de la seguridad nacional no satisface el test: se exige un vínculo real y directo entre la expresión concreta y una amenaza efectiva.","Observación General nº 34 · doctrina de las relatorías especiales."],
+ ["p","La descripción del alcance actual de las obligaciones de transparencia y motivación exigidas a las plataformas se formula en términos generales, a partir de las declaraciones de las relatorías especiales; no se ha realizado para esta unidad un análisis de la normativa vigente en cada jurisdicción.","Redactado sin atribuir obligaciones concretas a un régimen legal determinado."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El test tripartito exige que una restricción sea:",
+ o:["Razonable, proporcionada y aceptada socialmente","Prevista por ley, dirigida a un fin legítimo tasado, y necesaria y proporcionada","Aprobada por un juez, temporal y motivada","Compatible con la moral pública y con el orden establecido"],c:1,
+ w:["La aceptación social no es un requisito jurídico y la razonabilidad, sin los otros pasos, no acota nada.",
+    "",
+    "La intervención judicial es deseable y no sustituye a los tres requisitos sustantivos.",
+    "La moral pública es uno de los fines posibles, no el conjunto de la prueba."],
+ e:"Los tres pasos son acumulativos: basta que falle uno para que la restricción sea ilegítima, por muy razonable que suene su justificación."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Que una restricción esté «prevista por ley» significa que:",
+ o:["Ha sido aprobada por el parlamento","La norma es accesible y suficientemente precisa para permitir prever qué conducta está prohibida","Existe un reglamento que la desarrolla","La aplica una autoridad con competencia"],c:1,
+ w:["El rango normativo importa y no basta: una ley formal imprecisa sigue incumpliendo el requisito.",
+    "",
+    "El desarrollo reglamentario no corrige la indeterminación de la norma habilitante.",
+    "La competencia del órgano es otra cuestión, de legalidad orgánica."],
+ e:"Una norma vaga traslada al aplicador la definición de lo prohibido y produce autocensura sin necesidad de sancionar a nadie. Es el criterio de Sunday Times, 1979."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La lista de fines legítimos que pueden justificar una restricción es:",
+ o:["Abierta, si el fin invocado es de interés general","Cerrada: derechos o reputación de terceros, seguridad nacional, orden público, salud o moral públicas","Determinada por cada Estado en su legislación","Ampliable por vía jurisprudencial"],c:1,
+ w:["Admitir fines nuevos por su interés general vaciaría la garantía: cualquier restricción encontraría justificación.",
+    "",
+    "El Estado regula dentro de la lista, no puede añadir categorías nuevas.",
+    "La jurisprudencia interpreta el alcance de los fines existentes, no crea otros."],
+ e:"Si el objetivo alegado no encaja en la enumeración, la restricción cae en el segundo paso sin necesidad de discutir proporcionalidad."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La diferencia entre censura previa y responsabilidad ulterior es que:",
+ o:["La primera es administrativa y la segunda judicial","La primera impide la difusión y la segunda exige responsabilidad después de publicado","La primera es temporal y la segunda definitiva","La primera afecta a medios y la segunda a personas"],c:1,
+ w:["Ambas pueden ser administrativas o judiciales según el sistema.",
+    "",
+    "La duración no las distingue: una prohibición previa puede ser indefinida y una sanción posterior, puntual.",
+    "El sujeto afectado no determina la naturaleza de la medida."],
+ e:"La restricción previa elimina el debate; la responsabilidad ulterior lo somete a revisión. Por eso la primera recibe un trato mucho más severo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"A un juicio de valor publicado en un medio se le puede exigir:",
+ o:["Prueba de su veracidad","Una base fáctica suficiente que lo sustente","Que no resulte ofensivo para el afectado","Que se atribuya a una fuente identificada"],c:1,
+ w:["Exigir prueba de veracidad a una opinión es incompatible con la libertad de expresión: el criterio de Lingens, 1986.",
+    "",
+    "Lo ofensivo está protegido; lo que no lo está es el insulto sin ninguna base fáctica.",
+    "La atribución es una técnica periodística, no un requisito jurídico de la opinión propia."],
+ e:"Un hecho se prueba; una opinión se fundamenta. La base fáctica es lo que separa la crítica protegida del insulto gratuito."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Los límites de la crítica admisible respecto de un político son más amplios porque:",
+ o:["Su vida privada es de interés público","Se expone voluntariamente al escrutinio y dispone de medios para responder","La ley le concede menos protección al honor","Sus decisiones son siempre discutibles"],c:1,
+ w:["El criterio no se refiere a su vida privada, que conserva protección, sino a su actuación pública.",
+    "",
+    "El derecho al honor es el mismo: lo que varía es la ponderación frente al interés público.",
+    "La discutibilidad de las decisiones no es el fundamento del criterio."],
+ e:"El control público sobre quien ejerce poder es una función democrática, y esa función es la que justifica la mayor amplitud."},
+
+/* ---------- BLOQUE B · APLICACIÓN DEL TEST ---------- */
+{blk:"BLOQUE B · APLICACIÓN DEL TEST", t:"mcq",
+ s:"Un ministerio pide retirar un reportaje alegando seguridad nacional, sin citar norma ni describir el daño.",
+ q:"¿En qué paso falla la petición?",
+ o:["En el segundo: la seguridad nacional no es un fin legítimo","En el primero y el tercero: no identifica norma ni acredita necesidad","En ninguno: la seguridad nacional justifica la medida","En el tercero únicamente"],c:1,
+ w:["La seguridad nacional sí figura entre los fines legítimos; el problema es cómo se invoca.",
+    "",
+    "La invocación genérica no acredita el vínculo real y directo con una amenaza efectiva.",
+    "También falla el primero, porque ninguna norma concreta ampara la petición."],
+ e:"Sin norma identificada y sin daño concreto e inminente acreditado, no hay legalidad ni necesidad que examinar. Y conviene pedirlo todo por escrito."},
+
+{blk:"BLOQUE B · APLICACIÓN DEL TEST", t:"mcq",
+ s:"Una norma sanciona la difusión de «información que genere alarma social».",
+ q:"¿Cuál es el problema principal?",
+ o:["Que la sanción es económica y no penal","Que la fórmula es indeterminada y no permite prever qué conducta está prohibida","Que no distingue entre medios y particulares","Que no prevé recurso administrativo"],c:1,
+ w:["La naturaleza de la sanción afecta a la proporcionalidad, no a la previsibilidad.",
+    "",
+    "La distinción de sujetos no resolvería la indeterminación del supuesto de hecho.",
+    "La falta de recurso agrava el problema y no es el defecto central."],
+ e:"El efecto principal de una norma imprecisa se produce sin aplicarla: la autocensura preventiva. Es exactamente lo que el requisito de previsibilidad pretende evitar."},
+
+{blk:"BLOQUE B · APLICACIÓN DEL TEST", t:"mcq",
+ s:"Un juez ordena no publicar una investigación mientras dure un procedimiento en curso.",
+ q:"¿Cómo se califica y qué estándar aplica?",
+ o:["Responsabilidad ulterior, con estándar ordinario","Restricción previa, con una fuerte presunción en contra de su validez","Medida cautelar neutra, sin incidencia en el artículo 19","Restricción administrativa, revisable solo en vía contenciosa"],c:1,
+ w:["No hay publicación previa: la medida impide difundir, no sanciona lo difundido.",
+    "",
+    "Toda medida que impide publicar constituye injerencia y debe superar el test.",
+    "El origen judicial no altera su naturaleza de restricción previa."],
+ e:"La presunción contra la restricción previa fue el eje de Pentagon Papers en 1971: el Estado soporta una carga muy elevada para justificarla."},
+
+{blk:"BLOQUE B · APLICACIÓN DEL TEST", t:"mcq",
+ s:"Un organismo alega un riesgo concreto: la pieza identifica a una persona que quedaría en peligro.",
+ q:"¿Qué exige la proporcionalidad?",
+ o:["Retirar la pieza completa","Valorar una medida menos lesiva, como omitir ese dato concreto y publicar el resto","Aplazar la publicación hasta que cese el riesgo","Publicar íntegramente: el interés público prevalece siempre"],c:1,
+ w:["La retirada total no es el medio menos restrictivo si el riesgo se concentra en un dato.",
+    "",
+    "El aplazamiento indefinido equivale a una restricción previa sin plazo cierto.",
+    "El interés público no opera como prevalencia automática: se pondera."],
+ e:"La proporcionalidad exige el medio menos lesivo disponible. Cuando el riesgo se acredita y es específico, la respuesta también debe serlo."},
+
+{blk:"BLOQUE B · APLICACIÓN DEL TEST", t:"mcq",
+ s:"Una campaña ciudadana exige retirar un reportaje veraz por considerarlo ofensivo hacia un colectivo.",
+ q:"¿Qué corresponde?",
+ o:["Retirarlo: el daño social es un fin legítimo","No retirarlo; responder al enfoque, publicar réplicas y corregir cualquier error factual señalado","Retirarlo temporalmente hasta que baje la tensión","Publicar una disculpa y mantener la pieza"],c:1,
+ w:["El malestar público no figura entre los fines legítimos de restricción.",
+    "",
+    "La retirada temporal por presión traslada la decisión editorial a quien más ruido hace.",
+    "Disculparse por una pieza veraz sin error identificado confunde la respuesta ética con la rendición."],
+ e:"La protección alcanza a lo que ofende, choca o inquieta. Eso resuelve la cuestión jurídica y no cierra la ética: el enfoque sí puede revisarse por convicción profesional."},
+
+{blk:"BLOQUE B · APLICACIÓN DEL TEST", t:"mcq",
+ s:"Un organismo niega acceso a una rueda de prensa a un colaborador independiente por carecer de credencial.",
+ q:"¿Qué se le exige al organismo?",
+ o:["Nada: la acreditación es una potestad discrecional","Criterios objetivos, publicados y no discriminatorios, entregados por escrito si se solicitan","Que acredite a todo el que lo pida","Que motive la negativa solo si hay recurso"],c:1,
+ w:["La discrecionalidad no exime del requisito de legalidad ni permite criterios secretos.",
+    "",
+    "La acreditación puede limitarse por aforo o seguridad, con criterios objetivos.",
+    "La motivación es exigible con independencia de que se recurra."],
+ e:"La protección sigue a la función, no al carné: es la línea de la OC-5/85 y de la Observación General nº 34. Un criterio interno no publicado es lo que la legalidad prohíbe."},
+
+/* ---------- BLOQUE C · REDACCIÓN Y DEFENSA ---------- */
+{blk:"BLOQUE C · REDACCIÓN Y DEFENSA", t:"mcq",
+ s:"El titular propuesto afirma que un cargo «se enriqueció con el contrato». Está documentado el contrato y la evolución patrimonial, no el nexo.",
+ q:"¿Qué problema plantea?",
+ o:["Ninguno: la inferencia es evidente","Afirma como hecho un nexo causal no acreditado, asumiendo una carga probatoria innecesaria","Es una opinión y no requiere prueba","Solo es problemático si el afectado demanda"],c:1,
+ w:["La evidencia aparente no sustituye a la prueba, que será exigida en sede judicial.",
+    "",
+    "Formulado así no es opinión: es imputación de hechos.",
+    "El riesgo existe con independencia de que se demande, y condiciona la redacción."],
+ e:"La formulación correcta expone los hechos documentados y su cronología. La fuerza no disminuye: disminuye la vulnerabilidad."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DEFENSA", t:"mcq",
+ q:"Ante una restricción, la respuesta más eficaz consiste en:",
+ o:["Apelar a la libertad de prensa como principio fundamental","Recorrer el test: norma invocada, precisión, fin alegado y análisis de necesidad y proporcionalidad","Movilizar apoyo público y de otros medios","Publicar igualmente y asumir las consecuencias"],c:1,
+ w:["El principio general no se puede discutir en un expediente: no señala qué requisito falla.",
+    "",
+    "El apoyo público es útil y no sustituye al argumento jurídico ante quien decide.",
+    "Publicar sin argumentar deja al medio sin defensa técnica frente a la sanción."],
+ e:"El esquema convierte una discusión sobre opiniones en un expediente donde la otra parte tiene que acreditar cada paso."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DEFENSA", t:"mcq",
+ q:"Frente a la retirada de un contenido por una plataforma privada:",
+ o:["No cabe hacer nada: son sus normas","Cabe exigir por escrito la norma aplicada y la vía de revisión, y publicar la falta de motivación si no responde","El test tripartito se aplica directamente a la plataforma","Solo cabe recurrir judicialmente"],c:1,
+ w:["La titularidad privada no impide exigir transparencia ni convierte la decisión en incuestionable.",
+    "",
+    "El test vincula a los Estados; a las plataformas se les exigen transparencia, motivación y revisión.",
+    "La vía judicial es una opción posterior y no la única actuación posible."],
+ e:"Sus decisiones no se rigen directamente por el test, pero su efecto sobre el acceso a la información es equivalente. La negativa documentada es materia informativa."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DEFENSA", t:"mcq",
+ q:"El umbral que excluye de protección a un discurso de odio es:",
+ o:["Que resulte ofensivo para un grupo","Que constituya incitación a la discriminación, la hostilidad o la violencia","Que sea rechazado mayoritariamente","Que emplee términos degradantes"],c:1,
+ w:["La ofensa está protegida: equipararla a la incitación es el argumento más usado para censurar crítica legítima.",
+    "",
+    "El rechazo mayoritario no es un criterio jurídico.",
+    "El lenguaje degradante puede ser reprobable sin alcanzar el umbral de incitación."],
+ e:"El artículo 20 del Pacto fija ese umbral. Distinguirlo con precisión protege tanto a las víctimas del odio como al periodismo crítico."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DEFENSA", t:"mcq",
+ q:"La dimensión social de la libertad de expresión implica que:",
+ o:["La sociedad puede limitar lo que se publica","Una restricción a un medio lesiona también el derecho del público a recibir información","El derecho pertenece al colectivo y no al individuo","Los medios tienen obligaciones de servicio público"],c:1,
+ w:["La dimensión social no habilita a la mayoría para restringir: amplía el círculo de afectados por la restricción.",
+    "",
+    "Coexisten ambas dimensiones, individual y social; no se sustituyen.",
+    "Las obligaciones de servicio público derivan de otros títulos jurídicos."],
+ e:"Es el desarrollo de la OC-5/85: convierte una restricción a un medio en una lesión al derecho de toda la población, lo que amplía el alcance del argumento."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DEFENSA", t:"mcq",
+ q:"El margen de apreciación que el TEDH reconoce a los Estados es:",
+ o:["Uniforme para todos los ámbitos","Amplio en materia de moral y muy estrecho en debate político y de interés público","Amplio siempre que exista ley interna","Inexistente cuando se invoca la seguridad nacional"],c:1,
+ w:["Varía en función de la materia y del grado de consenso entre los Estados.",
+    "",
+    "La existencia de ley interna es un requisito previo, no un factor de amplitud.",
+    "También en seguridad nacional existe margen, aunque el control sea intenso."],
+ e:"Por eso Handyside admitió la injerencia en materia de moral y, en cambio, la jurisprudencia sobre crítica política es mucho más protectora."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todos</strong> los fines que pueden justificar legítimamente una restricción.",
+ o:["Los derechos o la reputación de terceros","La seguridad nacional","El orden público","Evitar el malestar o la incomodidad de la audiencia","La salud o la moral públicas"],
+ c:[0,1,2,4],
+ w:["","","","El malestar de la audiencia no figura en ninguna lista: la protección alcanza a lo que ofende, choca o inquieta.",""],
+ e:"La enumeración es cerrada. Si el objetivo alegado no encaja, la restricción cae sin necesidad de examinar la proporcionalidad."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe pedirse a quien solicita la retirada de un contenido.",
+ o:["La norma concreta en que se ampara","El daño previsto y su inminencia","Si existe una medida menos lesiva disponible","La opinión del departamento de comunicación sobre la pieza","La petición por escrito"],
+ c:[0,1,2,4],
+ w:["","","","La valoración que el organismo hace del reportaje no es un elemento del test ni condiciona la decisión editorial.",""],
+ e:"Ese conjunto convierte una presión informal en un expediente donde la otra parte debe acreditar cada paso."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el análisis de una restricción.",
+ o:["Identificar la norma invocada y comprobar su precisión","Verificar si el fin alegado está en la lista cerrada","Comprobar si responde a una necesidad social apremiante","Evaluar si existe una medida menos lesiva","Concluir en qué paso falla el test y redactar la respuesta"],
+ c:[0,1,2,3,4],
+ e:"El orden importa: si no hay norma precisa, no hace falta discutir proporcionalidad, y el argumento se cierra antes."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las medidas según su gravedad como injerencia, de menor a mayor.",
+ o:["Solicitud informal de rectificación","Exigencia de responsabilidad civil tras la publicación","Sanción penal por lo publicado","Orden judicial que impide publicar","Prohibición general y previa de informar sobre una materia"],
+ c:[0,1,2,3,4],
+ e:"La escala explica por qué el derecho internacional reserva su examen más severo a las medidas que impiden publicar antes de que exista debate."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>

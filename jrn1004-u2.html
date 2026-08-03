@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1004 · Unidad 2 — Difamación, Honor y Privacidad</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1004, Unidad 2.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course on" href="jrn1004-u2.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1004 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Difamación, Honor y Privacidad</h2>
+  <div class="sub">Unidad 2 de 4 · Leyes de Prensa y Ética Comparada</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1004-u1.html">Unidad 1: Libertad de Expresión y sus Límites</a>
+    <span class="unit on">Unidad 2: Difamación, Honor y Privacidad</span>
+    <a class="unit" href="jrn1004-u3.html">Unidad 3: Fuentes, Acceso a la Información y Secretos</a>
+    <a class="unit" href="jrn1004-u4.html">Unidad 4: Ética Comparada y Autorregulación</a>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Casi todos los pleitos que un periodista enfrenta a lo largo de su carrera nacen aquí: honor, intimidad, imagen y datos personales. Son cuatro derechos distintos, con requisitos distintos, y confundirlos es la causa más frecuente de que una defensa sólida se pierda por plantearse mal.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>lo que protege al periodista no es tener razón, sino haber sido diligente</strong>. La veracidad exigible no es la verdad absoluta —inalcanzable en el momento de publicar— sino la comprobación razonable y documentada. Por eso el método de la Unidad 1 de JRN-1001 no es solo ética: es la defensa jurídica.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Distinguir honor, intimidad, imagen y protección de datos, y determinar cuál está en juego en un caso concreto.</li>
+      <li>Aplicar el estándar de veracidad como diligencia documentada y no como verdad absoluta.</li>
+      <li>Explicar el estándar de la real malicia, su origen y su recepción en otros sistemas jurídicos.</li>
+      <li>Ponderar interés público y vida privada con los criterios desarrollados por la jurisprudencia europea.</li>
+      <li>Reconocer las obligaciones derivadas de la protección de datos y el alcance de la excepción periodística.</li>
+      <li>Gestionar rectificaciones, correcciones y solicitudes de desindexación con criterio y sin ceder la decisión editorial.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Geoffrey Robertson y Andrew Nicol, <em>Media Law</em> — difamación, privacidad y defensas</li>
+      <li><em>McNae's Essential Law for Journalists</em> (Oxford University Press / NCTJ) — manual profesional de referencia</li>
+      <li>Corte Interamericana de Derechos Humanos, sentencia <em>Kimel c. Argentina</em> (2008)</li>
+      <li>Tribunal Europeo de Derechos Humanos, guía sobre el artículo 8 y su ponderación con el artículo 10</li>
+      <li>Bill Kovach y Tom Rosenstiel, <em>The Elements of Journalism</em> — disciplina de verificación</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Criterios de ponderación del TEDH</h5>
+        <div class="def">La jurisprudencia europea ha sistematizado los factores que deciden un conflicto entre libertad de información y vida privada: contribución al debate de interés general, notoriedad del afectado, conducta previa, modo de obtención de la información, contenido y forma de la publicación y gravedad de la sanción.</div>
+        <p class="src">TEDH · Axel Springer y Von Hannover (nº 2), 2012</p></div>
+      <div class="term"><h5>Corte Interamericana · despenalización</h5>
+        <div class="def">La Corte ha sostenido que el uso del derecho penal para proteger el honor frente a expresiones sobre asuntos de interés público es desproporcionado, y ha ordenado a Estados adecuar tipos penales imprecisos.</div>
+        <p class="src">Corte IDH · Kimel c. Argentina, 2008</p></div>
+      <div class="term"><h5>Estándar de la real malicia</h5>
+        <div class="def">Doctrina estadounidense según la cual un funcionario público solo puede prosperar en una demanda por difamación si acredita que la afirmación se publicó sabiendo que era falsa o con temerario desprecio por la verdad.</div>
+        <p class="src">Tribunal Supremo de EE. UU. · New York Times c. Sullivan, 1964</p></div>
+      <div class="term"><h5>Protección de datos y excepción periodística</h5>
+        <div class="def">Los regímenes de protección de datos prevén excepciones para el tratamiento con fines periodísticos, precisamente para conciliar ese derecho con la libertad de información. Su alcance concreto varía por jurisdicción.</div>
+        <p class="src">Marcos de protección de datos · TJUE</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de un informe de riesgo jurídico sobre una pieza propia. El <strong>Examen Integrador</strong> de JRN-1004 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Cuatro derechos distintos</h3>
+    <p>El honor protege la reputación frente a imputaciones falsas o injuriosas. La intimidad protege una esfera reservada aunque lo que se cuente sea cierto. La imagen protege la representación física de la persona. La protección de datos regula el tratamiento de información personal con independencia de que sea íntima o pública.</p>
+    <p>Confundirlos tiene consecuencias directas: frente al honor la verdad y la diligencia son defensa; frente a la intimidad, no, porque lo que se discute no es la falsedad sino la intromisión. Plantear una defensa de veracidad en un caso de intimidad es perder antes de empezar.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Antes de escribir la defensa, identifica el derecho invocado. La pregunta no es «¿es cierto?», sino «¿qué me están reprochando: falsedad, intromisión, uso de imagen o tratamiento de datos?».</div>
+
+    <h3>Veracidad no es verdad</h3>
+    <p>Ningún ordenamiento serio exige al periodista publicar solo verdades definitivas: sería imposible y equivaldría a prohibir el periodismo. Lo que se exige es diligencia, es decir, una comprobación razonable en función de la gravedad de la imputación, del tiempo disponible y de la fiabilidad de las fuentes.</p>
+    <p>Esa exigencia es más intensa cuanto más grave es lo que se imputa y cuanto menos urgente es la publicación. Y se acredita con documentos: el registro de comprobaciones, las peticiones de réplica, los contrastes realizados.</p>
+    <div class="ej"><b>CONSECUENCIA</b>La matriz documental de JRN-1003 no es un capricho metodológico: es la prueba de diligencia que sostiene la defensa cuando la afirmación resulta, con el tiempo, inexacta.</div>
+
+    <h3>La real malicia</h3>
+    <p>En 1964 el Tribunal Supremo estadounidense estableció que un funcionario público no puede obtener indemnización por una afirmación difamatoria sobre su conducta oficial salvo que pruebe que se publicó con conocimiento de su falsedad o con temerario desprecio hacia la verdad. La regla se extendió después a otras figuras públicas.</p>
+    <p>Su efecto es desplazar la carga: no es el medio quien debe probar la verdad, sino el demandante quien debe probar el estado mental del editor. Es un estándar muy protector y no se aplica de forma idéntica fuera de Estados Unidos, aunque su influencia es amplia en América Latina.</p>
+    <div class="ej"><b>PRECISIÓN</b>Real malicia no significa mala intención en sentido coloquial: significa conocimiento de la falsedad o desprecio temerario por comprobar. Traducirlo como «mala fe» induce a error.</div>
+
+    <h3>La difamación penal</h3>
+    <p>Numerosos países conservan tipos penales de injuria, calumnia o desacato aplicables a la crítica de autoridades. Los organismos internacionales han sostenido de forma constante que el recurso al derecho penal para proteger el honor frente a expresiones sobre asuntos de interés público resulta desproporcionado, y que la vía civil es suficiente.</p>
+    <p>El argumento no es que el honor no merezca protección, sino que la amenaza de una condena penal produce un efecto de disuasión sobre toda la profesión que excede con mucho el daño reparado en el caso concreto.</p>
+    <div class="ej"><b>EJEMPLO</b>Un tipo penal redactado con términos indeterminados falla dos veces: por imprecisión, en el primer paso del test, y por desproporción, en el tercero.</div>
+
+    <h3>Intimidad y expectativa razonable</h3>
+    <p>La intimidad no se define por el lugar sino por la expectativa razonable de reserva. Una conversación en un restaurante puede ser privada; un acto público de un cargo, no. Y una persona puede tener expectativa de privacidad respecto de su salud incluso siendo notoriamente conocida.</p>
+    <p>La clave está en que el consentimiento para una exposición no se extiende a las demás: quien acepta ser fotografiado en un acto oficial no consiente que se publiquen imágenes de su domicilio, y quien habla de su trabajo no autoriza a informar de su familia.</p>
+    <div class="ej"><b>PREGUNTA DE CONTROL</b>¿Podía esta persona esperar razonablemente que esto no se publicara? Si la respuesta es sí, hace falta un interés público que justifique la intromisión, no basta con que el dato sea cierto.</div>
+
+    <h3>Los criterios de ponderación</h3>
+    <p>La jurisprudencia europea ha sistematizado los factores que deciden el conflicto entre informar y respetar la vida privada, y conviene conocerlos porque estructuran la defensa.</p>
+    <ol>
+      <li>Contribución de la publicación a un debate de interés general.</li>
+      <li>Notoriedad de la persona afectada y objeto del reportaje.</li>
+      <li>Conducta previa del afectado respecto de los medios.</li>
+      <li>Modo de obtención de la información y su veracidad.</li>
+      <li>Contenido, forma y repercusión de la publicación.</li>
+      <li>Gravedad de la sanción impuesta al medio.</li>
+    </ol>
+    <div class="ej"><b>APLICACIÓN</b>Redacta la defensa recorriendo los seis criterios uno a uno. Un escrito estructurado así es mucho más difícil de rebatir que una apelación genérica al interés informativo.</div>
+
+    <h3>Imagen, menores y víctimas</h3>
+    <p>La imagen tiene protección propia: publicar una fotografía identificable puede ser ilícito aunque el texto sea impecable. Y hay categorías con protección reforzada donde el criterio se invierte: la regla es no identificar, y la excepción exige justificación expresa.</p>
+    <p>Los menores encabezan esa lista, junto a víctimas de violencia sexual, personas en situación de vulnerabilidad y quienes aparecen incidentalmente en imágenes de sucesos. En ellos, el consentimiento de un tercero rara vez basta.</p>
+    <div class="ej"><b>REGLA</b>Ante un menor, la pregunta no es si se puede publicar la imagen, sino qué aporta publicarla que no se logre sin ella. Si la respuesta es «ilustra mejor», no se publica.</div>
+
+    <h3>Rectificación y corrección</h3>
+    <p>El derecho de rectificación permite al afectado difundir su versión sobre hechos que le aluden, y en muchos ordenamientos su ejercicio no exige acreditar falsedad. Es un mecanismo de réplica, no una condena, y confundirlo con una derrota editorial lleva a resistirse a algo que suele ser barato y razonable.</p>
+    <p>La corrección es otra cosa: es la asunción de un error propio. Debe ser visible, específica y estar vinculada a la pieza original, y su función no es solo reparar al afectado sino sostener la credibilidad del medio ante el resto de lectores.</p>
+    <div class="ej"><b>CRITERIO</b>Corrige rápido, con detalle y en lugar visible. Una corrección clara cuesta menos que un pleito y vale más que una nota discreta al pie que nadie lee.</div>
+
+    <h3>Protección de datos y excepción periodística</h3>
+    <p>Los regímenes de protección de datos alcanzan a cualquier tratamiento de información sobre personas identificables, lo que en principio incluye la actividad de una redacción. Por eso prevén excepciones para fines periodísticos, cuya extensión concreta varía entre jurisdicciones.</p>
+    <p>La excepción no es un cheque en blanco: se apoya en que el tratamiento sea efectivamente periodístico y proporcionado al fin informativo. Recopilar datos sin relación con la investigación, o conservarlos indefinidamente sin motivo, queda fuera de ese amparo.</p>
+    <div class="ej"><b>REGLA</b>La minimización de datos de JRN-1003 tiene aquí su traducción jurídica: lo que no sostiene la investigación no debería estar en tus archivos, y su presencia debilita la posición del medio.</div>
+
+    <h3>Desindexación y archivo</h3>
+    <p>La posibilidad de solicitar la retirada de resultados de búsqueda asociados al nombre de una persona plantea un conflicto específico: no se cuestiona la licitud de la pieza publicada, sino su accesibilidad a través de un buscador años después.</p>
+    <p>Para una redacción, esto obliga a distinguir con claridad entre desindexar, actualizar y despublicar. Retirar contenido veraz del archivo altera el registro público de lo ocurrido; añadir una actualización que informe del desenlace posterior suele resolver el daño real sin borrar la historia.</p>
+    <div class="ej"><b>REGLA FINAL</b>La respuesta por defecto a una petición sobre el archivo es actualizar, no borrar. El archivo es memoria pública, y modificarlo requiere un motivo tan fuerte como el que exigiría publicar.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Llamada del abogado de una persona mencionada en tu investigación. Anuncia acciones legales, exige la retirada inmediata de la pieza y pregunta por tus fuentes. No especifica qué afirmación considera falsa.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes revelar fuentes ni comprometer una retirada. Cada pregunta debe servir para delimitar qué se impugna exactamente y con qué base. Si señala un error real, tienes que poder reconocerlo y actuar.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">INFORME DE RIESGO JURÍDICO · OBLIGATORIO</span>
+      <p>Toma una pieza de investigación, propia o publicada. Entrega: la lista de afirmaciones que podrían generar reclamación, indicando qué derecho estaría en juego en cada una; la prueba de diligencia disponible para cada afirmación de hecho; la ponderación con los seis criterios en los elementos que afecten a la vida privada; el tratamiento de imágenes y de personas con protección reforzada; y una propuesta de reformulación para las tres afirmaciones de mayor riesgo.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Identificación correcta del derecho en juego en cada afirmación (25%) · Prueba de diligencia concreta y documentada, no genérica (25%) · Ponderación estructurada con los seis criterios (20%) · Tratamiento de imagen y categorías protegidas (15%) · Reformulaciones que conserven el valor informativo (15%). Un informe que responda «es verdad» a un reproche de intromisión en la intimidad no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 2</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o doctrina establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1004-u1.html">← Unidad 1: Libertad de Expresión y sus Límites</a> &nbsp;·&nbsp; <a href="jrn1004-u3.html">Unidad 3: Fuentes, Acceso a la Información y Secretos →</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Honor",d:"Derecho a la reputación frente a imputaciones falsas o injuriosas. Frente a él, la veracidad diligente y la prueba del hecho operan como defensa.",s:"Doctrina establecida · Robertson y Nicol"},
+ {t:"Intimidad",d:"Esfera reservada cuya intromisión es ilícita aunque lo publicado sea cierto. La defensa no es la verdad, sino el interés público que justifica la injerencia.",s:"CEDH, art. 8 · jurisprudencia del TEDH"},
+ {t:"Derecho a la Imagen",d:"Protección autónoma de la representación física de la persona. Publicar una fotografía identificable puede ser ilícito aunque el texto sea impecable.",s:"Doctrina y jurisprudencia europeas"},
+ {t:"Veracidad Diligente",d:"Estándar que exige comprobación razonable en función de la gravedad de la imputación y del tiempo disponible, no verdad definitiva.",s:"Kovach y Rosenstiel · doctrina jurisprudencial"},
+ {t:"Real Malicia",d:"Estándar por el que el demandante público debe probar que se publicó conociendo la falsedad o con temerario desprecio por la verdad.",s:"NYT c. Sullivan, EE. UU., 1964"},
+ {t:"Desacato",d:"Tipo penal que sanciona la ofensa a la autoridad. Los organismos internacionales lo consideran incompatible con el estándar interamericano de libertad de expresión.",s:"Corte IDH · relatorías especiales"},
+ {t:"Expectativa Razonable de Privacidad",d:"Criterio que determina si una situación pertenece a la esfera reservada. No depende del lugar sino de lo que la persona podía esperar razonablemente.",s:"Jurisprudencia del TEDH sobre el art. 8"},
+ {t:"Criterios de Ponderación",d:"Seis factores que deciden el conflicto entre información y vida privada: debate general, notoriedad, conducta previa, modo de obtención, contenido y gravedad de la sanción.",s:"TEDH, Axel Springer y Von Hannover nº 2, 2012"},
+ {t:"Derecho de Rectificación",d:"Facultad del aludido de difundir su versión sobre hechos que le conciernen. Es un mecanismo de réplica y no implica reconocer falsedad.",s:"Convención Americana, art. 14 · legislaciones nacionales"},
+ {t:"Corrección",d:"Asunción de un error propio por el medio. Debe ser visible, específica y estar vinculada a la pieza original.",s:"Códigos deontológicos · práctica establecida"},
+ {t:"Excepción Periodística",d:"Previsión de los regímenes de protección de datos que permite el tratamiento con fines periodísticos, siempre que sea proporcionado al fin informativo.",s:"Marcos de protección de datos · TJUE"},
+ {t:"Desindexación",d:"Retirada de resultados de un buscador asociados al nombre de una persona, sin que ello afecte a la licitud ni a la existencia de la publicación original.",s:"TJUE, Google Spain, 2014"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · TRIBUNAL SUPREMO DE EE. UU. · MARZO DE 1964",t:"Sullivan: quién debe probar qué",
+  d:"En marzo de 1964, en New York Times Co. contra Sullivan, el Tribunal Supremo estadounidense resolvió la demanda de un responsable policial de Montgomery, Alabama, contra el periódico por un anuncio pagado, publicado en apoyo del movimiento por los derechos civiles, que contenía algunas inexactitudes fácticas. El Tribunal falló a favor del periódico y estableció que un funcionario público no puede obtener indemnización por una afirmación difamatoria relativa a su conducta oficial salvo que pruebe que se hizo con conocimiento de su falsedad o con temerario desprecio hacia la verdad. La decisión partía de la constatación de que el debate sobre asuntos públicos debe ser desinhibido, robusto y abierto, y de que en él son inevitables ciertas afirmaciones erróneas.",
+  ej:"El giro decisivo no fue admitir el error, sino desplazar la carga de la prueba: el demandante debe acreditar el estado mental del editor, y eso es mucho más difícil que exigir al medio probar cada palabra.",
+  p:["¿Por qué el error inevitable se considera parte del debate público?","¿Qué significa exactamente «temerario desprecio»?","¿Se aplica este estándar fuera de Estados Unidos?"],
+  m:"Porque exigir exactitud absoluta como condición para publicar equivaldría a prohibir el periodismo sobre asuntos controvertidos: quien no puede equivocarse nunca, no publica, y esa autocensura daña al debate más que el error puntual. Temerario desprecio no es descuido ni error de buena fe: implica que el editor tuviera serias dudas sobre la veracidad y publicara igualmente, sin comprobar lo que estaba a su alcance. Fuera de Estados Unidos el estándar no se aplica de forma idéntica —en Europa se opera con la ponderación y la diligencia—, pero su influencia ha sido amplia, especialmente en América Latina, donde ha inspirado la protección reforzada del discurso sobre funcionarios.",
+  k:"El error de buena fe forma parte del precio del debate público. Lo que no está protegido es publicar con serias dudas sin haberlas resuelto."},
+
+ {tag:"CASO 2 · CORTE INTERAMERICANA · MAYO DE 2008",t:"Kimel: el derecho penal como respuesta desproporcionada",
+  d:"En mayo de 2008 la Corte Interamericana de Derechos Humanos resolvió el caso Kimel contra Argentina. El periodista y escritor Eduardo Kimel había sido condenado penalmente tras publicar un libro en el que criticaba la actuación de un juez en la investigación de una masacre cometida durante la dictadura. La Corte declaró que el Estado había violado la libertad de expresión, consideró desproporcionada la sanción penal en un asunto de evidente interés público y ordenó, entre otras medidas de reparación, adecuar la legislación interna por la imprecisión de los tipos penales aplicados.",
+  ej:"La sentencia no declara que el honor de un juez no merezca protección: declara que la vía penal, con su capacidad de disuasión sobre toda la profesión, es una respuesta desproporcionada cuando existe la vía civil.",
+  p:["¿Por qué la amenaza penal preocupa más que la indemnización?","¿Qué papel juega la imprecisión del tipo?","¿Qué hace un periodista en un país que mantiene esos tipos?"],
+  m:"Porque la posibilidad de una condena penal opera sobre todos los periodistas del país y no solo sobre el demandado: el efecto de disuasión se extiende a quienes nunca serán procesados y modifica lo que se decide publicar, un daño que ninguna indemnización mide. La imprecisión del tipo agrava el problema porque impide saber de antemano qué expresión es punible, de modo que el defecto se sitúa a la vez en el primer paso del test y en el tercero. Donde esos tipos siguen vigentes, la actuación razonable consiste en documentar la diligencia con especial rigor, formular las valoraciones como tales con base fáctica expresa, y conocer los precedentes internacionales que sostienen la defensa.",
+  k:"La vía penal para proteger el honor frente a la crítica pública es desproporcionada porque su efecto no recae sobre un periodista, sino sobre todos."},
+
+ {tag:"CASO 3 · TEDH · JUNIO DE 2004 Y FEBRERO DE 2012",t:"Von Hannover: dos sentencias, un criterio",
+  d:"En junio de 2004 el Tribunal Europeo de Derechos Humanos resolvió la primera demanda de Carolina de Mónaco contra Alemania por la publicación de fotografías de su vida cotidiana. El Tribunal apreció violación del artículo 8 y sostuvo que las imágenes no contribuían a un debate de interés general, sino que respondían únicamente a la curiosidad del público. En febrero de 2012, en un segundo asunto, el Tribunal alcanzó una conclusión distinta respecto de otras fotografías, al considerar que acompañaban a una información sobre la enfermedad del príncipe reinante, cuestión de interés general, y sistematizó los criterios de ponderación entre los artículos 8 y 10.",
+  ej:"El mismo tipo de fotografía puede ser lícito o ilícito según el texto al que acompañe y el asunto que ilustre. La imagen no se juzga sola: se juzga su contribución al debate.",
+  p:["¿Qué convierte una imagen privada en información de interés público?","¿Por qué la notoriedad no basta como justificación?","¿Cómo se aplica esto en una redacción?"],
+  m:"La convierte su vínculo con un asunto que permita al público formarse una opinión sobre algo relevante: la salud de un jefe de Estado, la coherencia entre lo que un cargo predica y lo que hace, o el ejercicio de una función pública. La notoriedad no basta porque ser conocido no es una función pública ni implica renuncia a la vida privada; si bastara, cualquier imagen de cualquier persona famosa sería publicable, que es exactamente lo que la primera sentencia rechazó. En la redacción, esto se traduce en escribir primero cuál es el interés general que la imagen sirve y comprobar que ese interés existe en el texto y no solo en la intención.",
+  k:"La fama no es interés público. Una imagen privada solo se justifica por su contribución a un debate concreto, y esa contribución debe ser visible en la pieza."},
+
+ {tag:"CASO 4 · TEDH · FEBRERO DE 2012",t:"Axel Springer: los seis criterios",
+  d:"En febrero de 2012 el Tribunal Europeo resolvió el asunto Axel Springer contra Alemania, relativo a la información publicada sobre la detención de un actor conocido por posesión de drogas. El Tribunal apreció violación del artículo 10 al considerar que la prohibición impuesta al periódico era desproporcionada, y expuso de forma sistemática los criterios que deben guiar la ponderación entre libertad de información y protección de la vida privada: contribución a un debate de interés general, notoriedad de la persona y objeto de la información, conducta previa del afectado, modo de obtención de la información y su veracidad, contenido, forma y repercusión de la publicación, y gravedad de la sanción impuesta.",
+  ej:"El valor de la sentencia es operativo: convierte una ponderación aparentemente intuitiva en una lista de comprobación con la que se puede redactar una defensa punto por punto.",
+  p:["¿Por qué importa el modo de obtención de la información?","¿Qué peso tiene la conducta previa del afectado?","¿Cómo se usa la lista en la práctica?"],
+  m:"El modo de obtención importa porque una información obtenida mediante engaño, intrusión o vulneración de la ley se pondera de forma distinta a la obtenida de fuentes oficiales o de registros públicos, y ese factor puede decidir el caso aunque el contenido sea de interés general. La conducta previa pesa porque quien ha buscado activamente la exposición pública de un aspecto de su vida difícilmente puede invocar después una expectativa de reserva sobre ese mismo aspecto, aunque ello no le priva de privacidad en los demás. En la práctica, la lista se emplea como estructura del escrito de defensa y también como comprobación previa a publicar, revisando cada criterio antes del cierre.",
+  k:"La ponderación no es intuición: son seis criterios enumerados. Recorrerlos antes de publicar es más eficaz que discutirlos después ante un tribunal."},
+
+ {tag:"CASO 5 · TJUE · MAYO DE 2014",t:"Google Spain: desindexar no es borrar",
+  d:"En mayo de 2014 el Tribunal de Justicia de la Unión Europea resolvió el asunto Google Spain, originado por la reclamación de un ciudadano español cuyo nombre, al ser buscado, devolvía enlaces a unos anuncios de subasta por deudas publicados años antes en un diario. El Tribunal concluyó que el gestor de un motor de búsqueda realiza un tratamiento de datos personales del que es responsable, y que en determinadas condiciones la persona puede solicitar la retirada de esos enlaces de la lista de resultados asociada a su nombre. Al mismo tiempo, el Tribunal no cuestionó la licitud de la publicación original en el periódico, que permaneció inalterada.",
+  ej:"La distinción es la clave del caso y la que más se malinterpreta: lo que se retira es el enlace en el buscador, no el contenido publicado. El archivo del medio sigue intacto.",
+  p:["¿Qué debe hacer un medio ante una petición de retirada del archivo?","¿Por qué actualizar suele ser mejor que borrar?","¿Dónde está el límite del interés público con el paso del tiempo?"],
+  m:"Un medio debe distinguir con precisión entre tres peticiones distintas: desindexar del buscador, que corresponde decidir al buscador; actualizar la información con hechos posteriores; y despublicar, que altera el registro público de lo ocurrido. La actualización suele resolver el daño real —una absolución posterior, un archivo de la causa, una rectificación— sin destruir la memoria pública, y además mejora la calidad del archivo. El límite temporal del interés público no es automático: depende de la relevancia persistente del hecho, de la función que ejercía la persona y de si el dato sigue siendo necesario para comprender un asunto de interés general.",
+  k:"La respuesta por defecto a una petición sobre el archivo es actualizar. Borrar contenido veraz modifica el registro público y exige un motivo tan fuerte como el que exigiría publicarlo."},
+
+ {tag:"CASO 6 · IMAGEN, MENORES Y VÍCTIMAS",t:"Cuando la regla se invierte",
+  d:"En el tratamiento informativo de menores de edad, de víctimas de violencia sexual y de personas en situación de especial vulnerabilidad, los códigos deontológicos y buena parte de las legislaciones invierten el criterio general: la regla es la no identificación, y la publicación de datos o imágenes que permitan reconocer a la persona exige una justificación expresa y específica. La protección alcanza también a la identificación indirecta, es decir, al conjunto de datos que, combinados, permiten reconocer a alguien aunque no se publique su nombre ni su rostro.",
+  ej:"La identificación indirecta es el punto ciego más frecuente: la edad, el centro escolar, el barrio y la fecha del suceso identifican a una persona con la misma eficacia que su nombre.",
+  p:["¿Qué justificación expresa puede admitirse?","¿Basta el consentimiento de los padres o tutores?","¿Cómo se comprueba la identificación indirecta?"],
+  m:"Puede admitirse cuando la identificación resulta imprescindible para acreditar el hecho de interés público y no existe forma alternativa de sostenerlo, lo que es infrecuente: casi todos los hechos se sostienen describiendo la situación sin identificar a la persona. El consentimiento de padres o tutores no basta por sí solo, porque puede existir un conflicto de interés y porque el perjuicio recae sobre el menor a lo largo del tiempo, cuando el contenido siga siendo accesible. La identificación indirecta se comprueba con la misma prueba de deducción que se aplica a la protección de fuentes: entregar el borrador a alguien del entorno y preguntar si podría reconocer a quién se refiere.",
+  k:"En categorías protegidas la regla es no identificar. Y la identificación indirecta cuenta: un conjunto de datos aparentemente inocuos identifica igual que un nombre."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El burofax que exige retirada",
+  d:"Llega una carta de un despacho anunciando acciones legales y exigiendo la retirada íntegra del reportaje. No identifica qué afirmación considera falsa.",
+  r:"Reportera · Editora · Asesor jurídico",
+  ej:"<span class='who'>JURÍDICO:</span> Piden la retirada completa, sin concretar.<br><span class='who'>REPORTERA:</span> Entonces la respuesta es pedir que concreten qué frase impugnan y por qué.<br><span class='who'>EDITORA:</span> ¿Y si no contestan?<br><span class='who'>REPORTERA:</span> Su falta de concreción quedará documentada y nosotros habremos ofrecido réplica.",
+  m:"Una exigencia genérica de retirada no permite evaluar nada y suele buscar el efecto disuasorio más que la reparación. La respuesta correcta consiste en pedir por escrito qué afirmación concreta se considera inexacta y qué elementos aporta el reclamante, ofreciendo publicar su versión. Ese intercambio cumple tres funciones: identifica un posible error real, que se corregiría de inmediato; documenta la diligencia del medio ante un eventual pleito; y sitúa la discusión en hechos concretos en lugar de en la amenaza. La retirada íntegra no se compromete nunca en esa fase.",
+  c:"Responder a una amenaza genérica con una petición concreta, sin hostilidad y sin ceder."},
+
+ {tag:"ESCENARIO 2",t:"Es verdad, pero es íntimo",
+  d:"La pieza revela el tratamiento médico de un cargo público. El dato está verificado y el equipo defiende la publicación porque es cierto.",
+  r:"Reportera · Editor · Defensora del lector",
+  ej:"<span class='who'>EDITOR:</span> Está confirmado por dos fuentes, es verdad.<br><span class='who'>REPORTERA:</span> Frente a la intimidad, la verdad no es la defensa.<br><span class='who'>DEFENSORA:</span> ¿Qué decisión pública se explica con ese dato?<br><span class='who'>EDITOR:</span> Ninguna, directamente.",
+  m:"Frente a una intromisión en la intimidad el debate no es la falsedad sino la justificación de la injerencia, de modo que alegar veracidad es responder a un reproche distinto del formulado. La salud tiene además protección reforzada en casi todos los ordenamientos. La pregunta correcta es qué permite entender ese dato sobre el ejercicio del cargo: si acredita una incapacidad para desempeñar funciones que se están ocultando, hay interés público; si solo satisface la curiosidad, no lo hay, por cierto que sea. Y cuando hay interés, suele bastar con informar del efecto —ausencias, delegación de funciones— sin publicar el diagnóstico.",
+  c:"Reconducir la discusión del terreno de la verdad al de la justificación de la intromisión."},
+
+ {tag:"ESCENARIO 3",t:"La foto del menor",
+  d:"Un suceso deja a un menor como protagonista. Hay una fotografía potente y los padres autorizan su publicación.",
+  r:"Reportera · Editor gráfico · Editora",
+  ej:"<span class='who'>GRÁFICO:</span> Los padres han firmado la autorización.<br><span class='who'>REPORTERA:</span> ¿Y qué aporta la foto que no aporte el texto?<br><span class='who'>GRÁFICO:</span> Impacto.<br><span class='who'>EDITORA:</span> El impacto no es interés público. Buscamos otra imagen.",
+  m:"En categorías protegidas la regla se invierte: la no identificación es el criterio por defecto y publicar exige una justificación específica. El consentimiento parental no la sustituye, porque el perjuicio recae sobre el menor durante años, cuando el contenido siga siendo accesible, y porque puede existir conflicto de interés en quien autoriza. Hay que comprobar además la identificación indirecta: edad, centro, barrio y fecha pueden reconocer a la persona sin necesidad de rostro. La solución práctica es narrar el hecho, usar una imagen no identificativa y dejar constancia interna de la decisión.",
+  c:"Rechazar una imagen autorizada aplicando un criterio profesional, no una sensibilidad personal."},
+
+ {tag:"ESCENARIO 4",t:"El error detectado tres días después",
+  d:"Un dato secundario de la investigación resulta inexacto. El núcleo de la pieza se mantiene y nadie ha reclamado todavía.",
+  r:"Reportera · Editora · Defensora del lector",
+  ej:"<span class='who'>EDITORA:</span> Es un detalle, nadie se ha quejado.<br><span class='who'>REPORTERA:</span> Por eso mismo conviene corregirlo ahora y no cuando lo usen contra nosotros.<br><span class='who'>DEFENSORA:</span> ¿Con nota visible?<br><span class='who'>REPORTERA:</span> Visible, específica y vinculada a la pieza.",
+  m:"Corregir un error propio antes de que se convierta en reclamación es la actuación más barata y la que mejor sostiene la credibilidad: una corrección específica y visible demuestra un procedimiento en funcionamiento, mientras que un cambio silencioso en el texto destruye la confianza si alguien lo descubre. La corrección debe indicar qué decía, qué dice y por qué se modificó, y mantenerse asociada a la pieza. Además refuerza la posición jurídica: acredita diligencia continuada, que es precisamente lo que se examina cuando se discute si el medio actuó de buena fe.",
+  c:"Corregir sin dramatizar y sin esperar a la reclamación, dejando constancia."},
+
+ {tag:"ESCENARIO 5",t:"La petición de despublicar",
+  d:"Una persona pide retirar del archivo una noticia de hace ocho años sobre una causa penal en la que finalmente fue absuelta.",
+  r:"Reportera · Editora · Responsable de archivo",
+  ej:"<span class='who'>ARCHIVO:</span> Pide que la borremos entera.<br><span class='who'>REPORTERA:</span> No borramos, actualizamos: añadimos la absolución en cabecera.<br><span class='who'>EDITORA:</span> ¿Y la desindexación?<br><span class='who'>REPORTERA:</span> Esa la decide el buscador, no nosotros.",
+  m:"La petición mezcla tres cosas distintas y conviene separarlas: desindexar corresponde al buscador, actualizar corresponde al medio y despublicar altera el registro público de lo ocurrido. La actualización con el desenlace posterior resuelve el daño real, porque quien encuentre la pieza leerá la absolución en el mismo lugar, y además mejora la exactitud del archivo. Borrar contenido veraz debería reservarse a supuestos excepcionales, con motivo documentado, porque el archivo es memoria pública y su modificación exige una justificación equivalente a la que exigiría publicarlo.",
+  c:"Ofrecer una solución real al daño sin aceptar la destrucción del archivo."},
+
+ {tag:"ESCENARIO 6",t:"El titular que afirma delito",
+  d:"El titular propuesto dice que el investigado «cometió fraude». Hay una investigación judicial abierta, sin sentencia.",
+  r:"Reportera · Redactor de titulares · Asesor jurídico",
+  ej:"<span class='who'>TITULARES:</span> Es lo que investiga el juzgado.<br><span class='who'>JURÍDICO:</span> El juzgado investiga; nosotros estaríamos condenando.<br><span class='who'>REPORTERA:</span> Podemos decir exactamente qué se le atribuye y en qué fase está.<br><span class='who'>TITULARES:</span> Pierde fuerza.<br><span class='who'>REPORTERA:</span> Gana la que resiste una demanda.",
+  m:"Atribuir la comisión de un delito antes de una sentencia firme afecta a la presunción de inocencia y convierte en imputación de hechos lo que es una fase procesal. La formulación correcta describe con precisión qué se investiga, quién lo investiga, en qué fase está y qué documentos lo acreditan, sin sustituir al tribunal. Esa precisión no debilita la pieza: la hace inatacable en el punto donde una demanda buscaría el error. Y obliga además a actualizar la información cuando el procedimiento avance, que es una obligación continuada del medio.",
+  c:"Defender la precisión procesal frente a la presión por un titular más contundente."}
+];
+
+const IV=[
+ {q:"¿Qué afirmación concreta de la pieza considera su cliente inexacta?",
+  m:"Delimita el objeto de la reclamación. Sin una frase identificada no hay nada que evaluar y su vaguedad queda registrada."},
+ {q:"¿Sostiene que el hecho es falso, o que no debió publicarse aunque sea cierto?",
+  m:"Distingue entre honor e intimidad, que exigen defensas distintas. La respuesta orienta toda la estrategia."},
+ {q:"¿Dispone de documentación que acredite la inexactitud que alega?",
+  m:"Traslada la carga al reclamante y abre la vía a corregir de inmediato si el error existe."},
+ {q:"¿Desea ejercer el derecho de rectificación? Podemos publicar su versión.",
+  m:"Ofrece la vía menos costosa para ambas partes y acredita la disposición del medio a la réplica."},
+ {q:"¿Su cliente respondió a nuestra petición de comentarios antes de publicar?",
+  m:"Deja constancia de que se ofreció contradicción previa, elemento central de la prueba de diligencia."},
+ {q:"¿Qué parte de la información considera que no es de interés público?",
+  m:"Sitúa la discusión en la ponderación, y obliga a la otra parte a argumentar sobre criterios y no sobre el conjunto."},
+ {q:"Sobre las fuentes: sabe que no puedo identificarlas. ¿Hay algún otro punto que quiera plantear?",
+  m:"Cierra la cuestión de las fuentes con claridad y sin hostilidad, manteniendo abierta la conversación sustantiva."},
+ {q:"¿Prefiere que continuemos esta conversación por escrito?",
+  m:"Documenta el intercambio, que es lo que después acredita la actuación del medio ante un tribunal."}
+];
+
+const AUDIT=[
+ ["v","En New York Times Co. contra Sullivan, de marzo de 1964, el Tribunal Supremo de Estados Unidos estableció que un funcionario público debe probar conocimiento de la falsedad o temerario desprecio hacia la verdad para prosperar en una demanda por difamación relativa a su conducta oficial.","U.S. Supreme Court, 376 U.S. 254 (1964). Verificado."],
+ ["v","En mayo de 2008, en Kimel contra Argentina, la Corte Interamericana declaró violada la libertad de expresión por la condena penal a un periodista que criticó la actuación de un juez, consideró desproporcionada la sanción penal y ordenó adecuar la legislación interna por la imprecisión de los tipos aplicados.","Corte IDH, sentencia de 2 de mayo de 2008. Verificado."],
+ ["v","El TEDH apreció en junio de 2004 violación del artículo 8 por la publicación de fotografías de la vida cotidiana de Carolina de Mónaco, al no contribuir a un debate de interés general; en febrero de 2012, en un segundo asunto, alcanzó una conclusión distinta respecto de imágenes vinculadas a una información sobre la enfermedad del príncipe reinante.","TEDH, Von Hannover c. Alemania (2004) y Von Hannover nº 2 (2012). Verificado."],
+ ["v","En febrero de 2012, en Axel Springer contra Alemania, el TEDH apreció violación del artículo 10 y sistematizó los criterios de ponderación entre libertad de información y vida privada.","TEDH, sentencia de 7 de febrero de 2012. Verificado."],
+ ["v","En mayo de 2014, en el asunto Google Spain, el TJUE declaró que el gestor de un motor de búsqueda es responsable del tratamiento de datos personales que realiza y que, en determinadas condiciones, cabe solicitar la retirada de enlaces de la lista de resultados asociada a un nombre, sin cuestionar la licitud de la publicación original.","TJUE, asunto C-131/12, sentencia de 13 de mayo de 2014. Verificado."],
+ ["v","La Convención Americana sobre Derechos Humanos reconoce el derecho de rectificación o respuesta en su artículo 14.","Convención Americana, art. 14. Verificado."],
+ ["b","Honor, intimidad, imagen y protección de datos son derechos distintos, con defensas distintas: la veracidad opera frente al honor, no frente a la intromisión en la intimidad.","Robertson y Nicol · McNae's · doctrina establecida."],
+ ["b","El estándar exigible al periodista es la diligencia razonable en función de la gravedad de la imputación y del tiempo disponible, no la verdad definitiva.","Doctrina jurisprudencial · Kovach y Rosenstiel."],
+ ["b","La expectativa razonable de privacidad no depende del lugar sino de lo que la persona podía esperar razonablemente, y el consentimiento para una exposición no se extiende a otras.","Jurisprudencia del TEDH sobre el art. 8."],
+ ["b","La notoriedad de una persona no convierte por sí sola en publicable cualquier aspecto de su vida privada.","TEDH, Von Hannover y jurisprudencia posterior."],
+ ["b","En el tratamiento de menores, víctimas de violencia sexual y personas vulnerables, la regla es la no identificación, y alcanza también a la identificación indirecta.","Códigos deontológicos · legislaciones nacionales."],
+ ["b","La corrección de un error propio debe ser visible, específica y vinculada a la pieza original, y acredita diligencia continuada.","Códigos deontológicos · práctica establecida."],
+ ["b","Ante una petición sobre el archivo, actualizar con hechos posteriores suele reparar el daño sin alterar el registro público de lo ocurrido.","Formulación docente · práctica de archivos periodísticos."],
+ ["p","El alcance concreto de la excepción periodística en los regímenes de protección de datos se describe en términos generales, ya que varía entre jurisdicciones y ha sido objeto de desarrollos nacionales diversos; no se ha realizado para esta unidad un análisis comparado de cada legislación.","Redactado sin atribuir un alcance específico a una norma nacional determinada."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Frente a una reclamación por intromisión en la intimidad, la veracidad del dato:",
+ o:["Es la defensa principal","No es defensa: lo que se discute es la justificación de la injerencia, no la falsedad","Solo sirve si la persona es un cargo público","Elimina la responsabilidad si se acredita con dos fuentes"],c:1,
+ w:["La verdad opera frente al honor, no frente a la intimidad.",
+    "",
+    "La condición del afectado influye en la ponderación, no convierte la veracidad en defensa.",
+    "El número de fuentes acredita diligencia, que aquí no es lo discutido."],
+ e:"Alegar veracidad ante un reproche de intromisión es responder a una pregunta distinta de la formulada. Lo exigible es el interés público que justifique la injerencia."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El estándar de veracidad exigible al periodista consiste en:",
+ o:["Publicar únicamente hechos definitivamente probados","Haber realizado una comprobación razonable y documentada, proporcional a la gravedad de la imputación","Citar siempre al menos dos fuentes","Obtener confirmación oficial antes de publicar"],c:1,
+ w:["Exigir prueba definitiva equivaldría a prohibir el periodismo sobre asuntos controvertidos.",
+    "",
+    "El número de fuentes es un indicio de diligencia, no el estándar.",
+    "Supeditar la publicación a la confirmación oficial entrega el control al investigado."],
+ e:"La diligencia se acredita con documentos: registro de comprobaciones, contrastes y peticiones de réplica. Por eso la matriz documental es también la defensa jurídica."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El estándar de la real malicia exige que el demandante pruebe:",
+ o:["Que la información le causó un perjuicio","Que se publicó conociendo su falsedad o con temerario desprecio hacia la verdad","Que el medio actuó con animadversión personal","Que la información no era de interés público"],c:1,
+ w:["El perjuicio es un elemento del daño, no el estándar de imputación.",
+    "",
+    "La animadversión coloquial no equivale al estándar: lo relevante es el conocimiento o la duda no resuelta.",
+    "El interés público es otro elemento del análisis."],
+ e:"Su efecto es desplazar la carga de la prueba hacia el demandante, y probar el estado mental del editor es mucho más difícil que exigir al medio probar cada palabra."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La objeción principal al uso del derecho penal contra la difamación en asuntos públicos es que:",
+ o:["El honor no merece protección jurídica","Su efecto de disuasión recae sobre toda la profesión y excede el daño reparado en el caso","Las penas nunca se ejecutan","La vía civil es más rápida"],c:1,
+ w:["El honor sí merece protección: la discusión es sobre el instrumento adecuado.",
+    "",
+    "La ejecución efectiva es irrelevante: la amenaza opera igual.",
+    "La celeridad no es el argumento de proporcionalidad."],
+ e:"La amenaza penal modifica lo que se publica en todo el país, y ese daño no lo mide ninguna indemnización. Es el razonamiento de Kimel, 2008."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La expectativa razonable de privacidad depende de:",
+ o:["Si el hecho ocurrió en un lugar público o privado","Lo que la persona podía esperar razonablemente en esa situación concreta","La notoriedad de la persona afectada","Si existía consentimiento previo para otra publicación"],c:1,
+ w:["El lugar es un indicio, no el criterio: hay conversaciones privadas en lugares públicos.",
+    "",
+    "La notoriedad influye en la ponderación, no define la expectativa.",
+    "El consentimiento para una exposición no se extiende a otras."],
+ e:"Quien acepta ser fotografiado en un acto oficial no consiente imágenes de su domicilio. Cada exposición requiere su propia justificación."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La desindexación de un resultado de búsqueda implica que:",
+ o:["El contenido original se elimina del sitio del medio","Se retira el enlace de la lista de resultados asociada a un nombre, sin afectar a la publicación original","El medio debe rectificar la información","La noticia deja de ser accesible"],c:1,
+ w:["El contenido publicado permanece: esa fue la distinción central del caso de 2014.",
+    "",
+    "La rectificación es un mecanismo distinto, con otros requisitos.",
+    "La pieza sigue siendo accesible por otras vías, incluido el propio archivo."],
+ e:"Confundir desindexar con despublicar es el error más frecuente al gestionar estas peticiones en una redacción."},
+
+/* ---------- BLOQUE B · DECISIONES EDITORIALES ---------- */
+{blk:"BLOQUE B · DECISIONES EDITORIALES", t:"mcq",
+ s:"Llega una carta que anuncia acciones legales y exige la retirada íntegra del reportaje, sin identificar qué afirmación es falsa.",
+ q:"¿Qué corresponde responder?",
+ o:["Retirar la pieza mientras se estudia el asunto","Pedir por escrito qué afirmación concreta se impugna y con qué base, ofreciendo publicar su versión","Ignorar la carta hasta que haya demanda","Publicar la carta íntegra como respuesta"],c:1,
+ w:["La retirada preventiva convierte la amenaza en un método eficaz y no repara nada.",
+    "",
+    "Ignorarla desaprovecha la oportunidad de detectar un error y de documentar la diligencia.",
+    "Publicar la carta no responde a la reclamación y puede plantear otros problemas."],
+ e:"Ese intercambio identifica errores reales, documenta la actuación del medio y sitúa la discusión en hechos concretos en lugar de en la amenaza."},
+
+{blk:"BLOQUE B · DECISIONES EDITORIALES", t:"mcq",
+ s:"La pieza revela el tratamiento médico de un cargo público. El dato está confirmado por dos fuentes.",
+ q:"¿Qué determina si puede publicarse?",
+ o:["Que esté confirmado por dos fuentes independientes","Que ese dato explique algo relevante sobre el ejercicio del cargo que se esté ocultando","Que la persona sea un cargo público","Que otros medios lo hayan publicado"],c:1,
+ w:["La confirmación acredita veracidad, que no es lo discutido frente a la intimidad.",
+    "",
+    "El cargo público no pierde la privacidad sobre su salud por el hecho de serlo.",
+    "La difusión previa por otros no traslada la responsabilidad editorial."],
+ e:"La salud tiene protección reforzada. Y cuando hay interés público suele bastar informar del efecto —ausencias, delegación de funciones— sin publicar el diagnóstico."},
+
+{blk:"BLOQUE B · DECISIONES EDITORIALES", t:"mcq",
+ s:"Los padres de un menor implicado en un suceso autorizan la publicación de una fotografía identificable.",
+ q:"¿Qué corresponde?",
+ o:["Publicar: hay consentimiento de los representantes legales","No publicar salvo que la identificación sea imprescindible para acreditar el hecho, y comprobar la identificación indirecta","Publicar con el rostro difuminado y el nombre completo","Consultar al menor si tiene más de catorce años"],c:1,
+ w:["El consentimiento parental no sustituye a la justificación: el perjuicio recae sobre el menor durante años.",
+    "",
+    "El nombre completo identifica igual que el rostro; difuminar solo la imagen no resuelve nada.",
+    "La opinión del menor es relevante y no convierte la publicación en justificada."],
+ e:"En categorías protegidas la regla se invierte: no identificar es el criterio por defecto. Y edad, centro, barrio y fecha identifican con la misma eficacia que un nombre."},
+
+{blk:"BLOQUE B · DECISIONES EDITORIALES", t:"mcq",
+ s:"Tres días después de publicar detectas un dato secundario inexacto. Nadie ha reclamado.",
+ q:"¿Qué haces?",
+ o:["Esperar a que alguien lo señale","Corregir de inmediato con nota visible, específica y vinculada a la pieza","Modificar el texto silenciosamente","Corregirlo solo si afecta al núcleo de la investigación"],c:1,
+ w:["Esperar convierte un error corregible en munición para quien quiera desacreditar la pieza.",
+    "",
+    "El cambio silencioso destruye la confianza si alguien lo descubre, y es más grave que el error.",
+    "La relevancia del dato no cambia la obligación de exactitud."],
+ e:"Una corrección visible acredita diligencia continuada, que es justo lo que se examina al discutir si el medio actuó de buena fe."},
+
+{blk:"BLOQUE B · DECISIONES EDITORIALES", t:"mcq",
+ s:"Una persona absuelta hace años pide retirar del archivo la noticia de su procesamiento.",
+ q:"¿Cuál es la respuesta adecuada?",
+ o:["Despublicar la pieza: fue absuelta","Actualizar la pieza con la absolución en lugar visible y mantener el archivo","Desindexarla de los buscadores desde el propio medio","No hacer nada: la noticia era veraz"],c:1,
+ w:["Borrar contenido veraz altera el registro público de lo ocurrido.",
+    "",
+    "La desindexación la decide el buscador, no el medio.",
+    "La veracidad original no exime de reflejar el desenlace posterior."],
+ e:"La actualización repara el daño real —quien encuentre la pieza leerá la absolución— y además mejora la exactitud del archivo."},
+
+{blk:"BLOQUE B · DECISIONES EDITORIALES", t:"mcq",
+ s:"Hay una investigación judicial abierta y sin sentencia. El titular propuesto afirma que el investigado «cometió fraude».",
+ q:"¿Qué problema plantea?",
+ o:["Ninguno, si la investigación existe","Afirma la comisión de un delito antes de sentencia, afectando a la presunción de inocencia","Solo es problemático si el investigado es un particular","Basta añadir «presuntamente» al titular"],c:1,
+ w:["La existencia de investigación acredita la fase procesal, no la comisión.",
+    "",
+    "La presunción de inocencia ampara a cualquier persona investigada.",
+    "El adverbio no corrige una estructura que afirma el hecho: hay que describir qué se investiga y en qué fase."],
+ e:"La formulación precisa —qué se atribuye, quién lo investiga, en qué fase, con qué documentos— no debilita la pieza: la hace inatacable donde una demanda buscaría el error."},
+
+/* ---------- BLOQUE C · PONDERACIÓN Y DEFENSA ---------- */
+{blk:"BLOQUE C · PONDERACIÓN Y DEFENSA", t:"mcq",
+ q:"Entre los criterios de ponderación entre información y vida privada NO figura:",
+ o:["La contribución a un debate de interés general","El número de lectores que el medio espera obtener","El modo de obtención de la información","La conducta previa del afectado respecto de los medios"],c:1,
+ w:["Es el primero de la lista y el más determinante.",
+    "",
+    "El modo de obtención puede decidir el caso aunque el contenido sea de interés general.",
+    "Quien buscó la exposición sobre un aspecto difícilmente invoca reserva sobre ese mismo aspecto."],
+ e:"El interés comercial de la publicación no es un criterio de ponderación. Los seis criterios se recorren uno a uno, antes de publicar y en la defensa."},
+
+{blk:"BLOQUE C · PONDERACIÓN Y DEFENSA", t:"mcq",
+ q:"Que una persona sea muy conocida implica que:",
+ o:["Cualquier aspecto de su vida es publicable","Se pondera su notoriedad junto con el objeto de la información, sin que la fama justifique por sí sola la intromisión","Renuncia a su derecho a la intimidad","Solo conserva privacidad en su domicilio"],c:1,
+ w:["Es exactamente lo que la jurisprudencia europea rechazó en 2004.",
+    "",
+    "No existe renuncia: hay ponderación caso por caso.",
+    "La privacidad no se delimita por espacios físicos sino por expectativas razonables."],
+ e:"La fama no es interés público. La imagen privada solo se justifica por su contribución a un debate concreto, y esa contribución debe ser visible en la pieza."},
+
+{blk:"BLOQUE C · PONDERACIÓN Y DEFENSA", t:"mcq",
+ q:"El derecho de rectificación:",
+ o:["Solo procede si se acredita que la información es falsa","Permite al aludido difundir su versión sobre hechos que le conciernen, sin que implique reconocer falsedad","Obliga al medio a retirar la información","Sustituye a la corrección de errores"],c:1,
+ w:["En numerosos ordenamientos no exige acreditar falsedad para ejercerse.",
+    "",
+    "No comporta retirada: es difusión de la versión del aludido.",
+    "Rectificación y corrección son mecanismos distintos: una es réplica ajena, otra asunción de error propio."],
+ e:"Tratarlo como una derrota editorial lleva a resistirse a algo que suele ser barato, razonable y que refuerza la posición del medio."},
+
+{blk:"BLOQUE C · PONDERACIÓN Y DEFENSA", t:"mcq",
+ q:"La excepción periodística en protección de datos ampara el tratamiento:",
+ o:["De cualquier dato que la redacción decida conservar","Efectivamente periodístico y proporcionado al fin informativo","Solo si el afectado ha sido informado previamente","Únicamente de datos ya publicados por otros"],c:1,
+ w:["No es un cheque en blanco: conservar datos sin relación con la investigación queda fuera.",
+    "",
+    "Informar previamente al investigado destruiría buena parte de las investigaciones y no es el requisito.",
+    "La publicación previa por terceros no determina la licitud del tratamiento propio."],
+ e:"La minimización de datos tiene aquí su traducción jurídica: lo que no sostiene la investigación no debería estar en tus archivos, y su presencia debilita al medio."},
+
+{blk:"BLOQUE C · PONDERACIÓN Y DEFENSA", t:"mcq",
+ q:"Ante un titular que imputa un nexo causal no acreditado, la reformulación correcta consiste en:",
+ o:["Añadir «presuntamente» y mantener la estructura","Exponer los hechos documentados y su cronología, sin afirmar el nexo","Atribuir la afirmación a fuentes anónimas","Publicarlo como opinión firmada"],c:1,
+ w:["El adverbio no corrige una estructura que afirma el hecho.",
+    "",
+    "Atribuir a fuentes indeterminadas traslada la afirmación sin fundamentarla.",
+    "Convertir en opinión un hecho no acreditado no elimina la imputación."],
+ e:"La fuerza informativa no disminuye al exponer hechos y cronología: lo que disminuye es la vulnerabilidad de la pieza."},
+
+{blk:"BLOQUE C · PONDERACIÓN Y DEFENSA", t:"mcq",
+ q:"La identificación indirecta se produce cuando:",
+ o:["Se publica el nombre sin fotografía","Un conjunto de datos permite reconocer a la persona aunque no se publiquen nombre ni rostro","Se cita a un familiar de la persona","Se publica una imagen difuminada"],c:1,
+ w:["Publicar el nombre es identificación directa.",
+    "",
+    "La mención de un familiar puede contribuir a ella, pero no la define.",
+    "Difuminar reduce la identificación visual; el conjunto de datos puede seguir identificando."],
+ e:"Se comprueba con la misma prueba de deducción que protege a las fuentes: entregar el borrador a alguien del entorno y preguntar si reconocería a quién se refiere."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que acredita diligencia ante una reclamación por difamación.",
+ o:["El registro de comprobaciones realizadas","La petición de comentarios al afectado y su respuesta o silencio","Los documentos que sustentan cada afirmación de hecho","El número de lectores que alcanzó la pieza","La corrección publicada de los errores detectados"],
+ c:[0,1,2,4],
+ w:["","","","El alcance de la publicación puede influir en la valoración del daño, pero no acredita el cuidado con que se elaboró.",""],
+ e:"La diligencia se demuestra con documentos, no con declaraciones. Por eso la matriz documental es a la vez método y defensa."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todos</strong> los criterios que la jurisprudencia europea utiliza para ponderar información y vida privada.",
+ o:["Contribución a un debate de interés general","Notoriedad del afectado y objeto de la información","Modo de obtención de la información y su veracidad","Línea editorial del medio","Gravedad de la sanción impuesta"],
+ c:[0,1,2,4],
+ w:["","","","La orientación editorial del medio no forma parte de la ponderación: se juzga la publicación concreta, no la ideología del emisor.",""],
+ e:"Recorrer los criterios uno a uno antes del cierre es más eficaz que discutirlos después ante un tribunal."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el análisis de riesgo de una pieza antes de publicar.",
+ o:["Identificar qué derecho podría invocarse frente a cada afirmación","Comprobar la prueba de diligencia disponible para cada hecho","Ponderar con los seis criterios los elementos que afecten a la vida privada","Revisar imágenes y categorías con protección reforzada","Reformular las afirmaciones cuyo riesgo no esté cubierto"],
+ c:[0,1,2,3,4],
+ e:"El orden evita el error más común: preparar una defensa de veracidad frente a un reproche que no discute la verdad sino la intromisión."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las respuestas posibles a una petición sobre el archivo, de menor a mayor alteración del registro público.",
+ o:["Añadir una actualización con el desenlace posterior","Publicar la rectificación del afectado","Corregir un error acreditado en el texto","Retirar el nombre manteniendo la pieza","Despublicar la pieza completa"],
+ c:[0,1,2,3,4],
+ e:"La respuesta por defecto es actualizar. Cada escalón adicional exige una justificación mayor, y el último debería ser excepcional y documentado."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>

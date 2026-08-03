@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1004 · Unidad 4 — Ética Comparada y Autorregulación</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1004, Unidad 4.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  .tab.exam{color:var(--amber)}
+  .tab.exam.on{color:var(--amber);border-color:var(--line);border-bottom-color:var(--bg)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:7px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .score.big{font-size:.95rem;color:var(--amber);padding:14px 18px;background:#3a2408;border:1px solid #6b4d16;border-radius:8px;letter-spacing:.06em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course on" href="jrn1004-u4.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1004 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Ética Comparada y Autorregulación</h2>
+  <div class="sub">Unidad 4 de 4 · Leyes de Prensa y Ética Comparada</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1004-u1.html">Unidad 1: Libertad de Expresión y sus Límites</a>
+    <a class="unit" href="jrn1004-u2.html">Unidad 2: Difamación, Honor y Privacidad</a>
+    <a class="unit" href="jrn1004-u3.html">Unidad 3: Fuentes, Acceso a la Información y Secretos</a>
+    <span class="unit on">Unidad 4: Ética Comparada y Autorregulación</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Lo legal y lo correcto no coinciden. Hay prácticas perfectamente lícitas que destruyen la credibilidad de una redacción, y decisiones éticamente irreprochables que acaban en un tribunal. Esta unidad trata el sistema que gobierna esa zona: códigos, consejos de prensa, defensores del lector y, sobre todo, criterios aplicables antes de publicar.</p>
+    <p style="margin-bottom:0">El eje es que <strong>la autorregulación funciona cuando es específica y verificable</strong>. Un código que proclama valores no resuelve ningún caso; uno que fija procedimientos —cuándo se admite el engaño, qué se hace con un conflicto de interés, cómo se corrige un error— sí. La diferencia entre ambos es la diferencia entre una declaración y una herramienta.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab exam" data-t="exa">Examen Integrador</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Distinguir la obligación jurídica de la exigencia deontológica, y resolver casos donde ambas divergen.</li>
+      <li>Comparar los principales modelos de autorregulación y evaluar su eficacia real.</li>
+      <li>Aplicar la prueba de justificación al engaño, la cámara oculta y otras técnicas encubiertas.</li>
+      <li>Gestionar conflictos de interés, acuerdos de confidencialidad y peticiones de pago de fuentes.</li>
+      <li>Reconocer los mecanismos organizativos que permiten la fabricación y el plagio, y las medidas que los previenen.</li>
+      <li>Construir una lista de comprobación previa a la publicación que integre lo jurídico y lo ético.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Bill Kovach y Tom Rosenstiel, <em>The Elements of Journalism</em> — obligaciones con el ciudadano e independencia</li>
+      <li>Stephen J. A. Ward, <em>Global Journalism Ethics</em> — ética comparada y transcultural</li>
+      <li>Federación Internacional de Periodistas, <em>Carta Ética Global del Periodismo</em> (2019)</li>
+      <li>Society of Professional Journalists, <em>Code of Ethics</em> (revisión de 2014)</li>
+      <li>Brant Houston e IRE, <em>The Investigative Reporter's Handbook</em> — decisiones éticas en investigación</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>FIP — Carta Ética Global del Periodismo</h5>
+        <div class="def">Adoptada en 2019 por la Federación Internacional de Periodistas, actualiza la declaración de principios de 1954 y fija dieciséis obligaciones profesionales: respeto a los hechos, rectificación, protección de fuentes, rechazo de la incitación al odio y de la injerencia comercial.</div>
+        <p class="src">FIP · Túnez, 2019</p></div>
+      <div class="term"><h5>SPJ — Code of Ethics</h5>
+        <div class="def">El código de la Society of Professional Journalists, revisado en 2014, se organiza en cuatro principios: buscar la verdad e informarla, minimizar el daño, actuar de forma independiente y ser responsable y transparente.</div>
+        <p class="src">Society of Professional Journalists, 2014</p></div>
+      <div class="term"><h5>Consejos de prensa y autorregulación</h5>
+        <div class="def">Órganos de autorregulación que resuelven quejas del público sobre contenidos, con distinto grado de independencia, participación y capacidad de sanción según el país. Su eficacia depende de la publicidad de sus decisiones.</div>
+        <p class="src">Modelos nacionales de autorregulación</p></div>
+      <div class="term"><h5>ONO — Defensores del lector</h5>
+        <div class="def">La Organización de Ombudsman y Editores de Estándares agrupa a quienes ejercen esa función dentro de los medios: recibir quejas, investigarlas y publicar sus conclusiones con independencia de la dirección.</div>
+        <p class="src">Organization of News Ombudsmen and Standards Editors</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad contiene el <strong>Examen Integrador</strong> de JRN-1004, que abarca las cuatro unidades. Se aprueba con un 75%, conforme a los requisitos de graduación del certificado. Es requisito haber completado las pruebas y entregas de las Unidades 1 a 3.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Lo legal y lo correcto</h3>
+    <p>Los dos sistemas se solapan y no coinciden. Publicar el nombre de una víctima puede ser lícito y devastador; grabar con cámara oculta puede ser ético y a la vez generar responsabilidad por el modo de obtención. Trabajar solo con el criterio jurídico produce piezas defendibles e indefendibles a la vez.</p>
+    <p>La regla operativa es sencilla y exigente: la comprobación legal marca el suelo, no el techo. Una redacción que solo pregunta «¿me pueden demandar?» acabará publicando cosas que no puede sostener ante sus lectores.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Haz siempre las dos preguntas: ¿es lícito? y ¿es defendible ante quien resulte afectado y ante el lector? Las respuestas no siempre coinciden y ambas condicionan la decisión.</div>
+
+    <h3>Qué obliga un código</h3>
+    <p>Los códigos deontológicos no son normas jurídicas: obligan por adhesión profesional y por la fuerza de la publicidad de su incumplimiento. Su utilidad depende del grado de concreción: un código que proclama la búsqueda de la verdad no resuelve nada, uno que dice qué hacer ante un regalo de una fuente sí.</p>
+    <p>Los grandes códigos internacionales coinciden en un núcleo común: exactitud y rectificación, independencia frente a intereses ajenos, protección de fuentes, minimización del daño y transparencia sobre los propios métodos.</p>
+    <div class="ej"><b>CRITERIO</b>Evalúa un código por lo que permite decidir un martes a las ocho de la tarde. Si no ayuda a resolver el caso concreto, es una declaración de intenciones.</div>
+
+    <h3>Modelos de autorregulación</h3>
+    <p>Existen tres mecanismos principales, y funcionan mejor combinados que aislados: los consejos de prensa, que resuelven quejas del público; los defensores del lector, internos y con independencia editorial; y los libros de estilo, que fijan criterios verificables para el trabajo diario.</p>
+    <p>La eficacia de un consejo no depende de su capacidad sancionadora sino de la publicidad de sus decisiones y de la participación de los medios: uno que publica resoluciones motivadas y obliga a difundirlas genera más incentivos que uno con potestad formal que nadie conoce.</p>
+    <div class="ej"><b>COMPARACIÓN</b>Donde la autorregulación es débil o cautiva, la respuesta habitual es regulación estatal, que introduce al poder político en la definición de los estándares. Es un argumento práctico, y no solo gremial, a favor de que la autorregulación funcione.</div>
+
+    <h3>Conflictos de interés</h3>
+    <p>Un conflicto de interés no exige mala fe ni beneficio efectivo: basta una relación que un observador razonable consideraría capaz de influir en el trabajo. Y su daño no depende de que haya influido realmente, sino de que no pueda descartarse.</p>
+    <ul>
+      <li>Relaciones personales, familiares o económicas con quien aparece en la información.</li>
+      <li>Regalos, viajes pagados, invitaciones y colaboraciones remuneradas.</li>
+      <li>Actividad política o asociativa relacionada con la materia cubierta.</li>
+      <li>Intereses del propietario del medio y presiones comerciales.</li>
+    </ul>
+    <div class="ej"><b>REGLA</b>Declarar y apartarse es siempre más barato que explicar después. Y cuando el conflicto es del medio y no del periodista, la transparencia con el lector es la única salida disponible.</div>
+
+    <h3>El engaño y la cámara oculta</h3>
+    <p>Obtener información ocultando la condición de periodista es una excepción, no una técnica más, porque contradice la exigencia de transparencia de métodos. Los criterios profesionales consolidados exigen que se cumplan varias condiciones a la vez.</p>
+    <ol>
+      <li>La información buscada es de interés público excepcional.</li>
+      <li>No existe ninguna vía alternativa razonable para obtenerla.</li>
+      <li>El daño evitado por la publicación supera el causado por el engaño.</li>
+      <li>La decisión se adopta en el nivel editorial adecuado y queda documentada.</li>
+      <li>Se explica al público, en la propia pieza, por qué se recurrió a ese método.</li>
+    </ol>
+    <div class="ej"><b>ADVERTENCIA</b>La licitud del contenido publicado no protege frente a la responsabilidad por el modo de obtenerlo. Son dos cuestiones distintas y pueden resolverse en sentidos opuestos.</div>
+
+    <h3>Acuerdos con fuentes</h3>
+    <p>Las expresiones que regulan la relación con una fuente significan cosas distintas en cada redacción y en cada país, y esa ambigüedad es la causa de la mayoría de los conflictos. Lo que evita el problema es pactar el alcance exacto antes de la conversación y por escrito interno.</p>
+    <p>Un acuerdo debe fijar cuatro cosas: si la información es publicable, si puede atribuirse, cómo se describirá a la fuente y qué ocurre si otro medio la identifica. Y una vez pactado, obliga: renegociarlo después de obtener el material destruye la confianza de todo un sector.</p>
+    <div class="ej"><b>MÉTODO</b>Antes de empezar, di en voz alta lo que has entendido: «esto lo publico atribuido a fuentes del ministerio, sin tu cargo». Que la fuente confirme evita el noventa por ciento de las disputas.</div>
+
+    <h3>El pago a fuentes</h3>
+    <p>Pagar por información está prohibido o fuertemente desaconsejado en la mayoría de los códigos, por una razón práctica antes que moral: introduce un incentivo para exagerar o inventar, y contamina la evaluación de la credibilidad.</p>
+    <p>Hay zonas grises legítimas: compensar gastos o el tiempo de un trabajador que pierde una jornada no es comprar un testimonio. La diferencia está en si el pago depende del contenido de lo que se cuente.</p>
+    <div class="ej"><b>PRUEBA</b>¿La cantidad cambia si lo que cuenta resulta menos espectacular? Si la respuesta es sí, no es una compensación: es una compra, y así lo leerá el lector si se descubre.</div>
+
+    <h3>Plagio y fabricación</h3>
+    <p>Son las dos faltas que ningún sistema profesional tolera, porque atacan la base del oficio: la primera se apropia del trabajo ajeno, la segunda destruye la relación entre el texto y la realidad. Y ambas suelen aparecer en contextos organizativos reconocibles.</p>
+    <p>Los casos documentados en grandes redacciones muestran patrones comunes: presión por producir, historias demasiado redondas que nadie contrasta, autores con estatus que no se revisan y ausencia de verificación sistemática del material.</p>
+    <div class="ej"><b>PREVENCIÓN</b>La medida que más previene no es la advertencia moral, sino el procedimiento: verificación independiente del material, contacto directo con las personas citadas y revisión igual para todos, con independencia del prestigio del autor.</div>
+
+    <h3>Transparencia y corrección</h3>
+    <p>La confianza no se sostiene afirmando que se es riguroso, sino mostrando cómo se trabaja: explicar de dónde salió la información, qué no se pudo confirmar, quién se negó a hablar y qué se corrigió después.</p>
+    <p>Es exactamente el principio de transparencia de método de la Unidad 1 de JRN-1001, aplicado ahora a la relación con el público: convierte al lector en alguien capaz de evaluar el trabajo, en lugar de pedirle que confíe.</p>
+    <div class="ej"><b>REGLA</b>Publica siempre lo que no pudiste comprobar. Es la parte que más credibilidad aporta y la primera que se elimina cuando falta espacio.</div>
+
+    <h3>La lista de comprobación final</h3>
+    <p>Antes de publicar, una investigación debería pasar una revisión que integre las dos dimensiones. Jurídica: qué afirmaciones podrían generar reclamación, qué prueba de diligencia existe, qué derechos de terceros se afectan y si se ofreció réplica. Ética: qué daño causa a personas concretas, si es proporcionado al interés público, qué métodos se usaron y si se explican.</p>
+    <p>La lista funciona porque se aplica siempre, también cuando el cierre aprieta y sobre todo cuando la pieza es buena. Las decisiones que se lamentan después casi nunca se toman por desconocimiento, sino por prisa.</p>
+    <div class="ej"><b>REGLA FINAL</b>Escribe la lista una vez, en frío, y aplícala igual a todas las piezas. Un criterio que solo se aplica a las historias dudosas no es un criterio: es una intuición.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Conversación con el director comercial del medio, que pide retirar una información sobre un anunciante importante alegando que el momento es inoportuno y que la empresa ha amenazado con cancelar su contrato publicitario.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes acusarle de censura ni ignorar la situación económica del medio. Cada pregunta debe apuntar a un procedimiento o a un criterio verificable. Si señala un error factual en la pieza, tienes que poder atenderlo.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">PROTOCOLO EDITORIAL · OBLIGATORIO</span>
+      <p>Redacta el protocolo ético y jurídico de una redacción pequeña. Entrega: la lista de comprobación previa a la publicación, con sus dos dimensiones; el procedimiento ante conflictos de interés, incluidos los del propietario; los criterios y el nivel de decisión para el uso de técnicas encubiertas; la política de acuerdos con fuentes y de compensación de gastos; y el procedimiento de corrección, con plazos y visibilidad.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Lista de comprobación aplicable a un caso real, no genérica (25%) · Procedimiento de conflictos que alcance también al medio y a su propiedad (20%) · Criterios de técnicas encubiertas con las cinco condiciones y nivel de decisión (20%) · Política de fuentes que fije alcance, atribución y descripción (20%) · Procedimiento de corrección con plazo, formato y visibilidad (15%). Un protocolo que enuncie valores sin procedimientos no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="exa">
+    <h3>Examen Integrador · JRN-1004</h3>
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">ALCANCE Y CALIFICACIÓN</div>
+      <p>Este examen abarca las cuatro unidades del curso. Se aprueba con un <strong>75%</strong>. Consta de tres partes: opción múltiple (40%), dictamen sobre una restricción (30%) y memorando editorial (30%).</p>
+      <p style="margin-bottom:0">La Parte A es interactiva y se califica sola. Las Partes B y C se entregan por escrito.</p>
+    </div>
+
+    <h3>Parte A · Opción múltiple (40%)</h3>
+    <p style="font-size:.88rem">Doce preguntas sobre las cuatro unidades. Cada una indica de qué unidad procede.</p>
+    <div class="score big" id="escore">RESPONDIDAS 0 / 12 · CORRECTAS 0 · CALIFICACIÓN —</div>
+    <div id="exam"></div>
+
+    <h3>Parte B · Dictamen sobre una restricción (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · 800–1.000 PALABRAS</span>
+      <p>Se entrega el día del examen una medida real: una orden de retirada, una denegación de acceso o un requerimiento de identificación de fuentes. El estudiante debe recorrer el test tripartito, determinar en qué paso falla o por qué lo supera, identificar las garantías procedimentales exigibles y redactar la respuesta que enviaría el medio.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS PARTE B</b>Identificación de la norma y evaluación de su precisión (20%) · Encaje del fin alegado en la lista cerrada (20%) · Análisis de necesidad y proporcionalidad con alternativa concreta (30%) · Garantías procedimentales exigibles (15%) · Redacción de la respuesta, exacta y utilizable (15%).</div>
+    </div>
+
+    <h3>Parte C · Memorando editorial (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · EXPEDIENTE CERRADO</span>
+      <p>Se entrega un expediente con: una pieza lista para publicar que afecta al honor de un cargo y a la intimidad de un tercero, una fuente interna en riesgo, una grabación obtenida sin identificarse como periodista y una presión comercial documentada. El estudiante produce el memorando que permitiría publicar.</p>
+      <button class="reveal">Ver estructura y criterios</button>
+      <div class="model"><b>ESTRUCTURA EXIGIDA</b>1. Afirmaciones de riesgo, derecho afectado y prueba de diligencia.<br>2. Ponderación con los seis criterios en lo que afecte a la vida privada.<br>3. Justificación —o rechazo— del método encubierto, con las cinco condiciones.<br>4. Medidas de protección de la fuente y prueba de deducción aplicada al texto.<br>5. Gestión de la presión comercial y su declaración al lector si procede.<br>6. Derecho de réplica y procedimiento de corrección previsto.<br><br><b>CRITERIOS</b>Identificación correcta del derecho en juego en cada afirmación (20%) · Ponderación estructurada (20%) · Decisión razonada sobre el método encubierto (20%) · Protección real de la fuente (20%) · Tratamiento de la presión comercial y transparencia (20%).</div>
+    </div>
+
+    <div class="box">
+      <div class="lbl">REQUISITOS DE GRADUACIÓN DEL CERTIFICADO</div>
+      <p style="margin-bottom:0">Estudiar las 4 unidades de las 6 materias · Aprobar la evaluación de cada módulo · Aprobar el examen integrador de cada materia con un mínimo de 75% · Acreditar los 19 créditos universitarios para desbloquear el diploma.</p>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 4</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o doctrina establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1004-u3.html">← Unidad 3: Fuentes, Acceso a la Información y Secretos</a> &nbsp;·&nbsp; <a href="jrn1004-u1.html">Volver al inicio del curso</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Autorregulación",d:"Conjunto de mecanismos con que la propia profesión fija y hace cumplir sus estándares: códigos, consejos de prensa, defensores del lector y libros de estilo.",s:"Modelos nacionales · doctrina establecida"},
+ {t:"Código Deontológico",d:"Documento que enuncia obligaciones profesionales. Su utilidad depende de su concreción: obliga por adhesión y por la publicidad de su incumplimiento.",s:"FIP, 2019 · SPJ, 2014"},
+ {t:"Consejo de Prensa",d:"Órgano de autorregulación que resuelve quejas del público sobre contenidos. Su eficacia depende de la publicidad de sus decisiones más que de su capacidad sancionadora.",s:"Modelos comparados de autorregulación"},
+ {t:"Defensor del Lector",d:"Figura interna que recibe quejas, las investiga y publica sus conclusiones con independencia de la dirección del medio.",s:"Organization of News Ombudsmen"},
+ {t:"Conflicto de Interés",d:"Relación que un observador razonable consideraría capaz de influir en el trabajo. Su daño no exige que haya influido, solo que no pueda descartarse.",s:"SPJ Code of Ethics · práctica establecida"},
+ {t:"Método Encubierto",d:"Obtención de información ocultando la condición de periodista. Es una excepción sujeta a condiciones acumulativas y debe explicarse al público.",s:"Códigos deontológicos · práctica profesional"},
+ {t:"Acuerdo con la Fuente",d:"Pacto previo sobre si la información es publicable, si puede atribuirse y cómo se describirá a la fuente. Debe fijarse antes de la conversación.",s:"Práctica profesional establecida"},
+ {t:"Pago a Fuentes",d:"Entrega de dinero a cambio de información. Está desaconsejado porque introduce un incentivo para exagerar o inventar y contamina la evaluación de credibilidad.",s:"Códigos deontológicos comparados"},
+ {t:"Plagio",d:"Apropiación del trabajo ajeno sin atribución. Es una de las dos faltas que ningún sistema profesional tolera.",s:"Códigos deontológicos · casos documentados"},
+ {t:"Fabricación",d:"Invención de hechos, citas o personajes. Destruye la relación entre el texto y la realidad, que es la base del oficio.",s:"Casos documentados en grandes redacciones"},
+ {t:"Independencia Editorial",d:"Separación entre las decisiones informativas y los intereses comerciales, políticos o de propiedad del medio.",s:"FIP, Carta Ética Global, 2019"},
+ {t:"Transparencia de Método",d:"Explicación pública de cómo se obtuvo la información, qué no se pudo confirmar y quién se negó a hablar. Sustituye la petición de confianza por la posibilidad de evaluación.",s:"Kovach y Rosenstiel · JRN-1001 Unidad 1"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · THE NEW YORK TIMES · MAYO DE 2003",t:"Jayson Blair: cuando el sistema no revisa",
+  d:"En mayo de 2003 <em>The New York Times</em> publicó un extenso informe sobre las prácticas de uno de sus reporteros, Jayson Blair, que había fabricado citas y detalles y plagiado material de otros medios en decenas de artículos, describiendo escenas de lugares a los que no había viajado. El periódico reconoció públicamente el fallo, detalló los artículos afectados y el episodio derivó en la dimisión de sus dos máximos responsables editoriales. El análisis posterior señaló factores organizativos: señales de alarma previas que no se atendieron, escasa verificación del material y una supervisión desigual.",
+  ej:"El caso no se explica por la conducta de una persona, sino por un sistema que permitió que esa conducta pasara desapercibida durante meses. Esa es la parte replicable en cualquier redacción.",
+  p:["¿Qué señales organizativas anticipan un caso así?","¿Por qué publicar el informe completo fue la decisión correcta?","¿Qué procedimiento lo habría detectado antes?"],
+  m:"Las señales suelen ser las mismas: historias demasiado redondas que nadie contrasta, ausencia de gastos de viaje coherentes con lo publicado, fuentes que nunca están disponibles para el editor, quejas previas archivadas y una supervisión que varía según el prestigio del autor. Publicar el informe completo fue correcto porque la alternativa —una nota breve— habría dejado a los lectores sin saber qué artículos podían creer, y porque la credibilidad se recupera mostrando el fallo, no minimizándolo. Lo habría detectado antes un procedimiento elemental: contacto directo del editor con una muestra de las personas citadas, verificación de la presencia física en el lugar y revisión sistemática e igual para todos.",
+  k:"La fabricación no es solo un fallo moral individual: prospera donde no hay verificación sistemática ni revisión igual para todos."},
+
+ {tag:"CASO 2 · DER SPIEGEL · DICIEMBRE DE 2018",t:"Relotius: el premio como señal",
+  d:"En diciembre de 2018 la revista alemana <em>Der Spiegel</em> hizo público que uno de sus redactores, Claas Relotius, había falsificado de forma sistemática reportajes durante años, inventando escenas, personajes y citas. El caso salió a la luz por las dudas planteadas por un colega que había trabajado con él en un reportaje conjunto. La revista publicó una investigación interna detallada y revisó los textos afectados. Relotius había recibido numerosos premios periodísticos por trabajos que después se demostraron total o parcialmente fabricados.",
+  ej:"Los textos eran narrativamente perfectos: personajes que decían exactamente lo que la historia necesitaba, escenas que cerraban con una frase memorable. Esa perfección es, precisamente, la señal de alarma.",
+  p:["¿Por qué los premios no funcionan como control de calidad?","¿Qué papel tuvo el colega que dudó?","¿Cómo se verifica un reportaje narrativo?"],
+  m:"Los premios evalúan el resultado narrativo y no el procedimiento: valoran cómo está contado, no si las personas existen ni si dijeron lo que se les atribuye, de modo que un texto fabricado con oficio compite con ventaja. El colega que dudó cumplió la función que ningún sistema automático realiza —comprobar lo que no encaja y sostener la duda pese al prestigio del compañero—, y su papel muestra que los controles dependen de que exista un canal seguro para plantear sospechas. Un reportaje narrativo se verifica igual que cualquier otro: contacto independiente con las personas citadas, comprobación de la presencia en el lugar, documentación de gastos y trayectos, y revisión de las citas más determinantes.",
+  k:"Una historia que encaja demasiado bien merece más verificación, no menos. El prestigio del autor no es un método de comprobación."},
+
+ {tag:"CASO 3 · ESTADOS UNIDOS · AÑOS NOVENTA",t:"Food Lion: veraz y aun así condenado",
+  d:"A comienzos de los años noventa, periodistas de una cadena estadounidense de televisión se emplearon con identidades falsas en supermercados de la empresa Food Lion y grabaron con cámara oculta prácticas de manipulación de alimentos. La empresa no demandó por difamación —lo que habría exigido discutir la veracidad del reportaje— sino por fraude en la contratación y otras conductas relacionadas con el modo de obtención. Un jurado concedió inicialmente una indemnización muy elevada, que fue drásticamente reducida en apelación, donde el tribunal descartó buena parte de los fundamentos de la condena.",
+  ej:"La estrategia procesal es la lección: al demandar por el método y no por el contenido, la empresa evitó tener que discutir si lo publicado era cierto. El periodismo puede ser veraz y perder igualmente.",
+  p:["¿Qué enseña sobre la relación entre método y contenido?","¿Cuándo se justifica el empleo encubierto?","¿Cómo se documenta esa decisión?"],
+  m:"Enseña que la licitud del contenido y la del método se juzgan por separado, de modo que una investigación impecable en sus hechos puede generar responsabilidad por cómo se obtuvieron, y que el afectado elegirá siempre el terreno donde tenga más posibilidades. El empleo encubierto se justifica cuando concurren de forma acumulativa el interés público excepcional, la ausencia de alternativas razonables, la proporción entre el daño evitado y el causado, la decisión adoptada en el nivel editorial adecuado y la explicación pública del método. Y se documenta antes, con un acta interna que recoja quién decidió, con qué motivos y qué alternativas se descartaron, porque esa documentación es la defensa cuando el debate llegue.",
+  k:"La demanda no siempre ataca lo que publicaste, sino cómo lo conseguiste. Documentar la decisión sobre el método es tan importante como verificar los hechos."},
+
+ {tag:"CASO 4 · FIP · 2019",t:"Una carta ética global",
+  d:"En 2019, en su congreso celebrado en Túnez, la Federación Internacional de Periodistas adoptó la Carta Ética Global del Periodismo, que actualiza la declaración de principios aprobada en 1954. El texto recoge dieciséis obligaciones profesionales, entre ellas el respeto a los hechos y al derecho del público a la verdad, el deber de rectificar, la protección de las fuentes, el rechazo a toda incitación al odio y a la discriminación, y la negativa a aceptar remuneración o presiones de intereses ajenos a la profesión.",
+  ej:"Su valor no está en la novedad de los principios, sino en su carácter transnacional: ofrece un suelo común a periodistas que trabajan en marcos jurídicos muy distintos y a menudo hostiles.",
+  p:["¿Para qué sirve un código internacional si no obliga jurídicamente?","¿Qué añade a un código nacional?","¿Cómo se usa en la práctica?"],
+  m:"Sirve como referencia externa: permite a un periodista sostener que su conducta se ajusta a un estándar profesional reconocido internacionalmente, y a una redacción justificar decisiones ante presiones locales apelando a un criterio que no es propio ni interesado. Añade a los códigos nacionales una perspectiva comparada y una base común para el trabajo en consorcios internacionales, donde conviven tradiciones profesionales distintas. En la práctica se usa al redactar el libro de estilo, al fundamentar una negativa a una presión externa y al explicar públicamente por qué se tomó una decisión editorial impopular.",
+  k:"Un estándar profesional externo permite defender una decisión sin que parezca una preferencia personal. Esa es su utilidad concreta."},
+
+ {tag:"CASO 5 · CONSEJOS DE PRENSA Y DEFENSORES",t:"Quién responde ante el público",
+  d:"Los sistemas de autorregulación adoptan formas distintas según el país. Los consejos de prensa, en los modelos con mayor tradición, reúnen a editores, periodistas y representantes del público, resuelven quejas sobre contenidos concretos y publican decisiones motivadas que los medios adheridos se comprometen a difundir. Los defensores del lector operan dentro de cada medio, con independencia editorial, y publican columnas donde examinan quejas y errores. Ambos mecanismos coexisten con los libros de estilo, que traducen los principios en criterios verificables para el trabajo diario.",
+  ej:"La eficacia no depende de la potestad sancionadora sino de la visibilidad: una resolución publicada que un medio debe difundir tiene más efecto disuasorio que una multa simbólica que nadie conoce.",
+  p:["¿Por qué la publicidad de las decisiones es el mecanismo clave?","¿Qué ocurre cuando la autorregulación falla?","¿Puede una redacción pequeña autorregularse?"],
+  m:"Porque el activo que un medio arriesga es su credibilidad, y una resolución pública que constate un incumplimiento afecta directamente a ese activo, mientras que una sanción económica reservada no cambia el comportamiento ni informa al lector. Cuando la autorregulación falla o es percibida como cautiva, la respuesta habitual es la regulación estatal, que introduce al poder político en la definición de los estándares periodísticos, un resultado peor para todos y difícil de revertir. Una redacción pequeña puede autorregularse con instrumentos proporcionados: un libro de estilo breve, un procedimiento escrito de correcciones y la adhesión a un consejo externo que aporte la revisión independiente que internamente no puede sostener.",
+  k:"La alternativa a una autorregulación que funciona no es la libertad total: es la regulación estatal de los estándares periodísticos."},
+
+ {tag:"CASO 6 · PRESIÓN COMERCIAL",t:"El anunciante que llama",
+  d:"La presión de anunciantes y de propietarios sobre los contenidos es uno de los conflictos mejor documentados del oficio y rara vez adopta la forma de una orden explícita. Se manifiesta como sugerencias de oportunidad, retrasos indefinidos, reasignación de temas o una preocupación repentina por el rigor de una pieza concreta. Los códigos internacionales incluyen expresamente el rechazo a la injerencia comercial entre las obligaciones profesionales, y la separación entre contenido informativo y contenido pagado es hoy un estándar en la mayoría de los libros de estilo.",
+  ej:"El daño no se produce cuando se retira una pieza, sino antes: cuando el equipo aprende qué temas generan problemas y deja de proponerlos. Ese efecto no deja rastro documental.",
+  p:["¿Cómo se distingue una objeción legítima de una presión?","¿Qué procedimiento protege frente a esto?","¿Qué se le debe al lector?"],
+  m:"Una objeción legítima señala un error factual concreto, una afirmación insuficientemente acreditada o un problema de ponderación, y se resuelve comprobando; una presión invoca la oportunidad, las consecuencias comerciales o la relación con la empresa, y no puede resolverse con verificación. El procedimiento que protege es organizativo: separación formal entre las áreas comercial y editorial, decisión final atribuida por escrito al responsable editorial, y registro de las objeciones recibidas y de su resolución. Al lector se le debe transparencia cuando el medio informa sobre una empresa con la que tiene relación económica o de propiedad: declararlo en la pieza es incómodo una vez y protege la credibilidad siempre.",
+  k:"La presión comercial rara vez es una orden. Se reconoce porque invoca oportunidad y consecuencias en lugar de señalar errores comprobables."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El viaje pagado",
+  d:"Una empresa invita al periodista de la sección a un viaje con todos los gastos cubiertos para conocer sus instalaciones antes de un anuncio importante.",
+  r:"Reportero · Editora · Director comercial",
+  ej:"<span class='who'>REPORTERO:</span> Es la única forma de ver la planta.<br><span class='who'>EDITORA:</span> ¿Podemos pagarlo nosotros?<br><span class='who'>REPORTERO:</span> Es caro.<br><span class='who'>EDITORA:</span> Entonces vamos, lo declaramos en la pieza y decidimos qué publicamos sin consultarles nada.",
+  m:"Un conflicto de interés no exige mala fe: basta una relación que un observador razonable consideraría capaz de influir, y el pago del viaje lo es. Las salidas, por orden de preferencia, son costear el desplazamiento el propio medio, compartirlo, o aceptarlo declarándolo expresamente en la pieza. Lo que no cabe es aceptarlo y ocultarlo, porque si se conoce después el daño alcanza a todo lo publicado. Conviene además fijar por escrito que la invitación no condiciona el contenido ni concede derecho de revisión previa, y que ese acuerdo se pacta antes del viaje.",
+  c:"Resolver un conflicto real con la transparencia como último recurso, no como primera opción."},
+
+ {tag:"ESCENARIO 2",t:"La cámara oculta que lo resolvería todo",
+  d:"Un reportero propone emplearse con identidad falsa en una empresa para documentar el trato a los trabajadores migrantes.",
+  r:"Reportero · Editora · Asesor jurídico",
+  ej:"<span class='who'>REPORTERO:</span> Sin cámara oculta no hay historia.<br><span class='who'>EDITORA:</span> ¿Has agotado las vías abiertas? ¿Testimonios, inspecciones, expedientes?<br><span class='who'>REPORTERO:</span> Hay testimonios, pero no quieren dar la cara.<br><span class='who'>JURÍDICO:</span> Entonces trabajemos primero eso y documentemos por qué no basta.",
+  m:"El método encubierto exige que concurran cinco condiciones acumulativas: interés público excepcional, ausencia de alternativas razonables, proporción entre el daño evitado y el causado, decisión en el nivel editorial adecuado y explicación pública del método. La existencia de testimonios anónimos no equivale a haber agotado las vías abiertas: primero se documentan expedientes, inspecciones, denuncias y registros. Si tras ese trabajo persiste la imposibilidad, la decisión se adopta por escrito, con acta de quién decide y qué alternativas se descartaron, porque esa documentación es la defensa cuando se discuta el modo de obtención.",
+  c:"Convertir una discusión sobre técnicas en una secuencia de requisitos verificables."},
+
+ {tag:"ESCENARIO 3",t:"La fuente que cambia el trato",
+  d:"Tras una entrevista larga, la fuente pide que todo lo dicho quede sin publicar. No se pactó nada antes de empezar.",
+  r:"Reportera · Fuente · Editora",
+  ej:"<span class='who'>FUENTE:</span> Prefiero que nada de esto salga.<br><span class='who'>REPORTERA:</span> No acordamos eso antes de empezar, y ya lo hemos hablado todo.<br><span class='who'>FUENTE:</span> Pensaba que era una conversación.<br><span class='who'>REPORTERA:</span> Vamos a ver qué parte puedo publicar sin exponerte.",
+  m:"La ambigüedad es responsabilidad del periodista: pactar el alcance antes de la conversación evita exactamente esta situación. Retroactivamente, la decisión pondera dos cosas: si la fuente comprendió razonablemente que hablaba para publicación y qué riesgo asume si se publica. Con una fuente no profesional que actuó de buena fe, lo habitual y lo defendible es renegociar el alcance —publicar sin atribución, describir sin citar textualmente— antes que ampararse en la falta de pacto. Con un actor institucional que conoce las reglas, la posición es distinta y el acuerdo previo, o su ausencia, se interpreta de otro modo.",
+  c:"Reconocer un fallo propio de procedimiento y negociar una salida sin renunciar a informar."},
+
+ {tag:"ESCENARIO 4",t:"El testigo que pide dinero",
+  d:"Un testigo clave condiciona su testimonio a un pago. Alega que perderá jornadas de trabajo y que su historia tiene valor.",
+  r:"Reportera · Editora · Asesor jurídico",
+  ej:"<span class='who'>TESTIGO:</span> Todo el mundo gana dinero con esto menos yo.<br><span class='who'>REPORTERA:</span> Puedo compensarle los días que pierda, con justificante.<br><span class='who'>TESTIGO:</span> Vale más que eso.<br><span class='who'>EDITORA:</span> Entonces no podemos: el precio dependería de lo que cuente.",
+  m:"La línea es si el pago depende del contenido: compensar gastos acreditados o jornadas efectivamente perdidas no es comprar un testimonio; pagar más porque la historia sea más espectacular sí lo es, e introduce un incentivo directo para exagerar. Además contamina la evaluación de credibilidad y obliga a declarar el pago si se publica, lo que debilita el testimonio ante el lector. Si el testigo es imprescindible y solo habla mediante pago, la decisión razonable suele ser prescindir de él y sostener la investigación con documentos, precisamente porque un testimonio comprado será el punto que ataque cualquier impugnación.",
+  c:"Ofrecer una compensación legítima y sostener el límite cuando la petición lo supera."},
+
+ {tag:"ESCENARIO 5",t:"El anunciante que amenaza",
+  d:"El director comercial comunica que un anunciante cancelará su contrato si se publica la investigación sobre su empresa.",
+  r:"Reportera · Director comercial · Directora editorial",
+  ej:"<span class='who'>COMERCIAL:</span> Son el veinte por ciento de nuestros ingresos.<br><span class='who'>REPORTERA:</span> ¿Han señalado algún error concreto en la pieza?<br><span class='who'>COMERCIAL:</span> No, dicen que el momento es inoportuno.<br><span class='who'>DIRECTORA:</span> Entonces la decisión es editorial y la tomo yo.",
+  m:"Una objeción legítima señala un error comprobable; una presión invoca oportunidad y consecuencias comerciales, y esa distinción resuelve la mayoría de los casos sin necesidad de discutir principios. El procedimiento que protege es organizativo: separación formal entre áreas, atribución escrita de la decisión final al responsable editorial y registro de las objeciones recibidas y de cómo se resolvieron. Reconocer la situación económica del medio no obliga a ceder: obliga a que la decisión se tome en el nivel correcto y quede documentada, porque el daño mayor no es perder un anunciante, sino que el equipo aprenda qué temas conviene no proponer.",
+  c:"Sostener la frontera sin negar la realidad económica del medio ni personalizar el conflicto."},
+
+ {tag:"ESCENARIO 6",t:"La historia demasiado redonda",
+  d:"Un colaborador entrega un reportaje espléndido: personajes memorables, citas perfectas, un final que cierra el tema. Nadie ha hablado con las fuentes.",
+  r:"Editora · Colaborador · Verificadora",
+  ej:"<span class='who'>VERIFICADORA:</span> Quiero llamar a tres personas citadas.<br><span class='who'>COLABORADOR:</span> No quieren que las llamen, ya lo acordé yo.<br><span class='who'>VERIFICADORA:</span> Entonces no puedo verificar nada.<br><span class='who'>EDITORA:</span> Sin verificación no se publica, por bueno que sea.",
+  m:"La perfección narrativa es una señal de alarma y no una garantía: los casos documentados de fabricación comparten textos que encajan demasiado bien y una supervisión que se relajó por el prestigio o el talento del autor. La verificación de un reportaje narrativo es la misma que la de cualquier otro: contacto independiente con una muestra de las personas citadas, comprobación de presencia en el lugar, coherencia de gastos y trayectos, y revisión de las citas determinantes. Que la fuente rechace ser contactada por el editor es una circunstancia excepcional que debe resolverse buscando corroboración por otra vía, no aceptando la palabra del autor.",
+  c:"Aplicar la misma verificación a todos, especialmente cuando el texto es excelente."}
+];
+
+const IV=[
+ {q:"¿Han señalado algún error factual concreto en la pieza?",
+  m:"Separa la objeción legítima de la presión. Un error se comprueba y se corrige; la inoportunidad no es una objeción editorial."},
+ {q:"¿La petición procede de la empresa o es una valoración interna nuestra?",
+  m:"Determina el origen de la presión, que condiciona el procedimiento y lo que debe registrarse."},
+ {q:"¿Existe constancia escrita de la amenaza de cancelación?",
+  m:"Documenta el hecho. Si la presión existe, su registro es material informativo y protege al equipo."},
+ {q:"¿Quién tiene atribuida por escrito la decisión final sobre publicar?",
+  m:"Remite al procedimiento en lugar de al conflicto personal, que es donde estas discusiones se pierden."},
+ {q:"¿Qué haríamos si el anunciante fuera una empresa sin relación comercial con nosotros?",
+  m:"Aplica la prueba de coherencia: si la respuesta cambia, la razón no es periodística."},
+ {q:"¿Procede declarar en la pieza que la empresa es anunciante del medio?",
+  m:"Convierte el conflicto en transparencia hacia el lector, que es la salida cuando el conflicto es del medio."},
+ {q:"¿Qué precedente creamos si retiramos la pieza por este motivo?",
+  m:"Sitúa la decisión en el efecto sobre el trabajo futuro, que es donde se produce el daño real y silencioso."},
+ {q:"¿Podemos registrar por escrito esta conversación y su resolución?",
+  m:"Cierra documentando. El registro protege a ambas partes y permite auditar después cómo se decidió."}
+];
+
+const AUDIT=[
+ ["v","En mayo de 2003 <em>The New York Times</em> publicó un informe detallado sobre la fabricación de citas y detalles y el plagio cometidos por el reportero Jayson Blair en decenas de artículos; el episodio derivó en la dimisión de sus dos máximos responsables editoriales.","The New York Times, informe de mayo de 2003, y cobertura contemporánea. Verificado."],
+ ["v","En diciembre de 2018 <em>Der Spiegel</em> hizo pública la falsificación sistemática de reportajes por parte de su redactor Claas Relotius, detectada a partir de las dudas planteadas por un colega, y publicó una investigación interna detallada.","Der Spiegel, diciembre de 2018, y cobertura internacional. Verificado."],
+ ["v","En el litigio derivado de la investigación con cámara oculta en supermercados de Food Lion, la empresa demandó por conductas relacionadas con la obtención de la información y no por difamación; la indemnización concedida inicialmente por el jurado fue drásticamente reducida en apelación.","Resoluciones judiciales estadounidenses de los años noventa y cobertura contemporánea. Verificado."],
+ ["v","La Federación Internacional de Periodistas adoptó en 2019, en su congreso de Túnez, la Carta Ética Global del Periodismo, que actualiza la declaración de principios de 1954 y recoge dieciséis obligaciones profesionales.","FIP, 2019. Verificado."],
+ ["v","El código de ética de la Society of Professional Journalists, revisado en 2014, se organiza en cuatro principios: buscar la verdad e informarla, minimizar el daño, actuar de forma independiente y ser responsable y transparente.","SPJ, Code of Ethics, 2014. Verificado."],
+ ["v","La Organization of News Ombudsmen and Standards Editors agrupa a los profesionales que ejercen la función de defensor del lector o editor de estándares en medios de distintos países.","ONO. Verificado."],
+ ["b","Los códigos deontológicos no son normas jurídicas: obligan por adhesión profesional y por la publicidad de su incumplimiento.","Doctrina establecida · Ward, Global Journalism Ethics."],
+ ["b","La eficacia de un consejo de prensa depende más de la publicidad de sus decisiones que de su capacidad sancionadora.","Modelos comparados de autorregulación."],
+ ["b","Un conflicto de interés no requiere mala fe ni beneficio efectivo: basta una relación que un observador razonable consideraría capaz de influir.","SPJ Code of Ethics · práctica establecida."],
+ ["b","El uso de métodos encubiertos exige interés público excepcional, ausencia de alternativas, proporción entre daños, decisión en el nivel editorial adecuado y explicación pública del método.","Códigos deontológicos · práctica profesional consolidada."],
+ ["b","La licitud del contenido publicado y la del método de obtención se juzgan por separado y pueden resolverse en sentidos opuestos.","Derivado de la litigación sobre métodos encubiertos."],
+ ["b","El pago a fuentes es desaconsejado porque introduce un incentivo para exagerar; compensar gastos acreditados no equivale a comprar un testimonio.","Códigos deontológicos comparados."],
+ ["b","La presión comercial rara vez adopta la forma de una orden explícita y se reconoce porque invoca oportunidad y consecuencias en lugar de errores comprobables.","Práctica establecida · Carta Ética Global de la FIP."],
+ ["p","La descripción de los factores organizativos que facilitaron los casos de fabricación citados se apoya en los informes internos publicados por los propios medios y en el análisis posterior; no se ha realizado para esta unidad una revisión independiente de esos procesos.","Redactado sin atribuir conclusiones propias sobre responsabilidades individuales."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La relación entre obligación jurídica y exigencia deontológica es que:",
+ o:["Coinciden: lo ético es lo legal","Se solapan sin coincidir: hay conductas lícitas que destruyen la credibilidad y decisiones éticas que generan responsabilidad","La ética es más exigente en todos los casos","La deontología solo aplica donde no llega la ley"],c:1,
+ w:["Si coincidieran, bastaría la revisión jurídica, y la experiencia demuestra lo contrario.",
+    "",
+    "No siempre: hay obligaciones legales, como la protección de datos, más exigentes que muchos códigos.",
+    "Ambos sistemas operan sobre el mismo terreno, no en zonas separadas."],
+ e:"La comprobación legal marca el suelo, no el techo. Una redacción que solo pregunta si la pueden demandar acabará publicando cosas que no puede sostener."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un código deontológico obliga:",
+ o:["Jurídicamente, como una norma administrativa","Por adhesión profesional y por la publicidad de su incumplimiento","Solo a los miembros de una asociación","Únicamente cuando lo incorpora el contrato de trabajo"],c:1,
+ w:["No tiene naturaleza jurídica ni sanción estatal.",
+    "",
+    "Su eficacia va más allá de la afiliación: opera como estándar profesional exigible reputacionalmente.",
+    "La incorporación contractual refuerza su exigibilidad, no es su fundamento."],
+ e:"Por eso su utilidad depende de la concreción: evalúa un código por lo que permite decidir un martes a las ocho de la tarde."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La eficacia de un consejo de prensa depende sobre todo de:",
+ o:["Su capacidad de imponer sanciones económicas","La publicidad de sus decisiones y el compromiso de los medios de difundirlas","El número de medios adheridos","Su reconocimiento legal"],c:1,
+ w:["Una sanción reservada que nadie conoce no modifica comportamientos ni informa al lector.",
+    "",
+    "La adhesión amplia ayuda y no basta si las decisiones no se conocen.",
+    "El reconocimiento legal puede incluso comprometer su independencia."],
+ e:"El activo que un medio arriesga es su credibilidad. Una resolución pública que constate el incumplimiento afecta directamente a ese activo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Existe conflicto de interés cuando:",
+ o:["El periodista obtiene un beneficio económico de la información","Hay una relación que un observador razonable consideraría capaz de influir en el trabajo","La información afecta a un familiar directo","El medio tiene una línea editorial definida"],c:1,
+ w:["El beneficio efectivo es un caso extremo, no la definición.",
+    "",
+    "El parentesco es un supuesto concreto, no el criterio general.",
+    "Una línea editorial declarada no es un conflicto oculto."],
+ e:"El daño no exige que haya influido: basta con que no pueda descartarse. Declarar y apartarse es siempre más barato que explicar después."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El empleo de métodos encubiertos exige:",
+ o:["Autorización judicial previa","Que concurran de forma acumulativa interés público excepcional, ausencia de alternativas, proporción de daños, decisión editorial adecuada y explicación pública","Que la información obtenida resulte veraz","El consentimiento posterior de los grabados"],c:1,
+ w:["No es una autorización judicial lo que la deontología exige, sino un procedimiento interno documentado.",
+    "",
+    "La veracidad del resultado no legitima retroactivamente el método.",
+    "El consentimiento posterior es inhabitual y no sustituye a la justificación previa."],
+ e:"Son cinco condiciones acumulativas. Y la explicación al público en la propia pieza es parte de la justificación, no un añadido."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La línea que separa compensar a una fuente de comprarla es:",
+ o:["El importe entregado","Si el pago depende del contenido de lo que se cuente","Si el pago se declara en la pieza","Si la fuente es profesional o particular"],c:1,
+ w:["La cuantía importa como indicio, no como criterio.",
+    "",
+    "La declaración es una obligación de transparencia, no la línea que define la compra.",
+    "La condición de la fuente no altera el efecto del incentivo."],
+ e:"Si la cantidad cambia según lo espectacular que resulte el testimonio, no es compensación: es compra, y así lo leerá el lector si se descubre."},
+
+/* ---------- BLOQUE B · DECISIONES ---------- */
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"Una empresa invita al periodista de la sección a un viaje con todos los gastos cubiertos antes de un anuncio importante.",
+ q:"¿Cuál es el orden de preferencia de las salidas?",
+ o:["Aceptar y no mencionarlo, si el contenido no se ve afectado","Costearlo el medio; si no es posible, compartirlo; y si se acepta, declararlo en la pieza","Rechazar siempre cualquier invitación","Aceptar y ceder al anunciante la revisión previa del texto"],c:1,
+ w:["Aceptar y ocultarlo daña todo lo publicado si se conoce después.",
+    "",
+    "El rechazo absoluto puede impedir el acceso a información relevante sin ganancia ética equivalente.",
+    "La revisión previa por el interesado es incompatible con la independencia editorial."],
+ e:"Conviene además pactar por escrito que la invitación no condiciona el contenido ni concede derecho de revisión previa, antes del viaje."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"Un reportero propone emplearse con identidad falsa para documentar el trato a trabajadores migrantes. Hay testimonios anónimos disponibles.",
+ q:"¿Qué falta antes de decidir?",
+ o:["Nada: los testimonios anónimos no bastan","Agotar y documentar las vías abiertas —expedientes, inspecciones, denuncias— y acreditar por qué no bastan","La autorización de los trabajadores","Un informe jurídico sobre el riesgo penal"],c:1,
+ w:["La existencia de testimonios anónimos no equivale a haber agotado las alternativas razonables.",
+    "",
+    "La autorización de terceros no es la condición que la deontología exige.",
+    "El informe jurídico es necesario y no sustituye a la justificación deontológica del método."],
+ e:"La ausencia de alternativas razonables es una de las cinco condiciones, y debe documentarse antes, no justificarse después."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"Tras una entrevista larga con una fuente no profesional, esta pide que nada se publique. No se pactó el alcance antes.",
+ q:"¿Qué corresponde?",
+ o:["Publicar: no hubo acuerdo previo que lo impida","Reconocer el fallo de procedimiento y negociar qué parte puede publicarse sin exponerla","Publicar solo lo que no la perjudique, sin consultarle","No publicar nada y archivar la entrevista"],c:1,
+ w:["Ampararse en la falta de pacto con quien actuó de buena fe daña la relación con futuras fuentes.",
+    "",
+    "Decidir por ella qué la perjudica es precisamente lo que la negociación evita.",
+    "Renunciar por completo no siempre es necesario ni proporcionado."],
+ e:"La ambigüedad es responsabilidad del periodista. Con un actor institucional que conoce las reglas la ponderación sería distinta."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"Un testigo clave condiciona su testimonio a un pago superior a la compensación por jornadas perdidas.",
+ q:"¿Qué corresponde hacer?",
+ o:["Pagar y declararlo en la pieza","No pagar y sostener la investigación con documentos, aunque se pierda el testimonio","Pagar a través de un tercero","Prometer una compensación futura si la historia funciona"],c:1,
+ w:["Declarar un pago condicionado al contenido no elimina el incentivo ni el descrédito del testimonio.",
+    "",
+    "El pago indirecto es el mismo pago con una capa de ocultación añadida.",
+    "Vincular la compensación al resultado agrava el problema: premia la espectacularidad."],
+ e:"Un testimonio comprado será el punto que ataque cualquier impugnación. Los documentos no cambian su versión según lo que se les pague."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"El director comercial informa de que un anunciante cancelará su contrato si se publica la investigación. No señala errores.",
+ q:"¿Cómo se resuelve?",
+ o:["Retrasando la publicación hasta renegociar el contrato","Registrando la objeción, comprobando que no hay error factual y decidiendo en el nivel editorial atribuido por escrito","Publicando de inmediato sin informar a nadie","Consultando al propio anunciante qué le parecería aceptable"],c:1,
+ w:["El retraso por motivos comerciales es la forma habitual de la censura interna.",
+    "",
+    "Ocultar la presión impide documentarla y deja al equipo sin protección.",
+    "Ceder al interesado la definición de lo publicable es incompatible con la independencia."],
+ e:"Una objeción legítima señala un error comprobable; una presión invoca oportunidad y consecuencias. Y el daño mayor es que el equipo aprenda qué no proponer."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"Un colaborador entrega un reportaje excelente y pide que no se contacte con las personas citadas porque él ya lo acordó así.",
+ q:"¿Qué corresponde?",
+ o:["Publicar: la confianza en el autor forma parte del trabajo","No publicar sin verificación independiente; buscar corroboración por otra vía","Publicar con una nota que advierta de la limitación","Verificar solo las citas más comprometidas"],c:1,
+ w:["La confianza en el autor es exactamente lo que falló en los casos documentados de fabricación.",
+    "",
+    "La advertencia no sustituye a la verificación ni protege al lector.",
+    "La verificación selectiva por relevancia deja fuera precisamente lo que sostiene el relato."],
+ e:"La perfección narrativa es señal de alarma, no garantía. La revisión debe ser igual para todos, con independencia del prestigio del autor."},
+
+/* ---------- BLOQUE C · PROCEDIMIENTO Y TRANSPARENCIA ---------- */
+{blk:"BLOQUE C · PROCEDIMIENTO Y TRANSPARENCIA", t:"mcq",
+ q:"La medida que mejor previene la fabricación en una redacción es:",
+ o:["Advertir en el código sobre su gravedad","Verificación sistemática del material y revisión igual para todos, con contacto directo con las personas citadas","Sancionar con dureza los casos detectados","Reducir la carga de trabajo de los reporteros"],c:1,
+ w:["La advertencia moral no detecta nada: los casos documentados ocurrieron en medios con códigos exigentes.",
+    "",
+    "La sanción actúa después del daño, cuando la credibilidad ya está afectada.",
+    "La carga de trabajo es un factor de contexto, no un mecanismo de detección."],
+ e:"Los casos documentados comparten un patrón: supervisión desigual según el prestigio del autor y ausencia de contacto independiente con las fuentes."},
+
+{blk:"BLOQUE C · PROCEDIMIENTO Y TRANSPARENCIA", t:"mcq",
+ q:"Cuando el conflicto de interés es del medio y no del periodista:",
+ o:["No procede declarar nada al lector","La transparencia con el lector es la salida disponible: declarar la relación en la propia pieza","Debe encargarse la pieza a un medio externo","Debe omitirse la información"],c:1,
+ w:["El lector necesita ese dato para ponderar la información que recibe.",
+    "",
+    "Externalizar no resuelve el conflicto y traslada el problema.",
+    "Omitir la información por un conflicto propio equivale a dejar que el conflicto decida."],
+ e:"Es incómodo una vez y protege la credibilidad siempre. Y aplica igual cuando la relación es de propiedad, no solo publicitaria."},
+
+{blk:"BLOQUE C · PROCEDIMIENTO Y TRANSPARENCIA", t:"mcq",
+ q:"Los cuatro principios del código de la SPJ son:",
+ o:["Verdad, objetividad, neutralidad y servicio público","Buscar la verdad e informarla, minimizar el daño, actuar de forma independiente y ser responsable y transparente","Exactitud, imparcialidad, equilibrio y rectificación","Independencia, pluralismo, veracidad y respeto"],c:1,
+ w:["La objetividad y la neutralidad no figuran como principios en la revisión de 2014.",
+    "",
+    "Son exigencias reales que no corresponden a la estructura de ese código.",
+    "Reúne valores de varios códigos, pero no es la formulación de la SPJ."],
+ e:"La estructura importa porque ordena la decisión: primero informar, después limitar el daño, y siempre con independencia y rendición de cuentas."},
+
+{blk:"BLOQUE C · PROCEDIMIENTO Y TRANSPARENCIA", t:"mcq",
+ q:"La transparencia de método en la relación con el público consiste en:",
+ o:["Publicar el organigrama y los datos económicos del medio","Explicar de dónde salió la información, qué no se pudo confirmar y quién se negó a hablar","Responder a todos los comentarios de los lectores","Publicar el libro de estilo"],c:1,
+ w:["La transparencia societaria es valiosa y responde a otra exigencia.",
+    "",
+    "La interacción con la audiencia no acredita cómo se elaboró la pieza.",
+    "Publicar el libro de estilo declara criterios generales, no lo hecho en cada caso."],
+ e:"Convierte al lector en alguien capaz de evaluar el trabajo, en lugar de pedirle que confíe. Es el principio de la Unidad 1 de JRN-1001 aplicado al público."},
+
+{blk:"BLOQUE C · PROCEDIMIENTO Y TRANSPARENCIA", t:"mcq",
+ q:"La alternativa práctica a una autorregulación que no funciona suele ser:",
+ o:["La ausencia total de estándares","La regulación estatal, que introduce al poder político en la definición de los estándares periodísticos","La autorregulación de las plataformas","La judicialización de todos los conflictos"],c:1,
+ w:["El vacío no se mantiene: la presión social empuja hacia alguna forma de regulación.",
+    "",
+    "Las plataformas regulan sus propios contenidos, no los estándares profesionales.",
+    "La vía judicial resuelve conflictos concretos y no fija criterios profesionales."],
+ e:"Es un argumento práctico, y no solo gremial, a favor de que la autorregulación funcione y sea visible."},
+
+{blk:"BLOQUE C · PROCEDIMIENTO Y TRANSPARENCIA", t:"mcq",
+ q:"Una lista de comprobación previa a la publicación debe aplicarse:",
+ o:["A las piezas que el equipo considere delicadas","A todas las piezas por igual, también cuando el cierre aprieta","Solo a las investigaciones de largo recorrido","Cuando lo solicite el asesor jurídico"],c:1,
+ w:["Un criterio que solo se aplica a lo dudoso depende de la misma intuición que pretende corregir.",
+    "",
+    "Las piezas breves generan una parte importante de los conflictos.",
+    "Supeditarla a la petición jurídica la convierte en excepcional."],
+ e:"Las decisiones que se lamentan después casi nunca se toman por desconocimiento, sino por prisa. Por eso la lista se escribe en frío y se aplica siempre."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las condiciones exigibles para emplear un método encubierto.",
+ o:["Interés público excepcional de la información buscada","Ausencia de vías alternativas razonables","Proporción entre el daño evitado y el causado","Garantía de que la pieza tendrá gran repercusión","Decisión en el nivel editorial adecuado y explicación pública del método"],
+ c:[0,1,2,4],
+ w:["","","","La repercusión esperada no es un criterio ético: mide el interés comercial, no el interés público.",""],
+ e:"Son condiciones acumulativas y deben documentarse antes, con acta de quién decidió y qué alternativas se descartaron."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe fijar un acuerdo con una fuente antes de la conversación.",
+ o:["Si la información es publicable","Si puede atribuirse y de qué modo","Cómo se describirá a la fuente en el texto","La opinión de la fuente sobre el enfoque de la pieza","Qué ocurre si otro medio la identifica"],
+ c:[0,1,2,4],
+ w:["","","","El enfoque editorial no se negocia con la fuente: eso sería cederle el control de la pieza.",""],
+ e:"Decir en voz alta lo que has entendido, y que la fuente lo confirme, evita la mayoría de las disputas posteriores."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena la revisión final de una investigación antes de publicar.",
+ o:["Identificar las afirmaciones que podrían generar reclamación y el derecho afectado","Comprobar la prueba de diligencia disponible para cada una","Ponderar el daño a personas concretas frente al interés público","Revisar los métodos empleados y decidir qué se explica al lector","Confirmar que se ofreció réplica y fijar el procedimiento de corrección"],
+ c:[0,1,2,3,4],
+ e:"La revisión integra las dos dimensiones. Aplicarla igual a todas las piezas es lo que la convierte en un criterio y no en una intuición."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las respuestas ante una objeción externa a una pieza, de la más deseable a la menos.",
+ o:["Comprobar si señala un error factual y corregirlo si existe","Publicar la réplica del afectado","Añadir contexto o precisión sin alterar el hallazgo","Retrasar la publicación mientras se verifica un punto concreto","Retirar la pieza"],
+ c:[0,1,2,3,4],
+ e:"El orden refleja el coste para el interés público: cada escalón adicional reduce lo que el lector recibe y exige una justificación mayor."}
+];
+
+const EXAM=[
+ {u:"UNIDAD 1",q:"El test tripartito exige que una restricción sea:",
+  o:["Razonable y aceptada socialmente","Prevista por ley, dirigida a un fin legítimo tasado y necesaria y proporcionada","Aprobada judicialmente y temporal","Compatible con la moral pública"],c:1,
+  e:"Los tres pasos son acumulativos: basta que falle uno para que la restricción sea ilegítima."},
+ {u:"UNIDAD 1",q:"Que una restricción esté prevista por ley significa que la norma:",
+  o:["Fue aprobada por el parlamento","Es accesible y suficientemente precisa para prever qué conducta está prohibida","Tiene desarrollo reglamentario","La aplica una autoridad competente"],c:1,
+  e:"Una norma vaga produce autocensura sin necesidad de sancionar a nadie. Es el criterio de Sunday Times, 1979."},
+ {u:"UNIDAD 1",q:"A un juicio de valor publicado se le puede exigir:",
+  o:["Prueba de su veracidad","Una base fáctica suficiente","Que no resulte ofensivo","Atribución a una fuente identificada"],c:1,
+  e:"Un hecho se prueba; una opinión se fundamenta. Exigir prueba de veracidad a una valoración vulnera la libertad de expresión."},
+ {u:"UNIDAD 2",q:"Frente a una reclamación por intromisión en la intimidad, la veracidad del dato:",
+  o:["Es la defensa principal","No es defensa: se discute la justificación de la injerencia, no la falsedad","Sirve solo si el afectado es cargo público","Exime si hay dos fuentes"],c:1,
+  e:"Alegar veracidad ante un reproche de intromisión responde a una pregunta distinta de la formulada."},
+ {u:"UNIDAD 2",q:"El estándar de veracidad exigible al periodista es:",
+  o:["Publicar solo hechos definitivamente probados","Comprobación razonable y documentada, proporcional a la gravedad de la imputación","Citar dos fuentes","Obtener confirmación oficial"],c:1,
+  e:"La diligencia se acredita con documentos. Por eso la matriz documental es a la vez método y defensa jurídica."},
+ {u:"UNIDAD 2",q:"La desindexación de un resultado de búsqueda supone que:",
+  o:["El medio debe borrar la noticia","Se retira el enlace asociado a un nombre, sin afectar a la publicación original","El medio debe rectificar","La noticia deja de existir"],c:1,
+  e:"Confundir desindexar con despublicar es el error más frecuente al gestionar estas peticiones."},
+ {u:"UNIDAD 3",q:"El fundamento del secreto profesional es:",
+  o:["Un privilegio del periodista","El interés del público en seguir recibiendo información que las fuentes no darían sin protección","La propiedad del material","El pacto con la fuente"],c:1,
+  e:"Formulado como privilegio gremial parece una excepción injustificada; formulado como condición del flujo informativo, es una garantía del público."},
+ {u:"UNIDAD 3",q:"La garantía procedimental decisiva ante una orden de entrega de material es:",
+  o:["Que la dicte un fiscal","Que un órgano independiente resuelva antes del acceso, con posibilidad de oír al medio","Que se notifique con antelación","Que se entregue copia y no original"],c:1,
+  e:"Una vez visto el material, la confidencialidad no se restablece. Fue el motivo de la violación apreciada en 2010."},
+ {u:"UNIDAD 3",q:"Una denegación de acceso a la información debe incluir:",
+  o:["El uso que el solicitante dará a la información","La excepción concreta, el daño acreditado, la valoración del acceso parcial y los recursos disponibles","La firma del máximo responsable","Un plazo para reiterar la solicitud"],c:1,
+  e:"El derecho de acceso no exige justificar el motivo. Cada elemento ausente en la denegación es un defecto autónomo recurrible."},
+ {u:"UNIDAD 4",q:"Un conflicto de interés existe cuando:",
+  o:["Se obtiene un beneficio económico","Hay una relación que un observador razonable consideraría capaz de influir en el trabajo","Se informa sobre un familiar","El medio tiene línea editorial"],c:1,
+  e:"El daño no exige que haya influido: basta con que no pueda descartarse. Declarar y apartarse es más barato que explicar después."},
+ {u:"UNIDAD 4",q:"El uso de un método encubierto exige, entre otras condiciones:",
+  o:["Que la información resulte veraz","Ausencia de vías alternativas razonables y explicación pública del método","Autorización judicial","Consentimiento posterior de los grabados"],c:1,
+  e:"Son cinco condiciones acumulativas, documentadas antes de emplear el método y no justificadas después."},
+ {u:"UNIDAD 4",q:"Ante una presión comercial que no señala errores factuales:",
+  o:["Se retrasa la publicación","Se registra la objeción y decide quien tenga atribuida por escrito la responsabilidad editorial","Se consulta al anunciante","Se retira la pieza"],c:1,
+  e:"Una objeción legítima señala un error comprobable; una presión invoca oportunidad y consecuencias comerciales."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+function buildQuiz(list, holderId, scoreId, withUnit){
+  let done=0,right=0;
+  const holder=document.getElementById(holderId);
+  list.forEach(function(it,i){
+    const from = withUnit ? '<span class="from">'+it.u+'</span>' : '';
+    const card=el('<div class="q">'+from+'<div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts');
+    it.o.forEach(function(o,j){
+      const b=document.createElement('button');
+      b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+      b.onclick=function(){
+        if(card.dataset.done) return;
+        card.dataset.done='1'; done++;
+        var kids=opts.children;
+        for(var k=0;k<kids.length;k++){
+          kids[k].classList.add('done');
+          if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+          else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+        }
+        if(j===it.c) right++;
+        card.querySelector('.exp').classList.add('show');
+        const s=document.getElementById(scoreId);
+        let txt='RESPONDIDAS '+done+' / '+list.length+' · CORRECTAS '+right;
+        if(withUnit){
+          const pct=Math.round(right/list.length*100);
+          txt+=' · CALIFICACIÓN '+pct+'%';
+          if(done===list.length) txt+=pct>=75?' · APROBADO':' · NO APROBADO';
+        }
+        s.textContent=txt;
+      };
+      opts.appendChild(b);
+    });
+    holder.appendChild(card);
+  });
+}
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+buildQuiz(EXAM,'exam','escore',true);
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#exa .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
