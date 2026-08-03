@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1002 · Unidad 4 — Cartografía Interactiva y Visualización de Datos</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1002, Unidad 4.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  .tab.exam{color:var(--amber)}
+  .tab.exam.on{color:var(--amber);border-color:var(--line);border-bottom-color:var(--bg)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:7px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .score.big{font-size:.95rem;color:var(--amber);padding:14px 18px;background:#3a2408;border:1px solid #6b4d16;border-radius:8px;letter-spacing:.06em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course on" href="jrn1002-u4.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="#"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1002 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Cartografía Interactiva y Visualización de Datos</h2>
+  <div class="sub">Unidad 4 de 4 · Periodismo de Datos y Visualización</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1002-u1.html">Unidad 1: Fundamentos del Periodismo de Datos de Vigilancia</a>
+    <a class="unit" href="jrn1002-u2.html">Unidad 2: Limpieza de Datos y Auditoría de Planillas</a>
+    <a class="unit" href="jrn1002-u3.html">Unidad 3: Correlación Estadística y Análisis Causal</a>
+    <span class="unit on">Unidad 4: Cartografía Interactiva y Visualización de Datos</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Una visualización no ilustra un análisis: lo afirma. Entre los datos y la figura publicada hay una cadena de decisiones —qué se normaliza, cómo se agrupan los territorios, dónde se cortan las clases, qué color se asigna, dónde empieza el eje— y cada una de ellas cambia lo que el lector concluye sin que el lector pueda verlas.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>un mapa es un argumento</strong>. No existe la representación neutral de un territorio, del mismo modo que no existe la limpieza neutral de un archivo. Lo que separa una visualización defendible de una engañosa no es la ausencia de decisiones, sino que estén justificadas y declaradas en la ficha técnica.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab exam" data-t="exa">Examen Integrador</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Decidir si una pregunta se responde con un mapa o con un gráfico, y reconocer cuándo un mapa solo está mostrando dónde vive la gente.</li>
+      <li>Normalizar por el denominador que corresponde a la pregunta —población, superficie, exposición— y justificar esa elección por escrito.</li>
+      <li>Comparar métodos de clasificación de clases y declarar cuál se usó, sabiendo que cambian el mapa sin cambiar los datos.</li>
+      <li>Reconocer el problema de la unidad de área modificable y evaluar cómo el trazado de las unidades geográficas produce el resultado.</li>
+      <li>Aplicar criterios de color accesible y de escala honesta: esquemas adecuados al tipo de variable, contraste suficiente y ejes que no distorsionen la magnitud.</li>
+      <li>Publicar la ficha técnica de una visualización: origen de los datos y de las capas geográficas, fecha, denominador, clasificación y limitaciones.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Alberto Cairo, <em>How Charts Lie</em> (2019) — capítulos sobre mapas y escalas</li>
+      <li>Mark Monmonier, <em>How to Lie with Maps</em> (3.ª ed., 2018)</li>
+      <li>Edward Tufte, <em>The Visual Display of Quantitative Information</em> (2.ª ed., 2001)</li>
+      <li>Jonathan Gray y Liliana Bounegru, <em>The Data Journalism Handbook</em> (2.ª ed., 2021) — capítulos de visualización</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>ColorBrewer</h5>
+        <div class="def">Conjunto de paletas cartográficas desarrollado por Cynthia Brewer en la Universidad Estatal de Pensilvania. Clasifica los esquemas en secuenciales, divergentes y cualitativos según el tipo de variable, e indica cuáles son seguros para daltonismo, para impresión y para fotocopia.</div>
+        <p class="src">colorbrewer2.org · Penn State</p></div>
+      <div class="term"><h5>W3C — Pautas de accesibilidad WCAG</h5>
+        <div class="def">Establecen requisitos de contraste y el principio de no transmitir información únicamente mediante el color. Aplicado a un gráfico, obliga a que las categorías se distingan también por posición, forma, trama o etiqueta directa.</div>
+        <p class="src">w3.org/WAI · WCAG 2.1</p></div>
+      <div class="term"><h5>OpenStreetMap y la licencia ODbL</h5>
+        <div class="def">Base cartográfica libre mantenida por una comunidad de colaboradores. Su licencia exige atribución y establece condiciones para las obras derivadas: la capa base de un mapa publicado tiene procedencia y licencia, igual que una fotografía.</div>
+        <p class="src">openstreetmap.org · Open Database License</p></div>
+      <div class="term"><h5>Datawrapper Academy</h5>
+        <div class="def">Documentación pública sobre elección de tipo de gráfico, normalización en mapas coropléticos, métodos de clasificación y uso de color, orientada a redacciones sin equipo técnico.</div>
+        <p class="src">academy.datawrapper.de</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad contiene el <strong>Examen Integrador</strong> de JRN-1002, que abarca las cuatro unidades. Se aprueba con un 75%, conforme a los requisitos de graduación del certificado. Es requisito haber completado las pruebas y entregas de las Unidades 1 a 3.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Un mapa es un argumento</h3>
+    <p>Un mapa temático parece una fotografía del territorio y no lo es. Es el resultado de una serie de elecciones sucesivas: qué unidades geográficas se dibujan, qué variable se representa, con qué denominador, en cuántas clases, con qué cortes y con qué colores. Cambiar cualquiera de ellas produce una figura distinta con los mismos datos.</p>
+    <p>Esa cadena de decisiones es invisible para quien mira. De ahí la asimetría que define la ética de la visualización: el lector no puede auditar lo que no ve, de modo que la obligación de declarar recae íntegramente sobre quien publica.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Antes de publicar un mapa, produce con los mismos datos una versión alternativa razonable —otro denominador, otros cortes— y compárala. Si el mensaje cambia, esa es la información que el lector necesita saber.</div>
+
+    <h3>El mapa de la población</h3>
+    <p>El error más frecuente en cartografía periodística consiste en representar recuentos absolutos sobre un mapa de territorios. El resultado siempre es el mismo: las zonas más pobladas se iluminan. Un mapa de casos, de delitos, de llamadas o de tuits sin normalizar es, en la práctica, un mapa de dónde vive la gente.</p>
+    <p>La comprobación es inmediata y conviene hacerla siempre: superponer mentalmente el mapa de densidad de población. Si ambos coinciden, la figura no aporta información propia y solo produce la ilusión de un patrón.</p>
+    <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>¿Este mapa se parece al mapa de población? Si la respuesta es sí, hay que normalizar o cambiar de representación antes de publicar.</div>
+
+    <h3>Elegir el denominador es elegir la pregunta</h3>
+    <p>Normalizar no es un trámite técnico: cada denominador responde una pregunta distinta y la respuesta puede invertirse según cuál se elija. Accidentes por habitante, por vehículo registrado, por kilómetro recorrido y por kilómetro de vía producen cuatro rankings que no coinciden, y los cuatro son correctos para su propia pregunta.</p>
+    <p>La regla práctica es dividir por la población en riesgo, es decir, por el conjunto de casos que podrían haber producido el suceso, y no por el más disponible. Cuando el denominador correcto no existe, la limitación se declara en lugar de sustituirse en silencio.</p>
+    <div class="ej"><b>EJEMPLO</b>Un municipio turístico con diez mil habitantes y cien mil visitantes diarios aparecerá siempre como el más peligroso del país si los delitos se dividen entre la población empadronada.</div>
+
+    <h3>La clasificación cambia el mapa</h3>
+    <p>Repartir los valores en clases es la decisión que más altera la apariencia de un mapa coroplético y la que menos se declara. Los cuantiles reparten la misma cantidad de unidades en cada clase y garantizan un mapa contrastado aunque las diferencias reales sean mínimas. Los intervalos iguales respetan la distancia numérica y pueden dejar casi todo el territorio en una sola clase. Los cortes naturales buscan los saltos de la distribución y producen la lectura más fiel de los agrupamientos, pero dificultan comparar dos mapas entre sí.</p>
+    <p>Ninguno es el correcto en abstracto. El criterio es la pregunta: para comparar entre períodos o entre territorios hacen falta cortes idénticos, y para describir una distribución sirven los cortes naturales.</p>
+    <div class="ej"><b>ADVERTENCIA</b>Publicar dos mapas comparativos con clasificaciones distintas es una manipulación aunque no haya intención de manipular: el lector compara colores, no números.</div>
+
+    <h3>La unidad de área modificable</h3>
+    <p>Los resultados de un análisis territorial dependen de cómo se hayan trazado las unidades geográficas. Agregando los mismos datos por barrios, por distritos o por códigos postales se obtienen patrones distintos, y reagrupando las mismas unidades de otra manera se pueden obtener conclusiones opuestas. El fenómeno se conoce como problema de la unidad de área modificable y se describió formalmente en los años setenta.</p>
+    <p>La consecuencia periodística es doble. Por un lado, ninguna geografía es neutral: las fronteras administrativas se trazaron con criterios ajenos al análisis. Por otro, la manipulación deliberada de esas fronteras es un objeto de investigación en sí mismo, y es la base técnica de la delimitación electoral interesada.</p>
+    <div class="ej"><b>MÉTODO</b>Repite el análisis con al menos dos agregaciones distintas. Si el hallazgo sobrevive a ambas, es robusto; si desaparece, la noticia era la geografía elegida.</div>
+
+    <h3>Proyecciones: no hay mapa sin distorsión</h3>
+    <p>Representar una superficie curva en un plano exige sacrificar algo: la forma, la superficie, la distancia o la dirección. Ninguna proyección conserva todas las propiedades a la vez, y eso no es un defecto corregible sino una condición geométrica.</p>
+    <p>La proyección más habitual en cartografía web conserva las formas locales y exagera enormemente las superficies al alejarse del ecuador, lo que tiene consecuencias directas cuando se comparan visualmente territorios de distintas latitudes. Para mapas temáticos de superficie conviene una proyección equivalente, que conserva las áreas.</p>
+    <div class="ej"><b>REGLA</b>Si el mapa invita a comparar tamaños de territorios, usa una proyección equivalente y decláralo. Si solo localiza puntos, la proyección web es suficiente.</div>
+
+    <h3>Color: tipo de variable y accesibilidad</h3>
+    <p>El esquema de color debe corresponder a la naturaleza de la variable. Secuencial para magnitudes que crecen en un solo sentido; divergente cuando existe un punto medio con significado, como el cero o el promedio; cualitativo para categorías sin orden. Usar un esquema divergente para una variable sin punto medio inventa un umbral que no existe en los datos.</p>
+    <p>La accesibilidad no es un añadido: alrededor de un ocho por ciento de los hombres presenta alguna deficiencia en la visión del rojo y el verde. Las escalas de arcoíris, además, introducen fronteras visuales donde no hay saltos numéricos, y por eso llevan décadas desaconsejadas en la literatura técnica.</p>
+    <div class="ej"><b>COMPROBACIÓN</b>Convierte la figura a escala de grises. Si deja de leerse, la información está solo en el color y una parte de tus lectores no la recibirá.</div>
+
+    <h3>Coroplético, símbolo proporcional y cartograma</h3>
+    <p>El mapa coroplético colorea unidades territoriales y sirve para tasas y proporciones, nunca para recuentos absolutos. El símbolo proporcional dibuja círculos escalados por valor y sí admite absolutos, porque el tamaño del símbolo no depende de la superficie del territorio. El cartograma deforma los territorios en proporción a la variable y resuelve el problema de que la superficie no vota ni enferma, a cambio de dificultar el reconocimiento del mapa.</p>
+    <p>La elección se hace desde la pregunta y no desde la estética: si la pregunta es dónde ocurre más en relación con la población, el coroplético con tasa; si es dónde se concentra el volumen, símbolos proporcionales; si es cuánto pesa cada territorio en el total, cartograma.</p>
+    <div class="ej"><b>CRITERIO</b>La superficie de un territorio no es una variable de tu análisis, pero el lector la lee como si lo fuera. Cada tipo de mapa gestiona ese sesgo de una manera distinta.</div>
+
+    <h3>Ejes, ceros y la honestidad de la escala</h3>
+    <p>En un gráfico de barras la magnitud se codifica en la longitud, de modo que truncar el eje vertical distorsiona la comparación y no es admisible. En un gráfico de líneas la codificación es la posición y la pendiente, y forzar el cero puede aplanar variaciones relevantes: ahí el criterio es que el rango elegido no exagere ni oculte, y que se etiquete con claridad.</p>
+    <p>Otras dos prácticas merecen mención expresa: el doble eje, que permite hacer coincidir visualmente dos series ajustando las escalas hasta que se toquen, y el eje horizontal desordenado, que rompe la lectura temporal esperada.</p>
+    <div class="ej"><b>CASO DOCUMENTADO</b>En mayo de 2020 un panel oficial de datos de covid-19 en el estado de Georgia publicó un gráfico de barras cuyo eje temporal no seguía el orden cronológico, lo que sugería un descenso sostenido; la agencia reconoció el error y lo corrigió.</div>
+
+    <h3>La ficha técnica</h3>
+    <p>Toda visualización publicada debería llevar adjunta, en el pie o en un enlace, la información que permite reproducirla y ponderarla: origen de los datos y fecha de descarga, origen y fecha de las capas geográficas, denominador utilizado, método de clasificación y número de clases, proyección cuando sea relevante, y qué queda fuera.</p>
+    <p>Es el equivalente cartográfico de la nota metodológica de la Unidad 2 y del descarte de explicaciones alternativas de la Unidad 3: el lector no puede auditar lo que no se le declara, y la credibilidad de una redacción se construye exactamente en esa declaración.</p>
+    <div class="ej"><b>REGLA FINAL</b>Si otro periodista no puede reconstruir tu mapa con tu ficha técnica y los datos públicos, la ficha está incompleta. La reproducibilidad no es un ideal académico: es la única defensa disponible cuando alguien impugna la figura.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista a la responsable del panel de datos de un organismo público. El panel muestra un mapa por municipios con recuentos absolutos, sin denominador declarado, y un gráfico cuyo eje vertical empieza en un valor distinto de cero.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes afirmar que el panel engaña deliberadamente. Cada pregunta debe apuntar a una decisión técnica concreta y a quién la tomó. Si te explica que la elección responde a una limitación real de los datos, tienes que poder reconocerlo y preguntar por qué no está declarada.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">MAPA CON FICHA TÉCNICA · OBLIGATORIO</span>
+      <p>Produce un mapa temático propio a partir de datos públicos. Entrega: el mapa; la justificación escrita del denominador elegido y de al menos un denominador alternativo descartado; dos versiones del mismo mapa con métodos de clasificación distintos, comentando en qué cambia la lectura; la comprobación de que la figura se lee en escala de grises; y la ficha técnica completa con origen de datos y capas, fechas, clasificación y limitaciones.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Denominador correcto y justificado frente a una alternativa (25%) · Comparación efectiva de dos clasificaciones con interpretación (20%) · Elección adecuada del tipo de mapa para la pregunta (15%) · Color y accesibilidad comprobados (15%) · Ficha técnica completa y reproducible (25%). Un mapa de recuentos absolutos sin normalizar no aprueba, con independencia de su calidad gráfica.</div>
+    </div>
+  </section>
+
+  <section id="exa">
+    <h3>Examen Integrador · JRN-1002</h3>
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">ALCANCE Y CALIFICACIÓN</div>
+      <p>Este examen abarca las cuatro unidades del curso. Se aprueba con un <strong>75%</strong>. Consta de tres partes: opción múltiple (40%), auditoría de una visualización publicada (30%) y memorando de análisis reproducible (30%).</p>
+      <p style="margin-bottom:0">La Parte A es interactiva y se califica sola. Las Partes B y C se entregan por escrito.</p>
+    </div>
+
+    <h3>Parte A · Opción múltiple (40%)</h3>
+    <p style="font-size:.88rem">Doce preguntas sobre las cuatro unidades. Cada una indica de qué unidad procede.</p>
+    <div class="score big" id="escore">RESPONDIDAS 0 / 12 · CORRECTAS 0 · CALIFICACIÓN —</div>
+    <div id="exam"></div>
+
+    <h3>Parte B · Auditoría de una visualización (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · 800–1.000 PALABRAS</span>
+      <p>Se entrega el día del examen una visualización publicada por un medio o un organismo. El estudiante debe: identificar el denominador empleado y si es el que corresponde a la pregunta; determinar el método de clasificación y su efecto; señalar los problemas de color, escala o eje; evaluar si la unidad geográfica elegida condiciona el resultado; y redactar la ficha técnica que la pieza debería haber publicado.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS PARTE B</b>Identificación del denominador y evaluación de su pertinencia (25%) · Método de clasificación y efecto sobre la lectura (20%) · Problemas de color, escala y eje, señalados con precisión (20%) · Evaluación de la unidad geográfica y del efecto de agregación (15%) · Ficha técnica redactada y completa (20%).</div>
+    </div>
+
+    <h3>Parte C · Memorando de análisis reproducible (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · EXPEDIENTE CERRADO</span>
+      <p>Se entrega un expediente con: un archivo de datos sucio y con registros duplicados por grafía, un diccionario de datos incompleto, una correlación llamativa entre dos de sus variables y una capa geográfica sin fecha de actualización. El estudiante produce un memorando que resuelva el caso completo.</p>
+      <button class="reveal">Ver estructura y criterios</button>
+      <div class="model"><b>ESTRUCTURA EXIGIDA</b>1. Perfilado del conjunto y cuaderno de decisiones de limpieza.<br>2. Descarte de las cuatro explicaciones alternativas para la correlación observada.<br>3. Qué se publica y con qué verbo exacto.<br>4. Qué representación gráfica corresponde y por qué, con su denominador.<br>5. Limitaciones de la capa geográfica y su efecto sobre las conclusiones.<br>6. Nota metodológica y ficha técnica, listas para publicar.<br><br><b>CRITERIOS</b>Cuaderno de limpieza reversible y cuantificado (20%) · Descarte aplicado al caso, no genérico (25%) · Verbo causal correspondiente a la evidencia (15%) · Elección y justificación de la representación (20%) · Nota metodológica y ficha técnica específicas y verificables (20%).</div>
+    </div>
+
+    <div class="box">
+      <div class="lbl">REQUISITOS DE GRADUACIÓN DEL CERTIFICADO</div>
+      <p style="margin-bottom:0">Estudiar las 4 unidades de las 6 materias · Aprobar la evaluación de cada módulo · Aprobar el examen integrador de cada materia con un mínimo de 75% · Acreditar los 19 créditos universitarios para desbloquear el diploma.</p>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 4</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1002-u3.html">← Unidad 3: Correlación Estadística y Análisis Causal</a> &nbsp;·&nbsp; <a href="jrn1002-u1.html">Volver al inicio del curso</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Mapa Coroplético",d:"Mapa que colorea unidades territoriales según el valor de una variable. Solo admite tasas y proporciones: con recuentos absolutos representa el tamaño de la población.",s:"Monmonier, How to Lie with Maps · Cairo"},
+ {t:"Normalización",d:"División de un recuento por una base de comparación para hacer comparables territorios de distinto tamaño. Sin ella, un mapa temático muestra dónde vive la gente.",s:"Cairo, How Charts Lie · Datawrapper Academy"},
+ {t:"Denominador",d:"Base elegida para normalizar: población, superficie, vehículos, kilómetros recorridos. Cada denominador responde una pregunta distinta y puede invertir el resultado.",s:"Cohen, Numbers in the Newsroom · JRN-1002 Unidad 1"},
+ {t:"Método de Clasificación",d:"Regla con que se reparten los valores en clases de color. Es la decisión que más altera la apariencia de un mapa y la que menos se declara.",s:"Cartografía temática · Datawrapper Academy"},
+ {t:"Cortes Naturales",d:"Clasificación que sitúa los límites en los saltos de la distribución. Describe bien un conjunto y dificulta comparar dos mapas entre sí, porque los cortes cambian.",s:"Cartografía temática establecida"},
+ {t:"Unidad de Área Modificable",d:"Dependencia de los resultados respecto del trazado de las unidades geográficas: agregando o reagrupando de otro modo se obtienen patrones distintos con los mismos datos.",s:"Openshaw y Taylor, 1979 · Openshaw, 1984"},
+ {t:"Proyección Cartográfica",d:"Regla de traslado de la superficie curva al plano. Ninguna conserva a la vez forma, superficie, distancia y dirección: toda proyección sacrifica algo.",s:"Monmonier · cartografía establecida"},
+ {t:"Cartograma",d:"Mapa que deforma los territorios en proporción a una variable. Resuelve que la superficie pese visualmente más que la población, a costa del reconocimiento del mapa.",s:"Newman, Universidad de Michigan · Monmonier"},
+ {t:"Escala Divergente",d:"Esquema de color con dos extremos y un punto medio significativo. Usarlo con una variable sin punto medio inventa un umbral que los datos no contienen.",s:"ColorBrewer · Cynthia Brewer, Penn State"},
+ {t:"Símbolo Proporcional",d:"Representación por círculos u otras formas escaladas según el valor. Admite recuentos absolutos porque el tamaño no depende de la superficie del territorio.",s:"Cartografía temática · Datawrapper Academy"},
+ {t:"Eje Truncado",d:"Eje que no arranca en cero. Inadmisible cuando la magnitud se codifica en la longitud, como en un gráfico de barras; discutible y a veces necesario en líneas.",s:"Cairo, How Charts Lie · Tufte"},
+ {t:"Ficha Técnica",d:"Declaración publicada junto a la visualización: origen y fecha de los datos y de las capas, denominador, clasificación, proyección y limitaciones.",s:"Formulación docente · principio de reproducibilidad"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · LONDRES · 1854-1855",t:"Snow, la bomba de Broad Street y lo que el mapa hizo realmente",
+  d:"Durante el brote de cólera del Soho londinense en 1854, el médico John Snow registró las muertes por domicilio y las representó sobre un plano del barrio mediante marcas apiladas en cada dirección. La concentración alrededor de la bomba de agua de Broad Street sostenía su hipótesis de transmisión por el agua, frente a la teoría dominante de los miasmas. Snow consiguió que se retirara la palanca de la bomba el 8 de septiembre de 1854, cuando el brote ya declinaba. En la segunda edición de su obra, publicada en 1855, incluyó una versión del mapa con una línea que delimitaba la zona desde la que esa bomba era la fuente de agua más próxima a pie.",
+  ej:"El mapa no descubrió la causa: Snow ya tenía la hipótesis y otras pruebas, incluidos los casos de personas que bebían agua de esa bomba viviendo lejos. El mapa hizo visible y discutible un argumento que las tablas no lograban transmitir.",
+  p:["¿Qué añadió el mapa que no aportaban las tablas de defunciones?","¿Por qué la línea de distancia a pie es más que un adorno?","¿Qué diferencia hay entre descubrir con un mapa y argumentar con un mapa?"],
+  m:"El mapa hizo visible una relación espacial que en una tabla ordenada por calles resultaba imperceptible, y permitió a otros comprobarla sin rehacer el análisis. La línea de la segunda edición convierte una impresión visual en una afirmación comprobable: define el área de influencia de la bomba y permite contrastar los casos que caen dentro y fuera de ella, incluidos los que la contradicen. La distinción importa porque casi ninguna visualización periodística descubre algo: comunica un hallazgo obtenido de otro modo, y presentarla como el origen del hallazgo oculta el trabajo de verificación que la sostiene.",
+  k:"Una visualización rara vez descubre: argumenta. Y como argumento, debe poder impugnarse, lo que exige que las decisiones que la construyen sean explícitas."},
+
+ {tag:"CASO 2 · LONDRES · 1858",t:"Nightingale y el diagrama que cambió una política",
+  d:"Florence Nightingale, tras su experiencia en los hospitales militares de la guerra de Crimea, publicó en 1858 un informe sobre la salud y la administración del ejército británico en el que incluyó diagramas de área polar. Las cuñas mostraban, mes a mes, la mortalidad de los soldados separando las muertes por enfermedades evitables, por heridas y por otras causas. La conclusión visual era inmediata: morían muchos más soldados por enfermedades derivadas de las condiciones sanitarias que por combate. El informe se dirigía a comisiones y responsables políticos, no a estadísticos.",
+  ej:"La elección del formato respondía al destinatario. Nightingale disponía de las tablas y sabía que no persuadirían a quien no fuera a leerlas; el diagrama trasladaba la comparación a una diferencia de superficie visible de un vistazo.",
+  p:["¿Es legítimo elegir un formato por su capacidad de persuasión?","¿Dónde está el límite entre comunicar con eficacia y manipular?","¿Qué exige hoy esa misma elección?"],
+  m:"Elegir el formato por su eficacia comunicativa es legítimo y de hecho inevitable: toda representación privilegia una lectura. El límite es de fidelidad: la figura manipula cuando la codificación visual no corresponde a la magnitud representada, cuando el punto de comparación se altera o cuando se omite lo que contradice. Nightingale no alteraba las cifras, sino que hacía visible una comparación real. Hoy esa misma elección exige declarar el criterio: qué se compara, con qué base y por qué se eligió esa forma, porque el lector actual está expuesto a muchas más figuras y tiene menos posibilidad de comprobarlas una a una.",
+  k:"El formato es un argumento sobre qué importa. Es legítimo elegirlo para persuadir mientras la codificación visual respete las magnitudes y se declare la comparación."},
+
+ {tag:"CASO 3 · MAPAS ELECTORALES · DESDE 2004",t:"La superficie no vota",
+  d:"Los mapas electorales por unidades territoriales producen sistemáticamente una distorsión conocida: los territorios extensos y poco poblados ocupan gran parte de la superficie del mapa, mientras que las áreas urbanas densamente pobladas, que concentran la mayor parte del voto, quedan reducidas a manchas pequeñas. Tras las elecciones estadounidenses de 2004, el físico Mark Newman, de la Universidad de Michigan, difundió una serie de cartogramas que redimensionaban los territorios según su población y publicó la explicación de su construcción. La serie se ha convertido en la referencia habitual para explicar por qué el mapa convencional transmite una imagen distinta de la del recuento.",
+  ej:"El mapa convencional no contiene ningún dato falso. El problema es la codificación: el lector interpreta la superficie coloreada como cantidad, y la superficie es una propiedad del territorio que no forma parte del análisis.",
+  p:["¿Por qué el cartograma no es la solución universal?","¿Qué alternativas existen para el mismo problema?","¿Qué responsabilidad tiene la redacción cuando publica el mapa convencional?"],
+  m:"El cartograma corrige el sesgo de superficie a costa de deformar las formas hasta hacer difícil el reconocimiento, y exige del lector un esfuerzo que no todos los contextos admiten. Existen alternativas intermedias: cuadrículas de unidades iguales, mapas de símbolos proporcionales o la combinación del mapa convencional con un gráfico de barras del reparto real. La responsabilidad de la redacción es no publicar el mapa convencional como si respondiera la pregunta de cuánta gente votó qué: si se publica por reconocimiento, debe ir acompañado de la representación que sí responde esa pregunta.",
+  k:"El lector lee superficie como cantidad. Cuando la variable es de personas y no de territorio, hace falta una representación que corrija esa lectura o una figura que la acompañe."},
+
+ {tag:"CASO 4 · GEOGRAFÍA CUANTITATIVA · 1979-1984",t:"Openshaw y la geografía que produce el resultado",
+  d:"En 1979 Stan Openshaw y Peter Taylor mostraron, calculando un número enorme de correlaciones sobre distintas agrupaciones de las mismas unidades territoriales, que el coeficiente obtenido dependía en gran medida de cómo se agruparan esas unidades. Openshaw formalizó después la cuestión bajo el nombre de problema de la unidad de área modificable, con dos componentes: el efecto de escala, que aparece al cambiar el nivel de agregación, y el efecto de zonificación, que aparece al reagrupar de distinta manera unidades del mismo tamaño. La consecuencia es que un análisis territorial no tiene un único resultado correcto, sino uno por cada geografía empleada.",
+  ej:"No es un caso de mala práctica: es una propiedad de todo análisis espacial. Las fronteras administrativas se trazaron con criterios ajenos a la pregunta de investigación y, sin embargo, determinan la respuesta.",
+  p:["¿Qué comprobación mínima exige esto antes de publicar un análisis territorial?","¿Cómo se relaciona con la delimitación electoral interesada?","¿Qué se declara en la ficha técnica?"],
+  m:"La comprobación mínima es repetir el análisis con al menos dos agregaciones distintas —por ejemplo, la unidad administrativa y otra mayor o menor— y comprobar si el hallazgo sobrevive; si desaparece, la noticia es la geografía elegida. La relación con la delimitación electoral es directa: quien traza las fronteras puede producir mayorías distintas con los mismos votantes, y ese es el mecanismo técnico que las investigaciones sobre manipulación de distritos documentan. En la ficha técnica se declaran la unidad geográfica utilizada, su fuente y su fecha, y el resultado de la comprobación con una agregación alternativa.",
+  k:"Ninguna geografía es neutral. Un hallazgo territorial que no sobrevive a un cambio de agregación no es un hallazgo: es un artefacto del mapa que se eligió."},
+
+ {tag:"CASO 5 · VISUALIZACIÓN CIENTÍFICA · 2007",t:"El arcoíris que sigue siendo dañino",
+  d:"En 2007 David Borland y Russell M. Taylor II publicaron en <em>IEEE Computer Graphics and Applications</em> un artículo cuyo título señalaba que la escala de arcoíris seguía siendo perjudicial, retomando una crítica ya formulada en los años noventa. Los argumentos centrales son que esa escala no tiene un orden perceptivo natural, de modo que el lector no puede saber qué color significa más sin consultar la leyenda; que introduce fronteras visuales bruscas donde los datos varían de forma continua, sugiriendo saltos inexistentes; y que resulta especialmente problemática para quienes tienen deficiencias en la visión del rojo y el verde, una condición que afecta a alrededor del ocho por ciento de los hombres.",
+  ej:"El defecto no es estético. Una escala sin orden perceptivo obliga a leer la leyenda para interpretar cada zona, y las fronteras de color que no corresponden a saltos numéricos son afirmaciones visuales falsas.",
+  p:["¿Por qué una escala secuencial de un solo tono resuelve el problema?","¿Cuándo está justificado usar una escala divergente?","¿Qué comprobación de accesibilidad debe hacerse siempre?"],
+  m:"Una escala secuencial de un solo tono, que varía en luminosidad, tiene orden perceptivo inmediato: más oscuro es más, sin necesidad de leyenda, y esa ordenación se conserva en escala de grises y bajo cualquier deficiencia de visión cromática. La escala divergente está justificada únicamente cuando existe un punto medio con significado sustantivo —el cero, el promedio, un umbral legal—, porque su estructura afirma visualmente que ese punto separa dos regímenes. La comprobación obligatoria es convertir la figura a escala de grises: si deja de leerse, la información reside solo en el color y una parte de los lectores no la recibirá.",
+  k:"El color codifica información y por tanto puede mentir. La prueba de la escala de grises es gratuita y detecta la mayoría de los fallos de accesibilidad."},
+
+ {tag:"CASO 6 · ESTADOS UNIDOS · MAYO DE 2020",t:"El eje que no seguía el calendario",
+  d:"En mayo de 2020, el panel público de datos de covid-19 del Departamento de Salud Pública del estado de Georgia difundió un gráfico de barras de casos por condado en el que el eje horizontal no seguía el orden cronológico, sino que las fechas aparecían ordenadas de mayor a menor número de casos. El resultado visual era una curva descendente que sugería una caída sostenida que la serie temporal no mostraba. Tras la difusión pública del problema, la agencia reconoció el error y modificó el gráfico. En el mismo período se documentaron en distintos países otros paneles oficiales con ejes truncados o categorías reordenadas.",
+  ej:"Ninguna cifra era falsa. La manipulación —deliberada o no— estaba en el orden del eje, que es una decisión de diseño y no de datos, y que el lector no tiene forma de detectar salvo leyendo las etiquetas una por una.",
+  p:["¿Por qué el desorden del eje temporal es especialmente grave?","¿Qué distingue un error de diseño de una manipulación?","¿Qué debe hacer un medio que reproduce paneles oficiales?"],
+  m:"El eje temporal es la única convención que el lector da por supuesta sin verificarla: la lectura de izquierda a derecha como paso del tiempo está tan asentada que romperla produce una conclusión errónea incluso en lectores atentos. Distinguir error de manipulación exige evidencia de intención, y sin ella se describe el efecto y se documenta la corrección, que es suficiente y es lo que corresponde publicar. Un medio que reproduce paneles oficiales tiene la obligación de comprobar ejes, orden y denominadores antes de incrustarlos, porque al republicarlos asume su autoría ante su audiencia.",
+  k:"Reproducir la figura de un organismo es publicarla como propia. Comprobar el eje, el orden y el denominador antes de incrustarla es una obligación editorial, no una cortesía técnica."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El mapa que solo muestra dónde vive la gente",
+  d:"El equipo gráfico presenta un mapa de casos por municipio con recuentos absolutos. Las tres grandes ciudades aparecen oscuras y el titular propuesto habla de focos urbanos.",
+  r:"Reportera · Editor gráfico · Editora de sección",
+  ej:"<span class='who'>EDITOR GRÁFICO:</span> Se ve clarísimo dónde está el problema.<br><span class='who'>REPORTERA:</span> Se ve dónde vive la gente. ¿Cuál es la tasa por cada cien mil habitantes?<br><span class='who'>EDITOR GRÁFICO:</span> No la calculamos, tenemos los absolutos.<br><span class='who'>REPORTERA:</span> Entonces todavía no tenemos mapa.",
+  m:"Un mapa coroplético de recuentos absolutos reproduce la distribución de la población, de modo que su patrón no aporta información propia. La corrección es normalizar por la población en riesgo y comprobar si el orden de los municipios cambia, que casi siempre ocurre. Si por alguna razón hay que mostrar volumen —porque la carga asistencial depende de números absolutos y no de tasas—, la representación correcta es el símbolo proporcional, cuyo tamaño no depende de la superficie del territorio. La objeción no bloquea la pieza: indica qué cálculo falta.",
+  c:"Traducir una objeción metodológica en el cálculo concreto que la resuelve, en el mismo cierre."},
+
+ {tag:"ESCENARIO 2",t:"Dos mapas, dos clasificaciones",
+  d:"La pieza compara la situación de este año con la del año pasado mediante dos mapas. Cada uno se generó con cortes naturales calculados sobre sus propios datos.",
+  r:"Reportera · Diseñador de datos · Editora",
+  ej:"<span class='who'>DISEÑADOR:</span> Cada mapa usa los cortes que mejor describen su año.<br><span class='who'>REPORTERA:</span> Y el lector va a comparar los colores entre los dos.<br><span class='who'>DISEÑADOR:</span> Están las leyendas.<br><span class='who'>REPORTERA:</span> Nadie compara leyendas. Necesitamos cortes idénticos en ambos.",
+  m:"Cuando dos figuras se presentan juntas, el lector compara la codificación visual, no los números de la leyenda. Con clasificaciones distintas, un mismo color significa magnitudes distintas en cada mapa y la comparación resulta engañosa aunque cada mapa sea individualmente correcto. La solución es fijar una única escala común para ambos, calculada sobre el conjunto de los dos años, y declararlo en la ficha técnica. Si además interesa describir cada año por separado, esa versión va aparte y no lado a lado.",
+  c:"Distinguir entre lo que es correcto por separado y lo que es correcto en comparación."},
+
+ {tag:"ESCENARIO 3",t:"El denominador que cambia el ranking",
+  d:"Un municipio turístico encabeza el ranking de delitos por habitante. Su alcalde protesta: la población empadronada es de diez mil personas y recibe cien mil visitantes diarios.",
+  r:"Reportera · Alcalde · Editora",
+  ej:"<span class='who'>ALCALDE:</span> Ustedes dividen entre diez mil personas que no son las que están aquí.<br><span class='who'>REPORTERA:</span> Tiene razón en el dato. ¿Tienen ustedes una estimación oficial de población flotante?<br><span class='who'>ALCALDE:</span> La de la tasa turística.<br><span class='who'>REPORTERA:</span> Trabajemos con esa y publicamos las dos tasas.",
+  m:"La objeción es correcta y aceptarla fortalece la pieza en lugar de debilitarla: el denominador debe ser la población en riesgo, y en un municipio turístico la población empadronada no lo es. La solución no es retirar la cifra sino publicar ambas tasas declarando la fuente de cada denominador y sus limitaciones. Cuando la estimación de población flotante procede del propio ayuntamiento, conviene contrastarla con una fuente independiente, porque el interesado tiene un incentivo evidente en que sea alta.",
+  c:"Reconocer una objeción válida sin ceder el control del análisis ni renunciar a la publicación."},
+
+ {tag:"ESCENARIO 4",t:"La escala de arcoíris del panel",
+  d:"El organismo entrega un panel interactivo con escala de arcoíris y pide que se incruste tal cual en la pieza, con su marca visible.",
+  r:"Reportera · Responsable de comunicación del organismo · Editor gráfico",
+  ej:"<span class='who'>COMUNICACIÓN:</span> El panel es oficial, se incrusta y listo.<br><span class='who'>EDITOR GRÁFICO:</span> Con esa escala no se sabe qué color es más sin mirar la leyenda.<br><span class='who'>REPORTERA:</span> Y en escala de grises desaparece. ¿Nos dan los datos y lo rehacemos?",
+  m:"Incrustar una figura ajena es publicarla como propia ante la audiencia, con sus defectos incluidos. La escala de arcoíris carece de orden perceptivo e introduce fronteras visuales donde no hay saltos numéricos, de modo que el problema no es de gusto sino de codificación. Pedir los datos subyacentes y rehacer la figura con una escala secuencial resuelve el asunto y además permite añadir la ficha técnica. Si el organismo no entrega los datos, esa negativa es publicable y explica por qué la figura aparece con una advertencia o no aparece.",
+  c:"Sostener el criterio gráfico como criterio editorial y no como preferencia estética."},
+
+ {tag:"ESCENARIO 5",t:"El hallazgo que depende de la agregación",
+  d:"Tu análisis por barrios muestra una concentración clara. Al repetirlo por distritos, la concentración desaparece. El cierre es en dos horas.",
+  r:"Reportera · Jefe de datos · Editora",
+  ej:"<span class='who'>JEFE DE DATOS:</span> Por barrios se ve perfecto. Publiquemos esa.<br><span class='who'>REPORTERA:</span> Y por distritos no se ve nada. Es el mismo dato.<br><span class='who'>EDITORA:</span> ¿Entonces qué tenemos?<br><span class='who'>REPORTERA:</span> Tenemos que el patrón es de escala fina, y eso hay que decirlo y explicarlo.",
+  m:"Que un patrón aparezca a una escala y no a otra no invalida el hallazgo: lo delimita. Un fenómeno concentrado en unas pocas manzanas se diluye al agregar por distritos, y eso es información sustantiva sobre su naturaleza. Lo inadmisible es elegir la agregación que produce la figura más vistosa sin declarar que otras no la reproducen. La pieza correcta publica la escala fina, explica que a mayor agregación desaparece y extrae de ahí la conclusión: el fenómeno es local y las políticas de escala distrital no lo alcanzarían.",
+  c:"Convertir un resultado incómodo en el contenido de la pieza en lugar de ocultarlo por presión de cierre."},
+
+ {tag:"ESCENARIO 6",t:"La ficha técnica que nadie quiere",
+  d:"La pieza está lista. Falta espacio y la primera propuesta es eliminar el pie con la procedencia de los datos y de las capas geográficas.",
+  r:"Reportera · Editor de cierre · Editora",
+  ej:"<span class='who'>CIERRE:</span> El pie ocupa cuatro líneas que no tenemos.<br><span class='who'>REPORTERA:</span> Es lo que nos defiende si el organismo impugna el mapa.<br><span class='who'>CIERRE:</span> ¿Y si va en un enlace?<br><span class='who'>REPORTERA:</span> Perfecto, mientras exista y esté antes de publicar, no después.",
+  m:"La ficha técnica es el equivalente cartográfico de la nota metodológica, y su función aparece cuando alguien impugna la figura: sin ella no hay forma de demostrar que las decisiones fueron razonadas. Su ubicación es negociable —pie, enlace, apartado metodológico— y su existencia no lo es. La solución del enlace es plenamente válida siempre que se escriba antes de publicar, porque lo que se aplaza para después del cierre no se escribe nunca.",
+  c:"Negociar la forma de la transparencia sin negociar su existencia."}
+];
+
+const IV=[
+ {q:"El mapa por municipios, ¿muestra recuentos absolutos o una tasa? ¿Cuál es el denominador?",
+  m:"Abre por la decisión que determina todo lo demás. Si son absolutos, el mapa reproduce la distribución de la población y el resto de la conversación cambia de objeto."},
+ {q:"¿Por qué se eligió ese denominador y qué alternativas se consideraron?",
+  m:"Obliga a explicitar si hubo una decisión razonada o una elección por disponibilidad. Ambas respuestas son informativas."},
+ {q:"¿Qué método de clasificación usa el mapa y cuántas clases tiene?",
+  m:"Es la decisión que más altera la apariencia y la que casi nunca se declara. Si nadie sabe responder, el panel se construyó con los valores por defecto de la herramienta."},
+ {q:"Los mapas de distintos períodos, ¿usan los mismos cortes?",
+  m:"Sin cortes comunes, la comparación visual entre períodos es engañosa aunque cada mapa sea correcto por separado."},
+ {q:"¿De dónde proceden las capas geográficas y de qué fecha son?",
+  m:"Los límites administrativos cambian. Una capa desactualizada asigna casos a unidades que ya no existen o que cambiaron de perímetro."},
+ {q:"El eje vertical del gráfico no empieza en cero. ¿Fue una decisión o el valor por defecto de la herramienta?",
+  m:"Distingue entre criterio y automatismo sin acusar. La respuesta indica si existe un procedimiento de revisión de las figuras."},
+ {q:"¿Quién revisa las visualizaciones antes de publicarse y con qué lista de comprobación?",
+  m:"Establece si hay control de calidad gráfico. La ausencia de procedimiento es un hallazgo publicable sobre el organismo."},
+ {q:"¿Pueden publicar los datos subyacentes en formato reutilizable para que puedan rehacerse las figuras?",
+  m:"Cierra con una petición concreta y verificable. La respuesta, sea cual sea, es publicable y describe la política de transparencia del organismo."}
+];
+
+const AUDIT=[
+ ["v","John Snow registró las muertes por cólera del brote del Soho de 1854 sobre un plano del barrio; consiguió la retirada de la palanca de la bomba de Broad Street el 8 de septiembre de 1854, cuando el brote ya declinaba, e incluyó en la segunda edición de su obra, de 1855, un mapa con la delimitación del área de menor distancia a pie hasta esa bomba.","Snow, On the Mode of Communication of Cholera, 2.ª ed., 1855, y literatura histórica posterior. Verificado."],
+ ["v","Florence Nightingale incluyó diagramas de área polar en su informe de 1858 sobre la salud y la administración del ejército británico, mostrando mes a mes la mortalidad por enfermedades evitables frente a la debida a heridas.","Notes on Matters Affecting the Health, Efficiency, and Hospital Administration of the British Army, 1858. Verificado."],
+ ["v","Mark Newman, de la Universidad de Michigan, difundió a partir de las elecciones estadounidenses de 2004 una serie de cartogramas que redimensionan los territorios según su población, junto con la explicación de su construcción.","Material publicado por el autor, Universidad de Michigan. Verificado."],
+ ["v","Openshaw y Taylor mostraron en 1979, mediante el cálculo de un gran número de correlaciones sobre distintas agrupaciones de las mismas unidades, que el resultado depende de la agregación; Openshaw formalizó después el problema de la unidad de área modificable con sus efectos de escala y de zonificación.","Openshaw y Taylor, 1979; Openshaw, The Modifiable Areal Unit Problem, CATMOG, 1984. Verificado."],
+ ["v","Borland y Taylor publicaron en 2007 en <em>IEEE Computer Graphics and Applications</em> la crítica de la escala de arcoíris por carecer de orden perceptivo, introducir fronteras visuales inexistentes y resultar problemática para personas con deficiencias en la visión del rojo y el verde.","IEEE CG&amp;A, 2007. Verificado."],
+ ["v","En mayo de 2020 el panel de datos de covid-19 del Departamento de Salud Pública del estado de Georgia publicó un gráfico de barras cuyo eje horizontal no seguía el orden cronológico; tras hacerse pública la anomalía, la agencia reconoció el error y modificó el gráfico.","Cobertura de mayo de 2020 y declaraciones de la propia agencia. Verificado."],
+ ["v","ColorBrewer, desarrollado por Cynthia Brewer en la Universidad Estatal de Pensilvania, clasifica los esquemas de color en secuenciales, divergentes y cualitativos e indica cuáles son seguros para daltonismo, impresión y fotocopia.","colorbrewer2.org · Penn State. Verificado."],
+ ["v","Las pautas de accesibilidad del W3C establecen requisitos de contraste y el principio de no transmitir información únicamente mediante el color.","W3C, Web Content Accessibility Guidelines 2.1. Verificado."],
+ ["b","Un mapa coroplético solo admite tasas y proporciones; con recuentos absolutos representa la distribución de la población.","Monmonier · Cairo · Datawrapper Academy."],
+ ["b","Cada denominador responde una pregunta distinta y puede invertir el orden de los territorios; la regla es dividir por la población en riesgo.","Cohen, Numbers in the Newsroom · JRN-1002 Unidad 1."],
+ ["b","El método de clasificación altera la apariencia del mapa sin alterar los datos, y la comparación entre mapas exige cortes idénticos.","Cartografía temática establecida · Datawrapper Academy."],
+ ["b","Ninguna proyección conserva simultáneamente forma, superficie, distancia y dirección; para comparaciones de superficie se emplea una proyección equivalente.","Monmonier, How to Lie with Maps · cartografía establecida."],
+ ["b","La ficha técnica de una visualización debe declarar origen y fecha de datos y capas, denominador, clasificación, proyección cuando proceda y limitaciones.","Principio de reproducibilidad · JRN-1002 Unidades 1 y 2."],
+ ["p","La cifra de alrededor de un ocho por ciento de hombres con deficiencia en la visión del rojo y el verde procede de la literatura de referencia sobre visión cromática y varía según la población estudiada; no se ha realizado para esta unidad una revisión de las estimaciones por región.","Redactado como orden de magnitud y no como dato de una población concreta."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un mapa coroplético que representa recuentos absolutos muestra, en la práctica:",
+ o:["La intensidad real del fenómeno en cada territorio","La distribución de la población","Las diferencias entre territorios grandes y pequeños","El error de medición de los datos"],c:1,
+ w:["La intensidad requiere una tasa: sin dividir por la población en riesgo, el color codifica cuánta gente hay.",
+    "",
+    "La superficie influye en la percepción, pero el patrón que aparece es el de la población, no el del tamaño de las unidades.",
+    "El error de medición es otro problema y no produce el patrón sistemático que genera la falta de normalización."],
+ e:"La comprobación es inmediata: si el mapa se parece al de densidad de población, no aporta información propia. Hay que normalizar o cambiar de representación."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Elegir el denominador de una tasa equivale a:",
+ o:["Elegir la unidad en que se expresa el resultado","Elegir la pregunta que se está respondiendo","Corregir el sesgo de recolección de los datos","Ajustar la escala del gráfico"],c:1,
+ w:["La unidad de expresión es una consecuencia de la elección, no su contenido.",
+    "",
+    "El sesgo de recolección procede de cómo se produjeron los datos y no se corrige dividiendo.",
+    "La escala afecta a la presentación; el denominador afecta a lo que se mide."],
+ e:"Accidentes por habitante, por vehículo, por kilómetro recorrido y por kilómetro de vía producen cuatro rankings distintos, y los cuatro son correctos para su propia pregunta."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El problema de la unidad de área modificable establece que:",
+ o:["Los mapas con muchas unidades son más precisos que los de pocas","El resultado de un análisis territorial depende de cómo se tracen y agrupen las unidades geográficas","Las unidades administrativas deben actualizarse periódicamente","Los territorios con pocos casos deben excluirse del análisis"],c:1,
+ w:["Más unidades no significan más precisión: significan otra geografía, con otro resultado posible.",
+    "",
+    "La actualización de los límites es una buena práctica de datos, distinta del efecto que describe el problema.",
+    "La exclusión de unidades con pocos casos es una decisión de análisis con sus propios efectos, y no es lo que enuncia el problema."],
+ e:"Tiene dos componentes: el efecto de escala, al cambiar el nivel de agregación, y el de zonificación, al reagrupar de otro modo unidades del mismo tamaño. Ninguna geografía es neutral."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una escala de color divergente está justificada cuando:",
+ o:["Se quiere aumentar el contraste visual del mapa","Existe un punto medio con significado sustantivo, como el cero, el promedio o un umbral","La variable tiene muchos valores distintos","Se representan categorías sin orden"],c:1,
+ w:["El contraste no es un criterio: la estructura del color debe corresponder a la estructura de la variable.",
+    "",
+    "El número de valores distintos afecta a la clasificación, no al tipo de esquema.",
+    "Las categorías sin orden requieren un esquema cualitativo, cuyos colores no sugieren magnitud."],
+ e:"Una escala divergente afirma visualmente que el punto medio separa dos regímenes. Usarla sin ese punto medio inventa un umbral que los datos no contienen."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El eje vertical truncado es inadmisible sobre todo en:",
+ o:["Gráficos de líneas, porque interrumpe la tendencia","Gráficos de barras, porque la magnitud se codifica en la longitud","Mapas coropléticos, porque altera la leyenda","Gráficos de dispersión, porque desplaza los puntos"],c:1,
+ w:["En líneas la codificación es la posición y la pendiente, y forzar el cero puede aplanar variaciones relevantes; el criterio es que el rango no exagere ni oculte.",
+    "",
+    "Los mapas coropléticos no tienen eje vertical: su equivalente es el método de clasificación.",
+    "En dispersión, ambos ejes suelen recortarse por necesidad y eso no distorsiona la relación representada."],
+ e:"La regla se deriva de la codificación visual: si la magnitud se lee como longitud, cortar el origen falsea la comparación de longitudes."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un cartograma sirve para:",
+ o:["Mostrar con precisión la forma real de cada territorio","Corregir que la superficie pese visualmente más que la variable representada","Sustituir a la leyenda de color en mapas complejos","Representar datos sin necesidad de normalizar"],c:1,
+ w:["Hace justamente lo contrario: deforma las formas, y ese es su coste.",
+    "",
+    "La leyenda sigue siendo necesaria: el cartograma cambia la geometría, no el sistema de codificación.",
+    "Redimensionar por población es una forma de normalización, no una manera de prescindir de ella."],
+ e:"El lector interpreta la superficie coloreada como cantidad. El cartograma corrige esa lectura a costa del reconocimiento del mapa, y no siempre es la mejor solución."},
+
+/* ---------- BLOQUE B · DECISIONES DE REPRESENTACIÓN ---------- */
+{blk:"BLOQUE B · DECISIONES DE REPRESENTACIÓN", t:"mcq",
+ s:"Tienes el número de casos por municipio y quieres mostrar dónde el fenómeno es más intenso en relación con la población.",
+ q:"¿Qué representación corresponde?",
+ o:["Coroplético con recuentos absolutos","Coroplético con tasa por población, declarando el denominador","Símbolos proporcionales al número de casos","Cartograma redimensionado por casos"],c:1,
+ w:["Reproduciría el mapa de población y no respondería la pregunta planteada.",
+    "",
+    "El símbolo proporcional muestra volumen, que es otra pregunta: dónde se concentran los casos, no dónde son más intensos.",
+    "El cartograma responde a cuánto pesa cada territorio en el total, no a la intensidad relativa."],
+ e:"La elección se hace desde la pregunta: intensidad relativa exige tasa; volumen exige símbolos proporcionales; peso en el total exige cartograma."},
+
+{blk:"BLOQUE B · DECISIONES DE REPRESENTACIÓN", t:"mcq",
+ s:"La pieza compara el mapa de este año con el del año anterior. El diseñador calculó cortes naturales por separado para cada mapa.",
+ q:"¿Qué corresponde hacer?",
+ o:["Mantenerlo: cada mapa describe mejor su propio año","Fijar una clasificación común para ambos, calculada sobre el conjunto, y declararlo","Añadir una nota que advierta de que las leyendas son distintas","Publicar solo el mapa del año actual"],c:1,
+ w:["Cada mapa es correcto por separado y la comparación entre ambos no lo es: el lector compara colores, no leyendas.",
+    "",
+    "La advertencia no corrige la lectura visual, que es inmediata y anterior a la lectura del texto.",
+    "Renunciar a la comparación elimina justamente lo que la pieza quiere mostrar."],
+ e:"Publicar dos mapas comparativos con clasificaciones distintas es una manipulación aunque no haya intención de manipular."},
+
+{blk:"BLOQUE B · DECISIONES DE REPRESENTACIÓN", t:"mcq",
+ s:"Un municipio turístico de diez mil habitantes empadronados y cien mil visitantes diarios encabeza el ranking de delitos por habitante.",
+ q:"¿Qué corresponde publicar?",
+ o:["El ranking tal cual: el empadronamiento es el dato oficial","Ambas tasas, con población empadronada y con una estimación declarada de población flotante, y sus limitaciones","Excluir al municipio del ranking por no ser comparable","La cifra absoluta de delitos, que no depende del denominador"],c:1,
+ w:["El dato oficial no es necesariamente la población en riesgo, que es lo que exige el denominador.",
+    "",
+    "Excluirlo elimina información y deja sin explicar precisamente el caso que motiva la pregunta.",
+    "La cifra absoluta no permite comparar municipios de tamaños distintos, que es el objeto del ranking."],
+ e:"La regla es dividir por la población en riesgo y no por la más disponible. Cuando el denominador correcto no existe, se declara la limitación en lugar de sustituirse en silencio."},
+
+{blk:"BLOQUE B · DECISIONES DE REPRESENTACIÓN", t:"mcq",
+ s:"El análisis por barrios muestra una concentración clara del fenómeno. Repetido por distritos, la concentración desaparece.",
+ q:"¿Qué se publica?",
+ o:["El análisis por barrios, que es el que muestra el patrón","El análisis por barrios, explicando que a mayor agregación desaparece y qué implica eso sobre la naturaleza del fenómeno","El análisis por distritos, más conservador","Ninguno: los resultados se contradicen"],c:1,
+ w:["Publicar solo la agregación que produce la figura más vistosa, sin declarar que otras no la reproducen, es lo que la comprobación pretende evitar.",
+    "",
+    "El nivel más agregado no es más conservador: es otra geografía, que oculta un patrón real de escala fina.",
+    "No se contradicen: describen el fenómeno a escalas distintas, y esa diferencia es información sustantiva."],
+ e:"Que un patrón aparezca a una escala y no a otra lo delimita en lugar de invalidarlo: el fenómeno es local, y una política de escala distrital no lo alcanzaría."},
+
+{blk:"BLOQUE B · DECISIONES DE REPRESENTACIÓN", t:"mcq",
+ s:"El organismo entrega un panel con escala de arcoíris y pide que se incruste tal cual.",
+ q:"¿Qué corresponde hacer?",
+ o:["Incrustarlo: la responsabilidad de la figura es del organismo","Pedir los datos subyacentes y rehacer la figura con una escala secuencial, o publicar la advertencia si no los entregan","Incrustarlo añadiendo una nota sobre la escala","Rechazar la información por proceder de una fuente con figuras defectuosas"],c:1,
+ w:["Incrustar una figura ajena es publicarla como propia ante la audiencia, con sus defectos incluidos.",
+    "",
+    "La nota no corrige la codificación: el lector interpreta el color antes de leer cualquier advertencia.",
+    "El defecto gráfico no descalifica los datos, que pueden ser válidos y publicables en otra representación."],
+ e:"La escala de arcoíris carece de orden perceptivo e introduce fronteras visuales donde no hay saltos numéricos. Es un problema de codificación, no de gusto."},
+
+{blk:"BLOQUE B · DECISIONES DE REPRESENTACIÓN", t:"mcq",
+ s:"Un panel oficial presenta un gráfico de barras cuyo eje horizontal ordena las fechas por número de casos, de mayor a menor.",
+ q:"¿Cómo se cubre?",
+ o:["Publicando que el organismo manipuló los datos para simular un descenso","Describiendo que el orden del eje no es cronológico, mostrando la serie temporal correcta y recogiendo la explicación del organismo","Ignorando el panel y usando otra fuente","Reproduciendo el gráfico con una advertencia genérica sobre su lectura"],c:1,
+ w:["Afirmar manipulación exige evidencia de intención; sin ella se describe el efecto, que suele ser suficiente.",
+    "",
+    "Ignorarlo desaprovecha un hallazgo verificable sobre cómo un organismo comunica sus datos.",
+    "Reproducir la figura defectuosa la difunde, y la advertencia genérica no revierte la conclusión visual."],
+ e:"Ninguna cifra era falsa en el caso documentado de mayo de 2020: la distorsión estaba en el orden del eje, que es una decisión de diseño y no de datos."},
+
+/* ---------- BLOQUE C · FICHA TÉCNICA Y PUBLICACIÓN ---------- */
+{blk:"BLOQUE C · FICHA TÉCNICA Y PUBLICACIÓN", t:"mcq",
+ q:"La ficha técnica de una visualización debe declarar, como mínimo:",
+ o:["El programa y la plantilla utilizados","Origen y fecha de los datos y de las capas geográficas, denominador, clasificación y limitaciones","El nombre del diseñador y del responsable de datos","La licencia de uso de la imagen publicada"],c:1,
+ w:["La herramienta empleada no permite reproducir ni ponderar la figura.",
+    "",
+    "La autoría es una cuestión de créditos, distinta de la reproducibilidad.",
+    "La licencia regula la reutilización, no la validez de lo representado."],
+ e:"Es el equivalente cartográfico de la nota metodológica. Si otro periodista no puede reconstruir el mapa con la ficha y los datos públicos, la ficha está incompleta."},
+
+{blk:"BLOQUE C · FICHA TÉCNICA Y PUBLICACIÓN", t:"mcq",
+ q:"La comprobación de accesibilidad más elemental de una figura consiste en:",
+ o:["Aumentar el tamaño de la tipografía de la leyenda","Convertirla a escala de grises y comprobar si sigue leyéndose","Añadir un texto alternativo descriptivo","Usar siempre paletas de alto contraste"],c:1,
+ w:["El tamaño tipográfico mejora la legibilidad del texto y no resuelve la codificación por color.",
+    "",
+    "El texto alternativo es necesario y complementario: no comprueba si la figura funciona visualmente.",
+    "El alto contraste ayuda, pero no garantiza que la información no dependa exclusivamente del matiz."],
+ e:"Si la figura deja de leerse en grises, la información reside solo en el color, y alrededor de un ocho por ciento de los hombres tiene alguna deficiencia en la visión del rojo y el verde."},
+
+{blk:"BLOQUE C · FICHA TÉCNICA Y PUBLICACIÓN", t:"mcq",
+ q:"Antes de publicar un mapa, la comprobación que recomienda esta unidad es:",
+ o:["Someterlo a la opinión de un lector no especializado","Producir una versión alternativa razonable —otro denominador u otros cortes— y comparar si cambia el mensaje","Verificar que los colores coinciden con el manual de estilo","Comprobar que todos los territorios tienen dato"],c:1,
+ w:["La opinión de un lector detecta problemas de comprensión, no decisiones técnicas que alteran el resultado.",
+    "",
+    "La coherencia con el manual de estilo es una cuestión de identidad visual, no de validez.",
+    "La cobertura completa es deseable y no revela el efecto de las decisiones de normalización y clasificación."],
+ e:"Si el mensaje cambia con una decisión alternativa razonable, esa es exactamente la información que el lector necesita y que la ficha técnica debe recoger."},
+
+{blk:"BLOQUE C · FICHA TÉCNICA Y PUBLICACIÓN", t:"mcq",
+ q:"Cuando un medio incrusta el panel interactivo de un organismo, la responsabilidad editorial:",
+ o:["Recae en el organismo, que es el autor de la figura","Es del medio, porque republicar ante la propia audiencia equivale a publicar","Se comparte si se cita la fuente con enlace","Depende de si el panel tiene licencia abierta"],c:1,
+ w:["La autoría técnica no traslada la responsabilidad ante la audiencia del medio.",
+    "",
+    "La cita de fuente acredita la procedencia y no corrige un defecto de codificación.",
+    "La licencia regula el permiso de reutilización, no la validez de lo que se muestra."],
+ e:"Comprobar eje, orden y denominador antes de incrustar es una obligación editorial. Reproducir una figura defectuosa la difunde con el respaldo del medio."},
+
+{blk:"BLOQUE C · FICHA TÉCNICA Y PUBLICACIÓN", t:"mcq",
+ q:"Para comparar visualmente la superficie de territorios situados en latitudes muy distintas conviene:",
+ o:["Usar la proyección web habitual, que es el estándar de la cartografía en línea","Usar una proyección equivalente, que conserva las áreas, y declararlo","Añadir una escala gráfica en kilómetros","Recortar el mapa para que las latitudes sean similares"],c:1,
+ w:["La proyección web conserva las formas locales y exagera enormemente las superficies al alejarse del ecuador.",
+    "",
+    "La escala gráfica informa sobre distancias en una zona concreta y no corrige la distorsión de áreas.",
+    "Recortar el mapa elimina territorios que forman parte de la comparación."],
+ e:"Ninguna proyección conserva todo a la vez: si el mapa invita a comparar tamaños, la proyección debe conservar áreas y hay que decirlo."},
+
+{blk:"BLOQUE C · FICHA TÉCNICA Y PUBLICACIÓN", t:"mcq",
+ q:"La afirmación de que una visualización es un argumento significa que:",
+ o:["Toda figura defiende una postura política","Las decisiones que la construyen determinan la conclusión del lector y por eso deben declararse","Las figuras deben acompañarse siempre de un texto interpretativo","No existen visualizaciones objetivas y por tanto todas son igualmente válidas"],c:1,
+ w:["No se trata de postura política: se trata de que la codificación privilegia una lectura.",
+    "",
+    "El texto acompañante es útil y no sustituye a la declaración de las decisiones técnicas.",
+    "Que ninguna sea neutral no las iguala: unas declaran sus decisiones y son auditables, otras no."],
+ e:"El lector no puede auditar lo que no ve, de modo que la obligación de declarar recae íntegramente sobre quien publica. Es el mismo principio que rige la limpieza en la Unidad 2 y el descarte causal en la Unidad 3."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las decisiones que alteran lo que un mapa temático comunica sin alterar los datos.",
+ o:["El denominador elegido para normalizar","El método de clasificación y el número de clases","El tipo de esquema de color","El nombre del archivo de la figura","La unidad geográfica en que se agregan los datos"],
+ c:[0,1,2,4],
+ w:["","","","El nombre del archivo no afecta a la lectura de la figura. Es la única opción de la lista que no es una decisión de representación.",""],
+ e:"Denominador, clasificación, color y geografía. Las cuatro son invisibles para el lector, y por eso la ficha técnica es la única vía de auditoría disponible."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe comprobarse antes de incrustar la figura de un organismo público.",
+ o:["Si el eje sigue el orden esperado y arranca donde corresponde","Si los valores están normalizados y con qué denominador","Si el esquema de color corresponde al tipo de variable","Si el organismo autoriza la reproducción","Si las capas geográficas tienen fecha declarada"],
+ c:[0,1,2,4],
+ w:["","","","La autorización es una cuestión de derechos de uso, no de validez de la figura ante la audiencia.",""],
+ e:"Republicar es publicar. Las cuatro comprobaciones son rápidas y evitan asumir como propio un defecto ajeno."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las decisiones en la construcción de un mapa temático.",
+ o:["Formular la pregunta que el mapa debe responder","Elegir la unidad geográfica y comprobar el efecto de la agregación","Elegir el denominador y calcular la tasa","Elegir el método de clasificación y el número de clases","Elegir el esquema de color y comprobar su lectura en escala de grises"],
+ c:[0,1,2,3,4],
+ e:"La pregunta va primero porque determina todo lo demás: sin ella, la elección del tipo de mapa se hace por costumbre o por estética, que es donde empiezan los errores."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena los elementos de la ficha técnica según el orden en que se declaran.",
+ o:["Origen de los datos y fecha de obtención","Origen y fecha de las capas geográficas","Denominador utilizado y motivo de su elección","Método de clasificación y número de clases","Limitaciones y qué queda fuera"],
+ c:[0,1,2,3,4],
+ e:"Las limitaciones van al final y son la parte que más credibilidad aporta, exactamente como en la nota metodológica de la Unidad 2."}
+];
+
+const EXAM=[
+ {u:"UNIDAD 1",q:"Un conjunto de datos oficial debe tratarse como:",
+  o:["Una descripción neutral de la realidad","Una fuente con intereses, definiciones propias y omisiones","Un material auxiliar que confirma el reporteo","Una prueba documental que no admite discusión"],c:1,
+  e:"Los datos los produce alguien, con una definición y un propósito. Entrevistar la base —quién la hace, desde cuándo, qué deja fuera— es el equivalente de entrevistar a una fuente."},
+ {u:"UNIDAD 1",q:"La ausencia de datos oficiales sobre un fenómeno:",
+  o:["Impide informar sobre él","Puede ser en sí misma la noticia","Obliga a estimar la cifra con métodos indirectos","Se resuelve citando fuentes internacionales"],c:1,
+  e:"Que un Estado no cuente algo es una decisión, y describirla —con qué norma lo obliga o no, desde cuándo, qué se cuenta en su lugar— suele ser más sólido que estimar."},
+ {u:"UNIDAD 1",q:"Una solicitud de acceso a la información eficaz debe:",
+  o:["Describir el interés periodístico del asunto","Precisar el registro, el período y el formato reutilizable en que se pide","Solicitar el máximo de información posible por si acaso","Dirigirse a la máxima autoridad del organismo"],c:1,
+  e:"La precisión es lo que hace la solicitud respondible y lo que dificulta una negativa por indeterminación. El formato importa: un PDF de tablas no es un formato reutilizable."},
+ {u:"UNIDAD 2",q:"Limpiar un conjunto de datos consiste en:",
+  o:["Corregirlo hasta obtener su versión verdadera","Tomar decisiones que lo alteran, registradas de forma reversible","Eliminar los registros defectuosos","Convertirlo a un formato analizable"],c:1,
+  e:"No existe una versión limpia a la que se llegue: existen decisiones con efectos. Si no puedes volver al original deshaciendo tus pasos, no limpiaste: modificaste."},
+ {u:"UNIDAD 2",q:"Ante un conjunto con un 30% de valores ausentes concentrados en una dependencia:",
+  o:["Se imputan los valores con la media de la columna","Se comprueba si la ausencia es un patrón, porque entonces suele ser el hallazgo","Se excluye la dependencia del análisis","Se convierten los vacíos en ceros"],c:1,
+  e:"La pregunta no es cuántos faltan sino si los que faltan se parecen entre sí. Cuando las ausencias se concentran, dejan de ser ruido."},
+ {u:"UNIDAD 2",q:"La comprobación que detecta un truncamiento por límite de filas es:",
+  o:["Revisar visualmente el final del archivo","Contar los registros del origen con una herramienta ajena a la hoja de cálculo y comparar","Comprobar que no hay filas duplicadas","Verificar la codificación de caracteres"],c:1,
+  e:"El truncamiento no produce aviso: el archivo se abre y parece completo. El recuento contrastado es la comprobación más barata y la que más se omite."},
+ {u:"UNIDAD 3",q:"Antes de admitir una interpretación causal hay que descartar:",
+  o:["El error de medición y el sesgo de publicación","El azar, el sesgo de selección, la causalidad inversa y la confusión","La falta de significación estadística","La ausencia de estudios previos"],c:1,
+  e:"La explicación causal es la última candidata, no la primera. Lo que no se pudo descartar se publica junto al hallazgo."},
+ {u:"UNIDAD 3",q:"Que una asociación cambie de signo al desagregar por subgrupos indica:",
+  o:["Un error en el cálculo","Una paradoja de Simpson: el patrón agregado refleja la composición de los grupos","Que la muestra es insuficiente","Que las variables no están relacionadas"],c:1,
+  e:"Ocurre cuando los subgrupos difieren mucho en tamaño y tasa base. Berkeley, 1973: la diferencia global reflejaba a qué departamentos se solicitaba plaza."},
+ {u:"UNIDAD 3",q:"Un programa se aplica a los veinte peores casos del año anterior y al siguiente mejoran. Para afirmar que funcionó hace falta:",
+  o:["Una serie temporal más larga","Un grupo de comparación de casos equivalentes sin intervención","Un análisis de significación estadística","La opinión técnica del organismo responsable"],c:1,
+  e:"Seleccionar por valor extremo garantiza regresión a la media. Solo la comparación con casos equivalentes separa el efecto del retorno estadístico al promedio."},
+ {u:"UNIDAD 4",q:"Un mapa coroplético con recuentos absolutos representa:",
+  o:["La intensidad del fenómeno","La distribución de la población","La superficie de cada territorio","La calidad del registro administrativo"],c:1,
+  e:"Es el error más frecuente de la cartografía periodística. La comprobación: si el mapa se parece al de densidad de población, no aporta información propia."},
+ {u:"UNIDAD 4",q:"Dos mapas comparativos de períodos distintos deben:",
+  o:["Usar cada uno la clasificación que mejor describa su período","Compartir una misma clasificación, calculada sobre el conjunto, y declararlo","Acompañarse de una advertencia sobre sus leyendas","Publicarse por separado y nunca juntos"],c:1,
+  e:"El lector compara colores, no leyendas. Con clasificaciones distintas, un mismo color significa magnitudes distintas en cada mapa."},
+ {u:"UNIDAD 4",q:"La ficha técnica de una visualización cumple la misma función que:",
+  o:["El pie de foto de una imagen","La nota metodológica de un análisis","El titular de la pieza","La licencia de reutilización"],c:1,
+  e:"Ambas permiten al lector ponderar y reproducir lo publicado. Si otro periodista no puede reconstruir la figura con la ficha y los datos públicos, la ficha está incompleta."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+function buildQuiz(list, holderId, scoreId, withUnit){
+  let done=0,right=0;
+  const holder=document.getElementById(holderId);
+  list.forEach(function(it,i){
+    const from = withUnit ? '<span class="from">'+it.u+'</span>' : '';
+    const card=el('<div class="q">'+from+'<div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts');
+    it.o.forEach(function(o,j){
+      const b=document.createElement('button');
+      b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+      b.onclick=function(){
+        if(card.dataset.done) return;
+        card.dataset.done='1'; done++;
+        var kids=opts.children;
+        for(var k=0;k<kids.length;k++){
+          kids[k].classList.add('done');
+          if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+          else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+        }
+        if(j===it.c) right++;
+        card.querySelector('.exp').classList.add('show');
+        const s=document.getElementById(scoreId);
+        let txt='RESPONDIDAS '+done+' / '+list.length+' · CORRECTAS '+right;
+        if(withUnit){
+          const pct=Math.round(right/list.length*100);
+          txt+=' · CALIFICACIÓN '+pct+'%';
+          if(done===list.length) txt+=pct>=75?' · APROBADO':' · NO APROBADO';
+        }
+        s.textContent=txt;
+      };
+      opts.appendChild(b);
+    });
+    holder.appendChild(card);
+  });
+}
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+buildQuiz(EXAM,'exam','escore',true);
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#exa .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>

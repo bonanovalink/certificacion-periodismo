@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1002 · Unidad 3 — Correlación Estadística y Análisis Causal</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1002, Unidad 3.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course on" href="jrn1002-u3.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="#"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1002 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Correlación Estadística y Análisis Causal</h2>
+  <div class="sub">Unidad 3 de 4 · Periodismo de Datos y Visualización</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1002-u1.html">Unidad 1: Fundamentos del Periodismo de Datos de Vigilancia</a>
+    <a class="unit" href="jrn1002-u2.html">Unidad 2: Limpieza de Datos y Auditoría de Planillas</a>
+    <span class="unit on">Unidad 3: Correlación Estadística y Análisis Causal</span>
+    <a class="unit" href="jrn1002-u4.html">Unidad 4: Cartografía Interactiva y Visualización de Datos</a>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>La advertencia «correlación no implica causalidad» se repite tanto que ha dejado de servir. Todo el mundo la sabe y casi nadie la aplica, porque enuncia una prohibición sin enseñar el procedimiento que la sustituye. Esta unidad enseña ese procedimiento: qué hay que descartar, en qué orden, y con qué palabras se publica el resultado.</p>
+    <p style="margin-bottom:0">El eje es que <strong>una correlación es una pregunta, no una respuesta</strong>. Entre dos variables que se mueven juntas hay siempre cuatro explicaciones posibles antes de la causal —azar, sesgo de selección, causalidad inversa y variable de confusión—, y el trabajo consiste en eliminarlas una por una y declarar cuáles no se pudieron eliminar.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Interpretar una asociación entre dos variables distinguiendo su fuerza, su dirección y su tamaño de efecto, sin atribuirle dirección causal.</li>
+      <li>Descartar de forma ordenada las cuatro explicaciones alternativas a toda correlación: azar, sesgo de selección, causalidad inversa y variable de confusión.</li>
+      <li>Aplicar los criterios de Bradford Hill como lista de comprobación para evaluar cuánto sostiene una inferencia causal basada en datos observacionales.</li>
+      <li>Detectar la paradoja de Simpson al agregar datos y la falacia ecológica al trasladar al individuo lo que solo vale para el grupo.</li>
+      <li>Reconocer los procedimientos que fabrican hallazgos —comparaciones múltiples, corte selectivo de la serie, hipótesis elegida después del resultado— y exigir cuántas pruebas se hicieron.</li>
+      <li>Redactar el enunciado causal exacto que la evidencia permite, distinguiendo «se asocia con», «precede a», «predice» y «causa».</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Jonathan Gray y Liliana Bounegru, <em>The Data Journalism Handbook</em> (2.ª ed., 2021) — capítulos sobre análisis e interpretación de datos</li>
+      <li>Alberto Cairo, <em>The Truthful Art</em> (2016) — capítulos de estadística básica e inferencia</li>
+      <li>Sarah Cohen, <em>Numbers in the Newsroom</em> (Investigative Reporters and Editors)</li>
+      <li>Darrell Huff, <em>How to Lie with Statistics</em> (1954) — lectura crítica de la presentación de cifras</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Austin Bradford Hill — «The Environment and Disease: Association or Causation?»</h5>
+        <div class="def">Conferencia presidencial publicada en 1965 en los <em>Proceedings of the Royal Society of Medicine</em>. Propone nueve consideraciones —fuerza, consistencia, especificidad, temporalidad, gradiente, plausibilidad, coherencia, experimento y analogía— para decidir cuándo una asociación observada admite lectura causal. Hill advierte expresamente que no son reglas de decisión ni una lista que haya que cumplir entera.</div>
+        <p class="src">Proc. R. Soc. Med., 1965, vol. 58, pp. 295-300</p></div>
+      <div class="term"><h5>ASA — Declaración sobre los valores p</h5>
+        <div class="def">La American Statistical Association publicó en 2016 seis principios sobre el uso del valor p, entre ellos que no mide la probabilidad de que la hipótesis sea cierta, que no mide el tamaño de un efecto y que por sí solo no acredita un hallazgo.</div>
+        <p class="src">The American Statistician, 2016 · amstat.org</p></div>
+      <div class="term"><h5>Sense about Science — Making Sense of Statistics</h5>
+        <div class="def">Guía dirigida a periodistas y público general, elaborada con estadísticos, sobre cómo interrogar una cifra publicada: qué se midió, en cuántos casos, con qué incertidumbre y qué comparación se está haciendo.</div>
+        <p class="src">senseaboutscience.org</p></div>
+      <div class="term"><h5>Cochrane — Jerarquía de la evidencia</h5>
+        <div class="def">Marco de referencia sobre el peso relativo de los distintos diseños de estudio: un ensayo aleatorizado sostiene una afirmación causal que un estudio observacional solo puede sugerir, y una revisión sistemática pesa más que un estudio aislado.</div>
+        <p class="src">cochrane.org · Cochrane Handbook</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y un informe de descarte de explicaciones alternativas sobre una correlación real. El <strong>Examen Integrador</strong> de JRN-1002 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Una correlación es una pregunta, no una respuesta</h3>
+    <p>Que dos series se muevan juntas es un hecho descriptivo y no dice nada sobre por qué lo hacen. La frase «correlación no implica causalidad» es correcta y estéril: enuncia una prohibición sin indicar qué hacer a continuación, y por eso se repite mucho y se aplica poco.</p>
+    <p>Lo que hay que hacer es tratar la asociación como el comienzo de una investigación y no como su conclusión. La pregunta operativa no es «¿son causa y efecto?», sino «¿qué otras cosas explicarían este mismo patrón, y puedo descartarlas una por una?».</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Ante toda correlación, escribe la lista de explicaciones alternativas antes de escribir el titular. Si la lista está vacía es porque no la pensaste, no porque no existan.</div>
+
+    <h3>Las cuatro explicaciones alternativas</h3>
+    <p>Antes de admitir la explicación causal hay que eliminar cuatro candidatas, y conviene hacerlo siempre en el mismo orden.</p>
+    <ol>
+      <li><strong>Azar.</strong> Con suficientes series y suficientes cortes, aparecen asociaciones fuertes sin ninguna relación entre las variables.</li>
+      <li><strong>Sesgo de selección.</strong> La asociación existe en los casos observados porque el modo de observarlos la produjo.</li>
+      <li><strong>Causalidad inversa.</strong> La relación existe, pero la flecha va en sentido contrario al que se supone.</li>
+      <li><strong>Variable de confusión.</strong> Un tercer factor causa las dos variables observadas, que entre sí no se tocan.</li>
+    </ol>
+    <div class="ej"><b>REGLA</b>La explicación causal es la última candidata, no la primera. Se llega a ella por eliminación documentada, y lo que no se pudo eliminar se publica junto al hallazgo.</div>
+
+    <h3>Confusión: el tercero que no aparece en la tabla</h3>
+    <p>Una variable de confusión influye a la vez sobre la supuesta causa y sobre el supuesto efecto, y produce entre ambas una asociación real y completamente engañosa. Es la explicación alternativa más frecuente y la más difícil de descartar, porque el factor que sobra rara vez está en el archivo que se analiza.</p>
+    <p>El procedimiento habitual es la estratificación: repetir el análisis dentro de grupos homogéneos respecto del factor sospechoso. Si la asociación desaparece dentro de cada grupo, no era lo que parecía.</p>
+    <div class="ej"><b>EJEMPLO</b>Los barrios con más bibliotecas tienen más robos. El confusor es la densidad de población: hay más de todo. Al comparar barrios de densidad equivalente, la asociación se disuelve.</div>
+
+    <h3>Causalidad inversa y sesgo de selección</h3>
+    <p>La causalidad inversa es sencilla de enunciar y fácil de pasar por alto: los hospitales con más muertes pueden ser los que reciben a los pacientes más graves, y no los que peor tratan. La prueba que la separa es temporal: qué ocurrió antes.</p>
+    <p>El sesgo de selección es más traicionero porque la asociación aparece en los datos disponibles y no en el mundo. Si solo se observa a quienes completaron un programa, se está midiendo la diferencia entre quienes lo completan y quienes no, no el efecto del programa.</p>
+    <div class="ej"><b>PREGUNTA DE CONTROL</b>¿Quién quedó fuera de este conjunto de datos, y por qué motivo quedó fuera? Si el motivo se relaciona con lo que estás midiendo, la asociación observada puede ser un artefacto de la selección.</div>
+
+    <h3>La paradoja de Simpson</h3>
+    <p>Una asociación puede tener un signo en el conjunto agregado y el signo contrario dentro de cada subgrupo. No es una curiosidad matemática: ocurre siempre que los subgrupos tienen tamaños muy distintos y tasas base muy distintas.</p>
+    <p>La consecuencia práctica es incómoda: no existe un nivel de agregación «neutral». Cada elección de agrupamiento puede producir una conclusión distinta, y por eso la desagregación no es un refinamiento opcional sino parte de la comprobación.</p>
+    <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>Repite el cálculo dentro de los subgrupos relevantes antes de publicar el agregado. Si el signo cambia, el hallazgo está en la composición de los grupos y no en la relación entre las variables.</div>
+
+    <h3>La falacia ecológica</h3>
+    <p>Una correlación medida entre agregados —provincias, distritos, países— no autoriza ninguna afirmación sobre los individuos que los componen. Que los distritos con mayor proporción de inmigrantes registren más de algo no dice nada sobre los inmigrantes: dice algo sobre los distritos.</p>
+    <p>El error inverso también existe: trasladar al colectivo lo observado en individuos. Ambos comparten el mismo defecto, que es cambiar de unidad de análisis a mitad del razonamiento sin declararlo.</p>
+    <div class="ej"><b>REGLA DE REDACCIÓN</b>La unidad de análisis debe aparecer en la frase publicada. «Los distritos con X registran más Y» es defendible; «las personas X hacen más Y» requiere datos de personas.</div>
+
+    <h3>El valor p no dice lo que parece decir</h3>
+    <p>El valor p indica cuán compatibles son los datos observados con un modelo en el que no existe el efecto buscado. No mide la probabilidad de que la hipótesis sea cierta, no mide la importancia del efecto y no separa lo verdadero de lo falso por un umbral.</p>
+    <p>La American Statistical Association publicó esos principios en 2016 precisamente porque el uso corriente del umbral de 0,05 se había convertido en un sello de validez que la herramienta no puede otorgar.</p>
+    <div class="ej"><b>PREGUNTA AL AUTOR</b>«¿Cuál es el tamaño del efecto y cuál su intervalo de confianza?» Un efecto significativo puede ser tan pequeño que carezca de toda consecuencia práctica, y eso rara vez aparece en el comunicado de prensa.</div>
+
+    <h3>Comparaciones múltiples: cómo se fabrica un hallazgo</h3>
+    <p>Si se prueban veinte asociaciones sin efecto real, cabe esperar que una alcance el umbral convencional de significación por puro azar. Nada de esto exige mala fe: basta con explorar muchas variables y contar después solo la que salió.</p>
+    <p>De ahí que la pregunta periodística decisiva ante cualquier hallazgo estadístico sea aritmética y no metodológica: cuántas comparaciones se hicieron en total, y si la hipótesis se formuló antes o después de ver los datos.</p>
+    <div class="ej"><b>PREGUNTA DECISIVA</b>«¿Cuántas variables midieron y cuántas comparaciones hicieron antes de encontrar esta?» Si no hay respuesta, el resultado no puede interpretarse; si la hay, suele bastar para no publicar.</div>
+
+    <h3>Regresión a la media</h3>
+    <p>Toda medida con componente aleatorio tiende, tras un valor extremo, a acercarse al promedio en la medición siguiente. Sin hacer nada. Es un fenómeno estadístico, no un efecto de las intervenciones que se aplican después del valor extremo.</p>
+    <p>Es la fuente de eficacia aparente más común en política pública: se instala un dispositivo donde hubo un pico de accidentes, el año siguiente los accidentes bajan, y la baja se atribuye al dispositivo. Solo un grupo de comparación permite separar una cosa de la otra.</p>
+    <div class="ej"><b>CASO TÍPICO</b>El programa se implanta en los peores centros y al año siguiente mejoran. La pregunta no es cuánto mejoraron, sino cuánto mejoraron centros igual de malos donde no se implantó nada.</div>
+
+    <h3>Los criterios de Bradford Hill y el lenguaje que se publica</h3>
+    <p>Cuando el experimento controlado es imposible —y en periodismo casi siempre lo es—, la evaluación se apoya en un conjunto de consideraciones: fuerza de la asociación, consistencia entre estudios independientes, temporalidad, gradiente dosis-respuesta, plausibilidad y coherencia con lo conocido. Hill advirtió que no son una lista de verificación que haya que completar, sino elementos de juicio.</p>
+    <p>Ese juicio se traduce en palabras, y las palabras tienen grados distintos de compromiso. «Se asocia con» describe el dato. «Precede a» añade orden temporal. «Predice» afirma valor anticipatorio. «Causa» afirma mecanismo, y es la única que requiere haber descartado las cuatro alternativas.</p>
+    <div class="ej"><b>REGLA FINAL</b>Publica el verbo que la evidencia sostiene, no el que sostiene el titular. Si tienes que elegir entre un verbo fuerte y una nota metodológica honesta, la nota es la que te defiende cuando alguien impugne la pieza.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista a la responsable de un programa municipal que atribuye a su intervención una caída del 22% en los accidentes de tránsito. El programa se implantó en los veinte cruces con más accidentes del año anterior. No hubo grupo de comparación.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes afirmar que el programa no funcionó: no lo sabes. Cada pregunta debe apuntar a un dato que permita separar el efecto del programa de la regresión a la media. Si te ofrece una comparación válida, tienes que poder reconocerlo.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">INFORME DE DESCARTE · OBLIGATORIO</span>
+      <p>Elige una correlación publicada en los últimos doce meses por un medio, un organismo o un estudio. Entrega: el enunciado exacto que se publicó y el verbo causal que emplea; las cuatro explicaciones alternativas desarrolladas para ese caso concreto; qué dato haría falta para descartar cada una y si es obtenible; el resultado de la desagregación por al menos dos subgrupos relevantes; y una reescritura del enunciado en el verbo que la evidencia sostiene, con su nota metodológica de cien palabras.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Identificación correcta del verbo causal empleado y de lo que compromete (15%) · Desarrollo específico —no genérico— de las cuatro alternativas para ese caso (30%) · Dato requerido para descartar cada una, con su vía de obtención (20%) · Desagregación efectivamente realizada y bien interpretada (20%) · Reescritura y nota metodológica (15%). Un informe que enumere las cuatro alternativas en abstracto, sin aplicarlas al caso, no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 3</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1002-u2.html">← Unidad 2: Limpieza de Datos y Auditoría de Planillas</a> &nbsp;·&nbsp; <a href="jrn1002-u4.html">Unidad 4: Cartografía Interactiva y Visualización de Datos →</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Correlación",d:"Medida descriptiva de en qué grado dos variables varían conjuntamente. Describe un patrón; no contiene información sobre dirección ni sobre mecanismo.",s:"Cairo, The Truthful Art · estadística descriptiva"},
+ {t:"Correlación Espuria",d:"Asociación fuerte entre variables sin relación real, producida por el azar, por una tendencia temporal común o por un tercer factor.",s:"Práctica establecida · Huff, How to Lie with Statistics"},
+ {t:"Tamaño de Efecto",d:"Magnitud de la diferencia o de la relación observada. Responde a cuánto, mientras que la significación solo responde a si es distinguible del azar.",s:"ASA, Declaración sobre los valores p, 2016"},
+ {t:"Variable de Confusión",d:"Tercer factor que influye a la vez sobre la supuesta causa y sobre el supuesto efecto, y produce entre ambos una asociación real y engañosa.",s:"Bradford Hill, 1965 · epidemiología establecida"},
+ {t:"Causalidad Inversa",d:"La relación existe pero la flecha va en sentido contrario al supuesto. Se separa por temporalidad: qué ocurrió antes que qué.",s:"Bradford Hill, 1965 (criterio de temporalidad)"},
+ {t:"Sesgo de Selección",d:"Distorsión producida por el modo en que se eligieron los casos observados. La asociación aparece en los datos disponibles y no en el mundo.",s:"Metodología de investigación establecida"},
+ {t:"Paradoja de Simpson",d:"Una asociación cambia de signo entre el conjunto agregado y sus subgrupos. Ocurre cuando los subgrupos difieren mucho en tamaño y en tasa base.",s:"Bickel, Hammel y O&#39;Connell, Science, 1975"},
+ {t:"Falacia Ecológica",d:"Atribuir a los individuos lo observado en correlaciones entre agregados. Cambia la unidad de análisis a mitad del razonamiento sin declararlo.",s:"Robinson, American Sociological Review, 1950"},
+ {t:"Regresión a la Media",d:"Tendencia de una medida con componente aleatorio a acercarse al promedio tras un valor extremo, sin que medie ninguna intervención.",s:"Estadística establecida · Cairo"},
+ {t:"Valor p",d:"Indica cuán compatibles son los datos con un modelo sin efecto. No mide la probabilidad de que la hipótesis sea cierta ni la importancia del efecto.",s:"ASA, The American Statistician, 2016"},
+ {t:"Comparaciones Múltiples",d:"Prueba de muchas asociaciones sobre el mismo conjunto. Aumenta la probabilidad de encontrar por azar al menos un resultado que cruce el umbral convencional.",s:"Metodología estadística · caso Bohannon, 2015"},
+ {t:"Criterios de Bradford Hill",d:"Nueve consideraciones para juzgar si una asociación observada admite lectura causal. Su autor advirtió que no son reglas de decisión ni una lista que deba cumplirse entera.",s:"Proc. R. Soc. Med., 1965, vol. 58"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · UNIVERSIDAD DE CALIFORNIA EN BERKELEY · SCIENCE, 1975",t:"El sesgo que desaparecía al mirar cada departamento",
+  d:"En el otoño de 1973, los datos agregados de admisión al posgrado de la Universidad de California en Berkeley mostraban una diferencia notable: cerca del 44% de los hombres que solicitaron plaza fueron admitidos, frente a alrededor del 35% de las mujeres. En 1975, Peter Bickel, Eugene Hammel y J. William O&#39;Connell publicaron en <em>Science</em> el análisis desagregado por departamento. Departamento por departamento, la diferencia se desvanecía y en varios se invertía ligeramente a favor de las mujeres. La explicación estaba en la composición de las solicitudes: las mujeres solicitaban en mayor proporción plaza en departamentos con tasas de admisión bajas, y los hombres en departamentos con tasas altas.",
+  ej:"El agregado no mentía sobre los números: mentía sobre la causa. La cifra global medía a qué departamentos se solicitaba plaza, y se leía como si midiera cómo se trataba a cada solicitante.",
+  p:["¿Qué afirmación se podía sostener con el dato agregado y cuál no?","¿Por qué la desagregación no es un refinamiento opcional?","¿El hallazgo desagregado cancela toda pregunta sobre desigualdad?"],
+  m:"Con el agregado se podía afirmar que la tasa global de admisión difería según el sexo del solicitante, que es un hecho; no se podía afirmar que los comités discriminaran en la evaluación, que es una causa. La desagregación no es opcional porque el signo de una asociación puede invertirse dentro de los subgrupos, de modo que sin comprobarla no se sabe si el patrón agregado describe la relación o la composición de los grupos. Y no cancela la pregunta: la desplaza, hacia por qué la distribución de solicitudes por campo era tan desigual y por qué los departamentos con más demanda femenina tenían menos plazas, que es una pregunta sobre el sistema y no sobre los comités.",
+  k:"Cuando el signo cambia al desagregar, el hallazgo está en la composición de los grupos. El agregado responde una pregunta distinta de la que el titular suele hacer."},
+
+ {tag:"CASO 2 · AMERICAN SOCIOLOGICAL REVIEW · 1950",t:"Robinson y la correlación que se invierte al bajar al individuo",
+  d:"William S. Robinson publicó en 1950 el artículo <em>Ecological Correlations and the Behavior of Individuals</em>, en el que comparó correlaciones calculadas sobre agregados geográficos con las calculadas sobre individuos usando los mismos datos del censo estadounidense de 1930. Al nivel de los estados, la proporción de población nacida en el extranjero se asociaba positivamente con la alfabetización: los estados con más inmigrantes tenían tasas de alfabetización más altas. Al nivel individual, la relación era negativa: las personas nacidas en el extranjero estaban, en promedio, menos alfabetizadas. La explicación es que la inmigración se concentraba en estados que ya tenían tasas de alfabetización altas.",
+  ej:"Las dos correlaciones eran correctas y se referían a objetos distintos. La primera describe estados; la segunda, personas. Confundirlas es cambiar la unidad de análisis a mitad de la frase.",
+  p:["¿Qué frase publicable admite el dato agregado?","¿Por qué este error es tan frecuente en la cobertura electoral y migratoria?","¿Qué dato haría falta para afirmar algo sobre individuos?"],
+  m:"El dato agregado admite frases sobre territorios: los estados con mayor proporción de población extranjera registraban mayor alfabetización. Nada más. El error es frecuente en cobertura electoral y migratoria porque los datos disponibles suelen ser territoriales —resultados por distrito, censo por municipio— mientras que la pregunta que interesa es sobre personas, y la tentación consiste en responder la pregunta que interesa con los datos que hay. Para afirmar algo sobre individuos hacen falta datos de individuos: encuesta con muestreo declarado, registro nominal o estudio longitudinal, y ninguna agregación territorial los sustituye.",
+  k:"La unidad de análisis debe aparecer en la frase publicada. Correlación entre distritos autoriza afirmaciones sobre distritos, nunca sobre las personas que viven en ellos."},
+
+ {tag:"CASO 3 · REINO UNIDO · 1950-1965",t:"Tabaco y cáncer: cómo se sostuvo una causa sin experimento",
+  d:"En 1950 Richard Doll y Austin Bradford Hill publicaron en el <em>British Medical Journal</em> un estudio de casos y controles que asociaba el consumo de tabaco con el cáncer de pulmón. A partir de 1951 iniciaron el estudio prospectivo de médicos británicos, que siguió durante décadas a decenas de miles de profesionales y confirmó la asociación con datos de seguimiento. No era posible un ensayo aleatorizado: no se puede asignar a un grupo de personas a fumar durante veinte años. En 1965, en su conferencia presidencial ante la Royal Society of Medicine, Hill formuló las nueve consideraciones que permitían discutir si una asociación observada admitía lectura causal, e insistió en que ninguna de ellas era una prueba y que no debían usarse como lista de verificación.",
+  ej:"El caso muestra que la ausencia de experimento no impide afirmar causalidad: obliga a acumular fuerza de asociación, consistencia entre estudios independientes, temporalidad, gradiente dosis-respuesta y plausibilidad, y a decir con qué se cuenta.",
+  p:["¿Qué papel cumple el gradiente dosis-respuesta en la argumentación?","¿Por qué Hill advirtió contra usar sus criterios como lista de verificación?","¿Qué exige este caso a un periodista que cubre un riesgo ambiental?"],
+  m:"El gradiente —a mayor exposición, mayor incidencia— es difícil de explicar por confusión o por azar y por eso pesa tanto: un confusor tendría que estar distribuido exactamente en la misma escala que la exposición. Hill advirtió contra el uso mecánico porque los criterios son elementos de juicio y no condiciones necesarias ni suficientes: hay causas reales sin especificidad y asociaciones espurias que exhiben consistencia. Para el periodista que cubre un riesgo ambiental, la exigencia es doble: no presentar un estudio aislado como prueba, y no usar la falta de experimento como excusa para tratar como incierto lo que tiene décadas de evidencia convergente.",
+  k:"La causalidad sin experimento se sostiene por acumulación y convergencia, no por un estudio. El periodista debe saber cuántos estudios independientes hay y si apuntan en la misma dirección."},
+
+ {tag:"CASO 4 · SCIENCE · MARZO DE 2014",t:"Google Flu Trends: el modelo que dejó de acertar",
+  d:"Google Flu Trends estimaba la incidencia de gripe a partir del volumen de búsquedas. Durante un tiempo sus estimaciones acompañaron a las de los Centros para el Control y la Prevención de Enfermedades de Estados Unidos, y el sistema se citó como ejemplo del poder predictivo de los grandes volúmenes de datos. En marzo de 2014, David Lazer, Ryan Kennedy, Gary King y Alessandro Vespignani publicaron en <em>Science</em> el análisis <em>The Parable of Google Flu: Traps in Big Data Analysis</em>: el modelo había sobrestimado la incidencia en 100 de las 108 semanas analizadas, y en la temporada 2012-2013 llegó a estimar aproximadamente el doble de lo que registraban los CDC. Entre las causas señaladas figuraban la selección de términos por correlación sin mecanismo y los cambios del propio buscador, que modificaban el comportamiento de búsqueda que el modelo medía.",
+  ej:"El modelo se construyó eligiendo, entre millones de términos, los que mejor correlacionaban con la serie de los CDC. Con suficientes candidatos, siempre hay términos que correlacionan sin tener nada que ver con la gripe.",
+  p:["¿Qué papel tuvieron las comparaciones múltiples en la construcción del modelo?","¿Por qué el volumen de datos no protege del error?","¿Qué pregunta permite detectar este defecto antes de publicar?"],
+  m:"Elegir predictores por su correlación con la serie objetivo, entre un número enorme de candidatos, garantiza incorporar términos que correlacionan por azar o por una tendencia estacional compartida; sin mecanismo que los explique, esos predictores se degradan cuando cambia el contexto. El volumen no protege porque más datos aumentan la precisión aparente sin corregir el sesgo: si la fuente cambia de comportamiento, un conjunto grande produce una estimación equivocada con intervalos estrechos. La pregunta que lo detecta es por el mecanismo: por qué esta variable debería predecir aquella, y qué tendría que ocurrir para que dejara de hacerlo.",
+  k:"Un modelo que acierta sin mecanismo conocido acierta hasta que el contexto cambia. El volumen de datos mejora la precisión aparente, no la validez."},
+
+ {tag:"CASO 5 · 2015",t:"El chocolate adelgazante: fabricar un hallazgo con 18 mediciones",
+  d:"En 2015 el periodista científico John Bohannon, junto con los documentalistas alemanes Peter Onneken y Diana Löbl, diseñó un experimento real pero deliberadamente débil para demostrar cómo circulan los estudios de nutrición. Reclutaron a quince participantes, los repartieron en tres grupos y midieron dieciocho variables distintas —peso, presión, sueño, colesterol, bienestar, entre otras—. Con una muestra tan pequeña y tantas mediciones, la probabilidad de que alguna diferencia cruzara el umbral convencional de significación era alta, y así ocurrió: el grupo que comía chocolate negro perdió peso algo más rápido. El trabajo se publicó tras un proceso de revisión mínimo en una revista de pago y el comunicado de prensa fue reproducido por medios de varios países. Bohannon reveló después el montaje y explicó el procedimiento.",
+  ej:"No hubo dato inventado. Hubo dieciocho oportunidades de encontrar algo y el relato de la única que salió. El defecto no está en los números publicados sino en los que no se cuentan.",
+  p:["¿Qué pregunta al comunicado de prensa habría bastado para frenarlo?","¿Por qué una muestra pequeña agrava el problema de las comparaciones múltiples?","¿Qué responsabilidad tiene el medio que reprodujo el comunicado?"],
+  m:"Habría bastado preguntar cuántas variables se midieron y cuántas comparaciones se hicieron antes de encontrar esta, junto con el tamaño de la muestra: quince participantes y dieciocho mediciones es una respuesta que cierra la nota. La muestra pequeña agrava el problema porque los resultados oscilan más, de modo que cualquier variable puede alcanzar por azar una diferencia grande, y con muchas variables la probabilidad de que ocurra al menos una vez es alta. La responsabilidad del medio es íntegra: reproducir un comunicado no es informar sobre un estudio, y las dos preguntas que lo habrían detenido son gratuitas y caben en un correo.",
+  k:"Ante cualquier hallazgo estadístico, la pregunta decisiva es aritmética: cuántas comparaciones se hicieron y si la hipótesis se formuló antes o después de ver los datos."},
+
+ {tag:"CASO 6 · PROPUBLICA · MAYO DE 2016",t:"COMPAS: cuando dos definiciones de justicia no pueden cumplirse a la vez",
+  d:"En mayo de 2016 ProPublica publicó <em>Machine Bias</em>, un análisis de las puntuaciones de riesgo de reincidencia producidas por la herramienta COMPAS y utilizadas en decisiones judiciales en Estados Unidos. El análisis encontró que, entre quienes no reincidieron, los acusados negros habían sido clasificados como de alto riesgo con mucha más frecuencia que los blancos, y que entre quienes sí reincidieron ocurría lo contrario con la clasificación de bajo riesgo. Northpointe, la empresa desarrolladora, respondió que su sistema estaba calibrado: dentro de cada nivel de puntuación, la proporción de personas que reincidían era similar entre grupos. Trabajos técnicos posteriores mostraron que ambas exigencias —igualdad de tasas de error e igual calibración— no pueden satisfacerse simultáneamente cuando las tasas base de los grupos difieren, salvo en casos triviales.",
+  ej:"Las dos partes tenían razón dentro de su propia definición. La discusión no era sobre los números sino sobre qué significa que un sistema sea justo, y eso no lo decide la estadística.",
+  p:["¿Por qué no basta con verificar que la herramienta está calibrada?","¿Qué obligación impone al periodista una disputa entre definiciones?","¿Qué papel juega la tasa base en este caso?"],
+  m:"La calibración garantiza que la puntuación significa lo mismo en todos los grupos, pero no dice nada sobre cómo se reparten los errores entre quienes nunca reincidieron, que son precisamente las personas a las que un falso positivo perjudica. La disputa entre definiciones obliga al periodista a explicitar cuál usa cada parte y por qué son incompatibles, en lugar de presentar una como verdadera y otra como excusa; ocultar la incompatibilidad es el error más grave que se puede cometer al cubrir este tema. La tasa base es el motor de todo: cuando difiere entre grupos, la aritmética impide cumplir ambos criterios a la vez, de modo que el sistema encarna una elección, y esa elección es la noticia.",
+  k:"Cuando dos criterios de justicia son matemáticamente incompatibles, elegir uno es una decisión política. El periodismo consiste en hacer visible esa elección, no en arbitrarla."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El titular causal que el dato no sostiene",
+  d:"Tu análisis muestra que los municipios con más cámaras de vigilancia registran menos robos. El editor propone titular que las cámaras reducen el delito.",
+  r:"Reportera · Editor · Jefa de datos",
+  ej:"<span class='who'>EDITOR:</span> Es la conclusión evidente del dato.<br><span class='who'>REPORTERA:</span> Es una de cuatro. Los municipios que instalan cámaras también tienen más presupuesto y más policía.<br><span class='who'>EDITOR:</span> Entonces el titular es que no sabemos nada.<br><span class='who'>REPORTERA:</span> El titular es que se asocian, y el segundo párrafo dice qué haría falta para afirmar más.",
+  m:"El presupuesto municipal es un confusor obvio: influye a la vez sobre la instalación de cámaras y sobre todos los demás dispositivos de seguridad. El paso siguiente no es renunciar a la pieza sino estratificar por gasto en seguridad por habitante y comprobar si la asociación sobrevive dentro de cada estrato. Si sobrevive, el hallazgo se refuerza y sigue sin ser causal; si desaparece, la historia es otra y también es publicable. El verbo del titular debe corresponder a lo que se descartó, y lo que no se descartó va en el cuerpo con nombre y apellido.",
+  c:"Convertir la objeción metodológica en una tarea concreta, en lugar de en un veto que deja al editor sin pieza."},
+
+ {tag:"ESCENARIO 2",t:"El programa que funcionó donde peor estaba",
+  d:"Un municipio implantó un programa de seguridad vial en los veinte cruces con más accidentes del año anterior. Al año siguiente los accidentes en esos cruces bajaron un 22%.",
+  r:"Reportera · Responsable del programa · Editora",
+  ej:"<span class='who'>RESPONSABLE:</span> Veintidós por ciento menos. El programa funciona.<br><span class='who'>REPORTERA:</span> ¿Cuánto bajaron los cruces del puesto 21 al 40, donde no se intervino?<br><span class='who'>RESPONSABLE:</span> No lo hemos calculado.<br><span class='who'>REPORTERA:</span> Ese es el número que convierte su cifra en un resultado.",
+  m:"Seleccionar los veinte peores del año anterior garantiza regresión a la media: los picos extremos tienden a moderarse en la medición siguiente aunque no se haga nada. La comparación con los cruces inmediatamente siguientes en el ranking, que no recibieron intervención, es la manera más barata de estimar cuánto de la caída habría ocurrido igualmente. La pregunta se formula sin acusar: no se afirma que el programa no funcione, se pide el dato que permitiría saberlo. Si el organismo no lo tiene, esa ausencia se publica.",
+  c:"Pedir el grupo de comparación como un dato de rutina y no como una impugnación."},
+
+ {tag:"ESCENARIO 3",t:"Los distritos y las personas",
+  d:"Un dirigente sostiene que los distritos con mayor proporción de población migrante concentran más ocupación irregular de vivienda, y concluye que los migrantes ocupan viviendas.",
+  r:"Reportera · Dirigente · Editora",
+  ej:"<span class='who'>DIRIGENTE:</span> El dato es público, está en el censo.<br><span class='who'>REPORTERA:</span> El dato es de distritos. ¿Tiene datos de personas?<br><span class='who'>DIRIGENTE:</span> Es lo mismo.<br><span class='who'>REPORTERA:</span> No lo es, y hay un artículo de 1950 que muestra por qué el signo puede invertirse.",
+  m:"Es una falacia ecológica de manual: la correlación entre agregados territoriales no autoriza ninguna afirmación sobre los individuos. Los distritos con más población migrante suelen ser también los de vivienda más barata y mayor precariedad general, de modo que el patrón puede reflejar el mercado de vivienda y no la conducta de un grupo. La respuesta periodística no es dar réplica y equilibrar: es explicar la unidad de análisis y pedir el dato nominal, que en este caso existe en los registros judiciales de desalojo. Publicar la afirmación con réplica la difunde igual.",
+  c:"Nombrar el error con precisión técnica y ofrecer el dato que sí respondería la pregunta."},
+
+ {tag:"ESCENARIO 4",t:"El comunicado con dieciocho mediciones",
+  d:"Llega un comunicado con un estudio que asocia un suplemento alimenticio con mejor rendimiento cognitivo. Muestra: 22 personas. El comunicado no dice cuántas variables se midieron.",
+  r:"Reportera · Jefe de sección · Autor del estudio",
+  ej:"<span class='who'>JEFE:</span> Lo tienen todos los medios, vamos tarde.<br><span class='who'>REPORTERA:</span> Le mandé dos preguntas al autor: cuántas variables midió y si la hipótesis es previa.<br><span class='who'>JEFE:</span> ¿Y si no responde?<br><span class='who'>REPORTERA:</span> Entonces publicamos que no respondió, o no publicamos.",
+  m:"Con veintidós personas y un número indeterminado de mediciones, la probabilidad de que alguna diferencia alcance el umbral convencional por azar es alta, y el comunicado solo cuenta la que salió. Las dos preguntas son gratuitas, se responden por correo y suelen decidir la pieza. Que todos los medios lo publiquen no es un argumento periodístico sino una descripción del problema, y precisamente ahí está la oportunidad: la nota que explica por qué el estudio no sostiene el titular se distingue de las otras veinte.",
+  c:"Sostener la comprobación bajo presión de tiempo, con preguntas concretas y un plazo declarado."},
+
+ {tag:"ESCENARIO 5",t:"La calibración que no responde a la pregunta",
+  d:"Una empresa defiende su sistema de puntuación de riesgo diciendo que está calibrado: dentro de cada nivel, la proporción de personas que reinciden es igual entre grupos.",
+  r:"Reportera · Portavoz de la empresa · Estadístico consultado",
+  ej:"<span class='who'>PORTAVOZ:</span> El sistema está calibrado. No hay sesgo.<br><span class='who'>REPORTERA:</span> Calibrado sí. Le pregunto por otra cosa: entre quienes no reincidieron, ¿la tasa de falsos positivos es igual en ambos grupos?<br><span class='who'>PORTAVOZ:</span> Son criterios distintos.<br><span class='who'>REPORTERA:</span> Exacto. ¿Cuál eligieron ustedes y por qué?",
+  m:"La calibración y la igualdad de tasas de error son criterios distintos que no pueden cumplirse a la vez cuando las tasas base difieren entre grupos. Reconocer que el portavoz tiene razón dentro de su definición no debilita la pieza: la centra, porque la noticia es que el sistema encarna una elección entre dos definiciones de justicia y que esa elección la tomó una empresa privada sin discusión pública. Consultar a un estadístico independiente para verificar la incompatibilidad, y publicar ambas definiciones con sus consecuencias, es lo que separa la cobertura útil de la disputa de declaraciones.",
+  c:"Conceder lo que es cierto para poder formular la pregunta que importa."},
+
+ {tag:"ESCENARIO 6",t:"El verbo del titular",
+  d:"La pieza está lista. La evidencia es una asociación fuerte, consistente en tres estudios independientes, con orden temporal claro y sin experimento posible. Hay que elegir el verbo.",
+  r:"Reportera · Editora · Redactor de titulares",
+  ej:"<span class='who'>TITULARES:</span> «Causa» entra en una línea. «Se asocia con» no.<br><span class='who'>REPORTERA:</span> Tenemos temporalidad y consistencia, no tenemos experimento ni descarte de confusión.<br><span class='who'>EDITORA:</span> ¿Qué verbo sostiene eso?<br><span class='who'>REPORTERA:</span> «Predice». Y el cuerpo explica qué falta para decir «causa».",
+  m:"Los verbos tienen grados de compromiso distintos y comprometen a la redacción de forma desigual: asociarse describe el dato, preceder añade orden temporal, predecir afirma valor anticipatorio y causar afirma mecanismo. Con tres estudios convergentes y temporalidad clara, predecir es defendible y causar no lo es todavía. La restricción de espacio del titular es un problema de oficio que se resuelve reescribiendo, nunca subiendo un grado el verbo: es el punto exacto donde una pieza correcta se vuelve impugnable.",
+  c:"Negociar el titular con el argumento de la evidencia y no con el del espacio disponible."}
+];
+
+const IV=[
+ {q:"¿Cómo se eligieron los veinte cruces donde se implantó el programa?",
+  m:"Si se eligieron por ser los peores del año anterior, la regresión a la media está garantizada por diseño. La respuesta condiciona todo lo demás y conviene tenerla antes de discutir cifras."},
+ {q:"¿Qué ocurrió en el mismo período en cruces comparables donde no se intervino?",
+  m:"Es la pregunta central: sin grupo de comparación no hay forma de saber cuánto de la caída habría ocurrido igualmente. Se pide como dato, no como reproche."},
+ {q:"¿Cuántos accidentes hubo en esos veinte cruces en cada uno de los cinco años anteriores?",
+  m:"La serie larga muestra si el año de referencia fue un pico atípico. Un solo año previo no permite distinguir una tendencia de una oscilación."},
+ {q:"¿Se modificó en el mismo período algo más en esos cruces: señalización, obras, límites de velocidad?",
+  m:"Busca intervenciones concurrentes que compitan como explicación. Si las hubo, el efecto atribuido al programa está confundido con ellas."},
+ {q:"¿Cambió en ese período la forma de registrar o clasificar un accidente?",
+  m:"Un cambio de criterio de registro produce caídas que no ocurrieron en la calle. Es la comprobación que más se olvida y la más barata."},
+ {q:"¿El tránsito en esos cruces fue el mismo? ¿Tienen aforos comparables de ambos años?",
+  m:"Menos accidentes con menos vehículos no es una mejora de seguridad. Sin denominador, la cifra absoluta no es interpretable."},
+ {q:"¿Qué resultado habrían considerado ustedes un fracaso del programa antes de empezar?",
+  m:"Obliga a explicitar si existía un criterio previo. Cuando no lo hay, cualquier resultado se lee como éxito, y eso es publicable."},
+ {q:"Si le facilito el cálculo con los cruces del puesto 21 al 40, ¿se comprometen a comentarlo?",
+  m:"Cierra ofreciendo un procedimiento verificable y deja constancia de que se dio oportunidad de responder antes de publicar."}
+];
+
+const AUDIT=[
+ ["v","En el otoño de 1973 los datos agregados de admisión al posgrado de Berkeley mostraban cerca de un 44% de admisión entre los solicitantes hombres frente a alrededor de un 35% entre las mujeres; el análisis por departamento publicado en <em>Science</em> en 1975 por Bickel, Hammel y O&#39;Connell disolvía esa diferencia y la explicaba por la distribución de solicitudes entre departamentos con distinta tasa de admisión.","Science, 7 de febrero de 1975, vol. 187. Verificado."],
+ ["v","William S. Robinson publicó en 1950 en <em>American Sociological Review</em> el artículo sobre correlaciones ecológicas, mostrando con datos del censo de 1930 que la relación entre proporción de población extranjera y alfabetización era positiva entre estados y negativa entre individuos.","American Sociological Review, vol. 15, n.º 3, 1950. Verificado."],
+ ["v","Richard Doll y Austin Bradford Hill publicaron en 1950 en el <em>British Medical Journal</em> un estudio de casos y controles sobre tabaco y cáncer de pulmón, y a partir de 1951 desarrollaron el estudio prospectivo de médicos británicos.","British Medical Journal, 1950 y series posteriores. Verificado."],
+ ["v","En 1965 Austin Bradford Hill formuló ante la Royal Society of Medicine nueve consideraciones para discutir si una asociación admite lectura causal, advirtiendo que no constituyen reglas de decisión ni una lista de verificación obligatoria.","Proceedings of the Royal Society of Medicine, 1965, vol. 58, pp. 295-300. Verificado."],
+ ["v","Lazer, Kennedy, King y Vespignani publicaron en <em>Science</em> en marzo de 2014 que Google Flu Trends sobrestimó la incidencia de gripe en 100 de las 108 semanas analizadas, con estimaciones que en la temporada 2012-2013 llegaron a duplicar aproximadamente las de los CDC.","Science, 14 de marzo de 2014, vol. 343. Verificado."],
+ ["v","En 2015 John Bohannon, con Peter Onneken y Diana Löbl, publicó un estudio deliberadamente débil sobre chocolate y pérdida de peso, con quince participantes y dieciocho variables medidas, difundido después por medios de varios países; el propio autor reveló el montaje y su método.","Relato del autor publicado en 2015 y cobertura posterior. Verificado."],
+ ["v","ProPublica publicó en mayo de 2016 el análisis <em>Machine Bias</em> sobre las puntuaciones de riesgo COMPAS; la empresa desarrolladora respondió invocando la calibración de su sistema, y trabajos técnicos posteriores establecieron que la igualdad de tasas de error y la calibración no pueden satisfacerse a la vez cuando las tasas base difieren entre grupos.","ProPublica, mayo de 2016; réplica de Northpointe; literatura técnica sobre imposibilidad de criterios de equidad. Verificado."],
+ ["v","La American Statistical Association publicó en 2016 una declaración con seis principios sobre el uso e interpretación de los valores p, entre ellos que un valor p no mide la probabilidad de que la hipótesis estudiada sea cierta ni la magnitud de un efecto.","The American Statistician, 2016 · amstat.org. Verificado."],
+ ["b","Toda asociación admite cuatro explicaciones alternativas antes de la causal: azar, sesgo de selección, causalidad inversa y variable de confusión.","Metodología de investigación establecida · Cairo, The Truthful Art."],
+ ["b","La estratificación por el factor sospechoso es el procedimiento habitual para comprobar si una asociación sobrevive al control de una variable de confusión.","Epidemiología y estadística aplicada · práctica establecida."],
+ ["b","La regresión a la media explica mejoras aparentes en intervenciones aplicadas sobre casos seleccionados por su valor extremo, y solo un grupo de comparación permite separar ambos efectos.","Estadística establecida · Cairo · Cohen, Numbers in the Newsroom."],
+ ["b","Al probar muchas asociaciones sin efecto real, cabe esperar que alguna cruce el umbral convencional de significación por azar; de ahí la exigencia de declarar cuántas comparaciones se hicieron.","Metodología estadística establecida · derivado del caso de 2015."],
+ ["b","Los verbos causales tienen grados distintos de compromiso —se asocia con, precede a, predice, causa— y solo el último requiere haber descartado las cuatro explicaciones alternativas.","Formulación docente · práctica de redacción científica."],
+ ["p","La caracterización de la jerarquía de evidencia como marco de referencia se apoya en la práctica establecida de revisión sistemática; no se ha realizado para esta unidad una comparación entre las distintas versiones de esa jerarquía ni entre sus criterios de gradación.","Redactado sin atribuir una formulación específica a una institución concreta."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Ante una correlación fuerte entre dos variables, el primer paso del análisis consiste en:",
+ o:["Determinar cuál de las dos variables ocurre antes","Enumerar las explicaciones alternativas concretas para ese caso y ver cuáles pueden descartarse","Comprobar si la correlación alcanza significación estadística","Buscar un estudio previo que ya haya establecido la relación"],c:1,
+ w:["La temporalidad es una de las comprobaciones, no la primera: sin descartar el azar y el sesgo, el orden temporal de un patrón inexistente no dice nada.",
+    "",
+    "La significación indica compatibilidad con un modelo sin efecto; no distingue entre las cuatro explicaciones alternativas ni sustituye a ninguna.",
+    "La literatura previa aporta consistencia, que es un elemento de juicio posterior, y no exime de examinar el caso propio."],
+ e:"Una correlación es una pregunta, no una respuesta. La explicación causal es la última candidata y se llega a ella por eliminación documentada de las otras cuatro."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una variable de confusión se caracteriza porque:",
+ o:["Introduce ruido aleatorio que debilita la correlación observada","Influye a la vez sobre la supuesta causa y sobre el supuesto efecto, generando entre ellos una asociación real y engañosa","Es una variable mal medida en el conjunto de datos","Aparece únicamente en estudios con muestras pequeñas"],c:1,
+ w:["El ruido aleatorio debilita las asociaciones; la confusión las crea o las invierte, que es un problema de naturaleza distinta.",
+    "",
+    "El error de medición es otro problema, con otro remedio: afecta a la calidad del dato, no a la estructura causal.",
+    "La confusión no depende del tamaño de la muestra: una muestra enorme la reproduce con más precisión, no la elimina."],
+ e:"Es la explicación alternativa más frecuente y la más difícil de descartar, porque el tercer factor rara vez está en el archivo que se analiza. Se comprueba estratificando."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La paradoja de Simpson describe la situación en que:",
+ o:["Dos variables correlacionan sin tener ninguna relación real","Una asociación tiene un signo en el agregado y el signo contrario dentro de los subgrupos","La correlación desaparece al aumentar el tamaño de la muestra","Un valor extremo distorsiona el promedio del conjunto"],c:1,
+ w:["Eso describe una correlación espuria, que tiene otro origen y otro remedio.",
+    "",
+    "El tamaño de la muestra afecta a la precisión de la estimación, no al signo de la relación entre grupos.",
+    "La distorsión por valores extremos es un problema de la medida de tendencia central elegida, no de agregación de subgrupos."],
+ e:"Ocurre cuando los subgrupos difieren mucho en tamaño y en tasa base. La consecuencia práctica es que no existe un nivel de agregación neutral: desagregar es parte de la comprobación."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La falacia ecológica consiste en:",
+ o:["Analizar datos ambientales sin considerar su contexto geográfico","Atribuir a los individuos una correlación medida entre agregados","Excluir del análisis los territorios con pocos casos","Comparar territorios de tamaños muy distintos sin normalizar"],c:1,
+ w:["El término no tiene relación con el medio ambiente: procede de la denominación de las correlaciones calculadas sobre agregados.",
+    "",
+    "La exclusión de territorios pequeños es una decisión de limpieza, con sus propios efectos, pero no es esta falacia.",
+    "La falta de normalización es un error frecuente y distinto: afecta a la comparabilidad, no a la unidad de análisis."],
+ e:"Robinson lo demostró en 1950: la relación entre proporción de población extranjera y alfabetización era positiva entre estados y negativa entre individuos. La unidad de análisis debe aparecer en la frase publicada."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un valor p de 0,03 significa que:",
+ o:["Hay un 3% de probabilidad de que la hipótesis sea falsa","Los datos observados son poco compatibles con un modelo en el que no existe el efecto buscado","El efecto encontrado es pequeño pero real","El resultado se replicará en el 97% de los estudios futuros"],c:1,
+ w:["Esa lectura invierte la afirmación: el valor p no informa sobre la probabilidad de las hipótesis, sino sobre la compatibilidad de los datos con un modelo.",
+    "",
+    "El valor p no mide la magnitud del efecto: un efecto trivial puede alcanzarlo con una muestra suficientemente grande.",
+    "No dice nada sobre la replicabilidad, que depende del tamaño del efecto, de la potencia del estudio y del diseño."],
+ e:"La ASA publicó estos principios en 2016 precisamente porque el umbral convencional se había convertido en un sello de validez que la herramienta no puede otorgar. La pregunta útil es por el tamaño del efecto y su intervalo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La regresión a la media explica que:",
+ o:["Los promedios de series largas tienden a estabilizarse","Tras un valor extremo, la medición siguiente tiende a acercarse al promedio sin que medie intervención alguna","Las intervenciones pierden eficacia con el tiempo","Los grupos muy dispares tienden a parecerse al aumentar la muestra"],c:1,
+ w:["La estabilización de un promedio con más observaciones es otro fenómeno, relativo a la precisión de la estimación.",
+    "",
+    "La pérdida de eficacia con el tiempo es una hipótesis sustantiva sobre la intervención, no un fenómeno estadístico.",
+    "La convergencia entre grupos al aumentar la muestra no ocurre: la muestra mayor estima mejor una diferencia que sigue ahí."],
+ e:"Es la fuente de eficacia aparente más común en política pública. Solo un grupo de comparación permite separar el efecto de la intervención del retorno estadístico al promedio."},
+
+/* ---------- BLOQUE B · LECTURA DE UNA ASOCIACIÓN ---------- */
+{blk:"BLOQUE B · LECTURA DE UNA ASOCIACIÓN", t:"mcq",
+ s:"Los hospitales con mayor tasa de mortalidad en cirugía cardíaca resultan ser los centros de referencia de la región.",
+ q:"¿Qué explicación alternativa hay que descartar primero?",
+ o:["El azar: con pocos hospitales, la diferencia puede ser casual","La causalidad inversa: reciben a los pacientes más graves precisamente por ser centros de referencia","El sesgo de selección de los datos entregados por cada hospital","La confusión por antigüedad de las instalaciones"],c:1,
+ w:["El azar es siempre candidato, pero aquí hay un mecanismo evidente y específico que lo precede en el orden de comprobación.",
+    "",
+    "El sesgo de entrega es relevante si cada hospital reporta a su criterio, pero no explica por sí solo el patrón observado.",
+    "La antigüedad de las instalaciones es un confusor posible y menos plausible que la derivación de casos graves."],
+ e:"La comprobación es el ajuste por gravedad al ingreso: comparar mortalidad esperada y observada según la complejidad de los casos. Sin ese ajuste, el ranking mide a quién se atiende, no cómo se atiende."},
+
+{blk:"BLOQUE B · LECTURA DE UNA ASOCIACIÓN", t:"mcq",
+ s:"Un estudio encuentra que quienes completan un programa de formación laboral tienen tasas de empleo muy superiores a las de quienes no lo hicieron.",
+ q:"¿Cuál es el problema principal de esa comparación?",
+ o:["La muestra de quienes completan suele ser pequeña","Compara a quienes completan con quienes no, de modo que mide la diferencia entre ambos grupos y no el efecto del programa","No se controla la duración del programa","Las tasas de empleo dependen del ciclo económico"],c:1,
+ w:["El tamaño afecta a la precisión, no al sesgo. Con diez mil casos el problema sería idéntico.",
+    "",
+    "La duración es una variable del programa, no la fuente del sesgo de esta comparación.",
+    "El ciclo económico afecta a ambos grupos y no explica la diferencia entre ellos."],
+ e:"Es sesgo de selección: quienes completan un programa se distinguen en constancia, disponibilidad y circunstancias, y esas mismas características predicen el empleo. La comparación válida exige incluir a todos los inscritos desde el inicio."},
+
+{blk:"BLOQUE B · LECTURA DE UNA ASOCIACIÓN", t:"mcq",
+ s:"Al agregar los datos, un tratamiento parece menos eficaz que otro; al separar los casos leves de los graves, resulta más eficaz en ambos grupos.",
+ q:"¿Qué debe publicarse?",
+ o:["El resultado agregado, que refleja el conjunto de los pacientes","El resultado desagregado, explicando que el agregado se invierte por la distinta composición de los grupos","Ambos resultados sin interpretarlos, para no tomar partido","Solo el agregado, porque los subgrupos tienen menos casos"],c:1,
+ w:["El agregado responde una pregunta distinta: mide a quién se aplicó cada tratamiento, no cuánto funcionó cada uno.",
+    "",
+    "Presentar dos resultados contradictorios sin explicar el mecanismo traslada al lector un trabajo que corresponde a la redacción.",
+    "El número de casos importa para la precisión de cada estimación, pero no autoriza a publicar el signo invertido."],
+ e:"Es una paradoja de Simpson. Cuando el signo cambia al desagregar, el hallazgo está en la composición de los grupos, y explicarla es la pieza."},
+
+{blk:"BLOQUE B · LECTURA DE UNA ASOCIACIÓN", t:"mcq",
+ s:"Un modelo predice la incidencia de una enfermedad a partir del volumen de búsquedas en internet. Acertó durante tres temporadas y ahora sobrestima de forma sistemática.",
+ q:"¿Qué pregunta explica mejor el deterioro?",
+ o:["¿Se ha reducido el número de personas que usan internet?","¿Por qué mecanismo debería predecir esa variable a la otra, y qué cambió en el comportamiento medido?","¿Se recalibró el modelo con los datos más recientes?","¿Aumentó el ruido en la serie de referencia?"],c:1,
+ w:["El uso de internet creció, no se redujo; la hipótesis no encaja con la dirección del error.",
+    "",
+    "La recalibración es un remedio posterior, y sin mecanismo conocido solo aplaza el mismo fallo.",
+    "El ruido en la serie de referencia produciría errores en ambas direcciones, no una sobrestimación sistemática."],
+ e:"Es el caso de Google Flu Trends analizado en Science en 2014: predictores elegidos por correlación entre millones de candidatos, sin mecanismo, y un buscador que cambia el comportamiento que el modelo mide."},
+
+{blk:"BLOQUE B · LECTURA DE UNA ASOCIACIÓN", t:"mcq",
+ s:"Un comunicado anuncia que un suplemento mejora el rendimiento cognitivo. Muestra: 22 personas. No se indica cuántas variables se midieron.",
+ q:"¿Cuál es la pregunta que decide si la nota se publica?",
+ o:["¿Quién financió el estudio?","¿Cuántas variables se midieron y cuántas comparaciones se hicieron antes de encontrar esta?","¿En qué revista se publicó y cuál es su factor de impacto?","¿Los autores tienen filiación universitaria?"],c:1,
+ w:["La financiación es relevante para el conflicto de interés y no responde a si el hallazgo es sólido.",
+    "",
+    "La revista informa sobre el filtro editorial, pero un resultado fabricado por comparaciones múltiples puede pasar cualquier filtro.",
+    "La filiación no acredita el diseño del estudio ni el número de comparaciones realizadas."],
+ e:"Con muestra pequeña y muchas mediciones, la probabilidad de que alguna diferencia cruce el umbral por azar es alta. La pregunta es aritmética, se responde por correo y suele decidir la pieza."},
+
+{blk:"BLOQUE B · LECTURA DE UNA ASOCIACIÓN", t:"mcq",
+ s:"Una empresa defiende su sistema de puntuación de riesgo afirmando que está calibrado por grupo. Un análisis externo muestra tasas de falsos positivos muy distintas entre grupos.",
+ q:"¿Cómo se cubre esa disputa?",
+ o:["Publicando que la empresa niega el sesgo y el análisis externo lo afirma","Explicando que ambos criterios son incompatibles cuando las tasas base difieren, y que elegir uno es una decisión con consecuencias","Consultando a un tercer experto que dirima cuál de los dos tiene razón","Publicando solo el análisis externo, que es el que aporta datos nuevos"],c:1,
+ w:["El formato de declaraciones enfrentadas oculta que las dos partes miden cosas distintas y ambas correctamente dentro de su definición.",
+    "",
+    "No hay nada que dirimir: la incompatibilidad es aritmética, no una diferencia de opinión entre expertos.",
+    "Omitir la calibración deja la pieza incompleta y fácilmente impugnable por la empresa."],
+ e:"Es el núcleo del caso COMPAS. Cuando dos criterios de equidad son matemáticamente incompatibles, la elección entre ellos es política, y hacerla visible es el trabajo periodístico."},
+
+/* ---------- BLOQUE C · REDACCIÓN Y VERBO CAUSAL ---------- */
+{blk:"BLOQUE C · REDACCIÓN Y VERBO CAUSAL", t:"mcq",
+ s:"Dispones de una asociación fuerte, consistente en tres estudios independientes, con orden temporal claro. No hay experimento posible y no has descartado la confusión.",
+ q:"¿Qué verbo corresponde?",
+ o:["Causa","Predice","Se asocia con, sin más","Podría causar"],c:1,
+ w:["Causar afirma mecanismo y exige haber descartado las cuatro explicaciones alternativas, incluida la confusión.",
+    "",
+    "Quedarse en la asociación desaprovecha la temporalidad y la consistencia, que son elementos de juicio ya obtenidos.",
+    "El condicional no es un grado intermedio: sugiere la causa sin sostenerla y deja al lector la inferencia que el texto no se atreve a firmar."],
+ e:"Los verbos comprometen de forma desigual. Con temporalidad y consistencia, predecir es defendible; causar requiere el descarte que aún no tienes, y el cuerpo debe explicar qué falta."},
+
+{blk:"BLOQUE C · REDACCIÓN Y VERBO CAUSAL", t:"mcq",
+ s:"Tu análisis es territorial: los distritos con mayor proporción de un grupo poblacional registran más de un fenómeno.",
+ q:"¿Qué enunciado es publicable?",
+ o:["Las personas de ese grupo registran más ese fenómeno","Los distritos con mayor proporción de ese grupo registran más ese fenómeno","Existe una relación entre pertenecer a ese grupo y ese fenómeno","El fenómeno es más frecuente en ese grupo poblacional"],c:1,
+ w:["Traslada al individuo lo medido entre territorios: es exactamente la falacia ecológica.",
+    "",
+    "Enunciar la relación en términos de pertenencia individual reintroduce el mismo salto de unidad de análisis con otras palabras.",
+    "Afirma frecuencia dentro del grupo, que es un dato de personas y no está en el análisis."],
+ e:"La unidad de análisis debe aparecer en la frase publicada. Para afirmar algo de personas hacen falta datos de personas, y ninguna agregación territorial los sustituye."},
+
+{blk:"BLOQUE C · REDACCIÓN Y VERBO CAUSAL", t:"mcq",
+ s:"El organismo publica que su programa redujo un 22% los accidentes en los cruces intervenidos, seleccionados por ser los peores del año anterior.",
+ q:"¿Qué debe incluir la pieza obligatoriamente?",
+ o:["La cifra oficial y la valoración de un experto independiente","La advertencia de que los cruces se eligieron por su valor extremo y que sin grupo de comparación no puede separarse el efecto de la regresión a la media","Una comparación con otras ciudades que aplicaron programas similares","El coste del programa por accidente evitado"],c:1,
+ w:["La valoración de un experto no sustituye a la explicación del defecto de diseño, que el lector necesita para interpretar la cifra.",
+    "",
+    "La comparación entre ciudades introduce diferencias adicionales y no resuelve el problema de selección por valor extremo.",
+    "El coste por accidente evitado da por supuesto justamente lo que está en discusión: cuántos se evitaron."],
+ e:"Seleccionar los peores casos garantiza regresión a la media. La comparación con los cruces inmediatamente siguientes en el ranking es el dato que convierte la cifra en un resultado."},
+
+{blk:"BLOQUE C · REDACCIÓN Y VERBO CAUSAL", t:"mcq",
+ q:"Una nota metodológica sobre una correlación publicada debe declarar, como mínimo:",
+ o:["El coeficiente obtenido y su valor p","Qué explicaciones alternativas se descartaron, cómo, y cuáles no se pudieron descartar","La fuente de los datos y la fecha de obtención","El programa informático utilizado en el análisis"],c:1,
+ w:["El coeficiente y el valor p describen la asociación sin informar sobre su interpretación causal, que es lo que el lector necesita ponderar.",
+    "",
+    "La procedencia y la fecha son necesarias y no bastan: no dicen nada sobre la validez de la inferencia.",
+    "La herramienta empleada es irrelevante para la solidez del razonamiento."],
+ e:"Lo que no se pudo descartar es la parte que más credibilidad aporta y la que más se omite. Es el mismo principio de transparencia de método de la Unidad 1 de JRN-1001."},
+
+{blk:"BLOQUE C · REDACCIÓN Y VERBO CAUSAL", t:"mcq",
+ s:"Un estudio observacional halla un efecto estadísticamente significativo con una diferencia de 0,4 puntos en una escala de 100.",
+ q:"¿Cómo se informa?",
+ o:["Como un efecto confirmado, puesto que alcanza significación","Informando el tamaño del efecto y su intervalo, y señalando que su relevancia práctica es discutible","Omitiéndolo, porque un efecto tan pequeño no es noticia","Como indicio de un efecto mayor que el estudio no logró captar"],c:1,
+ w:["La significación indica distinguibilidad del azar, no importancia: con muestra suficiente, cualquier diferencia trivial la alcanza.",
+    "",
+    "La omisión priva al lector de un dato que puede ser relevante en decisiones de política pública a gran escala.",
+    "Suponer un efecto mayor no observado es especulación sin base en los datos presentados."],
+ e:"La significación responde a si es distinguible del azar; el tamaño de efecto responde a cuánto. Solo el segundo permite al lector juzgar si le importa."},
+
+{blk:"BLOQUE C · REDACCIÓN Y VERBO CAUSAL", t:"mcq",
+ q:"Los criterios de Bradford Hill deben usarse:",
+ o:["Como lista de verificación: una asociación es causal si cumple los nueve","Como elementos de juicio que fortalecen o debilitan una inferencia, sin ser condiciones necesarias ni suficientes","Solo en estudios epidemiológicos, no en periodismo de datos","Como sustituto de un experimento aleatorizado cuando este no es posible"],c:1,
+ w:["Su propio autor advirtió expresamente contra ese uso: hay causas reales que no cumplen varios de los criterios.",
+    "",
+    "Su lógica —fuerza, consistencia, temporalidad, gradiente— es aplicable a cualquier inferencia causal a partir de datos observacionales.",
+    "No sustituyen a un experimento: organizan el juicio cuando el experimento es imposible, que no es lo mismo."],
+ e:"Hill los presentó como consideraciones para discutir una asociación, no como reglas de decisión. Usarlos como casilleros produce falsos negativos y falsos positivos con igual facilidad."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las explicaciones alternativas que deben descartarse antes de admitir una interpretación causal.",
+ o:["El azar, sobre todo si se probaron muchas asociaciones","El sesgo de selección de los casos observados","La causalidad inversa","La escasa claridad del gráfico con que se presenta la relación","Una variable de confusión que influya sobre ambas variables"],
+ c:[0,1,2,4],
+ w:["","","","La presentación gráfica afecta a cómo se comunica el hallazgo, no a su validez. Es la única de la lista que no es una explicación alternativa.",""],
+ e:"Azar, sesgo de selección, causalidad inversa y confusión. La explicación causal es la última candidata, y lo que no se pudo descartar se publica junto al hallazgo."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe preguntarse ante un comunicado que anuncia un hallazgo estadístico.",
+ o:["Cuántos participantes tuvo el estudio","Cuántas variables se midieron y cuántas comparaciones se hicieron","Si la hipótesis se formuló antes o después de ver los datos","Cuál es el tamaño del efecto y su intervalo","Si el primer autor tiene doctorado"],
+ c:[0,1,2,3],
+ w:["","","","","La titulación del autor no informa sobre el diseño del estudio ni sobre el número de comparaciones realizadas."],
+ e:"Las cuatro primeras se responden por correo, son gratuitas y suelen decidir la pieza. El caso de 2015 sobre el chocolate se detiene con dos de ellas."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el procedimiento de descarte ante una correlación recién encontrada.",
+ o:["Comprobar cuántas asociaciones se probaron y si la hipótesis era previa","Examinar cómo se seleccionaron los casos observados y quién quedó fuera","Establecer qué variable ocurre antes en el tiempo","Estratificar por los factores que podrían influir sobre ambas variables","Redactar el enunciado con el verbo que sostiene lo que quedó sin descartar"],
+ c:[0,1,2,3,4],
+ e:"El azar va primero porque, si el hallazgo es producto de comparaciones múltiples, no tiene sentido investigar la estructura causal de un patrón inexistente."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena los verbos según su grado creciente de compromiso causal.",
+ o:["Se asocia con","Precede a","Predice","Causa"],
+ c:[0,1,2,3],
+ e:"Asociarse describe el dato; preceder añade orden temporal; predecir afirma valor anticipatorio; causar afirma mecanismo y exige el descarte completo. Publica el verbo que la evidencia sostiene, no el que sostiene el titular."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
