@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1003 · Unidad 1 — Fundamentos de OSINT y Cadena de Custodia Digital</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1003, Unidad 1.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course on" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1003 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Fundamentos de OSINT y Cadena de Custodia Digital</h2>
+  <div class="sub">Unidad 1 de 4 · Periodismo de Investigación y OSINT</div>
+
+  <div class="units">
+    <span class="unit on">Unidad 1: Fundamentos de OSINT y Cadena de Custodia Digital</span>
+    <a class="unit" href="jrn1003-u2.html">Unidad 2: Verificación de Imagen y Video</a>
+    <a class="unit" href="jrn1003-u3.html">Unidad 3: Rastreo Documental y Seguimiento del Dinero</a>
+    <a class="unit" href="jrn1003-u4.html">Unidad 4: Seguridad Operacional, Ética y Publicación</a>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>La investigación con fuentes abiertas no consiste en encontrar cosas en internet. Consiste en establecer, sobre material que cualquiera puede ver, una cadena de comprobaciones tan sólida que otro investigador pueda repetirla y llegar al mismo resultado. Lo que distingue a un hallazgo publicable de una captura de pantalla es esa cadena.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>en fuentes abiertas, el método es la prueba</strong>. El material no viene certificado por nadie: no hay un archivo oficial que lo respalde ni una fuente que responda por él. Su valor probatorio lo construye el investigador, y lo construye documentando la procedencia, preservando el original y registrando cada paso.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Delimitar qué es una investigación de fuentes abiertas y distinguirla del acceso no autorizado y de la vigilancia sobre personas.</li>
+      <li>Establecer la procedencia de un material digital: origen, primera aparición conocida y manos por las que pasó.</li>
+      <li>Preservar evidencia digital con captura íntegra, huella criptográfica, marca temporal y copia archivada, antes de analizarla.</li>
+      <li>Llevar un registro de investigación que permita a un tercero reproducir cada paso y auditar cada conclusión.</li>
+      <li>Evaluar el marco legal y ético aplicable: datos personales, condiciones de servicio, interés público y proporcionalidad.</li>
+      <li>Reconocer los sesgos estructurales del material disponible en abierto y declarar lo que no se pudo observar.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Oficina del Alto Comisionado de la ONU para los Derechos Humanos y Centro de Derechos Humanos de la Universidad de California en Berkeley, <em>Berkeley Protocol on Digital Open Source Investigations</em> (2022)</li>
+      <li>Craig Silverman (ed.), <em>Verification Handbook</em> (3.ª ed.) — capítulos de procedencia y preservación</li>
+      <li>Bellingcat, guías metodológicas de investigación con fuentes abiertas</li>
+      <li>Paul Bradshaw, <em>The Online Journalism Handbook</em> (3.ª ed., 2023) — verificación de material de usuario</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Protocolo de Berkeley</h5>
+        <div class="def">Publicado en 2022 por la ONU y el Centro de Derechos Humanos de Berkeley, fija estándares profesionales para investigaciones digitales de fuente abierta destinadas a procedimientos de derechos humanos y penales: procedencia, preservación, análisis, seguridad y bienestar del investigador.</div>
+        <p class="src">OHCHR · Human Rights Center, UC Berkeley, 2022</p></div>
+      <div class="term"><h5>GIJN — Global Investigative Journalism Network</h5>
+        <div class="def">Red internacional de organizaciones de periodismo de investigación. Mantiene guías de recursos por materia y país, y es la referencia habitual para localizar registros públicos y metodologías replicables.</div>
+        <p class="src">gijn.org</p></div>
+      <div class="term"><h5>Verification Handbook (v3)</h5>
+        <div class="def">Editado por Craig Silverman para el European Journalism Centre. La tercera edición aborda desinformación y manipulación mediática: cuentas falsas, operaciones de información y material sintético.</div>
+        <p class="src">verificationhandbook.com · EJC</p></div>
+      <div class="term"><h5>Bellingcat</h5>
+        <div class="def">Colectivo de investigación con fuentes abiertas que publica no solo sus hallazgos sino el método completo que permite reproducirlos. Esa publicación del procedimiento es su aportación metodológica principal al oficio.</div>
+        <p class="src">bellingcat.com</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de un expediente de preservación con su registro de investigación. El <strong>Examen Integrador</strong> de JRN-1003 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Qué es OSINT y qué no</h3>
+    <p>La investigación con fuentes abiertas trabaja con información que está disponible para cualquiera sin necesidad de vulnerar un control de acceso: publicaciones en redes, registros públicos, imágenes satelitales comerciales, expedientes judiciales, bases de datos societarias. Abierta significa accesible legítimamente, no necesariamente gratuita ni fácil de encontrar.</p>
+    <p>Queda fuera todo lo que exige suplantar identidad para acceder a un espacio cerrado, vulnerar una contraseña o extraer datos de un sistema sin autorización. La frontera no es técnica sino de legitimidad del acceso, y cruzarla convierte al investigador en parte del problema que investiga.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Si para obtener el dato tuviste que hacerte pasar por otra persona o saltarte un control de acceso, no es fuente abierta. Y si no es fuente abierta, la pregunta ya no es cómo verificarlo sino si puedes usarlo.</div>
+
+    <h3>El método es la prueba</h3>
+    <p>Un documento oficial llega con un emisor que responde por él. Una captura de pantalla no llega con nada: no tiene autor identificable, ni fecha fiable, ni garantía de integridad. Su valor probatorio no es una propiedad del material, sino el resultado del trabajo que el investigador hace sobre él.</p>
+    <p>De ahí que el producto de una investigación de fuentes abiertas sea siempre doble: el hallazgo y el procedimiento que lo sostiene. Publicar el segundo no es generosidad, es lo que convierte una afirmación en un resultado comprobable.</p>
+    <div class="ej"><b>REGLA</b>Antes de afirmar nada, pregúntate qué tendría que hacer otro investigador para llegar a tu misma conclusión. Si no puedes describirlo paso a paso, todavía no tienes un hallazgo.</div>
+
+    <h3>Procedencia: de dónde salió exactamente</h3>
+    <p>La pregunta central ante cualquier material no es si parece auténtico, sino de dónde salió y quién lo tuvo antes. Un video puede ser real y estar circulando con una fecha, un lugar y una atribución falsos: el material no miente, lo hace el contexto que se le añade al reenviarlo.</p>
+    <ol>
+      <li><strong>Primera aparición conocida.</strong> Búsqueda inversa y rastreo en el tiempo para localizar la publicación más antigua.</li>
+      <li><strong>Cuenta de origen.</strong> Antigüedad, historial, ubicación declarada, coherencia del comportamiento.</li>
+      <li><strong>Cadena de reenvíos.</strong> Quién lo difundió, en qué orden y con qué texto.</li>
+      <li><strong>Autor original.</strong> Si es localizable, contactarlo cambia por completo la solidez del material.</li>
+    </ol>
+    <div class="ej"><b>CASO TÍPICO</b>Un video de un ataque «de esta madrugada» que aparece publicado tres años antes en otro país. Dos minutos de búsqueda inversa evitan una rectificación.</div>
+
+    <h3>Preservar antes de analizar</h3>
+    <p>El material de fuente abierta desaparece: las cuentas se borran, las plataformas retiran contenidos y los organismos actualizan sus páginas sin dejar rastro del estado anterior. Lo que no se preservó en el momento de encontrarlo, sencillamente no existe cuando hace falta.</p>
+    <ul>
+      <li>Descarga del archivo original completo, no de una recompresión ni de una captura de pantalla.</li>
+      <li>Huella criptográfica del archivo, que permite demostrar después que no se alteró.</li>
+      <li>Marca temporal y captura de la página completa, con su dirección y su fecha.</li>
+      <li>Copia en un servicio de archivo web independiente, cuando sea posible.</li>
+    </ul>
+    <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>La captura de pantalla no es preservación: no conserva metadatos, no permite comprobar integridad y es trivialmente falsificable. Sirve como ilustración, nunca como evidencia.</div>
+
+    <h3>La huella criptográfica y la integridad</h3>
+    <p>Una función de huella produce, a partir de un archivo, una cadena de caracteres que cambia por completo si se modifica un solo bit. Calcularla en el momento de la descarga y registrarla permite demostrar meses después que el archivo que se publica es exactamente el que se obtuvo.</p>
+    <p>No acredita que el contenido sea verdadero, ni que la escena ocurriera como parece: acredita integridad, que es una pieza distinta y necesaria. Confundir ambas cosas es el error conceptual más frecuente al empezar.</p>
+    <div class="ej"><b>PRECISIÓN</b>La huella responde a «¿es el mismo archivo?». La verificación responde a «¿muestra lo que dice mostrar?». Hacen falta las dos, y la primera no sustituye nunca a la segunda.</div>
+
+    <h3>El registro de investigación</h3>
+    <p>El registro es el cuaderno de la investigación: cada búsqueda realizada, cada hallazgo, cada callejón sin salida, con su fecha y su dirección exacta. Cumple la misma función que el cuaderno de análisis del periodismo de datos, y por las mismas razones.</p>
+    <p>Su utilidad aparece tarde y de golpe: cuando alguien impugna la pieza, cuando hay que responder a un requerimiento legal, o cuando otro colega retoma el trabajo seis meses después. Escribirlo al final nunca funciona, porque para entonces ya se olvidó cómo se llegó a la mitad de las cosas.</p>
+    <div class="ej"><b>PRUEBA DE SUFICIENCIA</b>Entrega tu registro a alguien que no participó. Si no puede reconstruir el camino hasta el hallazgo sin preguntarte nada, el registro está incompleto.</div>
+
+    <h3>Lo legal y lo ético no son lo mismo</h3>
+    <p>Que un dato esté accesible no autoriza a publicarlo. Los registros públicos contienen domicilios, datos de familiares y de terceros sin relevancia pública, y la agregación de fragmentos individualmente inocuos puede producir un perfil que ninguna de las piezas sostiene por separado.</p>
+    <p>El criterio es doble: interés público concreto —no genérico— y proporcionalidad entre lo que se revela y lo que se acredita. La condición de figura pública gradúa la exposición admisible, y no la abre por completo.</p>
+    <div class="ej"><b>PREGUNTA DE CONTROL</b>¿Qué añade este dato a lo que el lector necesita saber? Si la respuesta es «demuestra que lo encontramos», el dato sobra.</div>
+
+    <h3>El sesgo de lo que está en abierto</h3>
+    <p>El material disponible no es una muestra del mundo. Está condicionado por la penetración de internet, por el idioma, por quién tiene teléfono y batería, por qué plataformas operan en cada país y por lo que sus sistemas de moderación retiran. Los conflictos y los territorios peor documentados no son los que menos ocurre en ellos.</p>
+    <p>La consecuencia práctica es que la ausencia de material no es evidencia de ausencia del hecho, y que la abundancia tampoco indica magnitud: puede indicar simplemente conectividad, o una campaña coordinada.</p>
+    <div class="ej"><b>REGLA DE REDACCIÓN</b>Declara qué buscaste y no encontraste. «No se localizaron imágenes de la zona norte, sin cobertura de red desde el 3 de marzo» informa más que el silencio.</div>
+
+    <h3>Cuentas, redes y comportamiento coordinado</h3>
+    <p>Antes de tratar un perfil como fuente hay que caracterizarlo: fecha de creación, historial de publicaciones, coherencia entre lo que dice ser y lo que hace, relación con otras cuentas que publican lo mismo al mismo tiempo. La coordinación en el tiempo es el indicio más robusto y el más difícil de fabricar.</p>
+    <p>La atribución, en cambio, es el punto donde más investigaciones se rompen. Demostrar que un conjunto de cuentas actúa coordinadamente es factible con material abierto; demostrar quién las opera casi nunca lo es, y ambas afirmaciones exigen pruebas de naturaleza distinta.</p>
+    <div class="ej"><b>UMBRAL DE PUBLICACIÓN</b>«Estas cuentas publicaron el mismo texto en el mismo minuto» es un hecho documentado. «Estas cuentas son de tal gobierno» es una atribución, y requiere evidencia que el material abierto rara vez proporciona.</div>
+
+    <h3>Del hallazgo a la pieza</h3>
+    <p>Una investigación de fuentes abiertas se publica con su metodología incorporada: qué se verificó, cómo, con qué grado de certeza y qué quedó sin resolver. La distinción entre lo probado, lo indiciario y lo alegado debe ser legible en el propio texto, no en una nota al pie.</p>
+    <p>Y el derecho de réplica sigue siendo obligatorio. Que la evidencia sea abierta y verificable no exime de buscar a la parte señalada, dejar constancia del intento y recoger su versión.</p>
+    <div class="ej"><b>REGLA FINAL</b>Publica el método junto al resultado. Es lo que separa una investigación de fuentes abiertas de una acusación con capturas de pantalla, y es lo único que resiste una impugnación.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista a la persona que publicó por primera vez un video que tu investigación sitúa en un lugar y una fecha determinados. Dice que se lo envió un contacto y que no sabe nada más. No es un profesional y teme represalias.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes presionar ni prometer protección que no puedas garantizar. Cada pregunta debe apuntar a un elemento comprobable de la cadena del material. Si te pide que no la cites, tienes que poder trabajar con eso.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">EXPEDIENTE DE PRESERVACIÓN · OBLIGATORIO</span>
+      <p>Elige tres materiales públicos relacionados con un mismo hecho reciente. Entrega: la ficha de procedencia de cada uno, con primera aparición conocida y cadena de difusión; el archivo original preservado con su huella criptográfica y la fecha y hora de captura; la copia archivada cuando exista; el registro de investigación con todas las búsquedas realizadas, incluidas las infructuosas; y una nota de doscientas palabras que declare qué quedó sin verificar y por qué.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Procedencia establecida con método descrito, no afirmada (25%) · Preservación técnicamente correcta, con huella y marca temporal (25%) · Registro reproducible por un tercero, incluidos los caminos fallidos (25%) · Declaración honesta de lo no verificado (15%) · Consideración legal y ética de los datos de terceros presentes en el material (10%). Un expediente que aporte capturas de pantalla en lugar de archivos originales no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 1</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1003-u2.html">Unidad 2: Verificación de Imagen y Video →</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Fuente Abierta",d:"Información accesible legítimamente sin vulnerar un control de acceso. Abierta no significa gratuita, ni fácil de encontrar, ni libre de restricciones de uso.",s:"Protocolo de Berkeley, 2022"},
+ {t:"Procedencia",d:"Historia documentada de un material: dónde apareció primero, quién lo publicó y por qué manos pasó antes de llegar al investigador.",s:"Verification Handbook · Protocolo de Berkeley"},
+ {t:"Preservación",d:"Conservación del archivo original completo con su fecha de captura, antes de cualquier análisis. Sin ella, el material desaparece cuando se borra la publicación.",s:"Protocolo de Berkeley, 2022"},
+ {t:"Huella Criptográfica",d:"Cadena derivada de un archivo que cambia por completo si se altera un solo bit. Acredita integridad, no veracidad del contenido.",s:"Práctica forense digital establecida"},
+ {t:"Cadena de Custodia",d:"Registro continuo de quién ha tenido el material, cuándo y qué se hizo con él. Es lo que permite sostener que el archivo publicado es el obtenido.",s:"Protocolo de Berkeley · práctica forense"},
+ {t:"Registro de Investigación",d:"Cuaderno con cada búsqueda, hallazgo y camino abandonado, con fecha y dirección exacta. Es el equivalente del cuaderno de análisis en periodismo de datos.",s:"GIJN · Bellingcat · JRN-1002 Unidad 2"},
+ {t:"Primera Aparición",d:"Publicación más antigua localizable de un material. Fija el punto de partida de la cadena de difusión y descarta la mayoría de las recontextualizaciones.",s:"Verification Handbook, 3.ª ed."},
+ {t:"Recontextualización",d:"Uso de material auténtico con fecha, lugar o atribución falsos. El archivo es real; lo falso es el contexto que se le añade al reenviarlo.",s:"Verification Handbook · EJC"},
+ {t:"Sesgo de Disponibilidad",d:"Distorsión producida porque el material en abierto depende de la conectividad, el idioma y la moderación de plataformas, no de la magnitud de los hechos.",s:"Protocolo de Berkeley · formulación docente"},
+ {t:"Comportamiento Coordinado",d:"Publicación simultánea o casi simultánea del mismo contenido por múltiples cuentas. Es documentable con material abierto; la autoría detrás casi nunca lo es.",s:"Verification Handbook, 3.ª ed."},
+ {t:"Atribución",d:"Afirmación sobre quién está detrás de una acción o de un conjunto de cuentas. Exige un tipo de prueba distinto del que acredita la coordinación.",s:"Práctica establecida de investigación digital"},
+ {t:"Proporcionalidad",d:"Correspondencia entre lo que una publicación revela sobre una persona y lo que esa revelación acredita en interés público. Gradúa qué datos accesibles pueden publicarse.",s:"Ética periodística · Protocolo de Berkeley"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · NACIONES UNIDAS Y UC BERKELEY · 2022",t:"El Protocolo de Berkeley: cuando el método se vuelve estándar",
+  d:"En 2022, la Oficina del Alto Comisionado de las Naciones Unidas para los Derechos Humanos y el Centro de Derechos Humanos de la Universidad de California en Berkeley publicaron el <em>Berkeley Protocol on Digital Open Source Investigations</em>. El documento fija estándares profesionales para investigaciones basadas en material digital de fuente abierta destinado a procedimientos de derechos humanos y penales, y cubre principios de trabajo, procedencia, preservación, análisis, seguridad operacional y bienestar de los investigadores. Su existencia responde a un cambio real: material recopilado por civiles y por investigadores independientes ha pasado a integrarse en expedientes de organismos internacionales.",
+  ej:"El protocolo no inventó las buenas prácticas: las escribió, las hizo exigibles y las convirtió en un criterio contra el cual se puede evaluar una investigación. Antes, cada equipo defendía su propio método.",
+  p:["¿Qué gana un periodista al trabajar contra un estándar externo?","¿Por qué la preservación ocupa un lugar central en el documento?","¿Debe un periodista trabajar con estándares pensados para tribunales?"],
+  m:"Trabajar contra un estándar externo desplaza la discusión desde la credibilidad personal del autor hacia la conformidad del procedimiento, que es comprobable por cualquiera y sobrevive al descrédito del autor. La preservación es central porque el material de fuente abierta es volátil: una cuenta suspendida o un contenido retirado eliminan la evidencia y, con ella, la posibilidad de sostener la afirmación. Adoptar estándares diseñados para procedimientos formales no obliga al periodista a comportarse como un fiscal, pero le da un suelo: si su material puede resistir ese examen, resiste con holgura una impugnación editorial.",
+  k:"Un estándar público convierte la calidad de una investigación en algo verificable por terceros. Es la diferencia entre pedir confianza y ofrecer comprobación."},
+
+ {tag:"CASO 2 · BELLINGCAT · DESDE 2014",t:"Publicar el método, no solo el hallazgo",
+  d:"Bellingcat se constituyó en 2014 como colectivo de investigación con fuentes abiertas y adoptó desde el inicio una práctica poco habitual: publicar junto a cada investigación el procedimiento completo que permite reproducirla, con las imágenes empleadas, las coordenadas, las comparaciones y los pasos de razonamiento. Sus trabajos sobre el conflicto en el este de Ucrania y sobre el derribo del vuelo MH17 en 2014 se apoyaron en material publicado por particulares en redes sociales, contrastado con imágenes satelitales comerciales y con fotografías del terreno.",
+  ej:"La publicación del método invierte la carga de la discusión: quien quiera refutar el hallazgo tiene que refutar pasos concretos y comprobables, no la reputación de quien lo firma.",
+  p:["¿Qué riesgos tiene publicar el método completo?","¿Por qué esta práctica es especialmente importante para medios pequeños?","¿Qué parte del método no debe publicarse nunca?"],
+  m:"Publicar el método enseña a quienes investigas cómo ocultarse mejor y expone a quienes aportaron material si el rastreo permite identificarlos, de modo que exige una revisión de seguridad antes de cada publicación. Para un medio sin autoridad de marca, la transparencia del procedimiento es la única fuente de credibilidad disponible: el lector no confía en el nombre, confía en que puede comprobarlo. Lo que nunca se publica es cualquier elemento que permita reconstruir la identidad de una fuente en riesgo, ni el detalle que convierta el método en un manual operativo para causar daño.",
+  k:"En fuentes abiertas la credibilidad no se hereda de la marca: se construye publicando el procedimiento y aceptando que sea auditado."},
+
+ {tag:"CASO 3 · SYRIAN ARCHIVE · DESDE 2014",t:"Archivar antes de que la plataforma lo borre",
+  d:"El proyecto Syrian Archive, impulsado por la organización Mnemonic, se dedicó a preservar y verificar material audiovisual publicado en redes sociales sobre el conflicto sirio. El problema que motivó su creación fue concreto: los sistemas automatizados de moderación de las plataformas retiraban contenidos por su violencia gráfica, y con ellos desaparecía material que podía constituir evidencia de violaciones de derechos humanos. Miles de canales y vídeos documentales fueron suspendidos o eliminados en distintas oleadas, y buena parte de lo conservado hoy existe porque alguien lo descargó y lo archivó a tiempo.",
+  ej:"La moderación automatizada no distingue entre difundir violencia y documentarla. El resultado es que la decisión de qué queda registrado de un conflicto la toma, de hecho, un sistema comercial de clasificación de contenidos.",
+  p:["¿Qué implica esto para la cronología de una investigación?","¿Puede un periodista delegar la preservación en la plataforma?","¿Qué hacer con material que la plataforma ya retiró?"],
+  m:"Implica que preservar es la primera acción y no la última: analizar sin haber descargado equivale a trabajar sobre algo que puede desaparecer mientras se escribe. Delegar en la plataforma no es una opción, porque su criterio de conservación responde a sus políticas y a sus obligaciones legales, no al interés documental. Con material ya retirado se trabaja a partir de copias de terceros, y entonces la exigencia de procedencia se endurece: hay que documentar quién conservó la copia, cuándo la obtuvo y qué garantiza que no fue alterada, y declararlo en la pieza.",
+  k:"Lo que no se preservó no existe. La preservación no es un paso administrativo posterior: es la condición de que haya investigación."},
+
+ {tag:"CASO 4 · MH17 · DESDE JULIO DE 2014",t:"Material de redes en un expediente judicial",
+  d:"Tras el derribo del vuelo MH17 sobre el este de Ucrania el 17 de julio de 2014, con 298 personas a bordo, investigadores independientes y organizaciones periodísticas recopilaron fotografías y vídeos publicados por particulares que mostraban el desplazamiento de un sistema de misiles por la zona. El material se geolocalizó comparando elementos fijos del paisaje con imágenes satelitales y fotografías de calle, y se ordenó cronológicamente. El Equipo Conjunto de Investigación constituido por varios Estados desarrolló su propia investigación e hizo llamamientos públicos para obtener material y testimonios, y el caso llegó a juicio en los Países Bajos.",
+  ej:"El valor de aquel material no residía en ninguna pieza aislada, sino en la coherencia de un conjunto de aportaciones independientes que situaban un mismo objeto en puntos sucesivos de una ruta.",
+  p:["¿Por qué la convergencia de fuentes independientes pesa tanto?","¿Qué diferencia hay entre el estándar periodístico y el judicial?","¿Qué debe declarar el periodista sobre su propia certeza?"],
+  m:"La convergencia pesa porque fabricar una pieza es viable y fabricar veinte coherentes entre sí, publicadas por personas sin relación y en momentos distintos, es enormemente más difícil; la consistencia mutua actúa como control cruzado. El estándar judicial exige además una cadena de custodia formal y la posibilidad de contradicción procesal, mientras que el periodístico se sostiene en la reproducibilidad pública del análisis, que es un criterio distinto y no menor. El periodista debe declarar su grado de certeza y sus límites: qué está geolocalizado con precisión, qué está datado por indicios y qué es una hipótesis que el material sugiere sin acreditar.",
+  k:"Ninguna pieza aislada acredita: acredita la convergencia de piezas independientes que no pueden haberse coordinado."},
+
+ {tag:"CASO 5 · RECONTEXTUALIZACIÓN · PATRÓN RECURRENTE",t:"El video verdadero con la historia falsa",
+  d:"El patrón más extendido de desinformación audiovisual no consiste en fabricar imágenes sino en reutilizar material auténtico atribuyéndole otra fecha, otro lugar u otros protagonistas. Durante cada crisis de gran cobertura se difunden masivamente vídeos reales de sucesos anteriores o de otros países, presentados como registro de lo que ocurre en ese momento. Los manuales de verificación documentan el fenómeno desde hace más de una década y lo describen como el caso mayoritario, muy por encima de la manipulación técnica del propio archivo.",
+  ej:"La comprobación que lo detecta es la más barata de todas: buscar la imagen hacia atrás en el tiempo. Que siga siendo el fallo más común indica que el problema no es técnico sino de prisa.",
+  p:["¿Por qué la recontextualización es más eficaz que la falsificación?","¿Qué comprobaciones la detectan casi siempre?","¿Qué obliga a rectificar si un medio la difundió?"],
+  m:"Es más eficaz porque el material resiste cualquier análisis técnico de autenticidad: no hay manipulación que detectar, ya que el archivo es genuino y solo el contexto es falso. La detectan la búsqueda inversa de fotogramas, que localiza apariciones anteriores, y la comprobación de coherencia del entorno —estación del año, vegetación, obras, idioma de los carteles, meteorología— con el lugar y la fecha declarados. Si un medio la difundió, la rectificación debe ser tan visible como la publicación original y explicar qué comprobación se omitió, porque esa explicación es lo único que reduce la probabilidad de repetirlo.",
+  k:"Antes de preguntar si el material es auténtico, pregunta si es de ahora y de allí. La mayoría de los engaños viven en esa segunda pregunta."},
+
+ {tag:"CASO 6 · LÍMITES DE LA ATRIBUCIÓN",t:"Coordinación demostrable, autoría indemostrable",
+  d:"Las investigaciones sobre campañas de manipulación en plataformas sociales suelen poder documentar con material abierto que un conjunto de cuentas publicó contenidos idénticos o casi idénticos en ventanas de tiempo muy estrechas, con patrones de creación y de actividad comunes. Ese hallazgo —la coordinación— es reproducible por cualquiera con los datos públicos. La atribución a un actor concreto, en cambio, depende habitualmente de información que no está en abierto: registros internos de las plataformas, datos de conexión o documentación obtenida por otras vías.",
+  ej:"Muchas investigaciones sólidas se rompen exactamente en ese salto: pasan de describir un patrón comprobable a nombrar un responsable con evidencia de otra naturaleza, sin señalar que el tipo de prueba ha cambiado.",
+  p:["¿Cómo se redacta un hallazgo de coordinación sin insinuar autoría?","¿Qué evidencia haría publicable la atribución?","¿Es publicable una investigación que no llega a la autoría?"],
+  m:"Se redacta describiendo exactamente lo observado —cuántas cuentas, qué publicaron, en qué intervalo, con qué patrones comunes— y declarando de forma expresa que no se ha establecido quién las opera; la insinuación por yuxtaposición, colocando el patrón junto al presunto beneficiario, es un engaño por montaje. La atribución sería publicable con documentación que vincule directamente las cuentas a una organización: registros de pago, correspondencia interna, testimonio de participantes o datos técnicos aportados por la plataforma. Y sí es publicable sin autoría: documentar que existe una operación coordinada y a quién beneficia es un hallazgo de interés público por sí mismo.",
+  k:"Coordinación y autoría son afirmaciones distintas con pruebas distintas. Confundirlas es el modo más rápido de que una investigación sólida se vuelva impugnable."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La captura de pantalla que llega por mensajería",
+  d:"Una fuente te envía la captura de una publicación que, dice, fue borrada. No tienes el original ni la dirección de la publicación.",
+  r:"Reportera · Fuente · Editora",
+  ej:"<span class='who'>FUENTE:</span> Lo borraron a los diez minutos, menos mal que hice la captura.<br><span class='who'>REPORTERA:</span> ¿Recuerdas el nombre de la cuenta y la hora aproximada?<br><span class='who'>FUENTE:</span> Sí, pero la cuenta ya no está.<br><span class='who'>REPORTERA:</span> Entonces buscamos en archivos web y a quien más lo haya visto. La captura sola no se publica.",
+  m:"Una captura de pantalla no acredita nada: no tiene metadatos, no permite comprobar integridad y se fabrica en un minuto. Con el nombre de la cuenta y una franja horaria se puede buscar en servicios de archivo web, en cachés y en las respuestas o citas de otros usuarios que hayan conservado el contenido. Si nada de eso aparece, cabe publicar que una fuente afirma haber visto la publicación —atribuido como testimonio y no como documento—, siempre que el hecho lo justifique y se declare que no fue posible verificar el original.",
+  c:"Distinguir entre un documento y el testimonio de alguien que dice haber visto un documento."},
+
+ {tag:"ESCENARIO 2",t:"El acceso que no es abierto",
+  d:"Un colaborador propone entrar en un grupo cerrado creando un perfil falso que se haga pasar por vecino de la zona para obtener material de primera mano.",
+  r:"Reportera · Colaborador · Editora",
+  ej:"<span class='who'>COLABORADOR:</span> Es un grupo de mil personas, prácticamente es público.<br><span class='who'>REPORTERA:</span> Tiene una puerta y para pasarla hay que mentir sobre quién eres.<br><span class='who'>COLABORADOR:</span> Nadie se va a enterar.<br><span class='who'>EDITORA:</span> Se enteran cuando publiquemos, y entonces la historia somos nosotros.",
+  m:"El tamaño del grupo no lo convierte en abierto: lo determinante es que existe un control de acceso y que superarlo exige una identidad falsa. La suplantación puede estar justificada en casos excepcionales —interés público muy alto, ausencia de vía alternativa, decisión editorial documentada previamente—, pero entonces deja de ser investigación de fuente abierta y pasa a ser una infiltración con sus propias reglas, riesgos legales y obligación de declararla al publicar. Empezar por ahí, sin agotar las vías abiertas, es un atajo que compromete toda la pieza.",
+  c:"Nombrar la frontera con precisión y remitir la decisión al procedimiento editorial que corresponde."},
+
+ {tag:"ESCENARIO 3",t:"El dato que está pero no debe publicarse",
+  d:"Un registro público permite localizar el domicilio del investigado y también el de su hija, que no tiene ninguna relación con el asunto.",
+  r:"Reportera · Editor · Asesor jurídico",
+  ej:"<span class='who'>EDITOR:</span> Es un registro público, cualquiera puede consultarlo.<br><span class='who'>REPORTERA:</span> Cualquiera puede, pero nosotros lo estamos poniendo delante de cien mil personas.<br><span class='who'>EDITOR:</span> ¿Y qué proponemos?<br><span class='who'>REPORTERA:</span> Que el domicilio no aparezca, y menos el de la hija.",
+  m:"La accesibilidad de un dato no equivale a autorización para amplificarlo: publicarlo cambia su alcance real y con ello el riesgo para las personas implicadas. El criterio es qué añade el dato a lo que el lector necesita saber; una dirección casi nunca acredita nada que no se acredite mejor describiendo el hecho. Los terceros sin relevancia pública quedan fuera por defecto, y su aparición debe justificarse expresamente, no al revés. Cuando el domicilio es en sí mismo el hallazgo —porque acredita una incompatibilidad o una residencia falsa—, se publica el hecho, no la dirección.",
+  c:"Sostener la distinción entre lo accesible y lo publicable sin renunciar al hallazgo."},
+
+ {tag:"ESCENARIO 4",t:"El hallazgo que caduca",
+  d:"Localizas una serie de publicaciones relevantes en una cuenta que ya ha empezado a borrar contenido. El cierre es en tres horas y falta verificar.",
+  r:"Reportera · Jefe de datos · Editora",
+  ej:"<span class='who'>JEFE DE DATOS:</span> Verifiquemos primero y luego descargamos.<br><span class='who'>REPORTERA:</span> Al revés. Descargamos todo ahora, con huella y hora, y verificamos después.<br><span class='who'>JEFE DE DATOS:</span> Puede que la mitad no sirva.<br><span class='who'>REPORTERA:</span> Y lo que borren mientras verificamos no lo recuperamos nunca.",
+  m:"El orden correcto es preservar y después analizar, porque el análisis puede repetirse y el material perdido no. La preservación completa incluye el archivo original, la página con su dirección y fecha, la huella criptográfica y, cuando sea posible, una copia en un archivo web independiente. Descargar material que después resulte irrelevante tiene un coste mínimo; perder la única copia de un elemento clave no tiene remedio. El registro debe recoger la hora de captura de cada elemento, porque en un caso así la cronología de la desaparición puede ser en sí misma parte de la historia.",
+  c:"Invertir el orden intuitivo del trabajo bajo presión de tiempo, y justificar por qué."},
+
+ {tag:"ESCENARIO 5",t:"De la coordinación a la acusación",
+  d:"Documentas que ochenta cuentas publicaron el mismo texto en el mismo minuto, y que todas se crearon la misma semana. El editor quiere titular que un partido está detrás.",
+  r:"Reportera · Editor · Editora jefa",
+  ej:"<span class='who'>EDITOR:</span> Todo el mundo sabe de quién son esas cuentas.<br><span class='who'>REPORTERA:</span> Todo el mundo lo supone. Nosotros documentamos la coordinación, no la propiedad.<br><span class='who'>EDITOR:</span> Entonces el titular es flojo.<br><span class='who'>REPORTERA:</span> El titular es que hay una operación coordinada y a quién beneficia. Eso lo sostenemos entero.",
+  m:"La coordinación está documentada y es reproducible; la autoría exige pruebas de otra naturaleza —pagos, correspondencia, registros de la plataforma o testimonios— que aquí no existen. Titular la atribución sin esa evidencia expone al medio a una rectificación y desperdicia un hallazgo que se sostiene por sí solo. La formulación correcta describe el patrón con sus cifras, señala a quién beneficia sin afirmar quién lo ordena, y deja constancia de que se preguntó al beneficiario y qué respondió.",
+  c:"Defender el valor del hallazgo real frente a la tentación de la conclusión que no se puede probar."},
+
+ {tag:"ESCENARIO 6",t:"El registro que nadie llevó",
+  d:"Seis semanas después de publicar, el organismo señalado impugna la pieza y pide detalle del método. Nadie anotó el orden exacto de las comprobaciones.",
+  r:"Reportera · Editora · Asesor jurídico",
+  ej:"<span class='who'>JURÍDICO:</span> Necesito saber qué se comprobó y en qué fecha.<br><span class='who'>REPORTERA:</span> Tengo los archivos, pero el orden lo reconstruyo de memoria.<br><span class='who'>JURÍDICO:</span> La memoria no es un registro.<br><span class='who'>EDITORA:</span> A partir de ahora el registro se abre el primer día, no el último.",
+  m:"El registro cumple su función precisamente en este momento, semanas o meses después, cuando la reconstrucción de memoria ya no es fiable ni defendible. Debe abrirse al iniciar la investigación y anotarse en el momento, incluyendo las búsquedas infructuosas, que son las que acreditan que se buscó lo que podría haber refutado la hipótesis. Reconstruirlo a posteriori es siempre más débil y, ante una impugnación formal, la diferencia entre un registro contemporáneo y una reconstrucción es la diferencia entre acreditar y afirmar.",
+  c:"Aceptar el fallo de procedimiento y convertirlo en una regla de trabajo, sin dramatizarlo."}
+];
+
+const IV=[
+ {q:"¿Cómo llegó el video a tus manos exactamente: por qué aplicación, en qué fecha y a qué hora?",
+  m:"Fija el punto de entrada del material en la cadena. La respuesta acota hacia atrás la búsqueda de la primera aparición."},
+ {q:"¿Lo recibiste como archivo o lo descargaste de algún sitio?",
+  m:"Distingue entre una copia con metadatos y una recompresión de mensajería. Determina qué comprobaciones técnicas son posibles."},
+ {q:"¿Puedes reenviarme el archivo original, sin recomprimir, tal como lo recibiste?",
+  m:"El original conserva información que la difusión destruye. Pedirlo explícitamente evita recibir una captura o una versión degradada."},
+ {q:"¿Sabes si la persona que te lo envió lo grabó o se lo pasaron a su vez?",
+  m:"Reconstruye la cadena un eslabón más. Cada eslabón que se documenta reduce el margen de recontextualización."},
+ {q:"¿Alguien más recibió el mismo material ese día?",
+  m:"Busca corroboración independiente. Varias recepciones simultáneas acotan la fecha de circulación con más fiabilidad que un testimonio."},
+ {q:"¿Publicaste algo más ese día sobre el mismo hecho?",
+  m:"Permite contrastar la coherencia interna del relato de la fuente con su propio rastro público, que es verificable."},
+ {q:"Si publicamos, ¿qué te preocupa concretamente que ocurra?",
+  m:"Convierte un temor difuso en un riesgo evaluable, que es la única base para decidir medidas de protección realistas."},
+ {q:"¿Te parece bien que citemos el material sin mencionarte y sin describir cómo llegó a nosotros?",
+  m:"Propone una salida concreta y deja constancia del acuerdo. Es preferible a prometer una protección genérica que no puede garantizarse."}
+];
+
+const AUDIT=[
+ ["v","La Oficina del Alto Comisionado de la ONU para los Derechos Humanos y el Centro de Derechos Humanos de la Universidad de California en Berkeley publicaron en 2022 el <em>Berkeley Protocol on Digital Open Source Investigations</em>, con estándares de procedencia, preservación, análisis, seguridad y bienestar.","OHCHR y Human Rights Center, UC Berkeley, 2022. Verificado."],
+ ["v","Bellingcat, constituido en 2014, publica junto a sus investigaciones el procedimiento que permite reproducirlas, incluidas imágenes, coordenadas y comparaciones.","Publicaciones metodológicas de bellingcat.com. Verificado."],
+ ["v","El vuelo MH17 fue derribado sobre el este de Ucrania el 17 de julio de 2014 con 298 personas a bordo; investigadores independientes geolocalizaron material publicado en redes y un Equipo Conjunto de Investigación de varios Estados desarrolló la investigación, que llegó a juicio en los Países Bajos.","Investigación del JIT y cobertura internacional contemporánea. Verificado."],
+ ["v","El proyecto Syrian Archive, de la organización Mnemonic, se creó para preservar y verificar material audiovisual del conflicto sirio ante la retirada de contenidos por los sistemas de moderación de las plataformas.","syrianarchive.org · Mnemonic. Verificado."],
+ ["v","La tercera edición del <em>Verification Handbook</em>, editada por Craig Silverman para el European Journalism Centre, aborda desinformación, cuentas falsas, operaciones de información y material sintético.","verificationhandbook.com · EJC. Verificado."],
+ ["b","En investigación de fuentes abiertas, el material carece de valor probatorio propio: lo adquiere mediante la documentación de su procedencia y la preservación de su integridad.","Protocolo de Berkeley · Verification Handbook."],
+ ["b","Una captura de pantalla no constituye preservación: no conserva metadatos, no permite comprobar integridad y es fácilmente falsificable.","Práctica forense digital · Protocolo de Berkeley."],
+ ["b","La huella criptográfica de un archivo acredita su integridad, no la veracidad de lo que muestra.","Práctica forense digital establecida."],
+ ["b","El patrón mayoritario de desinformación audiovisual es la recontextualización de material auténtico, no su manipulación técnica.","Verification Handbook, 3.ª ed."],
+ ["b","La búsqueda inversa y la comprobación de coherencia del entorno detectan la mayoría de los casos de recontextualización.","Verification Handbook · Bradshaw."],
+ ["b","El material disponible en abierto está condicionado por la conectividad, el idioma y las políticas de moderación, de modo que su abundancia o ausencia no mide la magnitud de los hechos.","Protocolo de Berkeley · formulación docente."],
+ ["b","Documentar comportamiento coordinado con material abierto es factible; atribuir la operación a un actor concreto exige evidencia de naturaleza distinta.","Verification Handbook, 3.ª ed. · práctica establecida."],
+ ["b","La accesibilidad de un dato personal en un registro público no autoriza por sí sola su publicación: el criterio es el interés público concreto y la proporcionalidad.","Ética periodística establecida · Protocolo de Berkeley."],
+ ["p","La descripción de las oleadas de retirada de contenidos por parte de las plataformas se apoya en la documentación pública de los proyectos de archivo; no se ha realizado para esta unidad un recuento propio de canales o vídeos eliminados.","Redactado sin cifras que no puedan contrastarse en fuente primaria."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Que una información sea de «fuente abierta» significa que:",
+ o:["Es gratuita y está en internet","Es accesible legítimamente, sin vulnerar ningún control de acceso","La publicó un organismo oficial","Puede reutilizarse sin restricciones"],c:1,
+ w:["Muchas fuentes abiertas son de pago —registros mercantiles, imágenes satelitales comerciales— y no por ello dejan de serlo.",
+    "",
+    "El origen oficial no define la categoría: una publicación de un particular en una red social también es fuente abierta.",
+    "La accesibilidad no implica licencia de reutilización, que se rige por sus propias condiciones."],
+ e:"La frontera no es técnica sino de legitimidad del acceso. Si hubo que suplantar identidad o saltarse un control, deja de ser fuente abierta y cambia el marco entero."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El valor probatorio de un material de fuente abierta:",
+ o:["Depende de la plataforma en que se publicó","Lo construye el investigador documentando procedencia, integridad y método","Lo determina la calidad técnica del archivo","Es siempre menor que el de un documento oficial"],c:1,
+ w:["La plataforma no responde por el contenido ni acredita su origen.",
+    "",
+    "La calidad de imagen no informa sobre autenticidad ni sobre contexto: un archivo nítido puede estar recontextualizado.",
+    "Un material abierto bien documentado puede ser más sólido que un documento oficial sin cadena de custodia."],
+ e:"El material no viene certificado por nadie. En fuentes abiertas el método es la prueba, y por eso se publica junto al hallazgo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La huella criptográfica de un archivo acredita:",
+ o:["Que el contenido del archivo es verdadero","Que el archivo no ha sido alterado desde que se calculó","Que el archivo es el original de la cámara","Que la fecha del archivo es correcta"],c:1,
+ w:["La integridad no dice nada sobre lo que la imagen muestra ni sobre su contexto.",
+    "",
+    "Puede calcularse sobre cualquier copia; no distingue el original de una recompresión.",
+    "La fecha procede de metadatos o de la publicación, y se comprueba por otras vías."],
+ e:"La huella responde a «¿es el mismo archivo?»; la verificación responde a «¿muestra lo que dice mostrar?». Hacen falta las dos y ninguna sustituye a la otra."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La recontextualización consiste en:",
+ o:["Editar digitalmente una imagen para alterar su contenido","Difundir material auténtico con fecha, lugar o protagonistas falsos","Traducir un contenido a otro idioma sin indicarlo","Recortar un video para eliminar su contexto sonoro"],c:1,
+ w:["Eso es manipulación del archivo, que es el caso minoritario y el más fácil de detectar técnicamente.",
+    "",
+    "La traducción sin indicación es un problema editorial distinto.",
+    "El recorte es una forma de descontextualización parcial, pero no describe el patrón completo."],
+ e:"Es el patrón mayoritario de la desinformación audiovisual: el archivo es genuino y lo falso es el contexto que se le añade al reenviarlo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El registro de investigación debe incluir:",
+ o:["Solo los hallazgos que sostienen la pieza publicada","Todas las búsquedas realizadas, incluidas las que no dieron resultado","Un resumen redactado al terminar la investigación","Los datos personales de las fuentes consultadas"],c:1,
+ w:["Registrar solo lo que confirma impide demostrar que se buscó aquello que podría haber refutado la hipótesis.",
+    "",
+    "El resumen a posteriori no es un registro: reconstruye de memoria lo que debía anotarse en el momento.",
+    "Los datos que identifican a fuentes en riesgo se protegen aparte y con medidas específicas, nunca en el registro general."],
+ e:"Los caminos fallidos son los que acreditan que la comprobación fue real. Y el registro se abre el primer día, porque escribirlo al final nunca funciona."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Documentar comportamiento coordinado entre cuentas permite afirmar:",
+ o:["Quién opera esas cuentas","Que hubo publicación coordinada, sin acreditar por sí solo la autoría","Que las cuentas son automatizadas","Que el contenido difundido es falso"],c:1,
+ w:["La autoría exige registros de pago, correspondencia o datos de la plataforma que el material abierto no proporciona.",
+    "",
+    "La automatización es una hipótesis técnica adicional que requiere sus propios indicios.",
+    "La coordinación describe cómo se difundió el contenido, no si es verdadero o falso."],
+ e:"Coordinación y autoría son afirmaciones distintas con pruebas distintas. Confundirlas es el modo más rápido de que una investigación sólida se vuelva impugnable."},
+
+/* ---------- BLOQUE B · DECISIONES DE INVESTIGACIÓN ---------- */
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Localizas material relevante en una cuenta que ya ha empezado a borrar publicaciones. Falta verificarlo y el cierre es en tres horas.",
+ q:"¿Qué haces primero?",
+ o:["Verificar lo más importante y descargar después lo que resulte útil","Preservar todo el material con huella y hora de captura, y verificar después","Avisar al editor de que puede no llegar a tiempo","Solicitar a la plataforma que conserve la cuenta"],c:1,
+ w:["El análisis se puede repetir; el material borrado no se recupera. Verificar primero arriesga precisamente lo irreversible.",
+    "",
+    "Informar es necesario y no resuelve el problema técnico, que tiene una ventana de minutos.",
+    "Las solicitudes de conservación no son inmediatas ni están al alcance de cualquier redacción."],
+ e:"Preservar es la primera acción, no la última. Descargar material que luego resulte irrelevante tiene coste mínimo; perder la única copia no tiene remedio."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Un colaborador propone crear un perfil falso para entrar en un grupo cerrado de mil personas y obtener material.",
+ q:"¿Cómo se resuelve?",
+ o:["Se acepta: con mil miembros, el grupo es de hecho público","Se rechaza como vía de fuente abierta; si se plantea, es una infiltración con procedimiento editorial propio","Se acepta si no se publica el nombre del grupo","Se acepta si el colaborador asume el riesgo a título personal"],c:1,
+ w:["El número de miembros no elimina el control de acceso ni la suplantación necesaria para superarlo.",
+    "",
+    "Omitir el nombre del grupo no cambia el modo en que se obtuvo el material.",
+    "Trasladar el riesgo al colaborador no altera la naturaleza del método ni la responsabilidad del medio."],
+ e:"La frontera es la legitimidad del acceso. Una infiltración puede estar justificada en casos excepcionales, pero exige decisión editorial previa, documentada, y declararla al publicar."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Una fuente te envía la captura de pantalla de una publicación ya borrada. No tienes el original ni su dirección.",
+ q:"¿Qué corresponde hacer?",
+ o:["Publicarla como documento, indicando que la publicación fue borrada","Buscar el contenido en archivos web, cachés y citas de otros usuarios; sin original, tratarlo como testimonio","Descartar el material por completo","Publicarla solo si la fuente acepta ser identificada"],c:1,
+ w:["Una captura no es un documento: carece de metadatos y de cualquier vía de comprobación de integridad.",
+    "",
+    "Descartarlo de entrada renuncia a vías de recuperación que a menudo funcionan.",
+    "La identificación de la fuente no convierte la captura en documento verificable."],
+ e:"Si no aparece el original, cabe publicar que una fuente afirma haber visto la publicación —como testimonio, no como documento— y declarar que no fue posible verificarlo."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Un registro público permite obtener el domicilio del investigado y también el de su hija, ajena al asunto.",
+ q:"¿Qué se publica?",
+ o:["Ambos: son datos de acceso público","Ninguno de los dos domicilios, salvo que la dirección sea en sí misma el hallazgo","Solo el del investigado, por ser figura pública","Ambos, pero con la calle omitida"],c:1,
+ w:["La accesibilidad no autoriza la amplificación: publicarlo multiplica su alcance real y el riesgo asociado.",
+    "",
+    "La condición de figura pública gradúa la exposición admisible, no la abre por completo, y el domicilio rara vez acredita nada.",
+    "La omisión parcial reduce el daño sin justificar la publicación, que sigue sin aportar nada al lector."],
+ e:"El criterio es qué añade el dato a lo que el lector necesita saber. Cuando el domicilio es el hallazgo —una incompatibilidad, una residencia falsa— se publica el hecho, no la dirección."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Documentas que ochenta cuentas creadas la misma semana publicaron un texto idéntico en el mismo minuto. El editor quiere atribuirlo a un partido.",
+ q:"¿Qué titular es sostenible?",
+ o:["El partido está detrás de una red de ochenta cuentas","Ochenta cuentas coordinadas difundieron el mismo mensaje, que beneficia a un partido, sin que se haya establecido quién las opera","Una red de cuentas falsas apoya al partido en redes sociales","Fuentes del sector atribuyen la red al partido"],c:1,
+ w:["Afirma autoría sin la evidencia que la acredita: pagos, correspondencia o datos de la plataforma.",
+    "",
+    "«Apoya al partido» insinúa vínculo orgánico que el material no establece.",
+    "Atribuir a fuentes anónimas una conclusión que tu propio material no sostiene traslada la afirmación sin fundamentarla."],
+ e:"El hallazgo real —una operación coordinada y a quién beneficia— se sostiene entero y es de interés público. La atribución sin prueba lo pone en riesgo."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Un video de gran impacto circula atribuido a un suceso ocurrido esta madrugada.",
+ q:"¿Cuál es la primera comprobación?",
+ o:["Analizar el archivo en busca de señales de manipulación digital","Buscar apariciones anteriores del material mediante búsqueda inversa","Comprobar los metadatos del archivo recibido","Contactar con la cuenta que lo publicó"],c:1,
+ w:["La manipulación técnica es el caso minoritario, y este análisis no detecta material auténtico mal contextualizado.",
+    "",
+    "Los metadatos suelen eliminarse al publicar en plataformas y al reenviar por mensajería, de modo que rara vez están disponibles.",
+    "El contacto es valioso y más lento; conviene hacerlo después de saber si el material es anterior."],
+ e:"Antes de preguntar si el material es auténtico, pregunta si es de ahora y de allí. La mayoría de los engaños viven en esa segunda pregunta y se detectan en dos minutos."},
+
+/* ---------- BLOQUE C · REDACCIÓN Y PUBLICACIÓN ---------- */
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"Una investigación de fuentes abiertas se publica:",
+ o:["Con las conclusiones y las imágenes que las ilustran","Con la metodología incorporada: qué se verificó, cómo, con qué certeza y qué quedó sin resolver","Con un enlace al material original y nada más","Con la firma de un experto que avale el análisis"],c:1,
+ w:["Las imágenes ilustran, no acreditan: sin el método, el lector no puede distinguir un hallazgo de una suposición.",
+    "",
+    "El enlace al material no explica el razonamiento que lleva del material a la conclusión.",
+    "El aval de un experto sustituye comprobación por autoridad, que es justamente lo que este método evita."],
+ e:"Publicar el método invierte la carga de la discusión: refutar exige señalar un paso concreto, no descalificar al autor."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"Que no se encuentre material de una zona en conflicto indica:",
+ o:["Que allí ocurren menos hechos que en otras zonas","Que puede haber ausencia de conectividad, de cobertura o retirada de contenidos, y debe declararse","Que el material fue eliminado deliberadamente","Que la información disponible es más fiable en el resto de zonas"],c:1,
+ w:["La ausencia de material no es evidencia de ausencia del hecho: confundirlas produce coberturas sistemáticamente sesgadas.",
+    "",
+    "La eliminación deliberada es una hipótesis entre varias y requiere su propia evidencia.",
+    "La abundancia de material en otras zonas indica documentación, no fiabilidad."],
+ e:"El material en abierto depende de la conectividad, el idioma y la moderación de plataformas. Declarar qué se buscó y no se encontró informa más que el silencio."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"En una investigación con material de fuente abierta, el derecho de réplica:",
+ o:["No es necesario, porque la evidencia es pública y verificable","Sigue siendo obligatorio, con constancia documentada del intento de contacto","Se sustituye por la publicación del método","Solo aplica si la persona señalada es un cargo público"],c:1,
+ w:["Que la evidencia sea comprobable no anticipa la explicación de la parte señalada, que puede cambiar el sentido del hallazgo.",
+    "",
+    "La transparencia del método y la réplica son obligaciones distintas y acumulativas.",
+    "La condición de cargo público gradúa la exposición admisible; no determina si hay derecho a responder."],
+ e:"Se busca a la parte señalada, se deja constancia de las vías y los plazos, y no se convierte el silencio en confirmación. Es el mismo principio de la Unidad 1 de JRN-1001."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ s:"Has geolocalizado con precisión un video, has datado por indicios el día, y sospechas quién grabó pero no puedes acreditarlo.",
+ q:"¿Cómo se redacta?",
+ o:["Publicando las tres cosas con el mismo grado de afirmación","Distinguiendo en el texto lo probado, lo indiciario y lo no acreditado","Omitiendo la datación por ser menos sólida","Atribuyendo la autoría a fuentes cercanas al hecho"],c:1,
+ w:["Igualar grados de certeza distintos es engañar al lector sobre la solidez de cada afirmación.",
+    "",
+    "La datación por indicios es información válida siempre que se declare como tal.",
+    "Atribuir a fuentes indeterminadas una conclusión que no puedes acreditar es trasladar la afirmación sin fundamentarla."],
+ e:"La distinción entre lo probado, lo indiciario y lo alegado debe ser legible en el propio texto, no en una nota al pie."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"Publicar el método completo de una investigación exige, antes, revisar:",
+ o:["Que no se revele la identidad de la marca o herramienta utilizada","Que ningún paso permita identificar a fuentes en riesgo ni funcione como manual para causar daño","Que los pasos sean comprensibles para un lector no técnico","Que el método no haya sido publicado antes por otro medio"],c:1,
+ w:["Nombrar las herramientas empleadas forma parte de la reproducibilidad y no es un riesgo en sí mismo.",
+    "",
+    "La claridad es deseable y no es un criterio de seguridad.",
+    "Que otros hayan publicado un método similar no afecta a la decisión de publicar el propio."],
+ e:"La transparencia tiene un límite: no se publica nada que permita reconstruir la identidad de una fuente en riesgo. Ese filtro se aplica antes de cada publicación."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"Ante material recuperado de una copia conservada por un tercero, la exigencia de procedencia:",
+ o:["Desaparece, porque el original ya no existe","Se endurece: hay que documentar quién conservó la copia, cuándo y qué garantiza que no fue alterada","Se sustituye por el testimonio de quien conserva la copia","Es la misma que con el material original"],c:1,
+ w:["La desaparición del original aumenta la incertidumbre, no la elimina.",
+    "",
+    "El testimonio es parte de la documentación, no un sustituto de ella.",
+    "Con un eslabón intermedio más, el estándar no puede ser el mismo."],
+ e:"Cada eslabón adicional en la cadena añade una posibilidad de alteración. Documentarlo y declararlo en la pieza es lo que permite seguir usando el material."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que forma parte de la preservación correcta de un material de fuente abierta.",
+ o:["Descarga del archivo original completo","Cálculo de la huella criptográfica","Captura de la página con su dirección y fecha","Captura de pantalla del contenido como evidencia principal","Copia en un archivo web independiente cuando sea posible"],
+ c:[0,1,2,4],
+ w:["","","","La captura de pantalla sirve como ilustración: no conserva metadatos, no permite comprobar integridad y es trivialmente falsificable.",""],
+ e:"Preservar es la primera acción de la investigación. Lo que no se preservó al encontrarlo no existe cuando hace falta."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las comprobaciones que establecen la procedencia de un material.",
+ o:["Localizar la primera aparición conocida","Caracterizar la cuenta que lo publicó: antigüedad, historial, coherencia","Reconstruir la cadena de reenvíos","Medir la calidad técnica del archivo","Intentar contactar con el autor original"],
+ c:[0,1,2,4],
+ w:["","","","La calidad de imagen no informa sobre el origen: un archivo nítido puede estar recontextualizado y uno degradado ser auténtico.",""],
+ e:"La pregunta no es si parece auténtico, sino de dónde salió exactamente y quién lo tuvo antes."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las primeras acciones ante un material relevante recién localizado.",
+ o:["Descargar el archivo original completo","Calcular su huella criptográfica y anotar fecha y hora de captura","Archivar la página en un servicio independiente","Establecer la procedencia y la primera aparición","Analizar el contenido y verificar lo que muestra"],
+ c:[0,1,2,3,4],
+ e:"Preservar precede a analizar. El análisis se puede repetir mañana; el material borrado no se recupera."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena los grados de afirmación según su exigencia de prueba, de menor a mayor.",
+ o:["Este material circula atribuido a un hecho","Este material se publicó por primera vez en esta fecha","Este material fue grabado en este lugar","Estas cuentas difundieron el material de forma coordinada","Esta organización opera esas cuentas"],
+ c:[0,1,2,3,4],
+ e:"Cada escalón exige un tipo de prueba distinto. El último —la atribución— es el que rara vez sostiene el material abierto, y donde más investigaciones se rompen."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>

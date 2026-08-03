@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1003 · Unidad 3 — Rastreo Documental y Seguimiento del Dinero</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1003, Unidad 3.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course on" href="jrn1003-u3.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1003 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Rastreo Documental y Seguimiento del Dinero</h2>
+  <div class="sub">Unidad 3 de 4 · Periodismo de Investigación y OSINT</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1003-u1.html">Unidad 1: Fundamentos de OSINT y Cadena de Custodia Digital</a>
+    <a class="unit" href="jrn1003-u2.html">Unidad 2: Verificación de Imagen y Video</a>
+    <span class="unit on">Unidad 3: Rastreo Documental y Seguimiento del Dinero</span>
+    <a class="unit" href="jrn1003-u4.html">Unidad 4: Seguridad Operacional, Ética y Publicación</a>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>El dinero deja rastro documental porque, para moverse, necesita sociedades, cuentas, contratos, escrituras y registros. Esta unidad enseña a leer esos documentos, a cruzarlos entre sí y a construir con ellos una afirmación que resista una demanda: quién controla qué, quién cobró de quién y qué relación existe entre una decisión pública y un beneficio privado.</p>
+    <p style="margin-bottom:0">El eje es que <strong>un documento acredita su propio contenido y nada más</strong>. Una escritura prueba que se firmó una escritura, no que el firmante sea el dueño real. Todo lo que va más allá del texto —el control efectivo, la intención, el pacto— exige otro documento, y la investigación consiste precisamente en encontrarlo.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Leer un registro mercantil: qué acredita, qué omite y en qué momento del tiempo se refiere cada asiento.</li>
+      <li>Distinguir titularidad formal de control efectivo, e identificar las estructuras que separan ambas cosas.</li>
+      <li>Rastrear contratación pública buscando patrones —adjudicaciones directas, pliegos ajustados, concurrencia mínima— y no solo importes.</li>
+      <li>Cruzar registros heterogéneos —societario, catastral, judicial, contractual— para construir una relación documentada entre personas y decisiones.</li>
+      <li>Autenticar un documento filtrado: coherencia interna, contraste con registros públicos y corroboración por fuentes independientes.</li>
+      <li>Formular por escrito qué acredita exactamente cada documento y qué afirmación necesita todavía una prueba adicional.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Mark Lee Hunter (ed.), <em>La investigación a partir de historias</em> — manual de la UNESCO sobre periodismo de investigación</li>
+      <li>GIJN, guías de investigación de empresas y de seguimiento de activos</li>
+      <li>Craig Silverman (ed.), <em>Verification Handbook</em> — verificación de documentos</li>
+      <li>Paul Bradshaw, <em>The Online Journalism Handbook</em> (3.ª ed., 2023) — investigación con registros públicos</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>ICIJ — Offshore Leaks Database</h5>
+        <div class="def">Base de datos pública del Consorcio Internacional de Periodistas de Investigación que reúne estructuras societarias extraterritoriales procedentes de sus investigaciones. Permite localizar sociedades, intermediarios y direcciones vinculadas, con la advertencia expresa de que aparecer en ella no implica ilegalidad.</div>
+        <p class="src">offshoreleaks.icij.org · ICIJ</p></div>
+      <div class="term"><h5>OpenCorporates</h5>
+        <div class="def">Base de datos abierta de sociedades que agrega información de registros mercantiles de numerosas jurisdicciones. Sirve para localizar denominaciones, administradores y vínculos entre entidades, y siempre debe contrastarse contra el registro de origen.</div>
+        <p class="src">opencorporates.com</p></div>
+      <div class="term"><h5>OCCRP Aleph</h5>
+        <div class="def">Archivo de documentos y conjuntos de datos mantenido por el Organized Crime and Corruption Reporting Project, con capacidad de búsqueda entre registros públicos, listas de sanciones y documentación de investigaciones.</div>
+        <p class="src">aleph.occrp.org · OCCRP</p></div>
+      <div class="term"><h5>GAFI — Estándares sobre beneficiario final</h5>
+        <div class="def">El Grupo de Acción Financiera Internacional fija recomendaciones sobre transparencia de la titularidad real de las personas jurídicas, y evalúa periódicamente el grado de cumplimiento de los países. Es la referencia para explicar qué debería estar disponible y no lo está.</div>
+        <p class="src">fatf-gafi.org</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de una matriz documental sobre un caso real. El <strong>Examen Integrador</strong> de JRN-1003 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Seguir el dinero es seguir documentos</h3>
+    <p>El dinero no puede moverse en cantidades relevantes sin dejar rastro documental: hace falta una sociedad que lo reciba, una cuenta que lo albergue, un contrato que lo justifique y, muchas veces, un bien en el que materializarse. Cada uno de esos pasos genera un asiento en algún registro.</p>
+    <p>La investigación consiste en reconstruir esa secuencia con documentos, no en describirla con testimonios. Un testimonio orienta la búsqueda y señala dónde mirar; el documento es lo que sostiene la afirmación cuando llega la demanda.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Por cada frase que quieras publicar, anota qué documento la acredita. Las frases que se quedan sin documento son las que hay que reescribir o suprimir.</div>
+
+    <h3>El registro mercantil: qué acredita y qué omite</h3>
+    <p>Un registro societario acredita hechos formales: quién consta como administrador, qué capital se declaró, qué cuentas se depositaron y en qué fechas. No acredita quién controla realmente la sociedad, ni de dónde salió el dinero, ni si la actividad declarada existe.</p>
+    <p>Además, cada asiento se refiere a un momento concreto, y el registro muestra por defecto la fotografía actual. La historia —cambios de administrador, ampliaciones de capital, traslados de domicilio— suele ser más informativa que el estado presente, y con frecuencia hay que pedirla expresamente.</p>
+    <div class="ej"><b>MÉTODO</b>Pide siempre el histórico, no la nota simple del día. Una sociedad que cambió tres veces de administrador la semana anterior a una adjudicación cuenta una historia que el estado actual oculta.</div>
+
+    <h3>Titularidad formal y control efectivo</h3>
+    <p>El beneficiario final es la persona física que controla una entidad, con independencia de quién figure en los papeles. Toda la arquitectura de la opacidad consiste en separar ambas cosas: administradores profesionales, sociedades encadenadas en varias jurisdicciones, fundaciones y fideicomisos que interrumpen el rastro.</p>
+    <p>Para el investigador, la consecuencia es doble. La titularidad formal se documenta con relativa facilidad; el control efectivo casi nunca se documenta con un solo papel y se acredita por convergencia: poderes otorgados, firmas en cuentas, correspondencia, actos de disposición sobre bienes de la sociedad.</p>
+    <div class="ej"><b>PRECISIÓN</b>«Administrador único de la sociedad» es un hecho registral. «Dueño real» es una conclusión que exige varias pruebas convergentes. Publicar la segunda con la evidencia de la primera es el error más caro de esta unidad.</div>
+
+    <h3>Sociedades pantalla y jurisdicciones opacas</h3>
+    <p>Una sociedad instrumental no es ilegal por sí misma: hay usos legítimos y frecuentes. Lo que la convierte en indicio es el contexto —ausencia de actividad, domicilio compartido con centenares de entidades, administradores que figuran en decenas de sociedades sin relación entre sí, constitución inmediatamente anterior a una operación.</p>
+    <p>Las jurisdicciones con secreto societario interrumpen el rastro documental, y ahí el trabajo cambia de método: cuando no se puede seguir la sociedad, se sigue a las personas, a los intermediarios y a los bienes, que suelen dejar huella en el país donde están.</p>
+    <div class="ej"><b>ADVERTENCIA</b>Aparecer en una estructura extraterritorial no acredita ilegalidad, y publicarlo como si lo hiciera es la vía más rápida a una rectificación. El hallazgo es la incoherencia entre esa estructura y lo que la persona declaró.</div>
+
+    <h3>Contratación pública: buscar el patrón</h3>
+    <p>El importe llamativo casi nunca es el hallazgo. Lo que informa es el patrón: adjudicaciones sin concurrencia, contratos fraccionados justo por debajo del umbral que obliga a licitar, pliegos con requisitos que solo un proveedor cumple, plazos de presentación mínimos, o la misma empresa ganando siempre en el mismo departamento.</p>
+    <ol>
+      <li><strong>Concurrencia.</strong> Cuántos licitadores se presentaron y quiénes eran.</li>
+      <li><strong>Procedimiento.</strong> Abierto, negociado o directo, y con qué justificación.</li>
+      <li><strong>Requisitos.</strong> Si algún criterio del pliego solo lo cumple un candidato.</li>
+      <li><strong>Historial.</strong> Qué relación previa existe entre adjudicador y adjudicatario.</li>
+    </ol>
+    <div class="ej"><b>REGLA</b>Un contrato aislado rara vez es noticia. La serie sí: veinte adjudicaciones directas a la misma empresa en dos años describen un sistema, no una decisión.</div>
+
+    <h3>El cruce es donde aparece la historia</h3>
+    <p>Ningún registro contiene la historia completa. Aparece al cruzar fuentes que fueron creadas para fines distintos: el registro societario con el catastral, el contractual con el judicial, las declaraciones de bienes con los boletines oficiales.</p>
+    <p>El cruce se hace por identificadores estables —número fiscal, número registral, dirección normalizada— y nunca solo por nombre, porque los nombres se repiten y las coincidencias parciales producen atribuciones falsas que después son muy difíciles de rectificar.</p>
+    <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>Antes de afirmar que dos entradas se refieren a la misma persona, exige un identificador que lo acredite. La coincidencia de nombre y apellidos no es un identificador.</div>
+
+    <h3>Autenticar un documento filtrado</h3>
+    <p>Un documento que llega por una vía no oficial exige un trabajo de autenticación que el propio documento no puede darse. Se examina su coherencia interna —formatos, referencias, numeración, firmas—, se contrasta cada dato comprobable con registros públicos y se busca confirmación de personas que aparecen en él o que participaron en los hechos que describe.</p>
+    <p>Y hay una pregunta previa que no se puede saltar: quién lo entrega y qué gana con ello. La motivación de la fuente no invalida el documento, pero determina qué comprobaciones adicionales son obligatorias y qué contexto debe conocer el lector.</p>
+    <div class="ej"><b>UMBRAL DE PUBLICACIÓN</b>Un documento no publicable es el que no se ha podido contrastar en ningún punto con una fuente independiente. Si todos sus datos comprobables encajan y ninguno falla, la autenticación es sólida aunque el origen sea anónimo.</div>
+
+    <h3>El trabajo en consorcio</h3>
+    <p>Las grandes filtraciones documentales han cambiado la organización del oficio: cientos de periodistas de decenas de países trabajando sobre el mismo material durante meses, con publicación coordinada. El modelo responde a un problema práctico —ningún medio puede leer millones de documentos ni conoce todas las jurisdicciones implicadas— y a uno de seguridad.</p>
+    <p>La publicación simultánea distribuye el riesgo: presionar a un medio deja de ser eficaz cuando la información va a salir el mismo día en cuarenta países. Es una defensa que ningún medio aislado puede construirse.</p>
+    <div class="ej"><b>EJEMPLO</b>La colaboración internacional convierte una filtración inabarcable en decenas de investigaciones locales verificables, cada una con el conocimiento del país que ningún equipo externo tiene.</div>
+
+    <h3>Lo que un documento no prueba</h3>
+    <p>La tentación al final de una investigación documental es hacer decir al papel más de lo que dice. Una transferencia acredita un movimiento de fondos, no su causa. Una reunión en una agenda acredita que se convocó, no lo que se acordó. Una empresa vinculada a un familiar acredita un parentesco societario, no una instrucción.</p>
+    <p>El salto entre el hecho documentado y su interpretación es donde se pierden los juicios y donde se pierde la credibilidad. La formulación correcta describe el hecho y, cuando corresponde, señala la pregunta que abre, sin resolverla por insinuación.</p>
+    <div class="ej"><b>REGLA</b>Escribe la frase y pregunta: ¿qué documento tengo para cada elemento de esta frase? Los adverbios y los verbos de intención casi nunca tienen documento detrás.</div>
+
+    <h3>De la matriz documental a la pieza</h3>
+    <p>El instrumento de trabajo es una matriz: cada afirmación que se pretende publicar, en una fila; el documento que la acredita, su procedencia y su estado de comprobación, en las columnas. Lo que no tiene documento, o lo tiene pendiente, queda visible para todo el equipo y para el asesor jurídico.</p>
+    <p>Esa matriz cumple después tres funciones: ordena la redacción, sostiene la revisión legal y permite responder a una impugnación meses más tarde. Es el equivalente documental del cuaderno de análisis del periodismo de datos y del registro de investigación de la Unidad 1.</p>
+    <div class="ej"><b>REGLA FINAL</b>Ninguna afirmación entra en el texto sin una fila en la matriz. Y toda fila sin documento se reescribe hasta que describa lo que sí está acreditado, o se cae.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista al responsable de contratación de un organismo que adjudicó veinte contratos por procedimiento directo a una empresa constituida tres semanas antes de la primera adjudicación. Sostiene que todo se ajustó a la norma.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes afirmar que hubo un pacto: no lo tienes documentado. Cada pregunta debe apuntar a un documento concreto que exista o deba existir. Si acredita que el procedimiento era el legalmente aplicable, tienes que poder reconocerlo y seguir preguntando por lo demás.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">MATRIZ DOCUMENTAL · OBLIGATORIA</span>
+      <p>Elige un caso real con documentación pública accesible. Entrega: la matriz con cada afirmación que pretendes publicar, el documento que la acredita, su procedencia y su estado; el histórico societario de al menos una entidad implicada, no solo su situación actual; un cruce por identificador estable entre dos registros de naturaleza distinta; la lista de afirmaciones que no lograste documentar y qué documento haría falta; y el texto de trescientas palabras que sí puedes publicar hoy.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Matriz completa, con una fila por afirmación y su documento (30%) · Uso del histórico registral y no solo del estado actual (15%) · Cruce por identificador estable, correctamente justificado (20%) · Honestidad sobre lo no documentado y qué haría falta (20%) · Redacción final ajustada a lo acreditado, sin verbos de intención sin prueba (15%). Un trabajo que identifique personas por coincidencia de nombre no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 3</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1003-u2.html">← Unidad 2: Verificación de Imagen y Video</a> &nbsp;·&nbsp; <a href="jrn1003-u4.html">Unidad 4: Seguridad Operacional, Ética y Publicación →</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Beneficiario Final",d:"Persona física que controla realmente una entidad, con independencia de quién figure como titular formal. Es el dato que la opacidad societaria está diseñada para ocultar.",s:"GAFI · normativa antiblanqueo"},
+ {t:"Titularidad Formal",d:"Quien consta en el registro como socio o administrador. Es un hecho registral comprobable y no equivale a control efectivo.",s:"Registros mercantiles · práctica establecida"},
+ {t:"Sociedad Instrumental",d:"Entidad sin actividad propia utilizada para canalizar operaciones o interponerse en una cadena de titularidad. No es ilegal por sí misma: lo informativo es el contexto.",s:"ICIJ · GIJN"},
+ {t:"Jurisdicción Opaca",d:"Territorio cuyo marco legal impide conocer la titularidad real de las entidades registradas. Interrumpe el rastro documental y obliga a seguir personas y bienes.",s:"GAFI · investigaciones del ICIJ"},
+ {t:"Histórico Registral",d:"Secuencia de asientos de una sociedad a lo largo del tiempo. Suele ser más informativo que el estado actual y con frecuencia debe solicitarse expresamente.",s:"Práctica establecida de investigación societaria"},
+ {t:"Identificador Estable",d:"Código único —fiscal, registral, catastral— que permite afirmar que dos entradas de registros distintos se refieren al mismo sujeto. El nombre no lo es.",s:"JRN-1002 Unidad 2 · práctica de cruce de datos"},
+ {t:"Adjudicación Directa",d:"Contratación sin concurrencia. Puede ser legal en supuestos tasados; lo relevante es la justificación invocada y su repetición en el tiempo.",s:"Normativa de contratación pública · GIJN"},
+ {t:"Fraccionamiento",d:"División de un contrato en varios de menor importe para situarlos bajo el umbral que obliga a licitar. Se detecta por la serie, no por la pieza aislada.",s:"Práctica de auditoría de contratación"},
+ {t:"Pliego a Medida",d:"Condiciones técnicas que solo un candidato puede cumplir. El indicio no es el importe sino la coincidencia exacta entre requisito y proveedor.",s:"Práctica de investigación de contratación"},
+ {t:"Autenticación Documental",d:"Proceso de acreditar que un documento es lo que aparenta: coherencia interna, contraste con registros públicos y corroboración por personas independientes.",s:"Verification Handbook · práctica establecida"},
+ {t:"Matriz Documental",d:"Tabla con una fila por afirmación publicable, el documento que la acredita, su procedencia y su estado. Ordena la redacción y sostiene la revisión jurídica.",s:"Formulación docente · práctica de redacción de investigación"},
+ {t:"Consorcio Periodístico",d:"Estructura de colaboración entre medios de distintos países sobre un mismo material, con publicación coordinada. Distribuye el trabajo y también el riesgo.",s:"ICIJ · OCCRP"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · ICIJ · ABRIL DE 2016",t:"Panama Papers: once millones y medio de documentos",
+  d:"En abril de 2016 el Consorcio Internacional de Periodistas de Investigación publicó, junto a un centenar de medios, la investigación conocida como Panama Papers. Se basaba en cerca de 11,5 millones de documentos internos del despacho panameño Mossack Fonseca, entregados inicialmente al diario alemán <em>Süddeutsche Zeitung</em> por una fuente anónima y compartidos después con el consorcio. Cientos de periodistas de decenas de países trabajaron durante meses sobre el material antes de una publicación coordinada. La investigación tuvo consecuencias políticas en varios países y el ICIJ incorporó parte de las estructuras societarias a su base de datos pública, advirtiendo expresamente que figurar en ella no implica actuación ilegal.",
+  ej:"El material no era una historia: era un archivo. Convertirlo en investigaciones exigió meses de cruce con registros públicos de cada país, porque casi ningún documento acreditaba por sí solo una irregularidad.",
+  p:["¿Por qué la advertencia sobre la legalidad es parte del método?","¿Qué aporta el conocimiento local que un equipo central no tiene?","¿Qué convierte una estructura extraterritorial en noticia?"],
+  m:"La advertencia es método porque el uso de estructuras extraterritoriales es legal en numerosos supuestos, y publicar la mera aparición como si fuera prueba de delito destruye la credibilidad del conjunto y expone a rectificaciones masivas. El conocimiento local aporta lo que ningún equipo central puede tener: qué cargo ocupaba esa persona en esas fechas, qué declaró en su registro de bienes, qué contrato público adjudicó y qué dice la ley de ese país sobre incompatibilidades. Lo que convierte la estructura en noticia es la incoherencia documentada: entre lo que la persona declaró y lo que la estructura muestra, o entre su función pública y el origen de los fondos.",
+  k:"Una filtración no es una historia. Es materia prima que solo se convierte en investigación al cruzarla con registros públicos y con conocimiento local."},
+
+ {tag:"CASO 2 · ICIJ · OCTUBRE DE 2021",t:"Pandora Papers: el modelo consolidado",
+  d:"En octubre de 2021 el ICIJ publicó los Pandora Papers, basados en cerca de 11,9 millones de archivos procedentes de catorce proveedores de servicios societarios de distintas jurisdicciones. Participaron más de seiscientos periodistas de más de un centenar de medios en todo el mundo, con publicación coordinada. A diferencia de investigaciones anteriores, el material no procedía de una única firma, lo que permitió comparar prácticas entre proveedores y jurisdicciones y mostrar el funcionamiento de una industria completa de intermediación.",
+  ej:"El salto respecto de investigaciones previas no fue el volumen sino la estructura: al tener varios proveedores, el objeto dejó de ser un despacho concreto y pasó a ser el sistema que lo hace posible.",
+  p:["¿Qué permite ver un material multiorigen que uno de fuente única no muestra?","¿Cómo se coordina el trabajo de cientos de periodistas sin filtraciones previas?","¿Qué obligación de contexto impone este tipo de investigación?"],
+  m:"Un material multiorigen permite distinguir la práctica individual de la práctica sectorial: si catorce proveedores independientes emplean las mismas estructuras, el objeto de la investigación deja de ser la conducta de una firma y pasa a ser un mercado con sus reglas y sus jurisdicciones facilitadoras. La coordinación se apoya en plataformas de trabajo cerradas, en acuerdos explícitos de fecha de publicación y en una disciplina compartida, cuya eficacia depende de que todos los participantes entiendan que romperla perjudica primero a los colegas expuestos. La obligación de contexto consiste en explicar qué es legal y qué no en cada jurisdicción, y por qué una estructura perfectamente legal puede ser de interés público cuando quien la usa ocupa un cargo con capacidad de decidir sobre esas mismas reglas.",
+  k:"Cuando el material procede de varias fuentes independientes, la investigación puede afirmar cómo funciona un sistema, no solo qué hizo una empresa."},
+
+ {tag:"CASO 3 · OPENCORPORATES Y LOS REGISTROS",t:"La base agregada y el registro de origen",
+  d:"OpenCorporates agrega información societaria procedente de registros mercantiles de un gran número de jurisdicciones y la hace consultable de forma unificada, lo que permite localizar entidades y administradores a través de fronteras. Su limitación es estructural y está declarada por el propio proyecto: la calidad, la actualización y el alcance de los datos dependen de cada registro de origen, y algunos publican mucho menos que otros o lo hacen con retraso.",
+  ej:"Una base agregada sirve para encontrar; el registro de origen sirve para acreditar. Confundir ambas funciones produce afirmaciones basadas en datos desactualizados que la propia fuente advierte que pueden serlo.",
+  p:["¿Cuándo es suficiente la base agregada y cuándo no?","¿Qué se cita en la pieza publicada?","¿Qué riesgo tiene buscar solo por nombre?"],
+  m:"La base agregada es suficiente para la fase de exploración —localizar candidatos, detectar vínculos, orientar la búsqueda— y nunca para acreditar: antes de publicar hay que obtener el documento del registro de origen con su fecha. En la pieza se cita el registro oficial y la fecha de consulta, mencionando la herramienta de búsqueda solo si es relevante para explicar el método. Buscar solo por nombre produce falsos positivos con enorme facilidad, porque los homónimos abundan y las transliteraciones multiplican las variantes; el cruce debe cerrarse con un identificador estable antes de afirmar que dos entradas son la misma persona.",
+  k:"Las bases agregadas encuentran; los registros de origen acreditan. La cita de la pieza va siempre al documento oficial, con su fecha."},
+
+ {tag:"CASO 4 · CONTRATACIÓN PÚBLICA · PATRÓN",t:"Veinte contratos y ninguna irregularidad evidente",
+  d:"El patrón más frecuente en investigaciones de contratación no es el contrato desmesurado, sino la acumulación: una serie de adjudicaciones de importe moderado, tramitadas por procedimiento sin concurrencia o con concurrencia mínima, a favor de un mismo proveedor y por parte de un mismo departamento. Cada contrato, tomado aisladamente, puede ajustarse a la norma; el conjunto describe una relación estable que ninguna de las piezas revela por sí sola.",
+  ej:"Por eso la unidad de análisis no es el contrato sino la serie. Es la misma lógica del periodismo de datos: el hallazgo aparece al agregar, y desaparece si solo se mira el caso.",
+  p:["¿Qué comprobaciones convierten una serie en un hallazgo publicable?","¿Qué se le pregunta al organismo?","¿Dónde está el límite de lo que puede afirmarse?"],
+  m:"Las comprobaciones son cuatro: cuántos licitadores concurrieron en cada caso y quiénes eran; qué procedimiento se empleó y con qué justificación expresa; si algún requisito del pliego solo lo cumplía el adjudicatario; y qué relación previa existe entre las personas de ambos lados, documentada en registros societarios o en otros registros públicos. Al organismo se le pregunta por documentos concretos —informes de necesidad, justificaciones del procedimiento, informes técnicos de valoración—, no por su opinión sobre la regularidad. El límite es claro: con esa evidencia se afirma que existe un patrón de contratación sin concurrencia con un proveedor determinado y se describen sus circunstancias; afirmar un pacto exige documentación de la que rara vez se dispone.",
+  k:"Un contrato aislado casi nunca es noticia. La serie describe un sistema, y el sistema sí se puede documentar y publicar."},
+
+ {tag:"CASO 5 · DOCUMENTO FILTRADO · AUTENTICACIÓN",t:"El papel que llega sin remitente",
+  d:"Un documento entregado por una vía no oficial no viene acompañado de ninguna garantía. La práctica establecida en periodismo de investigación consiste en someterlo a tres comprobaciones sucesivas: coherencia interna —formatos, referencias cruzadas, numeración, encabezados, plausibilidad de firmas y sellos—; contraste externo de todos los datos comprobables contra registros públicos; y corroboración por personas que aparezcan en el documento o que participaran en los hechos. A ello se suma la evaluación de la fuente: quién lo entrega y qué obtiene con la publicación.",
+  ej:"La autenticación no busca una prueba definitiva, que no existe: busca acumular comprobaciones independientes hasta que la hipótesis de falsificación exija una elaboración inverosímil.",
+  p:["¿Invalida un documento que la fuente tenga interés?","¿Qué hace que un documento no sea publicable?","¿Cómo se informa al lector sobre la procedencia?"],
+  m:"El interés de la fuente no invalida el documento, porque casi todas las filtraciones proceden de alguien con un motivo; lo que hace es determinar qué comprobaciones adicionales son obligatorias y obliga a preguntarse qué falta en lo entregado, ya que la selección de lo filtrado también es un acto interesado. Un documento no es publicable cuando ninguno de sus datos comprobables ha podido contrastarse con una fuente independiente, o cuando alguno falla y no hay explicación razonable. Al lector se le informa describiendo el tipo de documento, cómo se autenticó y qué no se puede decir sobre su origen, protegiendo a la fuente sin fingir que llegó de la nada.",
+  k:"Autenticar es acumular comprobaciones independientes hasta que la falsificación resulte inverosímil. La motivación de la fuente no descalifica el documento: define qué más hay que comprobar."},
+
+ {tag:"CASO 6 · BENEFICIARIO FINAL · ACCESO RESTRINGIDO",t:"Cuando la transparencia retrocede",
+  d:"La identificación del beneficiario final es el dato central de cualquier investigación sobre control societario, y su disponibilidad pública ha variado de forma significativa en los últimos años. En noviembre de 2022 el Tribunal de Justicia de la Unión Europea declaró inválida la disposición de la directiva antiblanqueo que preveía el acceso del público en general a la información sobre titularidad real de las sociedades, por considerarla una injerencia desproporcionada en los derechos a la vida privada y a la protección de datos. Varios Estados miembros restringieron a continuación el acceso a sus registros, y periodistas y organizaciones de la sociedad civil quedaron sujetos a regímenes de acceso condicionado que varían por país.",
+  ej:"El cambio no eliminó la información: cambió quién puede consultarla y con qué requisitos. Para el investigador, eso convierte una consulta rutinaria en un procedimiento con plazos, justificación de interés legítimo y, a veces, negativa.",
+  p:["¿Qué vías quedan cuando el registro no es accesible?","¿Cómo afecta esto a la comparación entre países?","¿Es publicable la propia restricción?"],
+  m:"Cuando el registro no es accesible quedan vías indirectas: documentos societarios depositados que revelan estructura de participación, resoluciones judiciales, expedientes administrativos, registros de otras jurisdicciones donde la misma persona figure, y solicitudes de acceso a la información con justificación de interés periodístico. La comparación entre países se vuelve asimétrica y hay que declararlo, porque encontrar más estructuras en una jurisdicción puede reflejar únicamente que allí se puede mirar. Y la restricción es en sí misma publicable: documentar qué se pidió, a quién, con qué plazo y qué respuesta se obtuvo describe el estado real de la transparencia mejor que cualquier declaración institucional.",
+  k:"Cuando el acceso a un registro se restringe, la asimetría entre países pasa a formar parte del hallazgo y debe declararse en la pieza."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El homónimo",
+  d:"Un colaborador afirma haber localizado al alto cargo como administrador de una sociedad. La coincidencia es de nombre y dos apellidos.",
+  r:"Reportera · Colaborador · Editora",
+  ej:"<span class='who'>COLABORADOR:</span> Nombre y dos apellidos idénticos, es él.<br><span class='who'>REPORTERA:</span> ¿Coincide el número fiscal? ¿La fecha de nacimiento?<br><span class='who'>COLABORADOR:</span> Eso no aparece en la base.<br><span class='who'>REPORTERA:</span> Entonces tenemos un candidato, no una identificación.",
+  m:"La coincidencia de nombre no es un identificador: los homónimos abundan y una atribución falsa en esta materia produce un daño grave y una rectificación segura. El cruce debe cerrarse con un identificador estable —número fiscal, número de identidad, fecha de nacimiento coincidente en documento— o con una cadena de indicios convergentes y documentados, como un domicilio compartido acreditado y una relación societaria con otra persona ya identificada. Mientras eso no exista, la sociedad es una línea de investigación, no un hecho publicable, y así debe figurar en la matriz documental.",
+  c:"Frenar una identificación prematura sin descartar la línea de investigación."},
+
+ {tag:"ESCENARIO 2",t:"La nota simple de hoy",
+  d:"El equipo obtiene el estado actual del registro de una sociedad: administrador único, sin incidencias. Con eso se propone cerrar la comprobación.",
+  r:"Reportera · Analista · Editor",
+  ej:"<span class='who'>ANALISTA:</span> Administrador único desde el inicio, todo limpio.<br><span class='who'>REPORTERA:</span> ¿Desde el inicio o desde ahora? Pide el histórico.<br><span class='who'>ANALISTA:</span> Cuesta más y tarda.<br><span class='who'>REPORTERA:</span> Y es donde suele estar la historia.",
+  m:"El registro muestra por defecto la fotografía presente, que oculta precisamente lo que interesa: cambios de administrador, ampliaciones de capital, traslados de domicilio y cambios de objeto social, con sus fechas. Una sociedad que cambió de administrador la semana anterior a una adjudicación cuenta una historia que el estado actual no revela. El histórico suele requerir una solicitud específica y a veces un pago, y ese coste es parte del trabajo. Además, las fechas del histórico permiten cruzar con la cronología de las decisiones públicas investigadas, que es donde el hallazgo aparece.",
+  c:"Justificar un coste adicional explicando qué información concreta se obtiene con él."},
+
+ {tag:"ESCENARIO 3",t:"El documento sin remitente",
+  d:"Llega un documento interno por correo anónimo. Parece auténtico y contiene información grave. Nadie sabe quién lo envió.",
+  r:"Reportera · Editora · Asesor jurídico",
+  ej:"<span class='who'>EDITORA:</span> Si es auténtico, es la portada.<br><span class='who'>REPORTERA:</span> Tiene doce datos comprobables. Voy a contrastarlos todos.<br><span class='who'>JURÍDICO:</span> ¿Y si alguno falla?<br><span class='who'>REPORTERA:</span> Entonces no publicamos, aunque el resto encaje.",
+  m:"La autenticación procede por acumulación: coherencia interna, contraste de cada dato comprobable con registros públicos y corroboración por personas mencionadas o participantes en los hechos. El origen anónimo no impide publicar si todos los datos comprobables encajan y ninguno falla, porque lo que sostiene la pieza no es la identidad del remitente sino la convergencia de comprobaciones independientes. Un dato que falla obliga a detenerse hasta explicarlo, ya que las falsificaciones más eficaces mezclan material auténtico con inserciones falsas, y esas inserciones suelen ser justamente lo que alguien quiere que se publique.",
+  c:"Fijar un criterio de suficiencia antes de conocer el resultado de las comprobaciones."},
+
+ {tag:"ESCENARIO 4",t:"La transferencia y la conclusión",
+  d:"Tienes documentado un pago de una empresa adjudicataria a una consultora vinculada a un familiar del cargo que firmó el contrato. El editor quiere titular que hubo comisión.",
+  r:"Reportera · Editor · Asesor jurídico",
+  ej:"<span class='who'>EDITOR:</span> Es evidente para cualquiera.<br><span class='who'>REPORTERA:</span> Documentado tenemos el pago, el parentesco y el contrato. La comisión es la interpretación.<br><span class='who'>EDITOR:</span> ¿Y qué publicamos?<br><span class='who'>REPORTERA:</span> Los tres hechos y qué preguntamos a cada parte. Se sostiene solo.",
+  m:"Una transferencia acredita un movimiento de fondos, no su causa; el parentesco acredita una relación, no una instrucción. Llamar comisión a ese conjunto es una calificación jurídica que requiere acreditar la contraprestación y la intención, y publicarla sin esa prueba convierte una investigación sólida en una demanda perdida. La formulación correcta expone los tres hechos documentados en su cronología, recoge la explicación de cada parte sobre el servicio prestado y, si esa explicación no se sostiene ante los documentos, lo muestra en lugar de calificarlo.",
+  c:"Separar el hecho documentado de la calificación, sin perder la fuerza del relato."},
+
+ {tag:"ESCENARIO 5",t:"El registro que ya no se puede consultar",
+  d:"El registro de titularidad real de un país deja de ser accesible para el público. La comparación internacional que sostiene la pieza queda coja.",
+  r:"Reportera · Editora · Colega del consorcio",
+  ej:"<span class='who'>EDITORA:</span> Sin ese país no hay comparación.<br><span class='who'>REPORTERA:</span> Hay comparación y una asimetría que hay que declarar.<br><span class='who'>COLEGA:</span> Podemos pedir acceso por interés legítimo.<br><span class='who'>REPORTERA:</span> Lo pedimos y documentamos qué nos responden.",
+  m:"La restricción de acceso no anula el trabajo: obliga a declarar que la ausencia de hallazgos en una jurisdicción puede deberse a que allí no se puede mirar, y no a que no haya nada. Quedan vías indirectas —depósitos de cuentas, resoluciones judiciales, registros de otras jurisdicciones, solicitudes de acceso con justificación periodística— y la propia solicitud, con su plazo y su respuesta, es material publicable que describe el estado real de la transparencia. Presentar una comparación entre países sin advertir la asimetría de acceso produce una conclusión falsa con datos correctos.",
+  c:"Convertir un obstáculo de acceso en información publicable sin abandonar la comparación."},
+
+ {tag:"ESCENARIO 6",t:"La fila sin documento",
+  d:"En la revisión final, tres afirmaciones de la pieza no tienen documento asignado en la matriz. Faltan seis horas para publicar.",
+  r:"Reportera · Editora · Asesor jurídico",
+  ej:"<span class='who'>JURÍDICO:</span> Estas tres frases no tienen respaldo.<br><span class='who'>REPORTERA:</span> Dos las reescribo con lo que sí tengo. La tercera no la puedo salvar.<br><span class='who'>EDITORA:</span> Es la que da sentido al conjunto.<br><span class='who'>REPORTERA:</span> Entonces el conjunto se cuenta de otra manera.",
+  m:"La matriz cumple su función exactamente aquí: hace visible, antes de publicar, qué afirmaciones no están acreditadas. Reescribir para describir lo documentado suele conservar el noventa por ciento del valor informativo, porque lo que se pierde es casi siempre la calificación y no el hecho. La frase que no puede sostenerse se elimina, aunque sea la que articula el relato, y el relato se reconstruye alrededor de lo probado; publicar esa frase pone en riesgo todo lo demás, incluida la parte que sí está sólidamente documentada.",
+  c:"Sacrificar la frase que articula la historia y reconstruirla sobre lo acreditado, bajo presión de cierre."}
+];
+
+const IV=[
+ {q:"¿Qué procedimiento se empleó en cada uno de estos veinte contratos y con qué justificación expresa?",
+  m:"Fija el marco legal invocado. La justificación escrita es un documento que existe o debería existir, y su ausencia ya es un hallazgo."},
+ {q:"¿Puede facilitarme los informes de necesidad previos a cada adjudicación?",
+  m:"Pide el documento que acredita por qué se contrató. Es la pieza que suele faltar cuando la decisión precedió a la justificación."},
+ {q:"¿Cuántas empresas fueron invitadas o concurrieron en cada caso, y cuáles?",
+  m:"La concurrencia efectiva es comprobable y contrastable con los propios registros de licitación."},
+ {q:"¿Quién redactó los pliegos técnicos y sobre qué antecedentes?",
+  m:"Busca el punto donde un requisito puede haberse ajustado a un proveedor concreto, con autoría documentada."},
+ {q:"La empresa se constituyó tres semanas antes de la primera adjudicación. ¿Cómo se acreditó su solvencia técnica?",
+  m:"Una entidad sin historial debe acreditar solvencia por otras vías, y esa acreditación es un documento del expediente."},
+ {q:"¿Existía alguna relación previa, laboral o societaria, entre el personal del departamento y la empresa?",
+  m:"Convierte la pregunta por el conflicto de interés en algo verificable contra registros públicos, sin acusar."},
+ {q:"¿Se realizó algún informe de control interno sobre esta serie de contratos?",
+  m:"Localiza documentación de fiscalización que puede existir dentro del propio organismo y ser solicitable."},
+ {q:"Si le remito la lista completa de los veinte contratos, ¿me indicará cuáles considera que requerían concurrencia?",
+  m:"Ofrece contradicción concreta sobre la evidencia y deja constancia documentada del intento antes de publicar."}
+];
+
+const AUDIT=[
+ ["v","El ICIJ publicó en abril de 2016, junto a un centenar de medios, la investigación Panama Papers, basada en cerca de 11,5 millones de documentos del despacho Mossack Fonseca entregados inicialmente al <em>Süddeutsche Zeitung</em> por una fuente anónima.","ICIJ, abril de 2016, y cobertura internacional contemporánea. Verificado."],
+ ["v","Los Pandora Papers, publicados por el ICIJ en octubre de 2021, se basaron en cerca de 11,9 millones de archivos procedentes de catorce proveedores de servicios societarios, con participación de más de seiscientos periodistas.","ICIJ, octubre de 2021. Verificado."],
+ ["v","El ICIJ mantiene una base de datos pública con estructuras societarias extraterritoriales procedentes de sus investigaciones, advirtiendo expresamente que figurar en ella no implica actuación ilegal.","offshoreleaks.icij.org. Verificado."],
+ ["v","OpenCorporates agrega información societaria de registros mercantiles de numerosas jurisdicciones y declara que la calidad y actualización de los datos dependen de cada registro de origen.","opencorporates.com. Verificado."],
+ ["v","El OCCRP mantiene Aleph, un archivo de documentos y conjuntos de datos con capacidad de búsqueda entre registros públicos y documentación de investigaciones.","aleph.occrp.org · OCCRP. Verificado."],
+ ["v","En noviembre de 2022 el Tribunal de Justicia de la Unión Europea declaró inválida la disposición de la directiva antiblanqueo que preveía el acceso del público en general a la información sobre titularidad real, por injerencia desproporcionada en los derechos a la vida privada y a la protección de datos; varios Estados restringieron después el acceso a sus registros.","Sentencia del TJUE de 22 de noviembre de 2022, asuntos acumulados C-37/20 y C-601/20. Verificado."],
+ ["v","El Grupo de Acción Financiera Internacional fija recomendaciones sobre transparencia de la titularidad real de las personas jurídicas y evalúa el cumplimiento de los países.","fatf-gafi.org. Verificado."],
+ ["b","Un registro mercantil acredita hechos formales —administradores, capital, cuentas depositadas— y no acredita quién controla realmente la sociedad ni el origen de los fondos.","Práctica establecida de investigación societaria · GIJN."],
+ ["b","El histórico registral suele ser más informativo que el estado actual y con frecuencia debe solicitarse expresamente.","Práctica establecida de investigación societaria."],
+ ["b","El uso de sociedades instrumentales y de estructuras extraterritoriales no es ilegal por sí mismo; lo informativo es su contexto y su incoherencia con lo declarado.","ICIJ · GIJN · práctica establecida."],
+ ["b","En contratación pública el hallazgo suele estar en la serie —adjudicaciones sin concurrencia, fraccionamiento, pliegos ajustados— y no en el contrato aislado.","Práctica de auditoría y de investigación de contratación."],
+ ["b","El cruce entre registros debe hacerse por identificador estable; la coincidencia de nombre y apellidos no acredita identidad.","JRN-1002 Unidad 2 · práctica de cruce de datos."],
+ ["b","La autenticación de un documento filtrado procede por acumulación: coherencia interna, contraste con registros públicos y corroboración por personas independientes.","Verification Handbook · práctica establecida de investigación."],
+ ["p","La descripción del funcionamiento interno de los consorcios periodísticos —plataformas cerradas, acuerdos de fecha de publicación y disciplina compartida— se apoya en lo relatado públicamente por las organizaciones participantes; no se ha realizado para esta unidad una revisión de sus protocolos internos.","Redactado sin atribuir procedimientos concretos a una organización determinada."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un registro mercantil acredita:",
+ o:["Quién controla realmente la sociedad","Hechos formales: administradores, capital declarado y cuentas depositadas, con sus fechas","El origen de los fondos de la sociedad","La existencia real de la actividad declarada"],c:1,
+ w:["El control efectivo es precisamente lo que la titularidad formal puede ocultar.",
+    "",
+    "El origen de los fondos no consta en el registro societario.",
+    "El objeto social declarado no acredita que la actividad exista."],
+ e:"Un documento acredita su propio contenido y nada más. Todo lo que va más allá del texto exige otro documento."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El beneficiario final de una entidad es:",
+ o:["El socio mayoritario que consta en el registro","La persona física que la controla realmente, figure o no como titular","El administrador con poderes de disposición","La entidad matriz del grupo"],c:1,
+ w:["El socio registral puede ser otra sociedad o un titular interpuesto.",
+    "",
+    "El administrador ejecuta y puede no ser quien controla.",
+    "La matriz es un eslabón de la cadena, no necesariamente su final."],
+ e:"Toda la arquitectura de la opacidad consiste en separar titularidad formal y control efectivo. El segundo casi nunca se acredita con un solo papel."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El uso de una sociedad instrumental en una jurisdicción opaca:",
+ o:["Acredita por sí mismo una irregularidad","No es ilegal por sí mismo: lo informativo es su contexto y su coherencia con lo declarado","Impide cualquier investigación posterior","Solo es relevante si el titular es un cargo público"],c:1,
+ w:["Existen usos legítimos y frecuentes; publicarlo como prueba de delito garantiza una rectificación.",
+    "",
+    "Interrumpe el rastro societario, y entonces se sigue a las personas, los intermediarios y los bienes.",
+    "También es relevante en contratistas, adjudicatarios y beneficiarios de decisiones públicas."],
+ e:"El hallazgo es la incoherencia documentada: entre lo que la persona declaró y lo que la estructura muestra, o entre su función pública y el origen de los fondos."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"En contratación pública, el indicio más informativo suele ser:",
+ o:["El importe elevado de un contrato","La serie: adjudicaciones repetidas sin concurrencia al mismo proveedor","La urgencia declarada en el expediente","El sector de actividad del adjudicatario"],c:1,
+ w:["Un importe alto puede corresponder a una obra grande y perfectamente regular.",
+    "",
+    "La urgencia es una justificación frecuente y, aislada, no describe un patrón.",
+    "El sector no informa sobre la regularidad del procedimiento."],
+ e:"Un contrato aislado rara vez es noticia. Veinte adjudicaciones directas a la misma empresa en dos años describen un sistema."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Para afirmar que dos entradas de registros distintos corresponden a la misma persona hace falta:",
+ o:["Coincidencia de nombre y dos apellidos","Un identificador estable, o una cadena de indicios convergentes documentados","Que ambas entradas procedan de registros oficiales","Que no exista otra persona con ese nombre en la base consultada"],c:1,
+ w:["Los homónimos abundan y las transliteraciones multiplican las variantes.",
+    "",
+    "La oficialidad de la fuente no resuelve la ambigüedad del nombre.",
+    "La ausencia de homónimos en una base concreta no acredita que no existan."],
+ e:"Una atribución falsa en esta materia produce un daño grave y una rectificación segura. El nombre no es un identificador."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La matriz documental sirve para:",
+ o:["Ordenar cronológicamente los hechos de la investigación","Asignar a cada afirmación publicable el documento que la acredita y su estado","Archivar los documentos obtenidos","Repartir el trabajo entre el equipo"],c:1,
+ w:["La cronología es un producto derivado, no la función de la matriz.",
+    "",
+    "El archivo conserva; la matriz relaciona afirmación y prueba.",
+    "El reparto de trabajo se organiza aparte."],
+ e:"Ninguna afirmación entra en el texto sin una fila en la matriz. Y toda fila sin documento se reescribe hasta describir lo acreditado, o se cae."},
+
+/* ---------- BLOQUE B · DECISIONES DE INVESTIGACIÓN ---------- */
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Encuentras en una base agregada que un alto cargo figura como administrador de una sociedad. La coincidencia es de nombre y dos apellidos.",
+ q:"¿Qué haces?",
+ o:["Publicarlo citando la base agregada como fuente","Obtener el documento del registro de origen y cerrar la identificación con un identificador estable","Preguntar al cargo si es él","Buscar la sociedad en otras bases agregadas para confirmar"],c:1,
+ w:["La base agregada sirve para encontrar, no para acreditar, y su actualización depende del registro de origen.",
+    "",
+    "La pregunta es necesaria como réplica y no sustituye a la acreditación documental.",
+    "Varias bases pueden replicar el mismo dato desactualizado o el mismo homónimo."],
+ e:"Las bases agregadas encuentran; los registros de origen acreditan. La cita de la pieza va siempre al documento oficial, con su fecha de consulta."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Obtienes el estado actual del registro de una sociedad: administrador único, sin incidencias.",
+ q:"¿Qué falta comprobar?",
+ o:["Las cuentas anuales del último ejercicio","El histórico: cambios de administrador, capital, domicilio y objeto social, con sus fechas","La solvencia técnica declarada","La actividad real en el domicilio social"],c:1,
+ w:["Las cuentas son útiles y no revelan la secuencia de cambios societarios.",
+    "",
+    "La solvencia pertenece al expediente de contratación, no al registro.",
+    "La comprobación en el domicilio es un paso posterior y complementario."],
+ e:"El registro muestra por defecto la fotografía presente. Una sociedad que cambió de administrador la semana previa a una adjudicación cuenta una historia que el estado actual oculta."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Llega un documento interno por vía anónima. Contiene doce datos comprobables; once encajan con registros públicos y uno no.",
+ q:"¿Qué corresponde hacer?",
+ o:["Publicar: once de doce es una proporción suficiente","Detenerse hasta explicar el dato que falla, porque las falsificaciones eficaces mezclan material auténtico con inserciones","Publicar omitiendo la parte que contiene el dato discordante","Descartar el documento entero"],c:1,
+ w:["La autenticación no es un promedio: un dato que falla puede ser precisamente la inserción falsa.",
+    "",
+    "Omitir el dato discordante sin explicarlo deja en pie un documento cuya integridad está en duda.",
+    "El descarte inmediato renuncia a un material que puede ser auténtico con un error explicable."],
+ e:"Las inserciones falsas suelen ser justamente lo que alguien quiere que se publique. El dato discordante se explica antes de decidir."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Documentas un pago de la empresa adjudicataria a una consultora vinculada a un familiar del cargo que firmó el contrato.",
+ q:"¿Qué puedes publicar?",
+ o:["Que hubo una comisión por la adjudicación","Los tres hechos documentados —contrato, parentesco y pago— con su cronología y la explicación de cada parte","Que existe un conflicto de interés penalmente relevante","Que el cargo cobró de la adjudicataria"],c:1,
+ w:["La comisión es una calificación que exige acreditar contraprestación e intención.",
+    "",
+    "La calificación penal corresponde a un tribunal, no a la redacción.",
+    "El pago fue a la consultora, no al cargo: describirlo así es inexacto y demandable."],
+ e:"Una transferencia acredita un movimiento de fondos, no su causa. Los tres hechos, bien ordenados y con la réplica de cada parte, se sostienen solos."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"El registro de titularidad real de uno de los países comparados deja de ser accesible al público.",
+ q:"¿Cómo afecta a la pieza?",
+ o:["Obliga a excluir ese país de la comparación","Obliga a declarar la asimetría de acceso y a explorar vías indirectas","No afecta: se usan los datos anteriores a la restricción","Obliga a aplazar la publicación hasta que se resuelva"],c:1,
+ w:["Excluirlo sin más elimina información y no resuelve el sesgo de la comparación restante.",
+    "",
+    "Los datos anteriores pueden estar desactualizados y su antigüedad debe declararse.",
+    "Aplazar indefinidamente equivale a renunciar a informar sobre un problema en curso."],
+ e:"La ausencia de hallazgos en una jurisdicción puede deberse a que allí no se puede mirar. Y la propia solicitud denegada es material publicable."},
+
+{blk:"BLOQUE B · DECISIONES DE INVESTIGACIÓN", t:"mcq",
+ s:"Un organismo adjudicó veinte contratos por procedimiento directo a una empresa constituida tres semanas antes de la primera adjudicación.",
+ q:"¿Qué documento pides primero?",
+ o:["Las cuentas anuales de la empresa","Las justificaciones expresas del procedimiento y los informes de necesidad de cada contrato","El currículum de los administradores","El listado de empleados de la empresa"],c:1,
+ w:["Las cuentas llegan tarde y no explican la decisión administrativa.",
+    "",
+    "Los currículos son ilustrativos y no acreditan la regularidad del procedimiento.",
+    "La plantilla es un indicio de capacidad, posterior a la justificación del procedimiento."],
+ e:"Se pregunta por documentos que existen o deberían existir, no por opiniones sobre la regularidad. Su ausencia es en sí misma un hallazgo."},
+
+/* ---------- BLOQUE C · REDACCIÓN Y PUBLICACIÓN ---------- */
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"Al citar una sociedad localizada en una base de estructuras extraterritoriales, la pieza debe:",
+ o:["Indicar que la aparición sugiere ocultación de fondos","Advertir que figurar en esas estructuras no implica ilegalidad, y explicar cuál es la incoherencia concreta","Omitir el nombre de la base para proteger la investigación","Publicar solo si la persona es cargo público"],c:1,
+ w:["Sugerir ocultación sin acreditarla es exactamente el error que estas bases advierten en su propio aviso.",
+    "",
+    "Ocultar la fuente reduce la verificabilidad sin proteger nada.",
+    "La condición del titular gradúa el interés público, no determina la exigencia de precisión."],
+ e:"El uso de estructuras extraterritoriales es legal en numerosos supuestos. Lo publicable es la incoherencia con lo declarado o con la función que se ejerce."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"En la pieza publicada se cita como fuente:",
+ o:["La herramienta de búsqueda utilizada","El registro oficial de origen con su fecha de consulta","La base agregada, por ser de acceso libre para el lector","La fuente que orientó hacia el documento"],c:1,
+ w:["La herramienta se menciona solo si es relevante para explicar el método.",
+    "",
+    "La accesibilidad para el lector no convierte a la base agregada en la fuente que acredita.",
+    "Identificar a la fuente humana puede ponerla en riesgo y no acredita el documento."],
+ e:"La fecha de consulta importa: los registros cambian, y la afirmación se refiere al estado del registro en un momento determinado."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"Una reunión anotada en la agenda oficial de un cargo acredita:",
+ o:["Lo que se acordó en ella","Que la reunión fue convocada y con quién","Que el cargo favoreció a su interlocutor","Que existió una relación previa entre ambos"],c:1,
+ w:["El contenido de una reunión no consta en la anotación de la agenda.",
+    "",
+    "El favorecimiento requiere documentar la decisión y su desviación respecto del procedimiento.",
+    "La relación previa exige documentación adicional; una reunión no la establece."],
+ e:"El salto entre el hecho documentado y su interpretación es donde se pierden los juicios. Los verbos de intención casi nunca tienen documento detrás."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"Cuando la fuente de un documento tiene un interés evidente en su publicación:",
+ o:["El documento queda descalificado","El documento sigue siendo válido si se autentica, y el interés determina qué comprobar además y qué preguntar sobre lo no entregado","Debe revelarse la identidad de la fuente al lector","Debe publicarse solo si una segunda fuente lo entrega también"],c:1,
+ w:["Casi todas las filtraciones proceden de alguien con un motivo; descalificarlas por eso equivale a no publicar ninguna.",
+    "",
+    "La identidad de la fuente se protege; lo que se explica al lector es cómo se autenticó el material.",
+    "La doble entrega es deseable y no es una condición realista en la mayoría de los casos."],
+ e:"La selección de lo filtrado también es un acto interesado. La pregunta obligada es qué falta en lo que se entregó."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ s:"En la revisión final, tres afirmaciones no tienen documento asignado. Una de ellas articula todo el relato.",
+ q:"¿Qué se hace?",
+ o:["Publicar esa afirmación atribuyéndola a fuentes conocedoras","Reescribir lo que pueda sostenerse y eliminar lo que no, reconstruyendo el relato sobre lo acreditado","Publicar con un condicional que matice la afirmación","Aplazar la publicación completa"],c:1,
+ w:["Atribuir a fuentes indeterminadas lo que no se puede documentar traslada la afirmación sin fundamentarla.",
+    "",
+    "El condicional sugiere la conclusión sin sostenerla y no protege frente a una demanda.",
+    "Aplazar todo desperdicia el material que sí está acreditado."],
+ e:"Reescribir suele conservar la mayor parte del valor informativo, porque lo que se pierde es la calificación y no el hecho."},
+
+{blk:"BLOQUE C · REDACCIÓN Y PUBLICACIÓN", t:"mcq",
+ q:"La publicación coordinada entre medios de varios países, en investigaciones de gran volumen documental:",
+ o:["Busca maximizar el impacto mediático","Responde también a una función de seguridad: presionar a un medio deja de ser eficaz","Es una exigencia de las fuentes de las filtraciones","Reduce el coste de verificación para cada medio"],c:1,
+ w:["El impacto es una consecuencia, no la razón principal del diseño.",
+    "",
+    "Las fuentes rara vez imponen la estructura editorial del consorcio.",
+    "El coste de verificación de cada tramo local no disminuye: se reparte el material, no la exigencia."],
+ e:"La publicación simultánea distribuye el riesgo. Es una defensa que ningún medio aislado puede construirse por sí mismo."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las comprobaciones que convierten una serie de contratos en un hallazgo publicable.",
+ o:["Número e identidad de los licitadores concurrentes","Procedimiento empleado y justificación expresa de cada expediente","Requisitos del pliego que solo cumple un candidato","Volumen de facturación total del adjudicatario","Relación previa documentada entre adjudicador y adjudicatario"],
+ c:[0,1,2,4],
+ w:["","","","La facturación describe el tamaño de la empresa y no informa sobre la regularidad del procedimiento.",""],
+ e:"La unidad de análisis es la serie, no el contrato. Y se pregunta por documentos concretos, no por opiniones sobre la regularidad."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que forma parte de la autenticación de un documento filtrado.",
+ o:["Coherencia interna: formatos, numeración, referencias cruzadas","Contraste de cada dato comprobable con registros públicos","Corroboración por personas que aparecen en el documento o participaron en los hechos","Evaluación de quién lo entrega y qué obtiene","Verificación de que el documento no circula en otros medios"],
+ c:[0,1,2,3],
+ w:["","","","","Que otros medios no lo tengan no dice nada sobre su autenticidad; la exclusiva no es un criterio de verificación."],
+ e:"Autenticar es acumular comprobaciones independientes hasta que la hipótesis de falsificación exija una elaboración inverosímil."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el trabajo documental sobre una sociedad implicada en un caso.",
+ o:["Obtener la ficha registral actual y el histórico completo","Identificar administradores y socios con identificador estable","Cruzar esos identificadores con registros de otra naturaleza","Reconstruir la cronología frente a las decisiones públicas investigadas","Formular en la matriz qué acredita cada documento y qué falta"],
+ c:[0,1,2,3,4],
+ e:"El histórico va primero porque fija las fechas sobre las que se construye todo lo demás, incluida la cronología frente a las decisiones investigadas."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las afirmaciones según la exigencia documental que imponen, de menor a mayor.",
+ o:["Esta sociedad se constituyó en esta fecha","Esta persona figura como administradora","Esta persona controla efectivamente la sociedad","Este pago se realizó entre estas dos entidades","Este pago retribuyó la adjudicación del contrato"],
+ c:[0,1,2,3,4],
+ e:"El último escalón exige acreditar contraprestación e intención, y es donde una investigación documental sólida se convierte en una demanda perdida."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>

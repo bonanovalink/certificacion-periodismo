@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1003 · Unidad 4 — Seguridad Operacional, Ética y Publicación</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1003, Unidad 4.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  .tab.exam{color:var(--amber)}
+  .tab.exam.on{color:var(--amber);border-color:var(--line);border-bottom-color:var(--bg)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:7px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .score.big{font-size:.95rem;color:var(--amber);padding:14px 18px;background:#3a2408;border:1px solid #6b4d16;border-radius:8px;letter-spacing:.06em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course on" href="jrn1003-u4.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1003 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Seguridad Operacional, Ética y Publicación</h2>
+  <div class="sub">Unidad 4 de 4 · Periodismo de Investigación y OSINT</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1003-u1.html">Unidad 1: Fundamentos de OSINT y Cadena de Custodia Digital</a>
+    <a class="unit" href="jrn1003-u2.html">Unidad 2: Verificación de Imagen y Video</a>
+    <a class="unit" href="jrn1003-u3.html">Unidad 3: Rastreo Documental y Seguimiento del Dinero</a>
+    <span class="unit on">Unidad 4: Seguridad Operacional, Ética y Publicación</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Una investigación puede ser impecable en su método y aun así causar daño: a la fuente que confió, a un tercero que aparece de refilón, al propio equipo que la sostuvo durante meses. Esta unidad trata la parte del oficio que no aparece en la pieza publicada y que determina si la pieza puede publicarse.</p>
+    <p style="margin-bottom:0">El eje es que <strong>la seguridad se diseña antes de la primera búsqueda, no después del primer susto</strong>. Cada consulta deja huella, cada archivo guardado es un riesgo para alguien, y cada promesa de protección debe ser una que se pueda cumplir. Improvisar en esto no produce descuidos reparables: produce daños irreversibles.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab exam" data-t="exa">Examen Integrador</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Construir un modelo de amenazas para una investigación concreta: quién puede querer impedirla, con qué capacidad y sobre quién puede actuar.</li>
+      <li>Reducir la huella de la investigación para no alertar al sujeto investigado antes de tiempo.</li>
+      <li>Evaluar el riesgo real de una fuente y ofrecer solo la protección que efectivamente puede sostenerse.</li>
+      <li>Aplicar minimización de datos y custodia cifrada del material, incluidas las copias y los dispositivos del equipo.</li>
+      <li>Reconocer los efectos acumulativos del trabajo con material traumático y aplicar protocolos de reducción de daño.</li>
+      <li>Fijar el umbral de publicación y empaquetar la investigación con su metodología, su archivo de evidencias y su derecho de réplica documentado.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Protocolo de Berkeley (ONU y UC Berkeley, 2022) — capítulos de seguridad y bienestar del investigador</li>
+      <li>Dart Center for Journalism and Trauma (Universidad de Columbia) — guías sobre exposición a material traumático</li>
+      <li>Committee to Protect Journalists — recursos de seguridad digital, física y psicosocial</li>
+      <li>GIJN, guías de seguridad para periodistas de investigación</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Dart Center for Journalism and Trauma</h5>
+        <div class="def">Proyecto de la Escuela de Periodismo de la Universidad de Columbia dedicado a la cobertura informativa de la violencia y el trauma. Publica guías sobre entrevistas a víctimas, exposición a material gráfico y protocolos de reducción de daño para redacciones.</div>
+        <p class="src">dartcenter.org · Columbia Journalism School</p></div>
+      <div class="term"><h5>Committee to Protect Journalists</h5>
+        <div class="def">Organización que documenta agresiones contra periodistas y mantiene recursos de seguridad digital, física y psicosocial, con protocolos de evaluación de riesgo aplicables antes de iniciar una investigación sensible.</div>
+        <p class="src">cpj.org · Safety Kit</p></div>
+      <div class="term"><h5>Citizen Lab — Universidad de Toronto</h5>
+        <div class="def">Laboratorio interdisciplinar de la Munk School dedicado al análisis técnico de vigilancia digital y censura. Ha documentado casos de infección de dispositivos de periodistas y activistas mediante programas espía comerciales.</div>
+        <p class="src">citizenlab.ca · Munk School</p></div>
+      <div class="term"><h5>Protocolo de Berkeley — Seguridad y bienestar</h5>
+        <div class="def">Incorpora expresamente la seguridad operacional y el bienestar psicológico del investigador como componentes del estándar profesional, no como recomendaciones accesorias.</div>
+        <p class="src">OHCHR · Human Rights Center, UC Berkeley, 2022</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad contiene el <strong>Examen Integrador</strong> de JRN-1003, que abarca las cuatro unidades. Se aprueba con un 75%, conforme a los requisitos de graduación del certificado. Es requisito haber completado las pruebas y entregas de las Unidades 1 a 3.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>El modelo de amenazas</h3>
+    <p>Antes de la primera búsqueda hay que responder cuatro preguntas: a quién perjudica esta investigación, qué capacidad tiene para actuar, sobre quién puede actuar y qué es lo que más daño causaría si se perdiera. No es un ejercicio abstracto: determina qué herramientas se usan, dónde se guarda el material y qué se le puede prometer a una fuente.</p>
+    <p>El error habitual es dimensionar la protección hacia arriba o hacia abajo por intuición. Un exceso de medidas paraliza el trabajo y termina abandonándose; un defecto deja expuesto precisamente al eslabón más débil, que casi nunca es el periodista.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>La pregunta no es «¿estoy seguro?», sino «¿quién es la persona más expuesta de esta investigación y qué la protege?». Casi nunca la respuesta eres tú.</div>
+
+    <h3>No alertar al sujeto investigado</h3>
+    <p>Las consultas dejan rastro. Solicitar un expediente, visitar repetidamente el perfil de alguien, pedir documentación a un organismo o preguntar a personas del entorno son actos que llegan al investigado, a veces en horas, y le dan tiempo para preparar una versión, destruir documentación o adelantarse.</p>
+    <p>De ahí que el orden de las gestiones sea una decisión estratégica: primero lo que no deja huella y no es revocable —registros públicos, material ya publicado, documentación preservada—, y al final lo que necesariamente alerta, como la petición de réplica.</p>
+    <div class="ej"><b>REGLA</b>Ordena las gestiones de menor a mayor visibilidad. Todo lo que pueda obtenerse sin avisar debe obtenerse antes de la primera gestión que avisa.</div>
+
+    <h3>Separación de identidades y dispositivos</h3>
+    <p>Mezclar cuentas personales y de investigación produce dos problemas simultáneos: expone la identidad del periodista al sujeto investigado y contamina la investigación con el historial personal del investigador. La separación no es paranoia, es higiene de trabajo.</p>
+    <p>Implica cuentas de trabajo distintas, no usar el perfil personal para consultar, cuidar los mecanismos que sugieren contactos entre usuarios y saber que ciertas plataformas notifican visitas. Y exige coherencia: una sola consulta desde la cuenta equivocada anula meses de cuidado.</p>
+    <div class="ej"><b>ADVERTENCIA</b>La suplantación de identidad sigue estando fuera de la investigación de fuentes abiertas. Separar identidades significa no exponer la propia, no fabricar una falsa para acceder a espacios cerrados.</div>
+
+    <h3>Protección de fuentes: la prueba de deducción</h3>
+    <p>Proteger a una fuente no consiste en omitir su nombre. Consiste en que nadie del entorno pueda deducir quién es a partir de lo publicado: el cargo, el detalle que solo tres personas conocían, el documento al que solo un despacho tenía acceso, la fecha de una conversación.</p>
+    <p>La prueba es concreta: leer el texto poniéndose en el lugar del jefe de la fuente. Si desde ahí la lista de candidatos se reduce a dos o tres personas, la protección no existe, por mucho que el nombre no aparezca.</p>
+    <div class="ej"><b>PRUEBA DE SUFICIENCIA</b>Entrega el borrador a un colega que conozca el sector y pídele que adivine quién habló. Si acierta, hay que reescribir antes de publicar.</div>
+
+    <h3>Promesas que se pueden cumplir</h3>
+    <p>Un compromiso de protección obliga a evaluar antes qué se puede sostener realmente: si el material puede ser requerido judicialmente, si el medio tiene capacidad de resistir esa petición, si el equipo tiene los dispositivos y la disciplina para no dejar rastro.</p>
+    <p>El consentimiento de la fuente debe ser informado: tiene derecho a saber qué riesgo asume, qué se va a publicar y qué no se puede garantizar. Una promesa que no puede cumplirse es peor que una negativa honesta, porque produce decisiones basadas en una seguridad falsa.</p>
+    <div class="ej"><b>REGLA</b>No prometas anonimato: explica exactamente qué harás y qué no puedes controlar. Y ponlo por escrito para el equipo, aunque no para la fuente.</div>
+
+    <h3>Custodia del material y minimización</h3>
+    <p>Todo lo que se guarda puede perderse, ser requerido o ser robado. La minimización consiste en conservar lo necesario y no más: eliminar los datos personales de terceros que no aportan nada, separar el material sensible del resto y no replicar copias por comodidad.</p>
+    <ul>
+      <li>Cifrado de los dispositivos y de las copias de seguridad, no solo del archivo principal.</li>
+      <li>Acceso limitado a quien realmente trabaja con el material, con registro de quién accede.</li>
+      <li>Separación entre el archivo de evidencias y los documentos de trabajo cotidiano.</li>
+      <li>Política explícita sobre qué se destruye al terminar y cuándo.</li>
+    </ul>
+    <div class="ej"><b>COMPROBACIÓN</b>Haz el inventario de dónde está el material: portátiles, teléfonos, servicios en la nube, correos, mensajería, copias descargadas por colaboradores. La lista siempre es más larga de lo que uno recuerda.</div>
+
+    <h3>Seguridad del equipo</h3>
+    <p>La seguridad de una investigación es la de su miembro más expuesto, y el riesgo no se reparte por igual: colaboradores locales, traductores, fixers y becarios suelen estar menos protegidos y ser más alcanzables que la firma principal.</p>
+    <p>Por eso el plan de seguridad se hace para el equipo entero e incluye lo elemental: quién sabe dónde está cada uno, qué se hace si alguien no responde, qué se publica si la investigación se interrumpe y a quién se avisa.</p>
+    <div class="ej"><b>CRITERIO</b>Si tu plan protege a la firma del reportaje pero no al colaborador que hizo el trabajo de campo, no es un plan de seguridad: es un plan de reputación.</div>
+
+    <h3>Trauma vicario y sostenibilidad</h3>
+    <p>La exposición sostenida a material violento tiene efectos documentados y acumulativos sobre quienes lo revisan, aunque no hayan estado en el lugar de los hechos. No es una cuestión de fortaleza personal: es un riesgo laboral con medidas conocidas.</p>
+    <p>Las medidas son concretas y baratas: limitar el visionado continuado, desactivar la reproducción automática, trabajar sin sonido, reducir el tamaño de reproducción, rotar tareas y hablar de ello en el equipo. Los efectos aparecen con retraso, y por eso el protocolo debe ser previo y no reactivo.</p>
+    <div class="ej"><b>REGLA</b>Si el protocolo depende de que alguien pida ayuda, no funcionará: nadie la pide a tiempo. Se aplica por defecto a todo el equipo desde el primer día.</div>
+
+    <h3>Ética: interés público y proporcionalidad</h3>
+    <p>Dos preguntas gobiernan cada decisión de publicación. Qué interés público concreto justifica esta revelación —no el interés genérico en saber, sino qué permite al lector entender o decidir—. Y qué proporción hay entre lo que se revela y lo que se acredita.</p>
+    <p>De ahí se derivan reglas prácticas: los terceros sin relevancia pública quedan fuera por defecto; los menores exigen protección reforzada; las víctimas tienen derecho a decidir sobre su propia exposición; y la agregación de datos individualmente inocuos puede producir un daño que ninguna pieza justifica por separado.</p>
+    <div class="ej"><b>PREGUNTA DE CONTROL</b>¿Qué decisión podrá tomar el lector con este dato que no podría tomar sin él? Si no hay respuesta, el dato no cumple la función que justificaría el daño.</div>
+
+    <h3>Publicar: umbral, réplica y empaquetado</h3>
+    <p>El umbral de publicación se fija antes, no al final: qué hay que tener acreditado para poder afirmar cada cosa. Fijarlo cuando el trabajo ya está hecho es garantía de que se ajustará a lo que se consiguió.</p>
+    <p>La pieza se publica con su metodología, con la distinción visible entre lo probado, lo indiciario y lo alegado, con el derecho de réplica documentado —vías, fechas y respuesta— y con el archivo de evidencias preservado por si hay impugnación. Y con una decisión consciente sobre qué parte del método no se publica para no exponer a nadie.</p>
+    <div class="ej"><b>REGLA FINAL</b>Una investigación termina cuando está publicada, archivada y el equipo sigue entero. Las tres cosas forman parte del resultado; si falta la tercera, no fue un éxito.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Conversación previa con una fuente interna que quiere entregar documentación sobre su organismo. Nunca ha hablado con periodistas, cree que su identidad es imposible de deducir y quiere que se publique todo cuanto antes.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes prometer protección que no puedas cumplir. Cada pregunta debe servir para evaluar su riesgo real o para que ella lo evalúe. Si decide no seguir adelante, esa también es una salida aceptable de la conversación.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">PLAN DE SEGURIDAD Y PUBLICACIÓN · OBLIGATORIO</span>
+      <p>Sobre una investigación real o simulada, entrega: el modelo de amenazas con las cuatro preguntas resueltas; el orden de gestiones de menor a mayor visibilidad, con la justificación de cuál alerta al investigado; el plan de custodia del material con inventario de ubicaciones y política de destrucción; la evaluación de riesgo de la fuente y el texto exacto del compromiso que puedes cumplir; y el umbral de publicación fijado por afirmación, redactado antes de conocer el resultado.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Modelo de amenazas específico, no genérico, con identificación del eslabón más expuesto (25%) · Orden de gestiones justificado (15%) · Inventario real de ubicaciones del material y política de minimización (20%) · Compromiso con la fuente formulado en términos cumplibles y con consentimiento informado (25%) · Umbral de publicación fijado por afirmación y con antelación (15%). Un plan que proteja a la firma y no a los colaboradores no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="exa">
+    <h3>Examen Integrador · JRN-1003</h3>
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">ALCANCE Y CALIFICACIÓN</div>
+      <p>Este examen abarca las cuatro unidades del curso. Se aprueba con un <strong>75%</strong>. Consta de tres partes: opción múltiple (40%), verificación de un expediente (30%) y memorando de publicación (30%).</p>
+      <p style="margin-bottom:0">La Parte A es interactiva y se califica sola. Las Partes B y C se entregan por escrito.</p>
+    </div>
+
+    <h3>Parte A · Opción múltiple (40%)</h3>
+    <p style="font-size:.88rem">Doce preguntas sobre las cuatro unidades. Cada una indica de qué unidad procede.</p>
+    <div class="score big" id="escore">RESPONDIDAS 0 / 12 · CORRECTAS 0 · CALIFICACIÓN —</div>
+    <div id="exam"></div>
+
+    <h3>Parte B · Verificación de un expediente (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · 800–1.000 PALABRAS</span>
+      <p>Se entrega el día del examen un expediente con un video sin procedencia, una ficha societaria y una serie de tres contratos públicos. El estudiante debe: establecer la procedencia del material audiovisual y su estado de preservación; geolocalizar y acotar la fecha con el razonamiento que sustenta el intervalo; identificar qué acredita y qué no la ficha societaria; y señalar qué comprobación falta en la serie de contratos para poder afirmar un patrón.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS PARTE B</b>Procedencia y preservación correctamente planteadas (20%) · Geolocalización con coincidencias múltiples y comprobación de ángulos (25%) · Cronolocalización con intervalo justificado (20%) · Lectura precisa de lo que acredita la ficha societaria (20%) · Identificación de la comprobación que falta en los contratos (15%).</div>
+    </div>
+
+    <h3>Parte C · Memorando de publicación (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · EXPEDIENTE CERRADO</span>
+      <p>Con el mismo expediente, y añadiendo una fuente interna en riesgo y un tercero sin relevancia pública que aparece en los documentos, el estudiante produce el memorando que permitiría publicar.</p>
+      <button class="reveal">Ver estructura y criterios</button>
+      <div class="model"><b>ESTRUCTURA EXIGIDA</b>1. Matriz documental: afirmación, documento, estado.<br>2. Qué se publica y con qué formulación exacta, distinguiendo probado, indiciario y alegado.<br>3. Modelo de amenazas y medidas para la fuente, con la prueba de deducción aplicada al propio texto.<br>4. Tratamiento del tercero sin relevancia pública y de los datos personales presentes.<br>5. Derecho de réplica: a quién, por qué vías, con qué plazo.<br>6. Qué parte del método no se publica y por qué.<br><br><b>CRITERIOS</b>Matriz coherente con el texto propuesto (20%) · Formulaciones exactas, sin verbos de intención sin prueba (20%) · Protección real de la fuente, con prueba de deducción aplicada (25%) · Tratamiento del tercero y minimización de datos (15%) · Réplica documentada y decisión razonada sobre el método no publicado (20%).</div>
+    </div>
+
+    <div class="box">
+      <div class="lbl">REQUISITOS DE GRADUACIÓN DEL CERTIFICADO</div>
+      <p style="margin-bottom:0">Estudiar las 4 unidades de las 6 materias · Aprobar la evaluación de cada módulo · Aprobar el examen integrador de cada materia con un mínimo de 75% · Acreditar los 19 créditos universitarios para desbloquear el diploma.</p>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 4</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1003-u3.html">← Unidad 3: Rastreo Documental y Seguimiento del Dinero</a> &nbsp;·&nbsp; <a href="jrn1003-u1.html">Volver al inicio del curso</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Modelo de Amenazas",d:"Análisis previo de a quién perjudica la investigación, con qué capacidad de actuar, sobre quién puede hacerlo y qué pérdida causaría más daño.",s:"Protocolo de Berkeley · CPJ"},
+ {t:"Seguridad Operacional",d:"Conjunto de decisiones que impiden que la propia actividad de investigar revele información sobre quién investiga, a quién y con qué material.",s:"Protocolo de Berkeley, 2022"},
+ {t:"Huella de Investigación",d:"Rastro que dejan las gestiones —solicitudes, visitas, preguntas al entorno— y que puede alertar al sujeto investigado antes de tiempo.",s:"GIJN · práctica establecida"},
+ {t:"Separación de Identidades",d:"Uso de cuentas y dispositivos de trabajo distintos de los personales. No equivale a crear identidades falsas, que quedan fuera de la investigación de fuente abierta.",s:"Protocolo de Berkeley · CPJ"},
+ {t:"Prueba de Deducción",d:"Comprobación de si, con lo publicado, alguien del entorno podría identificar a la fuente. Omitir el nombre no es protegerla.",s:"Ética periodística · JRN-1001"},
+ {t:"Consentimiento Informado",d:"Acuerdo de la fuente tomado conociendo el riesgo real, qué se publicará y qué no puede garantizarse. Sustituye a la promesa genérica de anonimato.",s:"Dart Center · práctica establecida"},
+ {t:"Minimización de Datos",d:"Conservar solo el material necesario y eliminar los datos personales de terceros que no aportan nada a la investigación.",s:"Protección de datos · Protocolo de Berkeley"},
+ {t:"Custodia Cifrada",d:"Almacenamiento del material con cifrado de dispositivos y copias, acceso restringido y registro de quién accede.",s:"CPJ Safety Kit · práctica establecida"},
+ {t:"Trauma Vicario",d:"Efecto acumulativo de la exposición sostenida a material violento en quienes lo revisan sin haber estado en el lugar de los hechos.",s:"Dart Center, Columbia Journalism School"},
+ {t:"Umbral de Publicación",d:"Nivel de acreditación exigido para poder afirmar cada cosa, fijado antes de terminar la investigación y no al final.",s:"Formulación docente · JRN-1001"},
+ {t:"Archivo de Evidencias",d:"Conjunto preservado del material que sostiene la pieza, separado de los documentos de trabajo y disponible ante una impugnación.",s:"Protocolo de Berkeley · JRN-1003 Unidad 1"},
+ {t:"Método No Publicado",d:"Parte del procedimiento que se omite deliberadamente para no exponer a fuentes ni facilitar la evasión de futuras comprobaciones.",s:"Bellingcat · práctica establecida"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · UNIVERSIDAD DE COLUMBIA",t:"El Dart Center y el riesgo que no se ve",
+  d:"El Dart Center for Journalism and Trauma, adscrito a la Escuela de Periodismo de la Universidad de Columbia, trabaja desde hace décadas sobre la relación entre periodismo, violencia y trauma. Sus recursos abordan tres frentes: la entrevista a personas que han sufrido violencia, la cobertura de sucesos traumáticos y el efecto sobre los propios profesionales de la exposición repetida a material gráfico, incluida la que se produce a distancia, revisando vídeos e imágenes en una redacción.",
+  ej:"El reconocimiento de que el daño se produce también a distancia cambió la organización del trabajo: dejó de ser una cuestión del corresponsal en zona de conflicto para ser un asunto de cualquier equipo que revisa material.",
+  p:["¿Por qué los protocolos deben ser previos y no reactivos?","¿Qué medidas concretas reducen el daño?","¿Qué papel tiene el equipo, frente al individuo?"],
+  m:"Deben ser previos porque los efectos aparecen con retraso y de forma acumulativa, de modo que un protocolo que se activa cuando alguien pide ayuda llega tarde por definición: nadie la pide a tiempo, y menos en culturas profesionales que valoran la resistencia. Las medidas son concretas y de coste bajo: limitar el tiempo continuado de visionado, desactivar la reproducción automática, trabajar sin sonido —el elemento de mayor impacto—, reducir el tamaño de reproducción, rotar tareas y establecer pausas. El papel del equipo es decisivo porque convierte un problema individual en una práctica compartida: cuando la medida se aplica por defecto a todos, nadie tiene que declararse vulnerable para acogerse a ella.",
+  k:"El daño por exposición a material traumático es un riesgo laboral con medidas conocidas. Si el protocolo depende de que alguien lo pida, no funciona."},
+
+ {tag:"CASO 2 · PROYECTO PEGASUS · JULIO DE 2021",t:"Cuando el dispositivo del periodista es el objetivo",
+  d:"En julio de 2021, la organización Forbidden Stories y el laboratorio de seguridad de Amnistía Internacional coordinaron con una decena de medios internacionales la investigación conocida como Proyecto Pegasus, a partir de una lista filtrada de decenas de miles de números de teléfono seleccionados como posibles objetivos de un programa espía comercial. El análisis forense de una parte de los dispositivos permitió documentar infecciones en teléfonos de periodistas, activistas y responsables públicos. La empresa desarrolladora negó las conclusiones y sostuvo que su producto se vende a Estados para investigaciones criminales y antiterroristas.",
+  ej:"La investigación reveló algo que afecta al método del oficio: el punto más débil de una investigación puede no ser el archivo ni la fuente, sino el teléfono desde el que se coordina el trabajo.",
+  p:["¿Qué implica esto para la protección de fuentes?","¿Puede un equipo pequeño defenderse de una amenaza así?","¿Qué se le puede prometer entonces a una fuente?"],
+  m:"Implica que la promesa de confidencialidad no depende solo de la disciplina del periodista sino de la integridad de sus dispositivos, que puede estar comprometida sin ningún indicio visible para el usuario. Un equipo pequeño no puede defenderse por completo de un adversario con esa capacidad, y por eso la respuesta razonable es de diseño: minimizar lo que existe en formato digital, no concentrar todo el material en un dispositivo, separar canales y asumir que un teléfono puede estar comprometido. A la fuente se le explica ese límite: lo que se le puede prometer es un procedimiento concreto —qué se guarda, dónde, quién accede, qué no se escribe nunca—, no un resultado garantizado.",
+  k:"La seguridad de una fuente no puede prometerse como resultado. Se ofrece como procedimiento, explicando también lo que no se controla."},
+
+ {tag:"CASO 3 · CITIZEN LAB · UNIVERSIDAD DE TORONTO",t:"El análisis técnico como servicio público",
+  d:"Citizen Lab, laboratorio interdisciplinar de la Munk School de la Universidad de Toronto, investiga desde hace años la vigilancia digital y la censura mediante análisis técnico de dispositivos, infraestructura y programas espía. Sus informes han documentado casos de periodistas y defensores de derechos humanos cuyos teléfonos fueron infectados, y su trabajo se publica con el detalle metodológico que permite a otros investigadores replicar los hallazgos.",
+  ej:"Para una redacción sin capacidad forense, la existencia de laboratorios independientes cambia lo posible: permite convertir una sospecha en una comprobación técnica documentada por un tercero verificable.",
+  p:["¿Cuándo debe una redacción acudir a un análisis externo?","¿Cómo se informa de un hallazgo técnico ajeno?","¿Qué no debe hacerse ante la sospecha de compromiso?"],
+  m:"Debe acudir cuando hay indicios concretos —comportamiento anómalo del dispositivo, avisos de la plataforma, coincidencia temporal con una investigación sensible— y siempre antes de sacar conclusiones públicas, porque un análisis forense exige capacidad que una redacción no tiene. Un hallazgo técnico ajeno se informa atribuyéndolo a quien lo hizo, describiendo el método empleado y sus límites, y recogiendo la respuesta de la parte señalada. Lo que no debe hacerse es restablecer el dispositivo o borrar rastros antes del análisis, porque destruye la evidencia; ni tampoco continuar usándolo con normalidad para material sensible mientras se decide.",
+  k:"Ante la sospecha de un dispositivo comprometido, no se limpia ni se sigue usando: se preserva y se acude a capacidad forense independiente."},
+
+ {tag:"CASO 4 · FORBIDDEN STORIES · DESDE 2017",t:"Continuar el trabajo cuando la periodista ya no puede",
+  d:"La organización Forbidden Stories se creó con el propósito de que las investigaciones no mueran con quien las hace: coordina a redacciones de distintos países para continuar el trabajo de periodistas asesinados, encarcelados o amenazados. Su primer proyecto de gran alcance retomó las investigaciones de la periodista maltesa Daphne Caruana Galizia, asesinada en octubre de 2017 mientras investigaba casos de corrupción, y lo desarrolló con un consorcio internacional de medios.",
+  ej:"La lógica es de disuasión: si eliminar a la periodista no elimina la investigación, el incentivo para hacerlo desaparece. Convierte la colaboración internacional en una medida de seguridad, no solo de eficiencia.",
+  p:["¿Qué medidas preparan esa continuidad?","¿Cómo se equilibra compartir material y protegerlo?","¿Qué debe dejar previsto un equipo antes de una investigación de riesgo?"],
+  m:"La continuidad se prepara documentando el trabajo de forma que otro pueda retomarlo —registro de investigación, matriz documental, archivo de evidencias— y depositando copias con personas u organizaciones de confianza fuera del alcance del adversario. El equilibrio entre compartir y proteger se resuelve separando: el material que identifica a fuentes se custodia con acceso mínimo, mientras que el conjunto documental que sostiene los hallazgos puede replicarse en varias jurisdicciones. Antes de una investigación de riesgo, un equipo debe dejar previsto quién continúa, dónde están las copias, qué se publica si el trabajo se interrumpe y a quién se avisa.",
+  k:"Documentar bien no es solo método: es una medida de seguridad. Una investigación reproducible puede continuarse cuando quien la empezó ya no puede."},
+
+ {tag:"CASO 5 · PROTOCOLO DE BERKELEY · NO CAUSAR DAÑO",t:"La seguridad como parte del estándar profesional",
+  d:"El Protocolo de Berkeley incorpora la seguridad operacional y el bienestar del investigador como componentes del estándar profesional de una investigación digital, junto a la procedencia, la preservación y el análisis. No los trata como recomendaciones accesorias sino como elementos cuya omisión afecta a la calidad del trabajo, e incluye entre sus principios la obligación de no causar daño a las personas implicadas en el material.",
+  ej:"Situar la seguridad dentro del estándar de calidad tiene una consecuencia práctica: una investigación que expone a su fuente o quema a su equipo no es una investigación excelente con un problema, es una investigación mal hecha.",
+  p:["¿Por qué el bienestar del equipo forma parte de la calidad?","¿Qué significa no causar daño en material de fuente abierta?","¿Cómo se documenta el cumplimiento de ese principio?"],
+  m:"Forma parte de la calidad porque el agotamiento y la exposición sostenida degradan la atención y el juicio, que son precisamente las capacidades que la verificación exige, y porque un equipo que no puede sostener el trabajo no termina las investigaciones largas. No causar daño significa, en material abierto, minimizar la exposición de personas identificables que no son objeto de la investigación, considerar el riesgo que la publicación genera para quienes grabaron o difundieron el material, y evitar que la difusión amplifique un contenido que perjudica a víctimas. Se documenta dejando constancia de las decisiones de minimización tomadas y de sus motivos, del mismo modo que se documenta la verificación.",
+  k:"La seguridad y el cuidado del equipo no son un añadido ético: son criterios de calidad, porque determinan si la investigación puede terminarse y sostenerse."},
+
+ {tag:"CASO 6 · CPJ · EVALUACIÓN DE RIESGO",t:"Antes de empezar, no después",
+  d:"El Committee to Protect Journalists documenta agresiones contra periodistas en todo el mundo y mantiene recursos de seguridad organizados en tres dimensiones —digital, física y psicosocial— con protocolos de evaluación de riesgo pensados para aplicarse antes de iniciar una cobertura o una investigación sensible. El enfoque parte de una constatación repetida: la mayoría de los incidentes graves ocurren en situaciones que podían haberse previsto, y las medidas que los evitan son mucho más eficaces si se adoptan antes de que la actividad sea visible.",
+  ej:"Un plan de seguridad hecho después de la primera amenaza llega tarde: para entonces, la información sobre quién investiga qué ya está en circulación y no puede retirarse.",
+  p:["¿Qué incluye una evaluación de riesgo mínima?","¿Por qué se planifica para el eslabón más expuesto?","¿Qué se hace si el riesgo excede la capacidad del equipo?"],
+  m:"Una evaluación mínima identifica quién puede querer impedir la investigación, con qué capacidad, sobre quién puede actuar y qué medidas reducen cada uno de esos riesgos, además de fijar procedimientos elementales de contacto y de qué hacer si alguien no responde. Se planifica para el eslabón más expuesto porque la seguridad del conjunto es la de su miembro más alcanzable, que rara vez es la firma principal y suele ser un colaborador local, un traductor o un becario. Si el riesgo excede la capacidad del equipo, las opciones son buscar apoyo externo, distribuir el material y la publicación con otras organizaciones, reducir el alcance o no hacerlo; decidir no publicar por riesgo es una decisión legítima siempre que se tome de forma explícita y documentada, y no por abandono.",
+  k:"La evaluación de riesgo se hace antes de que la actividad sea visible. Después, la información sobre quién investiga qué ya no puede retirarse."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La petición de réplica prematura",
+  d:"Un miembro del equipo propone llamar al investigado en la primera semana para pedirle su versión y así tener tiempo de trabajarla.",
+  r:"Reportera · Redactor · Editora",
+  ej:"<span class='who'>REDACTOR:</span> Cuanto antes le preguntemos, mejor.<br><span class='who'>REPORTERA:</span> Todavía no tenemos los expedientes. Si lo llamamos hoy, mañana no están.<br><span class='who'>REDACTOR:</span> ¿Y si dice que no le dimos tiempo?<br><span class='who'>REPORTERA:</span> Le daremos plazo suficiente cuando preguntemos, y quedará documentado.",
+  m:"El orden de las gestiones es una decisión estratégica: primero lo que no alerta y no es revocable —registros públicos, material preservado, documentación ya accesible—, y al final lo que necesariamente avisa. La petición de réplica es obligatoria y es la gestión más visible de todas, de modo que se formula cuando el material esencial ya está asegurado. Adelantarla no mejora la equidad del proceso: la equidad se garantiza con un plazo razonable, un cuestionario concreto y constancia documentada del intento, no con anticipación.",
+  c:"Distinguir entre la obligación de dar réplica y el momento en que conviene ejercerla."},
+
+ {tag:"ESCENARIO 2",t:"La fuente que cree que nadie la identificará",
+  d:"Una fuente interna entrega documentación y afirma que su identidad es imposible de deducir. En su departamento trabajan cuatro personas.",
+  r:"Reportera · Fuente · Editora",
+  ej:"<span class='who'>FUENTE:</span> Nadie va a saber que fui yo.<br><span class='who'>REPORTERA:</span> ¿Cuántas personas tienen acceso a este documento?<br><span class='who'>FUENTE:</span> En mi departamento, cuatro.<br><span class='who'>REPORTERA:</span> Entonces publicarlo así la deja a usted entre cuatro. Vamos a ver cómo evitarlo.",
+  m:"La protección no consiste en omitir el nombre sino en que nadie del entorno pueda deducirlo a partir de lo publicado, y un documento al que acceden cuatro personas es un identificador casi perfecto. Las salidas son concretas: describir el contenido sin reproducir el documento, esperar a obtenerlo por una segunda vía que lo haga común a más personas, agregar información de varios departamentos, o retrasar la publicación hasta que la lista de posibles orígenes se amplíe. La fuente debe conocer ese análisis para decidir con información real; presentarle una promesa de anonimato sin explicarle la aritmética del acceso es tomar la decisión por ella.",
+  c:"Corregir la percepción de riesgo de la fuente sin asustarla ni asumir su decisión."},
+
+ {tag:"ESCENARIO 3",t:"El colaborador que no está en el plan",
+  d:"El plan de seguridad cubre a la reportera y al editor. El trabajo de campo lo hace un colaborador local que vive en la zona investigada.",
+  r:"Reportera · Editora · Colaborador",
+  ej:"<span class='who'>EDITORA:</span> El plan está listo, tenemos los canales cifrados.<br><span class='who'>REPORTERA:</span> ¿Y él? Vive allí, y su cara la conoce todo el mundo.<br><span class='who'>COLABORADOR:</span> Yo me arreglo, siempre trabajo así.<br><span class='who'>REPORTERA:</span> Justamente por eso hay que ponerlo por escrito.",
+  m:"La seguridad de una investigación es la de su miembro más expuesto, y la exposición no se reparte por igual: quien vive en el lugar, no tiene respaldo institucional y es identificable, corre un riesgo cualitativamente distinto. El plan debe incluir su firma en el reportaje solo si él lo decide, procedimientos de contacto y de alerta, previsión de qué se hace si no responde, y una decisión explícita sobre qué gestiones no realiza él precisamente por su exposición. Que el propio colaborador reste importancia al riesgo es habitual y no exime al medio: la responsabilidad de la organización no depende de que el más expuesto la reclame.",
+  c:"Extender la protección a quien no la pide, sin paternalismo y con medidas concretas."},
+
+ {tag:"ESCENARIO 4",t:"El dato del tercero",
+  d:"En la documentación aparece con detalle la situación médica de un familiar del investigado, sin ninguna relación con el asunto.",
+  r:"Reportera · Editor · Asesor jurídico",
+  ej:"<span class='who'>EDITOR:</span> Explica por qué necesitaba dinero.<br><span class='who'>REPORTERA:</span> Es una hipótesis nuestra sobre el motivo, y el dato es de una persona ajena.<br><span class='who'>EDITOR:</span> Aporta contexto humano.<br><span class='who'>REPORTERA:</span> Aporta un daño concreto a alguien que no ha hecho nada.",
+  m:"Los terceros sin relevancia pública quedan fuera por defecto, y los datos de salud tienen además una protección reforzada en prácticamente todos los ordenamientos. El criterio es qué decisión permite tomar al lector ese dato que no podría tomar sin él; explicar un supuesto motivo no es una función que justifique el daño, y además introduce una interpretación no documentada. La minimización se aplica también al archivo: ese dato no debe conservarse en los documentos de trabajo si no forma parte de lo que sostiene la investigación.",
+  c:"Rechazar el detalle narrativamente atractivo aplicando un criterio, no una sensibilidad."},
+
+ {tag:"ESCENARIO 5",t:"El material en cinco sitios",
+  d:"Al hacer el inventario aparecen copias del material en dos portátiles, un servicio en la nube, el correo de un colaborador y una carpeta compartida abierta.",
+  r:"Reportera · Responsable técnico · Editora",
+  ej:"<span class='who'>TÉCNICO:</span> La carpeta compartida la abrimos para ir rápido.<br><span class='who'>REPORTERA:</span> ¿Quién tiene acceso ahora mismo?<br><span class='who'>TÉCNICO:</span> No lo sé exactamente.<br><span class='who'>REPORTERA:</span> Eso es lo que hay que resolver hoy, antes de seguir.",
+  m:"Todo lo que se guarda puede perderse, ser requerido o ser robado, y el inventario real de ubicaciones siempre es más largo que el recordado. Las medidas son ordenadas: cerrar los accesos indeterminados, cifrar dispositivos y copias de seguridad, restringir el acceso a quienes trabajan efectivamente con el material y registrar quién accede. La minimización acompaña a la custodia: lo que no sostiene la investigación se elimina, empezando por los datos personales de terceros, y se fija por escrito qué se destruye al terminar y cuándo.",
+  c:"Detener el trabajo para cerrar una exposición ya existente, en lugar de anotarlo para después."},
+
+ {tag:"ESCENARIO 6",t:"El método que no se publica",
+  d:"La pieza incluye el detalle de cómo se localizó a una persona a partir de material abierto. El equipo discute si publicarlo.",
+  r:"Reportera · Editor · Editora jefa",
+  ej:"<span class='who'>EDITOR:</span> El método es lo que hace creíble la pieza.<br><span class='who'>REPORTERA:</span> Y también un manual para localizar a cualquiera igual que a él.<br><span class='who'>EDITORA:</span> ¿Se puede acreditar sin ese detalle?<br><span class='who'>REPORTERA:</span> Sí: describimos el tipo de fuentes y omitimos la secuencia exacta.",
+  m:"La transparencia del método es la base de la credibilidad en investigación de fuentes abiertas, y tiene un límite: no se publica lo que permita reconstruir la identidad de una fuente en riesgo ni lo que funcione como manual operativo para causar daño. El equilibrio se resuelve describiendo el tipo de fuentes utilizadas y el razonamiento, sin la secuencia reproducible paso a paso, y declarando expresamente que se ha omitido parte del procedimiento y por qué. Esa declaración es importante: sin ella, el lector puede interpretar la omisión como debilidad del método en lugar de como una decisión de protección.",
+  c:"Recortar la transparencia sin perderla, y explicar el recorte en la propia pieza."}
+];
+
+const IV=[
+ {q:"¿Cuántas personas tienen acceso a los documentos que me quiere entregar?",
+  m:"Es la primera aritmética de la protección: un documento accesible a cuatro personas identifica casi por sí solo a quien lo filtra."},
+ {q:"¿Ha hablado de esto con alguien más, dentro o fuera del organismo?",
+  m:"Cada confidencia previa amplía la superficie de riesgo y puede hacer inútiles las medidas que adoptemos después."},
+ {q:"¿Desde qué dispositivo y con qué cuenta se ha comunicado conmigo hasta ahora?",
+  m:"Determina si ya existe un rastro y si conviene cambiar de canal antes de continuar."},
+ {q:"¿Existe registro interno de quién consulta o descarga esos documentos?",
+  m:"Muchos sistemas guardan trazas de acceso. Saberlo cambia por completo qué material puede entregarse y cómo."},
+ {q:"¿Qué es lo peor que podría pasarle si se supiera que habló conmigo?",
+  m:"Convierte el riesgo en algo concreto y evaluable, y permite que la fuente lo formule con sus propias palabras."},
+ {q:"¿Entiende que no puedo garantizarle que nadie lo deduzca, y que lo que sí puedo hacer es esto?",
+  m:"Sustituye la promesa genérica de anonimato por un compromiso cumplible y verificable, que es lo único honesto."},
+ {q:"Si el documento se publica descrito y no reproducido, ¿reduce eso su exposición?",
+  m:"Explora una salida técnica concreta y devuelve a la fuente el control sobre una decisión que la afecta."},
+ {q:"¿Quiere tomarse unos días para decidir? La investigación puede esperar.",
+  m:"Cierra sin presión y deja constancia de que el consentimiento fue informado y no fruto de la urgencia del medio."}
+];
+
+const AUDIT=[
+ ["v","El Dart Center for Journalism and Trauma, adscrito a la Escuela de Periodismo de la Universidad de Columbia, publica guías sobre entrevistas a víctimas, cobertura de sucesos traumáticos y exposición del personal a material gráfico, incluida la exposición a distancia en redacción.","dartcenter.org · Columbia Journalism School. Verificado."],
+ ["v","En julio de 2021 Forbidden Stories y el laboratorio de seguridad de Amnistía Internacional coordinaron con medios internacionales el Proyecto Pegasus, a partir de una lista filtrada de números seleccionados como posibles objetivos; el análisis forense documentó infecciones en dispositivos de periodistas y activistas, y la empresa desarrolladora negó las conclusiones.","Publicaciones del consorcio, julio de 2021, y respuesta pública de la empresa. Verificado."],
+ ["v","Citizen Lab, de la Munk School de la Universidad de Toronto, investiga vigilancia digital y censura mediante análisis técnico, y ha documentado infecciones de dispositivos de periodistas y defensores de derechos humanos.","citizenlab.ca. Verificado."],
+ ["v","Forbidden Stories coordina redacciones para continuar el trabajo de periodistas asesinados, encarcelados o amenazados; su primer proyecto de gran alcance retomó las investigaciones de Daphne Caruana Galizia, asesinada en Malta en octubre de 2017.","forbiddenstories.org y cobertura internacional. Verificado."],
+ ["v","El Committee to Protect Journalists documenta agresiones contra periodistas y mantiene recursos de seguridad digital, física y psicosocial con protocolos de evaluación de riesgo previos a coberturas sensibles.","cpj.org · Safety Kit. Verificado."],
+ ["v","El Protocolo de Berkeley incorpora la seguridad operacional y el bienestar del investigador como componentes del estándar profesional, junto al principio de no causar daño.","OHCHR y Human Rights Center, UC Berkeley, 2022. Verificado."],
+ ["b","El modelo de amenazas debe responder quién puede querer impedir la investigación, con qué capacidad, sobre quién puede actuar y qué pérdida causaría más daño.","CPJ · Protocolo de Berkeley · GIJN."],
+ ["b","Las gestiones de una investigación se ordenan de menor a mayor visibilidad, y la petición de réplica es la más visible de todas.","Práctica establecida de investigación."],
+ ["b","La separación de identidades y dispositivos no equivale a crear identidades falsas, que quedan fuera de la investigación de fuente abierta.","Protocolo de Berkeley · JRN-1003 Unidad 1."],
+ ["b","Proteger a una fuente exige que nadie de su entorno pueda deducirla a partir de lo publicado; omitir el nombre no es protección.","Ética periodística establecida · JRN-1001."],
+ ["b","El consentimiento de la fuente debe ser informado: conocer el riesgo, lo que se publicará y lo que no puede garantizarse.","Dart Center · práctica establecida."],
+ ["b","La minimización de datos y la custodia cifrada, con acceso restringido y política de destrucción, forman parte del método y no del soporte técnico.","CPJ Safety Kit · protección de datos."],
+ ["b","La transparencia del método tiene como límite no exponer a fuentes en riesgo ni facilitar un manual operativo para causar daño, y la omisión debe declararse.","Bellingcat · práctica establecida."],
+ ["p","La afirmación de que la mayoría de los incidentes graves ocurren en situaciones previsibles se formula a partir del enfoque preventivo de los recursos de seguridad citados; no se ha realizado para esta unidad un análisis estadístico propio de incidentes.","Redactado sin atribuir proporciones concretas a una fuente estadística."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un modelo de amenazas debe responder, ante todo:",
+ o:["Qué herramientas de cifrado usará el equipo","A quién perjudica la investigación, con qué capacidad, sobre quién puede actuar y qué pérdida causaría más daño","Cuál es el presupuesto disponible para seguridad","Qué normativa de protección de datos aplica"],c:1,
+ w:["Las herramientas son consecuencia del modelo, no su punto de partida.",
+    "",
+    "El presupuesto condiciona las medidas y no define las amenazas.",
+    "El marco legal es relevante y no describe la capacidad de actuar del adversario."],
+ e:"La pregunta útil no es «¿estoy seguro?», sino «¿quién es la persona más expuesta y qué la protege?». Casi nunca es el periodista."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Las gestiones de una investigación se ordenan:",
+ o:["Por dificultad, empezando por las más sencillas","De menor a mayor visibilidad para el sujeto investigado","Por coste, dejando las de pago para el final","Según la disponibilidad del equipo"],c:1,
+ w:["La facilidad no mide el riesgo de alertar al investigado.",
+    "",
+    "El coste es un criterio de gestión, no de seguridad.",
+    "La disponibilidad organiza el trabajo y no protege la investigación."],
+ e:"Todo lo que pueda obtenerse sin avisar debe obtenerse antes de la primera gestión que avisa. La petición de réplica es la más visible de todas."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Proteger a una fuente significa:",
+ o:["No publicar su nombre","Que nadie de su entorno pueda deducir quién es a partir de lo publicado","Comunicarse con ella solo por canales cifrados","Firmar con ella un acuerdo de confidencialidad"],c:1,
+ w:["Omitir el nombre es el mínimo y con frecuencia es insuficiente.",
+    "",
+    "El cifrado protege la comunicación, no la deducción a partir del texto publicado.",
+    "Un acuerdo no impide que el contenido publicado la identifique."],
+ e:"La prueba es concreta: leer el texto poniéndose en el lugar del jefe de la fuente. Si la lista de candidatos se reduce a dos o tres, no hay protección."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El consentimiento informado de una fuente exige:",
+ o:["Que acepte por escrito la publicación","Que conozca el riesgo real, qué se publicará y qué no puede garantizarse","Que renuncie a reclamar si es identificada","Que un asesor jurídico valide su decisión"],c:1,
+ w:["La forma escrita puede incluso aumentar su riesgo si el documento se conserva.",
+    "",
+    "Una renuncia no reduce el daño ni sustituye a la información previa.",
+    "La validación jurídica protege al medio, no informa a la fuente."],
+ e:"Una promesa que no puede cumplirse es peor que una negativa honesta: produce decisiones basadas en una seguridad falsa."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La minimización de datos consiste en:",
+ o:["Reducir el tamaño de los archivos almacenados","Conservar solo el material necesario y eliminar los datos de terceros que no aportan nada","Limitar el número de personas del equipo","Publicar la menor cantidad posible de documentos"],c:1,
+ w:["El tamaño es una cuestión técnica sin relación con el riesgo para las personas.",
+    "",
+    "El control de acceso es una medida distinta y complementaria.",
+    "La decisión sobre qué publicar es posterior y responde a otros criterios."],
+ e:"Todo lo que se guarda puede perderse, ser requerido o ser robado. El inventario real de ubicaciones siempre es más largo que el recordado."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El trauma vicario afecta:",
+ o:["Solo a quienes cubren sucesos sobre el terreno","También a quienes revisan material violento a distancia, de forma acumulativa","Únicamente a quienes tienen antecedentes personales","A quienes trabajan sin formación específica"],c:1,
+ w:["El daño por exposición no requiere presencia física en el lugar de los hechos.",
+    "",
+    "No depende de antecedentes: es un riesgo laboral asociado a la exposición.",
+    "La formación ayuda a gestionarlo y no evita el efecto acumulativo."],
+ e:"Los efectos aparecen con retraso. Por eso el protocolo debe ser previo y aplicarse por defecto a todo el equipo: si depende de que alguien lo pida, no funciona."},
+
+/* ---------- BLOQUE B · DECISIONES OPERATIVAS ---------- */
+{blk:"BLOQUE B · DECISIONES OPERATIVAS", t:"mcq",
+ s:"Un miembro del equipo propone pedir la réplica al investigado en la primera semana, antes de solicitar los expedientes.",
+ q:"¿Qué corresponde?",
+ o:["Aceptar: cuanto antes se pida la versión, más equitativo es el proceso","Asegurar primero el material que puede desaparecer y pedir la réplica con plazo suficiente cuando esté","Renunciar a la réplica si el material es concluyente","Pedirla solo si el investigado responde a otras vías"],c:1,
+ w:["La equidad se garantiza con un plazo razonable y un cuestionario concreto, no con anticipación.",
+    "",
+    "La réplica es obligatoria con independencia de la solidez del material.",
+    "Condicionar la réplica a otras respuestas la convierte en un trámite discrecional."],
+ e:"La petición de réplica es la gestión más visible de todas. Se formula cuando el material esencial ya está asegurado, y siempre queda documentada."},
+
+{blk:"BLOQUE B · DECISIONES OPERATIVAS", t:"mcq",
+ s:"Una fuente le entrega un documento al que, según ella misma, acceden cuatro personas de su departamento.",
+ q:"¿Qué corresponde hacer?",
+ o:["Publicar el documento sin citarla","Explicarle que reproducirlo la dejaría entre cuatro candidatos y estudiar alternativas antes de decidir","Publicar solo un extracto del documento","Aplazar indefinidamente la publicación"],c:1,
+ w:["No citarla no impide que el propio documento actúe como identificador.",
+    "",
+    "Un extracto sigue procediendo del mismo documento restringido.",
+    "El aplazamiento indefinido no es una decisión: es dejar el riesgo sin resolver."],
+ e:"Las salidas son concretas: describir sin reproducir, obtener el documento por una segunda vía, agregar material de otros departamentos o retrasar hasta ampliar el conjunto de posibles orígenes."},
+
+{blk:"BLOQUE B · DECISIONES OPERATIVAS", t:"mcq",
+ s:"El plan de seguridad cubre a la reportera y al editor. El trabajo de campo lo hace un colaborador local identificable en la zona.",
+ q:"¿Qué falta?",
+ o:["Nada: el colaborador conoce el terreno mejor que nadie","Incluirlo en el plan con procedimientos de contacto, decisión sobre su firma y qué gestiones no debe realizar él","Aumentar su remuneración por el riesgo asumido","Sustituirlo por alguien de fuera de la zona"],c:1,
+ w:["Conocer el terreno reduce algunos riesgos y aumenta otros, empezando por la identificabilidad.",
+    "",
+    "La compensación económica no reduce el riesgo ni sustituye a las medidas.",
+    "Prescindir del conocimiento local suele empeorar la investigación y no es la primera opción."],
+ e:"Si el plan protege a la firma pero no a quien hizo el trabajo de campo, no es un plan de seguridad: es un plan de reputación."},
+
+{blk:"BLOQUE B · DECISIONES OPERATIVAS", t:"mcq",
+ s:"En la documentación aparece con detalle la situación médica de un familiar del investigado, ajeno al asunto.",
+ q:"¿Qué se hace con ese dato?",
+ o:["Se publica: explica el contexto de las decisiones del investigado","No se publica y además no se conserva, salvo que sostenga algo acreditado de la investigación","Se publica sin nombrar a la persona","Se consulta con la familia antes de decidir"],c:1,
+ w:["Explicar un supuesto motivo es una interpretación no documentada, y el dato pertenece a un tercero.",
+    "",
+    "La omisión del nombre no evita la identificación en un entorno reducido.",
+    "Consultar puede aumentar la exposición de la persona sin resolver el criterio."],
+ e:"Los terceros sin relevancia pública quedan fuera por defecto, y los datos de salud tienen protección reforzada. La minimización alcanza también al archivo de trabajo."},
+
+{blk:"BLOQUE B · DECISIONES OPERATIVAS", t:"mcq",
+ s:"Sospechas que un dispositivo del equipo puede estar comprometido tras avisos anómalos coincidentes con la investigación.",
+ q:"¿Qué haces?",
+ o:["Restablecer el dispositivo a su estado de fábrica de inmediato","Preservarlo sin usarlo para material sensible y acudir a capacidad forense independiente","Continuar usándolo con precaución hasta terminar la investigación","Publicar la sospecha como parte de la pieza"],c:1,
+ w:["Restablecerlo destruye la evidencia que permitiría acreditar el compromiso.",
+    "",
+    "Seguir usándolo con normalidad expone el material y a las fuentes.",
+    "Publicar una sospecha sin análisis técnico es una afirmación sin prueba."],
+ e:"Un análisis forense exige capacidad que una redacción no tiene. Lo que sí puede hacer es no destruir la evidencia y cambiar de canal para lo sensible."},
+
+{blk:"BLOQUE B · DECISIONES OPERATIVAS", t:"mcq",
+ s:"El inventario revela copias del material en dos portátiles, un servicio en la nube, el correo de un colaborador y una carpeta compartida de acceso indeterminado.",
+ q:"¿Qué es lo primero?",
+ o:["Cifrar los dos portátiles","Cerrar el acceso indeterminado de la carpeta compartida y determinar quién ha accedido","Eliminar el correo del colaborador","Migrar todo a un único servicio"],c:1,
+ w:["El cifrado es necesario y no resuelve una exposición que ya está abierta.",
+    "",
+    "Eliminar sin saber quién accedió deja el riesgo sin evaluar.",
+    "Concentrar todo en un único punto crea una vulnerabilidad distinta."],
+ e:"Se detiene el trabajo para cerrar una exposición existente. Después vienen el cifrado, la restricción de acceso y la política de destrucción."},
+
+/* ---------- BLOQUE C · ÉTICA Y PUBLICACIÓN ---------- */
+{blk:"BLOQUE C · ÉTICA Y PUBLICACIÓN", t:"mcq",
+ q:"El umbral de publicación debe fijarse:",
+ o:["Al final, evaluando lo que se consiguió acreditar","Antes de terminar, estableciendo qué hay que tener para poder afirmar cada cosa","En la revisión jurídica previa al cierre","Cuando el investigado responde a la réplica"],c:1,
+ w:["Fijarlo al final garantiza que se ajustará a lo obtenido, que es exactamente el sesgo que se quiere evitar.",
+    "",
+    "La revisión jurídica comprueba el cumplimiento; no debería ser quien fije el criterio.",
+    "La respuesta del investigado es un elemento más, no el momento de definir el listón."],
+ e:"Un criterio definido después de conocer el resultado no es un criterio: es una justificación."},
+
+{blk:"BLOQUE C · ÉTICA Y PUBLICACIÓN", t:"mcq",
+ q:"El límite de la transparencia del método está en:",
+ o:["Proteger el valor competitivo de la investigación","No exponer a fuentes en riesgo ni ofrecer un manual operativo para causar daño","Evitar que otros medios repitan el trabajo","No revelar las herramientas de pago utilizadas"],c:1,
+ w:["La ventaja competitiva no es un criterio ético ni de seguridad.",
+    "",
+    "Que otros repitan el método es un efecto deseable de la transparencia.",
+    "Nombrar herramientas forma parte de la reproducibilidad."],
+ e:"Se describe el tipo de fuentes y el razonamiento sin la secuencia reproducible, y se declara expresamente que se omitió parte del procedimiento y por qué."},
+
+{blk:"BLOQUE C · ÉTICA Y PUBLICACIÓN", t:"mcq",
+ q:"La pregunta que ordena la decisión sobre un dato personal es:",
+ o:["¿Está accesible en una fuente pública?","¿Qué podrá entender o decidir el lector con este dato que no podría sin él?","¿Lo ha publicado ya otro medio?","¿Es cierto y verificable?"],c:1,
+ w:["La accesibilidad no autoriza la amplificación, que multiplica el alcance real.",
+    "",
+    "Que otro lo haya publicado no traslada la responsabilidad editorial.",
+    "La veracidad es condición necesaria y no suficiente para publicar."],
+ e:"Si no hay respuesta, el dato no cumple la función que justificaría el daño. Es la aplicación práctica de la proporcionalidad."},
+
+{blk:"BLOQUE C · ÉTICA Y PUBLICACIÓN", t:"mcq",
+ q:"Documentar bien una investigación es también una medida de seguridad porque:",
+ o:["Permite defenderse ante una demanda","Permite que otros continúen el trabajo si quien lo empezó no puede, lo que reduce el incentivo para impedirlo","Facilita el archivo del material","Acredita la autoría del reportaje"],c:1,
+ w:["La defensa jurídica es una función real de la documentación y no es la razón de seguridad.",
+    "",
+    "El archivo ordenado es un medio, no el efecto disuasorio.",
+    "La autoría es una cuestión de créditos."],
+ e:"Si eliminar a la periodista no elimina la investigación, el incentivo para hacerlo desaparece. Por eso se prevén copias y continuidad antes de empezar."},
+
+{blk:"BLOQUE C · ÉTICA Y PUBLICACIÓN", t:"mcq",
+ q:"Decidir no publicar por riesgo es:",
+ o:["Una forma de censura previa","Una decisión legítima si se toma de forma explícita, razonada y documentada","Inaceptable cuando el interés público es alto","Aceptable solo si lo impone el asesor jurídico"],c:1,
+ w:["La censura previa procede de un poder externo, no de una decisión editorial informada.",
+    "",
+    "El interés público alto obliga a buscar alternativas —apoyo externo, publicación distribuida—, no a asumir cualquier riesgo.",
+    "La decisión es editorial; el asesoramiento jurídico informa, no decide."],
+ e:"Lo que no es aceptable es dejar de publicar por abandono y sin decidirlo. Si el riesgo excede la capacidad, caben el apoyo externo, la distribución del material o reducir el alcance."},
+
+{blk:"BLOQUE C · ÉTICA Y PUBLICACIÓN", t:"mcq",
+ q:"Una investigación se considera terminada cuando:",
+ o:["Se ha publicado y ha tenido repercusión","Está publicada, archivada y el equipo sigue entero","El investigado ha respondido públicamente","Se ha verificado cada afirmación"],c:1,
+ w:["La repercusión no depende del equipo y no es un criterio de calidad.",
+    "",
+    "La respuesta del investigado es un elemento del proceso, no su cierre.",
+    "La verificación es condición necesaria y no cubre el archivo ni la sostenibilidad."],
+ e:"Las tres cosas forman parte del resultado. Si falta la tercera, no fue un éxito, aunque la pieza lo pareciera."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las medidas que reducen el daño por exposición a material traumático.",
+ o:["Desactivar la reproducción automática","Trabajar sin sonido siempre que sea posible","Reducir el tamaño de reproducción","Asignar el material a quien mejor lo tolere","Establecer turnos y limitar el visionado continuado"],
+ c:[0,1,2,4],
+ w:["","","","Seleccionar por tolerancia individual traslada al individuo un problema de organización y no evita el efecto acumulativo.",""],
+ e:"El sonido es el elemento de mayor impacto. Las medidas se aplican por defecto a todo el equipo, no a quien las pida."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe acompañar a la publicación de una investigación de fuentes abiertas.",
+ o:["La metodología, con la parte omitida declarada","La distinción entre lo probado, lo indiciario y lo alegado","El derecho de réplica documentado con vías, fechas y respuesta","La identidad de quien aportó el material","El archivo de evidencias preservado por si hay impugnación"],
+ c:[0,1,2,4],
+ w:["","","","Identificar a quien aportó el material puede exponerlo y no acredita nada.",""],
+ e:"Publicar el método junto al resultado es lo que separa una investigación de una acusación con capturas de pantalla."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las fases de preparación de una investigación sensible.",
+ o:["Construir el modelo de amenazas e identificar al eslabón más expuesto","Definir canales, dispositivos y custodia del material","Ordenar las gestiones de menor a mayor visibilidad","Evaluar el riesgo de la fuente y acordar un compromiso cumplible","Fijar el umbral de publicación por afirmación"],
+ c:[0,1,2,3,4],
+ e:"Todo se decide antes de la primera búsqueda. Improvisar aquí no produce descuidos reparables, sino daños irreversibles."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las gestiones de una investigación según su visibilidad para el sujeto investigado, de menor a mayor.",
+ o:["Consulta de registros públicos y material ya publicado","Preservación de material accesible en abierto","Solicitud formal de documentación a un organismo","Entrevistas a personas del entorno del investigado","Petición de réplica al propio investigado"],
+ c:[0,1,2,3,4],
+ e:"La réplica es obligatoria y es la gestión que más alerta. Por eso se formula cuando el material esencial ya está asegurado."}
+];
+
+const EXAM=[
+ {u:"UNIDAD 1",q:"Que una información sea de fuente abierta significa que:",
+  o:["Es gratuita y accesible en internet","Es accesible legítimamente, sin vulnerar ningún control de acceso","La ha publicado un organismo oficial","Puede reutilizarse sin restricciones"],c:1,
+  e:"La frontera no es técnica sino de legitimidad del acceso. Suplantar identidad o saltarse un control cambia el marco entero del trabajo."},
+ {u:"UNIDAD 1",q:"Ante material relevante en una cuenta que está borrando publicaciones, lo primero es:",
+  o:["Verificar lo más importante","Preservar todo con huella criptográfica y hora de captura","Contactar con el titular de la cuenta","Avisar al editor"],c:1,
+  e:"El análisis se puede repetir mañana; el material borrado no se recupera. Preservar es la primera acción, no la última."},
+ {u:"UNIDAD 1",q:"Documentar que ochenta cuentas publicaron el mismo texto en el mismo minuto acredita:",
+  o:["Quién opera esas cuentas","Una publicación coordinada, sin establecer la autoría","Que las cuentas son automatizadas","Que el contenido es falso"],c:1,
+  e:"Coordinación y autoría son afirmaciones distintas con pruebas distintas. Confundirlas es el modo más rápido de volver impugnable una investigación sólida."},
+ {u:"UNIDAD 2",q:"Una geolocalización se sostiene cuando:",
+  o:["Se identifica un edificio singular","Coinciden varios elementos fijos y sus ángulos y distancias son coherentes","Los metadatos incluyen coordenadas","La cuenta declara la ubicación"],c:1,
+  e:"Las infraestructuras se repiten en serie por todo un país. La comprobación de ángulos es la que descarta las falsas coincidencias."},
+ {u:"UNIDAD 2",q:"La ausencia de metadatos EXIF en un archivo indica:",
+  o:["Que fue manipulado","Que fue publicado o reenviado, que es el estado normal del material que circula","Que procede de un dispositivo antiguo","Que la fecha declarada es falsa"],c:1,
+  e:"Metadatos ausentes significan material publicado; presentes, un campo editable. Ninguna de las dos cosas cierra una verificación."},
+ {u:"UNIDAD 2",q:"Con una hora libre tras verificar una pieza, lo más productivo es:",
+  o:["Reanalizar el archivo en busca de manipulación","Buscar un segundo material del mismo hecho desde otro ángulo","Intentar recuperar metadatos","Aumentar la resolución de la imagen"],c:1,
+  e:"Fabricar una pieza es factible; fabricar dos coherentes, publicadas por personas sin relación, es enormemente más costoso."},
+ {u:"UNIDAD 3",q:"Un registro mercantil acredita:",
+  o:["Quién controla realmente la sociedad","Hechos formales: administradores, capital y cuentas depositadas, con sus fechas","El origen de los fondos","La existencia real de la actividad declarada"],c:1,
+  e:"Un documento acredita su propio contenido y nada más. El control efectivo se acredita por convergencia de varias pruebas."},
+ {u:"UNIDAD 3",q:"Para afirmar que dos entradas de registros distintos son la misma persona hace falta:",
+  o:["Coincidencia de nombre y dos apellidos","Un identificador estable o una cadena de indicios convergentes documentados","Que ambos registros sean oficiales","Que no haya homónimos en la base consultada"],c:1,
+  e:"Los homónimos abundan y una atribución falsa produce un daño grave y una rectificación segura. El nombre no es un identificador."},
+ {u:"UNIDAD 3",q:"Un pago documentado de una adjudicataria a una consultora vinculada a un familiar del cargo permite publicar:",
+  o:["Que hubo una comisión","Los tres hechos documentados con su cronología y la explicación de cada parte","Que existe delito de cohecho","Que el cargo cobró de la adjudicataria"],c:1,
+  e:"Una transferencia acredita un movimiento de fondos, no su causa. La calificación exige acreditar contraprestación e intención."},
+ {u:"UNIDAD 4",q:"Proteger a una fuente consiste en:",
+  o:["No publicar su nombre","Que nadie de su entorno pueda deducir quién es a partir de lo publicado","Usar solo canales cifrados","Firmar un acuerdo de confidencialidad"],c:1,
+  e:"La prueba es leer el texto desde el lugar del jefe de la fuente. Si la lista de candidatos se reduce a dos o tres, no hay protección."},
+ {u:"UNIDAD 4",q:"Las gestiones de una investigación se ordenan:",
+  o:["Por dificultad","De menor a mayor visibilidad para el investigado","Por coste","Según la disponibilidad del equipo"],c:1,
+  e:"Todo lo que pueda obtenerse sin avisar se obtiene antes de la primera gestión que avisa. La réplica es la más visible y es obligatoria."},
+ {u:"UNIDAD 4",q:"El límite de la transparencia del método está en:",
+  o:["Proteger la ventaja competitiva del medio","No exponer a fuentes en riesgo ni ofrecer un manual operativo para causar daño","Impedir que otros repitan el trabajo","No revelar herramientas de pago"],c:1,
+  e:"Se describe el tipo de fuentes y el razonamiento sin la secuencia reproducible, y se declara que se omitió parte del método y por qué."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+function buildQuiz(list, holderId, scoreId, withUnit){
+  let done=0,right=0;
+  const holder=document.getElementById(holderId);
+  list.forEach(function(it,i){
+    const from = withUnit ? '<span class="from">'+it.u+'</span>' : '';
+    const card=el('<div class="q">'+from+'<div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts');
+    it.o.forEach(function(o,j){
+      const b=document.createElement('button');
+      b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+      b.onclick=function(){
+        if(card.dataset.done) return;
+        card.dataset.done='1'; done++;
+        var kids=opts.children;
+        for(var k=0;k<kids.length;k++){
+          kids[k].classList.add('done');
+          if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+          else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+        }
+        if(j===it.c) right++;
+        card.querySelector('.exp').classList.add('show');
+        const s=document.getElementById(scoreId);
+        let txt='RESPONDIDAS '+done+' / '+list.length+' · CORRECTAS '+right;
+        if(withUnit){
+          const pct=Math.round(right/list.length*100);
+          txt+=' · CALIFICACIÓN '+pct+'%';
+          if(done===list.length) txt+=pct>=75?' · APROBADO':' · NO APROBADO';
+        }
+        s.textContent=txt;
+      };
+      opts.appendChild(b);
+    });
+    holder.appendChild(card);
+  });
+}
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+buildQuiz(EXAM,'exam','escore',true);
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#exa .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>

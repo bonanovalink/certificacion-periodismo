@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1003 · Unidad 2 — Verificación de Imagen y Video</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1003, Unidad 2.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course on" href="jrn1003-u2.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1003 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Verificación de Imagen y Video</h2>
+  <div class="sub">Unidad 2 de 4 · Periodismo de Investigación y OSINT</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1003-u1.html">Unidad 1: Fundamentos de OSINT y Cadena de Custodia Digital</a>
+    <span class="unit on">Unidad 2: Verificación de Imagen y Video</span>
+    <a class="unit" href="jrn1003-u3.html">Unidad 3: Rastreo Documental y Seguimiento del Dinero</a>
+    <a class="unit" href="jrn1003-u4.html">Unidad 4: Seguridad Operacional, Ética y Publicación</a>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Verificar una imagen no consiste en decidir si parece auténtica. Consiste en responder tres preguntas independientes —dónde se grabó, cuándo se grabó y quién la grabó— con evidencia que otro investigador pueda comprobar. Cada una tiene su propio método y su propio grado de certeza, y confundirlas es el origen de casi todos los errores publicados.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>la verificación se hace contra el mundo, no contra el archivo</strong>. Los metadatos se borran, las herramientas de detección fallan y la impresión visual engaña; lo que no se puede falsificar con facilidad es la coincidencia entre lo que muestra la imagen y lo que había en ese punto del planeta ese día: edificios, sombras, vegetación, obras y clima.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Separar las tres preguntas de la verificación —lugar, fecha y autoría— y asignar a cada una su método y su grado de certeza.</li>
+      <li>Geolocalizar un material comparando elementos fijos del encuadre con imágenes satelitales, fotografía de calle y cartografía.</li>
+      <li>Cronolocalizar mediante sombras, meteorología, vegetación, obras y elementos datables del entorno.</li>
+      <li>Interpretar los metadatos disponibles sabiendo qué acreditan, qué no acreditan y por qué suelen faltar.</li>
+      <li>Evaluar material posiblemente sintético con criterios de procedencia, sin depender de detectores automáticos.</li>
+      <li>Documentar la verificación de modo que un tercero pueda repetirla, y declarar el margen de incertidumbre que queda.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Craig Silverman (ed.), <em>Verification Handbook</em> (3.ª ed.) — verificación de imagen y video</li>
+      <li>Protocolo de Berkeley (ONU y UC Berkeley, 2022) — capítulos de análisis y evaluación de material</li>
+      <li>Bellingcat, guías de geolocalización y cronolocalización</li>
+      <li>Amnistía Internacional, <em>Citizen Evidence Lab</em> — evaluación de material audiovisual de testigos</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Bellingcat — Guías de geolocalización</h5>
+        <div class="def">Metodología pública para situar material audiovisual mediante comparación de elementos fijos con imágenes satelitales y fotografía de calle, publicada con ejemplos resueltos paso a paso y ejercicios de entrenamiento.</div>
+        <p class="src">bellingcat.com · guías metodológicas</p></div>
+      <div class="term"><h5>Citizen Evidence Lab — Amnistía Internacional</h5>
+        <div class="def">Recursos para evaluar material audiovisual aportado por testigos, con criterios de procedencia, corroboración y tratamiento del contenido gráfico, orientados a documentación de derechos humanos.</div>
+        <p class="src">citizenevidence.org · Amnesty International</p></div>
+      <div class="term"><h5>Protocolo de Berkeley — Análisis</h5>
+        <div class="def">Establece que el análisis de material digital debe distinguir entre lo observado, lo inferido y lo desconocido, y exige documentar el razonamiento que sustenta cada conclusión.</div>
+        <p class="src">OHCHR · Human Rights Center, UC Berkeley, 2022</p></div>
+      <div class="term"><h5>Content Authenticity Initiative y C2PA</h5>
+        <div class="def">Iniciativas industriales para incorporar credenciales de procedencia verificables en archivos de imagen desde la captura. Su alcance depende de que dispositivos, editores y plataformas las conserven, lo que hoy no es general.</div>
+        <p class="src">c2pa.org · contentauthenticity.org</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de un informe de geolocalización y cronolocalización reproducible. El <strong>Examen Integrador</strong> de JRN-1003 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Las tres preguntas de la verificación</h3>
+    <p>Ante cualquier material audiovisual hay que responder por separado dónde, cuándo y quién. Son preguntas independientes: se puede acreditar el lugar con precisión de metros y no saber la fecha; se puede fijar el día y no identificar al autor. Tratarlas como un bloque —«el video está verificado»— oculta al lector qué se comprobó realmente.</p>
+    <p>La cuarta pregunta, la más importante, no es sobre el archivo sino sobre la afirmación: qué se dice que muestra. Un material puede ser auténtico, estar bien situado y bien datado, y aun así no probar lo que el texto afirma que prueba.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Nunca escribas «verificado» a secas. Escribe qué está verificado: lugar, fecha, ambos o ninguno, y con qué método. La palabra sola no informa de nada.</div>
+
+    <h3>Geolocalizar: buscar lo que no se mueve</h3>
+    <p>La geolocalización consiste en encontrar, dentro del encuadre, elementos que no cambian —perfiles de montaña, torres, puentes, distribución de edificios, cruces de calles, antenas— y localizar esa misma combinación en imágenes satelitales o en fotografía de calle. Un solo elemento nunca basta: lo que acredita es la coincidencia de varios en la misma posición relativa.</p>
+    <ol>
+      <li><strong>Inventario del encuadre.</strong> Listar todos los elementos fijos visibles, incluidos los del fondo.</li>
+      <li><strong>Acotar la zona.</strong> Usar el idioma de los carteles, matrículas, tipo de vegetación, arquitectura y cualquier dato del contexto de publicación.</li>
+      <li><strong>Búsqueda comparativa.</strong> Contrastar con imágenes satelitales y fotografía de calle hasta encontrar coincidencia de varios elementos.</li>
+      <li><strong>Comprobación de ángulos.</strong> Verificar que las posiciones relativas y las distancias son coherentes desde el punto de vista de la cámara.</li>
+    </ol>
+    <div class="ej"><b>REGLA</b>La geolocalización se demuestra mostrando las coincidencias, no anunciándolas. Publica la comparación lado a lado con los puntos señalados, y cualquiera podrá comprobarla.</div>
+
+    <h3>Cronolocalizar: las sombras y el calendario</h3>
+    <p>Fijar la fecha es más difícil que fijar el lugar y casi siempre produce un intervalo en lugar de un instante. Las herramientas son la posición del sol, deducible de la longitud y la dirección de las sombras si se conocen las coordenadas; la meteorología registrada; el estado de la vegetación; y los elementos datables del entorno, como obras, vallas publicitarias o vehículos.</p>
+    <p>La condición previa es haber geolocalizado: sin coordenadas, el cálculo solar no puede hacerse. Por eso el orden es siempre dónde primero, cuándo después.</p>
+    <div class="ej"><b>CASO TÍPICO</b>Un video «de esta semana» muestra árboles sin hojas y una obra terminada meses antes. Dos comprobaciones lo sitúan fuera de la fecha declarada sin necesidad de análisis técnico alguno.</div>
+
+    <h3>Metadatos: lo que dicen y lo que casi nunca hay</h3>
+    <p>Los metadatos incorporados por la cámara pueden incluir modelo, fecha, hora y coordenadas. Cuando existen, orientan; nunca cierran una verificación, porque son editables y porque la fecha del dispositivo puede estar mal configurada.</p>
+    <p>El problema práctico es que casi nunca están: las plataformas los eliminan al publicar y los servicios de mensajería recomprimen los archivos. Recibir un material con metadatos intactos es indicio de que llegó directamente desde el dispositivo, y ese es su valor principal.</p>
+    <div class="ej"><b>PRECISIÓN</b>Metadatos ausentes no significan material falso: significan material publicado. Metadatos presentes no significan material auténtico: significan material que conserva un campo editable.</div>
+
+    <h3>Contenido sintético y los límites de la detección</h3>
+    <p>La generación automática de imágenes y voz ha dejado de tener indicios visuales estables. Los defectos que circulan como señales —manos, reflejos, parpadeos— desaparecen con cada versión de las herramientas, y los detectores automáticos producen falsos positivos y falsos negativos en proporciones que no permiten sostener una publicación.</p>
+    <p>La defensa que no caduca es la misma de siempre: procedencia. Un material con autor identificable, primera aparición localizada y corroboración independiente resiste; un archivo sin origen no se sostiene aunque supere cualquier detector.</p>
+    <div class="ej"><b>ADVERTENCIA</b>No publiques «un análisis determinó que la imagen es sintética» sin decir qué análisis, con qué margen de error y quién lo hizo. La herramienta no es una fuente.</div>
+
+    <h3>Corroboración independiente</h3>
+    <p>Una sola pieza rara vez acredita nada. Lo que acredita es la convergencia: varios materiales publicados por personas sin relación entre sí, en momentos distintos, que muestran el mismo hecho desde ángulos distintos y resultan coherentes al compararlos.</p>
+    <p>Fabricar una pieza es factible; fabricar un conjunto coherente que resista la comparación de sombras, encuadres y horarios es enormemente más costoso. Por eso la búsqueda de material adicional no es un complemento del trabajo, es el trabajo.</p>
+    <div class="ej"><b>MÉTODO</b>Cuando encuentres una pieza relevante, dedica el mismo esfuerzo a buscar una segunda desde otro punto. Dos ángulos independientes valen más que diez análisis del mismo archivo.</div>
+
+    <h3>Imágenes satelitales</h3>
+    <p>Las imágenes satelitales comerciales permiten datar cambios en el terreno —una construcción, un cráter, un movimiento de vehículos— comparando pasadas sucesivas. Su limitación es la cadencia: entre dos imágenes de una misma zona pueden pasar días, y la nubosidad reduce aún más las utilizables.</p>
+    <p>La lectura exige cautela. Interpretar objetos pequeños en una imagen de baja resolución es donde más errores se cometen, y la comparación entre imágenes tomadas con ángulos o iluminación distintos puede sugerir cambios que no existen.</p>
+    <div class="ej"><b>REGLA</b>Publica siempre la fecha y el proveedor de cada imagen satelital, y el intervalo entre las dos que comparas. Sin eso, la conclusión no es auditable.</div>
+
+    <h3>El material gráfico y el lector</h3>
+    <p>La verificación de imágenes de violencia plantea dos obligaciones que no son opcionales. La primera, hacia las personas que aparecen: dignidad, identificabilidad y consideración de sus familias, que pueden reconocerlas antes que nadie. La segunda, hacia el lector, con advertencia previa y sin reproducción gratuita.</p>
+    <p>Y una tercera hacia el propio equipo: la exposición repetida a material gráfico tiene efectos documentados. Los protocolos habituales incluyen limitar el visionado continuado, desactivar la reproducción automática y trabajar con el sonido apagado siempre que sea posible.</p>
+    <div class="ej"><b>CRITERIO</b>La pregunta no es si la imagen es impactante, sino qué acredita que no pueda acreditarse de otro modo. Si el hecho se sostiene sin mostrarla, no se muestra.</div>
+
+    <h3>Documentar la verificación</h3>
+    <p>El resultado de una verificación es un documento, no una impresión. Debe recoger las coordenadas obtenidas, las imágenes de comparación con sus fuentes y fechas, el cálculo de sombras si se hizo, los materiales corroborantes y el intervalo temporal establecido.</p>
+    <p>Ese documento es lo que permite responder meses después a una impugnación y lo que hace posible que otro periodista continúe el trabajo. También es lo que obliga a ser honesto sobre el margen: escribir «entre el 3 y el 7 de marzo» exige haber comprobado por qué no puede ser el 2.</p>
+    <div class="ej"><b>PRUEBA DE SUFICIENCIA</b>Entrega tu informe a alguien que no participó y pídele que repita la geolocalización. Si no llega al mismo punto con lo que le diste, el informe está incompleto.</div>
+
+    <h3>De la verificación al texto</h3>
+    <p>Lo verificado se traslada al texto con la precisión exacta que se alcanzó, y no más: «grabado en esta intersección» si hay coincidencia de varios elementos fijos; «entre estas dos fechas» si el intervalo es ese; «no ha sido posible determinar quién grabó» cuando así sea.</p>
+    <p>El error más frecuente en esta fase no es técnico sino de redacción: un titular que afirma más de lo que el cuerpo sostiene. La verificación puede ser impecable y la pieza, impugnable, si el texto sube un grado la certeza obtenida.</p>
+    <div class="ej"><b>REGLA FINAL</b>Escribe primero lo que puedes demostrar y después construye la frase. El orden inverso —frase primero, comprobación después— es como se publican los errores que luego hay que rectificar.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista al portavoz de un organismo que niega que un hecho ocurriera en el lugar y la fecha que tu geolocalización y tu cronolocalización establecen. Sostiene que el video es de otro país y de otro año.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes revelar qué material adicional tienes ni de quién procede. Cada pregunta debe apuntar a un elemento comprobable que él pueda confirmar o desmentir. Si aporta un dato que contradice tu datación, tienes que poder incorporarlo.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">INFORME DE VERIFICACIÓN · OBLIGATORIO</span>
+      <p>Toma un material audiovisual público del que no conozcas el origen. Entrega: el inventario de elementos fijos del encuadre; la geolocalización con coordenadas y las comparaciones lado a lado, indicando fuente y fecha de cada imagen de referencia; la cronolocalización con el intervalo obtenido y el razonamiento que descarta las fechas anteriores y posteriores; al menos un material corroborante independiente o la constancia de que se buscó y no se encontró; y una declaración de qué quedó sin determinar.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Geolocalización demostrada con varias coincidencias y comparaciones reproducibles (30%) · Cronolocalización con intervalo justificado, no afirmado (25%) · Búsqueda documentada de corroboración independiente (20%) · Declaración honesta de lo no determinado y del margen (15%) · Tratamiento del material gráfico y de las personas identificables (10%). Un informe que geolocalice por un solo elemento del encuadre no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 2</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1003-u1.html">← Unidad 1: Fundamentos de OSINT y Cadena de Custodia Digital</a> &nbsp;·&nbsp; <a href="jrn1003-u3.html">Unidad 3: Rastreo Documental y Seguimiento del Dinero →</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Geolocalización",d:"Determinación del punto desde el que se registró un material, mediante coincidencia de varios elementos fijos del encuadre con imágenes de referencia.",s:"Bellingcat · Protocolo de Berkeley"},
+ {t:"Cronolocalización",d:"Determinación de la fecha o del intervalo en que se registró un material, a partir de sombras, meteorología, vegetación y elementos datables.",s:"Bellingcat · Verification Handbook"},
+ {t:"Elemento Fijo",d:"Rasgo del encuadre que no cambia con el tiempo —perfil de montaña, torre, cruce, distribución de edificios— y que permite comparar con imágenes de referencia.",s:"Práctica establecida de geolocalización"},
+ {t:"Imagen de Referencia",d:"Material externo con ubicación conocida —satelital, fotografía de calle, cartografía— contra el que se contrasta el encuadre. Debe citarse con proveedor y fecha.",s:"Bellingcat · Protocolo de Berkeley"},
+ {t:"Cálculo Solar",d:"Deducción de la hora a partir de la longitud y dirección de las sombras, conocidas las coordenadas y la fecha. Exige haber geolocalizado antes.",s:"Astronomía de posición · práctica establecida"},
+ {t:"Metadatos EXIF",d:"Campos que la cámara incorpora al archivo: modelo, fecha, hora y a veces coordenadas. Son editables y las plataformas suelen eliminarlos al publicar.",s:"Verification Handbook · práctica forense"},
+ {t:"Recompresión",d:"Degradación que sufre un archivo al ser reenviado o republicado. Elimina metadatos e introduce artefactos que no deben confundirse con manipulación.",s:"Práctica forense digital establecida"},
+ {t:"Contenido Sintético",d:"Material generado o alterado por sistemas automáticos. Los indicios visuales de detección caducan con cada versión de las herramientas.",s:"Verification Handbook, 3.ª ed."},
+ {t:"Corroboración Independiente",d:"Material adicional del mismo hecho publicado por personas sin relación entre sí. La convergencia entre ángulos distintos es lo que acredita.",s:"Protocolo de Berkeley · caso MH17"},
+ {t:"Credencial de Procedencia",d:"Información de origen firmada criptográficamente e incorporada al archivo desde la captura. Su utilidad depende de que toda la cadena la conserve.",s:"C2PA · Content Authenticity Initiative"},
+ {t:"Cadencia Satelital",d:"Frecuencia con que un satélite vuelve a captar una misma zona. Determina la precisión con que puede datarse un cambio en el terreno.",s:"Práctica de análisis de imagen satelital"},
+ {t:"Margen de Incertidumbre",d:"Intervalo o grado de precisión que la verificación alcanza. Debe publicarse: distinguir lo observado, lo inferido y lo desconocido.",s:"Protocolo de Berkeley, 2022"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · ESTE DE UCRANIA · JULIO DE 2014",t:"Situar un vehículo en una ruta con fotos de desconocidos",
+  d:"Tras el derribo del vuelo MH17, investigadores independientes reunieron fotografías y vídeos publicados por particulares en los que aparecía un sistema de misiles desplazándose por carreteras del este de Ucrania. Cada pieza se geolocalizó comparando elementos fijos —líneas eléctricas, edificios, perfiles de arbolado, señalización— con imágenes satelitales y fotografía de calle disponibles, y el conjunto se ordenó cronológicamente hasta reconstruir una ruta. El material fue publicado con las comparaciones visuales que permitían a cualquiera repetir el ejercicio.",
+  ej:"Ninguna foto por sí sola acreditaba nada. Lo que acreditaba era que piezas publicadas por personas sin relación entre sí, en horas distintas, situaban el mismo objeto en puntos sucesivos de un mismo trayecto coherente.",
+  p:["¿Por qué se publican las comparaciones y no solo las coordenadas?","¿Qué papel juega la coherencia temporal entre piezas?","¿Qué habría invalidado la reconstrucción?"],
+  m:"Publicar las comparaciones convierte la afirmación en algo auditable: quien discrepe debe señalar en qué punto la coincidencia falla, en lugar de discutir la credibilidad del investigador. La coherencia temporal actúa como control cruzado, porque una ruta reconstruida con horas incompatibles —un objeto en dos lugares a la vez— se derrumba sola, y esa fragilidad es justamente lo que la hace comprobable. Habría invalidado la reconstrucción encontrar que alguna pieza era anterior al hecho, que las sombras contradecían la hora declarada o que los elementos fijos coincidían con otra localidad; por eso esas comprobaciones se hacen y se documentan aunque el resultado sea negativo.",
+  k:"La geolocalización se demuestra mostrando las coincidencias. Publicar la comparación es lo que separa una investigación reproducible de una afirmación de autoridad."},
+
+ {tag:"CASO 2 · VERIFICATION HANDBOOK · TERCERA EDICIÓN",t:"El manual que cambió de enemigo",
+  d:"La primera edición del <em>Verification Handbook</em>, publicada por el European Journalism Centre, se centraba en verificar material de testigos durante emergencias: comprobar si un vídeo de una inundación era realmente de esa inundación. La tercera edición, editada por Craig Silverman, desplaza el foco hacia la desinformación y la manipulación mediática: cuentas falsas, redes coordinadas, operaciones de información y material sintético. El cambio de énfasis describe la transformación del problema en poco más de una década.",
+  ej:"La verificación pasó de ser una tarea sobre archivos a ser una tarea sobre actores. Ya no basta con preguntar si el material es auténtico: hay que preguntar quién lo está poniendo delante de ti y por qué ahora.",
+  p:["¿Qué añade el análisis de actores a la verificación clásica?","¿Sigue siendo válido el método de la primera edición?","¿Qué riesgo introduce centrarse en los actores?"],
+  m:"El análisis de actores permite detectar operaciones cuyo material es auténtico y cuya distorsión está en la selección y la amplificación, algo que ninguna comprobación del archivo revela. El método clásico sigue siendo la base y no ha sido sustituido: procedencia, geolocalización y datación se aplican igual, y sin ellos el análisis de actores flota. El riesgo de centrarse en los actores es deslizarse hacia la atribución sin prueba y hacia la descalificación por origen: si un material auténtico lo difunde alguien interesado, sigue siendo auténtico, y decir quién lo difunde no exime de comprobarlo.",
+  k:"Verificar el archivo y analizar quién lo difunde son tareas complementarias. Ninguna de las dos sustituye a la otra, y la segunda no autoriza a saltarse la primera."},
+
+ {tag:"CASO 3 · CONTENIDO SINTÉTICO · PROBLEMA ABIERTO",t:"Los indicios que caducan",
+  d:"Durante años circularon listas de señales para reconocer imágenes generadas automáticamente: manos con dedos de más, texto ilegible en carteles, asimetrías en accesorios, parpadeo anómalo en vídeo. Cada una de esas señales fue desapareciendo con las versiones sucesivas de los sistemas de generación. Paralelamente, los detectores automáticos han mostrado tasas de error que varían enormemente según el tipo de material y su procesamiento posterior, y una imagen auténtica recomprimida repetidamente puede ser clasificada como sintética.",
+  ej:"Una comprobación cuya validez caduca no es un método: es una moda. Lo que no caduca es preguntar de dónde salió el archivo, quién lo publicó primero y si existe corroboración independiente.",
+  p:["¿Por qué la procedencia resiste mejor que la detección técnica?","¿Cómo se informa sobre un análisis técnico de autenticidad?","¿Qué hacer cuando no hay procedencia ni detección concluyente?"],
+  m:"La procedencia resiste porque no depende del estado del arte de la generación: un material con autor identificable, primera aparición localizada y testigos independientes es sólido con independencia de lo que puedan hacer las herramientas. Un análisis técnico se informa nombrando quién lo hizo, con qué sistema, con qué margen de error conocido y sobre qué versión del archivo, porque sin esos datos es una afirmación de autoridad disfrazada de medición. Cuando no hay ni procedencia ni detección concluyente, la opción correcta es no publicar el material como acreditado y, si el asunto lo justifica, informar de su circulación describiendo expresamente que no ha podido verificarse.",
+  k:"Los detectores no son fuentes. La defensa que no caduca frente al material sintético sigue siendo la procedencia documentada."},
+
+ {tag:"CASO 4 · PROTOCOLO DE BERKELEY · ANÁLISIS",t:"Separar lo observado, lo inferido y lo desconocido",
+  d:"El Protocolo de Berkeley establece, en su tratamiento del análisis, que un investigador debe distinguir explícitamente entre lo que el material muestra, lo que se deduce razonadamente a partir de ello y lo que permanece indeterminado, documentando el razonamiento de cada inferencia. La exigencia responde a un problema recurrente en investigaciones digitales: la conclusión se presenta con un grado de certeza homogéneo, cuando en realidad procede de piezas con solidez muy distinta.",
+  ej:"Un informe que no distingue niveles obliga al lector a aceptarlo entero o rechazarlo entero. Uno que los distingue permite discutir una parte sin invalidar el resto, y eso es lo que lo hace robusto.",
+  p:["¿Cómo se traslada esa distinción a una pieza periodística?","¿Debilita la credibilidad declarar lo desconocido?","¿Dónde se sitúa la geolocalización en esa escala?"],
+  m:"Se traslada mediante el verbo y la formulación: «el video muestra» para lo observado, «la posición de las sombras sitúa la grabación entre las once y las trece horas» para lo inferido con su base, y «no ha sido posible determinar» para lo desconocido, todo en el cuerpo del texto y no en una nota. Declarar lo desconocido refuerza la credibilidad en lugar de debilitarla, porque es lo que permite al lector calibrar el resto y porque quien impugna ya no puede presentar como ocultamiento lo que el texto reconoció. La geolocalización con varias coincidencias es observación comprobable; la identidad del autor, salvo confirmación directa, casi siempre pertenece a la tercera categoría.",
+  k:"Distinguir grados de certeza dentro de la misma pieza no es cautela retórica: es lo que permite que una parte se discuta sin que caiga el conjunto."},
+
+ {tag:"CASO 5 · IMÁGENES SATELITALES · MÉTODO Y LÍMITE",t:"Datar un cambio en el terreno",
+  d:"La comparación de imágenes satelitales comerciales de una misma zona en fechas sucesivas permite acotar cuándo se produjo un cambio: una construcción, una excavación, la aparición o desaparición de vehículos o estructuras. El método es simple y su límite también: la datación nunca es más precisa que el intervalo entre las dos imágenes disponibles, que puede ser de días, y la cobertura nubosa reduce el número de pasadas utilizables. A ello se suma que la resolución comercial impone un tamaño mínimo por debajo del cual la interpretación de objetos deja de ser fiable.",
+  ej:"El error más común no está en la lectura de la imagen sino en la redacción: escribir que algo ocurrió un día concreto cuando lo que se acreditó es que ocurrió entre dos fechas.",
+  p:["¿Qué debe publicarse junto a cada imagen satelital?","¿Por qué es arriesgado interpretar objetos pequeños?","¿Cómo se combina con material de tierra?"],
+  m:"Deben publicarse el proveedor, la fecha exacta de cada imagen y el intervalo entre ambas, porque sin esos datos la conclusión no es auditable ni replicable por otro investigador. Interpretar objetos pequeños es arriesgado porque cerca del límite de resolución la forma depende del ángulo, la iluminación y el procesamiento, de modo que dos analistas pueden ver cosas distintas en el mismo píxel. La combinación con material de tierra es lo que produce las investigaciones más sólidas: el satélite acota el cuándo y confirma la escala, y el material grabado a pie de calle aporta el detalle que el satélite no puede resolver.",
+  k:"La imagen satelital acota intervalos, no fija instantes. Publicar fechas y proveedor es lo que convierte la comparación en evidencia auditable."},
+
+ {tag:"CASO 6 · MATERIAL GRÁFICO · OBLIGACIONES",t:"Lo que se muestra y lo que no",
+  d:"Las organizaciones que trabajan con documentación de violaciones de derechos humanos —entre ellas Amnistía Internacional a través de su Citizen Evidence Lab— han desarrollado criterios sobre el tratamiento del material audiovisual gráfico: consideración de la dignidad e identificabilidad de las personas que aparecen, advertencia previa al público, y protocolos de trabajo para los propios investigadores ante la exposición repetida a contenido traumático, cuyos efectos están documentados en la literatura sobre trauma vicario.",
+  ej:"Las tres obligaciones —hacia las personas retratadas, hacia el lector y hacia el equipo— suelen tratarse como cuestiones de sensibilidad. Son cuestiones de método: condicionan qué se publica, cómo se publica y en qué condiciones se trabaja.",
+  p:["¿Cuándo está justificado publicar una imagen explícita?","¿Qué medidas protegen a las personas identificables?","¿Qué protocolos reducen el daño al equipo?"],
+  m:"Está justificado cuando la imagen acredita algo que no puede acreditarse de otro modo y el hecho tiene interés público suficiente para soportar el daño que causa; si el hecho se sostiene sin mostrarla, no se muestra. Las medidas de protección incluyen difuminar rostros y rasgos identificativos, evitar planos que permitan reconocer a una persona antes que su familia, y valorar el riesgo que la publicación genera para quienes aparecen y para quien grabó. Para el equipo, los protocolos habituales consisten en limitar el tiempo continuado de visionado, desactivar la reproducción automática, trabajar sin sonido cuando sea posible, reducir el tamaño de reproducción y establecer turnos, además de reconocer que el efecto acumulativo existe y no es una debilidad personal.",
+  k:"El tratamiento del material gráfico no es una capa de sensibilidad añadida al final: determina qué se publica, cómo y en qué condiciones se trabaja."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La geolocalización con un solo elemento",
+  d:"Un colaborador afirma haber geolocalizado un video porque encontró una torre de comunicaciones que coincide con la del encuadre.",
+  r:"Reportera · Colaborador · Editor",
+  ej:"<span class='who'>COLABORADOR:</span> La torre es idéntica, es ese pueblo.<br><span class='who'>REPORTERA:</span> ¿Qué más coincide? ¿La distribución de los edificios, el perfil del fondo?<br><span class='who'>COLABORADOR:</span> Con la torre me basta.<br><span class='who'>REPORTERA:</span> Hay cientos de torres iguales. Necesitamos tres coincidencias y sus ángulos.",
+  m:"Un elemento aislado no acredita: las infraestructuras se construyen en serie y se repiten en todo un país. Lo que acredita es la coincidencia de varios elementos fijos en la misma posición relativa, y que las distancias y ángulos entre ellos sean coherentes con el punto de vista de la cámara. La comprobación de ángulos es la que descarta las falsas coincidencias, porque exige que la geometría completa encaje y no solo el parecido de un objeto. Publicar una geolocalización basada en un solo elemento es exponerse a una rectificación fácil de demostrar.",
+  c:"Convertir una intuición visual en un procedimiento con criterio de suficiencia explícito."},
+
+ {tag:"ESCENARIO 2",t:"El video sin metadatos",
+  d:"El material llega por mensajería, sin metadatos. Un miembro del equipo sostiene que eso demuestra que fue manipulado.",
+  r:"Reportera · Analista · Editora",
+  ej:"<span class='who'>ANALISTA:</span> No tiene EXIF. Alguien lo limpió.<br><span class='who'>REPORTERA:</span> O pasó por dos aplicaciones de mensajería, que es lo que ocurre siempre.<br><span class='who'>ANALISTA:</span> ¿Entonces no podemos decir nada?<br><span class='who'>REPORTERA:</span> Podemos decir mucho. Solo que no por los metadatos.",
+  m:"La ausencia de metadatos es el estado normal de casi todo el material que circula: las plataformas los eliminan al publicar y la mensajería recomprime los archivos. Tratar esa ausencia como indicio de manipulación produce falsos positivos constantes y desvía el trabajo. La verificación se hace contra el mundo —elementos fijos, sombras, meteorología, corroboración independiente—, y esas comprobaciones no dependen de ningún campo del archivo. Si excepcionalmente hay metadatos, orientan la búsqueda y no cierran nada, porque son editables.",
+  c:"Corregir una inferencia técnica errónea sin desactivar la desconfianza legítima del equipo."},
+
+ {tag:"ESCENARIO 3",t:"El detector dice que es sintético",
+  d:"Una herramienta en línea clasifica una imagen como generada automáticamente con un 87% de probabilidad. El editor quiere publicarlo así.",
+  r:"Reportera · Editor · Especialista consultado",
+  ej:"<span class='who'>EDITOR:</span> Ochenta y siete por ciento. Es concluyente.<br><span class='who'>REPORTERA:</span> ¿Sobre qué versión del archivo? La nuestra está recomprimida tres veces.<br><span class='who'>EDITOR:</span> ¿Eso importa?<br><span class='who'>REPORTERA:</span> Importa tanto que puede ser la causa entera del resultado.",
+  m:"Los detectores producen falsos positivos y falsos negativos en proporciones que dependen del tipo de material y de su procesamiento posterior, y la recompresión repetida es un factor conocido de error. Una cifra de probabilidad sin margen declarado, sin identificación del sistema y sin control sobre qué versión del archivo se analizó no sostiene una publicación. El camino sólido es la procedencia: primera aparición, cuenta de origen, corroboración independiente. Si aun así se informa del análisis técnico, se atribuye a quien lo hizo, con su sistema y sus límites, como una opinión técnica y no como un hecho.",
+  c:"Traducir una cifra aparentemente objetiva a lo que realmente acredita."},
+
+ {tag:"ESCENARIO 4",t:"La fecha que el titular quiere concretar",
+  d:"Tu cronolocalización establece un intervalo de cinco días. El redactor de titulares pide una fecha concreta porque el intervalo no cabe.",
+  r:"Reportera · Redactor de titulares · Editora",
+  ej:"<span class='who'>TITULARES:</span> Pon el día 5, que es el más probable.<br><span class='who'>REPORTERA:</span> Es el más probable para nosotros, no está acreditado.<br><span class='who'>TITULARES:</span> Nadie va a comprobar eso.<br><span class='who'>REPORTERA:</span> Lo va a comprobar exactamente quien quiera desmentirnos.",
+  m:"La verificación puede ser impecable y la pieza impugnable si el texto sube un grado la certeza obtenida. Un intervalo se publica como intervalo —«en la primera semana de marzo»— o se acota con más trabajo, buscando material adicional, registros meteorológicos o elementos datables que estrechen el margen. La restricción de espacio es un problema de oficio que se resuelve reescribiendo, y ceder en el titular lo que se ganó en la verificación es el modo más eficiente de perder una investigación sólida.",
+  c:"Sostener el grado de certeza obtenido frente a la presión de concreción del titular."},
+
+ {tag:"ESCENARIO 5",t:"La imagen que el equipo lleva viendo dos días",
+  d:"La verificación exige revisar cientos de vídeos con contenido violento. Dos miembros del equipo llevan dos jornadas completas en ello.",
+  r:"Reportera · Jefa de equipo · Analista",
+  ej:"<span class='who'>ANALISTA:</span> Puedo seguir, no pasa nada.<br><span class='who'>JEFA:</span> Sí pasa. Reproducción automática desactivada, sin sonido y turnos de dos horas.<br><span class='who'>ANALISTA:</span> Vamos a tardar el doble.<br><span class='who'>JEFA:</span> Vamos a poder seguir trabajando en tres meses.",
+  m:"La exposición repetida a material gráfico tiene efectos documentados y acumulativos, y el hecho de que no se manifiesten de inmediato es precisamente lo que hace necesario el protocolo. Las medidas son concretas y baratas: desactivar la reproducción automática, trabajar sin sonido —que es el elemento con mayor impacto—, reducir el tamaño de reproducción, establecer turnos y limitar el visionado continuado. Tratarlo como una cuestión de resistencia personal traslada al individuo un problema que es de organización del trabajo, y produce equipos que se queman a mitad de una investigación larga.",
+  c:"Imponer una medida de protección que el propio afectado no pide, sin convertirlo en un juicio sobre su capacidad."},
+
+ {tag:"ESCENARIO 6",t:"El dato que contradice tu datación",
+  d:"En la entrevista, el portavoz aporta un registro de obra que sitúa la fachada visible en el video en una fecha posterior a la que tú estableciste.",
+  r:"Reportera · Portavoz · Editora",
+  ej:"<span class='who'>PORTAVOZ:</span> Esa fachada se levantó en abril. Su vídeo no puede ser de marzo.<br><span class='who'>REPORTERA:</span> Si el registro es correcto, tiene usted razón. ¿Me lo puede facilitar?<br><span class='who'>PORTAVOZ:</span> Se lo envío hoy.<br><span class='who'>REPORTERA:</span> Lo contrasto con imagen satelital de esas semanas y le digo algo.",
+  m:"Un dato que contradice la propia hipótesis es información valiosa y hay que tratarlo como tal, no como un ataque. El procedimiento es pedirlo por escrito, contrastarlo con una fuente independiente —imágenes satelitales de esas semanas, licencias públicas de obra— y ajustar la datación si se confirma. Si el registro resulta erróneo o la fachada aparece ya construida en imágenes anteriores, eso también es publicable y refuerza la pieza. Lo que nunca funciona es defender la datación inicial por coherencia interna del trabajo ya hecho.",
+  c:"Incorporar evidencia que debilita la hipótesis propia sin ceder el control de la verificación."}
+];
+
+const IV=[
+ {q:"¿Sostiene el organismo que el hecho no ocurrió, o que no ocurrió en ese lugar y esa fecha?",
+  m:"Delimita exactamente qué se niega. La respuesta orienta toda la entrevista y evita discutir dos cosas a la vez."},
+ {q:"¿Puede indicarme dónde sitúan ustedes ese video?",
+  m:"Traslada la carga: una ubicación alternativa concreta es comprobable, y una negativa genérica queda registrada como tal."},
+ {q:"La fachada que aparece al fondo, ¿cuándo se construyó? ¿Existe licencia de obra pública?",
+  m:"Convierte la discusión en un elemento datable y documentado, verificable con registros e imágenes satelitales."},
+ {q:"¿Se realizaron obras en esa intersección en los últimos doce meses?",
+  m:"Los cambios del entorno son el material de la cronolocalización. Cualquier respuesta acota el intervalo."},
+ {q:"¿Dispone el organismo de registros propios de actividad en esa zona en esas fechas?",
+  m:"Busca documentación interna que confirme o desmienta. Su ausencia declarada también es publicable."},
+ {q:"Si le facilito las coordenadas y las imágenes de referencia, ¿su equipo técnico las revisaría?",
+  m:"Ofrece contradicción real sobre la evidencia y deja constancia de que se dio oportunidad de revisarla antes de publicar."},
+ {q:"¿Qué elemento concreto del video le hace pensar que es de otro país?",
+  m:"Obliga a pasar de la afirmación general al indicio comprobable. Si lo aporta, hay que comprobarlo de buena fe."},
+ {q:"¿Hay algo en nuestra reconstrucción que quiera corregir antes de que publiquemos?",
+  m:"Cierra ofreciendo una última vía de contradicción y documenta el intento, que es exigible con independencia del resultado."}
+];
+
+const AUDIT=[
+ ["v","Tras el derribo del vuelo MH17 en julio de 2014, investigadores independientes geolocalizaron material publicado por particulares comparando elementos fijos con imágenes satelitales y fotografía de calle, y publicaron las comparaciones que permiten reproducir el análisis.","Publicaciones metodológicas de Bellingcat y cobertura contemporánea. Verificado."],
+ ["v","El <em>Verification Handbook</em> del European Journalism Centre desplazó su foco desde la verificación de material de testigos en emergencias, en su primera edición, hacia la desinformación y la manipulación mediática en la tercera, editada por Craig Silverman.","verificationhandbook.com · EJC. Verificado."],
+ ["v","El Protocolo de Berkeley (2022) exige que el análisis distinga explícitamente entre lo observado, lo inferido y lo desconocido, documentando el razonamiento de cada inferencia.","OHCHR y Human Rights Center, UC Berkeley, 2022. Verificado."],
+ ["v","Amnistía Internacional mantiene, a través del Citizen Evidence Lab, recursos sobre evaluación de material audiovisual de testigos y sobre el tratamiento de contenido gráfico.","citizenevidence.org · Amnesty International. Verificado."],
+ ["v","Las iniciativas C2PA y Content Authenticity Initiative desarrollan credenciales de procedencia incorporadas al archivo desde la captura, cuya eficacia depende de que dispositivos, editores y plataformas las conserven.","c2pa.org · contentauthenticity.org. Verificado."],
+ ["b","La verificación responde por separado a dónde, cuándo y quién, y cada pregunta tiene su propio método y grado de certeza.","Verification Handbook · Protocolo de Berkeley."],
+ ["b","La geolocalización exige la coincidencia de varios elementos fijos y la coherencia de sus ángulos y distancias, no el parecido de un solo objeto.","Bellingcat · práctica establecida."],
+ ["b","La cronolocalización requiere haber geolocalizado antes, porque el cálculo de la posición solar necesita coordenadas.","Astronomía de posición · práctica establecida."],
+ ["b","Los metadatos EXIF son editables y las plataformas los eliminan al publicar, de modo que su ausencia es el estado normal del material que circula.","Verification Handbook · práctica forense digital."],
+ ["b","Los indicios visuales para reconocer material generado automáticamente pierden validez con cada versión de las herramientas de generación.","Verification Handbook, 3.ª ed."],
+ ["b","La convergencia de materiales independientes que muestran el mismo hecho desde ángulos distintos acredita más que cualquier análisis técnico de una pieza aislada.","Protocolo de Berkeley · práctica establecida."],
+ ["b","La datación mediante comparación de imágenes satelitales no puede ser más precisa que el intervalo entre las imágenes disponibles.","Práctica de análisis de imagen satelital."],
+ ["b","La exposición repetida a material gráfico tiene efectos acumulativos documentados, y los protocolos de reducción de daño incluyen limitar el visionado, desactivar la reproducción automática y trabajar sin sonido.","Literatura sobre trauma vicario · Protocolo de Berkeley · Citizen Evidence Lab."],
+ ["p","La afirmación sobre las tasas de error de los detectores automáticos de material sintético se formula de manera general, a partir de la discusión publicada en la literatura de verificación; no se ha realizado para esta unidad una evaluación propia de sistemas concretos.","Redactado sin atribuir cifras a un detector específico."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Decir que un video «está verificado» es insuficiente porque:",
+ o:["La verificación siempre es provisional","Lugar, fecha y autoría son preguntas independientes que pueden tener grados de certeza distintos","Ninguna verificación alcanza el cien por cien","La palabra no tiene definición técnica"],c:1,
+ w:["Toda conclusión admite revisión, y eso no explica qué falta en la afirmación.",
+    "",
+    "La ausencia de certeza absoluta es cierta y trivial: no indica qué debe declararse.",
+    "El término sí tiene contenido: lo que falta es especificar sobre qué recae."],
+ e:"Se puede acreditar el lugar con precisión de metros y no saber la fecha. Escribe qué está verificado y con qué método; la palabra sola no informa de nada."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La geolocalización de un material se sostiene cuando:",
+ o:["Se identifica un edificio singular en el encuadre","Coinciden varios elementos fijos y sus ángulos y distancias son coherentes con el punto de vista","Los metadatos incluyen coordenadas","La cuenta que lo publicó declara esa ubicación"],c:1,
+ w:["Un elemento aislado se repite: las infraestructuras se construyen en serie por todo un país.",
+    "",
+    "Las coordenadas EXIF son editables y casi nunca sobreviven a la publicación.",
+    "La ubicación declarada por una cuenta es una afirmación por comprobar, no una prueba."],
+ e:"La comprobación de ángulos es la que descarta las falsas coincidencias: exige que encaje la geometría completa, no solo el parecido de un objeto."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Para calcular la hora a partir de las sombras es imprescindible:",
+ o:["Disponer del archivo original sin recomprimir","Conocer las coordenadas del lugar, es decir, haber geolocalizado antes","Que la imagen incluya el horizonte","Conocer el modelo de cámara"],c:1,
+ w:["La recompresión degrada la calidad y no impide medir la dirección y la proporción de una sombra.",
+    "",
+    "El horizonte ayuda a estimar la elevación, pero no es imprescindible si hay objetos verticales de altura conocida.",
+    "El modelo de cámara es irrelevante para la posición del sol."],
+ e:"La posición solar depende de latitud, longitud y fecha. Por eso el orden es siempre dónde primero, cuándo después."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Que un archivo no conserve metadatos EXIF indica:",
+ o:["Que fue manipulado","Que fue publicado en una plataforma o reenviado por mensajería, que es lo habitual","Que procede de un dispositivo antiguo","Que la fecha declarada es falsa"],c:1,
+ w:["La eliminación de metadatos es un comportamiento estándar de las plataformas, no una señal de manipulación.",
+    "",
+    "La antigüedad del dispositivo no determina la presencia de metadatos tras la publicación.",
+    "La fecha se comprueba por otras vías; su ausencia en el archivo no la desmiente."],
+ e:"Metadatos ausentes significan material publicado. Metadatos presentes significan material que conserva un campo editable. Ninguna de las dos cosas cierra una verificación."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Frente al material posiblemente sintético, la defensa más estable es:",
+ o:["Un detector automático con alta tasa de acierto declarada","La procedencia documentada: primera aparición, cuenta de origen y corroboración independiente","El análisis de artefactos de compresión","La revisión visual por un experto en imagen"],c:1,
+ w:["Las tasas declaradas varían según el tipo de material y su procesamiento; la recompresión repetida induce errores conocidos.",
+    "",
+    "Los artefactos de compresión también los produce el reenvío, de modo que su presencia es ambigua.",
+    "La revisión visual depende de indicios que caducan con cada versión de las herramientas de generación."],
+ e:"Una comprobación cuya validez caduca no es un método. La procedencia no depende del estado del arte de la generación."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La datación mediante comparación de imágenes satelitales:",
+ o:["Fija el día exacto del cambio observado","No puede ser más precisa que el intervalo entre las dos imágenes disponibles","Requiere resolución submétrica para ser válida","Sustituye a la corroboración con material de tierra"],c:1,
+ w:["Solo acota: el cambio pudo ocurrir en cualquier momento entre ambas pasadas.",
+    "",
+    "La resolución determina qué objetos pueden interpretarse, no la validez del método de comparación.",
+    "El satélite acota el cuándo; el material de tierra aporta el detalle que el satélite no resuelve."],
+ e:"El error más común no está en la lectura de la imagen sino en la redacción: escribir un día concreto cuando lo acreditado es un intervalo."},
+
+/* ---------- BLOQUE B · DECISIONES DE VERIFICACIÓN ---------- */
+{blk:"BLOQUE B · DECISIONES DE VERIFICACIÓN", t:"mcq",
+ s:"Un colaborador geolocaliza un video porque encontró una torre de comunicaciones idéntica a la del encuadre.",
+ q:"¿Qué corresponde exigir antes de publicar?",
+ o:["Una segunda opinión sobre el parecido de la torre","Al menos tres coincidencias de elementos fijos y la comprobación de sus ángulos y distancias","Los metadatos del archivo original","La confirmación de la cuenta que publicó el video"],c:1,
+ w:["Otra opinión sobre el mismo elemento no añade evidencia: repite la misma comprobación insuficiente.",
+    "",
+    "Los metadatos rara vez existen y no acreditarían la geolocalización por sí solos.",
+    "La confirmación de la cuenta es una afirmación por verificar, no una verificación."],
+ e:"Las infraestructuras se repiten en serie. Lo que acredita es la coincidencia de varios elementos en la misma posición relativa, con geometría coherente."},
+
+{blk:"BLOQUE B · DECISIONES DE VERIFICACIÓN", t:"mcq",
+ s:"Tu cronolocalización establece un intervalo de cinco días. El redactor de titulares pide una fecha concreta.",
+ q:"¿Qué haces?",
+ o:["Elegir el día más probable dentro del intervalo","Publicar el intervalo, o estrecharlo con más comprobaciones antes de cerrar","Omitir la fecha del titular y dejarla en el cuerpo","Atribuir la fecha a la fuente que aportó el material"],c:1,
+ w:["Lo más probable para el equipo no está acreditado, y quien quiera desmentir la pieza comprobará exactamente eso.",
+    "",
+    "Ocultar la fecha en el cuerpo no resuelve el problema si el titular sigue sugiriendo precisión.",
+    "Trasladar la fecha a la fuente es presentar como testimonio lo que corresponde verificar."],
+ e:"La verificación puede ser impecable y la pieza impugnable si el texto sube un grado la certeza obtenida. El espacio del titular se resuelve reescribiendo."},
+
+{blk:"BLOQUE B · DECISIONES DE VERIFICACIÓN", t:"mcq",
+ s:"Una herramienta en línea clasifica como sintética, con un 87% de probabilidad, una imagen que te llegó recomprimida varias veces.",
+ q:"¿Cómo se procede?",
+ o:["Publicar que el análisis técnico determinó que es sintética","Tratar el resultado como no concluyente y trabajar la procedencia; si se informa, atribuirlo con sistema y márgenes","Descartar la imagen por completo","Solicitar un segundo detector y publicar si coinciden"],c:1,
+ w:["Una cifra sin margen declarado, sin identificación del sistema y sobre un archivo degradado no sostiene una publicación.",
+    "",
+    "El descarte automático renuncia a un material que puede ser auténtico y relevante.",
+    "Dos detectores con el mismo sesgo frente a la recompresión pueden coincidir en el error."],
+ e:"Los detectores no son fuentes. La recompresión repetida es un factor conocido de falso positivo, y la procedencia es lo que resiste."},
+
+{blk:"BLOQUE B · DECISIONES DE VERIFICACIÓN", t:"mcq",
+ s:"Has verificado una pieza relevante. Dispones de tiempo para una comprobación más.",
+ q:"¿En qué lo empleas?",
+ o:["En analizar de nuevo el archivo en busca de manipulación","En buscar un segundo material del mismo hecho desde otro ángulo","En intentar recuperar los metadatos originales","En ampliar la resolución de la imagen"],c:1,
+ w:["Repetir el análisis del mismo archivo no añade información independiente.",
+    "",
+    "Los metadatos, si se eliminaron al publicar, no se recuperan.",
+    "El aumento de resolución no crea información que no esté en el archivo."],
+ e:"Fabricar una pieza es factible; fabricar dos coherentes entre sí, publicadas por personas sin relación, es enormemente más costoso. Dos ángulos valen más que diez análisis."},
+
+{blk:"BLOQUE B · DECISIONES DE VERIFICACIÓN", t:"mcq",
+ s:"En la entrevista, el portavoz aporta un registro de obra que situaría la fachada del video en una fecha posterior a tu datación.",
+ q:"¿Qué corresponde hacer?",
+ o:["Mantener la datación: el organismo es parte interesada","Pedir el registro por escrito y contrastarlo con imágenes satelitales o licencias públicas de esas semanas","Publicar ambas versiones sin resolver","Retirar la pieza hasta aclararlo"],c:1,
+ w:["El interés de la parte no convierte su dato en falso: convierte en obligatorio comprobarlo.",
+    "",
+    "Publicar dos versiones contradictorias sin comprobar traslada al lector un trabajo que corresponde a la redacción.",
+    "Retirar antes de comprobar es tan precipitado como ignorar el dato."],
+ e:"Un dato que contradice la hipótesis propia es información valiosa. Si se confirma, se ajusta la datación; si el registro resulta erróneo, eso también es publicable."},
+
+{blk:"BLOQUE B · DECISIONES DE VERIFICACIÓN", t:"mcq",
+ s:"La investigación exige revisar durante días cientos de vídeos con contenido violento.",
+ q:"¿Qué medidas corresponden?",
+ o:["Asignar el trabajo a quien mejor lo tolere","Desactivar reproducción automática, trabajar sin sonido, reducir tamaño y establecer turnos limitados","Acelerar la revisión para reducir el tiempo de exposición","Dejarlo a criterio de cada miembro del equipo"],c:1,
+ w:["La tolerancia individual no evita el efecto acumulativo y traslada al individuo un problema de organización.",
+    "",
+    "Acelerar aumenta la carga por unidad de tiempo y multiplica los errores de verificación.",
+    "Dejarlo al criterio personal equivale a no tener protocolo, porque nadie pide protección primero."],
+ e:"El sonido es el elemento de mayor impacto. Las medidas son concretas y baratas, y su función es que el equipo pueda seguir trabajando dentro de tres meses."},
+
+/* ---------- BLOQUE C · REDACCIÓN Y DOCUMENTACIÓN ---------- */
+{blk:"BLOQUE C · REDACCIÓN Y DOCUMENTACIÓN", t:"mcq",
+ q:"Un informe de verificación debe permitir que un tercero:",
+ o:["Comprenda la conclusión alcanzada","Repita la geolocalización y llegue al mismo punto con lo aportado","Confíe en la solvencia del equipo","Localice a la fuente que entregó el material"],c:1,
+ w:["Comprender no es comprobar: la conclusión puede entenderse sin poder verificarse.",
+    "",
+    "La confianza en el equipo es exactamente lo que este método sustituye por comprobación.",
+    "La identificación de la fuente nunca es un objetivo del informe y suele ser un riesgo."],
+ e:"Si quien no participó no llega al mismo punto con lo que le diste, el informe está incompleto."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DOCUMENTACIÓN", t:"mcq",
+ q:"Junto a cada imagen satelital utilizada debe publicarse:",
+ o:["La resolución en metros por píxel","El proveedor, la fecha exacta y el intervalo respecto de la imagen con que se compara","El coste de adquisición de la imagen","El programa con que se procesó"],c:1,
+ w:["La resolución es útil y no permite por sí sola auditar la datación.",
+    "",
+    "El coste es irrelevante para la validez de la comparación.",
+    "El programa de procesamiento no afecta a la conclusión sobre el intervalo."],
+ e:"Sin fechas ni proveedor, la comparación no es auditable ni replicable por otro investigador."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DOCUMENTACIÓN", t:"mcq",
+ s:"Has geolocalizado con precisión, has acotado la fecha a un intervalo y no has podido identificar al autor.",
+ q:"¿Cómo se redacta?",
+ o:["Afirmando las tres cosas con la misma seguridad","Distinguiendo lo observado, lo inferido con su base y lo que no ha podido determinarse","Omitiendo lo que no se pudo determinar","Atribuyendo la autoría a la cuenta que lo publicó primero"],c:1,
+ w:["Igualar grados de certeza distintos engaña al lector sobre la solidez de cada afirmación.",
+    "",
+    "Omitir lo indeterminado permite que quien impugne lo presente como ocultamiento.",
+    "Quien publica primero no es necesariamente quien grabó, y afirmarlo es una atribución sin prueba."],
+ e:"El Protocolo de Berkeley exige esa distinción. Declarar lo desconocido refuerza la credibilidad porque permite al lector calibrar el resto."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DOCUMENTACIÓN", t:"mcq",
+ q:"La publicación de una imagen explícita está justificada cuando:",
+ o:["El hecho es grave y el público debe conocerlo","Acredita algo que no puede acreditarse de otro modo y el interés público soporta el daño que causa","La imagen ya circula ampliamente en redes","Las personas que aparecen no son identificables"],c:1,
+ w:["La gravedad justifica informar del hecho, no necesariamente mostrar la imagen.",
+    "",
+    "Que ya circule no traslada la responsabilidad editorial de amplificarla.",
+    "La no identificabilidad reduce el daño a terceros pero no acredita la necesidad de mostrarla."],
+ e:"Si el hecho se sostiene sin mostrarla, no se muestra. Y cuando se muestra, con advertencia previa y protección de las personas identificables."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DOCUMENTACIÓN", t:"mcq",
+ q:"Analizar quién difunde un material y verificar el material son tareas:",
+ o:["Alternativas: la primera hace innecesaria la segunda","Complementarias: ninguna sustituye a la otra","Equivalentes, si el difusor es identificable","Secuenciales: primero el actor, después el archivo"],c:1,
+ w:["Saber quién difunde no dice si el contenido es auténtico ni dónde y cuándo se grabó.",
+    "",
+    "La identificación del difusor no informa sobre la autenticidad del contenido.",
+    "El orden habitual es el inverso, y en todo caso ninguna de las dos puede omitirse."],
+ e:"Si un material auténtico lo difunde alguien interesado, sigue siendo auténtico. Decir quién lo difunde no exime de comprobarlo."},
+
+{blk:"BLOQUE C · REDACCIÓN Y DOCUMENTACIÓN", t:"mcq",
+ q:"Cuando no hay procedencia establecida ni análisis técnico concluyente, corresponde:",
+ o:["Publicar el material advirtiendo que podría ser falso","No publicarlo como acreditado; si el asunto lo justifica, informar de su circulación declarando que no ha podido verificarse","Publicarlo atribuyéndolo a redes sociales","Esperar a que otro medio lo verifique"],c:1,
+ w:["Publicar con una advertencia genérica difunde el material y traslada al lector la comprobación.",
+    "",
+    "Atribuirlo a redes sociales no es una fuente: es describir dónde se encontró.",
+    "Delegar la verificación en otro medio no es un método y suele terminar en cadenas de citas circulares."],
+ e:"Informar de que algo circula sin verificación es una pieza distinta y legítima, siempre que el texto lo declare con claridad y no lo presente como acreditado."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todos</strong> los elementos útiles para cronolocalizar un material ya geolocalizado.",
+ o:["Longitud y dirección de las sombras","Registros meteorológicos de la zona","Estado de la vegetación","Resolución del archivo de video","Obras, vallas y vehículos datables en el encuadre"],
+ c:[0,1,2,4],
+ w:["","","","La resolución es una propiedad técnica del archivo y no informa sobre la fecha de grabación.",""],
+ e:"La cronolocalización se hace contra el mundo: lo que había en ese punto ese día. Casi siempre produce un intervalo, no un instante."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe publicarse para que una geolocalización sea auditable.",
+ o:["Las coordenadas obtenidas","Las imágenes de referencia con su proveedor y fecha","La comparación lado a lado con los puntos de coincidencia señalados","El nombre de quien aportó el material","El razonamiento que descarta ubicaciones alternativas parecidas"],
+ c:[0,1,2,4],
+ w:["","","","Identificar a quien aportó el material no acredita la ubicación y puede ponerlo en riesgo.",""],
+ e:"La geolocalización se demuestra mostrando las coincidencias, no anunciándolas. Quien discrepe deberá señalar en qué punto falla."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el proceso de verificación de un material audiovisual.",
+ o:["Preservar el archivo y establecer su procedencia y primera aparición","Inventariar los elementos fijos del encuadre y acotar la zona","Geolocalizar por coincidencia múltiple y comprobar ángulos","Cronolocalizar con sombras, meteorología y elementos datables","Buscar corroboración independiente y documentar el margen restante"],
+ c:[0,1,2,3,4],
+ e:"Preservar precede a todo, y geolocalizar precede a datar porque el cálculo solar necesita coordenadas."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las formulaciones según el grado de certeza que comprometen, de menor a mayor.",
+ o:["Este material circula atribuido a este hecho","La posición de las sombras sitúa la grabación en esta franja horaria","El material fue grabado en esta intersección","Se ha localizado un segundo material del mismo hecho desde otro ángulo","Esta persona identificada grabó el material"],
+ c:[0,1,2,3,4],
+ e:"La autoría es el escalón que el material abierto rara vez sostiene sin confirmación directa del autor, y es donde más piezas se vuelven impugnables."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
