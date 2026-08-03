@@ -31,7 +31,8 @@
   h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
   .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
   .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
-  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel)}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
   .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
   .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
   .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
@@ -148,7 +149,7 @@
 
   <div class="units">
     <span class="unit on">Unidad 1: La Disciplina de la Verdad y Verificación</span>
-    <span class="unit">Unidad 2: Periodismo Móvil (MoJo) y Fuentes de Campo</span>
+    <a class="unit" href="unidad2.html">Unidad 2: Periodismo Móvil (MoJo) y Fuentes de Campo</a>
     <span class="unit">Unidad 3: Ética Global y Filtros de Frontera</span>
     <span class="unit">Unidad 4: Reportajes de Campo y Flujos de Verificación</span>
   </div>

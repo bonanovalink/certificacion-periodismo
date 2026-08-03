@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1001 · Unidad 2 — Periodismo Móvil (MoJo) y Fuentes de Campo</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1001, Unidad 2.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  h3 .n{font-family:var(--mono);color:var(--green);font-size:.85rem;margin-right:9px}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course on" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="#"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="#"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1001 · 4 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Periodismo Móvil (MoJo) y Fuentes de Campo</h2>
+  <div class="sub">Unidad 2 de 4 · Comunicación Social y Periodismo Internacional</div>
+
+  <div class="units">
+    <a class="unit" href="index.html">Unidad 1: La Disciplina de la Verdad y Verificación</a>
+    <span class="unit on">Unidad 2: Periodismo Móvil (MoJo) y Fuentes de Campo</span>
+    <span class="unit">Unidad 3: Ética Global y Filtros de Frontera</span>
+    <span class="unit">Unidad 4: Reportajes de Campo y Flujos de Verificación</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>La Unidad 1 estableció que el periodismo es un método. Esta unidad lo lleva a la calle. El teléfono convirtió a cualquiera en un dispositivo de captura, y por eso mismo la diferencia entre un periodista y un testigo con cámara dejó de estar en el equipo: está en el procedimiento que aplica antes, durante y después de grabar.</p>
+    <p style="margin-bottom:0">Se estudian dos cosas inseparables. Primero, la técnica mínima del periodismo móvil, donde el error más caro no es la imagen sino el sonido. Segundo, la gestión de fuentes: cómo se clasifican, qué carga de prueba soporta cada una, cómo se pactan las condiciones de atribución y cómo se protege a quien habla. El eje que las une es la <strong>cadena de custodia</strong>: si no puedes demostrar de dónde salió tu material y por dónde pasó, no puedes defenderlo.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Producir una pieza publicable con equipo móvil aplicando criterios técnicos mínimos de imagen y, sobre todo, de sonido.</li>
+      <li>Clasificar una fuente y asignarle la carga de prueba que le corresponde.</li>
+      <li>Negociar y documentar las condiciones de atribución <em>antes</em> de que empiece la entrevista.</li>
+      <li>Establecer y registrar la cadena de custodia del material capturado en campo.</li>
+      <li>Evaluar el riesgo para la fuente y para el reportero antes de salir, y documentar esa evaluación.</li>
+      <li>Verificar material de terceros con herramientas abiertas y dejar constancia del resultado.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Mark Briggs, <em>Journalism Next</em> — captura móvil, multimedia y flujo digital</li>
+      <li>Paul Bradshaw, <em>The Online Journalism Handbook</em> — verificación de material de usuario y flujos de producción</li>
+      <li>Bill Kovach y Tom Rosenstiel, <em>The Elements of Journalism</em> — independencia y relación con las fuentes</li>
+      <li>Stephen J. A. Ward, <em>Global Journalism Ethics</em> — deberes hacia el sujeto de la información</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Citizen Evidence Lab — Amnistía Internacional</h5>
+        <div class="def">Creado en 2014, reúne herramientas de investigación de fuente abierta para documentar violaciones de derechos humanos. Incluye el YouTube DataViewer, que extrae metadatos de un video y permite búsqueda inversa de su miniatura.</div>
+        <p class="src">citizenevidence.org · Amnesty International</p></div>
+      <div class="term"><h5>Mnemonic — Syrian Archive</h5>
+        <div class="def">Fundado en 2014 por Hadi Al Khatib y Jeff Deutch para preservar material digital del conflicto sirio como posible prueba. Hoy incluye los archivos yemení y sudanés, y forma a documentadores en métodos abiertos.</div>
+        <p class="src">mnemonic.org · Syrian Archive</p></div>
+      <div class="term"><h5>Verification Handbook (EJC)</h5>
+        <div class="def">La primera edición está dedicada precisamente a la verificación de contenido generado por usuarios durante emergencias, que es el escenario central de esta unidad.</div>
+        <p class="src">verificationhandbook.com</p></div>
+      <div class="term"><h5>UNESCO — Seguridad de los periodistas</h5>
+        <div class="def">Marco internacional sobre protección de periodistas y de sus fuentes, y sobre la impunidad en los ataques contra la prensa. Base normativa del apartado de seguridad de campo.</div>
+        <p class="src">unesco.org · IPDC</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong>, la entrega práctica de campo y el registro de cadena de custodia. El <strong>Examen de Unidad</strong> integrador corresponde a la Unidad 4 y abarca las cuatro unidades del curso.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>La redacción cabe en el bolsillo</h3>
+    <p>El periodismo móvil no es periodismo de segunda hecho con un teléfono. Es un modo de producción donde captura, edición y publicación ocurren en el mismo dispositivo y, muchas veces, en el mismo lugar del hecho. Briggs sitúa el cambio no en la calidad de la imagen sino en la <strong>reducción de la distancia</strong> entre el suceso y su publicación.</p>
+    <p>Esa reducción tiene un costo. Cuando desaparecen las horas que separaban el campo del cierre, desaparece también el tiempo en que ocurría la verificación. El periodismo móvil bien hecho no elimina ese tiempo: lo traslada al campo. Verificas mientras grabas, no después.</p>
+    <div class="ej"><b>REGLA OPERATIVA</b>Si no puedes verificar en el lugar, publica lo que sí verificaste y di explícitamente qué falta. La velocidad nunca es una razón para omitir la limitación.</div>
+
+    <h3>Equipo mínimo viable: el sonido es lo que no perdona</h3>
+    <p>Un público tolera una imagen mediocre; abandona un video con mal sonido en segundos. Por eso el orden de inversión es contraintuitivo: primero micrófono, después estabilización, después iluminación, y solo al final cámara.</p>
+    <ul>
+      <li><strong>Micrófono externo.</strong> De solapa para entrevista, direccional para ambiente. El micrófono interno del teléfono capta el viento y tu propia respiración.</li>
+      <li><strong>Estabilización.</strong> Un trípode pequeño o simplemente apoyar los codos contra el cuerpo.</li>
+      <li><strong>Auriculares.</strong> No para escuchar: para saber que estás grabando lo que crees que estás grabando.</li>
+      <li><strong>Batería y almacenamiento.</strong> La entrevista que se corta al 3% no existió.</li>
+    </ul>
+    <div class="ej"><b>COMPROBACIÓN DE TREINTA SEGUNDOS</b>Graba diez segundos, reprodúcelos con auriculares y mira el nivel. Hazlo antes de cada entrevista, siempre. El fallo más común del periodismo móvil no es técnico: es no haber comprobado.</div>
+
+    <h3>Grabar para verificar, no solo para publicar</h3>
+    <p>El material de campo cumple dos funciones distintas: una parte se publica y otra parte existe únicamente para poder demostrar después que lo publicado es cierto. La segunda casi nunca sale al aire y es la que te salva en una impugnación.</p>
+    <ul>
+      <li>Grabar el <strong>plano de contexto</strong>: un barrido amplio que sitúe el lugar, con elementos fijos identificables.</li>
+      <li>Grabar <strong>sonido ambiente limpio</strong> —treinta segundos sin hablar— para edición y para comparación acústica.</li>
+      <li>Fotografiar señales, placas, carteles y números de calle.</li>
+      <li>Anotar hora y coordenadas al empezar y al terminar.</li>
+    </ul>
+    <div class="ej"><b>POR QUÉ IMPORTA</b>El material que demuestra dónde y cuándo estuviste es lo primero que te van a pedir si alguien niega el hecho. Si solo tienes el primer plano de la persona hablando, no tienes nada verificable.</div>
+
+    <h3>Metadatos: lo que el archivo sabe de ti</h3>
+    <p>Cada archivo capturado lleva metadatos EXIF: modelo del dispositivo, fecha, hora y, si está activada la localización, coordenadas. Esa información es a la vez tu mejor prueba y tu mayor riesgo.</p>
+    <p>Es prueba porque permite demostrar la procedencia del material. Es riesgo porque puede revelar dónde vive una fuente, a qué hora la visitaste y con qué equipo trabajas. La regla no es «borrar siempre» ni «conservar siempre», sino <strong>separar</strong>: el archivo original con metadatos intactos se guarda; la copia que se publica se limpia.</p>
+    <div class="ej"><b>ERROR FRECUENTE</b>Publicar la foto tal como salió del teléfono, con las coordenadas de la casa de la fuente incrustadas. Ha ocurrido, y no es reversible: quien la descargó en los primeros minutos conserva el original.</div>
+
+    <h3>Tipología de fuentes y carga de prueba</h3>
+    <p>No todas las fuentes soportan el mismo peso. Clasificar antes de citar es lo que evita construir una pieza sobre una base que no aguanta.</p>
+    <ul>
+      <li><strong>Documental.</strong> Registros, actas, contratos, imágenes. La más fuerte, porque puede examinarse sin depender de nadie.</li>
+      <li><strong>Testimonial directa.</strong> Quien vio o vivió el hecho. Fuerte sobre lo que presenció, débil sobre lo que dedujo.</li>
+      <li><strong>Testimonial indirecta.</strong> Quien lo supo por otro. Sirve para orientar la búsqueda, no para sostener una afirmación.</li>
+      <li><strong>Experta.</strong> Interpreta, no atestigua. Nunca sustituye al hecho.</li>
+      <li><strong>Interesada.</strong> Tiene algo que ganar. No se descarta: se declara.</li>
+    </ul>
+    <div class="ej"><b>TRIANGULACIÓN</b>Una afirmación grave necesita al menos dos fuentes independientes entre sí. Dos personas que se enteraron por la misma tercera no son dos fuentes: son una.</div>
+
+    <h3>Las condiciones de atribución</h3>
+    <p>Antes de la primera pregunta hay que pactar bajo qué condición se habla. La ambigüedad aquí es la causa más común de conflictos con fuentes, y siempre la paga el reportero.</p>
+    <ul>
+      <li><strong>En el récord.</strong> Todo es publicable con nombre y cargo. Es la condición por defecto y hay que decirlo.</li>
+      <li><strong>Con atribución de fondo.</strong> Publicable, pero identificando por función y no por nombre: «un funcionario del ministerio».</li>
+      <li><strong>Fuera del récord.</strong> No publicable. Sirve para orientar la investigación y buscar la misma información por otra vía.</li>
+      <li><strong>Bajo embargo.</strong> Publicable a partir de una fecha acordada.</li>
+    </ul>
+    <div class="ej"><b>FÓRMULA DE APERTURA</b>«Antes de empezar: lo que hablemos es publicable con su nombre, salvo que me diga lo contrario en el momento. Si en algún punto quiere que algo no lo sea, dígamelo y lo marcamos.» Grábalo. Ese fragmento es tu respaldo.</div>
+
+    <h3>Cómo se construye una fuente y cómo se quema</h3>
+    <p>Una fuente no es un contacto: es una relación con obligaciones asimétricas. Ella arriesga; tú publicas. Kovach y Rosenstiel colocan aquí el principio de independencia: la cercanía necesaria para obtener información no puede convertirse en dependencia que impida publicarla.</p>
+    <p>Se quema una fuente de tres maneras, y solo la primera es evidente: revelando su identidad; publicando un detalle que solo ella podía conocer; o citándola en un contexto que la vuelve deducible para quien conoce el organigrama.</p>
+    <div class="ej"><b>PRUEBA DE DEDUCCIÓN</b>Antes de publicar, pregúntate: si yo trabajara en esa oficina, ¿podría adivinar quién habló? Si la respuesta es sí, la protección es ficticia y hay que reescribir la atribución.</div>
+
+    <h3>Cadena de custodia del material de campo</h3>
+    <p>La cadena de custodia es el registro de dónde salió cada archivo, quién lo tuvo y qué se le hizo. Es un concepto tomado del ámbito forense y es lo que convierte tu material en algo defendible.</p>
+    <ul>
+      <li>Original intacto, sin editar, guardado aparte y sin renombrar.</li>
+      <li>Copia de trabajo para edición. Nunca se edita el original.</li>
+      <li>Registro escrito: quién capturó, cuándo, dónde, con qué, quién más tuvo acceso.</li>
+      <li>Respaldo en un segundo soporte antes de salir del lugar, si es posible.</li>
+    </ul>
+    <div class="ej"><b>HASH DEL ARCHIVO</b>Calcular la huella digital del original y anotarla permite demostrar después que el archivo no fue modificado. Es lo que hacen los archivos de derechos humanos como Mnemonic con el material que preservan.</div>
+
+    <h3>Seguridad: del reportero y de quien habla</h3>
+    <p>La evaluación de riesgo se hace antes de salir y se escribe. Incluye tres capas que se suelen confundir.</p>
+    <ul>
+      <li><strong>Física.</strong> Rutas, horarios, con quién queda constancia de dónde estás y cuándo debes reaparecer.</li>
+      <li><strong>Digital.</strong> Qué lleva el dispositivo, qué pasa si se pierde o lo revisan, qué conversaciones existen y dónde.</li>
+      <li><strong>De la fuente.</strong> Qué le ocurre a ella si se sabe que habló. Casi siempre es la más grave y la que menos se planifica.</li>
+    </ul>
+    <div class="ej"><b>PRINCIPIO</b>El riesgo del reportero es voluntario y profesional. El de la fuente, muchas veces, ni es voluntario ni está informado. Explicarle qué puede pasarle es parte del consentimiento, no una cortesía.</div>
+
+    <h3>Del campo al cierre: flujo verificable</h3>
+    <p>El flujo de trabajo móvil que resiste una impugnación tiene seis pasos, y ninguno es opcional.</p>
+    <ol>
+      <li>Comprobación técnica de treinta segundos.</li>
+      <li>Pacto explícito de atribución, grabado.</li>
+      <li>Captura, incluyendo plano de contexto y ambiente limpio.</li>
+      <li>Respaldo inmediato y registro de custodia.</li>
+      <li>Verificación de lo capturado contra al menos otra fuente.</li>
+      <li>Publicación con declaración de lo que no se pudo confirmar.</li>
+    </ol>
+    <p>Ese último paso es el puente con la Unidad 1: el método sigue siendo el mismo. Lo único que cambió es que ahora cabe en un bolsillo y ocurre en cuarenta minutos.</p>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista en campo, con teléfono, a una vecina que presenció un derrumbe en su cuadra. Está alterada, quiere hablar, y hay dos personas escuchando alrededor. No hay tiempo para volver.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> Debes pactar la atribución antes de la primera pregunta. Ninguna pregunta puede sugerir la respuesta. Separa en todo momento lo que vio de lo que le contaron.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
+    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">TRABAJO DE CAMPO · OBLIGATORIO</span>
+      <p>Produce una pieza de entre 90 y 120 segundos grabada íntegramente con teléfono sobre un hecho verificable de tu comunidad. Entrega junto a la pieza: el registro de cadena de custodia, el plano de contexto sin editar, el ambiente limpio, y una nota de doscientas palabras declarando qué no pudiste verificar.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Sonido inteligible sin picos ni viento (20%) · Existencia y utilidad del plano de contexto (15%) · Pacto de atribución grabado al inicio (15%) · Registro de custodia completo y coherente (20%) · Clasificación correcta de cada fuente citada (15%) · Declaración honesta de lo no verificado (15%). Una pieza técnicamente impecable sin registro de custodia no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 2</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación, igual que en la Unidad 1.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida de la profesión</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="index.html" style="color:var(--green)">← Unidad 1: La Disciplina de la Verdad y Verificación</a>
+  </footer>
+</main>
+</div>
+
+<script>
+const TERMS=[
+ {t:"MoJo (Periodismo Móvil)",d:"Modo de producción donde captura, edición y publicación ocurren en el mismo dispositivo, reduciendo la distancia entre el hecho y su difusión.",s:"Briggs, Journalism Next"},
+ {t:"Plano de Contexto",d:"Barrido amplio que sitúa el lugar con elementos fijos identificables. Casi nunca se publica; es lo que permite demostrar dónde estuviste.",s:"Práctica establecida · Verification Handbook"},
+ {t:"Ambiente Limpio",d:"Treinta segundos de sonido del lugar sin voces, grabados aparte. Sirve para edición y para comparación acústica posterior.",s:"Briggs, Journalism Next"},
+ {t:"Metadatos EXIF",d:"Información incrustada en cada archivo: dispositivo, fecha, hora y coordenadas si la localización está activa. Prueba de procedencia y riesgo de exposición a la vez.",s:"Bradshaw, Online Journalism Handbook"},
+ {t:"Cadena de Custodia",d:"Registro de dónde salió cada archivo, quién lo tuvo y qué se le hizo. Concepto forense aplicado al material periodístico.",s:"Mnemonic · Syrian Archive"},
+ {t:"Hash del Archivo",d:"Huella digital calculada sobre el original que permite demostrar después que el archivo no fue modificado.",s:"Mnemonic · práctica de archivos de DDHH"},
+ {t:"En el Récord",d:"Condición de atribución por defecto: todo lo dicho es publicable con nombre y cargo. Debe declararse expresamente antes de empezar.",s:"Kovach &amp; Rosenstiel"},
+ {t:"Atribución de Fondo",d:"Publicable identificando por función y no por nombre. Solo es protección real si no vuelve deducible a la persona.",s:"Kovach &amp; Rosenstiel"},
+ {t:"Fuera del Récord",d:"No publicable. Orienta la investigación y obliga a buscar la misma información por otra vía documentable.",s:"Kovach &amp; Rosenstiel"},
+ {t:"Fuente Interesada",d:"La que tiene algo que ganar con la publicación. No se descarta: se declara al lector junto con su interés.",s:"Ward, Global Journalism Ethics"},
+ {t:"Triangulación",d:"Confirmación de una afirmación con dos o más fuentes independientes entre sí. Dos personas informadas por la misma tercera cuentan como una.",s:"Kovach &amp; Rosenstiel"},
+ {t:"Prueba de Deducción",d:"Comprobación previa a publicar: si alguien del entorno de la fuente leyera la pieza, ¿podría identificarla? Si sí, la protección es ficticia.",s:"Práctica establecida · UNESCO, seguridad de fuentes"}
+];
+
+const QUIZ=[
+ {q:"En periodismo móvil, el primer elemento en el que conviene invertir es:",
+  o:["La cámara del teléfono","El micrófono externo","La iluminación","La aplicación de edición"],c:1,
+  e:"El público tolera imagen mediocre y abandona ante mal sonido. El orden correcto es micrófono, estabilización, iluminación y solo al final cámara."},
+ {q:"El plano de contexto se graba principalmente para:",
+  o:["Abrir la pieza con una imagen atractiva","Poder demostrar después dónde y cuándo se estuvo","Rellenar la edición","Cumplir con el formato televisivo"],c:1,
+  e:"Casi nunca se publica. Su función es probatoria: es lo primero que se pide si alguien niega el hecho."},
+ {q:"Respecto a los metadatos EXIF, la regla correcta es:",
+  o:["Borrarlos siempre antes de archivar","Conservarlos siempre en lo publicado","Conservar el original intacto y limpiar la copia que se publica","Desactivar la localización de forma permanente"],c:2,
+  e:"Son prueba de procedencia y riesgo de exposición al mismo tiempo. Por eso se separa: original con metadatos guardado, copia publicada limpia."},
+ {q:"Dos personas que se enteraron del hecho por la misma tercera constituyen:",
+  o:["Dos fuentes independientes","Una sola fuente","Triangulación válida","Confirmación documental"],c:1,
+  e:"La independencia es lo que hace válida la triangulación. Si el origen es común, el número de intermediarios no añade verificación."},
+ {q:"La condición de atribución debe pactarse:",
+  o:["Al terminar la entrevista","Antes de la primera pregunta","Solo si la fuente lo pide","Al momento de editar"],c:1,
+  e:"La ambigüedad en este punto es la causa más común de conflicto con fuentes, y siempre la paga el reportero. Conviene además dejarla grabada."},
+ {q:"Una fuente se puede quemar sin revelar su nombre cuando:",
+  o:["Se la cita textualmente","Se publica un detalle que solo ella podía conocer","Se la describe por su función","Se le muestra el texto antes"],c:1,
+  e:"La protección es ficticia si el entorno puede deducir quién habló. De ahí la prueba de deducción antes de publicar."},
+ {q:"La cadena de custodia exige, como mínimo:",
+  o:["Editar sobre el archivo original para no duplicar","Conservar el original intacto y trabajar sobre una copia","Renombrar los archivos con el tema de la nota","Publicar el material en menos de 24 horas"],c:1,
+  e:"El original nunca se edita ni se renombra. La copia de trabajo es la que se manipula, y el registro documenta quién tuvo acceso a qué."},
+ {q:"En la evaluación de riesgo previa a salir a campo, la capa que suele estar menos planificada es:",
+  o:["La física del reportero","La digital del dispositivo","La de la fuente","La del medio"],c:2,
+  e:"El riesgo del reportero es voluntario y profesional; el de la fuente muchas veces no es ni voluntario ni informado. Explicárselo es parte del consentimiento."}
+];
+
+const CASES=[
+ {tag:"CASO 1 · REUTERS · AGOSTO DE 2006",t:"Adnan Hajj y la fotografía alterada de Beirut",
+  d:"Un fotógrafo independiente que había trabajado más de diez años para Reuters admitió haber usado Photoshop para añadir y oscurecer columnas de humo en una imagen de Beirut, haciendo que el daño pareciera mayor. La manipulación la detectó un blog, no la agencia. El 6 de agosto de 2006 Reuters rompió toda cooperación con él; al día siguiente retiró de la venta las 920 fotografías suyas que tenía en catálogo. Apareció además una segunda imagen alterada, con bengalas clonadas de un avión israelí presentadas como misiles.",
+  ej:"La agencia no descartó solo la foto manipulada: retiró todo su archivo. Cuando se prueba que un proveedor alteró una imagen, ninguna de las otras conserva valor probatorio, porque el método de trabajo entero queda en duda.",
+  p:["¿Por qué retirar 920 fotos y no solo las dos alteradas?","¿Qué falló en el control de la agencia si la detección vino de fuera?","¿Qué comprobación previa habría detectado el clonado?"],
+  m:"Retirar el archivo completo es la única respuesta coherente: la confianza no se deposita en cada imagen por separado sino en el procedimiento del autor, y ese procedimiento quedó invalidado. El fallo del control fue de escala y de incentivo — un flujo de agencia en cobertura bélica prioriza velocidad y volumen, y nadie examinaba los archivos al nivel de píxel que aplicó un lector motivado. La comprobación que lo habría detectado es elemental y hoy es rutina: examinar patrones repetidos en zonas de humo o polvo, donde el clonado deja duplicaciones idénticas que la naturaleza no produce.",
+  k:"La confianza en material visual no es por pieza, es por proveedor. Un solo archivo alterado invalida el resto de su trabajo."},
+ {tag:"CASO 2 · AMNISTÍA INTERNACIONAL · DESDE 2014",t:"Citizen Evidence Lab y la verificación abierta",
+  d:"Amnistía Internacional creó en 2014 el Citizen Evidence Lab, que reúne herramientas de investigación de fuente abierta para documentar violaciones de derechos humanos. Entre ellas el YouTube DataViewer, que extrae los metadatos de un video, muestra su miniatura y permite la búsqueda inversa de esa imagen para localizar publicaciones anteriores del mismo material. Investigaciones apoyadas en el laboratorio han documentado casos en Camerún, Siria y Sudán.",
+  ej:"El procedimiento típico: llega un video presentado como reciente. Se extrae la miniatura, se busca en inversa, y aparece publicado dos años antes en otro país. Cinco minutos de trabajo, y una pieza falsa que no llega a publicarse.",
+  p:["¿Por qué la miniatura es más útil que el video completo para la búsqueda inversa?","¿Qué límite tiene esta herramienta?","¿Qué diferencia hay entre verificar un video y verificar el hecho que muestra?"],
+  m:"La miniatura es una imagen fija indexable por los motores de búsqueda; el video como tal no lo es, de modo que la miniatura funciona como identificador de contenido reutilizable. El límite es claro: la herramienta establece si el archivo circuló antes y qué metadatos declara, no si lo que muestra ocurrió como se afirma. Verificar el video es una tarea sobre el archivo; verificar el hecho exige geolocalización, contraste con testimonios y con registros independientes. Confundir ambas cosas es el error habitual de quien descubre la herramienta.",
+  k:"Una herramienta verifica el archivo, no el hecho. La procedencia es el primer filtro, no la conclusión."},
+ {tag:"CASO 3 · MNEMONIC · DESDE 2014",t:"Syrian Archive y la preservación como método",
+  d:"Hadi Al Khatib y Jeff Deutch fundaron en 2014 el Syrian Archive para preservar material digital del conflicto sirio —imágenes, videos y publicaciones— como posible prueba de violaciones de derechos humanos. La organización, hoy llamada Mnemonic, mantiene también archivos de Yemen y Sudán, recopila y contextualiza el material, y forma a documentadores en métodos abiertos.",
+  ej:"El problema que resuelve es concreto: las plataformas eliminan contenido violento por sus propias normas, y al hacerlo borran la única prueba existente de un ataque. El archivo captura y preserva antes de que eso ocurra, con registro de origen y huella digital.",
+  p:["¿Por qué la preservación es un acto periodístico y no solo archivístico?","¿Qué se pierde cuando una plataforma elimina material por sus normas de contenido?","¿Qué obligación tiene un reportero que recibe material que puede desaparecer?"],
+  m:"Preservar es periodístico porque sin material no hay verificación posible después: la prueba de un hecho es tan duradera como su soporte, y un soporte alojado en una plataforma privada depende de decisiones ajenas. Cuando se elimina por normas de contenido se pierde, junto al video, el único registro de un ataque y con él la posibilidad de una investigación futura; la moderación automática no distingue entre propaganda y evidencia. La obligación del reportero que recibe material así es descargarlo, registrar su origen y calcular su huella digital antes de cualquier otra cosa, aunque no vaya a publicarlo ese día.",
+  k:"El material que no se preserva no se puede verificar después. Descargar y registrar es el primer acto de verificación, no el último."},
+ {tag:"CASO 4 · 2010",t:"Manning y Lamo: la fuente expuesta por el canal",
+  d:"En 2010, la analista de inteligencia Chelsea Manning entregó a WikiLeaks un volumen masivo de documentos militares y diplomáticos estadounidenses. Su identidad no se descubrió por un fallo de la publicación, sino porque mantuvo conversaciones sobre lo que había hecho con Adrian Lamo, quien entregó los registros de esos chats a las autoridades. Manning fue condenada en 2013.",
+  ej:"La filtración en sí estuvo bien protegida. Lo que falló fue todo lo demás: una conversación en un canal no seguro, con alguien que no tenía obligación profesional de protegerla, sobre un acto que ya había cometido.",
+  p:["¿Qué parte del proceso falló y cuál funcionó?","¿Qué obligación tiene el periodista sobre canales que no controla?","¿Puede un medio proteger a una fuente que se expone sola?"],
+  m:"Funcionó el canal de entrega; falló el perímetro alrededor de la fuente, que es más ancho que el sistema del medio. Un periodista no controla las conversaciones que su fuente mantiene con terceros, pero sí tiene la obligación de advertirle explícitamente que cualquier relato del hecho a cualquier persona —por afinidad, por culpa o por necesidad de hablar— destruye la protección. Un medio no puede proteger a quien se expone solo, y por eso la conversación sobre seguridad operacional debe ocurrir al principio de la relación y no cuando ya hay material publicado.",
+  k:"La protección de una fuente incluye advertirle de los riesgos que el medio no controla. El eslabón débil casi nunca es técnico."},
+ {tag:"CASO 5 · HURACÁN SANDY · OCTUBRE DE 2012",t:"El desastre como laboratorio de material falso",
+  d:"Durante el huracán Sandy en la costa este de Estados Unidos circularon masivamente imágenes presentadas como del evento que en realidad eran fotogramas de películas, fotografías de tormentas anteriores o montajes. Varias fueron reproducidas por medios establecidos antes de ser desmentidas. El episodio se convirtió en el caso de estudio central sobre verificación de contenido de usuario en emergencias.",
+  ej:"El patrón es constante en toda catástrofe: el material más espectacular es el que más circula, y lo espectacular es precisamente lo que un montaje puede producir mejor que la realidad. La imagen que mejor ilustra la historia es la que más probabilidades tiene de ser falsa.",
+  p:["¿Por qué las emergencias son el entorno más propicio para el material falso?","¿Qué hace un medio cuando no puede verificar y el material ya es viral?","¿Cambia algo el hecho de que otros medios ya lo publicaron?"],
+  m:"En una emergencia coinciden las tres condiciones que favorecen la circulación de material falso: enorme demanda de imágenes, imposibilidad de acceder al lugar y presión de inmediatez. Ante material viral no verificable, el medio puede informar sobre la circulación misma —que es un hecho comprobable— sin avalar el contenido, formulándolo con precisión: «circula una imagen que afirma mostrar X; este medio no ha podido establecer su origen». Que otros lo hayan publicado no altera nada: la conducta ajena no es un método de verificación, y si el material resulta falso el daño reputacional no se distribuye.",
+  k:"En emergencia, lo espectacular es lo más probable que sea falso. La circulación es un hecho verificable; el contenido, no."},
+ {tag:"CASO 6 · 2013",t:"La cuenta secuestrada y los tres minutos",
+  d:"En abril de 2013 la cuenta de Twitter de Associated Press fue comprometida y publicó un mensaje falso sobre explosiones en la Casa Blanca. El desmentido llegó en minutos, pero en ese intervalo el mensaje fue replicado masivamente y se registró una reacción inmediata en los mercados financieros.",
+  ej:"Nadie tuvo que falsificar un documento ni manipular una imagen. Bastó con controlar durante tres minutos una cuenta cuya credibilidad estaba ya construida por décadas de trabajo ajeno.",
+  p:["¿Qué se estaba verificando realmente cuando otros replicaron el mensaje?","¿Qué protección tiene una marca informativa contra el uso de su propia autoridad?","¿Qué revela el episodio sobre la velocidad como valor editorial?"],
+  m:"Quienes replicaron no verificaron el hecho: verificaron la fuente, y la fuente era auténtica en el sentido de que la cuenta era realmente de la agencia. Ese es el punto: la autoridad de una marca es transferible a cualquiera que obtenga sus credenciales, de modo que la única protección real es técnica —doble factor, control de accesos, rutinas de publicación— y no reputacional. El episodio muestra que en un sistema donde la velocidad es el valor dominante, el eslabón más débil no es el periodista sino el intervalo: tres minutos bastaron para producir un efecto material que el desmentido no revirtió.",
+  k:"La autoridad de una marca es transferible a quien robe sus credenciales. Verificar la fuente no es verificar el hecho."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La entrevista que empieza sin pacto",
+  d:"Llegas a un derrumbe. Una vecina empieza a contarte lo que vio sin que hayas dicho nada. Ya lleva dos minutos hablando y está diciendo cosas publicables.",
+  r:"Reportero · Vecina · Editor",
+  ej:"<span class='who'>VECINA:</span> …y yo le dije al de la brigada que eso llevaba meses así.<br><span class='who'>REPORTERO:</span> Perdone que la interrumpa un segundo. ¿Puedo grabar esto y publicarlo con su nombre?<br><span class='who'>VECINA:</span> ¿Con mi nombre?<br><span class='who'>REPORTERO:</span> Usted decide. Puedo poner su nombre, o solo «una vecina de la cuadra». Dígame cuál prefiere y seguimos.",
+  m:"Interrumpir es correcto y es obligatorio. Todo lo dicho antes del pacto está en un limbo: la vecina no sabía que hablaba con un medio en condiciones de publicar, y usarlo sería aprovechar una asimetría de información. La salida es detenerse, explicar en dos frases quién eres y qué vas a hacer con lo que diga, ofrecer las opciones de atribución y pedirle que repita lo sustancial ya con el pacto hecho y la grabación corriendo. Si se niega, lo anterior no se usa.",
+  c:"Interrumpir a tiempo, ofrecer opciones reales de atribución y no aprovechar lo dicho antes del pacto."},
+ {tag:"ESCENARIO 2",t:"El video que llega por mensajería",
+  d:"Un desconocido te envía un video de un hecho grave ocurrido supuestamente esta madrugada. No hay metadatos, el remitente no se identifica y la calidad indica que es una copia de copia.",
+  r:"Reportero · Verificador · Jefe de información",
+  ej:"<span class='who'>JEFE:</span> ¿Se puede publicar?<br><span class='who'>VERIFICADOR:</span> Puedo decirte que no aparece publicado antes. No puedo decirte dónde ni cuándo se grabó.<br><span class='who'>JEFE:</span> ¿Y si lo ponemos diciendo que circula?<br><span class='who'>VERIFICADOR:</span> Entonces la noticia es que circula, no lo que muestra. Escríbelo así y es defendible.",
+  m:"El material no se publica como hecho. Lo primero, antes de cualquier decisión editorial, es preservarlo: descargar, guardar el original sin renombrar y calcular su huella digital, porque si el remitente lo borra desaparece la única copia. Después se agotan las comprobaciones baratas: búsqueda inversa de fotogramas, identificación de elementos fijos, coherencia de luz y clima. Si nada concluye, la formulación publicable es sobre la circulación —hecho verificable— y no sobre el contenido, con la limitación dicha expresamente.",
+  c:"Preservar antes que decidir, y distinguir entre publicar un hecho y publicar la existencia de una circulación."},
+ {tag:"ESCENARIO 3",t:"La fuente que no entiende el riesgo",
+  d:"Un trabajador quiere hablar con nombre y apellido sobre irregularidades en su centro. Es su derecho, pero es evidente que no ha calculado lo que le puede pasar.",
+  r:"Reportero · Trabajador · Editor",
+  ej:"<span class='who'>TRABAJADOR:</span> Ponga mi nombre, yo no tengo miedo.<br><span class='who'>REPORTERO:</span> Se lo agradezco. ¿Cuántas personas hacen su trabajo en ese centro?<br><span class='who'>TRABAJADOR:</span> Dos.<br><span class='who'>REPORTERO:</span> Entonces aunque no ponga su nombre van a saber que fue usted. Hablemos de eso antes de decidir.",
+  m:"El consentimiento solo es válido si es informado, y aquí falta la información. La obligación del reportero no es disuadirlo —eso sería decidir por él— sino asegurarse de que entiende el escenario concreto: quién va a leer la pieza, cuánto tarda su centro en identificarlo, qué han hecho antes con otros. Después decide él y se registra esa conversación. Publicar el nombre de alguien que no midió la consecuencia no es respetar su voluntad: es usar su desconocimiento.",
+  c:"Verificar que el consentimiento es informado, sin sustituir la decisión de la fuente por la propia."},
+ {tag:"ESCENARIO 4",t:"El original que se editó por error",
+  d:"Al montar la pieza descubres que trabajaste sobre el archivo original y ya no existe la versión sin editar. La entrevista es la única que hay.",
+  r:"Reportero · Editor · Verificador",
+  ej:"<span class='who'>VERIFICADOR:</span> ¿Dónde está el original?<br><span class='who'>REPORTERO:</span> Es este. Corté sobre él.<br><span class='who'>VERIFICADOR:</span> Entonces no tenemos con qué demostrar que no se manipuló.<br><span class='who'>REPORTERO:</span> Tengo el respaldo de la tarjeta de esa mañana.",
+  m:"La pieza puede publicarse, pero la cadena de custodia está rota y hay que actuar en consecuencia. Se recupera lo que exista —respaldo automático, copia en la tarjeta, archivo en la nube— y se documenta por escrito qué se hizo, cuándo se descubrió y qué se conserva. Se informa al editor antes de publicar, no después. Y se anota como incidencia: un fallo de custodia registrado y explicado es defendible; el mismo fallo descubierto por un tercero, no.",
+  c:"Documentar el fallo antes de publicar y no ocultarlo. La honestidad procedimental es lo que sostiene la pieza cuando falta la prueba."},
+ {tag:"ESCENARIO 5",t:"El teléfono en el punto de control",
+  d:"Vuelves del campo con material sensible y hay una revisión de dispositivos en el camino. Llevas la entrevista y el contacto de la fuente en el mismo aparato.",
+  r:"Reportero · Editor de seguridad · Fuente",
+  ej:"<span class='who'>EDITOR:</span> ¿Qué llevas en el teléfono ahora mismo?<br><span class='who'>REPORTERO:</span> La entrevista, las fotos y su número.<br><span class='who'>EDITOR:</span> El número es lo único que no puede aparecer ahí.<br><span class='who'>REPORTERO:</span> Ya lo sé. Debí resolverlo antes de salir.",
+  m:"Este escenario se resuelve antes de que ocurra, no durante. Lo que protege es la planificación: subir el material y borrarlo del dispositivo en cuanto haya conexión, no guardar contactos sensibles en la agenda del teléfono de trabajo, y acordar con la fuente un canal que no deje registro identificable. En el momento del control ya no hay buenas opciones, solo malas: por eso la evaluación de riesgo digital es previa y escrita, igual que la física.",
+  c:"Reconocer que la decisión correcta era anterior, y describir el procedimiento que la habría evitado."},
+ {tag:"ESCENARIO 6",t:"La exclusiva del testigo único",
+  d:"Tienes un testimonio potente de una sola persona sobre un hecho grave. Nadie más lo confirma y la fuente es creíble.",
+  r:"Reportero · Editor · Abogado del medio",
+  ej:"<span class='who'>EDITOR:</span> ¿Cuántas fuentes?<br><span class='who'>REPORTERO:</span> Una, pero estuvo ahí.<br><span class='who'>EDITOR:</span> ¿Qué más tienes que no dependa de ella?<br><span class='who'>REPORTERO:</span> Nada todavía.",
+  m:"Un testimonio único no sostiene una afirmación grave, por creíble que sea la persona: la credibilidad no es una forma de prueba. Antes de publicar hay que buscar corroboración que no dependa de esa fuente —registros, imágenes, otro testigo con acceso distinto al hecho— y si no aparece, la pieza cambia de naturaleza: se publica como denuncia atribuida, dejando claro que es el relato de una persona y qué se intentó para contrastarlo. La diferencia entre «ocurrió» y «una trabajadora afirma que ocurrió» no es un matiz: son dos afirmaciones con cargas de prueba distintas.",
+  c:"Distinguir entre publicar un hecho y publicar un testimonio, y describir qué se hizo para corroborarlo."}
+];
+
+const IV=[
+ {q:"Antes de empezar: ¿puedo grabar esta conversación y publicarla con su nombre?",
+  m:"Es la primera pregunta obligatoria y va antes de cualquier otra. Grábala: el fragmento donde la fuente acepta es tu respaldo si después hay conflicto. Si dice que no, ofrécele la atribución de fondo y comprueba que esa protección sea real en su caso concreto."},
+ {q:"¿Qué vio usted directamente, con sus propios ojos?",
+  m:"Separa desde el inicio lo presenciado de lo escuchado. Casi todos los testimonios mezclan ambas cosas sin distinguirlas, y el reportero es quien tiene que hacer la separación, no la fuente."},
+ {q:"Lo que me acaba de contar del contratista, ¿lo vio o se lo contaron?",
+  m:"Pregunta de control, y hay que hacerla aunque incomode. Si se lo contaron, la siguiente es quién se lo contó y si esa persona está disponible. Un testimonio indirecto orienta la búsqueda; no sostiene una afirmación."},
+ {q:"¿A qué hora ocurrió y cómo lo sabe?",
+  m:"Toda referencia temporal necesita un anclaje verificable: un reloj, un programa de radio, la salida del trabajo. «Por la mañana» no es un dato; «cuando salía del turno de las siete» sí lo es, porque puede contrastarse."},
+ {q:"¿Hay alguien más que estuviera ahí en ese momento?",
+  m:"Es la pregunta que abre la triangulación y casi siempre se olvida en campo. Pídele nombres y una forma de contacto. Sin una segunda fuente independiente, lo que tienes es un testimonio, no un hecho establecido."},
+ {q:"¿Qué le puede pasar a usted si esto se publica con su nombre?",
+  m:"Cierra la entrevista donde empezó. Obliga a la fuente a pensar la consecuencia concreta y te permite comprobar que su consentimiento es informado. Si la respuesta revela un riesgo que no había considerado, se renegocia la atribución antes de irte, no por mensaje al día siguiente."}
+];
+
+const AUDIT=[
+ ["v","Adnan Hajj admitió alterar con Photoshop una imagen de Beirut; Reuters rompió relación con él el 6 de agosto de 2006 y al día siguiente retiró sus 920 fotografías. Hubo una segunda imagen alterada con bengalas clonadas.","Reuters, agosto de 2006. Contrastado en NPR y en la documentación del Bronx Documentary Center."],
+ ["v","Amnistía Internacional creó el Citizen Evidence Lab en 2014; el YouTube DataViewer extrae metadatos y permite búsqueda inversa de la miniatura.","Amnesty International, citizenevidence.org. Verificado."],
+ ["v","El Syrian Archive fue fundado en 2014 por Hadi Al Khatib y Jeff Deutch; hoy Mnemonic mantiene también los archivos de Yemen y Sudán.","mnemonic.org y Exposing the Invisible. Verificado."],
+ ["v","La primera edición del Verification Handbook está dedicada a la verificación de contenido de usuario en emergencias.","European Journalism Centre, verificationhandbook.com. Verificado."],
+ ["b","El orden de inversión en periodismo móvil es micrófono, estabilización, iluminación y cámara.","Briggs, Journalism Next. Práctica establecida en formación de MoJo."],
+ ["b","El plano de contexto y el ambiente limpio cumplen función probatoria, no narrativa.","Práctica establecida de campo, convergente con el Verification Handbook."],
+ ["b","Los metadatos EXIF son simultáneamente prueba de procedencia y riesgo de exposición de la fuente.","Bradshaw, Online Journalism Handbook."],
+ ["b","Tipología de fuentes: documental, testimonial directa, testimonial indirecta, experta e interesada.","Kovach &amp; Rosenstiel. Clasificación docente estándar."],
+ ["b","La triangulación exige independencia entre fuentes; un origen común anula el conteo.","Kovach &amp; Rosenstiel."],
+ ["b","Las condiciones de atribución —en el récord, de fondo, fuera del récord, bajo embargo— deben pactarse antes de la entrevista.","Práctica deontológica establecida; recogida en manuales de estilo de agencias."],
+ ["b","La cadena de custodia exige original intacto, copia de trabajo, registro de accesos y respaldo.","Concepto forense aplicado al material periodístico; práctica de Mnemonic y archivos de derechos humanos."],
+ ["b","El cálculo de la huella digital del original permite demostrar posteriormente que no fue modificado.","Práctica de preservación de Mnemonic y de laboratorios de evidencia abierta."],
+ ["b","Chelsea Manning fue identificada a raíz de conversaciones con Adrian Lamo, que entregó los registros; fue condenada en 2013.","Cobertura de 2010-2013. Hecho ampliamente documentado; conviene contrastar detalles procesales con la fuente primaria si se amplía el caso."],
+ ["b","Durante el huracán Sandy (octubre de 2012) circularon masivamente imágenes falsas presentadas como del evento, algunas reproducidas por medios establecidos.","Caso de estudio estándar en literatura de verificación de UGC; recogido en el Verification Handbook."],
+ ["b","En abril de 2013 la cuenta de Associated Press en Twitter fue comprometida y publicó un mensaje falso sobre explosiones en la Casa Blanca, con reacción inmediata en los mercados.","Cobertura de abril de 2013. Hecho ampliamente documentado."]
+];
+
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){
+  aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'));
+});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let done=0,right=0;
+const quiz=document.getElementById('quiz');
+QUIZ.forEach(function(it,i){
+  const card=el('<div class="q"><div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+  const opts=card.querySelector('.opts');
+  it.o.forEach(function(o,j){
+    const b=document.createElement('button');
+    b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+    b.onclick=function(){
+      if(card.dataset.done) return;
+      card.dataset.done='1'; done++;
+      var kids=opts.children;
+      for(var k=0;k<kids.length;k++){
+        kids[k].classList.add('done');
+        if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+        else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+      }
+      if(j===it.c) right++;
+      card.querySelector('.exp').classList.add('show');
+      document.getElementById('score').textContent='RESPONDIDAS '+done+' / '+QUIZ.length+' · CORRECTAS '+right;
+    };
+    opts.appendChild(b);
+  });
+  quiz.appendChild(card);
+});
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1;
+    b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
