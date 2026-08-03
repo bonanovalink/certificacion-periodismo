@@ -73,6 +73,14 @@
   .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
   .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
 
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
   .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
   .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
   .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
@@ -159,6 +167,7 @@
     <button class="tab" data-t="rol">Juegos de Roles (6)</button>
     <button class="tab" data-t="ent">Entrevista Simulada</button>
     <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
   </div>
 
   <section id="obj" class="on">
@@ -314,6 +323,21 @@
     <div id="iv"></div>
   </section>
 
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 1</h3>
+    <p>Este curso exige al estudiante que muestre cómo sabe lo que afirma. Sería incoherente no aplicárselo a sí mismo. Abajo está cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:20px">
+      <span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span>
+    </div>
+    <div class="row" style="margin-bottom:20px">
+      <span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios; concepto establecido en la disciplina</span>
+    </div>
+    <div class="row" style="margin-bottom:24px">
+      <span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span>
+    </div>
+    <div id="audit"></div>
+  </section>
+
   <footer>
     Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
     Casos documentados a partir de informes públicos de los medios implicados y revisiones externas encargadas por ellos.
@@ -455,8 +479,42 @@ const TERMS=[
  {t:"Búsqueda Inversa de Imagen",d:"Rastreo de apariciones previas de una imagen para determinar si es original o reciclada.",s:"Briggs, Journalism Next"}
 ];
 
+const AUDIT=[
+ ["v","«La esencia del periodismo es una disciplina de verificación».","Kovach &amp; Rosenstiel, cap. 4. Contrastado en Nieman Reports y en el sitio de Tom Rosenstiel."],
+ ["v","Los cinco principios intelectuales: no agregar, no engañar, transparencia, reporteo propio, humildad.","Kovach &amp; Rosenstiel, cap. 4. Formulación contrastada contra fuentes secundarias académicas."],
+ ["b","La primera obligación del periodismo es la verdad; es el primero de los diez elementos.","Kovach &amp; Rosenstiel, cap. 1."],
+ ["b","Verdad funcional o práctica, corregible y acumulativa, frente a verdad filosófica.","Kovach &amp; Rosenstiel, cap. 2."],
+ ["b","La objetividad se formuló en los años veinte como método, porque se asumía que el periodista no es objetivo.","Kovach &amp; Rosenstiel, cap. 4. Concepto establecido; conviene contrastar la datación exacta con la edición que se use."],
+ ["b","Distinción entre periodismo de afirmación y periodismo de verificación.","Kovach &amp; Rosenstiel, cap. 4."],
+ ["b","La exactitud es propiedad de los elementos; la verdad, del conjunto.","Kovach &amp; Rosenstiel, cap. 2. Formulación docente propia derivada del argumento del capítulo."],
+ ["b","La transparencia como sustituto operativo de la neutralidad.","Kovach &amp; Rosenstiel, cap. 4."],
+ ["b","La carga de la prueba recae sobre quien publica y no se traslada citando.","Ward, Global Journalism Ethics. Principio también recogido en códigos deontológicos nacionales."],
+ ["b","Las cuatro comprobaciones de procedencia: origen, fuente, fecha y lugar.","Bradshaw, Online Journalism Handbook. Convergente con el Verification Handbook del EJC."],
+ ["b","Búsqueda inversa de imagen como técnica de rastreo de apariciones previas.","Briggs, Journalism Next."],
+ ["v","Relotius fabricó total o parcialmente al menos 14 de cerca de 60 artículos; destapado en diciembre de 2018 por un colega en un reportaje sobre la frontera EEUU-México.","Der Spiegel, diciembre de 2018. Contrastado en CNN Business y Columbia Journalism Review."],
+ ["p","Cooke: «Jimmy's World» publicado el 28 de septiembre de 1980; Pulitzer en abril de 1981; devuelto dos días después.","The Washington Post. Fechas exactas pendientes de contraste con el archivo del diario y el registro del Premio Pulitzer."],
+ ["p","Blair: el New York Times publicó en mayo de 2003 una investigación sobre su propio reportero; renunciaron después el director y el subdirector.","The New York Times, mayo de 2003. Pendiente de contraste con la investigación original del diario."],
+ ["p","Documentos Killian: emitidos por CBS en septiembre de 2004; una revisión externa concluyó fallo de autenticación; hubo despidos.","CBS News y revisión externa encargada por la cadena. Pendiente de contraste con el informe completo."],
+ ["p","Boston 2013: identificación errónea de un estudiante desaparecido; el foro pidió disculpas públicamente.","Cobertura de abril de 2013. Pendiente de contraste con la disculpa oficial publicada."],
+ ["p","Bellingcat reconstruyó con material abierto la ruta del sistema antiaéreo del MH17; investigaciones oficiales posteriores convergieron.","Bellingcat, 2014 en adelante. Pendiente de contraste con los informes del equipo conjunto de investigación."],
+ ["v","UNESCO publica currículos modelo de formación periodística a través del IPDC, con 19 manuales en más de 30 idiomas.","UNESCO, Journalism Education. Verificado en unesco.org."],
+ ["v","El Verification Handbook v3 (2025) está editado por Craig Silverman para el European Journalism Centre y cubre desinformación y manipulación mediática.","verificationhandbook.com y ejc.net. Verificado."],
+ ["v","La IFCN publica un Código de Principios que asumen las organizaciones verificadoras signatarias.","ifcncodeofprinciples.poynter.org. Verificado."],
+ ["v","El Reuters Institute publica anualmente el Digital News Report sobre consumo de noticias y confianza.","Reuters Institute, Universidad de Oxford. Verificado."]
+];
+
 const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
 let done=0, right=0;
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){
+  aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div>'+
+    '<div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'));
+});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">'+
+  'TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
 
 const tw=document.getElementById('terms');
 TERMS.forEach(function(x){
