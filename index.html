@@ -714,7 +714,7 @@ function marcador(){
     let intentos=0, hecho=false;
     function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
     function acierto(){
-      hecho=true; resueltos++; if(intentos===0) primeros++;
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
       tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
       card.querySelector('.exp').classList.add('show'); marcador();
     }
