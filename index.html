@@ -152,17 +152,16 @@
   </div>
 
   <div class="tabs">
-    <button class="tab on" data-t="dia">Diapositivas</button>
-    <button class="tab" data-t="obj">Objetivos</button>
+    <button class="tab on" data-t="obj">Objetivos</button>
     <button class="tab" data-t="ter">Términos Clave</button>
-    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
     <button class="tab" data-t="cas">Casos de Estudio (6)</button>
     <button class="tab" data-t="rol">Juegos de Roles (6)</button>
     <button class="tab" data-t="ent">Entrevista Simulada</button>
-    <button class="tab" data-t="exa">Examen de Unidad</button>
+    <button class="tab" data-t="pru">Prueba</button>
   </div>
 
-  <section id="obj">
+  <section id="obj" class="on">
     <h3>Objetivos de aprendizaje</h3>
     <ol>
       <li>Distinguir el periodismo de afirmación del periodismo de verificación, e identificar a cuál pertenece una pieza publicada.</li>
@@ -172,16 +171,41 @@
       <li>Documentar el método de una investigación de modo que un tercero pueda auditarla.</li>
       <li>Evaluar la procedencia de un material digital antes de publicarlo.</li>
     </ol>
-    <h3>Bibliografía de la unidad</h3>
+    <h3>Bibliografía obligatoria</h3>
     <ul>
       <li>Bill Kovach y Tom Rosenstiel, <em>The Elements of Journalism</em> — caps. 1, 2 y 4</li>
       <li>Paul Bradshaw, <em>The Online Journalism Handbook</em> — verificación de material de usuario</li>
       <li>Stephen J. A. Ward, <em>Global Journalism Ethics</em> — cap. introductorio</li>
       <li>Mark Briggs, <em>Journalism Next</em> — herramientas digitales de comprobación</li>
     </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <p>El contenido de esta unidad se ancla en los estándares y la investigación vigentes, no solo en la bibliografía clásica. Los cuatro marcos siguientes son de acceso público y el estudiante debe consultarlos:</p>
+    <div class="terms">
+      <div class="term"><h5>UNESCO — Model Curricula for Journalism Education</h5>
+        <div class="def">Currículos modelo publicados por el Programa Internacional para el Desarrollo de la Comunicación. Fijan estándares de formación periodística basados en buenas prácticas internacionales; el IPDC ha publicado 19 manuales en más de 30 idiomas.</div>
+        <p class="src">unesco.org · Journalism Education</p></div>
+      <div class="term"><h5>Verification Handbook (v3, 2025)</h5>
+        <div class="def">Editado por Craig Silverman para el European Journalism Centre. La tercera edición cubre desinformación y manipulación mediática: cuentas falsas, bots, operaciones de información y material sintético.</div>
+        <p class="src">verificationhandbook.com · EJC</p></div>
+      <div class="term"><h5>IFCN — Código de Principios</h5>
+        <div class="def">Compromisos que asumen las organizaciones de verificación signatarias: no partidismo, transparencia de fuentes, de financiación, de metodología y política de correcciones abierta.</div>
+        <p class="src">ifcncodeofprinciples.poynter.org</p></div>
+      <div class="term"><h5>Reuters Institute — Digital News Report</h5>
+        <div class="def">Estudio anual de la Universidad de Oxford sobre consumo de noticias y confianza del público. Es la base empírica para discutir por qué la transparencia de método se volvió una exigencia y no un adorno.</div>
+        <p class="src">reutersinstitute.politics.ox.ac.uk</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de los dos ensayos. El <strong>Examen de Unidad</strong> integrador corresponde a la Unidad 4 y abarca las cuatro unidades del curso, conforme a los requisitos de graduación del certificado.</p>
+    </div>
   </section>
 
-  <section id="dia" class="on">
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
     <h3><span class="n">01</span>La primera obligación</h3>
     <p>El periodismo tiene un primer deber, y no es informar: es la verdad. Kovach y Rosenstiel colocan esta obligación como el primero de los diez elementos porque de ella se derivan todos los demás. Pero la formulación exige una precisión inmediata: no se trata de la verdad filosófica, absoluta y definitiva, sino de lo que ellos llaman <strong>verdad funcional</strong>.</p>
     <p>Un tribunal busca la verdad jurídica. Un laboratorio busca la verdad científica, siempre provisional. El periodismo busca una verdad utilizable: la que permite a un ciudadano tomar decisiones sobre su vida. Esa verdad es corregible, se construye por capas y admite que la nota de mañana enmiende la de hoy.</p>
@@ -243,6 +267,7 @@
     <h3><span class="n">10</span>Síntesis: el método es la identidad</h3>
     <p>La identidad profesional del periodista no descansa en una credencial, un empleador ni una plataforma. Descansa en un método comprobable que cualquiera puede aplicar y cuya aplicación cualquiera puede auditar.</p>
     <p>La implicación incómoda: publicar en un medio prestigioso no vuelve periodístico un texto no verificado. La liberadora: aplicar el método sí lo vuelve periodístico, aunque se publique en un blog.</p>
+    </div>
   </section>
 
   <section id="ter">
@@ -287,17 +312,6 @@
       <p style="margin-bottom:0"><strong>Restricciones.</strong> Ninguna pregunta puede llevar adjetivo valorativo. Cada pregunta debe poder responderse con un dato o con sí/no. Si el entrevistado da una cifra agregada, la siguiente pregunta debe desagregarla.</p>
     </div>
     <div id="iv"></div>
-  </section>
-
-  <section id="exa">
-    <h3>Examen de unidad</h3>
-    <div class="case"><span class="tag">PARTE A · 40%</span><p style="margin:0">Diez preguntas de opción múltiple sobre los cinco principios, la distinción afirmación/verificación y las comprobaciones de procedencia.</p></div>
-    <div class="case"><span class="tag">PARTE B · 30%</span><p style="margin:0">Análisis de una pieza publicada entregada el día del examen. Identificar tipo de periodismo, afirmaciones con carga de prueba no satisfecha, y reescribir la entrada aplicando transparencia.</p></div>
-    <div class="case"><span class="tag">PARTE C · 30%</span><p>Caso práctico. Se entrega un expediente con un video sin procedencia, dos testimonios contradictorios y un documento de autenticidad dudosa. El estudiante produce un memorando de decisión editorial.</p>
-      <button class="reveal">Ver estructura del memorando modelo</button>
-      <div class="model"><b>MEMORANDO MODELO — ESTRUCTURA</b>1. Qué se publica y con qué formulación exacta.<br>2. Qué queda fuera y por qué, elemento por elemento.<br>3. Qué comprobación adicional convertiría cada elemento excluido en publicable.<br>4. Qué se le dice al lector sobre lo que no se pudo confirmar.<br>5. Plazo y responsable de cada comprobación pendiente.</div>
-    </div>
-    <p><strong>Aprobación:</strong> 75%, conforme a los requisitos de graduación del certificado.</p>
   </section>
 
   <footer>
@@ -542,7 +556,36 @@ IV.forEach(function(it,i){
   ivw.appendChild(d);
 });
 
-document.querySelectorAll('#pru .reveal, #exa .reveal').forEach(bindReveal);
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+/* diapositivas en paginador: agrupa el HTML existente por cada <h3> */
+(function(){
+  const src=document.getElementById('slidesSrc'), body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'), lab=document.getElementById('sLabel'), tit=document.getElementById('sTitle');
+  const kids=[...src.children], pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){ pages.push({t:n.textContent.replace(/^\s*\d+\s*/,'').trim(), nodes:[]}); }
+    else if(pages.length){ pages[pages.length-1].nodes.push(n); }
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.style.cssText=''; b.textContent=i+1;
+    b.onclick=function(){show(i)};
+    nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){ body.appendChild(n.cloneNode(true)); });
+  }
+  show(0);
+})();
 
 document.querySelectorAll('.tab').forEach(function(b){
   b.onclick=function(){
