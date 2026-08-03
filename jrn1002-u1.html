@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1002 · Unidad 1 — Fundamentos del Periodismo de Datos de Vigilancia</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1002, Unidad 1.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course on" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="#"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1002 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Fundamentos del Periodismo de Datos de Vigilancia</h2>
+  <div class="sub">Unidad 1 de 4 · Periodismo de Datos y Visualización</div>
+
+  <div class="units">
+    <span class="unit on">Unidad 1: Fundamentos del Periodismo de Datos de Vigilancia</span>
+    <span class="unit">Unidad 2: Limpieza de Datos y Auditoría de Planillas</span>
+    <span class="unit">Unidad 3: Correlación Estadística y Análisis Causal</span>
+    <span class="unit">Unidad 4: Cartografía Interactiva y Visualización de Datos</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>El periodismo de datos no es periodismo con gráficos. Es la aplicación del método de verificación a un tipo de fuente que no habla, no se contradice y no se retracta: un conjunto de registros. Esta unidad establece qué se le puede exigir a esa fuente y qué no.</p>
+    <p style="margin-bottom:0">El eje es que <strong>los datos no son la realidad: son el registro que alguien decidió llevar</strong>. Alguien eligió qué contar, cómo definirlo, con qué frecuencia y qué dejar fuera, y esas decisiones son la primera línea de la investigación. Cuando el registro no existe —como ocurrió con las muertes a manos de la policía en Estados Unidos— construirlo es en sí mismo un acto periodístico.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Explicar por qué un conjunto de datos es una fuente con intereses y no una descripción neutral de la realidad.</li>
+      <li>Interrogar una base de datos: quién la produce, con qué definición, desde cuándo y qué deja fuera.</li>
+      <li>Identificar el denominador correcto y la unidad de análisis de una afirmación cuantitativa.</li>
+      <li>Redactar una solicitud de acceso a la información suficientemente precisa para ser respondida.</li>
+      <li>Reconocer cuándo la ausencia de datos oficiales es en sí misma la noticia.</li>
+      <li>Documentar un análisis de forma que un tercero pueda reproducirlo.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Jonathan Gray y Liliana Bounegru, <em>The Data Journalism Handbook</em> (2.ª ed., 2021)</li>
+      <li>Simon Rogers, <em>Facts are Sacred</em> (2013)</li>
+      <li>Paul Bradshaw, <em>The Online Journalism Handbook</em> (3.ª ed., 2023)</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>The Data Journalism Handbook</h5>
+        <div class="def">Obra colectiva coordinada por Gray y Bounegru, de acceso abierto, que recoge la práctica de redacciones de datos de todo el mundo. Es la referencia estándar del campo.</div>
+        <p class="src">datajournalism.com · European Journalism Centre</p></div>
+      <div class="term"><h5>Fatal Force — The Washington Post</h5>
+        <div class="def">Base de datos construida por un medio ante la ausencia de registro oficial fiable. Modelo del periodismo de datos como creación de la fuente, no solo como análisis.</div>
+        <p class="src">washingtonpost.com · Pulitzer 2016</p></div>
+      <div class="term"><h5>La Nación Data — Argentina</h5>
+        <div class="def">Unidad de datos pionera en América Latina, formada a comienzos de 2011. Su plataforma VozData incorporó al público a la verificación de documentos públicos.</div>
+        <p class="src">lanacion.com.ar · ICFJ · Knight Center</p></div>
+      <div class="term"><h5>IFCN — Transparencia de metodología</h5>
+        <div class="def">El código exige publicar la metodología con que se llega a una conclusión. Aplicado a datos, significa publicar fuente, período, criterios de exclusión y procesamiento.</div>
+        <p class="src">ifcncodeofprinciples.poynter.org</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y una ficha de interrogatorio de un conjunto de datos real. El <strong>Examen Integrador</strong> de JRN-1002 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Qué es el periodismo de datos y qué no</h3>
+    <p>El periodismo de datos es el uso de conjuntos de registros como fuente principal de una investigación. No se define por la herramienta —una hoja de cálculo no es más periodística que una libreta— ni por el gráfico final, que es solo una forma de presentar el hallazgo.</p>
+    <p>Se define por lo mismo que definía al periodismo en JRN-1001: un método comprobable. La diferencia es que aquí la fuente es un archivo, y a un archivo se le hacen preguntas distintas que a una persona.</p>
+    <div class="ej"><b>DISTINCIÓN ÚTIL</b>Ilustrar con datos es presentación. Investigar con datos es hallar en el registro algo que nadie había afirmado, y poder demostrarlo. Solo lo segundo es periodismo de datos.</div>
+
+    <h3>Los datos no son la realidad</h3>
+    <p>Todo conjunto de datos es el resultado de decisiones humanas: alguien decidió qué medir, con qué definición, con qué frecuencia y qué categorías usar. Esas decisiones se toman por razones administrativas, no periodísticas, y arrastran los intereses de quien las tomó.</p>
+    <p>De ahí la regla central de la unidad: <strong>el dato es una fuente interesada</strong>. No miente necesariamente, pero fue producido por alguien con un propósito, y ese propósito determina qué se ve y qué queda invisible.</p>
+    <div class="ej"><b>EJEMPLO</b>Una estadística de «delitos denunciados» no mide delitos: mide denuncias. Si la confianza en la policía baja, las denuncias bajan y el delito parece disminuir. El dato es correcto; la conclusión intuitiva es falsa.</div>
+
+    <h3>Entrevistar una base de datos</h3>
+    <p>A un conjunto de datos se le hacen las mismas preguntas que a una fuente humana, formuladas de otro modo.</p>
+    <ul>
+      <li><strong>¿Quién eres?</strong> Qué organismo lo produce y con qué mandato.</li>
+      <li><strong>¿Qué mides exactamente?</strong> La definición operativa de cada variable.</li>
+      <li><strong>¿Desde cuándo y cada cuánto?</strong> Serie temporal y cambios de metodología.</li>
+      <li><strong>¿Qué dejas fuera?</strong> Criterios de exclusión, casos no registrados.</li>
+      <li><strong>¿Quién se beneficia de que digas esto?</strong> Interés del productor.</li>
+    </ul>
+    <div class="ej"><b>EL DICCIONARIO DE DATOS</b>Es el documento que responde estas preguntas. Si no existe o no te lo entregan, esa negativa es información publicable: significa que el organismo no puede explicar qué está midiendo.</div>
+
+    <h3>De dónde salen los datos</h3>
+    <p>Cuatro vías, en orden de solidez decreciente y de esfuerzo creciente.</p>
+    <ul>
+      <li><strong>Publicación oficial.</strong> Portales de datos abiertos, anuarios, boletines. Cómodo y a menudo incompleto.</li>
+      <li><strong>Solicitud de acceso.</strong> Petición formal de un registro no publicado. Lenta, pero produce material que nadie más tiene.</li>
+      <li><strong>Extracción de fuentes públicas.</strong> Recopilación sistemática de información dispersa en sitios web, boletines o expedientes.</li>
+      <li><strong>Construcción propia.</strong> Cuando el registro no existe, el medio lo crea. Es la vía más costosa y la más valiosa.</li>
+    </ul>
+    <div class="ej"><b>REGLA DE PROCEDENCIA</b>Igual que con un video en la Unidad 2 de JRN-1001: antes de usar un archivo hay que poder decir de dónde salió, quién lo tuvo antes y si es el original o una copia procesada.</div>
+
+    <h3>La solicitud de acceso a la información</h3>
+    <p>Una solicitud mal redactada se responde con un «no consta» perfectamente legal. Una bien redactada obliga a producir el documento o a negarlo por escrito, y ambas cosas sirven.</p>
+    <ul>
+      <li>Pide <strong>registros</strong>, no explicaciones: «la base de datos de X en formato electrónico», no «información sobre X».</li>
+      <li>Especifica <strong>período</strong> y <strong>formato</strong>: CSV o similar, no PDF.</li>
+      <li>Cita el <strong>fundamento legal</strong> aplicable en tu jurisdicción.</li>
+      <li>Pide el <strong>diccionario de datos</strong> junto con los datos.</li>
+      <li>Registra fecha de envío y número de expediente. El plazo empieza a contar ahí.</li>
+    </ul>
+    <div class="ej"><b>EL SILENCIO TAMBIÉN ES DATO</b>Una negativa o un vencimiento de plazo es un hecho publicable con fecha y número de expediente. Muchas investigaciones empiezan ahí.</div>
+
+    <h3>El formato es una decisión política</h3>
+    <p>Entregar en PDF una información que existe en base de datos no es un detalle técnico: es una forma de cumplir la ley sin permitir el análisis. Un PDF de mil páginas satisface la obligación de transparencia y hace inviable cualquier agregación.</p>
+    <p>Por eso las buenas leyes de acceso especifican que la información se entregue en formato reutilizable, y por eso conviene pedirlo expresamente y dejar constancia si se niega.</p>
+    <div class="ej"><b>ESCALA DE UTILIDAD</b>Papel escaneado &lt; PDF de texto &lt; hoja de cálculo &lt; CSV &lt; base de datos con diccionario. Cada escalón hacia abajo multiplica el trabajo del periodista, que es exactamente el efecto buscado.</div>
+
+    <h3>Cómo mienten los datos correctos</h3>
+    <p>Los tres mecanismos habituales no requieren falsificar nada.</p>
+    <ul>
+      <li><strong>Definición.</strong> Cambiar qué cuenta como el fenómeno. Si se redefine «desempleado», la serie se rompe sin que nadie mienta.</li>
+      <li><strong>Agregación.</strong> Un promedio nacional oculta que una provincia empeoró el triple.</li>
+      <li><strong>Denominador.</strong> Cifras absolutas sin población de referencia hacen que la ciudad más grande siempre parezca la peor.</li>
+    </ul>
+    <div class="ej"><b>CONEXIÓN CON JRN-1001</b>Es la misma lección de la Unidad 1: exactitud no es verdad. Cada dato puede ser correcto y la afirmación del titular, falsa.</div>
+
+    <h3>El denominador y la unidad de análisis</h3>
+    <p>Antes de comparar hay que fijar dos cosas. La <strong>unidad de análisis</strong> es qué representa cada fila: ¿un caso, una persona, un expediente, un año-persona? Y el <strong>denominador</strong> es contra qué se compara: población, presupuesto, kilómetros, casos totales.</p>
+    <p>La mayoría de los errores publicados en periodismo de datos no están en el cálculo, sino en haber comparado dos cosas que no son comparables.</p>
+    <div class="ej"><b>PRUEBA</b>Escribe la afirmación completa antes de calcular: «X por cada Y, en el período Z, según la definición W». Si no puedes completar los cuatro huecos, todavía no tienes un hallazgo.</div>
+
+    <h3>Reproducibilidad: el cuaderno de análisis</h3>
+    <p>El equivalente de la cadena de custodia en periodismo de datos es el cuaderno de análisis: un registro de cada paso desde el archivo original hasta la cifra publicada.</p>
+    <ul>
+      <li>Archivo original guardado sin modificar, con fecha y origen.</li>
+      <li>Cada transformación anotada: qué filas se excluyeron y por qué.</li>
+      <li>El cálculo reproducible por otra persona con el mismo archivo.</li>
+      <li>La cifra publicada localizable en un paso concreto.</li>
+    </ul>
+    <div class="ej"><b>PRUEBA DE REPRODUCIBILIDAD</b>Si un colega toma tu archivo original y tu cuaderno, ¿llega a la misma cifra sin preguntarte nada? Si no, no tienes un análisis: tienes un resultado.</div>
+
+    <h3>Cuando el dato no existe</h3>
+    <p>La ausencia de registro oficial sobre un asunto de interés público no es un obstáculo: es un hallazgo. Significa que nadie está midiendo algo que debería medirse, y eso tiene consecuencias verificables.</p>
+    <p>La respuesta profesional tiene dos partes. Publicar la ausencia como noticia, con las gestiones documentadas. Y, si el asunto lo justifica, <strong>construir el registro</strong> con criterios explícitos y publicarlo, como hicieron varios medios estadounidenses con las muertes causadas por disparos policiales.</p>
+    <div class="ej"><b>EXIGENCIA</b>Quien construye un registro asume la carga de publicar su metodología completa: qué cuenta, qué no, de dónde sale cada caso y cómo se corrige. Sin eso, se ha creado una cifra, no una fuente.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista al responsable de estadística de un organismo público sobre una serie de datos que tu análisis contradice. Él conoce la metodología mejor que tú y lo sabe.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes afirmar que el dato es falso, solo preguntar cómo se produce. Toda respuesta debe quedar anclada a una definición o a un documento. Si te corrige, tienes que poder reconocerlo.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
+    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">FICHA DE INTERROGATORIO · OBLIGATORIA</span>
+      <p>Elige un conjunto de datos público de tu país. Entrega una ficha que responda: organismo productor y mandato; definición operativa de las tres variables principales; serie temporal y cambios de metodología; criterios de exclusión; formato de entrega y su efecto sobre el análisis; y una afirmación completa que el conjunto permita sostener, con denominador y unidad de análisis explícitos.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Identificación del productor y su interés (15%) · Definiciones operativas correctas y citadas del diccionario (25%) · Detección de cambios de metodología en la serie (20%) · Criterios de exclusión y su efecto (15%) · Afirmación completa con los cuatro elementos (25%). Una ficha que describa el contenido del archivo sin interrogar cómo se produjo no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 1</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="index.html">← JRN-1001: Comunicación Social y Periodismo Internacional</a>
+  </footer>
+</main>
+</div>
+
+<script>
+const TERMS=[
+ {t:"Dato Estructurado",d:"Registro organizado en filas y columnas con definiciones estables, susceptible de agregación y comparación.",s:"Gray &amp; Bounegru, Data Journalism Handbook"},
+ {t:"Diccionario de Datos",d:"Documento que define cada variable, su unidad de medida y sus criterios de inclusión. Sin él, el conjunto no es interpretable.",s:"Gray &amp; Bounegru · Bradshaw"},
+ {t:"Unidad de Análisis",d:"Qué representa cada fila del conjunto: un caso, una persona, un expediente, un período. Determina qué se puede afirmar.",s:"Práctica estadística aplicada · Rogers"},
+ {t:"Denominador",d:"Magnitud contra la que se compara una cifra. Sin él, las cifras absolutas favorecen sistemáticamente a las unidades más grandes.",s:"Rogers, Facts are Sacred"},
+ {t:"Agregación",d:"Combinación de casos en un valor único. Oculta la variación interna, que es a menudo donde está la historia.",s:"Gray &amp; Bounegru"},
+ {t:"Sesgo de Recolección",d:"Distorsión introducida por el modo en que se recogen los datos. Una estadística de denuncias mide denuncias, no delitos.",s:"Gray &amp; Bounegru · metodología social"},
+ {t:"Solicitud de Acceso",d:"Petición formal de un registro no publicado. Debe pedir registros y formato reutilizable, no explicaciones.",s:"Bradshaw, Online Journalism Handbook"},
+ {t:"Formato Reutilizable",d:"Entrega en CSV o base de datos frente a PDF o papel. La diferencia determina si el análisis es viable.",s:"Práctica de transparencia · Bradshaw"},
+ {t:"Extracción Sistemática",d:"Recopilación ordenada de información pública dispersa para construir un conjunto analizable.",s:"Bradshaw, Online Journalism Handbook"},
+ {t:"Cuaderno de Análisis",d:"Registro de cada paso desde el archivo original hasta la cifra publicada. Equivale a la cadena de custodia.",s:"Gray &amp; Bounegru · IFCN, metodología"},
+ {t:"Reproducibilidad",d:"Propiedad de un análisis que permite a un tercero llegar al mismo resultado con el mismo archivo y el mismo cuaderno.",s:"Gray &amp; Bounegru"},
+ {t:"Dato Ausente",d:"Registro que debería existir y no existe. Su ausencia es un hallazgo publicable y a veces obliga a construir la fuente.",s:"Formulación docente · caso Fatal Force"}
+];
+
+const QUIZ=[
+ {q:"El periodismo de datos se define por:",
+  o:["El uso de gráficos en la publicación","El uso de conjuntos de registros como fuente principal, con método comprobable","El dominio de una herramienta de análisis","El volumen de información procesada"],c:1,
+  e:"Ilustrar con datos es presentación. Investigar con datos es hallar en el registro algo que nadie había afirmado y poder demostrarlo."},
+ {q:"Una estadística de delitos denunciados mide:",
+  o:["Delitos cometidos","Denuncias presentadas","Condenas dictadas","Percepción de inseguridad"],c:1,
+  e:"Si la confianza en la policía cae, las denuncias caen y el delito parece disminuir. El dato es correcto y la conclusión intuitiva es falsa."},
+ {q:"Ante la entrega de una base de datos en PDF de mil páginas, lo correcto es:",
+  o:["Aceptarla y transcribir manualmente","Dejar constancia de la negativa a entregar formato reutilizable y publicarla si procede","Renunciar al análisis","Solicitar una entrevista en su lugar"],c:1,
+  e:"Entregar en PDF lo que existe en base de datos cumple la ley e impide el análisis. La negativa a dar formato reutilizable es en sí misma publicable."},
+ {q:"La unidad de análisis de un conjunto de datos es:",
+  o:["El organismo que lo produce","Qué representa cada fila","El período que abarca","El formato del archivo"],c:1,
+  e:"Determina qué se puede afirmar. Comparar conjuntos con unidades distintas es la causa más común de error publicado."},
+ {q:"Una afirmación cuantitativa completa incluye:",
+  o:["Cifra y fuente","Cifra, denominador, período y definición","Cifra y porcentaje de variación","Cifra y gráfico"],c:1,
+  e:"«X por cada Y, en el período Z, según la definición W». Si no puedes completar los cuatro huecos, todavía no tienes un hallazgo."},
+ {q:"El cuaderno de análisis cumple, en periodismo de datos, la función de:",
+  o:["Índice del reportaje","Cadena de custodia","Guion de edición","Presupuesto del proyecto"],c:1,
+  e:"Registra cada paso desde el archivo original hasta la cifra publicada, y permite que un tercero reproduzca el resultado."},
+ {q:"Cuando no existe registro oficial sobre un asunto de interés público:",
+  o:["Se abandona la investigación","La ausencia es un hallazgo publicable y puede justificar construir el registro","Se usan estimaciones de terceros sin más","Se sustituye por testimonios"],c:1,
+  e:"Significa que nadie mide algo que debería medirse. Varios medios respondieron construyendo su propia base y publicando la metodología completa."},
+ {q:"Un promedio nacional que mejora mientras una provincia empeora es un caso de:",
+  o:["Error de cálculo","Agregación que oculta la variación interna","Sesgo de recolección","Dato ausente"],c:1,
+  e:"El promedio es correcto. La historia está en la variación que el promedio esconde, y encontrarla es el trabajo."}
+];
+
+const CASES=[
+ {tag:"CASO 1 · THE WASHINGTON POST · DESDE 2015",t:"Fatal Force: construir la fuente que no existía",
+  d:"Tras la muerte de Michael Brown en Ferguson en 2014 se hizo evidente que no existía un registro federal fiable de personas muertas por disparos de policías en servicio en Estados Unidos. El <em>Post</em> empezó en 2015 a registrar cada caso con criterios propios y publicados. La base obtuvo el Pulitzer de reportaje nacional en 2016. Una investigación posterior del propio diario constató que el registro del FBI subcontaba las muertes en más de la mitad; con el tiempo la brecha se amplió hasta contener alrededor de un tercio de los casos.",
+  ej:"La cifra oficial no era falsa: era incompleta por diseño, porque el reporte de los departamentos locales al FBI era voluntario. Nadie mintió. Simplemente nadie estaba obligado a contar.",
+  p:["¿Por qué construir un registro es una decisión periodística y no técnica?","¿Qué obligaciones asume un medio que crea una base de datos?","¿Qué demuestra que el registro oficial contuviera un tercio de los casos?"],
+  m:"Es periodística porque la elección de qué contar —solo disparos, solo agentes en servicio, solo muertes— define el fenómeno que se hace visible, y esa definición es un acto editorial con consecuencias públicas. Quien crea una base asume la carga de publicar su metodología completa, corregir errores señalados y sostener la actualización en el tiempo: una base abandonada a los dos años produce comparaciones falsas. Y que el registro oficial recogiera una fracción de los casos demuestra algo más grave que un fallo administrativo: que el Estado había construido un sistema de medición cuya incompletitud era estructural, porque dependía de que cada departamento decidiera informar.",
+  k:"Cuando el registro oficial no existe o es incompleto por diseño, construirlo es periodismo de vigilancia en su forma más pura."},
+ {tag:"CASO 2 · THE GUARDIAN · 2015-2016",t:"The Counted y la comparación entre registros",
+  d:"En paralelo a la iniciativa del <em>Post</em>, <em>The Guardian</em> mantuvo su propia base, <em>The Counted</em>, con un criterio más amplio: incluía muertes por disparo, por dispositivos de descarga eléctrica, en accidentes con vehículos policiales y bajo custodia. Contabilizó 1.146 muertes en 2015 y 1.093 en 2016.",
+  ej:"Dos medios serios, midiendo el mismo país en el mismo año, publicaron cifras distintas. Ninguno se equivocó: contaban cosas distintas porque habían definido el fenómeno de manera distinta.",
+  p:["¿Cómo se compara responsablemente dos bases con criterios distintos?","¿Qué debe decirle al lector un medio cuya cifra difiere de otra?","¿Es preferible el criterio amplio o el estricto?"],
+  m:"No se comparan las cifras finales sino las definiciones: solo son comparables los subconjuntos que comparten criterio, y decirlo es obligatorio. Un medio cuya cifra difiere de otra debe explicar por qué difiere —qué incluye y qué no— en lugar de defender su número como el correcto, porque la discrepancia no es un error sino una consecuencia metodológica. Ninguno de los dos criterios es superior en abstracto: el estricto es más defendible frente a impugnación y el amplio describe mejor el fenómeno completo. Lo indefendible es no publicar cuál se usó.",
+  k:"Dos cifras distintas del mismo fenómeno no significan que alguien mienta. Significan que hay dos definiciones, y hay que publicarlas."},
+ {tag:"CASO 3 · LA NACIÓN · ARGENTINA, DESDE 2011",t:"Una redacción de datos en América Latina",
+  d:"A comienzos de 2011, tras observar el movimiento de datos abiertos en Estados Unidos y el Reino Unido, <em>La Nación</em> reunió a su equipo editorial con tres periodistas interesados y formó el embrión de su unidad de datos, impulsada por Momi Peralta. Años después desarrolló VozData, una plataforma que incorporó a los lectores a la revisión de documentos públicos, inspirada en las campañas colaborativas del <em>Guardian</em> sobre gastos de parlamentarios y de ProPublica, y desarrollada con apoyo de Knight-Mozilla OpenNews.",
+  ej:"El punto de partida no fue tecnológico sino organizativo: tres periodistas y una decisión editorial. La plataforma llegó después, cuando ya había método.",
+  p:["¿Por qué el orden importa —primero equipo, después herramienta—?","¿Qué aporta y qué riesgos tiene incorporar al público a la revisión de documentos?","¿Qué hace replicable un modelo así en un país con menos datos abiertos?"],
+  m:"El orden importa porque una herramienta sin criterio produce visualizaciones sin hallazgo, mientras que un equipo con criterio encuentra historias incluso con hojas de cálculo básicas. Incorporar al público multiplica la capacidad de revisar volúmenes imposibles para una redacción, pero exige control de calidad —doble revisión de cada documento, resolución de discrepancias— porque de lo contrario se importa el problema de la verificación colectiva que vimos en el caso de Boston. Y lo que hace replicable el modelo en contextos con poca apertura de datos no es la plataforma sino la práctica sistemática de solicitudes de acceso y de extracción de fuentes públicas dispersas.",
+  k:"El periodismo de datos empieza con una decisión editorial y un equipo, no con una herramienta."},
+ {tag:"CASO 4 · REINO UNIDO · 2009",t:"Gastos parlamentarios y revisión colaborativa",
+  d:"Cuando se hicieron públicos los expedientes de gastos de los parlamentarios británicos, el volumen —cientos de miles de páginas escaneadas— hacía inviable la revisión por una redacción. Un medio construyó una plataforma para que sus lectores clasificaran documentos y señalaran los que merecían atención periodística, y el equipo verificaba después los casos marcados.",
+  ej:"El material se entregó como imágenes escaneadas, no como datos. Esa decisión de formato es la que convirtió una obligación de transparencia en una barrera práctica, y la que obligó a inventar el método colaborativo.",
+  p:["¿Qué problema resuelve la revisión colaborativa y cuál no?","¿Por qué el equipo debe verificar lo que el público marca?","¿Qué dice el formato elegido sobre la voluntad de transparencia?"],
+  m:"Resuelve la escala —miles de personas revisan lo que una redacción no puede— pero no resuelve la verificación, porque un lector señala lo que le llama la atención y eso no equivale a un hallazgo comprobado. Por eso el equipo verifica cada caso marcado antes de publicarlo: la multitud cumple la función de filtro, no de fuente. Y el formato elegido es información en sí mismo: entregar como imágenes lo que existe en sistemas informáticos es cumplir la letra de la transparencia negando su propósito, y merece ser publicado como parte de la historia.",
+  k:"La colaboración del público escala el filtrado, no la verificación. Lo marcado por muchos sigue necesitando comprobación profesional."},
+ {tag:"CASO 5 · PROPUBLICA · DESDE 2010",t:"Convertir registros dispersos en una base consultable",
+  d:"ProPublica reunió información dispersa sobre pagos de la industria farmacéutica a médicos en Estados Unidos —publicada por distintas empresas en formatos distintos y sin criterio común— y la unificó en una base consultable por nombre, permitiendo a cualquier paciente comprobar si su médico había recibido pagos. Publicó junto a ella la metodología y las limitaciones del conjunto.",
+  ej:"Los datos ya eran públicos. Estaban dispersos en decenas de sitios, en formatos incompatibles y sin buscador. La aportación periodística no fue obtenerlos: fue hacerlos utilizables.",
+  p:["¿Cuándo la agregación de datos públicos es un acto periodístico?","¿Qué responsabilidad genera publicar nombres individuales en una base?","¿Qué debe acompañar obligatoriamente a una base consultable?"],
+  m:"La agregación es periodística cuando produce una capacidad de conocimiento que no existía: un dato disperso en cincuenta sitios es formalmente público y prácticamente invisible, y unificarlo cambia lo que la ciudadanía puede saber. Publicar nombres individuales genera una responsabilidad proporcional al daño posible: exige exactitud verificada caso por caso, un mecanismo accesible de corrección y contexto que impida la lectura errónea, porque recibir un pago no implica una irregularidad. Y toda base consultable debe ir acompañada de metodología, fecha de corte, limitaciones conocidas y vía de reclamación; sin eso no es una fuente, es una lista.",
+  k:"Hacer utilizable lo que ya era público es una aportación periodística real, y arrastra la responsabilidad de la exactitud individual."},
+ {tag:"CASO 6 · 2008-2015",t:"Cuando el volumen se confunde con la verdad",
+  d:"Un sistema muy difundido pretendía estimar la incidencia de la gripe a partir de búsquedas en internet, y durante un tiempo se presentó como más rápido y tan fiable como los registros sanitarios. Análisis posteriores publicados en revistas científicas mostraron que sobreestimaba de forma persistente y que su rendimiento se degradaba con el tiempo, entre otras razones porque el comportamiento de búsqueda cambiaba y porque el propio sistema influía en las búsquedas.",
+  ej:"El atractivo era evidente: enorme volumen de datos, actualización instantánea y ningún organismo de por medio. Ninguna de esas tres propiedades es un sustituto de una definición estable de lo que se mide.",
+  p:["¿Por qué un volumen enorme de datos no garantiza validez?","¿Qué preguntas de la unidad habría fallado este sistema?","¿Qué debe exigir un periodista a una estimación basada en comportamiento digital?"],
+  m:"El volumen no corrige el sesgo: si los datos se recogen de un modo que distorsiona sistemáticamente, tener millones de casos amplifica la distorsión en lugar de compensarla. Este sistema habría fallado tres preguntas del interrogatorio de la unidad — qué mide exactamente, si la definición se mantuvo estable en el tiempo y qué queda fuera — porque medía búsquedas y no enfermedad, y esa relación cambiaba sola. A una estimación basada en comportamiento digital hay que exigirle contraste con una fuente independiente y publicación del margen de error; sin eso es un indicador, no una medición.",
+  k:"Más datos no es mejor dato. Sin una definición estable de lo que se mide, el volumen solo agranda el error."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El PDF de mil páginas",
+  d:"Solicitaste una base de datos y te responden dentro del plazo con un PDF escaneado de mil páginas. Formalmente han cumplido.",
+  r:"Reportera · Oficina de acceso · Editor",
+  ej:"<span class='who'>OFICINA:</span> Le entregamos toda la información solicitada.<br><span class='who'>REPORTERA:</span> La entregaron en imagen. ¿Existe en base de datos?<br><span class='who'>OFICINA:</span> El sistema interno la tiene, sí.<br><span class='who'>REPORTERA:</span> Entonces le pido lo mismo en el formato en que ya existe.",
+  m:"Se documenta la respuesta, se solicita de nuevo especificando formato reutilizable y citando el fundamento legal, y se deja constancia de que el organismo reconoció que la información existe en sistema. Si vuelven a negarlo, esa negativa —con fecha y expediente— es publicable y suele ser mejor historia que los datos. En paralelo se procesa el PDF, porque abandonar el análisis premia la táctica.",
+  c:"Distinguir cumplimiento formal de cumplimiento real, y convertir la negativa documentada en material publicable."},
+ {tag:"ESCENARIO 2",t:"El titular que el dato no sostiene",
+  d:"Tu editor propone un titular con una cifra absoluta que hace parecer que la ciudad más poblada es la más peligrosa. El dato es correcto.",
+  r:"Reportera · Editor · Jefa de datos",
+  ej:"<span class='who'>EDITOR:</span> El número es exacto.<br><span class='who'>REPORTERA:</span> Sí, y también lo es que tiene el triple de habitantes.<br><span class='who'>EDITOR:</span> El titular no da para explicar eso.<br><span class='who'>REPORTERA:</span> Entonces el titular es otro, no el dato.",
+  m:"La cifra absoluta sin denominador no sostiene la comparación implícita del titular, aunque cada número sea correcto: es exactamente el mecanismo de «exactitud no es verdad» de JRN-1001. Se calcula la tasa por población, se comprueba si el orden cambia y se titula sobre lo que la tasa muestre. Si la tasa no da historia, no había historia; forzarla con el valor absoluto es publicar una afirmación falsa con datos verdaderos.",
+  c:"Identificar el denominador ausente y rehacer el titular sobre la afirmación que los datos sí sostienen."},
+ {tag:"ESCENARIO 3",t:"La serie que cambió de definición",
+  d:"Comparas una cifra de 2019 con otra de 2024 y el salto es espectacular. Al revisar el diccionario, en 2021 cambió la definición de la variable.",
+  r:"Reportero · Responsable de estadística · Editora",
+  ej:"<span class='who'>EDITORA:</span> Es el mejor dato del reportaje.<br><span class='who'>REPORTERO:</span> Es el dato que no puedo usar así.<br><span class='who'>EDITORA:</span> ¿Nada aprovechable?<br><span class='who'>REPORTERO:</span> Sí: que cambiaron la definición en 2021 y nadie lo advirtió.",
+  m:"La comparación directa es inválida y publicarla sería un error grave, porque la serie está rota. Hay dos salidas legítimas: comparar solo dentro de cada período homogéneo, o pedir al organismo la reconstrucción retroactiva si existe. Y el cambio de definición es en sí mismo material publicable: cuándo se hizo, quién lo decidió, si se advirtió públicamente y qué efecto tuvo sobre las cifras que el propio organismo divulgó.",
+  c:"Detectar la ruptura de serie, renunciar a la comparación inválida y reconocer el cambio metodológico como hallazgo."},
+ {tag:"ESCENARIO 4",t:"El error propio en la base publicada",
+  d:"Un lector señala que en tu base publicada hay treinta registros duplicados. Tiene razón, y eso mueve tu cifra principal un 2%.",
+  r:"Periodista de datos · Editora · Lector",
+  ej:"<span class='who'>EDITORA:</span> Un 2% no cambia la conclusión.<br><span class='who'>PERIODISTA:</span> No la cambia. Pero la cifra publicada está mal.<br><span class='who'>EDITORA:</span> ¿Y entonces?<br><span class='who'>PERIODISTA:</span> Se corrige, se anota en el registro de cambios y se agradece a quien lo vio.",
+  m:"Se corrige aunque la conclusión no varíe, porque la credibilidad de la conclusión depende de la exactitud de la cifra. La corrección en una base de datos tiene forma propia: se actualiza el conjunto, se publica una nota de versión con fecha y descripción del cambio, y se conserva accesible la versión anterior para quien la haya citado. Reconocer públicamente a quien detectó el error no es cortesía: es el incentivo que hace que la siguiente persona también avise.",
+  c:"Aplicar la política de correcciones a datos, con registro de versiones y reconocimiento de quien detectó el error."},
+ {tag:"ESCENARIO 5",t:"El dato que no existe",
+  d:"El asunto que investigas no tiene registro oficial. Nadie mide lo que quieres contar y no hay plazo para que empiecen.",
+  r:"Reportero · Editora · Fuente académica",
+  ej:"<span class='who'>EDITORA:</span> Sin datos no hay reportaje.<br><span class='who'>REPORTERO:</span> Sin datos hay dos reportajes: que no existen, y el que construyamos.<br><span class='who'>EDITORA:</span> ¿Cuánto tarda lo segundo?<br><span class='who'>REPORTERO:</span> Meses. Lo primero, esta semana.",
+  m:"Se publican las dos cosas en orden. Primero la ausencia, documentada con las solicitudes, las respuestas y la identificación del organismo que debería llevar el registro y no lo lleva. Después, si el interés público lo justifica y hay capacidad de sostenerlo, se construye la base con criterios explícitos, metodología publicada y compromiso de actualización. Lo que no se hace es rellenar el hueco con estimaciones de terceros presentadas como medición.",
+  c:"Tratar la ausencia como hallazgo publicable y evaluar realistamente la capacidad de construir y sostener un registro propio."},
+ {tag:"ESCENARIO 6",t:"El organismo te desmiente en público",
+  d:"Publicas tu análisis y el organismo responde que tu cifra es errónea porque usaste mal una variable. Puede que tengan razón.",
+  r:"Periodista de datos · Organismo · Editor",
+  ej:"<span class='who'>ORGANISMO:</span> Usó la columna equivocada.<br><span class='who'>PERIODISTA:</span> ¿Cuál corresponde y dónde está documentado?<br><span class='who'>ORGANISMO:</span> En el diccionario técnico.<br><span class='who'>PERIODISTA:</span> El que solicité tres veces y no me entregaron. Pero si el dato cambia, se corrige.",
+  m:"Se comprueba primero, en silencio y rápido, si la objeción es correcta; si lo es, se corrige de inmediato y con visibilidad, sin condicionarlo a nada. Al mismo tiempo se publica el contexto verificable: que el diccionario fue solicitado y no entregado, con fechas y expedientes. Las dos cosas son ciertas y ninguna anula a la otra. Defender un error porque el organismo se comportó mal es exactamente lo que destruye la posición del periodista en la discusión siguiente.",
+  c:"Verificar la objeción antes de responder, corregir si procede y publicar por separado el contexto de la opacidad."}
+];
+
+const IV=[
+ {q:"¿Qué define exactamente esta variable en su sistema, y dónde está documentado?",
+  m:"Abre por la definición operativa, no por la cifra. Si no hay documento, esa ausencia es publicable: significa que el organismo no puede explicar formalmente qué está midiendo."},
+ {q:"¿Ha cambiado esa definición en algún momento de la serie? ¿Cuándo y por qué?",
+  m:"Los cambios de definición rompen las series y casi nunca se anuncian. Preguntarlo antes de comparar evita el error más caro del periodismo de datos."},
+ {q:"¿Qué casos quedan fuera del registro por criterio y cuáles por fallo de reporte?",
+  m:"Separa exclusión deliberada de incompletitud. La primera es metodología; la segunda es un problema del sistema y suele ser la historia."},
+ {q:"¿La información existe en su sistema en formato de base de datos?",
+  m:"Pregunta cerrada que fija un hecho. Si responde que sí y luego entregan un PDF, la discrepancia está documentada y es publicable."},
+ {q:"¿Qué margen de error o de subregistro estima su organismo para esta serie?",
+  m:"Un organismo serio tiene una estimación. Si no la tiene o no la comparte, el reportaje debe decirlo, porque afecta a todo lo que se afirme con esos datos."},
+ {q:"Si mi cálculo difiere del suyo, ¿qué paso concreto revisaría primero?",
+  m:"Convierte una posible confrontación en colaboración técnica y suele revelar la variable correcta. Además deja constancia de que se ofreció la oportunidad de corregir antes de publicar."}
+];
+
+const AUDIT=[
+ ["v","El Washington Post empezó a registrar en 2015 cada muerte por disparo de policía en servicio tras el caso de Ferguson en 2014; obtuvo el Pulitzer de reportaje nacional en 2016; el registro del FBI subcontaba las muertes en más de la mitad y con el tiempo llegó a contener alrededor de un tercio de los casos.","The Washington Post y The Pulitzer Prizes. Contrastado en la documentación pública de la base."],
+ ["v","The Guardian mantuvo la base <em>The Counted</em> con criterio más amplio —incluyendo dispositivos de descarga eléctrica, accidentes con vehículos policiales y muertes bajo custodia— y contabilizó 1.146 muertes en 2015 y 1.093 en 2016.","The Guardian, The Counted. Cifras contrastadas."],
+ ["v","La Nación formó el embrión de su unidad de datos a comienzos de 2011, impulsada por Momi Peralta; VozData se inspiró en las campañas colaborativas del Guardian y de ProPublica y contó con apoyo de Knight-Mozilla OpenNews.","LatAm Journalism Review (Knight Center), Nieman Lab e ICFJ. Verificado."],
+ ["b","El periodismo de datos se define por el uso de registros como fuente principal con método comprobable, no por la herramienta ni por el gráfico.","Gray &amp; Bounegru, Data Journalism Handbook · Rogers."],
+ ["b","Todo conjunto de datos resulta de decisiones humanas sobre qué medir, cómo definirlo y qué excluir; el dato es una fuente interesada.","Gray &amp; Bounegru · Bradshaw."],
+ ["b","Una estadística de delitos denunciados mide denuncias, no delitos.","Metodología social establecida; ejemplo estándar en la literatura de datos."],
+ ["b","El diccionario de datos define cada variable y sus criterios; sin él el conjunto no es interpretable.","Gray &amp; Bounegru · Bradshaw."],
+ ["b","Las cuatro vías de obtención son publicación oficial, solicitud de acceso, extracción sistemática y construcción propia.","Bradshaw, Online Journalism Handbook."],
+ ["b","Entregar en PDF información que existe en base de datos cumple la obligación formal e impide el análisis.","Práctica documentada de transparencia · Bradshaw."],
+ ["b","Los tres mecanismos por los que datos correctos producen afirmaciones falsas son definición, agregación y denominador.","Rogers, Facts are Sacred · Gray &amp; Bounegru."],
+ ["b","Una afirmación cuantitativa completa requiere cifra, denominador, período y definición.","Formulación docente derivada de Rogers."],
+ ["b","El cuaderno de análisis permite que un tercero reproduzca el resultado con el mismo archivo; es el equivalente de la cadena de custodia.","Gray &amp; Bounegru · IFCN, transparencia de metodología."],
+ ["b","La publicación de los gastos de parlamentarios británicos en 2009 se entregó como imágenes escaneadas y motivó el desarrollo de revisión colaborativa con lectores.","Caso estándar en la literatura de periodismo de datos; recogido en el Data Journalism Handbook."],
+ ["b","ProPublica unificó en una base consultable pagos de la industria farmacéutica a médicos publicados de forma dispersa, acompañándola de metodología y limitaciones.","Práctica documentada de la organización."],
+ ["b","Un sistema de estimación de incidencia de gripe basado en búsquedas en internet sobreestimó de forma persistente y su rendimiento se degradó con el tiempo, según análisis publicados en revistas científicas.","Literatura académica sobre limitaciones de datos de comportamiento digital; conviene citar el estudio concreto si se amplía el caso."]
+];
+
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let done=0,right=0;
+const quiz=document.getElementById('quiz');
+QUIZ.forEach(function(it,i){
+  const card=el('<div class="q"><div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+  const opts=card.querySelector('.opts');
+  it.o.forEach(function(o,j){
+    const b=document.createElement('button');
+    b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+    b.onclick=function(){
+      if(card.dataset.done) return;
+      card.dataset.done='1'; done++;
+      var kids=opts.children;
+      for(var k=0;k<kids.length;k++){
+        kids[k].classList.add('done');
+        if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+        else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+      }
+      if(j===it.c) right++;
+      card.querySelector('.exp').classList.add('show');
+      document.getElementById('score').textContent='RESPONDIDAS '+done+' / '+QUIZ.length+' · CORRECTAS '+right;
+    };
+    opts.appendChild(b);
+  });
+  quiz.appendChild(card);
+});
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
