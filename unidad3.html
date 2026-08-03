@@ -95,6 +95,18 @@
   .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
   .exp.show{display:block}
   .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
   .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
   .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
   .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
@@ -293,8 +305,8 @@
 
   <section id="pru">
     <h3>Prueba de la unidad</h3>
-    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
-    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
     <div id="quiz"></div>
 
     <h3>Entrega escrita</h3>
@@ -338,30 +350,210 @@ const TERMS=[
 ];
 
 const QUIZ=[
- {q:"Según Ward, el problema central de la ética periodística tradicional es que:",
-  o:["Es demasiado estricta para el entorno digital","Presupone un público nacional que ya no coincide con el real","Fue escrita por académicos sin experiencia","No contempla la publicidad"],c:1,
-  e:"Los códigos clásicos se redactaron cuando el público del periodista era su comunidad. Cuando dicen «el interés público» nunca especifican cuál, porque durante un siglo no hizo falta."},
- {q:"La ética cosmopolita propone:",
-  o:["Sustituir las éticas nacionales por una norma universal única","Ampliar el círculo de personas cuyos intereses se consideran","Aplicar en cada país la norma de ese país","Renunciar a juzgar prácticas ajenas"],c:1,
-  e:"No sustituye: extiende. El sujeto extranjero de una información tiene los mismos derechos que el nacional, empezando por el de ser contactado."},
- {q:"El daño previsible es:",
-  o:["Cualquier consecuencia negativa que ocurra tras publicar","El que un profesional razonable podría anticipar al publicar","El que la fuente declara temer","El que un tribunal determine después"],c:1,
-  e:"Se evalúa con la información disponible en el momento de la decisión. El daño descubierto después no invalida la decisión; el previsible e ignorado, sí."},
- {q:"Ante una práctica legal en el país cubierto pero contraria a un convenio que ese país ratificó, lo correcto es:",
-  o:["Omitirla para no imponer criterios ajenos","Condenarla según los valores del país que publica","Describir la norma local y nombrar el mínimo universal, distinguiéndolos","Consultar a la embajada"],c:2,
-  e:"La salida no es filosófica sino procedimental: se describe lo local, se nombra el mínimo internacional, y se dice al lector cuál se está aplicando."},
- {q:"La prueba de simetría consiste en preguntarse:",
-  o:["Si la fuente tiene una versión contraria","Si se publicaría lo mismo con un sujeto del propio país","Si el hecho ocurrió en más de un lugar","Si otro medio ya lo publicó"],c:1,
-  e:"La cobertura internacional muestra habitualmente cuerpos y nombres que ningún editor publicaría si fueran de sus compatriotas. Esa asimetría es un dato sobre el medio."},
- {q:"Para el periodista de diáspora, la respuesta profesional al conflicto de doble lealtad es:",
-  o:["Fingir neutralidad absoluta","Declarar el vínculo al lector","Evitar cubrir su país de origen","Escribir solo para la comunidad de acogida"],c:1,
-  e:"La posición no se puede eliminar, pero sí declarar. Ocultar el vínculo es lo único indefendible; el lector decide qué hacer con ese dato."},
- {q:"El criterio principal para publicar una imagen de sufrimiento es:",
-  o:["Su impacto visual","Que informe algo que el texto no puede transmitir","Que otros medios la hayan publicado","Que la persona sea identificable"],c:1,
-  e:"Si el texto puede transmitir lo mismo, la imagen solo añade espectáculo. Y si se publica, debe hacerlo de forma que el sujeto conserve su dignidad."},
- {q:"Informar sobre un país donde no se vive exige:",
-  o:["Un estándar de verificación más flexible","Declarar la posición y no diluir la fuente local","Evitar nombrar fuentes locales","Citar solo agencias internacionales"],c:1,
-  e:"La distancia impone una obligación adicional de transparencia, no una rebaja. «Según reportes» oculta precisamente lo que el lector necesita para ponderar."}
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Según Ward, el problema central de la ética periodística clásica es que:",
+ o:["Fue redactada antes de la aparición de las plataformas digitales","Presupone un público nacional que ya no coincide con el público real","Es demasiado permisiva con los conflictos de interés","Fue escrita por académicos sin experiencia en redacción"],c:1,
+ w:["La cronología es cierta y no es el problema de fondo: un código anterior a internet puede seguir siendo válido si sus supuestos se sostienen. El supuesto que no se sostiene es otro.",
+    "",
+    "Los códigos clásicos son bastante estrictos en materia de conflictos de interés. No es ahí donde fallan.",
+    "Es falso además de irrelevante: los códigos deontológicos clásicos fueron redactados por asociaciones profesionales de periodistas en ejercicio."],
+ e:"Los códigos se escribieron cuando el público del periodista era su comunidad. Cuando dicen «el interés público» nunca especifican cuál, porque durante un siglo no hizo falta especificarlo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La ética cosmopolita propone:",
+ o:["Sustituir las éticas nacionales por una norma universal única","Ampliar el círculo de personas cuyos intereses el periodista debe considerar","Aplicar en cada país exclusivamente la norma vigente en ese país","Abstenerse de evaluar prácticas de otras sociedades"],c:1,
+ w:["Esa es la caricatura habitual de la posición cosmopolita y la que le reprochan sus críticos. Ward no propone sustituir nada.",
+    "",
+    "Ese es el relativismo procedimental, la posición contraria: convierte la legalidad local en el techo ético.",
+    "Renunciar a evaluar es una forma de relativismo que deja sin vara los abusos, y no es lo que la posición sostiene."],
+ e:"No sustituye: extiende. El sujeto extranjero de una información tiene los mismos derechos que el nacional, empezando por el de ser contactado antes de publicar."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El «daño previsible» se evalúa:",
+ o:["Con toda la información conocida hoy, incluida la posterior a la publicación","Con la información disponible en el momento de decidir publicar","Según lo que la fuente declare temer","Según lo que un tribunal determine después"],c:1,
+ w:["Juzgar una decisión con información que no existía cuando se tomó es un sesgo retrospectivo, no un criterio ético.",
+    "",
+    "El temor declarado por la fuente es un insumo importante de la evaluación, pero no la define: puede sobreestimar o subestimar el riesgo.",
+    "El criterio judicial es posterior, tiene otros fines y otro estándar de prueba."],
+ e:"Se evalúa con lo disponible en el momento de la decisión. El daño descubierto después no invalida la decisión; el que era previsible y se ignoró, sí."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El «filtro de frontera» consiste en comprobar:",
+ o:["Si la pieza cumple la legislación del país donde se publica","Qué ocurre con la pieza cuando la lee alguien para quien no fue escrita","Si la traducción conserva el sentido del original","Si la pieza puede ser distribuida en el país que cubre"],c:1,
+ w:["El cumplimiento legal es una obligación distinta y previa; no dice nada sobre el efecto de la pieza fuera de su contexto.",
+    "",
+    "La fidelidad de la traducción es una parte pequeña del problema. Una traducción impecable puede producir un daño que el original no producía.",
+    "La distribuibilidad es una cuestión operativa y política, no el criterio ético."],
+ e:"Toda pieza cruza fronteras que su autor no previó. El filtro pregunta qué significa el texto —y a quién expone— leído en el país sobre el que informa."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La prueba de simetría consiste en preguntarse:",
+ o:["Si existe una versión contraria de la fuente señalada","Si se publicaría lo mismo con un sujeto del propio país","Si el hecho se repite en más de un lugar","Si otro medio de referencia ya lo publicó"],c:1,
+ w:["Eso es el derecho de réplica, obligatorio y distinto.",
+    "",
+    "La recurrencia de un fenómeno afecta a su valor noticioso, no al estándar con que se trata a sus protagonistas.",
+    "Lo que otros hayan publicado no fija tu estándar. Ese razonamiento es el que produce la asimetría, no el que la detecta."],
+ e:"La cobertura internacional muestra habitualmente cuerpos y nombres que ningún editor publicaría si fueran de sus compatriotas. Esa asimetría es un dato sobre el medio, no sobre el hecho."},
+
+/* ---------- BLOQUE B · ESCENARIO ---------- */
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Investigas una práctica que es legal y socialmente habitual en el país que cubres, pero contraria a un convenio internacional que ese mismo país ratificó.",
+ q:"¿Cómo lo tratas?",
+ o:["Omitirla: evaluarla con criterios ajenos sería colonialismo informativo","Describir la norma local, nombrar el mínimo internacional que ese país aceptó, y decir al lector cuál se aplica","Condenarla según los valores del país donde se publica","Publicarla sin calificarla y dejar que el lector juzgue"],c:1,
+ w:["Omitir por prudencia deja sin vara una obligación que ese país asumió voluntariamente. El silencio no es neutralidad.",
+    "",
+    "Aplicar los valores del país que publica como si fueran universales es precisamente el colonialismo informativo que se quiere evitar.",
+    "«Dejar que el lector juzgue» sin darle el marco es dejarle juzgar con el suyo propio, que es el del país que publica."],
+ e:"La salida no es filosófica sino procedimental: se describe lo local, se nombra el mínimo universal —y el hecho de que ese Estado lo ratificó—, y se explicita cuál se está aplicando. El lector pondera con los dos marcos a la vista."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Una fotografía documental de enorme valor histórico muestra a un menor desnudo huyendo de un bombardeo. Una plataforma la retira por infringir sus normas sobre desnudez de menores.",
+ q:"¿Cuál es el problema de fondo?",
+ o:["Que la norma de la plataforma es incorrecta y debería permitir la desnudez documental","Que una norma uniforme se aplica sin ponderar contexto, ejerciendo de editor sin las obligaciones del editor","Que la plataforma no consultó a un medio antes de retirar","Que la imagen debería haberse publicado con el rostro difuminado"],c:1,
+ w:["Reescribir la norma no resuelve nada: cualquier regla uniforme aplicada a escala planetaria produce el mismo tipo de error en otros casos.",
+    "",
+    "La consulta previa es inviable a esa escala y no es el fallo estructural. El fallo es que la decisión no pondera.",
+    "Difuminar el rostro destruiría el valor documental de la imagen y no aborda quién decide."],
+ e:"El caso Aftenposten–Facebook de 2016. Un criterio editorial pondera daño, interés público e historia caso por caso y responde por su decisión; una norma de plataforma escala precisamente porque no pondera."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Sigues el caso anterior. La plataforma revirtió su decisión cuando protestaron un diario grande y la jefa de gobierno de un país rico.",
+ q:"¿Qué conclusión se sostiene con lo observable?",
+ o:["Que el sistema de apelación funciona, aunque con lentitud","Que la reversión dependió de la capacidad de presión pública del afectado, no del mérito del caso","Que la plataforma actuó de mala fe desde el principio","Que las plataformas favorecen deliberadamente a los medios europeos"],c:1,
+ w:["Lo que se observa no es un sistema de apelación resolviendo: es una crisis reputacional resolviéndose. Son cosas distintas.",
+    "",
+    "La mala fe es una atribución de intención que los hechos no acreditan. La aplicación uniforme de una regla no requiere malicia para producir este resultado.",
+    "Es una afirmación sobre intención y política deliberada que va mucho más allá de lo observado en un caso."],
+ e:"El mérito del caso era idéntico antes y después. Lo que cambió fue quién protestaba. Un medio pequeño sin acceso a la primera plana ni al gobierno habría perdido la disputa en silencio: eso es lo que el caso permite afirmar."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Escribes desde el extranjero sobre un país al que no puedes viajar. Tu información procede de tres personas que viven allí y que quedarían expuestas si se supiera que hablaron contigo.",
+ q:"¿Cómo formulas la atribución?",
+ o:["«Según reportes», sin más precisión, para no dar ninguna pista","Indicar el tipo de fuente, su relación con el hecho y que se protege su identidad, además de declarar que escribes desde fuera","Nombrarlas: sin nombres la pieza no tiene credibilidad","Atribuirlo a agencias internacionales que hayan informado algo parecido"],c:1,
+ w:["«Según reportes» oculta justo lo que el lector necesita para ponderar, y no protege más: la vaguedad no es seguridad.",
+    "",
+    "Nombrarlas las expone. La credibilidad se construye con transparencia de método, no con nombres obtenidos a costa de terceros.",
+    "Atribuir a agencias lo que te dijeron tus fuentes es falsear el origen de tu información."],
+ e:"La distancia impone una obligación adicional de transparencia, no una rebaja del estándar. Se declara la posición desde la que se informa y se caracteriza la fuente sin volverla deducible."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Eres periodista de diáspora. Cubres tu país de origen. Tu familia sigue allí y la comunidad de acogida espera de ti una línea determinada.",
+ q:"¿Cuál es la respuesta profesional?",
+ o:["Mantener neutralidad absoluta y no revelar el vínculo, para que no condicione la lectura","Declarar el vínculo al lector y sostener el mismo método de verificación","Evitar cubrir el país de origen mientras dure la situación","Ajustar el enfoque a lo que espera la comunidad que te lee"],c:1,
+ w:["La neutralidad absoluta no existe y ocultar el vínculo es lo único indefendible: si el lector lo descubre después, pierde la confianza en todo lo anterior.",
+    "",
+    "Es una salida honesta y también un empobrecimiento: quien conoce la lengua, el contexto y los actores suele estar mejor situado para informar que quien llega de fuera.",
+    "Ceder a cualquiera de las dos comunidades produce propaganda, aunque los hechos citados sean exactos."],
+ e:"La posición no se puede eliminar, pero sí declarar. El lector decide qué hacer con ese dato; lo que no puede es decidirlo sin tenerlo."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Tienes una fotografía de una persona en un momento de sufrimiento extremo. Es identificable. El texto de la pieza ya describe la situación con precisión.",
+ q:"¿Qué justificaría publicarla?",
+ o:["Su impacto: mueve al lector como no lo hace un texto","Que informe algo que el texto no puede transmitir, y que se publique de forma que el sujeto conserve su condición de persona","Que otros medios ya la hayan difundido","Que la persona haya sido fotografiada en un lugar público"],c:1,
+ w:["El impacto es un efecto, no una justificación. Si el criterio fuera el impacto, todo lo insoportable sería publicable.",
+    "",
+    "La difusión previa no transfiere la responsabilidad. Cada medio decide y responde por su decisión.",
+    "La legalidad del lugar de captura resuelve el permiso, no la dignidad."],
+ e:"Si el texto puede transmitir lo mismo, la imagen solo añade espectáculo. El criterio es que la persona conserve su condición de sujeto y no quede reducida a ilustración de una tesis."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Trabajas con socios de otros seis países sobre un mismo lote de documentos. Uno de ellos opera bajo una legislación que le permite publicar antes y quiere adelantarse.",
+ q:"¿Por qué importa la publicación simultánea?",
+ o:["Porque garantiza mayor repercusión mediática global","Porque publicar antes en una jurisdicción expone a los socios que aún no han publicado y a sus fuentes","Porque los acuerdos de consorcio son contractualmente vinculantes","Porque permite contrastar las versiones antes del cierre"],c:1,
+ w:["La repercusión es un efecto buscado y real, pero no es la razón de la norma.",
+    "",
+    "Puede ser cierto y es una razón formal. La razón sustantiva es de seguridad, no de contrato.",
+    "El contraste ocurre durante los meses de trabajo compartido, no en el momento de publicar."],
+ e:"Es el método del ICIJ en los Panama Papers: 376 periodistas de 76 países sobre el mismo material. Quien publica primero avisa a los señalados en las demás jurisdicciones, que aún no tienen su pieza fuera ni a sus fuentes a resguardo."},
+
+{blk:"BLOQUE B · DECISIÓN EDITORIAL", t:"mcq",
+ s:"Un funcionario extranjero es señalado en documentos que obran en tu poder. Vive en un país al que no puedes llamar con seguridad y no responde al correo. El cierre es en dos días.",
+ q:"¿Qué corresponde hacer antes de publicar?",
+ o:["Publicar: el interés público prevalece y se hizo el intento razonable","Agotar vías documentables —correo, representación legal, oficina de prensa, socio local— y describir en el texto cada gestión con su fecha","Retrasar la publicación hasta obtener respuesta","Enviar las preguntas a través de una fuente que lo conozca personalmente"],c:1,
+ w:["El intento fue insuficiente y además no está documentado. «Razonable» no es un estándar que se afirme, es uno que se acredita con gestiones.",
+    "",
+    "Condicionar la publicación a la respuesta del señalado le entrega un veto por la vía del silencio.",
+    "Usar un intermediario personal compromete a esa fuente y le revela el contenido de tu investigación antes de publicarla."],
+ e:"La ética cosmopolita no rebaja el derecho de réplica por distancia: lo extiende al sujeto extranjero. Lo que sí cambia es el esfuerzo exigible, que aumenta con la dificultad de acceso y debe quedar descrito en la pieza."},
+
+/* ---------- BLOQUE C · DIAGNÓSTICO ---------- */
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«En este país, sorprendentemente, las mujeres siguen necesitando autorización familiar para trabajar.»",
+ q:"¿Cuál es el defecto de la formulación?",
+ o:["El dato debería ir acompañado de una cifra","«Sorprendentemente» inserta la reacción del país que publica y presenta su norma como la vara implícita","Falta el nombre del país","Debería usarse un verbo en pasado"],c:1,
+ w:["Una cifra mejoraría la pieza y no corrige el problema: el adverbio seguiría ahí.",
+    "",
+    "El nombre del país es un dato contextual necesario, pero el defecto está en el adverbio, no en la omisión.",
+    "El tiempo verbal es correcto si la práctica sigue vigente."],
+ e:"«Sorprendentemente» no informa: sitúa al lector del país que publica como medida de lo normal. Si la práctica contradice un instrumento que ese Estado ratificó, se dice eso —que es verificable— en lugar de expresar asombro."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Según reportes locales, al menos treinta personas murieron en el operativo.»",
+ q:"¿Qué falla?",
+ o:["La cifra debería ser exacta y no aproximada","«Reportes locales» no permite al lector ponderar nada: ni quién informó, ni con qué acceso, ni si son independientes entre sí","Debería citarse una agencia internacional","«Al menos» sugiere que la cifra real es mayor"],c:1,
+ w:["«Al menos treinta» es una formulación honesta cuando el recuento está abierto. La aproximación no es el defecto.",
+    "",
+    "Sustituir la fuente local por una internacional empeora la pieza: elimina a quien estuvo más cerca del hecho.",
+    "Es exactamente lo que «al menos» debe sugerir, y es correcto si el recuento sigue abierto."],
+ e:"La fórmula diluye a la fuente local justo cuando el lector más necesita saber quién es. Se caracteriza el tipo de medio, su acceso al lugar y si los recuentos son independientes entre sí, sin exponer a nadie."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Las víctimas, cuyos nombres y edades figuran en el listado adjunto, fueron identificadas por sus familiares.»<br>La pieza se publica en un medio extranjero; el conflicto sigue activo.",
+ q:"¿Qué hay que ponderar antes de publicar ese listado?",
+ o:["Nada: los nombres los aportaron los propios familiares","Si la publicación en el extranjero expone a las familias identificadas ante los actores del conflicto, y si se publicaría un listado equivalente con víctimas del propio país","Si el listado está completo","Si los familiares firmaron una autorización"],c:1,
+ w:["Que la información la aporte el afectado no traslada la responsabilidad editorial sobre las consecuencias de difundirla en otro contexto.",
+    "",
+    "La exhaustividad afecta a la exactitud, no al riesgo de exposición.",
+    "Una autorización obtenida sin explicar el alcance de la difusión internacional no informa el consentimiento."],
+ e:"Filtro de frontera más prueba de simetría, aplicados juntos. El consentimiento se dio en un contexto y el daño ocurre en otro; y la pregunta de si se publicaría igual con compatriotas revela el estándar real del medio."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«La empresa niega las acusaciones. No se pudo contactar a los trabajadores afectados, que viven en zonas remotas.»",
+ q:"¿Qué desequilibrio introduce esta pareja de frases?",
+ o:["Ninguno: se informa de la posición de una parte y de la imposibilidad de contactar a la otra","La parte con recursos tiene voz y la parte afectada queda como un obstáculo logístico; la dificultad de acceso no es un dato sobre ellos sino sobre el reporteo","Debería haberse esperado a contactar a los trabajadores","Falta indicar cuántos trabajadores son"],c:1,
+ w:["Formalmente está equilibrado y por eso el defecto es difícil de ver. El desequilibrio está en cómo se describe cada ausencia.",
+    "",
+    "Esperar indefinidamente puede ser imposible; el problema no es publicar, es cómo se redacta la ausencia.",
+    "La cifra añadiría precisión sin corregir el desequilibrio."],
+ e:"Es el tercero ausente: la persona sobre la que se informa que no está en la decisión editorial, vive lejos y no puede responder. Se describe el esfuerzo realizado —vías, fechas, obstáculos— igual que se documenta el intento de contacto con la empresa."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Este medio ha decidido no publicar los nombres para proteger a los implicados.»",
+ q:"¿Qué le falta a esta declaración de transparencia?",
+ o:["Nada: informar de la omisión ya es transparencia suficiente","Decir qué criterio se aplicó y qué riesgo concreto se ponderó, para que el lector pueda evaluar la decisión","El nombre del responsable editorial de la decisión","Una disculpa por la información que se retiene"],c:1,
+ w:["Anunciar que se omite algo es el primer paso y deja al lector sin lo que necesita: por qué.",
+    "",
+    "La firma del responsable es una práctica de rendición de cuentas distinta y no sustituye a la explicación del criterio.",
+    "No hay nada por lo que disculparse: proteger a personas expuestas es una obligación, no un fallo."],
+ e:"La transparencia útil expone el método y sus límites, no solo el resultado. «No publicamos los nombres porque su difusión los expondría a represalias en un conflicto activo» permite al lector ponderar; la fórmula genérica no."},
+
+/* ---------- BLOQUE D · SELECCIÓN Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que corresponde hacer al informar sobre una sociedad distinta de aquella en la que se publica.",
+ o:["Declarar desde dónde se informa y qué acceso se tuvo","Nombrar el mínimo universal cuando la norma local lo contradice, distinguiendo ambos","Sustituir las fuentes locales por agencias internacionales de referencia","Aplicar la prueba de simetría antes de publicar imágenes o nombres","Evitar cualquier calificación de las prácticas locales"],
+ c:[0,1,3],
+ w:["","","Sustituir a quien estuvo cerca del hecho por quien informó desde lejos degrada la pieza y borra a la fuente local.","","Abstenerse de toda calificación deja sin vara los abusos y convierte la legalidad local en el techo ético."],
+ e:"Declarar posición, distinguir norma local de mínimo universal, y aplicar la simetría. Ni sustituir a las fuentes locales ni renunciar a evaluar."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las que son razones válidas para publicar una imagen de sufrimiento identificable.",
+ o:["Transmite información que el texto no puede transmitir","Documenta un hecho cuya existencia está siendo negada","La difundieron ya otros medios de referencia","Su impacto emocional aumentará el alcance de la pieza","Se obtuvo legalmente en un espacio público"],
+ c:[0,1],
+ w:["","","La conducta ajena no fija tu estándar ni traslada la responsabilidad.","El alcance es un objetivo del medio, no un interés del lector ni un derecho del sujeto.","La legalidad de la captura resuelve el permiso, no la dignidad ni la proporción."],
+ e:"Solo dos razones sostienen la publicación: que la imagen informe lo que el texto no puede, y que documente un hecho negado. Las otras tres son argumentos sobre el medio, no sobre el interés público."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena la ponderación ante una publicación que puede causar daño a personas en otro país.",
+ o:["Identificar quién puede resultar dañado, incluido el tercero ausente","Estimar el daño previsible con la información disponible hoy","Contrastar ese daño con el interés público concreto que la publicación satisface","Buscar la formulación que preserve el interés público reduciendo la exposición","Publicar declarando qué se omitió y con qué criterio"],
+ c:[0,1,2,3,4],
+ e:"El orden importa: quien no identifica primero a todos los afectados —incluido el que no está en la sala— pondera un daño incompleto, y la formulación alternativa solo puede buscarse cuando ya se sabe qué interés público hay que preservar."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las comprobaciones de frontera antes de publicar una pieza internacional.",
+ o:["¿Quién la leerá para quien no fue escrita?","¿Qué significa el texto en ese otro contexto?","¿A quién expone esa lectura?","¿Publicaría lo mismo con un sujeto de mi país?"],
+ c:[0,1,2,3],
+ e:"Primero se identifica el lector no previsto, después qué significa el texto para él, después a quién expone esa lectura, y solo al final la prueba de simetría, que es la que audita el estándar del propio medio."}
 ];
 
 const CASES=[
@@ -485,31 +677,101 @@ aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mo
 const tw=document.getElementById('terms');
 TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
 
-let done=0,right=0;
-const quiz=document.getElementById('quiz');
-QUIZ.forEach(function(it,i){
-  const card=el('<div class="q"><div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
-  const opts=card.querySelector('.opts');
-  it.o.forEach(function(o,j){
-    const b=document.createElement('button');
-    b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
-    b.onclick=function(){
-      if(card.dataset.done) return;
-      card.dataset.done='1'; done++;
-      var kids=opts.children;
-      for(var k=0;k<kids.length;k++){
-        kids[k].classList.add('done');
-        if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
-        else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
-      }
-      if(j===it.c) right++;
-      card.querySelector('.exp').classList.add('show');
-      document.getElementById('score').textContent='RESPONDIDAS '+done+' / '+QUIZ.length+' · CORRECTAS '+right;
-    };
-    opts.appendChild(b);
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
   });
-  quiz.appendChild(card);
-});
+  marcador();
+})();
 
 function bindReveal(b){
   b.dataset.o=b.textContent;

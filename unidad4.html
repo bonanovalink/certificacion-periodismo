@@ -98,6 +98,18 @@
   .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
   .exp.show{display:block}
   .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
   .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
   .score.big{font-size:.95rem;color:var(--amber);padding:14px 18px;background:#3a2408;border:1px solid #6b4d16;border-radius:8px;letter-spacing:.06em}
   .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
@@ -316,8 +328,8 @@
 
   <section id="pru">
     <h3>Prueba de la unidad</h3>
-    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
-    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
     <div id="quiz"></div>
   </section>
 
@@ -387,30 +399,210 @@ const TERMS=[
 ];
 
 const QUIZ=[
- {q:"Una hipótesis de trabajo es investigable cuando:",
-  o:["Es lo bastante grave para interesar al público","Puede resultar falsa","Cuenta con una fuente dispuesta a hablar","La comparte el editor"],c:1,
-  e:"«Hay corrupción en el hospital» no se puede refutar con ningún dato. «Adjudicó tres contratos sin licitación a una empresa constituida un mes antes» sí, y por eso es investigable."},
- {q:"La pregunta de control al formular una hipótesis es:",
-  o:["¿A quién le interesa esto?","¿Qué tendría que encontrar para abandonarla?","¿Cuánto tiempo me llevará?","¿Quién más lo está investigando?"],c:1,
-  e:"Si no puedes responderla, no estás investigando: estás buscando confirmación de algo que ya decidiste. Es la falsación aplicada al reporteo."},
- {q:"En la matriz de verificación, una afirmación en estado «alegada» debe:",
-  o:["Eliminarse del texto","Formularse en el texto como alegación, no como hecho","Publicarse con una fuente anónima","Enviarse al abogado"],c:1,
-  e:"El estado en la matriz y la formulación en el texto tienen que coincidir. Si la matriz dice «alegada» y el texto dice «ocurrió», hay un error que corregir antes de publicar."},
- {q:"El control cruzado lo realiza:",
-  o:["El autor, releyendo con distancia","Alguien que no participó en el reporteo","El abogado del medio","La fuente principal"],c:1,
-  e:"El autor pierde la capacidad de ver lo que da por sabido. Tras semanas con un tema, una afirmación que solo está en su cabeza le parece publicada."},
- {q:"Las revisiones de cierre son:",
-  o:["Una sola, a cargo del abogado","Legal, de riesgo y de réplica, y son distintas","Legal y de estilo","De estilo y de titulación"],c:1,
-  e:"El abogado protege al medio. Nadie está protegiendo a la fuente salvo que esa tarea esté asignada a alguien por nombre."},
- {q:"La nota metodológica debe ser sobre todo:",
-  o:["Extensa","Específica","Técnica","Firmada por el director"],c:1,
-  e:"«Se revisaron 340 expedientes entre marzo y junio; se solicitó entrevista por tres vías; no hubo respuesta» dice más sobre la solidez que cualquier adjetivo."},
- {q:"Según las revisiones independientes de fracasos periodísticos, las fases donde el proceso suele romperse son:",
-  o:["La formulación de la hipótesis y el reporteo","El contraste con los señalados y el control cruzado","La edición de estilo y la titulación","La distribución y la promoción"],c:1,
-  e:"Los fallos documentados rara vez son por falta de trabajo de campo. Ocurren cuando no se buscó a quien podía desmentir y cuando nadie ajeno revisó."},
- {q:"Una corrección publicada debe tener:",
-  o:["Tono neutro y ubicación discreta","La misma visibilidad que tuvo el error y un sujeto explícito","Autorización previa del afectado","Formato de nota al pie"],c:1,
-  e:"«Se deslizó un error» no tiene sujeto. Y una corrección enterrada en una pieza que ya nadie abre no es una corrección, es un trámite."}
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una hipótesis de trabajo es investigable cuando:",
+ o:["Es lo bastante grave como para justificar el esfuerzo","Puede resultar falsa","Cuenta con al menos una fuente dispuesta a hablar","El editor la respalda"],c:1,
+ w:["La gravedad justifica dedicarle recursos; no la vuelve investigable. Una afirmación grave e informulable sigue sin poder comprobarse.",
+    "",
+    "La disponibilidad de fuentes es una condición de viabilidad, no de formulación. Muchas hipótesis falsables se prueban solo con documentos.",
+    "El respaldo del editor asigna recursos. No dice nada sobre si la afirmación puede comprobarse."],
+ e:"«Hay corrupción en el hospital» no se refuta con ningún dato. «Adjudicó tres contratos sin licitación a una empresa constituida un mes antes» sí, y por eso es investigable."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La pregunta de control al formular una hipótesis es:",
+ o:["¿A quién perjudica esto si es cierto?","¿Qué tendría que encontrar para abandonarla?","¿Cuánto tiempo y presupuesto exige?","¿Quién más lo está investigando?"],c:1,
+ w:["Es una pregunta necesaria para la evaluación de riesgo, no para la formulación.",
+    "",
+    "Es planificación, no método. Se responde después de tener una hipótesis falsable.",
+    "La competencia afecta al calendario de publicación, no a la solidez de lo que investigas."],
+ e:"Es la falsación aplicada al reporteo. Si no puedes responder qué te haría abandonarla, no estás investigando: estás buscando confirmación de algo que ya decidiste."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una afirmación clasificada como «indiciaria» en la matriz de verificación es aquella que:",
+ o:["Fue alegada por una parte interesada y no está contrastada","Tiene respaldo parcial o circunstancial, insuficiente para afirmarla como hecho","Está verificada pero no puede publicarse por razones legales","Procede de una sola fuente anónima"],c:1,
+ w:["Eso es el estado «alegada»: la afirmación de un tercero que el medio no ha comprobado.",
+    "",
+    "El impedimento legal es una restricción de publicación, no un estado de prueba.",
+    "El número y anonimato de las fuentes describe el origen, no el grado de respaldo. Una sola fuente documental puede bastar para verificar."],
+ e:"Los tres estados —verificada, indiciaria, alegada— tienen que corresponderse con la formulación en el texto. Si la matriz dice «indiciaria» y el texto afirma el hecho, hay un error que corregir antes de publicar."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Las tres revisiones de cierre son distintas porque:",
+ o:["Las realizan personas de distinta jerarquía","Protegen a sujetos distintos: la legal al medio, la de riesgo a las personas expuestas, la de réplica al señalado","Se realizan en momentos distintos del proceso","Solo la legal es obligatoria"],c:1,
+ w:["La jerarquía de quien revisa es irrelevante; lo que las distingue es qué protege cada una.",
+    "",
+    "El momento es consecuencia, no causa, de que sean distintas.",
+    "Las tres son exigibles. Tratar la legal como la única obligatoria es exactamente el fallo que produce el problema."],
+ e:"El abogado protege al medio. Nadie está protegiendo a la fuente ni verificando que se buscó al señalado, salvo que esas tareas estén asignadas a alguien por nombre."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La nota metodológica publicada debe ser sobre todo:",
+ o:["Extensa, para acreditar el volumen de trabajo","Específica: qué material, qué período, qué no se confirmó y quién declinó hablar","Técnica, para acreditar competencia ante los pares","Firmada por la dirección del medio"],c:1,
+ w:["La extensión no acredita nada y desplaza al lector. Una nota larga y vaga es peor que una breve y concreta.",
+    "",
+    "El destinatario es el lector, no el gremio. El tecnicismo reduce la auditabilidad en lugar de aumentarla.",
+    "La firma es rendición de cuentas y no sustituye al contenido de la nota."],
+ e:"«Se revisaron 340 expedientes entre marzo y junio; se solicitó entrevista por tres vías; no hubo respuesta» dice más sobre la solidez de una pieza que cualquier adjetivo."},
+
+/* ---------- BLOQUE B · ESCENARIO ---------- */
+{blk:"BLOQUE B · PROCESO DE CIERRE", t:"mcq",
+ s:"Llevas seis semanas con la investigación. Encuentras un documento que contradice tu hipótesis central. Tu editor ya anunció internamente la fecha de publicación.",
+ q:"¿Qué haces?",
+ o:["Contrastar el documento con el resto: un dato aislado no derriba seis semanas de trabajo","Tratarlo como el hallazgo que buscabas: verificar su autenticidad y, si se sostiene, reformular o abandonar la hipótesis","Publicar mencionando el documento como una versión alternativa","Consultar con el editor si la fecha permite investigarlo"],c:1,
+ w:["Suena a prudencia y es sesgo de confirmación con otra ropa: el peso de las semanas invertidas no es evidencia.",
+    "",
+    "Presentar como «versión alternativa» algo que refuta tu tesis es un empate falso que el lector no puede evaluar.",
+    "Subordinar la validez de una hipótesis al calendario invierte el orden. La fecha se mueve; el hecho no."],
+ e:"La falsación es el método, no un contratiempo: buscabas activamente lo que refutaría tu hipótesis y apareció. Lo primero es autenticar el documento; si se sostiene, la hipótesis cambia y las seis semanas siguen siendo trabajo útil."},
+
+{blk:"BLOQUE B · PROCESO DE CIERRE", t:"mcq",
+ s:"El revisor de control cruzado te pregunta dónde está la prueba de una afirmación del quinto párrafo. Le explicas que se lo dijeron dos funcionarios y que además «todo el mundo en el sector lo sabe».",
+ q:"¿Qué ha detectado el revisor?",
+ o:["Nada: dos fuentes y conocimiento sectorial es respaldo suficiente","Una afirmación cuyo respaldo no está en la matriz y que el autor da por sabida","Un problema de redacción del párrafo","Una afirmación que necesita atribución explícita en el texto"],c:1,
+ w:["«Todo el mundo lo sabe» no es una fuente; es la ausencia de una. Y las dos fuentes no aparecen en la matriz.",
+    "",
+    "La redacción puede ser impecable. El problema es que no hay entrada en la matriz que sostenga la frase.",
+    "Añadir atribución mejoraría el texto sin resolver que el respaldo no fue registrado ni comprobado por nadie más."],
+ e:"Es exactamente lo que el control cruzado existe para encontrar. Tras semanas con un tema, el autor pierde la capacidad de distinguir lo que verificó de lo que asimiló, y una afirmación que solo está en su cabeza le parece publicada."},
+
+{blk:"BLOQUE B · PROCESO DE CIERRE", t:"mcq",
+ s:"Enviaste el cuestionario a la empresa señalada hace diez días. Responden a las 22:00 de la víspera de la publicación con un documento de doce páginas que aporta datos nuevos y relevantes.",
+ q:"¿Qué corresponde hacer?",
+ o:["Publicar según lo previsto e incorporar su respuesta íntegra al final de la pieza","Evaluar si los datos nuevos modifican alguna afirmación de la matriz y retrasar si es necesario","Publicar sin la respuesta: llegó fuera de plazo","Publicar un resumen de la respuesta elaborado por la redacción"],c:1,
+ w:["Adjuntar la respuesta sin comprobar si desmiente algo del cuerpo deja publicadas afirmaciones que quizá ya no se sostienen.",
+    "",
+    "La respuesta tardía puede ser una táctica y aun así contener datos ciertos. La verificación no tiene plazo de cortesía.",
+    "Resumir es legítimo, pero no es la decisión pendiente: primero hay que ver qué cambia en la matriz."],
+ e:"El derecho de réplica no es un trámite de compensación al final del texto. Si la respuesta aporta datos verificables que afectan a la matriz, el texto cambia; si no aporta nada, se publica y se recoge su posición."},
+
+{blk:"BLOQUE B · PROCESO DE CIERRE", t:"mcq",
+ s:"La revisión legal recomienda suavizar tres párrafos. La revisión de riesgo advierte que uno de ellos, tal como está, permite identificar a la fuente.",
+ q:"¿Cómo se resuelve?",
+ o:["Prevalece la recomendación legal: protege a la organización entera","Son problemas distintos con soluciones distintas; la exposición de la fuente es innegociable y la formulación legal se discute","Prevalece la advertencia de riesgo y se ignora la legal","Decide la dirección del medio sin más criterio"],c:1,
+ w:["Tratar la revisión legal como jerárquicamente superior es lo que produce piezas legalmente seguras y humanamente irresponsables.",
+    "",
+    "Ignorar la revisión legal expone al medio y, con él, a la posibilidad de seguir publicando.",
+    "Que decida la dirección es un procedimiento, no un criterio. La pregunta era qué criterio aplicar."],
+ e:"Las tres revisiones protegen a sujetos distintos y por eso no se sustituyen. La reformulación que evita la deducción de la fuente es obligatoria; el ajuste legal se negocia sobre lo que la evidencia permita sostener."},
+
+{blk:"BLOQUE B · PROCESO DE CIERRE", t:"mcq",
+ s:"Publicada la investigación, dos meses después no ha ocurrido nada: ni respuesta institucional, ni causa, ni cambio.",
+ q:"¿Qué corresponde profesionalmente?",
+ o:["Nada: el trabajo del periodista terminó con la publicación","Publicar el seguimiento, incluido el hecho verificable de que no hubo respuesta","Volver a publicar la investigación para forzar una reacción","Escribir una columna de opinión sobre la inacción"],c:1,
+ w:["Es la posición más común y deja la investigación como un episodio aislado. La ausencia de consecuencias es en sí misma información.",
+    "",
+    "Republicar lo mismo no añade información y convierte al medio en parte interesada en el resultado.",
+    "La opinión es un género legítimo y distinto. La ausencia de respuesta puede documentarse como hecho: quién debía actuar, en qué plazo, qué hizo."],
+ e:"El seguimiento es lo que separa una investigación de una publicación. Que un organismo con obligación de responder no haya respondido en sesenta días es un dato verificable, no una queja."},
+
+{blk:"BLOQUE B · PROCESO DE CIERRE", t:"mcq",
+ s:"Cinco meses después de publicar, el señalado presenta una demanda. Alega que nunca se le contactó.",
+ q:"¿Qué te permite defenderte?",
+ o:["El prestigio del medio y la ausencia de errores factuales","El registro de decisiones y la constancia documentada de cada intento de contacto, con fechas y vías","La nota metodológica publicada con la pieza","El testimonio de los periodistas que trabajaron en la investigación"],c:1,
+ w:["El prestigio no es prueba y la ausencia de errores no acredita que se buscara al señalado.",
+    "",
+    "La nota metodológica ayuda mucho y es un resumen público. Lo que sostiene la defensa es el registro interno completo del que esa nota es un extracto.",
+    "El recuerdo de quienes participaron es débil a cinco meses y no está fechado."],
+ e:"El registro de decisiones —qué se publicó, qué no y por qué— es lo que permite defender el proceso meses después, cuando nadie recuerda por qué se optó por una formulación y no por otra."},
+
+{blk:"BLOQUE B · PROCESO DE CIERRE", t:"mcq",
+ s:"Un lector demuestra que una cifra de tu investigación es incorrecta. La conclusión general no cambia y la pieza tuvo gran circulación.",
+ q:"¿Cómo se corrige?",
+ o:["Con una nota al pie de la pieza, en tono neutro","Con la misma visibilidad que tuvo el error, indicando qué decía, qué dice ahora y quién se equivocó","Actualizando el dato en silencio para no confundir a quien ya leyó","Con una corrección que atribuya el error a la fuente que aportó la cifra"],c:1,
+ w:["La nota al pie de una pieza que ya circuló no alcanza al público que recibió el error.",
+    "",
+    "La corrección silenciosa mantiene el error en el registro público y añade una segunda falta.",
+    "Trasladar la responsabilidad a la fuente es el reflejo defensivo típico: publicar la cifra fue una decisión del medio."],
+ e:"«Se deslizó un error» no tiene sujeto. Una corrección útil dice qué se afirmó, qué es correcto y quién lo cometió, y aparece donde apareció el error."},
+
+{blk:"BLOQUE B · PROCESO DE CIERRE", t:"mcq",
+ s:"Trabajas con un lote de documentos que expone a decenas de terceros no relevantes para el interés público de la pieza.",
+ q:"¿Qué principio aplica?",
+ o:["Publicar todo: la transparencia total es la máxima garantía de verificabilidad","Publicar solo lo que sostiene afirmaciones de interés público, y documentar internamente qué se retuvo y por qué","Publicar todo salvo lo que la revisión legal impida","No publicar ningún documento y limitarse a describirlos"],c:1,
+ w:["La transparencia total con material que expone a terceros irrelevantes traslada el daño a personas que no son objeto de la investigación.",
+    "",
+    "El criterio legal cubre el riesgo del medio, no el de los terceros expuestos.",
+    "Retener todos los documentos priva al lector de la posibilidad de auditar tus afirmaciones."],
+ e:"Es el criterio que siguieron los consorcios que trabajaron con filtraciones masivas: se publica lo que sostiene el interés público, y la retención queda registrada internamente con su motivo."},
+
+/* ---------- BLOQUE C · DIAGNÓSTICO ---------- */
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"MATRIZ: estado «alegada» · fuente: denuncia de un extrabajador<br>TEXTO: «La empresa descontó ilegalmente las horas extra durante dos años.»",
+ q:"¿Cuál es el error?",
+ o:["Falta la atribución al extrabajador","La formulación del texto afirma como hecho lo que la matriz clasifica como alegación","Falta el período exacto y la cuantía","Debería haberse consultado a la inspección de trabajo"],c:1,
+ w:["Añadir la atribución corregiría el síntoma. El error es la discordancia entre el estado de prueba y la forma verbal.",
+    "",
+    "Más precisión en un dato no verificado agrava el problema en lugar de corregirlo.",
+    "Consultar a la inspección es un buen paso de reporteo y no resuelve lo ya escrito."],
+ e:"El estado en la matriz y la formulación en el texto deben coincidir. Si la matriz dice «alegada», el texto dice quién lo alega; si el medio quiere afirmarlo, primero cambia el estado en la matriz."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Este medio contactó reiteradamente a la empresa sin obtener respuesta.»",
+ q:"¿Qué le falta a esta frase para cumplir su función?",
+ o:["El nombre del portavoz al que se dirigieron las preguntas","Las fechas y las vías concretas de cada gestión","Un tono más neutro","La mención de que se seguirá intentando"],c:1,
+ w:["El nombre del interlocutor puede ser irrelevante o incluso improcedente. Lo que falta es la constancia de las gestiones.",
+    "",
+    "El tono ya es neutro. El problema es que la frase no es verificable.",
+    "El compromiso de seguir intentándolo no acredita lo que ya se hizo."],
+ e:"«Reiteradamente» es una valoración; «por correo el 3 de julio, por teléfono el 5 y en sus oficinas el 7» es una descripción. La primera no puede auditarse y la segunda sí, que es exactamente para lo que existe la frase."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"NOTA METODOLÓGICA: «Esta investigación es el resultado de meses de trabajo riguroso, con acceso a documentación exclusiva y múltiples fuentes.»",
+ q:"¿Qué falla?",
+ o:["Es demasiado breve para una investigación larga","Describe la pieza con adjetivos en lugar de exponer método, alcance y límites","No indica los nombres del equipo","Debería ir al principio de la pieza"],c:1,
+ w:["La brevedad no es el problema: una nota breve y concreta cumple mejor que una larga y vaga.",
+    "",
+    "La autoría es una cuestión de crédito, distinta de la transparencia de método.",
+    "La ubicación es secundaria frente a la ausencia de contenido auditable."],
+ e:"«Riguroso», «exclusiva» y «múltiples» son autoelogios que el lector no puede comprobar. La nota debe decir qué material, qué período, qué no se pudo confirmar y quién declinó hablar."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Los documentos revisados por este medio no permiten descartar que los pagos tuvieran una finalidad irregular.»",
+ q:"¿Qué problema tiene esta formulación?",
+ o:["Es demasiado cauta y debilita innecesariamente la investigación","Convierte la ausencia de prueba en una insinuación de culpabilidad","Falta indicar cuántos documentos se revisaron","Debería atribuirse a un experto"],c:1,
+ w:["No es cautela: la frase afirma algo mientras aparenta no afirmarlo. Ese es el problema, no su timidez.",
+    "",
+    "El número de documentos añadiría precisión a una construcción que sigue siendo inválida.",
+    "Poner la insinuación en boca de un experto la traslada, no la corrige."],
+ e:"«No permiten descartar» es aplicable a casi cualquier hipótesis y no informa nada. O hay indicios que sostienen la afirmación y se exponen, o no los hay y la frase se suprime."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"CORRECCIÓN: «En una versión anterior de este artículo se deslizó un error en la cifra de contratos.»",
+ q:"¿Qué falla?",
+ o:["Debería especificar la hora exacta de la modificación","No tiene sujeto ni indica qué decía antes, qué dice ahora y de quién fue el error","Debería incluir una disculpa a los afectados","Debería estar firmada por el autor"],c:1,
+ w:["La marca temporal es un detalle menor frente a la falta de contenido.",
+    "",
+    "La disculpa puede corresponder y no sustituye a la información: el lector necesita saber qué se corrigió.",
+    "La firma añade responsabilidad y no aporta el dato corregido."],
+ e:"«Se deslizó» es una construcción sin autor: el error no se desliza, alguien lo comete. La corrección útil dice qué se afirmó, qué es correcto y quién se equivocó, con la visibilidad que tuvo el error."},
+
+/* ---------- BLOQUE D · SELECCIÓN Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe constar en la matriz de verificación para cada afirmación publicable.",
+ o:["La afirmación tal como aparecerá en el texto","La prueba concreta que la sostiene y dónde está","El estado: verificada, indiciaria o alegada","El impacto previsto de la afirmación en el lector","Quién la comprobó"],
+ c:[0,1,2,4],
+ w:["","","","El impacto es una consideración de edición y titulación, no un elemento de prueba.",""],
+ e:"Afirmación, prueba, ubicación de la prueba, estado y responsable de la comprobación. Con eso, un revisor externo puede auditar la pieza línea por línea sin haber participado en el reporteo."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las que son obligaciones posteriores a la publicación.",
+ o:["Publicar el seguimiento de lo que ocurrió después","Corregir los errores propios con la visibilidad que tuvo el error","Retirar la pieza si el señalado presenta una demanda","Conservar el registro de decisiones y el material original","Publicar la respuesta del señalado si llega después del cierre"],
+ c:[0,1,3,4],
+ w:["","","La presentación de una demanda no acredita nada sobre la exactitud de la pieza. Retirar por ese solo hecho convierte el litigio en un método de censura.","",""],
+ e:"Seguimiento, corrección, conservación del registro y publicación de la respuesta tardía. Una demanda se contesta con el registro, no retirando el trabajo."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las fases del proceso de investigación. Pulsa las opciones en el orden correcto.",
+ o:["Formular una hipótesis falsable","Elaborar el plan de reporteo: cada afirmación con su prueba y su alternativa","Reportear buscando también lo que refutaría la hipótesis","Construir la matriz de verificación afirmación por afirmación","Someter la pieza a control cruzado por alguien ajeno al reporteo","Ejecutar las tres revisiones de cierre: legal, de riesgo y de réplica","Publicar con nota metodológica y registrar las decisiones"],
+ c:[0,1,2,3,4,5,6],
+ e:"Ninguna fase es opcional y el orden no es arbitrario: el plan de reporteo se hace antes de reportear porque su función es impedir que solo busques lo que confirma, y el control cruzado va antes de las revisiones de cierre porque estas parten de una matriz ya auditada."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las revisiones de cierre según el sujeto que protege cada una, del propio medio hacia afuera.",
+ o:["Revisión legal: protege a la organización","Revisión de riesgo: protege a las fuentes y a los terceros expuestos","Revisión de réplica: protege al señalado por la pieza"],
+ c:[0,1,2],
+ e:"El orden del ejercicio es didáctico, no de prioridad: son simultáneas y ninguna sustituye a otra. Enumerarlas así deja a la vista que el revisor legal protege al medio y que, si nadie tiene asignadas las otras dos, esas personas no están protegidas por nadie."}
 ];
 
 const EXAM=[
@@ -608,7 +800,102 @@ function buildQuiz(list, holderId, scoreId, withUnit){
     holder.appendChild(card);
   });
 }
-buildQuiz(QUIZ,'quiz','score',false);
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
 buildQuiz(EXAM,'exam','escore',true);
 
 function bindReveal(b){

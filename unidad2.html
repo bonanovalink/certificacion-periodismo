@@ -96,6 +96,18 @@
   .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
   .exp.show{display:block}
   .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
   .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
   .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
   .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
@@ -321,8 +333,8 @@
 
   <section id="pru">
     <h3>Prueba de la unidad</h3>
-    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
-    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
     <div id="quiz"></div>
 
     <h3>Entrega práctica</h3>
@@ -366,30 +378,210 @@ const TERMS=[
 ];
 
 const QUIZ=[
- {q:"En periodismo móvil, el primer elemento en el que conviene invertir es:",
-  o:["La cámara del teléfono","El micrófono externo","La iluminación","La aplicación de edición"],c:1,
-  e:"El público tolera imagen mediocre y abandona ante mal sonido. El orden correcto es micrófono, estabilización, iluminación y solo al final cámara."},
- {q:"El plano de contexto se graba principalmente para:",
-  o:["Abrir la pieza con una imagen atractiva","Poder demostrar después dónde y cuándo se estuvo","Rellenar la edición","Cumplir con el formato televisivo"],c:1,
-  e:"Casi nunca se publica. Su función es probatoria: es lo primero que se pide si alguien niega el hecho."},
- {q:"Respecto a los metadatos EXIF, la regla correcta es:",
-  o:["Borrarlos siempre antes de archivar","Conservarlos siempre en lo publicado","Conservar el original intacto y limpiar la copia que se publica","Desactivar la localización de forma permanente"],c:2,
-  e:"Son prueba de procedencia y riesgo de exposición al mismo tiempo. Por eso se separa: original con metadatos guardado, copia publicada limpia."},
- {q:"Dos personas que se enteraron del hecho por la misma tercera constituyen:",
-  o:["Dos fuentes independientes","Una sola fuente","Triangulación válida","Confirmación documental"],c:1,
-  e:"La independencia es lo que hace válida la triangulación. Si el origen es común, el número de intermediarios no añade verificación."},
- {q:"La condición de atribución debe pactarse:",
-  o:["Al terminar la entrevista","Antes de la primera pregunta","Solo si la fuente lo pide","Al momento de editar"],c:1,
-  e:"La ambigüedad en este punto es la causa más común de conflicto con fuentes, y siempre la paga el reportero. Conviene además dejarla grabada."},
- {q:"Una fuente se puede quemar sin revelar su nombre cuando:",
-  o:["Se la cita textualmente","Se publica un detalle que solo ella podía conocer","Se la describe por su función","Se le muestra el texto antes"],c:1,
-  e:"La protección es ficticia si el entorno puede deducir quién habló. De ahí la prueba de deducción antes de publicar."},
- {q:"La cadena de custodia exige, como mínimo:",
-  o:["Editar sobre el archivo original para no duplicar","Conservar el original intacto y trabajar sobre una copia","Renombrar los archivos con el tema de la nota","Publicar el material en menos de 24 horas"],c:1,
-  e:"El original nunca se edita ni se renombra. La copia de trabajo es la que se manipula, y el registro documenta quién tuvo acceso a qué."},
- {q:"En la evaluación de riesgo previa a salir a campo, la capa que suele estar menos planificada es:",
-  o:["La física del reportero","La digital del dispositivo","La de la fuente","La del medio"],c:2,
-  e:"El riesgo del reportero es voluntario y profesional; el de la fuente muchas veces no es ni voluntario ni informado. Explicárselo es parte del consentimiento."}
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"En equipamiento móvil, ¿cuál es el orden correcto de inversión?",
+ o:["Cámara, micrófono, estabilización, iluminación","Micrófono, estabilización, iluminación, cámara","Iluminación, cámara, micrófono, aplicación de edición","Aplicación de edición, cámara, micrófono, trípode"],c:1,
+ w:["Invierte el orden real. La cámara del teléfono ya es suficiente en casi cualquier situación con luz; el sonido no se arregla después.",
+    "",
+    "La luz importa, pero el público abandona antes por audio malo que por imagen oscura. Y la aplicación de edición es lo último que limita la calidad.",
+    "El software es lo más fácil de sustituir y lo que menos condiciona el resultado."],
+ e:"El público tolera imagen mediocre y abandona ante mal sonido. Micrófono primero, luego estabilización, luego luz, y la cámara al final porque ya la llevas encima."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El plano de contexto se graba principalmente para:",
+ o:["Abrir la pieza con una imagen que sitúe al espectador","Poder demostrar después dónde y cuándo se estuvo","Disponer de recurso para cubrir cortes de edición","Cumplir con la convención del formato televisivo"],c:1,
+ w:["Es un uso legítimo y frecuente, pero secundario. El plano de contexto casi nunca se publica.",
+    "",
+    "También sirve para eso, y esa utilidad es real. Pero su razón de ser es probatoria: es lo primero que se pide si alguien niega el hecho.",
+    "No responde a una convención de formato, sino a una necesidad de verificación."],
+ e:"Es un barrido amplio con elementos fijos identificables —fachadas, rótulos, accidentes del terreno— que permite geolocalizar la escena después. Su valor es probatorio, no narrativo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Respecto a los metadatos EXIF, la regla de trabajo correcta es:",
+ o:["Borrarlos siempre antes de archivar el material","Conservarlos en el archivo que se publica, como prueba de autenticidad","Conservar el original intacto y limpiar la copia que se publica","Desactivar permanentemente la geolocalización del dispositivo"],c:2,
+ w:["Borrarlos del original destruye la prueba de procedencia, que es exactamente lo que necesitarás si alguien impugna el material.",
+    "Publicar los metadatos puede exponer la ubicación exacta de quien grabó y de quien aparece. Es el riesgo, no la prueba.",
+    "",
+    "Desactivarla siempre te priva de la coordenada que documenta tu propio trabajo. La decisión es contextual: se apaga en escenarios de riesgo, no por norma."],
+ e:"Los EXIF son prueba de procedencia y riesgo de exposición al mismo tiempo. Por eso se separan los archivos: original con metadatos, guardado; copia publicada, limpia."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"«Atribución de fondo» significa que la información:",
+ o:["No es publicable y solo orienta la investigación","Es publicable identificando a la fuente por su función y no por su nombre","Es publicable a partir de una fecha acordada","Es publicable sin indicar de dónde procede"],c:1,
+ w:["Eso es fuera del récord. La confusión entre ambas condiciones es la causa más frecuente de conflicto con fuentes.",
+    "",
+    "Eso es un embargo, que regula el cuándo y no el cómo se atribuye.",
+    "Publicar sin origen no es una condición de atribución: es la ausencia de atribución, y empeora la transparencia."],
+ e:"«Un funcionario del ministerio» es atribución de fondo. Solo es protección real si ese nivel de detalle no vuelve deducible a la persona."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La cadena de custodia del material de campo exige, como mínimo:",
+ o:["Editar sobre el original para evitar versiones duplicadas","Conservar el original intacto y sin renombrar, y trabajar sobre una copia","Renombrar los archivos con el tema de la nota para localizarlos","Publicar el material antes de 24 horas para fijar la autoría"],c:1,
+ w:["Editar el original destruye la única versión cuya integridad puedes demostrar.",
+    "",
+    "Renombrar es cómodo y es precisamente lo que rompe la cadena: el nombre de archivo generado por el dispositivo forma parte del registro.",
+    "La rapidez de publicación no acredita nada sobre la integridad del archivo."],
+ e:"Original intacto y sin renombrar, copia de trabajo para editar, registro escrito de quién capturó qué y cuándo, y respaldo en un segundo soporte antes de salir del lugar."},
+
+/* ---------- BLOQUE B · ESCENARIO ---------- */
+{blk:"BLOQUE B · DECISIÓN EN CAMPO", t:"mcq",
+ s:"Llegas a un derrumbe. Hay luz, ruido de maquinaria y una vecina que quiere hablar ya. Tienes teléfono, micrófono de solapa y treinta segundos antes de que se acerque.",
+ q:"¿Qué haces con esos treinta segundos?",
+ o:["Grabar de inmediato: el testimonio en caliente es irrepetible","Comprobar nivel de audio con el micrófono puesto y ubicarte de espaldas al ruido","Grabar el plano de contexto antes que nada","Pedirle que espere mientras revisas batería y almacenamiento"],c:1,
+ w:["El testimonio irrepetible con audio inservible no es testimonio. Treinta segundos de comprobación no pierden la declaración.",
+    "",
+    "El plano de contexto es imprescindible, pero puede grabarse después: el lugar no se va. La persona sí.",
+    "Batería y almacenamiento se comprueban antes de salir, no delante de la fuente."],
+ e:"La comprobación técnica de treinta segundos es el primer paso del flujo verificable. Nivel de audio y posición respecto al ruido dominante son lo único que no tiene arreglo en edición."},
+
+{blk:"BLOQUE B · DECISIÓN EN CAMPO", t:"mcq",
+ s:"La vecina empieza a hablar sin que hayas pactado nada. Está alterada y hay dos personas escuchando alrededor.",
+ q:"¿Cuál es la actuación correcta?",
+ o:["Dejarla hablar y pactar la atribución al terminar, para no cortar el impulso","Interrumpir, pactar la atribución expresamente y dejar ese pacto grabado","Grabar todo y decidir después qué es publicable","Apartarla del grupo antes de decir nada"],c:1,
+ w:["Pactar al final significa pedirle permiso sobre algo que ya dijo sin saber en qué condición lo decía. La ambigüedad la paga siempre el reportero.",
+    "",
+    "Decidir tú después qué era publicable convierte una obligación acordada en una decisión unilateral tuya.",
+    "Apartarla puede ser prudente, pero no sustituye al pacto y además puede señalarla ante quienes escuchan."],
+ e:"El pacto va antes de la primera pregunta y se graba: ese fragmento es el respaldo del reportero. La fórmula es explícita: todo es publicable con su nombre salvo que diga lo contrario en el momento."},
+
+{blk:"BLOQUE B · DECISIÓN EN CAMPO", t:"mcq",
+ s:"La vecina relata dos cosas seguidas: que vio caer la fachada y que el edificio llevaba dos años con una orden de desalojo que nadie ejecutó. Lo segundo se lo contó su cuñado.",
+ q:"¿Cómo tratas ambas afirmaciones?",
+ o:["Como un solo testimonio: es la misma testigo presencial","Como testimonio directo lo primero, y como referencia no confirmada lo segundo, que exige documento","Publicar solo lo que vio y descartar el resto","Publicar ambas cosas atribuidas a ella"],c:1,
+ w:["Ser testigo presencial de un hecho no convierte en presencial todo lo que esa persona diga.",
+    "",
+    "Lo segundo no se descarta: es una pista de alto valor que abre la vía documental. Descartarla renuncia a la investigación.",
+    "Atribuirle ambas cosas por igual traslada al lector la impresión de que las dos tienen el mismo respaldo."],
+ e:"Separar lo que vio de lo que le contaron es la operación central de la entrevista de campo. La orden de desalojo no se publica por testimonio: se pide el expediente."},
+
+{blk:"BLOQUE B · DECISIÓN EN CAMPO", t:"mcq",
+ s:"Un funcionario acepta hablar «con atribución de fondo» y te da el dato decisivo. Solo tres personas de esa oficina tienen acceso a esa información, y él es una de ellas.",
+ q:"¿Qué haces?",
+ o:["Publicarlo como «un funcionario del ministerio»: se respetó lo pactado","Advertirle que el dato lo identifica y renegociar la formulación o buscar el dato por otra vía","Publicarlo sin atribución alguna","Publicarlo atribuido a «fuentes del sector» para ampliar el universo de sospechosos"],c:1,
+ w:["Cumplir la letra del pacto y quemar a la fuente igualmente es el fallo típico. La protección pactada era el efecto, no la fórmula.",
+    "",
+    "Quitar la atribución no reduce el círculo de sospechosos y sí degrada la transparencia ante el lector.",
+    "Ensanchar deliberadamente la atribución para despistar es engañar al lector sobre el origen de la información. El problema no se resuelve mintiendo en otra dirección."],
+ e:"Es la prueba de deducción: si alguien de esa oficina puede adivinar quién habló, la protección es ficticia. Se le dice a la fuente antes de publicar, no después."},
+
+{blk:"BLOQUE B · DECISIÓN EN CAMPO", t:"mcq",
+ s:"Recibes por mensajería el video de un ataque. Es material grave y la plataforma donde está alojado suele retirarlo por sus normas de contenido en cuestión de horas.",
+ q:"¿Qué es lo primero que haces?",
+ o:["Verificar procedencia antes de tocar nada, para no perder tiempo en material falso","Descargar el original, registrar su origen y calcular su huella digital","Contactar al remitente para pedirle los metadatos","Publicar de inmediato con la advertencia de que no está verificado"],c:1,
+ w:["Verificar primero es intuitivo y es el orden equivocado: si el material desaparece mientras verificas, no queda nada que verificar.",
+    "",
+    "Es un paso necesario, pero va después. Si la plataforma retira el archivo durante esa conversación, pierdes el objeto.",
+    "Publicar sin ninguna comprobación no es transparencia, es trasladar el riesgo al lector."],
+ e:"Es la lección de Mnemonic y el Syrian Archive: la moderación automática no distingue entre propaganda y prueba. Preservar es el primer acto de verificación, no el último."},
+
+{blk:"BLOQUE B · DECISIÓN EN CAMPO", t:"mcq",
+ s:"Una fuente que te entregó documentos te cuenta, orgullosa, que se lo comentó a una amiga de confianza que no tiene relación con el caso.",
+ q:"¿Qué corresponde hacer?",
+ o:["Nada: el medio no controla las conversaciones privadas de sus fuentes","Advertirle expresamente que cualquier relato del hecho a cualquier persona anula la protección, y revaluar el calendario de publicación","Interrumpir la relación con la fuente por incumplimiento","Pedirle el nombre de la amiga para evaluar el riesgo"],c:1,
+ w:["El medio no las controla, pero sí tiene la obligación de advertir del riesgo que no controla. La ausencia de control no cancela el deber de aviso.",
+    "",
+    "Castigar a la fuente no reduce el riesgo ya creado y elimina tu capacidad de acompañarla.",
+    "Recabar datos de terceros amplía el universo de personas expuestas y no mejora tu protección."],
+ e:"Es el caso Manning–Lamo: el canal de entrega funcionó, el perímetro alrededor de la fuente falló. La conversación sobre seguridad operacional va al principio de la relación, no cuando ya hay material publicado."},
+
+{blk:"BLOQUE B · DECISIÓN EN CAMPO", t:"mcq",
+ s:"Un colaborador habitual te envía una fotografía impactante de una inundación. Al ampliarla adviertes en una zona de agua turbia un patrón que se repite idéntico dos veces.",
+ q:"¿Qué implica ese hallazgo?",
+ o:["Que la imagen está comprimida y conviene pedir el original","Que hay clonado, y eso invalida no solo esa imagen sino el resto del material de ese proveedor","Que la imagen no puede publicarse, pero el resto de su material sigue siendo utilizable","Que hay que consultarlo con el colaborador antes de sacar conclusiones"],c:1,
+ w:["La compresión degrada detalle, no genera duplicados idénticos. Un patrón repetido exacto no es un artefacto de compresión.",
+    "",
+    "Es la respuesta que casi todo el mundo elige y es la que Reuters descartó en 2006: retiró las 920 fotografías de Adnan Hajj, no solo las alteradas.",
+    "Preguntar es razonable, pero la conclusión sobre el archivo no depende de lo que él conteste."],
+ e:"La confianza en material visual no se deposita en cada pieza sino en el procedimiento del autor. Probado el clonado, ese procedimiento queda invalidado y con él todo su archivo."},
+
+{blk:"BLOQUE B · DECISIÓN EN CAMPO", t:"mcq",
+ s:"Un video presentado como reciente coincide con lo que describen tus fuentes. Extraes la miniatura, la buscas en inversa y aparece publicado dos años antes en otro país.",
+ q:"¿Qué has establecido exactamente?",
+ o:["Que el hecho que muestra el video no ocurrió","Que el archivo es anterior y no documenta el hecho actual, sin que ello diga nada sobre el hecho","Que la fuente que te lo envió actuó de mala fe","Que el hecho ocurrió pero en otro lugar"],c:1,
+ w:["El archivo es falso para este uso; el hecho puede haber ocurrido igualmente y estar documentado por otras vías.",
+    "",
+    "La mala fe no se deduce de la recirculación: la mayoría de quienes difunden material antiguo lo creen actual.",
+    "No has establecido nada sobre dónde ocurrió el hecho que investigas, solo sobre dónde se grabó ese archivo."],
+ e:"Una herramienta verifica el archivo, no el hecho. La procedencia es el primer filtro, no la conclusión, y confundir ambas cosas es el error habitual de quien acaba de descubrir la herramienta."},
+
+/* ---------- BLOQUE C · DIAGNÓSTICO ---------- */
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Un vecino que presenció el derrumbe aseguró que el edificio llevaba dos años sin inspección.»",
+ q:"¿Cuál es el defecto principal?",
+ o:["No se indica el nombre del vecino","La condición de testigo presencial se traslada indebidamente a un dato administrativo que él no presenció","Falta precisar la hora del derrumbe","Debería decir «afirmó» en lugar de «aseguró»"],c:1,
+ w:["El anonimato puede estar justificado. El problema es otro: qué respalda la segunda afirmación.",
+    "",
+    "La hora añadiría precisión al hecho, no al problema de respaldo.",
+    "Es una cuestión de matiz verbal que deja intacto el defecto de fondo."],
+ e:"«Presenció el derrumbe» acredita lo que vio. La ausencia de inspecciones durante dos años es un dato de registro que se prueba con documento, no con testimonio."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Imágenes exclusivas obtenidas por este medio muestran el momento del ataque.»<br>El video llegó por mensajería desde una cuenta no identificada.",
+ q:"¿Qué falla?",
+ o:["«Exclusivas» no puede comprobarse","«Obtenidas por este medio» sugiere captura o reporteo propio cuando el material es de origen no establecido","Falta indicar la duración del video","Debería decir «presuntamente muestran»"],c:1,
+ w:["La exclusividad es una afirmación comercial imprecisa, pero no es lo que induce a error sobre el respaldo.",
+    "",
+    "La duración es irrelevante para el problema de atribución de origen.",
+    "«Presuntamente» diluye la afirmación sobre el contenido sin corregir la afirmación falsa sobre la procedencia."],
+ e:"Es el cuarto principio intelectual —apoyarse en el reporteo propio— aplicado a la redacción: la fórmula atribuye al medio un trabajo de captura que no hizo. Lo verificable es que el material llegó por mensajería y no se pudo establecer su origen."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Según una fuente del ministerio que pidió no ser identificada por temor a represalias, el expediente fue archivado.»",
+ q:"Suponiendo que todo lo dicho sea cierto, ¿qué riesgo introduce esta formulación?",
+ o:["Ninguno: cumple con la atribución de fondo y explica el motivo del anonimato","El motivo declarado —temor a represalias— señala una relación de subordinación que puede estrechar el círculo de personas posibles","Debería nombrarse el ministerio concreto","«Pidió no ser identificada» es redundante con «fuente»"],c:1,
+ w:["Cumple la forma y por eso pasa desapercibido. El riesgo no está en la fórmula sino en el dato añadido.",
+    "",
+    "Nombrar el ministerio estrecharía aún más el círculo. Va en dirección contraria a la protección.",
+    "Es una cuestión de estilo, no de riesgo."],
+ e:"Explicar el motivo del anonimato es buena práctica de transparencia y a la vez información sobre la fuente. Cada detalle añadido —temor a represalias, acceso al expediente, cargo— reduce el número de personas compatibles. La prueba de deducción se aplica también a las justificaciones."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«El archivo original fue editado para mejorar la iluminación y luego guardado con el nombre <em>derrumbe-calle-marti.mp4</em>.»",
+ q:"¿Qué rompe esta práctica?",
+ o:["Nada: ajustar iluminación es una corrección técnica admitida","La cadena de custodia, porque el original fue modificado y renombrado","La norma de no agregar nada que no estuviera ahí, por el ajuste de luz","El derecho de la fuente sobre su material"],c:1,
+ w:["El ajuste de luz sobre una copia es admisible; el problema es sobre qué archivo se hizo.",
+    "",
+    "Es la respuesta tentadora, y el ajuste moderado de exposición sobre la copia de trabajo no viola ese principio. El problema es de custodia, no de contenido.",
+    "No hay aquí ninguna cuestión de derechos: el material es propio."],
+ e:"El original no se edita ni se renombra nunca. La edición va sobre la copia de trabajo; el nombre generado por el dispositivo forma parte del registro que acredita cuándo y con qué se capturó."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Dos fuentes confirmaron a este medio que la orden salió del despacho del director.»<br>Ambas fuentes citan, al ser repreguntadas, a la misma secretaria.",
+ q:"¿Qué corresponde escribir?",
+ o:["Lo mismo: son dos personas distintas y ambas confirmaron","Que una fuente sitúa la orden en ese despacho, y que no se pudo contrastar con un origen independiente","Que tres fuentes lo confirman, contando a la secretaria","Que la información no puede publicarse en ningún caso"],c:1,
+ w:["Dos bocas no son dos fuentes cuando el origen es el mismo. La independencia es el requisito, no el número.",
+    "",
+    "Sumar el origen a los intermediarios agrava el error: convierte una sola cadena en una falsa acumulación.",
+    "Puede publicarse, formulada como lo que es: una afirmación de origen único no contrastada."],
+ e:"La triangulación exige fuentes independientes entre sí. Aquí hay una sola cadena informativa, y el texto debe decirlo con esa precisión en lugar de invocar una confirmación que no existe."},
+
+/* ---------- BLOQUE D · SELECCIÓN Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe capturarse en una cobertura de campo aunque no vaya a publicarse.",
+ o:["Plano de contexto con elementos fijos identificables","Treinta segundos de ambiente limpio, sin voces","Planos de recurso de personas identificables del entorno","El pacto de atribución grabado al inicio de la entrevista","Un plano cenital que dé valor de producción a la pieza"],
+ c:[0,1,3],
+ w:["","","Grabar a personas identificables que no han consentido no es una obligación y sí un riesgo para ellas.","","El valor de producción es un objetivo estético legítimo, pero no forma parte de lo que el método exige capturar."],
+ e:"Plano de contexto, ambiente limpio y pacto grabado son los tres registros que sostienen la pieza si se impugna. Ninguno se publica, y sin ellos no hay defensa."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las maneras en que una fuente puede quedar expuesta sin que se publique su nombre.",
+ o:["Publicando un detalle que solo ella podía conocer","Citándola en un contexto que la vuelve deducible dentro de su organigrama","Publicando la fotografía del edificio donde trabaja","Publicando el archivo de audio con metadatos de ubicación intactos","Describiéndola por su función cuando esa función la ocupa una sola persona"],
+ c:[0,1,3,4],
+ w:["","","La fachada de un edificio con centenares de empleados no identifica a nadie por sí sola.","",""],
+ e:"El detalle exclusivo, el contexto deducible, los metadatos sin limpiar y la función unipersonal son cuatro vías de exposición sin nombre. La prueba de deducción las cubre todas: si alguien de esa oficina puede adivinar quién habló, hay que reescribir."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el flujo de trabajo móvil que resiste una impugnación. Pulsa las opciones en el orden correcto.",
+ o:["Comprobación técnica de treinta segundos","Pacto explícito de atribución, grabado","Captura, incluyendo plano de contexto y ambiente limpio","Respaldo inmediato y registro de custodia","Verificación de lo capturado contra al menos otra fuente","Publicación declarando lo que no se pudo confirmar"],
+ c:[0,1,2,3,4,5],
+ e:"Seis pasos y ninguno opcional. El respaldo va antes de la verificación porque el material puede perderse mientras verificas; y el último paso es el puente con la Unidad 1: el método no cambió, solo cabe en un bolsillo."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las capas de la evaluación de riesgo previa a salir a campo, de la que más se planifica a la que menos.",
+ o:["Física del reportero: rutas, horarios, quién sabe dónde estás","Digital del dispositivo: qué lleva, qué pasa si lo revisan","De la fuente: qué le ocurre a ella si se sabe que habló"],
+ c:[0,1,2],
+ e:"La más planificada es la propia y la menos, la de quien habla. El riesgo del reportero es voluntario y profesional; el de la fuente muchas veces ni es voluntario ni está informado. Explicárselo es parte del consentimiento, no una cortesía."}
 ];
 
 const CASES=[
@@ -516,31 +708,101 @@ aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mo
 const tw=document.getElementById('terms');
 TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
 
-let done=0,right=0;
-const quiz=document.getElementById('quiz');
-QUIZ.forEach(function(it,i){
-  const card=el('<div class="q"><div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
-  const opts=card.querySelector('.opts');
-  it.o.forEach(function(o,j){
-    const b=document.createElement('button');
-    b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
-    b.onclick=function(){
-      if(card.dataset.done) return;
-      card.dataset.done='1'; done++;
-      var kids=opts.children;
-      for(var k=0;k<kids.length;k++){
-        kids[k].classList.add('done');
-        if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
-        else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
-      }
-      if(j===it.c) right++;
-      card.querySelector('.exp').classList.add('show');
-      document.getElementById('score').textContent='RESPONDIDAS '+done+' / '+QUIZ.length+' · CORRECTAS '+right;
-    };
-    opts.appendChild(b);
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
   });
-  quiz.appendChild(card);
-});
+  marcador();
+})();
 
 function bindReveal(b){
   b.dataset.o=b.textContent;

@@ -95,6 +95,18 @@
   .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
   .exp.show{display:block}
   .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
   .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
   .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
   .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
@@ -309,8 +321,8 @@
 
   <section id="pru">
     <h3>Prueba de la unidad</h3>
-    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
-    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
     <div id="quiz"></div>
 
     <h3>Entrega práctica</h3>
@@ -354,30 +366,210 @@ const TERMS=[
 ];
 
 const QUIZ=[
- {q:"El periodismo de datos se define por:",
-  o:["El uso de gráficos en la publicación","El uso de conjuntos de registros como fuente principal, con método comprobable","El dominio de una herramienta de análisis","El volumen de información procesada"],c:1,
-  e:"Ilustrar con datos es presentación. Investigar con datos es hallar en el registro algo que nadie había afirmado y poder demostrarlo."},
- {q:"Una estadística de delitos denunciados mide:",
-  o:["Delitos cometidos","Denuncias presentadas","Condenas dictadas","Percepción de inseguridad"],c:1,
-  e:"Si la confianza en la policía cae, las denuncias caen y el delito parece disminuir. El dato es correcto y la conclusión intuitiva es falsa."},
- {q:"Ante la entrega de una base de datos en PDF de mil páginas, lo correcto es:",
-  o:["Aceptarla y transcribir manualmente","Dejar constancia de la negativa a entregar formato reutilizable y publicarla si procede","Renunciar al análisis","Solicitar una entrevista en su lugar"],c:1,
-  e:"Entregar en PDF lo que existe en base de datos cumple la ley e impide el análisis. La negativa a dar formato reutilizable es en sí misma publicable."},
- {q:"La unidad de análisis de un conjunto de datos es:",
-  o:["El organismo que lo produce","Qué representa cada fila","El período que abarca","El formato del archivo"],c:1,
-  e:"Determina qué se puede afirmar. Comparar conjuntos con unidades distintas es la causa más común de error publicado."},
- {q:"Una afirmación cuantitativa completa incluye:",
-  o:["Cifra y fuente","Cifra, denominador, período y definición","Cifra y porcentaje de variación","Cifra y gráfico"],c:1,
-  e:"«X por cada Y, en el período Z, según la definición W». Si no puedes completar los cuatro huecos, todavía no tienes un hallazgo."},
- {q:"El cuaderno de análisis cumple, en periodismo de datos, la función de:",
-  o:["Índice del reportaje","Cadena de custodia","Guion de edición","Presupuesto del proyecto"],c:1,
-  e:"Registra cada paso desde el archivo original hasta la cifra publicada, y permite que un tercero reproduzca el resultado."},
- {q:"Cuando no existe registro oficial sobre un asunto de interés público:",
-  o:["Se abandona la investigación","La ausencia es un hallazgo publicable y puede justificar construir el registro","Se usan estimaciones de terceros sin más","Se sustituye por testimonios"],c:1,
-  e:"Significa que nadie mide algo que debería medirse. Varios medios respondieron construyendo su propia base y publicando la metodología completa."},
- {q:"Un promedio nacional que mejora mientras una provincia empeora es un caso de:",
-  o:["Error de cálculo","Agregación que oculta la variación interna","Sesgo de recolección","Dato ausente"],c:1,
-  e:"El promedio es correcto. La historia está en la variación que el promedio esconde, y encontrarla es el trabajo."}
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El periodismo de datos se define por:",
+ o:["Presentar los hallazgos mediante visualizaciones","Usar conjuntos de registros como fuente principal, con un método comprobable por terceros","Dominar herramientas de análisis y programación","Procesar volúmenes de información que un humano no podría leer"],c:1,
+ w:["La visualización es presentación. Se puede hacer periodismo de datos sin un solo gráfico y publicar gráficos sin haber investigado nada.",
+    "",
+    "La herramienta es instrumental. Un análisis riguroso en una hoja de cálculo lo es tanto como uno en Python.",
+    "El volumen no define nada: una base de doscientas filas bien construida puede sostener una investigación que ningún archivo masivo sostiene."],
+ e:"Ilustrar con datos es presentación. Investigar con datos es hallar en el registro algo que nadie había afirmado y poder demostrar cómo se llegó a ello."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La unidad de análisis de un conjunto de datos es:",
+ o:["El organismo que lo produce y responde por él","Qué representa cada fila del conjunto","El período temporal que abarca","El nivel geográfico al que está desagregado"],c:1,
+ w:["El productor determina la fiabilidad y el sesgo de recolección, no lo que cada registro representa.",
+    "",
+    "El período acota la vigencia de lo que puedes afirmar, pero no qué es cada caso.",
+    "La desagregación geográfica es una dimensión del conjunto; la unidad puede ser una persona, un expediente o un evento dentro de cada territorio."],
+ e:"Determina qué se puede afirmar. Comparar conjuntos con unidades distintas —expedientes contra personas, denuncias contra hechos— es la causa más común de error publicado."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una estadística de delitos denunciados mide:",
+ o:["Los delitos cometidos en el territorio","Las denuncias presentadas","La eficacia de la policía","La percepción de inseguridad de la población"],c:1,
+ w:["Los delitos cometidos incluyen los que nadie denunció, que en algunas categorías son la mayoría.",
+    "",
+    "La eficacia se mediría con resolución de casos, no con el número de denuncias recibidas.",
+    "La percepción se mide con encuestas y puede moverse en dirección contraria al registro."],
+ e:"Es sesgo de recolección puro: si la confianza en la policía cae, las denuncias caen y el delito parece disminuir. El dato es correcto y la conclusión intuitiva es falsa."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una afirmación cuantitativa completa incluye:",
+ o:["Cifra y fuente institucional","Cifra, denominador, período y definición de lo que se cuenta","Cifra y su variación porcentual respecto del período anterior","Cifra, fuente y margen de error"],c:1,
+ w:["La fuente acredita la procedencia y no vuelve interpretable la cifra: sin denominador ni definición sigue sin poder compararse.",
+    "",
+    "La variación es una segunda cifra que hereda todos los problemas de la primera. Un porcentaje sobre una base indefinida no informa.",
+    "El margen de error corresponde a datos muestrales y es importante ahí; la mayoría de los registros administrativos no lo tienen y aun así exigen los cuatro elementos."],
+ e:"«X por cada Y, en el período Z, según la definición W». Si no puedes completar los cuatro huecos, todavía no tienes un hallazgo: tienes un número."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El cuaderno de análisis cumple, en periodismo de datos, la misma función que:",
+ o:["El plan de reporteo","La cadena de custodia del material de campo","La nota metodológica publicada","El diccionario de datos"],c:1,
+ w:["El plan de reporteo se hace antes y asocia afirmaciones con pruebas por conseguir. El cuaderno documenta lo ya ejecutado.",
+    "",
+    "La nota metodológica es el extracto público del cuaderno. No son lo mismo: una se publica y el otro es el registro completo.",
+    "El diccionario define las variables del conjunto original; el cuaderno registra qué hiciste tú con ellas."],
+ e:"Registra cada paso desde el archivo original hasta la cifra publicada —filtros, exclusiones, correcciones, uniones— y permite que un tercero llegue al mismo resultado con el mismo archivo."},
+
+/* ---------- BLOQUE B · ESCENARIO ---------- */
+{blk:"BLOQUE B · DECISIÓN DE ANÁLISIS", t:"mcq",
+ s:"Solicitaste una base de datos de contrataciones. El organismo responde dentro de plazo con un PDF de mil doscientas páginas. Sabes que el registro existe en un sistema de gestión.",
+ q:"¿Qué haces?",
+ o:["Aceptarlo y transcribir: la entrega cumplió y el análisis es responsabilidad tuya","Reclamar formato reutilizable, dejar constancia documentada de la negativa y considerarla publicable","Renunciar al análisis por inviabilidad","Solicitar una entrevista con el responsable en lugar del registro"],c:1,
+ w:["Transcribir mil doscientas páginas consume el tiempo de la investigación e introduce errores de captura. Y acepta como normal una práctica que no lo es.",
+    "",
+    "Renunciar convierte la obstrucción en una estrategia eficaz. Existen vías de extracción y, sobre todo, la negativa misma es información.",
+    "La entrevista sustituye el registro por la versión de quien lo custodia, que es exactamente lo que la solicitud buscaba evitar."],
+ e:"Entregar en PDF lo que existe en base de datos cumple la letra de la ley e impide el análisis. La negativa a entregar formato reutilizable es en sí misma un hecho publicable sobre cómo opera ese organismo."},
+
+{blk:"BLOQUE B · DECISIÓN DE ANÁLISIS", t:"mcq",
+ s:"Una ciudad encabeza el recuento absoluto de una categoría delictiva. Es también la más poblada del país por un margen amplio.",
+ q:"¿Qué corresponde comprobar antes de escribir el titular?",
+ o:["Si la serie histórica confirma la tendencia","La tasa por habitante, y si con ella la ciudad sigue encabezando la comparación","Si otras ciudades reportan con la misma frecuencia","La fuente exacta de la cifra"],c:1,
+ w:["La serie histórica es valiosa y arrastra el mismo defecto: comparar absolutos a lo largo del tiempo en una ciudad que crece produce un aumento espurio.",
+    "",
+    "La homogeneidad del reporte es una comprobación necesaria y posterior. Aunque todas reportaran igual, la comparación absoluta seguiría inválida.",
+    "La fuente acredita la procedencia sin corregir el problema de comparabilidad."],
+ e:"Es el problema del denominador. Sin población de referencia, la unidad más grande encabeza cualquier recuento absoluto y la cifra correcta produce una afirmación falsa."},
+
+{blk:"BLOQUE B · DECISIÓN DE ANÁLISIS", t:"mcq",
+ s:"El promedio nacional de un indicador sanitario mejoró un 6% en cinco años. Al desagregar por provincia, tres de dieciséis empeoraron y una de ellas empeoró un 22%.",
+ q:"¿Cuál es la formulación correcta?",
+ o:["El indicador mejoró: el promedio nacional es la medida válida del conjunto","El promedio mejoró y esa mejora convive con un deterioro concentrado en tres provincias, que hay que nombrar","El indicador empeoró: el promedio oculta la realidad","Los datos son contradictorios y no permiten afirmar nada"],c:1,
+ w:["El promedio es válido para lo que mide y es incompleto: describe el agregado, no la distribución.",
+    "",
+    "Es la sobrecorrección: tres de dieciséis no vuelven falso el promedio. Afirmar que empeoró sería tan parcial como afirmar que solo mejoró.",
+    "No hay contradicción alguna: un promedio puede subir con componentes que bajan. Es aritmética, no ambigüedad."],
+ e:"La agregación oculta la variación interna, que es a menudo donde está la historia. Ambas cosas son ciertas y la pieza debe sostener las dos, con las provincias nombradas."},
+
+{blk:"BLOQUE B · DECISIÓN DE ANÁLISIS", t:"mcq",
+ s:"Al cruzar dos bases por el nombre de la empresa, obtienes 4.100 coincidencias de 5.000 registros. Las 900 restantes tienen variaciones de grafía, razón social o siglas.",
+ q:"¿Qué haces?",
+ o:["Trabajar con las 4.100: representan el 82% y la muestra es suficiente","Documentar el criterio de exclusión y comprobar si las 900 difieren sistemáticamente de las incluidas","Descartar el cruce por falta de fiabilidad","Emparejar manualmente las 900 y no mencionar el proceso"],c:1,
+ w:["No es una muestra: es el resultado de un procedimiento técnico. Si las no emparejadas son sistemáticamente distintas, el 82% está sesgado, no incompleto.",
+    "",
+    "Descartar es prematuro. El problema es de documentación y de comprobación de sesgo, y ambos tienen solución.",
+    "Emparejar a mano es legítimo y a menudo necesario; omitirlo del cuaderno rompe la reproducibilidad."],
+ e:"Toda exclusión es una decisión analítica con efectos. Lo que la vuelve defendible es registrarla en el cuaderno y comprobar si lo excluido difiere de lo incluido: si las empresas sin emparejar son las más pequeñas, tu hallazgo habla solo de las grandes."},
+
+{blk:"BLOQUE B · DECISIÓN DE ANÁLISIS", t:"mcq",
+ s:"No existe ningún registro oficial sobre un asunto de evidente interés público. Confirmas con dos organismos que nadie lo recopila.",
+ q:"¿Qué haces con eso?",
+ o:["Abandonar la línea: sin datos no hay investigación de datos","Publicar la ausencia como hallazgo y evaluar construir el registro con metodología declarada","Usar estimaciones de organizaciones privadas como sustituto","Sustituir el análisis por testimonios de afectados"],c:1,
+ w:["La ausencia de un registro que debería existir es en sí misma una afirmación fuerte y verificable sobre quién decide qué se mide.",
+    "",
+    "Las estimaciones de terceros pueden ser útiles y no son un sustituto: tienen su propia metodología y sus propios intereses, que habría que auditar.",
+    "Los testimonios documentan casos; no permiten afirmar magnitud, que es lo que el registro ausente impediría establecer."],
+ e:"Que nadie mida algo que debería medirse es un hallazgo publicable. Varios medios respondieron construyendo su propia base y publicando la metodología completa, que es lo que la vuelve auditable."},
+
+{blk:"BLOQUE B · DECISIÓN DE ANÁLISIS", t:"mcq",
+ s:"Encuentras en el conjunto 47 registros con fechas imposibles —día 32, años futuros— sobre un total de 12.000.",
+ q:"¿Qué corresponde hacer?",
+ o:["Eliminarlos: son claramente errores de captura y no afectan al resultado","Documentarlos, comprobar si se concentran en alguna dependencia o período, y solo entonces decidir","Corregirlos según la fecha más probable","Devolver el conjunto al organismo y pedir uno depurado"],c:1,
+ w:["Eliminar sin mirar es lo habitual y es donde se pierden hallazgos: un error de captura concentrado en una sola oficina es un dato sobre esa oficina.",
+    "",
+    "Imputar fechas es inventar información. Puede hacerse en análisis estadístico con reglas declaradas, nunca por conjetura del periodista.",
+    "Pedir un conjunto depurado entrega al organismo la decisión sobre qué se limpia y cómo."],
+ e:"Los errores de un registro también son información sobre quien lo produce. Se documentan, se busca su patrón, y la decisión —excluir, conservar, analizar aparte— se registra en el cuaderno."},
+
+{blk:"BLOQUE B · DECISIÓN DE ANÁLISIS", t:"mcq",
+ s:"Tu análisis está terminado. El organismo señalado pide, antes de publicar, la base de datos y el código para revisar tus cálculos.",
+ q:"¿Qué corresponde?",
+ o:["Negarse: entregar el método antes de publicar permite preparar una respuesta","Enviarle las cifras y afirmaciones concretas que le atañen con plazo para responder, y publicar metodología y datos con la pieza","Entregar todo de inmediato: la reproducibilidad lo exige","Entregar la base pero no el código"],c:1,
+ w:["Negarse por completo confunde el derecho de réplica con una amenaza. El señalado debe poder responder a lo que se afirma de él.",
+    "",
+    "La reproducibilidad es una obligación con el lector en el momento de publicar, no un derecho previo del señalado a auditar tu trabajo.",
+    "La distinción entre base y código es arbitraria: ambos forman el método."],
+ e:"El derecho de réplica es sobre las afirmaciones, no sobre el método. La transparencia metodológica se cumple publicando datos y cuaderno con la pieza, cuando ya no puede usarse para preparar una respuesta."},
+
+{blk:"BLOQUE B · DECISIÓN DE ANÁLISIS", t:"mcq",
+ s:"Dos series muestran una correlación muy alta durante ocho años: el gasto en un programa social y la caída de un indicador de violencia.",
+ q:"¿Qué puedes publicar?",
+ o:["Que el programa redujo la violencia: ocho años y una correlación alta son evidencia suficiente","Que ambas series se movieron juntas en ese período, sin atribuir causa y buscando factores comunes","Que el programa no tuvo efecto, porque correlación no implica causalidad","Que existe una relación probable que futuros estudios deberán confirmar"],c:1,
+ w:["La duración de la serie no convierte una asociación en una causa. Ocho años de coincidencia pueden deberse a un tercer factor que mueva ambas.",
+    "",
+    "Es la sobrecorrección: que la correlación no pruebe causa no prueba ausencia de efecto. Afirmar que no lo tuvo exige evidencia propia.",
+    "«Relación probable» es una causalidad insinuada sin asumirla. El lector la lee como causa y el texto no la sostiene."],
+ e:"Se describe lo observable —la coevolución de las series y su período— y se buscan explicaciones alternativas: cambios demográficos, de criterio de registro, o programas simultáneos. La atribución causal requiere un diseño que la sostenga."},
+
+/* ---------- BLOQUE C · DIAGNÓSTICO ---------- */
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Los accidentes laborales aumentaron un 40% tras la reforma.»",
+ q:"¿Qué elemento imprescindible falta para que la afirmación sea evaluable?",
+ o:["El nombre de la reforma y su fecha de entrada en vigor","La definición de qué se cuenta como accidente laboral y si cambió con la reforma","El sector económico al que se refiere","La fuente del registro"],c:1,
+ w:["Fecha y denominación son necesarias para el contexto y no resuelven el problema central.",
+    "",
+    "Desagregar por sector enriquece la pieza; la afirmación seguiría siendo inevaluable sin saber qué se cuenta.",
+    "La fuente acredita el origen del número, no lo que ese número mide."],
+ e:"Si la reforma amplió qué se registra como accidente, el aumento del 40% puede ser un artefacto del cambio de definición. Es el error más frecuente al comparar series a ambos lados de una reforma."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«El municipio con mayor tasa de mortalidad infantil del país registró 3 muertes en 2025.»",
+ q:"¿Qué falla?",
+ o:["Faltan las cifras de los demás municipios para comparar","Con una población tan pequeña, la tasa es inestable: un caso más o menos cambia el ranking por completo","El período de un año es demasiado corto","Debería expresarse en cifras absolutas y no en tasa"],c:1,
+ w:["Los demás municipios permitirían situar el dato y no corrigen la inestabilidad del denominador pequeño.",
+    "",
+    "Ampliar el período es precisamente una de las soluciones —agregar varios años—, pero el defecto que hay que nombrar es la inestabilidad de la tasa, no la duración.",
+    "Volver al absoluto reintroduce el problema del denominador en la dirección contraria."],
+ e:"Con denominadores pequeños, las tasas oscilan violentamente por azar. Se agregan varios años, se usan intervalos, o se dice expresamente que el dato no soporta un ranking."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Según los datos oficiales, la pobreza se redujo al 18,2%.»<br>El organismo cambió la metodología de medición ese mismo año.",
+ q:"¿Qué corresponde escribir?",
+ o:["Lo mismo, citando el dato oficial que es el único disponible","Que el dato del año es 18,2% bajo una metodología nueva, no comparable con la serie anterior","Que la reducción es falsa porque cambió la metodología","Recalcular la serie anterior con la metodología nueva y publicar la comparación"],c:1,
+ w:["Publicar la cifra sin la advertencia deja al lector comparándola con la del año pasado, que es lo que hará inevitablemente.",
+    "",
+    "El cambio metodológico no vuelve falso el dato nuevo: lo vuelve incomparable, que es distinto.",
+    "Recalcular hacia atrás es un trabajo legítimo si tienes los microdatos y la metodología documentada. Sin eso, es una estimación propia que no puedes presentar como oficial."],
+ e:"La cifra es correcta y la comparación implícita no. El texto tiene que impedir explícitamente esa comparación, que es lo único que el lector va a hacer con el número."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"«Uno de cada tres expedientes analizados presentaba irregularidades.»<br>Se analizaron los 60 expedientes con denuncia previa, de un total de 4.000.",
+ q:"¿Qué falla?",
+ o:["La muestra es demasiado pequeña para ser representativa","La selección no es aleatoria: se analizaron precisamente los casos con denuncia, y el resultado no puede extenderse al conjunto","Debería expresarse en porcentaje y no como proporción","Falta el criterio de qué se consideró irregularidad"],c:1,
+ w:["El tamaño no es el defecto principal: 60 casos bien seleccionados pueden sostener afirmaciones. El problema es cómo se eligieron.",
+    "",
+    "Es una cuestión de formato que deja intacto el error de inferencia.",
+    "Definir «irregularidad» es imprescindible y es un segundo defecto. El que invalida la afirmación es el sesgo de selección."],
+ e:"Analizar los expedientes ya denunciados y encontrar irregularidades en un tercio no dice nada sobre los 4.000. La frase correcta acota el universo: «de los 60 expedientes con denuncia previa, uno de cada tres…»."},
+
+{blk:"BLOQUE C · DIAGNÓSTICO DE TEXTO", t:"mcq",
+ f:"NOTA METODOLÓGICA: «Se analizó la base de datos oficial de contrataciones públicas mediante herramientas de análisis estadístico.»",
+ q:"¿Qué falla?",
+ o:["No indica qué software se utilizó","No permite reproducir nada: falta el período, los criterios de inclusión y exclusión, y qué se hizo con los registros incompletos","Debería estar firmada por un estadístico","Es demasiado breve"],c:1,
+ w:["El nombre del software es el dato menos relevante. Un análisis reproducible lo es con cualquier herramienta equivalente.",
+    "",
+    "La firma de un experto acredita autoridad, no reproducibilidad.",
+    "La brevedad no es el problema: una nota breve con período, criterios y exclusiones cumple perfectamente."],
+ e:"La reproducibilidad es la propiedad que permite a un tercero llegar al mismo resultado con el mismo archivo. Sin período, criterios y tratamiento de los datos incompletos, nadie puede intentarlo."},
+
+/* ---------- BLOQUE D · SELECCIÓN Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe constar en el cuaderno de análisis.",
+ o:["El archivo original tal como se recibió, sin modificar","Cada filtro, exclusión y corrección aplicada, con su motivo","Los cruces realizados y su tasa de emparejamiento","El diseño visual previsto para los gráficos","Los resultados intermedios que se descartaron y por qué"],
+ c:[0,1,2,4],
+ w:["","","","El diseño de la visualización es una decisión de presentación posterior, ajena al registro del método.",""],
+ e:"Original intacto, decisiones con su motivo, cruces con su tasa de emparejamiento y los caminos descartados. Estos últimos son los que más se omiten y los que revelan si buscaste solo lo que confirmaba tu hipótesis."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las que son razones válidas para no comparar dos cifras de una misma serie.",
+ o:["Cambió la definición de lo que se cuenta","Cambió el organismo responsable del registro y su criterio","Una de las dos cifras es provisional y la otra definitiva","Las cifras proceden de años con distinta duración de recogida","Una de las cifras es mucho más alta que la otra"],
+ c:[0,1,2,3],
+ w:["","","","","Que una cifra sea mayor que otra es el resultado de la comparación, no un impedimento para hacerla."],
+ e:"Definición, productor y criterio, estado provisional y período de recogida son las cuatro rupturas de comparabilidad que hay que comprobar antes de escribir cualquier variación."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el procedimiento al recibir un conjunto de datos nuevo.",
+ o:["Preservar el archivo original sin modificar y registrar su procedencia","Leer el diccionario de datos y establecer la unidad de análisis","Perfilar el conjunto: valores ausentes, duplicados, rangos imposibles","Analizar y contrastar los hallazgos con explicaciones alternativas","Publicar con nota metodológica y datos reutilizables"],
+ c:[0,1,2,3,4],
+ e:"El diccionario va antes del perfilado porque sin saber qué es cada variable no puedes distinguir un valor anómalo de uno legítimo. Y el original se preserva antes de todo lo demás, igual que el material de campo."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las cuatro preguntas que completan una afirmación cuantitativa publicable.",
+ o:["¿Qué se está contando exactamente? (definición)","¿Cuántos? (cifra)","¿Sobre qué base? (denominador)","¿En qué período?"],
+ c:[0,1,2,3],
+ e:"La definición va primero aunque en el texto aparezca al final: sin saber qué se cuenta, la cifra no significa nada y el denominador no puede elegirse. Es el orden del razonamiento, no el de la redacción."}
 ];
 
 const CASES=[
@@ -502,31 +694,101 @@ aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mo
 const tw=document.getElementById('terms');
 TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
 
-let done=0,right=0;
-const quiz=document.getElementById('quiz');
-QUIZ.forEach(function(it,i){
-  const card=el('<div class="q"><div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
-  const opts=card.querySelector('.opts');
-  it.o.forEach(function(o,j){
-    const b=document.createElement('button');
-    b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
-    b.onclick=function(){
-      if(card.dataset.done) return;
-      card.dataset.done='1'; done++;
-      var kids=opts.children;
-      for(var k=0;k<kids.length;k++){
-        kids[k].classList.add('done');
-        if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
-        else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
-      }
-      if(j===it.c) right++;
-      card.querySelector('.exp').classList.add('show');
-      document.getElementById('score').textContent='RESPONDIDAS '+done+' / '+QUIZ.length+' · CORRECTAS '+right;
-    };
-    opts.appendChild(b);
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
   });
-  quiz.appendChild(card);
-});
+  marcador();
+})();
 
 function bindReveal(b){
   b.dataset.o=b.textContent;
