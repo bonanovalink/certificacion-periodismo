@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1001 · Unidad 3 — Ética Global y Filtros de Frontera</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1001, Unidad 3.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course on" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="#"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="#"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1001 · 4 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Ética Global y Filtros de Frontera</h2>
+  <div class="sub">Unidad 3 de 4 · Comunicación Social y Periodismo Internacional</div>
+
+  <div class="units">
+    <a class="unit" href="index.html">Unidad 1: La Disciplina de la Verdad y Verificación</a>
+    <a class="unit" href="unidad2.html">Unidad 2: Periodismo Móvil (MoJo) y Fuentes de Campo</a>
+    <span class="unit on">Unidad 3: Ética Global y Filtros de Frontera</span>
+    <span class="unit">Unidad 4: Reportajes de Campo y Flujos de Verificación</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>La ética periodística que se enseña en casi todas partes se escribió para un periodista que informaba a sus compatriotas sobre su propio país. Ese supuesto dejó de ser cierto. Hoy una pieza publicada en La Habana la lee alguien en Madrid, y una publicada en Miami la lee alguien en Santiago de Cuba, sin que ninguno de los dos aparezca en el cálculo editorial de quien la escribió.</p>
+    <p style="margin-bottom:0">Stephen J. A. Ward llama <strong>ética global del periodismo</strong> al intento de reconstruir esos deberes cuando el público ya no coincide con la nación. Esta unidad trabaja el problema en su forma práctica: qué cambia cuando quien te lee no es tu compatriota, cuándo la lealtad al propio país entra en conflicto con el deber hacia el lector extranjero, y cómo se decide publicar algo cuyo daño ocurrirá a miles de kilómetros de la redacción.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Explicar por qué la ética periodística tradicional presupone un público nacional y qué deja de funcionar cuando ese supuesto cae.</li>
+      <li>Aplicar el criterio de daño previsible a una decisión concreta de publicación.</li>
+      <li>Distinguir entre relativismo cultural y mínimos universales al informar sobre otra sociedad.</li>
+      <li>Identificar el conflicto entre lealtad nacional y deber cosmopolita en un caso real, sin resolverlo por afinidad.</li>
+      <li>Evaluar el uso de imágenes del sufrimiento aplicando el principio de dignidad del sujeto.</li>
+      <li>Reconocer la posición desde la que se informa —dentro, fuera, diáspora— y declararla al lector.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Stephen J. A. Ward, <em>Global Journalism Ethics</em> — texto central de esta unidad</li>
+      <li>Bill Kovach y Tom Rosenstiel, <em>The Elements of Journalism</em> — lealtad al ciudadano, independencia y conciencia</li>
+      <li>Paul Bradshaw, <em>The Online Journalism Handbook</em> — publicación sin fronteras y audiencias no previstas</li>
+      <li>Mark Briggs, <em>Journalism Next</em> — distribución en plataformas globales</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>UNESCO — Model Curricula y seguridad</h5>
+        <div class="def">Los currículos modelo del IPDC incorporan la dimensión transnacional de la práctica periodística y la protección de periodistas y fuentes más allá de las fronteras nacionales.</div>
+        <p class="src">unesco.org · IPDC</p></div>
+      <div class="term"><h5>IFCN — Código de Principios</h5>
+        <div class="def">Sus compromisos de no partidismo, transparencia de financiación y política de correcciones abierta son un ejemplo operativo de norma común aplicable en cualquier jurisdicción.</div>
+        <p class="src">ifcncodeofprinciples.poynter.org</p></div>
+      <div class="term"><h5>ICIJ — Consorcio Internacional</h5>
+        <div class="def">Modelo de investigación colaborativa transfronteriza: reporteros de decenas de países trabajando sobre un mismo material con reglas comunes de publicación simultánea.</div>
+        <p class="src">icij.org</p></div>
+      <div class="term"><h5>Reuters Institute — Digital News Report</h5>
+        <div class="def">Datos comparados de confianza en las noticias por país. Base empírica para discutir que el mismo texto se recibe de manera distinta según dónde se lea.</div>
+        <p class="src">reutersinstitute.politics.ox.ac.uk</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y un memorando de decisión ética razonada. El <strong>Examen de Unidad</strong> integrador corresponde a la Unidad 4 y abarca las cuatro unidades del curso.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>La ética se escribió para un público nacional</h3>
+    <p>Los códigos deontológicos clásicos se redactaron entre finales del siglo XIX y mediados del XX, cuando un periódico circulaba en una ciudad y una radio llegaba hasta donde alcanzaba su antena. El periodista escribía para vecinos, y sus obligaciones —servir al público, vigilar al poder, corregir el error— se entendían dentro de esa comunidad.</p>
+    <p>Ward señala que ese supuesto está incrustado en el vocabulario mismo de la profesión. Cuando un código dice «el interés público», la pregunta que nunca se hizo explícita es <strong>cuál público</strong>. Durante un siglo la respuesta fue obvia porque no había otra posible.</p>
+    <div class="ej"><b>PRUEBA DE LECTURA</b>Toma el código deontológico de cualquier asociación de prensa nacional. Cuenta cuántas veces dice «público», «sociedad» o «ciudadanos» sin especificar de qué país. Ese silencio es el problema de esta unidad.</div>
+
+    <h3>El filtro de frontera: quién te lee ahora</h3>
+    <p>Publicar en línea elimina la frontera de distribución pero no la de comprensión. El mismo texto atraviesa contextos donde significa cosas distintas: lo que en un país es una crítica rutinaria al gobierno, en otro es prueba en un expediente.</p>
+    <p>El <strong>filtro de frontera</strong> es la comprobación de qué ocurre con tu pieza cuando la lee alguien para quien no la escribiste. No se trata de escribir para todos —eso es imposible— sino de saber quiénes más van a leerla y qué les pasa a ellos.</p>
+    <div class="ej"><b>TRES PREGUNTAS</b>¿Quién más va a leer esto? ¿Qué significa esta frase en el país del que hablo, no en el mío? ¿Quién queda expuesto allá por algo que aquí no tiene consecuencias?</div>
+
+    <h3>Ward y la ética cosmopolita</h3>
+    <p>La propuesta de Ward no es sustituir la ética nacional por una universal abstracta, sino ampliar el círculo de personas cuyos intereses el periodista debe considerar. Lo llama <strong>ética cosmopolita</strong>: la idea de que las obligaciones profesionales no se detienen en el límite de la ciudadanía.</p>
+    <p>En términos prácticos significa que el sujeto extranjero de una información tiene los mismos derechos que el nacional: a ser contactado, a que se distinga lo probado de lo alegado, a que no se lo publique en condiciones que lo pongan en riesgo. Parece elemental, y sin embargo la cobertura internacional lo incumple sistemáticamente.</p>
+    <div class="ej"><b>CONTRASTE</b>Un medio que jamás publicaría el nombre de un testigo local sin evaluar el riesgo, publica sin dudarlo el nombre de un testigo en otro país. La diferencia no es ética: es de distancia.</div>
+
+    <h3>Lealtad nacional y deber global</h3>
+    <p>El conflicto más duro de esta unidad no tiene solución limpia. Un periodista es también ciudadano, y hay situaciones —seguridad nacional, conflicto armado, crisis diplomática— donde el deber hacia su país y el deber hacia el lector chocan de frente.</p>
+    <p>Ward sostiene que la respuesta no es elegir de antemano ninguno de los dos, sino someter la decisión al mismo escrutinio que cualquier otra: declararla, argumentarla y aceptar que puede estar equivocada. Lo insostenible es la lealtad automática, que resuelve el conflicto negando que exista.</p>
+    <div class="ej"><b>SEÑAL DE ALARMA</b>Cuando un medio cubre a su propio gobierno con un estándar y al gobierno ajeno con otro, no está aplicando criterio: está aplicando bandera. Es comprobable comparando titulares sobre hechos equivalentes.</div>
+
+    <h3>El daño previsible como criterio</h3>
+    <p>El interés público no es un cheque en blanco. La decisión de publicar exige poner en la balanza el beneficio informativo contra el <strong>daño previsible</strong>: el que un profesional razonable podría anticipar en el momento de publicar, no el que se descubre después.</p>
+    <ul>
+      <li>¿Quién resulta dañado y con qué gravedad?</li>
+      <li>¿Ese daño es evitable sin perder lo esencial de la información?</li>
+      <li>¿La persona dañada tiene poder para responder, o es alguien sin recursos frente al medio?</li>
+      <li>¿Publicaría esto si el afectado viviera en mi ciudad?</li>
+    </ul>
+    <div class="ej"><b>NO ES CENSURA</b>Ponderar el daño no significa no publicar. Significa publicar sabiendo qué se está causando y habiendo buscado la forma de causar menos sin perder lo que importa.</div>
+
+    <h3>La dignidad del sujeto: imágenes del sufrimiento</h3>
+    <p>Las imágenes de personas heridas, muertas o humilladas son el terreno donde la ética global se pone a prueba, porque casi siempre el sujeto pertenece a un país distinto del que publica y no puede consentir ni protestar.</p>
+    <p>La pregunta operativa no es si la imagen es impactante sino si <strong>informa algo que el texto no puede transmitir</strong>. Si la respuesta es sí, la siguiente es si se puede publicar de forma que la persona conserve su dignidad: encuadre, contexto, nombre cuando lo haya, ausencia de espectáculo.</p>
+    <div class="ej"><b>PRUEBA DE SIMETRÍA</b>¿Publicaría esta imagen si la persona fuera de mi país? La cobertura internacional muestra cuerpos que ningún editor mostraría si fueran los de sus compatriotas. Esa asimetría es un dato sobre el medio, no sobre el hecho.</div>
+
+    <h3>Mínimos universales y relativismo cultural</h3>
+    <p>Informar sobre otra sociedad plantea una tensión real. Imponer los criterios propios como universales es una forma de colonialismo informativo; aceptar cualquier práctica como culturalmente válida es abdicar del juicio.</p>
+    <p>La salida practicable no es filosófica sino procedimental: distinguir entre <strong>normas locales</strong>, que se describen sin evaluarlas, y <strong>mínimos universales</strong> reconocidos en instrumentos internacionales de derechos humanos, que sí se pueden usar como vara. Y decir cuál se está aplicando.</p>
+    <div class="ej"><b>EJEMPLO DE FORMULACIÓN</b>«Esta práctica es habitual en la región y no está prohibida por la ley nacional. Contraviene, sin embargo, el artículo X de un convenio que ese país ha ratificado.» Se describe la norma local y se nombra el mínimo, sin confundirlos.</div>
+
+    <h3>Informar sobre un país donde no vives</h3>
+    <p>La cobertura a distancia tiene ventajas reales —independencia respecto de los poderes locales, acceso a archivos y fuentes que allí no están disponibles— y una debilidad estructural: no ves lo que no está documentado.</p>
+    <ul>
+      <li>Declarar la posición: si no estás en el lugar, dilo.</li>
+      <li>Nombrar la fuente local y su condición, no diluirla en un «según reportes».</li>
+      <li>No convertir la ausencia de información en ausencia de hecho.</li>
+      <li>Buscar contradicción activa: la fuente que desmiente lo que crees.</li>
+    </ul>
+    <div class="ej"><b>REGLA</b>Quien informa desde fuera tiene una obligación adicional de transparencia, no una rebaja del estándar. La distancia se declara; no se disimula con adverbios.</div>
+
+    <h3>La diáspora y la doble lealtad</h3>
+    <p>El periodista de diáspora ocupa una posición particular: conoce el país por dentro, escribe desde fuera y tiene vínculos personales con lo que cubre. Esa posición es una ventaja informativa y un riesgo ético simultáneo.</p>
+    <p>La ventaja es el acceso, el idioma y el contexto. El riesgo es doble: la comunidad de origen espera lealtad, y la comunidad de acogida espera confirmación de su relato. Ceder a cualquiera de las dos produce propaganda, no periodismo.</p>
+    <div class="ej"><b>DECLARACIÓN DE POSICIÓN</b>La respuesta profesional no es fingir neutralidad sino declarar el vínculo: «quien escribe tiene familia en el país del que informa». El lector decide qué hacer con ese dato. Ocultarlo es lo único indefendible.</div>
+
+    <h3>El tercero ausente: a quién le debes la pieza</h3>
+    <p>En toda decisión editorial internacional hay alguien que no está en la sala: la persona sobre la que se informa, que vive lejos, no lee el idioma en que se publica y no tiene forma de responder.</p>
+    <p>La síntesis de la unidad es una pregunta de control que puede aplicarse a cualquier pieza: <strong>si esa persona pudiera leer esto y responder, ¿qué diría, y he hecho algo para averiguarlo?</strong> No garantiza acertar. Garantiza que el ausente entró en el cálculo.</p>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista por videollamada a un funcionario de un organismo internacional sobre la situación humanitaria en un país al que no tienes acceso. Él dispone de cifras agregadas y de un mandato diplomático que le impide señalar responsables.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> Ninguna pregunta puede pedirle que atribuya culpa política. Toda cifra debe quedar anclada a una metodología y a una fecha. Hay que separar lo que el organismo verificó de lo que le reportaron.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
+    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega escrita</h3>
+    <div class="case"><span class="tag">MEMORANDO DE DECISIÓN ÉTICA · OBLIGATORIO</span>
+      <p>Elige una pieza internacional publicada en los últimos seis meses sobre un país donde no vives. Redacta un memorando de 800 a 1.000 palabras que responda: quién es el tercero ausente, qué daño previsible produce la pieza, qué mínimo universal o norma local está aplicando el medio, y cómo la reescribirías aplicando el filtro de frontera.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Identificación correcta del tercero ausente (20%) · Análisis de daño previsible con quién, qué gravedad y evitabilidad (25%) · Distinción explícita entre norma local y mínimo universal (20%) · Declaración de la posición desde la que informa el medio (15%) · Reescritura concreta, no genérica (20%). Un memorando que concluya «el medio debió tener más cuidado» sin especificar qué frase y por qué no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 3</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="unidad2.html">← Unidad 2: Periodismo Móvil (MoJo) y Fuentes de Campo</a>
+  </footer>
+</main>
+</div>
+
+<script>
+const TERMS=[
+ {t:"Ética Cosmopolita",d:"Ampliación del círculo de personas cuyos intereses el periodista debe considerar más allá de la ciudadanía. No sustituye la ética nacional: la extiende.",s:"Ward, Global Journalism Ethics"},
+ {t:"Filtro de Frontera",d:"Comprobación de qué ocurre con una pieza cuando la lee alguien para quien no fue escrita, en un contexto donde significa otra cosa.",s:"Ward · Bradshaw"},
+ {t:"Daño Previsible",d:"El que un profesional razonable puede anticipar en el momento de publicar. Criterio de ponderación frente al interés público.",s:"Ward, Global Journalism Ethics"},
+ {t:"Tercero Ausente",d:"La persona sobre la que se informa que no está en la decisión editorial, vive lejos, no lee el idioma y no puede responder.",s:"Formulación docente derivada de Ward"},
+ {t:"Mínimo Universal",d:"Norma reconocida en instrumentos internacionales de derechos humanos, utilizable como vara al informar sobre otra sociedad.",s:"Ward · marco de derechos humanos"},
+ {t:"Norma Local",d:"Práctica habitual y legal en la sociedad cubierta. Se describe, no se evalúa con criterios ajenos sin declararlo.",s:"Ward, Global Journalism Ethics"},
+ {t:"Colonialismo Informativo",d:"Imposición de los criterios del país que publica como universales al informar sobre otra sociedad.",s:"Debate recogido en Ward"},
+ {t:"Prueba de Simetría",d:"Comprobación de si se publicaría lo mismo con un sujeto del propio país. La asimetría revela el estándar real del medio.",s:"Práctica deontológica · Ward"},
+ {t:"Declaración de Posición",d:"Explicitar desde dónde se informa —dentro, fuera, con vínculo personal— para que el lector pondere la pieza.",s:"Kovach &amp; Rosenstiel, transparencia"},
+ {t:"Doble Lealtad",d:"Presión simultánea de la comunidad de origen y la de acogida sobre el periodista de diáspora. Ceder a cualquiera produce propaganda.",s:"Ward · Kovach &amp; Rosenstiel"},
+ {t:"Dignidad del Sujeto",d:"Criterio para publicar imágenes de sufrimiento: la persona conserva su condición de sujeto, no de ilustración.",s:"Ward, Global Journalism Ethics"},
+ {t:"Publicación Simultánea",d:"Acuerdo entre medios de distintos países para publicar a la vez, evitando que uno exponga a los demás.",s:"ICIJ · práctica de investigación transfronteriza"}
+];
+
+const QUIZ=[
+ {q:"Según Ward, el problema central de la ética periodística tradicional es que:",
+  o:["Es demasiado estricta para el entorno digital","Presupone un público nacional que ya no coincide con el real","Fue escrita por académicos sin experiencia","No contempla la publicidad"],c:1,
+  e:"Los códigos clásicos se redactaron cuando el público del periodista era su comunidad. Cuando dicen «el interés público» nunca especifican cuál, porque durante un siglo no hizo falta."},
+ {q:"La ética cosmopolita propone:",
+  o:["Sustituir las éticas nacionales por una norma universal única","Ampliar el círculo de personas cuyos intereses se consideran","Aplicar en cada país la norma de ese país","Renunciar a juzgar prácticas ajenas"],c:1,
+  e:"No sustituye: extiende. El sujeto extranjero de una información tiene los mismos derechos que el nacional, empezando por el de ser contactado."},
+ {q:"El daño previsible es:",
+  o:["Cualquier consecuencia negativa que ocurra tras publicar","El que un profesional razonable podría anticipar al publicar","El que la fuente declara temer","El que un tribunal determine después"],c:1,
+  e:"Se evalúa con la información disponible en el momento de la decisión. El daño descubierto después no invalida la decisión; el previsible e ignorado, sí."},
+ {q:"Ante una práctica legal en el país cubierto pero contraria a un convenio que ese país ratificó, lo correcto es:",
+  o:["Omitirla para no imponer criterios ajenos","Condenarla según los valores del país que publica","Describir la norma local y nombrar el mínimo universal, distinguiéndolos","Consultar a la embajada"],c:2,
+  e:"La salida no es filosófica sino procedimental: se describe lo local, se nombra el mínimo internacional, y se dice al lector cuál se está aplicando."},
+ {q:"La prueba de simetría consiste en preguntarse:",
+  o:["Si la fuente tiene una versión contraria","Si se publicaría lo mismo con un sujeto del propio país","Si el hecho ocurrió en más de un lugar","Si otro medio ya lo publicó"],c:1,
+  e:"La cobertura internacional muestra habitualmente cuerpos y nombres que ningún editor publicaría si fueran de sus compatriotas. Esa asimetría es un dato sobre el medio."},
+ {q:"Para el periodista de diáspora, la respuesta profesional al conflicto de doble lealtad es:",
+  o:["Fingir neutralidad absoluta","Declarar el vínculo al lector","Evitar cubrir su país de origen","Escribir solo para la comunidad de acogida"],c:1,
+  e:"La posición no se puede eliminar, pero sí declarar. Ocultar el vínculo es lo único indefendible; el lector decide qué hacer con ese dato."},
+ {q:"El criterio principal para publicar una imagen de sufrimiento es:",
+  o:["Su impacto visual","Que informe algo que el texto no puede transmitir","Que otros medios la hayan publicado","Que la persona sea identificable"],c:1,
+  e:"Si el texto puede transmitir lo mismo, la imagen solo añade espectáculo. Y si se publica, debe hacerlo de forma que el sujeto conserve su dignidad."},
+ {q:"Informar sobre un país donde no se vive exige:",
+  o:["Un estándar de verificación más flexible","Declarar la posición y no diluir la fuente local","Evitar nombrar fuentes locales","Citar solo agencias internacionales"],c:1,
+  e:"La distancia impone una obligación adicional de transparencia, no una rebaja. «Según reportes» oculta precisamente lo que el lector necesita para ponderar."}
+];
+
+const CASES=[
+ {tag:"CASO 1 · FACEBOOK Y AFTENPOSTEN · SEPTIEMBRE DE 2016",t:"La niña del napalm y el editor global",
+  d:"Facebook eliminó una publicación del escritor noruego Tom Egeland que incluía la fotografía de Nick Ut de una niña huyendo de un ataque con napalm en Vietnam, alegando desnudez, y suspendió su cuenta cuando protestó. Cuando el diario <em>Aftenposten</em> informó del caso, sus propias publicaciones fueron borradas. Su director, Espen Egil Hansen, respondió con una carta abierta a Mark Zuckerberg en primera plana. La primera ministra noruega Erna Solberg publicó la imagen y también se la eliminaron. Ese viernes Facebook revirtió la decisión, reconociendo la «importancia global» de la fotografía.",
+  ej:"Una norma escrita en California para todo el planeta calificó como pornografía infantil una de las imágenes documentales más importantes del siglo XX. El criterio no era malicioso: era universal, aplicado sin contexto, que es exactamente el problema.",
+  p:["¿Quién ejercía de editor en este caso y con qué legitimidad?","¿Qué diferencia hay entre una norma de plataforma y un criterio editorial?","¿Qué habría pasado si el diario afectado no hubiera sido noruego?"],
+  m:"El editor efectivo era Facebook, sin mandato periodístico, sin proceso de apelación y sin conocimiento del caso, aplicando una regla uniforme a un material cuyo valor depende íntegramente del contexto. La diferencia con un criterio editorial es que este pondera daño, interés público e historia caso por caso y responde por su decisión; una norma de plataforma escala precisamente porque no pondera. Y la última pregunta es la más incómoda: la reversión llegó cuando protestaron un diario grande y una jefa de gobierno de un país rico. Un medio pequeño del sur global habría perdido la publicación sin recurso alguno, y eso convierte el arbitraje global en una función de poder, no de criterio.",
+  k:"Cuando una plataforma aplica una norma única a todo el planeta, ejerce de editor sin asumir las obligaciones del editor."},
+ {tag:"CASO 2 · ICIJ · 2016",t:"Panama Papers: cooperación como método",
+  d:"Dos periodistas del <em>Süddeutsche Zeitung</em>, Bastian Obermayer y Frederik Obermaier, recibieron 11,5 millones de documentos internos del bufete Mossack Fonseca y los compartieron con el Consorcio Internacional de Periodistas de Investigación. Durante meses, 376 periodistas de 76 países trabajaron sobre el mismo material y publicaron de forma coordinada en 2016. La investigación obtuvo el Pulitzer de reportaje explicativo en 2017.",
+  ej:"La decisión clave no fue técnica sino ética: publicar simultáneamente. Si un medio se adelantaba, los reporteros de países con menos garantías quedaban expuestos antes de tener sus piezas listas y sus abogados preparados.",
+  p:["¿Por qué compartir una exclusiva mejora la investigación en lugar de diluirla?","¿Qué protege la publicación simultánea?","¿Qué desigualdades persisten dentro de una colaboración así?"],
+  m:"Compartir mejora la investigación porque ningún medio nacional puede leer documentos de decenas de jurisdicciones ni reconocer qué nombre es relevante en un país que no cubre: el valor no estaba en tener el material, sino en entenderlo. La publicación simultánea protege al eslabón más débil —el reportero en el país donde publicar acarrea riesgo penal o físico— impidiendo que la ventaja competitiva de uno se convierta en la exposición de otro. Persisten desigualdades reales: quién financia la coordinación, en qué idioma se trabaja, qué medios fijan el calendario y cuáles se adaptan. Reconocerlas es parte del método, no una objeción a él.",
+  k:"La cooperación transfronteriza no diluye la exclusiva: la hace posible. Y la publicación simultánea es una decisión ética antes que comercial."},
+ {tag:"CASO 3 · SEPTIEMBRE DE 2015",t:"La fotografía del niño en la orilla",
+  d:"En septiembre de 2015, la imagen del cuerpo de un niño sirio de tres años ahogado en una playa turca fue publicada por medios de todo el mundo con decisiones muy distintas: unos en portada a página completa, otros recortada, otros solo descrita en texto. El debate posterior enfrentó a quienes sostenían que la imagen forzó una reacción política ante una crisis ignorada durante años, y a quienes señalaron que se publicó un cadáver infantil sin consentimiento posible de nadie.",
+  ej:"El mismo día, los mismos editores que discutían el encuadre no dudaban de que jamás habrían publicado así el cuerpo de un niño de su propia ciudad. Esa certeza compartida es la prueba de simetría en estado puro.",
+  p:["¿Qué informaba la imagen que el texto no podía transmitir?","¿Se puede consentir en nombre de un menor muerto, y quién?","¿Justifica el efecto político la decisión de publicar?"],
+  m:"La imagen transmitía escala emocional, no información nueva: las cifras de ahogamientos estaban publicadas desde hacía años sin efecto alguno. Ese es precisamente el argumento a favor y el problema, porque significa que se publicó por su capacidad de conmover y no por su contenido informativo. Nadie puede consentir por un menor muerto; el consentimiento familiar posterior no es previo ni libre, y el interés público no lo sustituye, solo lo pondera. Y justificar la decisión por el efecto político es un razonamiento peligroso porque solo funciona hacia atrás: si la imagen no hubiera movido nada, la misma decisión sería indefendible con los mismos datos disponibles al publicar.",
+  k:"Un resultado favorable no valida retroactivamente una decisión. La ética se juzga con la información disponible al decidir, no con el efecto."},
+ {tag:"CASO 4 · 2005-2015",t:"Caricaturas, republicación y consecuencias a distancia",
+  d:"La publicación de caricaturas religiosas por un diario danés en 2005 y, años después, las decisiones de republicación tras el atentado contra <em>Charlie Hebdo</em> en 2015, dividieron a las redacciones del mundo. Unos republicaron invocando la solidaridad y la libertad de expresión; otros se negaron argumentando que no informaban nada nuevo y exponían a su personal y a comunidades locales. Ambas posiciones fueron defendidas por medios serios.",
+  ej:"Un mismo acto —reproducir una imagen— tenía consecuencias distintas según dónde estuviera la redacción: en Copenhague era una postura editorial; en otras capitales, un riesgo físico concreto para corresponsales y colaboradores locales.",
+  p:["¿Es la republicación una decisión informativa o una declaración de posición?","¿Quién asume el riesgo de esa decisión y quién la toma?","¿Cambia el análisis si la redacción está en el país afectado?"],
+  m:"Puede ser cualquiera de las dos, y la honestidad exige decir cuál: republicar para que el lector entienda de qué se discute es informativo; republicar para afirmar un principio es una toma de posición legítima pero distinta, y presentarla como lo primero es engañar. La asimetría decisiva es que quien decide suele estar en la sede y quien asume el riesgo suele ser el colaborador local, el traductor o el fijador, que no participó en la deliberación. Cuando la redacción está en el país afectado el cálculo cambia por completo, porque el daño previsible deja de ser una abstracción y pasa a tener nombres conocidos.",
+  k:"Quien decide y quien paga el riesgo rara vez son la misma persona. Una decisión editorial internacional debe incluir a quien la va a sufrir."},
+ {tag:"CASO 5 · MYANMAR · 2017-2019",t:"Dos reporteros y una fosa",
+  d:"Dos periodistas birmanos de Reuters, Wa Lone y Kyaw Soe Oo, investigaban la ejecución de diez hombres rohingyá en el estado de Rakhine cuando fueron detenidos en diciembre de 2017. Fueron condenados en 2018 por posesión de documentos oficiales y liberados en 2019 tras una amnistía presidencial. Su investigación obtuvo el Pulitzer de reportaje internacional en 2019.",
+  ej:"La agencia era internacional; los detenidos, locales. Es el patrón habitual del periodismo transfronterizo: la firma que protege es extranjera y el cuerpo que se expone es del país.",
+  p:["¿Qué obligaciones tiene un medio internacional con sus reporteros locales?","¿Cambia la evaluación de riesgo cuando el reportero no puede salir del país?","¿Quién decide si una investigación vale ese riesgo?"],
+  m:"Las obligaciones no son simbólicas sino materiales: asistencia legal, sostenimiento económico de la familia, campaña pública sostenida y, antes de nada, participación real del reportero local en la decisión de seguir adelante. La evaluación de riesgo cambia radicalmente cuando no existe la salida del país, porque el corresponsal extranjero puede irse y el local no: para él la consecuencia no termina cuando termina el reportaje. Y la decisión sobre si vale el riesgo no puede tomarla la sede sola; tomarla sin quien lo asume convierte al reportero en instrumento, que es exactamente lo que la ética cosmopolita señala como el punto ciego de la cobertura internacional.",
+  k:"El riesgo del periodismo internacional lo asume casi siempre el personal local. La decisión debe incluirlo o no es legítima."},
+ {tag:"CASO 6 · 2012",t:"La campaña viral sobre un país ajeno",
+  d:"En 2012, una organización estadounidense difundió un video de treinta minutos sobre un líder guerrillero ugandés que alcanzó decenas de millones de reproducciones en pocos días. Recibió críticas sostenidas desde Uganda y desde el periodismo especializado: simplificaba el conflicto, presentaba información desactualizada y narraba el país en primera persona desde fuera, con ugandeses como fondo antes que como sujetos.",
+  ej:"La pieza tuvo un alcance que ningún medio ugandés había logrado nunca sobre su propio conflicto. El público global aprendió del asunto a través de quien no vivía allí, y esa versión se volvió la dominante.",
+  p:["¿Qué se pierde cuando un país se narra desde fuera con más alcance que desde dentro?","¿Dónde está la frontera entre divulgación y apropiación de un relato?","¿Qué obligación tiene un medio que amplifica un material así?"],
+  m:"Se pierde la jerarquía de lo que importa: quien vive el conflicto sabe qué es urgente y qué es residual, y esa jerarquía desaparece cuando el relato se construye para una audiencia extranjera que necesita una historia simple. La frontera con la apropiación se cruza cuando los habitantes dejan de ser fuentes y sujetos para convertirse en ilustración de una tesis ajena; la prueba práctica es sencilla — ¿aparecen citados por su nombre, discrepando y con capacidad de análisis, o solo mostrados? El medio que amplifica no es un mero conducto: asume la carga de verificar la vigencia de los datos y de dar espacio a las voces locales que discrepan, y si no lo hace, multiplica el sesgo con su propia credibilidad.",
+  k:"Alcance no es autoridad. Amplificar un relato sobre un país ajeno es una decisión editorial con las mismas obligaciones que publicarlo."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El nombre que aquí no pasa nada",
+  d:"Tu pieza cita por nombre a un profesor de un país con restricciones a la libertad de expresión. Él aceptó y no ve problema. Tu editor tampoco.",
+  r:"Reportero · Editor · Profesor",
+  ej:"<span class='who'>EDITOR:</span> Él dio su consentimiento, ¿cuál es el problema?<br><span class='who'>REPORTERO:</span> Que lo dio pensando en quién lo lee aquí.<br><span class='who'>EDITOR:</span> Es adulto y sabe dónde vive.<br><span class='who'>REPORTERO:</span> Sabe dónde vive. No sabe que esto se indexa y se traduce solo.",
+  m:"El consentimiento es válido pero puede no ser informado, y esa distinción es toda la unidad. Corresponde explicarle qué significa publicar en línea en 2026: indexación permanente, traducción automática, circulación fuera del contexto en que él imagina la pieza. Después decide él, y se registra esa conversación. La posición del editor —«es adulto»— es exactamente la asimetría de distancia: con una fuente local nadie diría eso sin evaluar el riesgo primero.",
+  c:"Distinguir entre consentimiento dado y consentimiento informado, y aplicar a la fuente extranjera el mismo cuidado que a la local."},
+ {tag:"ESCENARIO 2",t:"La imagen que llega de la agencia",
+  d:"Una agencia distribuye la fotografía de un cuerpo tras un ataque. Es explícita, es real y es la única imagen del hecho. Cierras en veinte minutos.",
+  r:"Editor gráfico · Director · Corresponsal",
+  ej:"<span class='who'>DIRECTOR:</span> Sin imagen la nota no se lee.<br><span class='who'>EDITOR GRÁFICO:</span> Con esa imagen la nota se ve, no se lee.<br><span class='who'>DIRECTOR:</span> ¿Alternativa?<br><span class='who'>EDITOR GRÁFICO:</span> El plano del lugar sin el cuerpo. Informa lo mismo salvo el impacto.",
+  m:"La pregunta operativa no es si la imagen es fuerte sino qué informa que el texto no pueda transmitir. Si la respuesta es «la escala del daño», suele haber un encuadre que la transmite sin exhibir a la persona identificable. Si se publica igualmente, debe ir con contexto, sin recorte que aumente el efecto y sin autoplay ni miniatura que la imponga a quien no eligió verla. Y aplicar la prueba de simetría en voz alta ante el director: si el cuerpo fuera de esta ciudad, ¿iría en portada?",
+  c:"Aplicar el criterio de valor informativo frente a impacto, y proponer una alternativa concreta en lugar de una objeción genérica."},
+ {tag:"ESCENARIO 3",t:"La costumbre que te parece intolerable",
+  d:"Cubres una práctica local legal en ese país y ampliamente aceptada por la comunidad, que a tus lectores les resultará chocante.",
+  r:"Reportero · Editor · Antropóloga consultada",
+  ej:"<span class='who'>EDITOR:</span> Esto va a indignar a la gente.<br><span class='who'>REPORTERA:</span> A la gente de aquí.<br><span class='who'>EDITOR:</span> Es nuestro público.<br><span class='who'>REPORTERA:</span> Y ellos son el sujeto. Si escribo para la indignación de unos sobre la vida de otros, eso no es una crónica.",
+  m:"Se describe la norma local con precisión y en sus términos, se recogen voces internas —incluidas las que la critican desde dentro, que casi siempre existen— y solo entonces se nombra, si aplica, el mínimo universal contenido en un instrumento que ese país haya ratificado. Lo que no se hace es evaluar con la vara del país que publica sin declararlo, ni omitir por temor a parecer etnocéntrico: ambas son formas de decidir por el lector qué puede pensar.",
+  c:"Separar descripción de evaluación, incorporar voces internas discrepantes y nombrar explícitamente la vara que se aplica."},
+ {tag:"ESCENARIO 4",t:"El fijador que se queda",
+  d:"Terminas una cobertura de riesgo y vuelves a casa. Tu fijador y tu traductora siguen viviendo allí, y la pieza lleva detalles que permiten deducir quién te ayudó.",
+  r:"Corresponsal · Fijador · Editor internacional",
+  ej:"<span class='who'>FIJADOR:</span> ¿Cuándo sale?<br><span class='who'>CORRESPONSAL:</span> El domingo.<br><span class='who'>FIJADOR:</span> ¿Sale lo del edificio del ministerio?<br><span class='who'>CORRESPONSAL:</span> Sí. …¿Eso te ubica?<br><span class='who'>FIJADOR:</span> A mí y a dos personas más.",
+  m:"El detalle se retira, salvo que sea imprescindible para la afirmación central y no exista otra forma de sostenerla. El fijador debe revisar la pieza en lo que respecta a su propia seguridad —no su contenido editorial— antes de publicar, y esa revisión es parte del procedimiento, no un favor. Si el detalle es imprescindible, la decisión se toma con él y se planifica en consecuencia: fecha, salida temporal si procede, contacto de emergencia. Publicar sin consultarlo porque «no es su nota» es tratar como recurso a quien es colaborador.",
+  c:"Reconocer que la seguridad del personal local es parte del cierre editorial y no un asunto posterior."},
+ {tag:"ESCENARIO 5",t:"Tu país en el titular",
+  d:"Una investigación tuya perjudica a tu propio gobierno en un momento de tensión internacional. Te acusan de hacerle el juego al adversario.",
+  r:"Reportera · Directora · Lector crítico",
+  ej:"<span class='who'>LECTOR:</span> Publicar esto ahora es traición.<br><span class='who'>REPORTERA:</span> ¿Es falso algo de lo que publicamos?<br><span class='who'>LECTOR:</span> No, pero el momento…<br><span class='who'>REPORTERA:</span> El momento lo eligió el hecho, no yo.",
+  m:"La prueba es de exactitud y de interés público, no de conveniencia patriótica: si es cierto y el público necesita saberlo, la coyuntura no lo desactiva. Lo que sí es exigible es no aplicar dos varas — cubrir al gobierno propio con el mismo rigor con que se cubre al ajeno, y decirlo — y ponderar el daño previsible concreto, que es distinto de la incomodidad política. Ward señala que lo insostenible no es elegir: es la lealtad automática que resuelve el conflicto negando que exista.",
+  c:"Sostener el criterio de exactitud e interés público sin negar que existe un conflicto real de lealtades."},
+ {tag:"ESCENARIO 6",t:"Escribir sobre el país del que saliste",
+  d:"Cubres tu país de origen desde el exilio. La comunidad de acogida espera un relato y la de origen espera otro. Tú tienes familia allá.",
+  r:"Periodista de diáspora · Editor · Familiar",
+  ej:"<span class='who'>EDITOR:</span> ¿Hay conflicto de interés?<br><span class='who'>PERIODISTA:</span> Hay vínculo. Interés no, pero vínculo sí.<br><span class='who'>EDITOR:</span> ¿Y cómo lo manejamos?<br><span class='who'>PERIODISTA:</span> Diciéndolo. Una línea al pie y que el lector pondere.",
+  m:"El vínculo no se elimina fingiendo distancia; se declara. Una nota al pie —«quien firma nació en el país del que informa y tiene familia allí»— le da al lector el dato para ponderar y le quita a cualquiera la posibilidad de usarlo como revelación. En paralelo, hay dos exigencias internas: aplicar a las fuentes afines el mismo escrutinio que a las adversas, y evaluar el riesgo real para los familiares antes de publicar, que es una decisión personal y no editorial. Escribir lo que cualquiera de las dos comunidades espera oír, sin comprobarlo, es propaganda aunque los hechos sean ciertos.",
+  c:"Declarar la posición, mantener el mismo escrutinio para fuentes afines y adversas, y separar la decisión editorial de la personal."}
+];
+
+const IV=[
+ {q:"¿Qué cifra de personas afectadas maneja su organismo y a qué fecha corresponde?",
+  m:"Ancla la cifra en el tiempo desde la primera pregunta. Las cifras humanitarias se citan durante meses sin fecha y envejecen mal. Si responde con un rango, pide el punto medio y el método de estimación."},
+ {q:"¿Esa cifra la verificó su personal en el terreno o le fue reportada?",
+  m:"La distinción entre lo verificado y lo reportado es el eje de toda la unidad aplicado a una fuente institucional. Un organismo con acceso restringido suele agregar datos de terceros; decirlo no lo desacredita, lo sitúa."},
+ {q:"¿A qué zonas no ha podido acceder su equipo?",
+  m:"Pregunta por el hueco, no por el dato. Lo que un organismo no puede ver es información publicable y frecuentemente más reveladora que lo que sí ve. Además impide que el lector tome la cifra por exhaustiva."},
+ {q:"¿Qué obstáculos concretos ha encontrado para acceder a esas zonas?",
+  m:"Permite documentar la restricción sin pedirle que atribuya culpa política, que su mandato le impide. Describe el obstáculo, no al responsable: «no se autorizaron los permisos» es un hecho verificable."},
+ {q:"¿Ha comunicado formalmente esta situación a las autoridades del país? ¿Cuándo y por qué vía?",
+  m:"Convierte una gestión diplomática en un hecho con fecha y soporte. Si existe una comunicación formal, existe un documento, y ese documento puede solicitarse."},
+ {q:"Si sus recomendaciones no se aplicaran, ¿qué escenario prevé su organismo para los próximos seis meses?",
+  m:"Cierra en prospectiva, que es lo máximo que puede ofrecer una fuente con mandato diplomático. Atribuye la proyección al organismo y no al periodista, y le da al lector una vara para juzgar después."}
+];
+
+const AUDIT=[
+ ["v","Facebook eliminó la fotografía de Nick Ut publicada por Tom Egeland; borró después publicaciones de <em>Aftenposten</em> y de la primera ministra Erna Solberg; su director Espen Egil Hansen respondió con carta abierta a Zuckerberg y Facebook revirtió la decisión reconociendo la «importancia global» de la imagen.","Septiembre de 2016. Contrastado en NPR, BBC y Al Jazeera."],
+ ["v","Los Panama Papers: 11,5 millones de documentos de Mossack Fonseca obtenidos por Bastian Obermayer y Frederik Obermaier del <em>Süddeutsche Zeitung</em>; 376 periodistas de 76 países coordinados por el ICIJ; Pulitzer de reportaje explicativo en 2017.","ICIJ, icij.org. Verificado."],
+ ["b","La ética periodística clásica presupone un público nacional y no especifica de qué público habla.","Ward, Global Journalism Ethics."],
+ ["b","La ética cosmopolita amplía el círculo de intereses considerados sin sustituir las éticas nacionales.","Ward, Global Journalism Ethics."],
+ ["b","El daño previsible se evalúa con la información disponible en el momento de publicar.","Ward · práctica deontológica establecida."],
+ ["b","Distinción entre norma local, que se describe, y mínimo universal reconocido en instrumentos internacionales, que puede usarse como vara.","Ward · marco internacional de derechos humanos."],
+ ["b","Criterio para imágenes de sufrimiento: valor informativo que el texto no puede transmitir, y preservación de la dignidad del sujeto.","Ward, Global Journalism Ethics."],
+ ["b","La prueba de simetría —¿se publicaría igual con un sujeto del propio país?— revela el estándar real del medio.","Formulación docente derivada de Ward."],
+ ["b","Quien informa desde fuera asume una obligación adicional de transparencia sobre su posición.","Kovach &amp; Rosenstiel, transparencia · Ward."],
+ ["b","El periodista de diáspora enfrenta presiones simultáneas de la comunidad de origen y la de acogida; la respuesta profesional es declarar el vínculo.","Ward · Kovach &amp; Rosenstiel."],
+ ["b","La fotografía del niño sirio ahogado en septiembre de 2015 fue publicada con criterios divergentes por medios de todo el mundo y abrió un debate sostenido sobre imágenes de menores fallecidos.","Cobertura de septiembre de 2015; caso estándar en literatura de ética visual."],
+ ["b","Las decisiones de republicación de caricaturas religiosas (2005 y 2015) dividieron a las redacciones internacionales, con argumentos defendibles en ambas posiciones.","Debate deontológico ampliamente documentado en la literatura profesional."],
+ ["b","Los reporteros de Reuters Wa Lone y Kyaw Soe Oo fueron detenidos en diciembre de 2017 en Myanmar, condenados en 2018 y liberados en 2019; su investigación obtuvo el Pulitzer internacional en 2019.","Reuters y cobertura internacional 2017-2019. Conviene contrastar detalles procesales si se amplía el caso."],
+ ["b","La campaña audiovisual de 2012 sobre el conflicto en Uganda alcanzó decenas de millones de reproducciones y recibió críticas por simplificación y por narrar el país desde fuera.","Cobertura y crítica académica de 2012."]
+];
+
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let done=0,right=0;
+const quiz=document.getElementById('quiz');
+QUIZ.forEach(function(it,i){
+  const card=el('<div class="q"><div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+  const opts=card.querySelector('.opts');
+  it.o.forEach(function(o,j){
+    const b=document.createElement('button');
+    b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+    b.onclick=function(){
+      if(card.dataset.done) return;
+      card.dataset.done='1'; done++;
+      var kids=opts.children;
+      for(var k=0;k<kids.length;k++){
+        kids[k].classList.add('done');
+        if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+        else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+      }
+      if(j===it.c) right++;
+      card.querySelector('.exp').classList.add('show');
+      document.getElementById('score').textContent='RESPONDIDAS '+done+' / '+QUIZ.length+' · CORRECTAS '+right;
+    };
+    opts.appendChild(b);
+  });
+  quiz.appendChild(card);
+});
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
