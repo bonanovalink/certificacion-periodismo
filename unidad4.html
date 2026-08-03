@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1001 · Unidad 4 — Reportajes de Campo y Flujos de Verificación</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1001, Unidad 4 y examen integrador.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  .tab.exam{color:var(--amber)}
+  .tab.exam.on{color:var(--amber);border-color:var(--line);border-bottom-color:var(--bg)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:7px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .score.big{font-size:.95rem;color:var(--amber);padding:14px 18px;background:#3a2408;border:1px solid #6b4d16;border-radius:8px;letter-spacing:.06em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course on" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="#"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="#"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="#"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="#"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1001 · 4 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Reportajes de Campo y Flujos de Verificación</h2>
+  <div class="sub">Unidad 4 de 4 · Comunicación Social y Periodismo Internacional</div>
+
+  <div class="units">
+    <a class="unit" href="index.html">Unidad 1: La Disciplina de la Verdad y Verificación</a>
+    <a class="unit" href="unidad2.html">Unidad 2: Periodismo Móvil (MoJo) y Fuentes de Campo</a>
+    <a class="unit" href="unidad3.html">Unidad 3: Ética Global y Filtros de Frontera</a>
+    <span class="unit on">Unidad 4: Reportajes de Campo y Flujos de Verificación</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Las tres unidades anteriores enseñaron partes: el método de verificación, la captura y gestión de fuentes en campo, y los deberes cuando el lector está al otro lado de una frontera. Esta unidad las ensambla en un procedimiento único que va desde la primera sospecha hasta la corrección publicada tres semanas después.</p>
+    <p style="margin-bottom:0">El eje es que <strong>un reportaje es un proceso, no un texto</strong>. El texto es lo único que ve el lector, pero lo que determina si es cierto ocurrió antes: la hipótesis que se formuló, la prueba que se decidió necesaria, el control cruzado que la revisó y la revisión de riesgo que la autorizó. Esta unidad cierra el curso y contiene el <strong>examen integrador</strong> de las cuatro.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab exam" data-t="exa">Examen Integrador</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Formular una hipótesis de trabajo falsable y diseñar el reporteo que podría refutarla.</li>
+      <li>Construir una matriz de verificación que asocie cada afirmación publicable con la prueba que la sostiene.</li>
+      <li>Aplicar el control cruzado a una pieza ajena identificando afirmaciones sin respaldo.</li>
+      <li>Conducir la revisión de cierre: legal, de riesgo y de derecho de réplica.</li>
+      <li>Redactar la nota metodológica que acompaña una investigación.</li>
+      <li>Integrar las cuatro unidades en una decisión editorial única y defenderla por escrito.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Bill Kovach y Tom Rosenstiel, <em>The Elements of Journalism</em> — verificación, independencia y conciencia</li>
+      <li>Paul Bradshaw, <em>The Online Journalism Handbook</em> — flujos de producción e investigación en línea</li>
+      <li>Mark Briggs, <em>Journalism Next</em> — organización del trabajo digital y publicación</li>
+      <li>Stephen J. A. Ward, <em>Global Journalism Ethics</em> — deliberación ética en el cierre</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Columbia Journalism School — Informe Rolling Stone</h5>
+        <div class="def">Revisión independiente de 2015 sobre un fallo de verificación completo. Es el documento más útil que existe para enseñar en qué fase concreta se rompe un proceso periodístico.</div>
+        <p class="src">Coll, Coronel y Kravitz · abril de 2015</p></div>
+      <div class="term"><h5>ICIJ — Método colaborativo</h5>
+        <div class="def">Protocolo de investigación transfronteriza: material compartido, reglas comunes de verificación y publicación simultánea.</div>
+        <p class="src">icij.org</p></div>
+      <div class="term"><h5>Verification Handbook (EJC)</h5>
+        <div class="def">La edición para reportajes de investigación sistematiza búsqueda, verificación de datos abiertos y comprobación de afirmaciones.</div>
+        <p class="src">verificationhandbook.com</p></div>
+      <div class="term"><h5>IFCN — Política de correcciones</h5>
+        <div class="def">Exige a las organizaciones signatarias una política de correcciones pública y aplicada. Norma operativa para la fase posterior a la publicación.</div>
+        <p class="src">ifcncodeofprinciples.poynter.org</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN FINAL DEL CURSO</div>
+      <p style="margin-bottom:0">Esta unidad contiene el <strong>Examen Integrador</strong> de JRN-1001, que abarca las cuatro unidades. Se aprueba con un 75%, conforme a los requisitos de graduación del certificado. Es requisito haber completado las pruebas y entregas de las Unidades 1 a 3.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>El reportaje es un proceso, no un texto</h3>
+    <p>El lector solo ve el resultado. Lo que determina si ese resultado es cierto ocurrió antes y no aparece en la página: qué se preguntó al principio, qué prueba se consideró suficiente, quién revisó qué y qué se decidió no publicar.</p>
+    <p>De ahí que evaluar un reportaje leyéndolo sea insuficiente, y que las revisiones independientes de fracasos periodísticos —como la que la Escuela de Periodismo de Columbia hizo en 2015— no analicen el texto sino el <strong>procedimiento</strong>: en qué fase concreta se rompió la cadena.</p>
+    <div class="ej"><b>CONSECUENCIA PRÁCTICA</b>Si tu proceso no deja rastro, no puedes demostrar que lo seguiste. Documentar el procedimiento no es burocracia: es la única forma de defender una pieza cuando la impugnan.</div>
+
+    <h3>La hipótesis de trabajo y su falsación</h3>
+    <p>Una investigación empieza con una sospecha, pero una sospecha no es investigable. Hay que convertirla en <strong>hipótesis de trabajo</strong>: una afirmación concreta que pueda resultar falsa.</p>
+    <p>«Hay corrupción en el hospital» no es una hipótesis: no hay dato que la refute. «El hospital adjudicó tres contratos sin licitación a una empresa constituida un mes antes» sí lo es, porque si los contratos tuvieron licitación o la empresa es anterior, la hipótesis cae.</p>
+    <div class="ej"><b>LA PREGUNTA DE CONTROL</b>¿Qué tendría que encontrar para abandonar esta hipótesis? Si no puedes responderla, no estás investigando: estás buscando confirmación de algo que ya decidiste.</div>
+
+    <h3>El plan de reporteo</h3>
+    <p>Antes de salir se escribe qué prueba se necesita para poder afirmar cada cosa. No es un trámite: es lo que evita descubrir en el cierre que la afirmación central del reportaje se apoya en una sola persona.</p>
+    <ul>
+      <li><strong>Afirmación:</strong> lo que se quiere poder decir.</li>
+      <li><strong>Prueba necesaria:</strong> qué documento o testimonio la sostendría.</li>
+      <li><strong>Dónde está:</strong> registro, archivo, persona.</li>
+      <li><strong>Alternativa:</strong> qué hacer si esa vía se cierra.</li>
+    </ul>
+    <div class="ej"><b>SEÑAL DE ALARMA</b>Si en el plan hay afirmaciones cuya única prueba prevista es «la fuente lo dirá», ese es el punto por donde el reportaje se va a romper.</div>
+
+    <h3>La matriz de verificación</h3>
+    <p>La matriz es el instrumento central de esta unidad. Es una tabla donde cada afirmación publicable ocupa una fila y lleva asociada su prueba, su estado y quién la comprobó.</p>
+    <ul>
+      <li><strong>Afirmación</strong> tal como aparecerá en el texto.</li>
+      <li><strong>Prueba</strong> concreta: documento, grabación, registro.</li>
+      <li><strong>Estado:</strong> verificada, indiciaria o alegada.</li>
+      <li><strong>Verificador:</strong> quién lo comprobó, además del autor.</li>
+    </ul>
+    <p>Al cerrar, toda afirmación en estado «alegada» debe estar formulada como tal en el texto. Si dice «ocurrió» y la matriz dice «alegada», hay un error que corregir antes de publicar.</p>
+    <div class="ej"><b>USO REAL</b>La matriz es también el documento que se entrega al abogado del medio y el que se conserva si hay demanda. Es la prueba de que existió un procedimiento.</div>
+
+    <h3>Las fases de una investigación</h3>
+    <ol>
+      <li><strong>Indicio.</strong> Algo no encaja. Aún no hay historia.</li>
+      <li><strong>Hipótesis.</strong> Se formula una afirmación falsable.</li>
+      <li><strong>Reporteo.</strong> Se busca la prueba y, sobre todo, lo que la refutaría.</li>
+      <li><strong>Matriz.</strong> Cada afirmación se asocia a su respaldo.</li>
+      <li><strong>Contraste.</strong> Se busca a los señalados y se documenta el intento.</li>
+      <li><strong>Control cruzado.</strong> Alguien que no reporteó revisa afirmación por afirmación.</li>
+      <li><strong>Cierre.</strong> Revisión legal, de riesgo y de réplica.</li>
+      <li><strong>Publicación</strong> con nota metodológica.</li>
+      <li><strong>Seguimiento:</strong> correcciones, respuestas, continuación.</li>
+    </ol>
+    <div class="ej"><b>DÓNDE SE ROMPEN</b>Los fracasos documentados casi nunca ocurren en la fase 3 por falta de trabajo, sino en la 5 y la 6: no se buscó a quien podía desmentir, y nadie ajeno revisó.</div>
+
+    <h3>Control cruzado: el segundo par de ojos</h3>
+    <p>El control cruzado consiste en que una persona que no participó en el reporteo revise la pieza contra la matriz, afirmación por afirmación, con una sola pregunta: <em>¿dónde está la prueba de esto?</em></p>
+    <p>Funciona porque el autor de una investigación pierde inevitablemente la capacidad de ver lo que da por sabido. Después de tres semanas con un tema, una afirmación que solo está en su cabeza le parece publicada.</p>
+    <div class="ej"><b>PROCEDIMIENTO</b>El revisor no discute el enfoque ni el estilo. Marca cada afirmación con una de tres etiquetas: respaldada, sin respaldo localizado, o mal formulada respecto de su estado. Es un control técnico, no una opinión editorial.</div>
+
+    <h3>El cierre: legal, riesgo y réplica</h3>
+    <p>Antes de publicar hay tres revisiones distintas que suelen confundirse en una sola.</p>
+    <ul>
+      <li><strong>Legal.</strong> ¿La formulación es defendible? ¿Se distingue hecho de opinión? ¿Hay imputaciones sin respaldo?</li>
+      <li><strong>De riesgo.</strong> ¿Quién queda expuesto —fuente, colaborador local, familia— y qué se ha previsto?</li>
+      <li><strong>De réplica.</strong> ¿Se buscó a todos los señalados? ¿Con cuántos intentos y por qué vías? ¿Está documentado?</li>
+    </ul>
+    <div class="ej"><b>ERROR HABITUAL</b>Delegar la revisión de riesgo en el abogado. El abogado protege al medio; nadie está protegiendo a la fuente salvo que alguien tenga esa tarea asignada por nombre.</div>
+
+    <h3>Publicar el método</h3>
+    <p>La nota metodológica es el equivalente publicado de la matriz. Explica al lector qué se hizo, con qué material, qué no se pudo confirmar y quién no quiso hablar. Es la aplicación directa del principio de transparencia de la Unidad 1.</p>
+    <p>No tiene que ser larga. Tiene que ser específica: «se revisaron 340 expedientes del registro mercantil entre marzo y junio; se solicitó entrevista a la empresa por tres vías; no hubo respuesta» dice más sobre la solidez de una investigación que cualquier adjetivo.</p>
+    <div class="ej"><b>MODELO MÍNIMO</b>Qué material se usó · Qué período abarca · Qué se intentó y no se consiguió · Quién declinó hablar · Qué queda sin confirmar.</div>
+
+    <h3>Después de publicar</h3>
+    <p>La publicación no cierra el proceso. Abre la fase donde el trabajo se somete a contradicción pública, y la forma de gestionarla es parte del método.</p>
+    <ul>
+      <li><strong>Corrección</strong> con la misma visibilidad que tuvo el error, y con sujeto: quién se equivocó y en qué.</li>
+      <li><strong>Réplica</strong> publicada cuando llega, aunque contradiga la pieza.</li>
+      <li><strong>Seguimiento:</strong> qué ocurrió después. Una investigación sin seguimiento se convierte en un episodio.</li>
+      <li><strong>Registro de decisiones</strong> conservado, por si la impugnación llega meses después.</li>
+    </ul>
+
+    <h3>Síntesis del curso: un solo método</h3>
+    <p>Las cuatro unidades son un mismo procedimiento visto desde cuatro distancias. La Unidad 1 estableció que el periodismo es una disciplina de verificación y no una actitud. La 2 lo llevó al campo, donde el material se captura y las fuentes se pactan y se protegen. La 3 lo extendió al lector que no es tu compatriota y al sujeto que no puede responderte. Esta unidad ensambló todo en un flujo con fases, controles y rastro documental.</p>
+    <p>La pregunta que atraviesa las cuatro es siempre la misma, y es la que el certificado exige que el estudiante pueda responder de cualquier pieza que firme: <strong>cómo lo sabes, y cómo puede saberlo quien te lee.</strong></p>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista de contraste: última llamada al principal señalado de tu investigación, 48 horas antes de publicar. Sabe que la pieza existe. Tiene abogado y va a grabar la conversación.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> Debes exponerle cada afirmación que le atañe. No puedes revelar la identidad de las fuentes. Cada respuesta debe quedar registrada textualmente para poder citarla.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Pulsa la opción que consideres correcta. La respuesta y la explicación aparecen después de responder.</p>
+    <div class="score" id="score">RESPONDIDAS 0 / 8 · CORRECTAS 0</div>
+    <div id="quiz"></div>
+  </section>
+
+  <section id="exa">
+    <h3>Examen Integrador · JRN-1001</h3>
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">ALCANCE Y CALIFICACIÓN</div>
+      <p>Este examen abarca las cuatro unidades del curso. Se aprueba con un <strong>75%</strong>. Consta de tres partes: opción múltiple (40%), análisis de una pieza publicada (30%) y memorando de decisión editorial (30%).</p>
+      <p style="margin-bottom:0">La Parte A es interactiva y se califica sola. Las Partes B y C se entregan por escrito.</p>
+    </div>
+
+    <h3>Parte A · Opción múltiple (40%)</h3>
+    <p style="font-size:.88rem">Doce preguntas sobre las cuatro unidades. Cada una indica de qué unidad procede.</p>
+    <div class="score big" id="escore">RESPONDIDAS 0 / 12 · CORRECTAS 0 · CALIFICACIÓN —</div>
+    <div id="exam"></div>
+
+    <h3>Parte B · Análisis de pieza (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · 800–1.000 PALABRAS</span>
+      <p>Se entrega el día del examen una pieza publicada. El estudiante debe: clasificarla como periodismo de afirmación o de verificación con evidencia textual; identificar las afirmaciones cuya carga de prueba no está satisfecha; señalar al tercero ausente y el daño previsible; y reescribir la entrada aplicando transparencia de método.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS PARTE B</b>Clasificación correcta con evidencia citada del texto (20%) · Identificación de al menos tres afirmaciones sin respaldo declarado (30%) · Tercero ausente y daño previsible, con nombre y gravedad (25%) · Reescritura concreta de la entrada, no descripción de lo que habría que hacer (25%).</div>
+    </div>
+
+    <h3>Parte C · Memorando de decisión editorial (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · EXPEDIENTE CERRADO</span>
+      <p>Se entrega un expediente con: un video sin procedencia, dos testimonios contradictorios, un documento de autenticidad dudosa, y una fuente local que pide anonimato pero es deducible por su cargo. El estudiante produce un memorando que resuelva el caso completo.</p>
+      <button class="reveal">Ver estructura y criterios</button>
+      <div class="model"><b>ESTRUCTURA EXIGIDA</b>1. Matriz de verificación con las afirmaciones y su estado.<br>2. Qué se publica y con qué formulación exacta.<br>3. Qué queda fuera, elemento por elemento, y qué comprobación lo haría publicable.<br>4. Evaluación de riesgo de la fuente y medida adoptada.<br>5. Gestión del derecho de réplica: a quién, por qué vías, con qué plazo.<br>6. Nota metodológica redactada, lista para publicar.<br><br><b>CRITERIOS</b>Matriz completa y coherente con el texto propuesto (25%) · Formulaciones exactas, no genéricas (20%) · Protección real de la fuente, aplicando la prueba de deducción (20%) · Réplica documentada (15%) · Nota metodológica específica y verificable (20%).</div>
+    </div>
+
+    <div class="box">
+      <div class="lbl">REQUISITOS DE GRADUACIÓN DEL CERTIFICADO</div>
+      <p style="margin-bottom:0">Estudiar las 4 unidades de las 6 materias · Aprobar la evaluación de cada módulo · Aprobar el examen integrador de cada materia con un mínimo de 75% · Acreditar los 19 créditos universitarios para desbloquear el diploma.</p>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 4</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="unidad3.html">← Unidad 3: Ética Global y Filtros de Frontera</a> · <a href="index.html">Volver a la Unidad 1</a>
+  </footer>
+</main>
+</div>
+
+<script>
+const TERMS=[
+ {t:"Hipótesis de Trabajo",d:"Afirmación concreta y falsable que orienta la investigación. Si no puede resultar falsa, no es una hipótesis.",s:"Kovach &amp; Rosenstiel · método científico aplicado"},
+ {t:"Falsación",d:"Búsqueda deliberada de lo que refutaría la propia hipótesis, en lugar de lo que la confirma.",s:"Kovach &amp; Rosenstiel, cap. 4"},
+ {t:"Plan de Reporteo",d:"Documento previo que asocia cada afirmación deseada con la prueba necesaria, su ubicación y una alternativa.",s:"Bradshaw, Online Journalism Handbook"},
+ {t:"Matriz de Verificación",d:"Tabla donde cada afirmación publicable lleva su prueba, su estado —verificada, indiciaria o alegada— y quién la comprobó.",s:"Práctica establecida · Verification Handbook"},
+ {t:"Control Cruzado",d:"Revisión por alguien que no participó en el reporteo, afirmación por afirmación, contra la matriz.",s:"Informe Columbia sobre Rolling Stone, 2015"},
+ {t:"Revisión de Cierre",d:"Tres revisiones distintas antes de publicar: legal, de riesgo y de derecho de réplica. No son la misma.",s:"Práctica editorial establecida"},
+ {t:"Nota Metodológica",d:"Equivalente publicado de la matriz: qué material se usó, qué período abarca, qué no se pudo confirmar y quién declinó hablar.",s:"Kovach &amp; Rosenstiel, transparencia · ICIJ"},
+ {t:"Derecho de Réplica",d:"Obligación de buscar a los señalados, documentar los intentos y publicar su respuesta cuando llegue.",s:"Ward · práctica deontológica"},
+ {t:"Registro de Decisiones",d:"Constancia escrita de qué se decidió publicar, qué no y por qué. Es lo que permite defender el proceso meses después.",s:"Práctica establecida · ICIJ"},
+ {t:"Seguimiento",d:"Continuación publicada de lo que ocurrió después. Sin ella, una investigación se convierte en un episodio aislado.",s:"Kovach &amp; Rosenstiel"},
+ {t:"Política de Correcciones",d:"Norma pública sobre cómo se enmiendan los errores propios, con la misma visibilidad que tuvo el error.",s:"IFCN, Código de Principios"},
+ {t:"Estado de Afirmación",d:"Clasificación de cada dato como verificado, indiciario o alegado, que debe corresponderse con su formulación en el texto.",s:"Formulación docente · Verification Handbook"}
+];
+
+const QUIZ=[
+ {q:"Una hipótesis de trabajo es investigable cuando:",
+  o:["Es lo bastante grave para interesar al público","Puede resultar falsa","Cuenta con una fuente dispuesta a hablar","La comparte el editor"],c:1,
+  e:"«Hay corrupción en el hospital» no se puede refutar con ningún dato. «Adjudicó tres contratos sin licitación a una empresa constituida un mes antes» sí, y por eso es investigable."},
+ {q:"La pregunta de control al formular una hipótesis es:",
+  o:["¿A quién le interesa esto?","¿Qué tendría que encontrar para abandonarla?","¿Cuánto tiempo me llevará?","¿Quién más lo está investigando?"],c:1,
+  e:"Si no puedes responderla, no estás investigando: estás buscando confirmación de algo que ya decidiste. Es la falsación aplicada al reporteo."},
+ {q:"En la matriz de verificación, una afirmación en estado «alegada» debe:",
+  o:["Eliminarse del texto","Formularse en el texto como alegación, no como hecho","Publicarse con una fuente anónima","Enviarse al abogado"],c:1,
+  e:"El estado en la matriz y la formulación en el texto tienen que coincidir. Si la matriz dice «alegada» y el texto dice «ocurrió», hay un error que corregir antes de publicar."},
+ {q:"El control cruzado lo realiza:",
+  o:["El autor, releyendo con distancia","Alguien que no participó en el reporteo","El abogado del medio","La fuente principal"],c:1,
+  e:"El autor pierde la capacidad de ver lo que da por sabido. Tras semanas con un tema, una afirmación que solo está en su cabeza le parece publicada."},
+ {q:"Las revisiones de cierre son:",
+  o:["Una sola, a cargo del abogado","Legal, de riesgo y de réplica, y son distintas","Legal y de estilo","De estilo y de titulación"],c:1,
+  e:"El abogado protege al medio. Nadie está protegiendo a la fuente salvo que esa tarea esté asignada a alguien por nombre."},
+ {q:"La nota metodológica debe ser sobre todo:",
+  o:["Extensa","Específica","Técnica","Firmada por el director"],c:1,
+  e:"«Se revisaron 340 expedientes entre marzo y junio; se solicitó entrevista por tres vías; no hubo respuesta» dice más sobre la solidez que cualquier adjetivo."},
+ {q:"Según las revisiones independientes de fracasos periodísticos, las fases donde el proceso suele romperse son:",
+  o:["La formulación de la hipótesis y el reporteo","El contraste con los señalados y el control cruzado","La edición de estilo y la titulación","La distribución y la promoción"],c:1,
+  e:"Los fallos documentados rara vez son por falta de trabajo de campo. Ocurren cuando no se buscó a quien podía desmentir y cuando nadie ajeno revisó."},
+ {q:"Una corrección publicada debe tener:",
+  o:["Tono neutro y ubicación discreta","La misma visibilidad que tuvo el error y un sujeto explícito","Autorización previa del afectado","Formato de nota al pie"],c:1,
+  e:"«Se deslizó un error» no tiene sujeto. Y una corrección enterrada en una pieza que ya nadie abre no es una corrección, es un trámite."}
+];
+
+const EXAM=[
+ {u:"UNIDAD 1",q:"Según Kovach y Rosenstiel, la esencia del periodismo es:",
+  o:["La imparcialidad del reportero","Una disciplina de verificación","El acceso a fuentes oficiales","La velocidad"],c:1,
+  e:"La definición se desplaza de un rasgo del sujeto a un método comprobable, y eso es lo que permite auditar el trabajo con independencia de quién lo firme."},
+ {u:"UNIDAD 1",q:"La objetividad, en su formulación original, exigía:",
+  o:["Un periodista sin opiniones","Un método consistente de comprobación, porque el periodista sí tiene sesgos","Publicar las dos versiones de todo","Evitar los adjetivos"],c:1,
+  e:"Nace del reconocimiento del sesgo, no de su negación. La versión que exige neutralidad personal es una deriva posterior e indefendible."},
+ {u:"UNIDAD 1",q:"Una pieza con todos sus datos exactos:",
+  o:["Es verdadera por definición","Puede ser falsa por omisión, orden o yuxtaposición","No admite corrección","Cumple la transparencia"],c:1,
+  e:"La exactitud es propiedad de los elementos; la verdad, del conjunto. Por eso existe la verificación de conjunto además de la de cada dato."},
+ {u:"UNIDAD 2",q:"El plano de contexto se graba fundamentalmente para:",
+  o:["Abrir la pieza","Poder demostrar dónde y cuándo se estuvo","Rellenar la edición","Cumplir un formato"],c:1,
+  e:"Casi nunca se publica. Es lo primero que se pide cuando alguien niega el hecho."},
+ {u:"UNIDAD 2",q:"Dos personas informadas por la misma tercera constituyen:",
+  o:["Dos fuentes independientes","Una sola fuente","Triangulación válida","Confirmación documental"],c:1,
+  e:"La independencia es lo que hace válida la triangulación. Un origen común no se multiplica por el número de intermediarios."},
+ {u:"UNIDAD 2",q:"Respecto de los metadatos de un archivo capturado en campo:",
+  o:["Se borran siempre","Se conservan siempre","Se conserva el original intacto y se limpia la copia publicada","Se desactiva la localización de forma permanente"],c:2,
+  e:"Son prueba de procedencia y riesgo de exposición a la vez. La solución es separar, no elegir."},
+ {u:"UNIDAD 3",q:"La ética cosmopolita de Ward propone:",
+  o:["Una norma universal única que sustituya a las nacionales","Ampliar el círculo de personas cuyos intereses se consideran","Aplicar la norma local de cada país","Abstenerse de juzgar prácticas ajenas"],c:1,
+  e:"No sustituye: extiende. El sujeto extranjero tiene los mismos derechos que el nacional, empezando por el de ser contactado."},
+ {u:"UNIDAD 3",q:"El daño previsible se evalúa:",
+  o:["Con lo que se sabe al publicar","Con lo que se descubre después","Según lo que declare el afectado","Según lo que dictamine un tribunal"],c:0,
+  e:"Un resultado favorable no valida retroactivamente una decisión, y un daño imprevisible no la invalida. Se juzga con la información disponible al decidir."},
+ {u:"UNIDAD 3",q:"La prueba de simetría consiste en preguntarse:",
+  o:["Si hay una versión contraria","Si se publicaría igual con un sujeto del propio país","Si el hecho se repitió","Si otro medio lo publicó"],c:1,
+  e:"La cobertura internacional muestra habitualmente nombres y cuerpos que ningún editor publicaría si fueran de sus compatriotas."},
+ {u:"UNIDAD 4",q:"Una hipótesis de trabajo es investigable cuando:",
+  o:["Interesa al público","Puede resultar falsa","Tiene una fuente dispuesta","La aprueba el editor"],c:1,
+  e:"La falsabilidad es lo que distingue investigar de buscar confirmación."},
+ {u:"UNIDAD 4",q:"El control cruzado lo realiza:",
+  o:["El autor con distancia","Alguien que no participó en el reporteo","El abogado","El editor de estilo"],c:1,
+  e:"El autor no puede ver lo que da por sabido. El revisor externo pregunta una sola cosa por afirmación: dónde está la prueba."},
+ {u:"UNIDAD 4",q:"La nota metodológica publicada cumple la función de:",
+  o:["Proteger legalmente al medio","Aplicar la transparencia de método al lector","Sustituir la matriz de verificación","Acreditar a los autores"],c:1,
+  e:"Es la aplicación directa del principio de la Unidad 1: el lector debe poder reconstruir cómo llegaste a lo que afirmas."}
+];
+
+const CASES=[
+ {tag:"CASO 1 · ROLLING STONE Y COLUMBIA · 2014-2015",t:"«A Rape on Campus» y la anatomía de un fallo",
+  d:"La revista publicó el 19 de noviembre de 2014 un reportaje sobre una presunta agresión sexual grupal en la Universidad de Virginia. Ante las dudas, encargó una revisión independiente a la Escuela de Periodismo de Columbia, dirigida por Steve Coll y Sheila Coronel. El informe, de unas 12.000 palabras, se publicó el 5 de abril de 2015 y concluyó que se trataba de «un fallo periodístico que era evitable», con problemas en todos los niveles: reporteo, edición, comprobación de datos y supervisión editorial. La revista retractó el reportaje completo ese mismo día.",
+  ej:"El informe señaló que la reportera no contactó a tres personas clave con las que la fuente decía haber hablado la noche del hecho. Ninguna de ellas habría confirmado el relato. No era una comprobación difícil ni cara: era una llamada.",
+  p:["¿En qué fase concreta del proceso se rompió la cadena?","¿Por qué la revisión analizó el procedimiento y no el texto?","¿Qué habría cambiado un control cruzado?"],
+  m:"La cadena se rompió en la fase de contraste: la pieza se construyó sobre una fuente única y no se buscó a quienes podían refutarla, precisamente porque hacerlo amenazaba la historia. La revisión analizó el procedimiento porque el texto por sí solo no revela lo que no se hizo — leyéndolo parecía sólido, y esa es la lección central de la unidad. Un control cruzado lo habría detectado en minutos: cualquier persona ajena revisando afirmación por afirmación habría preguntado dónde estaba el respaldo de los testimonios corroborantes, y la respuesta —no se buscaron— habría detenido la publicación.",
+  k:"Los fallos periodísticos graves casi nunca son por falta de trabajo. Son por no haber buscado lo que podía refutar la historia."},
+ {tag:"CASO 2 · THE WASHINGTON POST · 1972-1974",t:"La regla de las dos fuentes",
+  d:"La investigación sobre el caso Watergate se apoyó en una norma interna que se volvió doctrina profesional: ninguna afirmación relevante se publicaba sin dos fuentes independientes que la confirmaran por separado. La regla ralentizó la cobertura y dejó fuera material que resultó ser cierto, pero sostuvo la investigación cuando fue atacada frontalmente.",
+  ej:"La regla tuvo un costo real: obligó a retrasar o descartar información correcta que solo tenía una fuente. Ese costo es el precio de que ninguna de las publicadas se cayera.",
+  p:["¿Qué se pierde y qué se gana con una regla así?","¿Sigue teniendo sentido cuando existen documentos verificables?","¿Cuándo es legítimo publicar con una sola fuente?"],
+  m:"Se pierde velocidad y algunas historias ciertas; se gana que ninguna publicada se derrumbe, lo cual en una investigación bajo ataque es la diferencia entre continuar y cerrar. Cuando existen documentos verificables la regla se transforma más que desaparecer: un documento auténtico puede valer por sí mismo, pero exige autenticación como objeto —lo que la Unidad 1 estableció con el caso de los documentos Killian— y esa autenticación cumple la función de la segunda fuente. Publicar con una sola fuente es defendible cuando esa fuente es documental y autenticada, o cuando el testimonio único va formulado explícitamente como tal y el texto declara qué se hizo para corroborarlo.",
+  k:"Una regla de verificación tiene un costo en historias perdidas. Ese costo es lo que compra la solidez del resto."},
+ {tag:"CASO 3 · THE BOSTON GLOBE · 2002",t:"Del caso individual al patrón documental",
+  d:"La investigación sobre encubrimiento de abusos en la archidiócesis de Boston cambió de escala cuando el equipo dejó de perseguir casos individuales y buscó el patrón en los documentos: registros de asignaciones, traslados de sacerdotes y expedientes judiciales sellados. La historia dejó de ser una suma de testimonios para convertirse en una estructura demostrable.",
+  ej:"El giro metodológico fue pasar de preguntar «¿qué le ocurrió a esta persona?» a preguntar «¿qué muestra el registro de traslados si lo ordeno por fechas?». La segunda pregunta la responde un archivo, no una víctima.",
+  p:["¿Por qué un patrón documental es más sólido que una suma de testimonios?","¿Qué protege a las víctimas en ese enfoque?","¿Qué exige del reportero en tiempo y método?"],
+  m:"Un patrón documental es más sólido porque no depende de la credibilidad de ninguna persona: el registro dice lo que dice y puede examinarlo cualquiera, mientras que una suma de testimonios se defiende impugnando a los testigos uno por uno. Protege además a las víctimas, porque su testimonio deja de ser el pilar que sostiene la acusación y pasa a ser el rostro humano de algo ya probado por otra vía, lo que reduce la exposición y la presión sobre ellas. Exige, a cambio, meses de trabajo de archivo sin resultados visibles y una organización capaz de sostener esa inversión — que es la razón por la que este tipo de investigación es escasa.",
+  k:"Cuando la prueba está en el archivo, el testimonio deja de ser el pilar y pasa a ser el rostro. Eso es más sólido y más protector."},
+ {tag:"CASO 4 · 2013",t:"Documentos, abogados y riesgo simultáneos",
+  d:"La publicación en 2013 de los documentos filtrados por Edward Snowden obligó a varios medios a operar un flujo simultáneo de verificación técnica, revisión legal, negociación con autoridades y evaluación de riesgo para personas identificables en el material. Cada pieza requería decidir qué se publicaba, qué se redactaba y qué se retenía por completo.",
+  ej:"El trabajo no consistió en publicar los documentos sino en decidir cuáles no. La mayor parte del material permaneció sin publicar, y esa decisión editorial fue tan periodística como la publicación.",
+  p:["¿Qué diferencia hay entre publicar documentos y hacer periodismo con ellos?","¿Quién decide qué se retiene?","¿Cómo se documenta una decisión de no publicar?"],
+  m:"Publicar documentos es un acto de volcado que traslada al lector una tarea que no puede hacer; hacer periodismo con ellos es seleccionar, verificar la autenticidad, contextualizar y ponderar el daño de cada fragmento. La decisión de retener no puede recaer en el reportero solo ni en el abogado solo: exige una deliberación registrada donde participen quien conoce el material, quien conoce el riesgo legal y quien puede evaluar el peligro para terceros identificables. Y se documenta como cualquier otra decisión editorial: qué se retuvo, por qué motivo y en qué fecha, porque si la retención se cuestiona después, la única defensa es haber dejado constancia del criterio.",
+  k:"Decidir qué no se publica es una decisión periodística que debe registrarse, no una omisión."},
+ {tag:"CASO 5 · PROPUBLICA · DESDE 2016",t:"Publicar la metodología junto al hallazgo",
+  d:"En sus investigaciones basadas en datos, ProPublica adoptó la práctica de publicar junto al reportaje una nota metodológica detallada y, en varios casos, los datos y el código de análisis, permitiendo que terceros reprodujeran o discutieran los resultados. Algunas de esas metodologías fueron efectivamente cuestionadas y debatidas públicamente por otros investigadores.",
+  ej:"Que la metodología fuera impugnada no debilitó el trabajo: lo situó en un terreno donde la discusión era posible. Un hallazgo sin método publicado no se puede discutir, solo creer o no creer.",
+  p:["¿Por qué publicar el método invita a la crítica y aun así conviene?","¿Qué diferencia hay entre transparencia y publicación de datos crudos?","¿Qué límites tiene esta práctica con material sensible?"],
+  m:"Conviene porque desplaza la discusión del terreno de la confianza al de la evidencia: quien objeta debe objetar el procedimiento, no la reputación del medio, y eso es exactamente lo que la Unidad 1 llamó convertir al lector en auditor. Transparencia no equivale a volcar datos crudos: significa explicar qué se usó, cómo se procesó y qué se descartó, algo que puede hacerse aunque los datos no sean publicables. Y ahí está el límite — con material que contiene información personal, la publicación íntegra puede causar el daño que el reportaje denuncia, de modo que se publica el método y se retienen los datos, explicando por qué.",
+  k:"Publicar el método traslada la discusión de la confianza a la evidencia. Se puede ser transparente sin publicar los datos."},
+ {tag:"CASO 6 · THE OBSERVER Y ALIADOS · 2018",t:"El informante, la presión legal y la publicación coordinada",
+  d:"La investigación sobre el uso indebido de datos de usuarios de redes sociales con fines de perfilado político se publicó en 2018 tras meses de preparación, apoyada en un informante interno y coordinada entre medios de distintos países. La publicación se produjo bajo presión legal previa y con una estrategia deliberada de aparición simultánea.",
+  ej:"La coordinación no fue solo periodística: publicar a la vez en varias jurisdicciones reduce la eficacia de una acción judicial que busque frenar una sola edición.",
+  p:["¿Qué protege la publicación coordinada frente a la presión legal?","¿Qué obligaciones adicionales genera un informante interno?","¿Cómo se prepara una redacción para una demanda anunciada?"],
+  m:"La publicación coordinada reduce el valor de una medida cautelar dirigida a un solo medio o jurisdicción, porque detener una edición ya no impide que la información exista públicamente. Un informante interno genera obligaciones que van más allá de la protección de identidad: asesoría legal propia e independiente de la del medio, previsión de las consecuencias laborales y personales, y una conversación explícita sobre qué ocurre si decide retractarse. Prepararse para una demanda anunciada significa tener la matriz de verificación cerrada antes de publicar, cada afirmación con su respaldo localizable en minutos, y el registro de intentos de contacto documentado — es decir, exactamente el procedimiento de esta unidad, ejecutado con antelación y no improvisado.",
+  k:"Frente a la presión legal, lo que protege no es el valor del hallazgo sino el rigor documentado del procedimiento."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La hipótesis que se enamora de sí misma",
+  d:"Llevas tres semanas y todo encaja con tu hipótesis. No has encontrado nada que la contradiga, y eso te tiene satisfecho.",
+  r:"Reportera · Editor · Revisor externo",
+  ej:"<span class='who'>EDITOR:</span> ¿Qué has encontrado que apunte en contra?<br><span class='who'>REPORTERA:</span> Nada.<br><span class='who'>EDITOR:</span> ¿Nada, o no lo buscaste?<br><span class='who'>REPORTERA:</span> …No lo busqué.",
+  m:"La ausencia total de evidencia contraria en tres semanas no es una señal de solidez sino de sesgo de confirmación. La respuesta profesional es dedicar un bloque explícito a la falsación: listar qué hallazgos derrumbarían la hipótesis y buscarlos activamente, incluyendo entrevistar a quien tenga interés en desmentirla. Si tras esa búsqueda deliberada sigue sin aparecer nada, la hipótesis se ha fortalecido de verdad. Si aparece, se ha ahorrado una retractación.",
+  c:"Reconocer el sesgo de confirmación y convertir la falsación en una tarea con tiempo asignado, no en una actitud."},
+ {tag:"ESCENARIO 2",t:"La matriz que no cuadra con el texto",
+  d:"En el control cruzado aparece que el segundo párrafo afirma como hecho algo que en la matriz está como indiciario. Cierras en tres horas.",
+  r:"Revisor · Reportero · Editor",
+  ej:"<span class='who'>REVISOR:</span> Aquí dices «la empresa pagó». La matriz dice indiciario.<br><span class='who'>REPORTERO:</span> Es que todo apunta a eso.<br><span class='who'>REVISOR:</span> Apuntar no es pagar. O consigues la prueba o cambias el verbo.",
+  m:"No hay tercera opción: o aparece el respaldo en las tres horas o se reformula el párrafo para que corresponda a su estado real —«los registros muestran una transferencia compatible con», por ejemplo—. Sostener el verbo fuerte porque «todo apunta» es precisamente el mecanismo del fallo. La reformulación no debilita la pieza si el resto está sólido; una afirmación caída sí la derrumba entera, porque desplaza la discusión pública del hallazgo al error.",
+  c:"Hacer coincidir formulación y estado de la afirmación, sin negociar el verbo por presión de cierre."},
+ {tag:"ESCENARIO 3",t:"El abogado quiere quitar el nombre",
+  d:"La revisión legal propone eliminar el nombre del principal señalado y dejar solo su cargo. Legalmente es más seguro; informativamente, la pieza pierde.",
+  r:"Reportera · Abogado · Directora",
+  ej:"<span class='who'>ABOGADO:</span> Sin el nombre bajamos el riesgo a la mitad.<br><span class='who'>REPORTERA:</span> Y el cargo lo ocupa una sola persona.<br><span class='who'>ABOGADO:</span> Formalmente no lo nombramos.<br><span class='who'>REPORTERA:</span> Formalmente. En la práctica todo el mundo sabe quién es y nosotros parecemos cobardes.",
+  m:"La cuestión no es jurídica sino de coherencia: si el cargo identifica igualmente a la persona, omitir el nombre no reduce el daño para ella y sí reduce la claridad para el lector, lo peor de ambos mundos. La decisión correcta se toma sobre la solidez de la prueba: si la matriz sostiene la afirmación, se nombra y se asume; si no la sostiene, el problema no es el nombre sino la afirmación, y quitarlo solo disfraza una debilidad. El abogado informa del riesgo; la decisión editorial es de la dirección.",
+  c:"Distinguir entre reducir riesgo legal y disimular una debilidad probatoria, y situar la decisión donde corresponde."},
+ {tag:"ESCENARIO 4",t:"La réplica que llega después de publicar",
+  d:"Cuarenta y ocho horas después de publicar, el señalado envía una respuesta extensa con dos datos que efectivamente corrigen detalles de tu pieza y muchas afirmaciones generales.",
+  r:"Reportero · Editora · Departamento legal",
+  ej:"<span class='who'>EDITORA:</span> ¿Los dos datos son ciertos?<br><span class='who'>REPORTERO:</span> Sí. No cambian la conclusión, pero son ciertos.<br><span class='who'>EDITORA:</span> Entonces se corrigen hoy, y aparte publicamos la réplica.",
+  m:"Son dos obligaciones distintas y hay que cumplir las dos por separado. Los errores propios se corrigen de oficio y con visibilidad, sin esperar a que el afectado insista y sin condicionarlo a nada. La réplica se publica como lo que es —la versión del señalado— sin editarla para debilitarla y sin acompañarla de una defensa del medio en el mismo espacio, que es la forma habitual de anularla. Que la conclusión general se sostenga no exime de corregir el detalle: la credibilidad de la conclusión depende precisamente de esa disposición.",
+  c:"Separar corrección de errores propios y publicación de réplica, cumpliendo ambas sin mezclarlas."},
+ {tag:"ESCENARIO 5",t:"El equipo que se divide",
+  d:"Dos miembros del equipo discrepan sobre si el material aguanta. Uno quiere publicar, el otro cree que falta una comprobación. Hay que decidir hoy.",
+  r:"Reportero A · Reportera B · Editor",
+  ej:"<span class='who'>A:</span> Con esto se publica.<br><span class='who'>B:</span> Falta el registro mercantil.<br><span class='who'>A:</span> El registro tarda dos semanas.<br><span class='who'>B:</span> Entonces publicamos en dos semanas, o publicamos sin la afirmación que depende de él.",
+  m:"La discrepancia no se resuelve por jerarquía ni por votación, sino volviendo a la matriz: la pregunta es qué afirmación concreta depende de la comprobación pendiente. Si es periférica, se publica sin ella y se anuncia el seguimiento; si es la afirmación central, no se publica hasta tenerla. Y la discrepancia se registra por escrito con ambas posiciones, porque si el asunto se cuestiona después, ese registro demuestra que hubo deliberación y no imprudencia.",
+  c:"Resolver por la matriz y no por autoridad, y dejar registrada la discrepancia con ambas posiciones."},
+ {tag:"ESCENARIO 6",t:"El seguimiento que nadie quiere hacer",
+  d:"Tu investigación se publicó hace dos meses. No pasó nada: ni dimisiones, ni causa judicial, ni respuesta oficial. En la redacción ya nadie pregunta por el tema.",
+  r:"Reportera · Jefe de sección · Lector",
+  ej:"<span class='who'>JEFE:</span> Eso ya se publicó.<br><span class='who'>REPORTERA:</span> Y no pasó nada. Eso también es noticia.<br><span class='who'>JEFE:</span> ¿Titular?<br><span class='who'>REPORTERA:</span> «Dos meses después, ninguna de las tres instituciones responsables ha abierto expediente.»",
+  m:"La ausencia de consecuencias es un hecho verificable y publicable, y con frecuencia más revelador que la denuncia original, porque documenta el funcionamiento real de los mecanismos de control. El seguimiento se planifica en el momento de publicar, no se improvisa: se fija una fecha, se listan las instituciones a las que se preguntará y se registra la respuesta o su ausencia. Una investigación sin seguimiento se convierte en un episodio; con seguimiento, se convierte en un expediente que obliga a alguien a responder.",
+  c:"Tratar la ausencia de consecuencias como hecho publicable y planificar el seguimiento desde la fecha de publicación."}
+];
+
+const IV=[
+ {q:"Le llamo porque vamos a publicar una investigación que le concierne y quiero exponerle cada afirmación para que responda. ¿Prefiere que se lo lea o que se lo envíe por escrito?",
+  m:"Abre ofreciendo el formato. Dejar constancia de que se ofrecieron ambas vías cierra la vía de defensa más habitual: «no me dieron oportunidad de responder». Grabe o no él la llamada, usted también debe registrarla."},
+ {q:"Primera afirmación: entre marzo y junio su empresa recibió tres contratos sin procedimiento de licitación. ¿Es correcto?",
+  m:"Una afirmación por vez, formulada como aparecerá publicada. Si responde con contexto, se anota y se repite la pregunta cerrada. Lo que se busca es una respuesta citable, no una conversación."},
+ {q:"¿Puede indicarme qué documento acreditaría lo contrario y dónde consultarlo?",
+  m:"Traslada la carga sin acusar. Si existe el documento, hay que revisarlo antes de publicar aunque el plazo apriete; si no lo aporta, se publica que se le solicitó y no lo facilitó, que es un hecho."},
+ {q:"Usted menciona que hubo una autorización verbal. ¿De quién, con qué fecha y ante qué testigos?",
+  m:"Convierte una defensa genérica en una afirmación comprobable. Una autorización verbal sin nombre ni fecha no puede verificarse ni desmentirse, y el texto debe reflejar exactamente eso."},
+ {q:"¿Hay algo en lo que le he expuesto que sea factualmente incorrecto y que yo deba corregir antes de publicar?",
+  m:"Es la pregunta que más errores evita y la que casi nadie hace. Ofrece una última oportunidad de corrección y, si él no señala nada y después reclama, el registro de esta pregunta es la respuesta."},
+ {q:"¿Desea que publiquemos alguna declaración suya íntegra junto al reportaje?",
+  m:"Cierra ofreciendo réplica en el mismo espacio. Si la envía, se publica sin editarla para debilitarla. Si declina, se hace constar que se le ofreció y declinó."}
+];
+
+const AUDIT=[
+ ["v","«A Rape on Campus» se publicó el 19 de noviembre de 2014 y fue retractada el 5 de abril de 2015. La revisión independiente de la Escuela de Periodismo de Columbia, dirigida por Steve Coll y Sheila Coronel, la calificó de «fallo periodístico evitable» con problemas en reporteo, edición, comprobación y supervisión; la reportera no contactó a tres testigos clave.","Informe de Columbia Journalism School, 05-04-2015. Contrastado en Poynter y Rolling Stone."],
+ ["b","Un reportaje se evalúa por su procedimiento y no solo por su texto; las revisiones independientes de fracasos analizan la fase en que se rompió la cadena.","Informe Columbia 2015 · práctica de revisión editorial."],
+ ["b","Una hipótesis de trabajo debe ser falsable para ser investigable.","Kovach &amp; Rosenstiel, cap. 4 · método aplicado al reporteo."],
+ ["b","El plan de reporteo asocia cada afirmación deseada con la prueba necesaria, su ubicación y una alternativa.","Bradshaw, Online Journalism Handbook."],
+ ["b","La matriz de verificación asigna a cada afirmación su prueba, su estado y su verificador; el estado debe corresponderse con la formulación del texto.","Práctica establecida · Verification Handbook."],
+ ["b","El control cruzado lo ejecuta alguien que no participó en el reporteo, afirmación por afirmación.","Informe Columbia 2015 · práctica editorial establecida."],
+ ["b","Las revisiones de cierre son tres y distintas: legal, de riesgo y de derecho de réplica.","Práctica editorial establecida · Ward para la de riesgo."],
+ ["b","La nota metodológica publicada es la aplicación del principio de transparencia al lector.","Kovach &amp; Rosenstiel, cap. 4 · práctica del ICIJ."],
+ ["b","La corrección debe tener la misma visibilidad que el error y un sujeto explícito; la política de correcciones es una exigencia de los códigos de verificación.","IFCN, Código de Principios."],
+ ["b","La regla de las dos fuentes independientes se consolidó como doctrina profesional a partir de la cobertura de Watergate.","Doctrina profesional ampliamente documentada; conviene contrastar detalles operativos con las fuentes del propio diario si se amplía el caso."],
+ ["b","La investigación del Boston Globe sobre abusos en la archidiócesis de Boston (2002) desplazó el eje del testimonio individual al patrón documental.","Cobertura y literatura profesional posterior."],
+ ["b","La publicación de los documentos de 2013 obligó a operar simultáneamente verificación técnica, revisión legal y evaluación de riesgo, reteniendo la mayor parte del material.","Cobertura y relatos editoriales de los medios implicados, 2013 en adelante."],
+ ["b","ProPublica publica notas metodológicas detalladas y, en varios casos, datos y código, permitiendo la réplica y la discusión de sus resultados.","Práctica documentada de la organización; algunas metodologías fueron discutidas públicamente."],
+ ["b","La investigación de 2018 sobre uso indebido de datos con fines de perfilado político se apoyó en un informante interno y se publicó de forma coordinada bajo presión legal previa.","Cobertura de 2018."]
+];
+
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+function buildQuiz(list, holderId, scoreId, withUnit){
+  let done=0,right=0;
+  const holder=document.getElementById(holderId);
+  list.forEach(function(it,i){
+    const from = withUnit ? '<span class="from">'+it.u+'</span>' : '';
+    const card=el('<div class="q">'+from+'<div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts');
+    it.o.forEach(function(o,j){
+      const b=document.createElement('button');
+      b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+      b.onclick=function(){
+        if(card.dataset.done) return;
+        card.dataset.done='1'; done++;
+        var kids=opts.children;
+        for(var k=0;k<kids.length;k++){
+          kids[k].classList.add('done');
+          if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+          else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+        }
+        if(j===it.c) right++;
+        card.querySelector('.exp').classList.add('show');
+        const s=document.getElementById(scoreId);
+        let txt='RESPONDIDAS '+done+' / '+list.length+' · CORRECTAS '+right;
+        if(withUnit){
+          const pct=Math.round(right/list.length*100);
+          txt+=' · CALIFICACIÓN '+pct+'%';
+          if(done===list.length) txt+=pct>=75?' · APROBADO':' · NO APROBADO';
+        }
+        s.textContent=txt;
+      };
+      opts.appendChild(b);
+    });
+    holder.appendChild(card);
+  });
+}
+buildQuiz(QUIZ,'quiz','score',false);
+buildQuiz(EXAM,'exam','escore',true);
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#exa .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
