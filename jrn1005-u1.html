@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1005 · Unidad 1 — Narrativa Transmedia y Arquitectura de Proyecto</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1005, Unidad 1.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course on" href="jrn1005-u1.html"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1005 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Narrativa Transmedia y Arquitectura de Proyecto</h2>
+  <div class="sub">Unidad 1 de 4 · Producción Transmedia y Documental</div>
+
+  <div class="units">
+    <span class="unit on">Unidad 1: Narrativa Transmedia y Arquitectura de Proyecto</span>
+    <span class="unit">Unidad 2: Producción Documental: Investigación, Guion y Rodaje</span>
+    <span class="unit">Unidad 3: Montaje, Sonido y la Ética del Corte</span>
+    <span class="unit">Unidad 4: Distribución, Derechos y Sostenibilidad</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Un proyecto transmedia no es una historia publicada en varios sitios. Es una investigación distribuida en piezas que se complementan sin repetirse, cada una diseñada para lo que su soporte hace mejor y todas sostenidas por el mismo trabajo de verificación. La diferencia entre ambas cosas se nota en la primera semana de producción: quien reparte el mismo contenido en cuatro formatos acaba con cuatro versiones peores del original.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>la arquitectura se decide antes que el contenido</strong>. Qué se cuenta en cada plataforma, en qué orden puede entrar el usuario, qué pieza funciona sola y cuál necesita a las demás: esas decisiones determinan el presupuesto, el equipo y el calendario. Tomarlas al final, cuando el material ya está grabado, es la causa más frecuente de que un proyecto ambicioso termine siendo un reportaje largo con enlaces.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Distinguir narrativa transmedia de distribución multiplataforma y de adaptación, e identificar a cuál corresponde un proyecto real.</li>
+      <li>Diseñar la arquitectura de un proyecto: qué contenido va en cada soporte y por qué ese soporte y no otro.</li>
+      <li>Definir puntos de entrada múltiples y garantizar la autonomía de cada pieza sin sacrificar la coherencia del conjunto.</li>
+      <li>Distinguir participación real de participación decorativa, y decidir qué se delega en la audiencia y qué no.</li>
+      <li>Redactar el documento maestro del proyecto con su cronograma, su equipo y su presupuesto realista.</li>
+      <li>Mantener un estándar de verificación único en todas las piezas, incluidas las que circulan solas.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Henry Jenkins, <em>Convergence Culture</em> (New York University Press, 2006) — narrativa transmedia y cultura participativa</li>
+      <li>Carolyn Handler Miller, <em>Digital Storytelling</em> — diseño de narrativas interactivas</li>
+      <li>Judith Aston, Sandra Gaudenzi y Mandy Rose (eds.), <em>i-Docs: The Evolving Practices of Interactive Documentary</em></li>
+      <li>Jonathan Gray y Liliana Bounegru, <em>The Data Journalism Handbook</em> (2.ª ed., 2021) — capítulos de narrativa y presentación</li>
+      <li>Brant Houston e IRE, <em>The Investigative Reporter's Handbook</em> — investigación como base de cualquier formato</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>MIT Open Documentary Lab</h5>
+        <div class="def">Laboratorio del Instituto Tecnológico de Massachusetts dedicado a la investigación sobre nuevas formas de no ficción: documental interactivo, narrativa inmersiva y periodismo basado en datos. Publica estudios y mantiene proyectos de catalogación de obras del campo.</div>
+        <p class="src">docubase.mit.edu · MIT</p></div>
+      <div class="term"><h5>National Film Board of Canada · Interactive</h5>
+        <div class="def">Unidad interactiva de la institución pública canadiense de cine, referencia internacional en documental interactivo desde hace más de una década, con obras premiadas y documentación pública sobre sus procesos de producción.</div>
+        <p class="src">nfb.ca/interactive · ONF/NFB</p></div>
+      <div class="term"><h5>i-Docs · University of the West of England</h5>
+        <div class="def">Grupo académico y conferencia internacional dedicados al documental interactivo. Ha producido la sistematización más citada de los modos de interacción y de las formas de participación del usuario en la no ficción.</div>
+        <p class="src">i-docs.org · UWE Bristol</p></div>
+      <div class="term"><h5>IDFA DocLab</h5>
+        <div class="def">Sección del festival internacional de documental de Ámsterdam dedicada a la no ficción digital e interactiva. Funciona como escaparate, mercado y espacio de discusión crítica sobre el estado del campo.</div>
+        <p class="src">idfa.nl · DocLab</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega del documento maestro de un proyecto transmedia. El <strong>Examen Integrador</strong> de JRN-1005 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Qué es transmedia y qué no</h3>
+    <p>El término se usa hoy para casi cualquier cosa que ocupe más de una pantalla, y esa imprecisión tiene un coste práctico: proyectos presupuestados como transmedia que en realidad son un reportaje con vídeo incrustado. Conviene fijar la definición antes de discutir nada más. Una narrativa transmedia distribuye una historia entre varios medios de modo que cada pieza aporta una contribución propia y distinta al conjunto, y cada una puede consumirse por separado sin que el usuario quede perdido. Henry Jenkins lo formuló en 2006 en <em>Convergence Culture</em>, en el contexto de la ficción y la cultura de la convergencia, y el periodismo adoptó el marco después.</p>
+    <p>Frente a esa definición conviene situar dos prácticas vecinas que no son lo mismo. La primera es la <strong>distribución multiplataforma</strong>: el mismo contenido replicado en varios soportes —el reportaje en la web, el vídeo en la red social, el audio en el pódcast—. Es una estrategia de alcance perfectamente legítima y no genera ninguna capa narrativa nueva. La segunda es la <strong>adaptación</strong>: contar la misma historia con el lenguaje de otro medio, como cuando una investigación escrita se convierte en documental. También es legítima, y tampoco es transmedia, porque el usuario que consume ambas versiones recibe dos veces lo mismo.</p>
+    <p>La prueba que distingue las tres es sencilla y conviene aplicarla en la fase de diseño: pregúntate qué pierde alguien que solo vea una de las piezas. Si no pierde nada, tienes distribución multiplataforma. Si pierde el mismo contenido contado de otro modo, tienes una adaptación. Si pierde una parte de la información que ninguna otra pieza entrega, entonces sí estás construyendo una narrativa transmedia, con todo lo que implica en presupuesto, equipo y calendario.</p>
+    <p>La distinción no es académica. Determina cuánto cuesta el proyecto, cuánta gente hace falta, qué perfiles necesitas contratar y qué puedes prometer a un financiador. Vender como transmedia lo que es distribución produce dos daños simultáneos: infla las expectativas del cliente o del editor, y deja al equipo sin argumentos cuando el resultado no justifica el gasto.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Escribe, antes de empezar, qué información contiene cada pieza y que no contiene ninguna otra. Si esa lista tiene celdas vacías, no tienes un proyecto transmedia: tienes el mismo contenido repetido en varios sitios, y conviene decirlo antes de presupuestarlo.</div>
+
+    <h3>El mundo narrativo y la unidad de sentido</h3>
+    <p>En ficción, lo que sostiene un proyecto transmedia es un mundo: un universo con reglas, geografía, personajes y una lógica interna que admite muchas historias distintas. En periodismo no hay mundo inventado, y por eso la función equivalente la cumple otra cosa: el <strong>asunto</strong>, entendido como el problema que se investiga con toda su extensión, sus actores, sus datos, sus escenarios y sus consecuencias.</p>
+    <p>Un asunto suficientemente ancho admite piezas heterogéneas sin dispersarse. Una investigación sobre contaminación de un río, por ejemplo, contiene simultáneamente una historia humana —las familias que dependen del agua—, una serie de datos —vertidos, licencias, analíticas—, una dimensión territorial —el mapa de la cuenca—, una cronología institucional —qué se supo, cuándo, quién decidió— y un componente sensorial que solo el vídeo y el sonido pueden transmitir. Cada una de esas dimensiones pide un soporte distinto, y ninguna sustituye a las demás.</p>
+    <p>La unidad de sentido es lo que impide que ese reparto se convierta en dispersión. Debe poder enunciarse en una frase que valga para todas las piezas y que responda a la pregunta de qué sostiene el proyecto en conjunto. No es un eslogan ni un titular: es la tesis verificada que cada pieza ilumina desde un ángulo. Si el equipo no puede enunciarla sin discutir, el proyecto todavía no está diseñado, y añadir plataformas solo multiplicará el problema.</p>
+    <p>Conviene además comprobar que las piezas no compiten entre sí. Dos formatos que cuentan la misma historia con el mismo enfoque se canibalizan: el usuario que ve uno no tiene motivo para buscar el otro, y el esfuerzo se duplica sin ganancia. La comprobación es la misma que en la diapositiva anterior, aplicada ahora a cada par de piezas.</p>
+    <div class="ej"><b>PRUEBA DE COHERENCIA</b>Enuncia la tesis en una frase y pide a cada miembro del equipo que la escriba sin consultar. Si salen tres versiones distintas, el problema no es de comunicación interna: es que el proyecto todavía no tiene unidad de sentido, y ninguna plataforma la va a proporcionar.</div>
+
+    <h3>Qué historia en qué plataforma</h3>
+    <p>Cada soporte hace bien unas cosas y mal otras, y esas capacidades —lo que en diseño se llaman <em>affordances</em>— deben decidir el reparto. La asignación por costumbre o por moda es el error más caro de esta fase, porque compromete el presupuesto antes de que nadie haya comprobado si el formato funciona para ese contenido.</p>
+    <p>El <strong>texto</strong> permite densidad, precisión, matiz y consulta no lineal: es insustituible para explicar un mecanismo complejo, para citar documentos y para que el lector pueda releer. El <strong>vídeo</strong> transmite presencia, cuerpo, tono y espacio: muestra cómo es un lugar y cómo habla una persona, algo que ninguna descripción alcanza, pero es rígido en su duración y costoso de corregir. El <strong>audio</strong> acompaña actividades y crea intimidad; sostiene testimonios largos mejor que ningún otro formato y no exige atención visual. La <strong>visualización interactiva</strong> permite explorar magnitudes y relaciones y responde a preguntas que el usuario formula, en lugar de imponer un recorrido. Y el <strong>directo</strong> aporta actualidad y conversación, con la contrapartida de una verificación bajo presión.</p>
+    <p>De esas capacidades se derivan asignaciones razonables. Una cronología institucional compleja pide texto o visualización, no vídeo. Un testimonio con carga emocional pide audio o vídeo, no una cita entrecomillada en un párrafo. Una magnitud comparada pide gráfico interactivo, no una frase con cifras. Y un proceso que ocurre en un lugar concreto pide imagen, porque describirlo con palabras cuesta tres párrafos y se entiende peor.</p>
+    <p>Hay además un criterio de coste que conviene incorporar desde el principio: el vídeo y la producción interactiva son órdenes de magnitud más caros que el texto y el audio. Un proyecto bien diseñado concentra el gasto donde el formato aporta algo que ningún otro puede aportar, y resuelve el resto con los soportes más baratos. Lo contrario —grabar todo por si acaso— consume el presupuesto antes de la fase de montaje.</p>
+    <div class="ej"><b>REGLA</b>Para cada pieza escribe la frase «esto va en vídeo porque el vídeo permite X, y en texto se perdería Y». Si la frase no se puede completar sin repetir generalidades, la asignación es por costumbre y hay que revisarla.</div>
+
+    <h3>Puntos de entrada y autonomía</h3>
+    <p>En un proyecto distribuido nadie controla por dónde entra el usuario. Llegará por una red social, por un buscador, por el enlace que le pasó un conocido o por la portada del medio, y esa entrada será, con mucha frecuencia, una pieza intermedia y no la que el equipo consideró principal. Diseñar suponiendo un recorrido ordenado es diseñar para un usuario que no existe.</p>
+    <p>De ahí dos exigencias que conviene tratar como requisitos de producción y no como recomendaciones. La primera es la <strong>autonomía</strong>: cada pieza debe funcionar sola, con el contexto mínimo para entenderse sin haber visto nada más. Eso significa que un vídeo de tres minutos necesita, en sus primeros segundos, situar dónde estamos y por qué importa, aunque esa información se repita en otras piezas. La redundancia contextual no es un defecto: es la condición de que el proyecto funcione en circulación real.</p>
+    <p>La segunda es la <strong>conexión</strong>: desde cualquier pieza el usuario debe poder llegar al resto y entender qué va a encontrar. No basta con un enlace genérico al especial; hace falta indicar qué contiene cada destino, porque la decisión de seguir explorando depende de saber qué se gana con ello. Un buen mapa de navegación se puede dibujar en una servilleta y se comprueba preguntando a alguien ajeno al equipo por dónde iría después.</p>
+    <p>Estas dos exigencias están en tensión y ahí está el oficio. Demasiada autonomía produce repetición y aburre a quien consume varias piezas; demasiada dependencia produce piezas incomprensibles para quien solo ve una. El equilibrio se resuelve caso por caso, y conviene revisarlo con material real y no sobre el papel.</p>
+    <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>Entrega cada pieza por separado a alguien que no conozca el proyecto y pregúntale qué entendió y qué haría después. Si no sabe de qué va o no sabe adónde ir, la pieza no está terminada, por buena que sea.</div>
+
+    <h3>Participación real y participación decorativa</h3>
+    <p>La cultura participativa que describe la bibliografía del campo generó una expectativa que muchos proyectos no cumplen: la de que el usuario aporte algo. Conviene separar con claridad lo que es participación efectiva de lo que solo lo aparenta, porque la segunda consume recursos y produce desconfianza.</p>
+    <p>Hay <strong>participación real</strong> cuando lo que el usuario aporta modifica el resultado o el conocimiento del asunto: enviar un documento, responder una encuesta cuyos resultados se publican, aportar un testimonio verificable, corregir un dato del mapa desde el conocimiento local. Y hay <strong>participación decorativa</strong> cuando el gesto no cambia nada: un botón que solo registra una preferencia, un formulario que nadie lee, un mural de comentarios que no alimenta la investigación.</p>
+    <p>La participación real tiene costes que suelen subestimarse y hay que presupuestar desde el principio. Todo lo que llega hay que verificarlo, y la verificación de material de usuario es lenta. Hay que moderar, porque los espacios abiertos atraen ruido y a veces acoso. Hay que responder, porque quien aporta espera saber qué pasó con su envío. Y hay que proteger a quien participa: un testimonio enviado desde una comunidad pequeña puede identificar a su autor con la misma facilidad que una filtración, y aplican aquí los criterios de la Unidad 4 de JRN-1003.</p>
+    <p>La decisión razonable, cuando el presupuesto no alcanza para sostener todo eso, no es abrir la participación igualmente con menos medios: es no abrirla. Un canal de participación desatendido comunica algo peor que su ausencia, porque promete escucha y no la entrega.</p>
+    <div class="ej"><b>CRITERIO</b>Antes de abrir un canal, responde tres preguntas: quién verifica lo que llegue, quién responde a quien escribe y qué se publica con ello. Si alguna no tiene nombre y horas asignadas, el canal no se abre.</div>
+
+    <h3>El documento maestro</h3>
+    <p>Todo proyecto transmedia necesita un documento único que fije las decisiones antes de que empiece la producción. En ficción se le llama biblia; en periodismo funciona mejor entenderlo como el pliego del proyecto, porque su función es evitar que cada área improvise por su cuenta y que las decisiones se tomen tarde y por agotamiento.</p>
+    <p>El documento debe contener, como mínimo, siete elementos. La <strong>tesis verificada</strong> en una frase, con el estado de la investigación. El <strong>inventario de piezas</strong>, con lo que aporta cada una y lo que no aporta ninguna otra. La <strong>asignación de soportes</strong>, justificada por capacidades y no por costumbre. El <strong>mapa de navegación</strong>, con los puntos de entrada previstos y los enlaces entre piezas. El <strong>calendario</strong>, con las dependencias reales entre tareas. El <strong>presupuesto</strong> por pieza, incluido el coste de la verificación. Y el <strong>plan de mantenimiento</strong>, que casi siempre falta: quién actualiza, corrige y conserva el proyecto cuando el equipo se disuelva.</p>
+    <p>Las dependencias merecen atención especial porque son la causa habitual de los retrasos. El montaje del vídeo depende de que la investigación esté cerrada; la visualización depende de que los datos estén limpios; la campaña de lanzamiento depende de que todas las piezas existan. Un calendario que no represente esas dependencias no es un calendario: es una lista de deseos ordenada por fechas.</p>
+    <p>El documento se escribe una vez, se actualiza cuando cambia algo sustantivo y se comparte con todo el equipo, incluidos los colaboradores externos. Su utilidad aparece en la semana cinco, cuando alguien propone añadir un formato nuevo: el documento permite responder si esa pieza aporta algo que no aporte ninguna otra, y cuánto costaría en tiempo y dinero.</p>
+    <div class="ej"><b>REGLA</b>Ninguna pieza entra en producción sin figurar en el documento maestro con su aportación específica, su soporte justificado, su coste y su responsable. Lo que se añade sobre la marcha es lo que se entrega mal o no se entrega.</div>
+
+    <h3>Equipo, presupuesto y calendario</h3>
+    <p>Los proyectos transmedia fracasan menos por falta de talento que por una estimación irreal de lo que cuestan. Conviene por tanto dimensionar con datos y no con entusiasmo, y hacerlo antes de comprometerse con nadie.</p>
+    <p>En cuanto al <strong>equipo</strong>, un proyecto de tamaño medio requiere perfiles que rara vez coinciden en una sola persona: investigación, redacción, producción audiovisual, montaje, diseño de datos, desarrollo, sonido y coordinación editorial. Cuando el equipo es pequeño, la solución no es que cada uno haga de todo, sino reducir el número de piezas hasta que el equipo disponible pueda entregarlas con calidad. Un proyecto de tres piezas bien hechas supera siempre a uno de siete a medias.</p>
+    <p>En cuanto al <strong>presupuesto</strong>, hay tres partidas que se subestiman sistemáticamente. La primera es la verificación, que en investigación puede consumir tanto tiempo como la producción. La segunda es el montaje: la relación entre horas grabadas y minutos publicados es muy alta, y crece cuando el material no se registró con un plan. La tercera es el mantenimiento posterior, que no aparece en ninguna hoja de cálculo inicial y sin embargo determina si el proyecto seguirá existiendo dentro de dos años.</p>
+    <p>En cuanto al <strong>calendario</strong>, conviene fijar una fecha de cierre de investigación anterior al inicio del montaje y respetarla. La tentación de seguir investigando mientras se monta parece eficiencia y produce lo contrario: obliga a rehacer piezas terminadas cada vez que aparece un dato nuevo. Cerrar la investigación no significa dejar de comprobar; significa dejar de ampliar el alcance.</p>
+    <div class="ej"><b>REGLA PRÁCTICA</b>Cuenta las piezas que el equipo puede entregar con calidad y réstale una. Esa es la dimensión real del proyecto, y el margen que queda es lo que absorberá los imprevistos que aún no conoces.</div>
+
+    <h3>Verificación en piezas que circulan solas</h3>
+    <p>La fragmentación introduce un riesgo específico: cada pieza viaja por su cuenta, se comparte fuera de contexto y se cita sin el resto del proyecto. Un vídeo de noventa segundos puede acumular más audiencia que la investigación completa, y será lo único que la mayoría de la gente vea.</p>
+    <p>De ahí que el estándar de verificación deba ser el mismo en todos los formatos, sin excepciones por brevedad o por soporte. La pieza corta no admite matices largos, y eso obliga a algo más difícil que añadir advertencias: obliga a formular con precisión desde la primera frase, distinguiendo lo probado de lo indiciario con el mismo rigor que exige la Unidad 1 de JRN-1001.</p>
+    <p>Hay tres riesgos concretos que conviene vigilar. El primero es la <strong>descontextualización por recorte</strong>: una cita que en el reportaje aparece matizada y en el clip aparece sola. El segundo es la <strong>sugestión por montaje</strong>, cuando dos imágenes yuxtapuestas insinúan una relación que ninguna fuente afirma; se trata en detalle en la Unidad 3 de este curso. El tercero es la <strong>desactualización</strong>: una pieza publicada hace meses sigue circulando después de que el asunto haya cambiado, y nadie recuerda actualizarla.</p>
+    <p>Los tres se gestionan con procedimiento. Toda pieza autónoma incluye fecha visible y enlace al proyecto completo. Toda cita recortada se comprueba contra el original antes de publicarse. Y el plan de mantenimiento fija quién revisa las piezas cuando el asunto evoluciona, con una fecha concreta de revisión y no con una intención general.</p>
+    <div class="ej"><b>PRUEBA</b>Coge la pieza más corta del proyecto y léela como si fuera lo único que existe. Si aislada afirma más de lo que la investigación sostiene, no está lista, y corregirla después de que circule es mucho más caro que ajustarla ahora.</div>
+
+    <h3>Accesibilidad y adaptación</h3>
+    <p>Una parte considerable de la audiencia consume vídeo sin sonido, en pantallas pequeñas, con conexiones limitadas o con alguna discapacidad visual o auditiva. Diseñar para el usuario ideal —pantalla grande, auriculares, atención plena, conexión estable— excluye a una fracción grande de las personas a las que el proyecto pretende llegar.</p>
+    <p>Las medidas básicas son conocidas, baratas si se planifican y muy caras si se añaden al final. Los <strong>subtítulos</strong> son imprescindibles y no son solo una medida de accesibilidad: son la condición de que el vídeo funcione en consumo silencioso. La <strong>transcripción</strong> del audio permite leer, buscar y citar, y además hace el contenido indexable. La <strong>descripción alternativa</strong> de imágenes y gráficos permite que un lector con lector de pantalla acceda a la información, y obliga de paso a explicitar qué dice cada figura. Y el <strong>contraste y el tamaño</strong> determinan si la visualización se lee en un teléfono a plena luz.</p>
+    <p>La adaptación por plataforma es una cuestión distinta y también previa. Un vídeo horizontal no funciona en un formato vertical, y recortarlo al final deteriora el encuadre. Si el proyecto contempla difusión en vertical, conviene grabar pensando en ambos encuadres, dejando aire suficiente en el original. Lo mismo vale para la duración: una pieza pensada para un formato no se adapta a otro cortándola, sino montándola otra vez con criterio propio.</p>
+    <p>Conviene además decidir qué versión es la canónica. Cuando existen varias variantes de una misma pieza, el equipo debe saber cuál se corrige si aparece un error y cuál se conserva en el archivo, porque de lo contrario las correcciones se aplican a una versión y no a las demás.</p>
+    <div class="ej"><b>COMPROBACIÓN</b>Reproduce el proyecto en un teléfono, sin sonido, con conexión lenta y a plena luz. Lo que no se entienda en esas condiciones no se entenderá para buena parte de tu audiencia real, que es la que consume así y no la que imaginaste.</div>
+
+    <h3>Qué mide el éxito</h3>
+    <p>La métrica habitual de audiencia mide mal los proyectos distribuidos. Las visitas se reparten entre piezas, el tiempo de permanencia no es comparable entre formatos y la suma de audiencias infla la cifra al contar varias veces a la misma persona. Un proyecto puede parecer un fracaso con esas métricas y haber cumplido todos sus objetivos, o al revés.</p>
+    <p>Conviene por eso definir el éxito antes de publicar y con indicadores que correspondan al objetivo real. Si el objetivo es <strong>alcance</strong>, la métrica es cuántas personas distintas tocaron al menos una pieza, no la suma de visitas. Si es <strong>profundidad</strong>, la métrica es cuántas consumieron más de una y en qué recorridos. Si es <strong>utilidad</strong>, hay que preguntar directamente a la audiencia si el proyecto le sirvió para algo, porque ninguna analítica lo mide. Y si es <strong>impacto</strong>, la medida es lo que ocurrió después: una comparecencia, una inspección, un cambio normativo, una investigación abierta.</p>
+    <p>El impacto merece una advertencia. Es el indicador más valioso y el más difícil de atribuir, porque entre la publicación y la consecuencia intervienen muchos factores y la tentación de reclamar la autoría es fuerte. La forma honesta de registrarlo es documental: qué se publicó, qué ocurrió después, quién lo citó y en qué documento consta, sin afirmar una causalidad que no se puede probar. Es el mismo criterio de la Unidad 3 de JRN-1002 aplicado al propio trabajo.</p>
+    <p>Por último, conviene incluir una métrica interna que casi nadie registra: cuánto costó cada pieza en horas y dinero, y qué audiencia y qué utilidad obtuvo. Ese dato es el que permite diseñar mejor el proyecto siguiente y el que sostiene una conversación seria con quien decide el presupuesto.</p>
+    <div class="ej"><b>REGLA FINAL</b>Escribe la definición de éxito antes de publicar, con indicadores concretos y una fecha de evaluación. Si la escribes después, elegirás los números que salieron bien, y el proyecto siguiente repetirá los mismos errores.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Reunión con la responsable de una fundación que financiaría el proyecto. Quiere «algo interactivo y con realidad virtual», no ha definido objetivos y dispone de un presupuesto que no alcanza para lo que describe.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes rechazar la financiación ni prometer lo que no se puede entregar. Cada pregunta debe convertir un deseo en un objetivo medible o en una restricción de producción. Si su propuesta mejora el proyecto, tienes que poder incorporarla.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">DOCUMENTO MAESTRO · OBLIGATORIO</span>
+      <p>Diseña un proyecto transmedia sobre un asunto real que puedas investigar. Entrega: la tesis en una frase con el estado de la investigación; el inventario de piezas con la aportación específica de cada una y la comprobación de que ninguna se solapa con otra; la asignación de soportes justificada por capacidades; el mapa de navegación con los puntos de entrada; el calendario con dependencias reales; el presupuesto por pieza incluyendo verificación y mantenimiento; y la definición de éxito con sus indicadores y su fecha de evaluación.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Inventario sin solapamientos, con aportación específica por pieza (25%) · Asignación de soportes justificada por capacidades y no por costumbre (20%) · Autonomía y navegación resueltas, con puntos de entrada múltiples (15%) · Calendario con dependencias y presupuesto que incluya verificación y mantenimiento (25%) · Definición de éxito con indicadores concretos y fecha (15%). Un documento cuyas piezas cuenten lo mismo en distintos formatos no aprueba, por bien presentado que esté.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 1</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    Unidades 2 a 4 en preparación
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Narrativa Transmedia",d:"Distribución de una historia entre varios medios de modo que cada pieza aporta una contribución propia y distinta, y puede consumirse por separado.",s:"Jenkins, Convergence Culture, 2006"},
+ {t:"Distribución Multiplataforma",d:"Replicación del mismo contenido en varios soportes. Es una estrategia de alcance legítima y no genera ninguna capa narrativa nueva.",s:"Formulación docente · práctica establecida"},
+ {t:"Adaptación",d:"Traslado de la misma historia al lenguaje de otro medio. Quien consume ambas versiones recibe dos veces el mismo contenido.",s:"Teoría de los medios · práctica establecida"},
+ {t:"Aportación Específica",d:"Información que una pieza entrega y ninguna otra del proyecto contiene. Es el criterio que distingue transmedia de repetición.",s:"Formulación docente · Jenkins"},
+ {t:"Punto de Entrada",d:"Pieza por la que el usuario accede al proyecto. En circulación real es impredecible, y con frecuencia no es la principal.",s:"Práctica de diseño de proyectos digitales"},
+ {t:"Autonomía de Pieza",d:"Capacidad de una pieza para entenderse sin haber consumido las demás. Exige redundancia contextual, que no es un defecto sino un requisito.",s:"Práctica establecida · i-Docs"},
+ {t:"Affordance de Plataforma",d:"Conjunto de cosas que un soporte permite hacer bien. Debe decidir el reparto de contenidos entre formatos.",s:"Diseño de interacción · Miller, Digital Storytelling"},
+ {t:"Documental Interactivo",d:"Obra de no ficción en la que el usuario interviene en el recorrido o en la construcción del relato. Campo sistematizado por la investigación sobre i-docs.",s:"Aston, Gaudenzi y Rose, i-Docs"},
+ {t:"Participación Real",d:"Aportación del usuario que modifica el resultado o el conocimiento del asunto. Exige verificación, moderación, respuesta y protección de quien participa.",s:"Jenkins · práctica establecida"},
+ {t:"Documento Maestro",d:"Pliego que fija tesis, inventario de piezas, soportes, navegación, calendario, presupuesto y mantenimiento antes de iniciar la producción.",s:"Formulación docente · práctica de producción"},
+ {t:"Mapa de Navegación",d:"Representación de cómo se conectan las piezas y qué encuentra el usuario en cada destino. Debe poder dibujarse en una servilleta.",s:"Diseño de proyectos interactivos"},
+ {t:"Plan de Mantenimiento",d:"Previsión de quién actualiza, corrige y conserva el proyecto cuando el equipo se disuelve. Determina si existirá dentro de dos años.",s:"Preservación digital · práctica establecida"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · HENRY JENKINS · 2006",t:"De dónde viene el término y qué significaba",
+  d:"El investigador Henry Jenkins popularizó la noción de narrativa transmedia en <em>Convergence Culture</em>, publicado en 2006, dentro de un análisis más amplio sobre la convergencia entre medios y la cultura participativa. Su formulación describía historias que se despliegan a través de múltiples plataformas, en las que cada texto realiza una contribución valiosa y distintiva al conjunto y cada punto de acceso ofrece una experiencia completa por sí misma. El marco se desarrolló observando franquicias de ficción y fue adoptado después por el periodismo y el documental, con adaptaciones importantes: en no ficción no hay mundo inventado que expandir, sino un asunto real que investigar.",
+  ej:"El desplazamiento del concepto desde la ficción al periodismo cambió su exigencia central. En ficción la coherencia la garantiza el autor; en periodismo la garantiza la verificación, y eso encarece cada pieza adicional.",
+  p:["¿Qué se conserva del concepto original al aplicarlo a no ficción?","¿Qué se pierde o se transforma?","¿Por qué el término se ha vaciado de contenido?"],
+  m:"Se conservan las dos exigencias operativas: cada pieza debe aportar algo distintivo y cada una debe funcionar como punto de acceso completo, criterios que siguen siendo los que distinguen un proyecto transmedia de una distribución repetida. Se transforma la fuente de coherencia: en ficción la sostiene la lógica interna del mundo, mientras que en periodismo la sostiene la investigación, de modo que ampliar el número de piezas multiplica el trabajo de verificación y no solo el de producción. El término se ha vaciado porque su uso comercial premia la etiqueta sin comprobar la condición: cualquier proyecto con presencia en varias pantallas se anuncia como transmedia, y esa imprecisión encarece los proyectos y decepciona a quienes los financian.",
+  k:"La definición contiene dos requisitos comprobables: aportación distintiva y acceso completo por cualquier pieza. Sin ambos, el término solo describe una estrategia de distribución."},
+
+ {tag:"CASO 2 · THE NEW YORK TIMES · DICIEMBRE DE 2012",t:"Snow Fall y el efecto que produjo",
+  d:"En diciembre de 2012 <em>The New York Times</em> publicó <em>Snow Fall</em>, un reportaje de John Branch sobre una avalancha ocurrida en Tunnel Creek, en el estado de Washington, que integraba texto extenso, vídeo, animaciones y gráficos en una presentación continua. El trabajo obtuvo el premio Pulitzer de reportaje en 2013 y tuvo un efecto inmediato en las redacciones de todo el mundo: durante los años siguientes proliferaron piezas construidas con el mismo patrón visual, hasta el punto de que el propio nombre se convirtió en verbo dentro del oficio. Muchas de esas imitaciones reprodujeron la forma sin el material que la justificaba.",
+  ej:"El acierto no fue la tecnología: fue que había un reportaje de fondo con material suficiente para sostener esa forma. La lección que se copió fue la equivocada.",
+  p:["¿Cuándo justifica un asunto una producción de ese coste?","¿Qué distingue la integración multimedia de la decoración?","¿Qué preguntas conviene hacerse antes de imitar un formato?"],
+  m:"Un asunto justifica ese coste cuando contiene dimensiones que solo pueden transmitirse con recursos distintos: en aquel caso, la topografía del terreno y la mecánica de una avalancha son difíciles de explicar con palabras y evidentes con animación. La integración es multimedia cuando cada elemento sustituye a una explicación que sería peor en otro formato, y es decoración cuando podría eliminarse sin que se pierda información. Antes de imitar un formato conviene preguntarse qué material propio tenemos, cuánto cuesta producirlo y qué parte del reportaje mejora realmente; si la respuesta es que mejora la apariencia, el mismo presupuesto rinde más en investigación.",
+  k:"La forma se copia con facilidad y el material no. Un formato ambicioso sobre un reportaje insuficiente hace más visible la falta de contenido."},
+
+ {tag:"CASO 3 · NATIONAL FILM BOARD OF CANADA · 2012",t:"Bear 71 y la interacción con sentido",
+  d:"<em>Bear 71</em>, dirigido por Leanne Allison y Jeremy Mendes y producido por el National Film Board of Canada, se estrenó en 2012 y se presentó en el festival de Sundance. La obra sigue la vida de una osa parda monitorizada con collar de radiofrecuencia en el parque nacional de Banff, combinando material de cámaras trampa, datos de seguimiento y una narración en primera persona. El usuario se desplaza por un mapa que representa el territorio vigilado y se convierte, él mismo, en un punto rastreado dentro de la interfaz.",
+  ej:"La interacción no es un añadido: reproduce en el usuario la experiencia de ser observado, que es el tema de la obra. Esa correspondencia entre forma y contenido es lo que distingue un buen documental interactivo.",
+  p:["¿Cuándo está justificada la interactividad?","¿Qué diferencia hay entre navegar y participar?","¿Qué riesgo tiene la interacción sin propósito?"],
+  m:"Está justificada cuando la acción que se pide al usuario produce una comprensión que la narración lineal no alcanza: ser rastreado mientras se observa un rastreo enseña algo que ninguna voz en off explica igual. Navegar es elegir el orden o el detalle de un material ya cerrado, mientras que participar implica aportar algo que modifica el resultado; confundirlas lleva a prometer participación y ofrecer un menú. La interacción sin propósito añade fricción y abandono: cada clic que no aporta comprensión es un motivo para dejar la obra, y el coste de producirla se paga igual.",
+  k:"La interactividad se justifica cuando la acción del usuario produce comprensión. Si solo reordena el material, es navegación, y conviene llamarla así."},
+
+ {tag:"CASO 4 · HOLLOW · 2013",t:"Participación con comunidad, no sobre ella",
+  d:"<em>Hollow</em>, dirigido por Elaine McMillion Sheldon y publicado en 2013, es un documental interactivo sobre el condado de McDowell, en Virginia Occidental, una zona afectada por décadas de declive económico y pérdida de población. El proyecto combinó vídeo, fotografía, datos y textos, e incorporó material producido por residentes a los que se formó y equipó para grabar sus propias historias. La obra recibió un premio Peabody en 2013 y se cita habitualmente como ejemplo de participación efectiva en no ficción digital.",
+  ej:"La diferencia con un proyecto sobre una comunidad es que aquí la comunidad produce parte del material y decide qué contar de sí misma. Eso cambia la relación y también el calendario y el presupuesto.",
+  p:["¿Qué costes añade trabajar con material de la comunidad?","¿Cómo se verifica ese material?","¿Qué se le debe a quien participa?"],
+  m:"Añade formación, acompañamiento técnico, tiempo de coordinación y una fase de devolución que no existe en un proyecto convencional, además de una verificación más lenta porque el material llega sin los metadatos ni el contexto que aporta un profesional. La verificación sigue siendo la misma en su exigencia: procedencia, fecha, lugar y contraste, con los criterios de las Unidades 1 y 2 de JRN-1003, y conviene explicarlos a quienes graban para que el material nazca verificable. A quien participa se le debe información clara sobre qué se publicará y cómo, control razonable sobre su propia imagen y su testimonio, y una devolución del resultado antes de que lo vea el resto del mundo.",
+  k:"La participación real cambia el proyecto entero: calendario, presupuesto y relación con la comunidad. Añadirla al final es lo que produce participación decorativa."},
+
+ {tag:"CASO 5 · THE GUARDIAN · 2013",t:"Firestorm: cuándo el formato sirve al relato",
+  d:"<em>Firestorm</em>, publicado por <em>The Guardian</em> en 2013, reconstruye la experiencia de una familia australiana que sobrevivió a los incendios forestales de Tasmania refugiándose bajo un muelle. La pieza combina texto, vídeo, fotografía y audio en un recorrido continuo organizado en capítulos, con un uso muy contenido de los recursos: el material audiovisual aparece cuando aporta algo que el texto no puede dar, y desaparece cuando no.",
+  ej:"Su valor didáctico está en la contención. Frente a proyectos que emplean todos los recursos disponibles, aquí cada elemento tiene una función identificable y el conjunto se sostiene con un equipo reducido.",
+  p:["¿Qué se gana al reducir el número de recursos empleados?","¿Cómo se decide dónde va cada elemento?","¿Es replicable con pocos medios?"],
+  m:"Se gana coherencia y se reduce el coste de mantenimiento: cada recurso adicional es una dependencia técnica más que puede romperse con el tiempo, y un proyecto con menos elementos sobrevive mejor a los cambios de navegador y de formato. La decisión se toma preguntando qué información entrega cada elemento y si esa información se perdería en otro soporte, que es el criterio de capacidades aplicado pieza por pieza. Y es replicable con pocos medios precisamente porque su ambición no es tecnológica: exige un reportaje sólido, un montaje disciplinado y la disposición a eliminar todo lo que no cumpla una función.",
+  k:"Menos recursos bien elegidos envejecen mejor y cuestan menos de mantener. La contención no es una limitación: es una decisión de diseño."},
+
+ {tag:"CASO 6 · DO NOT TRACK · 2015",t:"Cuando el usuario es parte del material",
+  d:"<em>Do Not Track</em>, dirigida por Brett Gaylor y estrenada en 2015 con producción de Upian, el National Film Board of Canada, Arte y otros socios, es una serie documental interactiva sobre el rastreo de datos en internet. Su rasgo distintivo es que, con el consentimiento del usuario, utiliza información de su propia navegación para personalizar los episodios y mostrarle qué revela sobre sí mismo mientras ve la obra. El proyecto plantea así, en su propia forma, el problema que investiga.",
+  ej:"El uso de datos del usuario dentro de una obra periodística exige exactamente las mismas garantías que el uso de datos en cualquier otro contexto: consentimiento informado, minimización y transparencia sobre qué se conserva.",
+  p:["¿Qué garantías exige usar datos del propio usuario?","¿Dónde está el límite entre demostración y explotación?","¿Cómo se documenta esa decisión?"],
+  m:"Exige consentimiento informado previo y revocable, tratamiento mínimo —solo lo necesario para la demostración—, no conservación más allá de la sesión salvo motivo declarado, y explicación clara de qué se está haciendo y por qué, en el momento en que ocurre y no en una política enterrada. El límite está en la finalidad y en el beneficio: si el dato sirve para que el usuario comprenda algo sobre sí mismo, hay demostración; si sirve para el análisis del proyecto o para terceros, hay explotación, aunque el usuario haya aceptado. La decisión se documenta en el documento maestro, con la misma lógica de minimización de la Unidad 4 de JRN-1003 y de la excepción periodística de JRN-1004.",
+  k:"Usar datos del usuario como material narrativo es legítimo y exige más garantías, no menos: consentimiento, mínimo tratamiento y explicación en el momento."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El proyecto que repite",
+  d:"El plan contempla reportaje escrito, vídeo, pódcast y carrusel. Al revisar el inventario, las cuatro piezas cuentan lo mismo.",
+  r:"Reportera · Editor digital · Productora",
+  ej:"<span class='who'>EDITOR:</span> Cuatro formatos, cuatro audiencias.<br><span class='who'>REPORTERA:</span> Y cuatro veces la misma información. ¿Qué pierde quien solo vea el vídeo?<br><span class='who'>EDITOR:</span> Nada, en realidad.<br><span class='who'>PRODUCTORA:</span> Entonces no es transmedia: es distribución, y cuesta la mitad.",
+  m:"La comprobación es la de la aportación específica: si ninguna pieza contiene información exclusiva, el proyecto es distribución multiplataforma, que es legítima y mucho más barata. Reconocerlo a tiempo permite dos decisiones sensatas: presupuestarlo como lo que es, o rediseñar el reparto para que cada pieza cubra una dimensión distinta del asunto. Lo que no cabe es mantener el nombre y el presupuesto de transmedia sobre una estructura de repetición, porque el resultado decepcionará a quien lo financie y dejará al equipo sin argumentos.",
+  c:"Reconocer la naturaleza real del proyecto sin descalificarlo, y ofrecer las dos salidas posibles."},
+
+ {tag:"ESCENARIO 2",t:"La realidad virtual del financiador",
+  d:"La fundación quiere realidad virtual. El presupuesto no alcanza y el asunto no tiene una dimensión espacial que lo justifique.",
+  r:"Productora · Responsable de la fundación · Directora",
+  ej:"<span class='who'>FUNDACIÓN:</span> Buscamos algo inmersivo, que impacte.<br><span class='who'>PRODUCTORA:</span> ¿Qué quieren que la audiencia entienda al terminar?<br><span class='who'>FUNDACIÓN:</span> Que el problema es urgente y afecta a gente concreta.<br><span class='who'>PRODUCTORA:</span> Eso lo consigue mejor un audio de veinte minutos, y con el resto financiamos la investigación.",
+  m:"La conversación se reconduce del formato al objetivo, que es donde el financiador puede aportar y donde la decisión es técnica. Traducir «inmersivo» en un resultado comprobable —que la audiencia entienda algo concreto— permite comparar soportes por su capacidad de lograrlo y no por su novedad. Conviene además explicitar el coste de oportunidad: cada euro en producción inmersiva es un euro que no está en investigación, y esa aritmética suele ser más persuasiva que la discusión estética. Si tras ese análisis la dimensión espacial resulta central, la propuesta se acepta y se dimensiona con honestidad.",
+  c:"Convertir una petición de formato en una definición de objetivo, sin desautorizar a quien financia."},
+
+ {tag:"ESCENARIO 3",t:"El clip que viaja solo",
+  d:"El vídeo corto acumula diez veces más audiencia que la investigación completa, y afirma con más contundencia de la que el material sostiene.",
+  r:"Reportera · Responsable de redes · Editora",
+  ej:"<span class='who'>REDES:</span> Está funcionando muy bien.<br><span class='who'>REPORTERA:</span> Dice «lo ocultaron» y nosotros documentamos que no lo publicaron.<br><span class='who'>REDES:</span> Con el matiz no funciona igual.<br><span class='who'>EDITORA:</span> Entonces cambiamos el clip, no el estándar.",
+  m:"Toda pieza autónoma debe sostener por sí sola lo que afirma, porque será lo único que vea la mayoría de la audiencia. La diferencia entre ocultar y no publicar es exactamente el tipo de precisión que la Unidad 1 de JRN-1001 exige, y perderla en el formato corto no es una simplificación: es una afirmación distinta. La solución es reescribir el clip con una formulación igual de contundente y exacta, retirarlo mientras tanto y añadirle fecha visible y enlace al proyecto completo. Que funcione bien no es un argumento a favor de mantenerlo.",
+  c:"Sostener el estándar de precisión en el formato donde más presión hay para relajarlo."},
+
+ {tag:"ESCENARIO 4",t:"La participación que nadie atiende",
+  d:"El proyecto abre un formulario para recibir testimonios. Llegan doscientos en tres días y no hay nadie asignado a leerlos.",
+  r:"Productora · Community manager · Editora",
+  ej:"<span class='who'>COMMUNITY:</span> Hay doscientos y siguen entrando.<br><span class='who'>PRODUCTORA:</span> ¿Quién los verifica?<br><span class='who'>COMMUNITY:</span> No lo asignamos.<br><span class='who'>EDITORA:</span> Cerramos el formulario hoy y respondemos a los doscientos.",
+  m:"Un canal de participación desatendido comunica algo peor que su ausencia: promete escucha y no la entrega, y además deja material sensible sin proteger. La respuesta correcta tiene tres partes: cerrar la recepción para no acumular más, responder a quienes ya escribieron aunque sea con un mensaje honesto sobre lo que puede y no puede hacerse, y revisar si algún envío contiene datos que expongan a su autor. Reabrir solo tiene sentido cuando existan nombre y horas asignadas a verificación, moderación y respuesta, que es lo que debió presupuestarse antes de abrirlo.",
+  c:"Cerrar un canal mal diseñado sin abandonar a quienes ya confiaron en él."},
+
+ {tag:"ESCENARIO 5",t:"El calendario imposible",
+  d:"El equipo son cuatro personas, el plazo es de ocho semanas y el inventario contempla siete piezas, incluidas dos interactivas.",
+  r:"Productora · Directora · Desarrollador",
+  ej:"<span class='who'>DIRECTORA:</span> Si todos apretamos, salen las siete.<br><span class='who'>DESARROLLADOR:</span> La visualización sola son tres semanas, y depende de datos que aún no están limpios.<br><span class='who'>PRODUCTORA:</span> Entonces son cuatro piezas. ¿Cuáles?<br><span class='who'>DIRECTORA:</span> Las que nadie más puede hacer.",
+  m:"Las dependencias reales, y no el esfuerzo disponible, determinan el calendario: una visualización no puede empezar antes de que los datos estén limpios, y el montaje no puede cerrarse mientras la investigación siga abierta. Reducir el número de piezas es una decisión de calidad y no una renuncia, porque tres piezas terminadas superan siempre a siete a medias. El criterio de selección más útil es la aportación específica combinada con la ventaja competitiva: se conservan las piezas que aportan información exclusiva y que ningún otro medio podría hacer con el mismo material.",
+  c:"Recortar alcance con un criterio explícito, en lugar de confiar en el esfuerzo del equipo."},
+
+ {tag:"ESCENARIO 6",t:"Dos años después",
+  d:"Un lector avisa de que la visualización del proyecto premiado ya no carga y de que la mitad de los enlaces están rotos.",
+  r:"Editora · Desarrollador · Productora",
+  ej:"<span class='who'>DESARROLLADOR:</span> La librería que usamos ya no se mantiene.<br><span class='who'>EDITORA:</span> ¿Qué hace falta para recuperarla?<br><span class='who'>DESARROLLADOR:</span> Rehacerla, o publicar los datos y una versión estática.<br><span class='who'>PRODUCTORA:</span> Y esta vez lo dejamos previsto por escrito.",
+  m:"La caducidad técnica es predecible y casi nunca se presupuesta: cada dependencia externa —una librería, un servicio de mapas, un reproductor— es un punto de fallo futuro. Las medidas preventivas son conocidas: minimizar dependencias, conservar los datos en formato abierto junto a la pieza, y prever una versión estática que sobreviva a la interactiva. Ante el fallo ya producido, la respuesta razonable es publicar los datos y una versión simplificada, y dejar constancia visible de qué se perdió y por qué, porque un proyecto roto sin explicación daña más que uno reducido con nota.",
+  c:"Asumir la caducidad como parte del diseño y no como un accidente imprevisible."}
+];
+
+const IV=[
+ {q:"¿Qué quieren que la audiencia entienda o pueda hacer al terminar el proyecto?",
+  m:"Traduce un deseo de formato en un objetivo comprobable, que es lo único que permite comparar soportes."},
+ {q:"¿A quién quieren llegar exactamente y cómo consume esa audiencia hoy?",
+  m:"Sin destinatario definido, la elección de plataformas se hace por moda. El comportamiento real acota el diseño."},
+ {q:"¿Con qué presupuesto contamos y qué parte puede destinarse a investigación?",
+  m:"Separa producción de investigación desde el principio y evita que la primera consuma a la segunda."},
+ {q:"¿Qué plazo tienen y de qué depende esa fecha?",
+  m:"Distingue una fecha real —un aniversario, una votación— de una preferencia, y permite negociar el alcance."},
+ {q:"Si tuvieran que elegir entre alcance amplio o profundidad en una audiencia concreta, ¿cuál?",
+  m:"Fuerza una priorización que después determina el reparto de piezas y la métrica de éxito."},
+ {q:"¿Quién mantendrá el proyecto cuando termine la producción, y con qué presupuesto?",
+  m:"Introduce el mantenimiento en la conversación inicial, que es cuando todavía puede financiarse."},
+ {q:"¿Aceptarían un proyecto con menos piezas si cada una fuera más sólida?",
+  m:"Prepara la reducción de alcance como decisión compartida y no como incumplimiento posterior."},
+ {q:"¿Podemos fijar por escrito los objetivos y la definición de éxito antes de empezar?",
+  m:"Cierra documentando: sin definición previa, el éxito se evaluará con los números que hayan salido bien."}
+];
+
+const AUDIT=[
+ ["v","Henry Jenkins popularizó la noción de narrativa transmedia en <em>Convergence Culture</em>, publicado en 2006, describiendo historias desplegadas en múltiples plataformas donde cada texto aporta una contribución distintiva y cada punto de acceso ofrece una experiencia completa.","Jenkins, Convergence Culture, New York University Press, 2006. Verificado."],
+ ["v","<em>The New York Times</em> publicó en diciembre de 2012 el reportaje <em>Snow Fall</em>, de John Branch, sobre la avalancha de Tunnel Creek, que integraba texto, vídeo, animaciones y gráficos; el trabajo obtuvo el premio Pulitzer de reportaje en 2013.","The New York Times, diciembre de 2012; Pulitzer Prizes, 2013. Verificado."],
+ ["v","<em>Bear 71</em>, dirigido por Leanne Allison y Jeremy Mendes y producido por el National Film Board of Canada, se estrenó en 2012 y se presentó en el festival de Sundance; sigue a una osa parda monitorizada en el parque nacional de Banff.","National Film Board of Canada, 2012. Verificado."],
+ ["v","<em>Hollow</em>, dirigido por Elaine McMillion Sheldon y publicado en 2013, es un documental interactivo sobre el condado de McDowell, en Virginia Occidental, que incorporó material producido por residentes y recibió un premio Peabody.","Peabody Awards, 2013, y documentación del proyecto. Verificado."],
+ ["v","<em>The Guardian</em> publicó en 2013 <em>Firestorm</em>, reconstrucción de la supervivencia de una familia durante los incendios forestales de Tasmania, con texto, vídeo, fotografía y audio integrados en capítulos.","The Guardian, 2013. Verificado."],
+ ["v","<em>Do Not Track</em>, dirigida por Brett Gaylor y estrenada en 2015 con producción de Upian, el National Film Board of Canada y Arte entre otros socios, utiliza datos de navegación del propio usuario, con su consentimiento, para personalizar los episodios.","Documentación pública del proyecto, 2015. Verificado."],
+ ["v","El National Film Board of Canada mantiene una unidad dedicada a la producción interactiva y publica documentación sobre sus procesos; el MIT Open Documentary Lab y el grupo i-Docs de la Universidad del Oeste de Inglaterra son referencias académicas del campo.","nfb.ca/interactive · docubase.mit.edu · i-docs.org. Verificado."],
+ ["b","Una narrativa transmedia exige que cada pieza aporte información que ninguna otra contiene y que pueda consumirse de forma autónoma.","Jenkins · formulación docente."],
+ ["b","La distribución multiplataforma y la adaptación son estrategias legítimas y distintas de la narrativa transmedia.","Práctica establecida · teoría de los medios."],
+ ["b","El reparto de contenidos entre soportes debe decidirse por las capacidades de cada formato y no por costumbre.","Miller, Digital Storytelling · diseño de interacción."],
+ ["b","En circulación real el punto de entrada es impredecible, de modo que cada pieza requiere redundancia contextual suficiente para entenderse sola.","Práctica establecida de proyectos digitales."],
+ ["b","La participación real exige verificación, moderación, respuesta y protección de quien participa, y debe presupuestarse antes de abrir el canal.","Jenkins · práctica establecida · JRN-1003 Unidad 4."],
+ ["b","El plan de mantenimiento determina la supervivencia del proyecto: cada dependencia externa es un punto de fallo futuro.","Preservación digital · práctica establecida."],
+ ["p","La afirmación de que la proliferación de imitaciones de formatos multimedia reprodujo la forma sin el material que la justificaba se apoya en la discusión profesional publicada tras 2013; no se ha realizado para esta unidad un análisis sistemático de esas producciones.","Redactado sin atribuir la valoración a un estudio concreto."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una narrativa transmedia se distingue de la distribución multiplataforma en que:",
+ o:["Emplea más plataformas","Cada pieza aporta información que ninguna otra contiene y puede consumirse sola","Utiliza tecnología interactiva","Se publica de forma simultánea"],c:1,
+ w:["El número de plataformas no cambia la naturaleza del proyecto: se puede repetir contenido en diez sitios.",
+    "",
+    "La interactividad es un recurso posible, no el criterio que define la categoría.",
+    "La simultaneidad es una decisión de lanzamiento."],
+ e:"La prueba es preguntar qué pierde quien solo vea una pieza. Si no pierde nada, es distribución; si pierde el mismo contenido en otro lenguaje, es adaptación."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"En periodismo, el equivalente al «mundo narrativo» de la ficción es:",
+ o:["La línea editorial del medio","El asunto investigado con todos sus actores, datos, escenarios y consecuencias","El archivo de material grabado","La audiencia objetivo"],c:1,
+ w:["La línea editorial orienta la mirada, no proporciona el material que sostiene las piezas.",
+    "",
+    "El archivo es materia prima, no la estructura que da unidad.",
+    "La audiencia condiciona el formato, no la coherencia interna del proyecto."],
+ e:"Un asunto suficientemente ancho admite piezas heterogéneas sin dispersarse, porque contiene dimensiones humanas, de datos, territoriales, cronológicas y sensoriales."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La asignación de un contenido a un soporte debe decidirse por:",
+ o:["La disponibilidad del equipo","Las capacidades del formato frente a lo que se quiere transmitir","El presupuesto disponible","La plataforma donde está la audiencia"],c:1,
+ w:["La disponibilidad del equipo determina cuántas piezas caben, no cuál es la correcta.",
+    "",
+    "El presupuesto limita el alcance; no indica qué formato transmite mejor cada contenido.",
+    "La presencia de la audiencia decide dónde se distribuye, no qué contiene cada pieza."],
+ e:"La frase de control es: «esto va en este formato porque permite X, y en otro se perdería Y». Si no puede completarse, la asignación es por costumbre."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La autonomía de una pieza exige:",
+ o:["Que no enlace a las demás","Redundancia contextual suficiente para entenderse sin haber visto el resto","Que dure menos de dos minutos","Que se publique en último lugar"],c:1,
+ w:["La conexión con el resto es la segunda exigencia, complementaria y no opuesta.",
+    "",
+    "La duración no determina la comprensibilidad.",
+    "El orden de publicación no controla el punto de entrada del usuario."],
+ e:"La redundancia contextual no es un defecto: es la condición de que el proyecto funcione en circulación real, donde nadie controla por dónde se entra."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Hay participación real cuando:",
+ o:["El usuario puede comentar la pieza","Lo que aporta modifica el resultado o el conocimiento del asunto","La interfaz permite elegir el recorrido","El proyecto se difunde en redes sociales"],c:1,
+ w:["Un comentario sin efecto sobre la investigación es participación decorativa.",
+    "",
+    "Elegir el recorrido es navegación, no participación.",
+    "La difusión es distribución, no aportación del usuario."],
+ e:"Y tiene costes que hay que presupuestar: verificación, moderación, respuesta y protección de quien participa."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El documento maestro debe fijarse:",
+ o:["Al terminar la producción, como memoria del proyecto","Antes de que empiece la producción, con piezas, soportes, calendario, presupuesto y mantenimiento","Cuando lo pida el financiador","Después del rodaje, con el material ya disponible"],c:1,
+ w:["Como memoria posterior no cumple su función, que es evitar decisiones tardías.",
+    "",
+    "Su utilidad es interna antes que externa.",
+    "Decidir la arquitectura con el material grabado es lo que produce reportajes largos con enlaces."],
+ e:"Su utilidad aparece en la semana cinco, cuando alguien propone añadir un formato: permite responder si aporta algo y cuánto costaría."},
+
+/* ---------- BLOQUE B · DISEÑO DEL PROYECTO ---------- */
+{blk:"BLOQUE B · DISEÑO DEL PROYECTO", t:"mcq",
+ s:"El plan incluye reportaje, vídeo, pódcast y carrusel, y las cuatro piezas cuentan lo mismo.",
+ q:"¿Qué corresponde?",
+ o:["Mantenerlo: cada formato llega a una audiencia distinta","Reconocer que es distribución multiplataforma y presupuestarlo como tal, o rediseñar el reparto","Eliminar dos formatos al azar para reducir coste","Añadir una pieza interactiva que unifique el conjunto"],c:1,
+ w:["Llegar a audiencias distintas es un objetivo legítimo, y no convierte la repetición en narrativa transmedia.",
+    "",
+    "Reducir sin criterio conserva el problema en menor escala.",
+    "Sumar una pieza más no corrige que las existentes se solapen."],
+ e:"Ambas salidas son razonables: cambiar el presupuesto y el nombre, o cambiar la estructura. Lo que no cabe es mantener el nombre sobre una estructura de repetición."},
+
+{blk:"BLOQUE B · DISEÑO DEL PROYECTO", t:"mcq",
+ s:"Tienes una cronología institucional compleja con veinte hitos y documentos asociados.",
+ q:"¿Qué soporte corresponde?",
+ o:["Vídeo, para que sea más ameno","Texto o visualización interactiva, que permiten densidad, precisión y consulta no lineal","Audio, para acompañar la lectura","Directo, para comentar los hitos"],c:1,
+ w:["El vídeo es lineal y rígido: obliga a seguir un ritmo y dificulta volver atrás a comprobar una fecha.",
+    "",
+    "El audio sostiene bien testimonios largos y mal estructuras de datos con muchos elementos.",
+    "El directo aporta actualidad y no resuelve la consulta de una cronología."],
+ e:"Cada soporte hace bien unas cosas: la densidad y la consulta no lineal son capacidades del texto y de la visualización, no del vídeo."},
+
+{blk:"BLOQUE B · DISEÑO DEL PROYECTO", t:"mcq",
+ s:"El vídeo corto del proyecto acumula diez veces más audiencia que la investigación y afirma más de lo documentado.",
+ q:"¿Qué se hace?",
+ o:["Mantenerlo: está funcionando y remite al reportaje","Reescribirlo con una formulación exacta, retirarlo mientras tanto y añadirle fecha y enlace","Añadir una advertencia en la descripción","Publicar una aclaración en otra pieza"],c:1,
+ w:["Que funcione bien no es un argumento a favor de mantener una afirmación no sostenida.",
+    "",
+    "La advertencia en la descripción no la lee quien ve el vídeo en circulación.",
+    "Aclarar en otra pieza no alcanza a quien solo ve esta."],
+ e:"Toda pieza autónoma debe sostener sola lo que afirma, porque será lo único que vea la mayoría de la audiencia."},
+
+{blk:"BLOQUE B · DISEÑO DEL PROYECTO", t:"mcq",
+ s:"El formulario de testimonios recibe doscientos envíos y nadie tiene asignada su verificación.",
+ q:"¿Qué corresponde hacer?",
+ o:["Publicar una selección de los más interesantes","Cerrar la recepción, responder a quienes escribieron y revisar si algún envío expone a su autor","Dejarlo abierto y revisarlo cuando haya tiempo","Trasladar los envíos al archivo del proyecto"],c:1,
+ w:["Publicar sin verificar traslada al lector material sin comprobar y expone a quien lo envió.",
+    "",
+    "Un canal desatendido promete escucha y no la entrega, y acumula material sensible.",
+    "Archivarlos sin revisarlos conserva el riesgo sin resolver nada."],
+ e:"Reabrir solo tiene sentido cuando existan nombre y horas asignadas a verificación, moderación y respuesta."},
+
+{blk:"BLOQUE B · DISEÑO DEL PROYECTO", t:"mcq",
+ s:"Cuatro personas, ocho semanas y siete piezas previstas, dos de ellas interactivas y dependientes de datos aún sin limpiar.",
+ q:"¿Qué decisión corresponde?",
+ o:["Mantener las siete y ampliar la jornada del equipo","Reducir el número de piezas según aportación específica y ventaja competitiva","Externalizar las dos interactivas sin cambiar el plazo","Publicar por fases sin cerrar la investigación"],c:1,
+ w:["El esfuerzo no altera las dependencias: la visualización no puede empezar antes de tener los datos.",
+    "",
+    "Externalizar añade coordinación y no elimina la dependencia de los datos.",
+    "Publicar mientras la investigación sigue abierta obliga a rehacer piezas ya terminadas."],
+ e:"Tres piezas terminadas superan siempre a siete a medias. El criterio de selección combina aportación exclusiva y lo que nadie más podría hacer."},
+
+{blk:"BLOQUE B · DISEÑO DEL PROYECTO", t:"mcq",
+ s:"El financiador pide una experiencia inmersiva y el asunto no tiene dimensión espacial relevante.",
+ q:"¿Cómo se reconduce?",
+ o:["Aceptando y reduciendo la calidad de las demás piezas","Preguntando qué debe entender la audiencia al terminar y comparando soportes por su capacidad de lograrlo","Rechazando la propuesta por inviable","Prometiendo una versión inmersiva para una segunda fase"],c:1,
+ w:["Sacrificar el resto del proyecto por un formato no justificado invierte las prioridades.",
+    "",
+    "El rechazo frontal cierra la conversación sin explorar el objetivo real.",
+    "Aplazar sin criterio traslada el problema y compromete una entrega futura."],
+ e:"Conviene explicitar el coste de oportunidad: cada euro en producción inmersiva es un euro que no está en investigación."},
+
+/* ---------- BLOQUE C · PRODUCCIÓN Y EVALUACIÓN ---------- */
+{blk:"BLOQUE C · PRODUCCIÓN Y EVALUACIÓN", t:"mcq",
+ q:"Las partidas que más se subestiman en un presupuesto transmedia son:",
+ o:["Equipamiento y desplazamientos","Verificación, montaje y mantenimiento posterior","Diseño gráfico y tipografía","Licencias de música y archivo"],c:1,
+ w:["Son costes visibles que suelen calcularse bien porque tienen factura.",
+    "",
+    "El diseño es un coste identificable y acotado desde el principio.",
+    "Las licencias son previsibles y se negocian con antelación."],
+ e:"La verificación puede consumir tanto tiempo como la producción, la relación entre horas grabadas y minutos publicados es muy alta, y el mantenimiento no aparece en ninguna hoja inicial."},
+
+{blk:"BLOQUE C · PRODUCCIÓN Y EVALUACIÓN", t:"mcq",
+ q:"Cerrar la investigación antes de empezar el montaje significa:",
+ o:["Dejar de comprobar los datos obtenidos","Dejar de ampliar el alcance, sin dejar de verificar","Publicar aunque queden preguntas abiertas","Prescindir de material que llegue después"],c:1,
+ w:["La comprobación continúa hasta la publicación e incluso después.",
+    "",
+    "Las preguntas abiertas se declaran; cerrar la investigación no obliga a fingir que no existen.",
+    "El material relevante que llegue tarde se incorpora si lo justifica, evaluando su coste."],
+ e:"Seguir ampliando mientras se monta parece eficiencia y obliga a rehacer piezas terminadas cada vez que aparece un dato nuevo."},
+
+{blk:"BLOQUE C · PRODUCCIÓN Y EVALUACIÓN", t:"mcq",
+ q:"Los subtítulos en el vídeo de un proyecto periodístico:",
+ o:["Son una medida de accesibilidad opcional","Son imprescindibles: además de accesibilidad, son la condición del consumo silencioso","Solo hacen falta si hay audiencia internacional","Pueden añadirse automáticamente sin revisión"],c:1,
+ w:["Tratarlos como opcionales excluye a una parte grande de la audiencia real.",
+    "",
+    "El consumo sin sonido es mayoritario en muchos contextos, con independencia del idioma.",
+    "La transcripción automática requiere revisión: los errores en nombres y cifras son frecuentes y comprometen la exactitud."],
+ e:"Diseñar para el usuario ideal —pantalla grande, auriculares, atención plena— excluye a buena parte de las personas a las que el proyecto quiere llegar."},
+
+{blk:"BLOQUE C · PRODUCCIÓN Y EVALUACIÓN", t:"mcq",
+ q:"Sumar las audiencias de todas las piezas de un proyecto distribuido:",
+ o:["Ofrece la medida más fiel de su alcance","Infla la cifra, porque cuenta varias veces a la misma persona","Es la métrica estándar del sector","Solo es válido si las piezas se publican a la vez"],c:1,
+ w:["No mide personas distintas, que es lo que el alcance pretende medir.",
+    "",
+    "Su uso frecuente no la hace correcta.",
+    "La simultaneidad no corrige el doble recuento."],
+ e:"Si el objetivo es alcance, la métrica es cuántas personas distintas tocaron al menos una pieza; si es profundidad, cuántas consumieron más de una."},
+
+{blk:"BLOQUE C · PRODUCCIÓN Y EVALUACIÓN", t:"mcq",
+ q:"Al registrar el impacto de un proyecto, la forma honesta consiste en:",
+ o:["Atribuir al proyecto los cambios ocurridos después","Documentar qué se publicó, qué ocurrió después y quién lo citó, sin afirmar causalidad no probada","Recoger los testimonios de agradecimiento recibidos","Medir la repercusión en otros medios"],c:1,
+ w:["Entre publicación y consecuencia intervienen muchos factores: es el mismo error causal de la Unidad 3 de JRN-1002.",
+    "",
+    "Los testimonios son valiosos y no acreditan efecto.",
+    "La repercusión mide difusión, no impacto."],
+ e:"El impacto es el indicador más valioso y el más difícil de atribuir. Se registra documentalmente y se formula con el verbo que la evidencia sostiene."},
+
+{blk:"BLOQUE C · PRODUCCIÓN Y EVALUACIÓN", t:"mcq",
+ q:"El plan de mantenimiento debe prever, como mínimo:",
+ o:["La promoción del proyecto en aniversarios","Quién actualiza y corrige, y cómo se conservan datos y piezas cuando el equipo se disuelva","La traducción a otros idiomas","La migración a nuevas plataformas cada año"],c:1,
+ w:["La promoción es difusión, no conservación.",
+    "",
+    "La traducción amplía el alcance y no resuelve la caducidad técnica.",
+    "La migración anual es inviable y no es lo que exige la conservación."],
+ e:"Cada dependencia externa es un punto de fallo futuro. Conservar los datos en formato abierto y prever una versión estática es lo que permite sobrevivir."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe contener el documento maestro de un proyecto transmedia.",
+ o:["La tesis verificada en una frase","El inventario de piezas con su aportación específica","La asignación de soportes justificada por capacidades","El listado de premios a los que se presentará","El plan de mantenimiento posterior"],
+ c:[0,1,2,4],
+ w:["","","","La estrategia de premios es una decisión de difusión posterior y no condiciona el diseño del proyecto.",""],
+ e:"El documento se escribe una vez, se actualiza cuando cambia algo sustantivo y se comparte con todo el equipo, incluidos los colaboradores externos."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todos</strong> los requisitos previos a abrir un canal de participación.",
+ o:["Quién verifica lo que llegue, con horas asignadas","Quién responde a quienes escriben","Qué se publicará con el material recibido","Cuántos envíos se esperan recibir","Cómo se protege a quien participa"],
+ c:[0,1,2,4],
+ w:["","","","La previsión de volumen ayuda a dimensionar y no es un requisito: el canal no debe abrirse por desconocerlo, sino por no tener asignadas las tareas.",""],
+ e:"Un canal desatendido comunica algo peor que su ausencia, porque promete escucha y no la entrega."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las fases de diseño de un proyecto transmedia.",
+ o:["Fijar la tesis verificada y el estado de la investigación","Inventariar las piezas y su aportación específica","Asignar soportes según las capacidades de cada formato","Diseñar puntos de entrada, autonomía y navegación","Cerrar calendario, presupuesto y plan de mantenimiento"],
+ c:[0,1,2,3,4],
+ e:"La arquitectura se decide antes que el contenido. Tomar estas decisiones con el material ya grabado es lo que produce reportajes largos con enlaces."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las comprobaciones previas a publicar una pieza autónoma.",
+ o:["Verificar que sostiene sola lo que afirma","Comprobar que aporta contexto suficiente para entenderse sin el resto","Añadir fecha visible y enlace al proyecto completo","Revisar subtítulos, transcripción y lectura en pantalla pequeña","Fijar quién la revisará si el asunto evoluciona"],
+ c:[0,1,2,3,4],
+ e:"La precisión va primero porque condiciona el texto entero. Lo demás son capas que se añaden sobre una afirmación ya correcta."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
