@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1005 · Unidad 3 — Montaje, Sonido y la Ética del Corte</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1005, Unidad 3.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course on" href="jrn1005-u3.html"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1005 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Montaje, Sonido y la Ética del Corte</h2>
+  <div class="sub">Unidad 3 de 4 · Producción Transmedia y Documental</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1005-u1.html">Unidad 1: Narrativa Transmedia y Arquitectura de Proyecto</a>
+    <a class="unit" href="jrn1005-u2.html">Unidad 2: Producción Documental: Investigación, Guion y Rodaje</a>
+    <span class="unit on">Unidad 3: Montaje, Sonido y la Ética del Corte</span>
+    <span class="unit">Unidad 4: Distribución, Derechos y Sostenibilidad</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>El montaje es donde un documental se escribe de verdad, y también donde se falsea con más facilidad y menos rastro. Ningún plano miente por sí solo: mienten las uniones, los órdenes, las omisiones y la música. Y a diferencia de una cita mal transcrita, un corte engañoso no deja huella que el espectador pueda detectar.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>unir dos planos es afirmar una relación entre ellos</strong>. Esa afirmación está sujeta al mismo estándar de verificación que una frase escrita: si la relación que el corte sugiere no está documentada, el montaje está afirmando algo que la investigación no sostiene. Todo lo demás —ritmo, música, estructura— se subordina a ese principio.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Explicar cómo el montaje produce significado y por qué cada unión constituye una afirmación verificable.</li>
+      <li>Construir una estructura documental a partir de transcripciones, mediante montaje sobre papel antes que en la mesa.</li>
+      <li>Aplicar criterios éticos al corte: compresión temporal, reordenación, condensación de respuestas y omisión.</li>
+      <li>Usar material de archivo con atribución, contexto y comprobación de derechos y procedencia.</li>
+      <li>Evaluar el efecto del sonido y de la música sobre la interpretación del espectador y fijar sus límites.</li>
+      <li>Someter el montaje a una verificación final documentada y a una revisión externa antes de publicar.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Walter Murch, <em>In the Blink of an Eye</em> — teoría y práctica del montaje</li>
+      <li>Michael Rabiger, <em>Directing the Documentary</em> — capítulos de posproducción</li>
+      <li>Bill Nichols, <em>Introduction to Documentary</em> — retórica documental y responsabilidad del montaje</li>
+      <li>Sheila Curran Bernard, <em>Documentary Storytelling</em> — estructura y arco en no ficción</li>
+      <li>Craig Silverman (ed.), <em>Verification Handbook</em> — verificación de material audiovisual y de archivo</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Efecto Kuleshov</h5>
+        <div class="def">Serie de experimentos atribuidos al cineasta soviético Lev Kuleshov en los años posteriores a 1917, que mostraron cómo el mismo plano de un rostro se interpreta de forma distinta según el plano con el que se monte. Es la demostración fundacional de que el significado se produce en la unión.</div>
+        <p class="src">Teoría del montaje · escuela soviética</p></div>
+      <div class="term"><h5>Directrices editoriales de servicios públicos</h5>
+        <div class="def">Las principales radiotelevisiones públicas mantienen manuales editoriales con reglas expresas sobre montaje: prohibición de alterar el sentido de una declaración, condiciones para condensar respuestas y obligación de señalar reconstrucciones y material de archivo.</div>
+        <p class="src">Manuales editoriales de servicio público</p></div>
+      <div class="term"><h5>Verification Handbook · archivo</h5>
+        <div class="def">Establece los criterios de procedencia aplicables al material de archivo: primera aparición conocida, cadena de custodia, fecha y lugar reales, y comprobación de que la imagen corresponde al hecho que se ilustra.</div>
+        <p class="src">verificationhandbook.com · EJC</p></div>
+      <div class="term"><h5>Documentary Accountability Working Group</h5>
+        <div class="def">Su marco de responsabilidad alcanza también a la posproducción: cómo se representa a las personas retratadas, qué se les muestra antes de publicar y cómo se documentan las decisiones de montaje que las afectan.</div>
+        <p class="src">docaccountability.org</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de un montaje sobre papel con su registro de decisiones. El <strong>Examen Integrador</strong> de JRN-1005 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>El significado se produce en la unión</h3>
+    <p>La demostración clásica de este principio se atribuye a los experimentos del cineasta soviético Lev Kuleshov: un mismo plano de un rostro inexpresivo, montado sucesivamente junto a un plato de comida, un ataúd y una mujer, produce en el espectador la impresión de hambre, tristeza o deseo. El rostro no cambia; cambia lo que el espectador cree ver en él.</p>
+    <p>La consecuencia para el periodismo audiovisual es directa y a menudo se pasa por alto: <strong>ningún plano miente por sí solo, y sin embargo el montaje puede mentir con planos verdaderos</strong>. Cada unión propone una relación —causal, temporal, de contigüidad, de contraste— y el espectador la acepta sin analizarla, porque el lenguaje audiovisual funciona así y porque nadie ve una película con la desconfianza con que se lee un documento.</p>
+    <p>De ahí que el estándar de verificación deba aplicarse al corte y no solo al plano. Una entrevista es un documento; la secuencia en la que se inserta es una afirmación. Si tras una declaración del responsable se monta la imagen de un edificio en ruinas, el montaje está sosteniendo que existe una relación entre ambos, y esa relación tiene que estar documentada exactamente igual que si se hubiera escrito en una frase.</p>
+    <p>La prueba operativa consiste en traducir la secuencia a lenguaje escrito. Escribe la frase que el espectador entenderá al ver esos dos planos seguidos y pregúntate si la publicarías tal cual en un texto. Si la respuesta es que no, porque no tienes con qué sostenerla, la secuencia afirma más de lo que la investigación permite y hay que reordenarla, separarla con otro material o eliminarla.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Escribe en una línea lo que afirma cada unión relevante del montaje y comprueba si tienes documento para esa línea. Un corte que sugiere lo que no puedes escribir es una afirmación no verificada, aunque nadie la haya pronunciado.</div>
+
+    <h3>De la transcripción a la estructura</h3>
+    <p>El montaje de un documental periodístico no empieza en la mesa de edición sino en el texto. Con decenas de horas de material, intentar estructurar mirando planos es lento, caro y conduce a montar lo que se recuerda en lugar de lo que sirve. La herramienta que resuelve esto es el montaje sobre papel: seleccionar y ordenar sobre las transcripciones antes de tocar el material.</p>
+    <p>El procedimiento tiene cuatro pasos. Primero, <strong>transcribir con marca de tiempo</strong> todo lo utilizable, incluidas las respuestas descartables, porque en la fase siguiente reaparecen. Segundo, <strong>marcar los fragmentos</strong> que aportan información, emoción o transición, etiquetando cuál de las tres cosas aportan, porque una secuencia solo informativa cansa y una solo emocional no acredita nada. Tercero, <strong>agrupar por temas</strong> y no por entrevistados, que es el cambio de mirada decisivo: la estructura la marca el asunto, no el orden en que se grabó. Y cuarto, <strong>ordenar</strong> esos bloques en una secuencia que funcione como relato.</p>
+    <p>El resultado es un documento con fragmentos, tiempos y notas de imagen, que permite ver la película antes de montarla y discutirla con el equipo sin que nadie tenga que sentarse a ver material durante días. Es también el momento más barato para descubrir que falta una escena, porque todavía se puede grabar.</p>
+    <p>Ese documento cumple una segunda función que conviene aprovechar: es el registro de decisiones. Anotar junto a cada bloque por qué está ahí, qué se descartó y qué se decidió no incluir permite responder meses después a una impugnación y evita las discusiones circulares dentro del equipo, que consumen más tiempo que el propio montaje.</p>
+    <div class="ej"><b>MÉTODO</b>Agrupa por temas y no por personas. Si tu estructura reproduce el orden de las entrevistas, no has montado el documental: has ordenado el material grabado, que es una cosa distinta y mucho peor.</div>
+
+    <h3>Qué promete el primer minuto</h3>
+    <p>La apertura de un documental establece un contrato con el espectador: le dice qué tipo de obra está viendo, qué pregunta se le va a responder y con qué grado de intervención de quien filma. Ese contrato debe cumplirse, y romperlo es una forma sutil de engaño que el público percibe aunque no sepa nombrarla.</p>
+    <p>Hay tres promesas que la apertura hace casi siempre. La <strong>promesa temática</strong>: sobre qué trata esto. La <strong>promesa formal</strong>: si habrá narración, si veremos al equipo, si el relato será observacional o argumentado. Y la <strong>promesa de resolución</strong>: si al final sabremos qué ocurrió o si el documental se detendrá en la incertidumbre. Un arranque que promete una investigación resuelta y termina en un final abierto deja al espectador con la sensación de haber sido conducido, aunque cada dato sea correcto.</p>
+    <p>En documental periodístico conviene además que la apertura sitúe la pregunta con precisión y no con misterio. La retórica del suspense —insinuar que hay algo enorme por descubrir— funciona a corto plazo y castiga a la pieza cuando el hallazgo resulta más modesto que la expectativa creada, que es lo habitual en investigación real.</p>
+    <p>La estructura posterior admite muchas formas, y la más común en no ficción periodística encadena cuatro movimientos: se establece el asunto y quién está implicado, aparece la anomalía o el conflicto, se despliega la evidencia que reordena lo que creíamos, y se cierra con una consecuencia comprobable. Ese cierre importa: terminar con una reflexión general es la salida fácil, y casi siempre indica que la investigación no llegó donde el equipo esperaba.</p>
+    <div class="ej"><b>PRUEBA DEL CONTRATO</b>Enséñale a alguien los tres primeros minutos y pregúntale qué espera ver a continuación. Si su respuesta no se parece a tu película, el arranque promete otra cosa y habrá que reescribirlo.</div>
+
+    <h3>La ética del corte</h3>
+    <p>Cuatro operaciones de montaje son legítimas y se convierten en engaño según cómo se apliquen. Conviene tener criterios explícitos para cada una, porque en la sala de edición se toman deprisa y bajo presión de duración.</p>
+    <p>La <strong>compresión temporal</strong> —contar en cinco minutos lo que duró tres horas— es inevitable y honesta mientras no altere la secuencia de los hechos ni sugiera simultaneidad donde hubo distancia. La <strong>reordenación</strong> de escenas es admisible cuando responde a claridad narrativa y no cuando invierte la relación causal: mostrar la protesta antes del anuncio que la provocó cambia el sentido de ambos. La <strong>condensación de una respuesta</strong>, eliminando repeticiones o titubeos, es práctica corriente y deja de serlo cuando une fragmentos separados por minutos para construir una frase que la persona nunca dijo. Y la <strong>omisión</strong> es siempre necesaria —todo montaje omite— pero se convierte en manipulación cuando lo omitido contradice lo que se afirma.</p>
+    <p>Los manuales editoriales de los grandes servicios públicos coinciden en una regla que resume las cuatro: el montaje no puede alterar el sentido de lo que una persona dijo ni el orden real de lo que ocurrió. Todo lo demás es técnica.</p>
+    <p>Hay además una señal de alarma práctica que conviene vigilar: cuando el equipo se entusiasma con lo bien que ha quedado una secuencia, suele ser el momento de comprobarla. Las uniones más eficaces narrativamente son con frecuencia las que más afirman, y la satisfacción del montaje es mal indicador de su exactitud.</p>
+    <div class="ej"><b>REGLA</b>Ninguna frase montada puede decir algo que la persona no dijo, y ningún orden puede sugerir una causalidad que no ocurrió. Si dudas, muestra la secuencia a alguien que no conozca el material y pregúntale qué entendió.</div>
+
+    <h3>El material de archivo</h3>
+    <p>El archivo resuelve lo que no se pudo grabar y es una de las fuentes más habituales de error involuntario. Su problema no es la calidad sino la procedencia: una imagen de otro lugar o de otra fecha, usada para ilustrar, convierte un reportaje riguroso en una recontextualización, que es exactamente el patrón de desinformación descrito en la Unidad 2 de JRN-1003.</p>
+    <p>Antes de usar cualquier material ajeno hay que establecer cuatro cosas. <strong>Qué muestra realmente</strong>, no lo que el catálogo dice que muestra. <strong>Cuándo y dónde</strong> se registró, con la misma exigencia de geolocalización y datación de una investigación. <strong>Quién es su titular</strong> y en qué condiciones puede usarse, porque los derechos de archivo son caros y su incumplimiento bloquea la distribución. Y <strong>qué contexto falta</strong>: un plano de una manifestación puede ser real y corresponder a otra causa.</p>
+    <p>El uso honesto exige además señalización en pantalla. Fecha y procedencia visibles cuando el material no es del rodaje, y tratamiento diferenciado cuando pueda confundirse con imagen actual. Esa práctica, que muchos equipos consideran una interrupción estética, es lo que permite al espectador saber qué está viendo, y su ausencia es la que convierte un archivo legítimo en una insinuación.</p>
+    <p>Conviene tratar también el archivo generado por sistemas automáticos y las imágenes de simulación. Su uso puede estar justificado para representar procesos, y siempre requiere que el espectador sepa que no es un registro. La regla es la misma que para las reconstrucciones de la Unidad 2: representar lo documentado, sí; hacer pasar por documento una representación, nunca.</p>
+    <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>De cada plano de archivo, anota origen, fecha, lugar y licencia antes de incorporarlo al montaje. Lo que no tenga esas cuatro casillas rellenas no entra, por bien que funcione en la secuencia.</div>
+
+    <h3>Sonido y música</h3>
+    <p>El sonido es el elemento que más determina la interpretación emocional de una imagen y el que menos escrutinio recibe. Una misma secuencia con música de tensión o sin música produce dos lecturas distintas del mismo hecho, y el espectador atribuirá esa emoción a lo que ve, no a lo que oye.</p>
+    <p>De ahí una exigencia específica en no ficción periodística: la música no debe afirmar lo que el material no acredita. Poner música ominosa bajo la imagen de una persona a la que no se ha probado nada es formular una acusación por medios sonoros, y es tan impugnable como escribirla. El criterio no es prohibir la música —que cumple funciones legítimas de ritmo, transición y respiración— sino comprobar qué está diciendo.</p>
+    <p>Hay tres prácticas concretas que conviene revisar en cada montaje. El <strong>subrayado emocional</strong>: música que dicta al espectador qué sentir en lugar de dejar que el material lo produzca. El <strong>sonido añadido</strong>: efectos que no existían en la grabación y que sugieren una realidad distinta, admisibles solo cuando reconstruyen lo que el micrófono no captó y sin alterar el sentido. Y el <strong>silencio construido</strong>: eliminar sonido ambiente para aislar una declaración puede intensificarla artificialmente.</p>
+    <p>La prueba de control es sencilla y desagradable: ver la secuencia sin música. Si sin ella la escena no sostiene lo que quería sostener, el problema no es la música: es que el material no acredita lo que el montaje afirma, y la música estaba tapando ese hueco.</p>
+    <div class="ej"><b>PRUEBA</b>Reproduce el montaje completo sin música una vez. Todo lo que se caiga en esa pasada estaba sostenido por el sonido y no por los hechos, y conviene decidirlo conscientemente antes de publicar.</div>
+
+    <h3>Voz en off, rótulos y atribución</h3>
+    <p>La narración y los rótulos son el lugar donde el documental hace sus afirmaciones más explícitas, y por eso deben someterse al mismo régimen que un texto escrito: cada afirmación con su respaldo, cada verbo con el grado de certeza que corresponde y cada atribución con su fuente.</p>
+    <p>En la <strong>voz en off</strong>, el problema habitual es el deslizamiento: una frase escrita para enlazar acaba afirmando más de lo que la investigación sostiene, porque suena bien y porque la locución le da autoridad. Conviene revisar el texto de narración con el mismo procedimiento con que se revisa un reportaje: subrayar cada afirmación de hecho y comprobar con qué documento se sostiene.</p>
+    <p>Los <strong>rótulos</strong> presentan un riesgo distinto. Identifican a las personas y esa identificación es una afirmación: describir a alguien como «experto» o «vecino afectado» sitúa su testimonio y condiciona cómo se recibe. Los rótulos deben ser exactos, incluir el vínculo relevante cuando exista —relación laboral, cargo, interés en el asunto— y no inflar credenciales para reforzar un argumento.</p>
+    <p>La <strong>atribución en pantalla</strong> completa el sistema: de dónde procede un documento que se muestra, qué organismo publicó una cifra, en qué fecha se registró una imagen. Esa información, que en texto ocupa media línea, en pantalla exige diseño y tiempo de lectura, y es la primera que se elimina cuando la duración aprieta. Eliminarla convierte una pieza documentada en una pieza que pide confianza.</p>
+    <div class="ej"><b>REGLA</b>Trata el texto de la voz en off como un artículo: subraya cada afirmación de hecho y anota su fuente. Lo que no tenga fuente se reescribe, aunque la locución ya esté grabada.</div>
+
+    <h3>Ritmo, duración y lo que se pierde</h3>
+    <p>El ritmo no es un adorno: determina si el espectador llega al final, y llegar al final es la condición de que la información se transmita. Un documental impecable que nadie termina de ver no informa a nadie, y ese es un criterio periodístico y no comercial.</p>
+    <p>La duración se decide por el material y no por el formato. Cuando una pieza se estira para alcanzar un metraje estándar, el relleno se nota y deteriora todo lo demás; cuando se comprime por debajo de lo que el asunto necesita, se sacrifica el contexto, y el contexto es justamente lo que distingue el periodismo de la anécdota. Entre ambas presiones, la decisión honesta es publicar en la duración que el material sostiene.</p>
+    <p>Hay una tensión permanente entre ritmo y precisión que conviene nombrar. Los matices —las condiciones, las excepciones, los datos que no encajan— frenan el relato, y por eso son lo primero que el montaje elimina. Suprimirlos hace la pieza más eficaz y menos exacta. La solución no es renunciar al ritmo sino trasladar el matiz al lugar donde no lo frena: un rótulo, una línea de la voz en off, una nota metodológica publicada junto a la pieza.</p>
+    <p>Y conviene registrar lo que se cae. Un documento con las decisiones de recorte —qué se eliminó y por qué— permite responder después a quien alegue omisión interesada, y con frecuencia alimenta las piezas complementarias del proyecto transmedia descrito en la Unidad 1.</p>
+    <div class="ej"><b>CRITERIO</b>Cuando elimines un matiz por ritmo, decide en el mismo momento dónde va a aparecer: rótulo, off, nota o pieza complementaria. Si no va a ninguna parte, no lo estás recortando: lo estás ocultando.</div>
+
+    <h3>El primer corte y la distancia</h3>
+    <p>El primer montaje completo es el documento más útil y más incómodo del proceso. Útil porque es la primera vez que el equipo ve la película y no el material; incómodo porque casi siempre es peor de lo que se esperaba, dura de más y contiene todo lo que costó grabar aunque no aporte nada.</p>
+    <p>Conviene enfrentarlo con un método y no con una impresión. La primera pasada se ve entera, sin detener, tomando notas de sensación y no de detalle: dónde se pierde la atención, qué no se entiende, qué sobra. La segunda pasada se hace con la estructura delante, comprobando si cada bloque cumple la función que tenía asignada en el montaje sobre papel. Solo en la tercera se entra en el detalle de las uniones. Invertir ese orden —empezar puliendo cortes— consume semanas en pulir secuencias que después se eliminan enteras.</p>
+    <p>Hay una dificultad específica del documental periodístico que conviene nombrar: el apego al material difícil de conseguir. Una escena que costó tres meses de gestiones y un viaje tiende a permanecer en el montaje aunque no aporte, precisamente porque costó. Es un sesgo conocido y la única defensa es someter cada bloque a la misma pregunta que las piezas de la Unidad 1: qué aporta esto que no aporte ninguna otra cosa. Si la respuesta es «nos costó mucho», el bloque se cae.</p>
+    <p>La distancia editorial se pierde a partir del tercer visionado, y a partir del quinto el equipo ya no ve la película: ve sus decisiones. Por eso conviene planificar desde el principio dos o tres visionados con personas ajenas en momentos distintos —estructura, corte avanzado y versión final—, con tiempo suficiente para rehacer entre uno y otro. Una revisión que llega cuando ya no se puede cambiar nada no es una revisión: es una notificación.</p>
+    <div class="ej"><b>MÉTODO</b>Ve el primer corte entero y sin parar, anotando solo dónde te pierdes. Las correcciones de detalle vienen después: pulir un corte de una secuencia que vas a eliminar es la forma más eficiente de perder una semana.</div>
+
+    <h3>La verificación final</h3>
+    <p>Antes de publicar, el montaje debe someterse a una comprobación completa y documentada, distinta de la verificación hecha durante la investigación. Aquí no se comprueban hechos aislados: se comprueba lo que la pieza, tal como está montada, afirma al espectador.</p>
+    <p>El procedimiento tiene cinco pasos. Se <strong>listan todas las afirmaciones</strong> de la pieza, incluidas las que no pronuncia nadie y que resultan de las uniones. Se <strong>verifica cada una</strong> contra la matriz documental, con la lógica de la Unidad 3 de JRN-1003. Se <strong>comprueban las citas</strong> contra la transcripción original, para asegurar que ninguna condensación alteró el sentido. Se <strong>revisan los rótulos y el archivo</strong>, con origen, fecha y licencia. Y se <strong>ve la pieza completa sin música</strong>, para comprobar qué sostiene el material por sí solo.</p>
+    <p>A eso se suma una revisión externa, que es la medida individual más eficaz. Alguien que no ha participado en el rodaje ni en el montaje ve la pieza y responde a tres preguntas: qué entendió, qué le pareció que se afirmaba y qué preguntas le quedaron. Las tres respuestas suelen revelar afirmaciones que el equipo no sabía que estaba haciendo, porque conoce el material y completa mentalmente lo que falta.</p>
+    <p>Conviene por último decidir qué se muestra antes de publicar a las personas retratadas. No es un derecho de veto y sí una práctica de responsabilidad: mostrar a alguien la secuencia que le afecta permite detectar errores factuales, anticipar riesgos que el equipo no vio y sostener la relación después de la emisión. La decisión sobre qué se muestra y a quién debe estar tomada antes, no negociarse bajo presión el día anterior.</p>
+    <div class="ej"><b>REGLA FINAL</b>La última verificación se hace sobre lo que la pieza afirma, no sobre lo que el equipo quiso decir. Y la hace alguien de fuera, porque quien montó ya no puede ver lo que el montaje sugiere.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Reunión de revisión con la editora jefa, que ha visto el primer montaje. Le preocupan tres secuencias: una unión que sugiere una causalidad no documentada, una respuesta condensada y el uso de música bajo la imagen de una persona no imputada.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes defender una secuencia solo porque funcione. Cada respuesta debe apoyarse en la matriz documental o aceptar el cambio. Si su objeción no se sostiene, tienes que poder explicarlo con el material.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">MONTAJE SOBRE PAPEL · OBLIGATORIO</span>
+      <p>A partir de material propio o de archivo con licencia, entrega: la transcripción con marcas de tiempo de todo lo utilizable; el montaje sobre papel con los bloques agrupados por temas y su función —informativa, emocional o de transición—; la lista de afirmaciones que produce el montaje, incluidas las que resultan de las uniones, con su respaldo documental; la ficha de cada plano de archivo con origen, fecha, lugar y licencia; el texto de la voz en off con la fuente de cada afirmación de hecho; y el registro de lo eliminado por ritmo, indicando dónde reaparece.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Estructura agrupada por temas y no por entrevistados (20%) · Lista completa de afirmaciones, incluidas las implícitas en las uniones (30%) · Fichas de archivo con las cuatro casillas cubiertas (15%) · Voz en off con fuente por afirmación (20%) · Registro de recortes con destino de cada matiz eliminado (15%). Un montaje que una dos planos para sugerir una relación no documentada no aprueba, aunque la secuencia funcione.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 3</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1005-u2.html">← Unidad 2: Producción Documental: Investigación, Guion y Rodaje</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Efecto Kuleshov",d:"Fenómeno por el que el mismo plano se interpreta de forma distinta según el plano contiguo. Demuestra que el significado se produce en la unión y no en la imagen aislada.",s:"Experimentos atribuidos a Lev Kuleshov · teoría del montaje"},
+ {t:"Montaje sobre Papel",d:"Selección y ordenación de fragmentos sobre las transcripciones antes de tocar el material. Permite ver la película antes de montarla y discutirla con el equipo.",s:"Rabiger · práctica de posproducción"},
+ {t:"Compresión Temporal",d:"Reducción de la duración real de un hecho en el montaje. Es inevitable y honesta mientras no altere la secuencia ni sugiera simultaneidad inexistente.",s:"Manuales editoriales de servicio público"},
+ {t:"Reordenación",d:"Alteración del orden de las escenas. Admisible por claridad narrativa; inadmisible cuando invierte una relación causal real.",s:"Práctica editorial establecida"},
+ {t:"Condensación",d:"Eliminación de repeticiones y titubeos dentro de una respuesta. Deja de ser legítima cuando une fragmentos distantes para construir una frase no pronunciada.",s:"Manuales editoriales de servicio público"},
+ {t:"Omisión Engañosa",d:"Supresión de material que contradice lo que la pieza afirma. Todo montaje omite; solo esta omisión constituye manipulación.",s:"Nichols · ética documental establecida"},
+ {t:"Material de Archivo",d:"Imagen o sonido no registrado por la producción. Exige comprobar qué muestra realmente, cuándo y dónde se grabó, quién es su titular y qué contexto falta.",s:"Verification Handbook · práctica establecida"},
+ {t:"Señalización en Pantalla",d:"Indicación visible de fecha, procedencia o carácter reconstruido de una imagen. Es lo que permite al espectador saber qué está viendo.",s:"Manuales editoriales de servicio público"},
+ {t:"Subrayado Emocional",d:"Uso de música o sonido para dictar la interpretación de una escena. Cuando afirma lo que el material no acredita, equivale a una acusación por medios sonoros.",s:"Práctica de posproducción · ética documental"},
+ {t:"Contrato de Apertura",d:"Conjunto de promesas —temática, formal y de resolución— que el primer minuto establece con el espectador y que la pieza debe cumplir.",s:"Bernard, Documentary Storytelling"},
+ {t:"Registro de Decisiones",d:"Anotación de por qué está cada bloque, qué se descartó y qué se decidió no incluir. Permite responder a impugnaciones y evita discusiones circulares.",s:"Formulación docente · práctica de producción"},
+ {t:"Revisión Externa",d:"Visionado por alguien ajeno al rodaje y al montaje, que responde qué entendió, qué se afirmaba y qué preguntas le quedaron.",s:"Práctica editorial establecida"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · TEORÍA DEL MONTAJE · AÑOS VEINTE",t:"Kuleshov: el rostro que no cambia",
+  d:"En los años posteriores a 1917, el cineasta soviético Lev Kuleshov realizó una serie de experimentos de montaje que se convirtieron en la demostración fundacional del lenguaje cinematográfico. En el más citado, un mismo plano de un actor con expresión neutra se montó sucesivamente junto a imágenes distintas, y los espectadores describieron en ese rostro emociones diferentes —hambre, dolor, deseo— según lo que hubieran visto antes. El plano era idéntico en los tres casos. La reconstrucción exacta de aquellos experimentos ha sido discutida por los historiadores, pero el fenómeno se ha replicado y sostiene toda la teoría posterior del montaje.",
+  ej:"Lo relevante para el periodismo no es la anécdota histórica sino la consecuencia: el espectador no interpreta planos, interpreta relaciones, y esas relaciones las construye quien monta.",
+  p:["¿Por qué esto convierte el montaje en un acto verificable?","¿Cómo se comprueba lo que una unión afirma?","¿Qué diferencia hay con una cita mal recortada?"],
+  m:"Porque si el significado surge de la unión, entonces la unión formula una proposición, y toda proposición periodística está sujeta a comprobación: montar la declaración de un responsable seguida de una imagen de daños afirma un vínculo entre ambos. Se comprueba traduciendo la secuencia a lenguaje escrito —escribir la frase que el espectador entenderá— y preguntándose si esa frase se publicaría en un texto con el material disponible. La diferencia con una cita mal recortada es que el recorte deja rastro comprobable contra el original, mientras que el corte engañoso no deja ninguno: el espectador no tiene acceso al material bruto y no puede detectarlo.",
+  k:"El espectador interpreta relaciones, no planos. Cada unión es una afirmación y debe poder escribirse y sostenerse como cualquier frase publicada."},
+
+ {tag:"CASO 2 · THE THIN BLUE LINE · 1988",t:"Reconstrucción declarada y consecuencia real",
+  d:"<em>The Thin Blue Line</em>, dirigida por Errol Morris y estrenada en 1988, investiga la condena de Randall Dale Adams por el asesinato de un policía en Dallas. La película emplea reconstrucciones estilizadas y repetidas de la escena del crimen, montadas con variaciones según la versión de cada testigo, de modo que el espectador percibe que está viendo representaciones y no registro. La investigación desembocó en la revisión del caso y Adams fue liberado en 1989.",
+  ej:"Las reconstrucciones no ocultan su condición: se repiten, se contradicen entre sí y su estilización visual las marca como representación. Esa transparencia formal es lo que las hace admisibles.",
+  p:["¿Qué hace admisible una reconstrucción repetida y contradictoria?","¿Qué habría ocurrido si se hubieran presentado como registro?","¿Qué aporta la forma a la argumentación?"],
+  m:"La admite el hecho de que su función no es probar qué ocurrió sino mostrar que las versiones son incompatibles entre sí, de modo que la contradicción visual es exactamente el argumento y no un defecto. Presentarlas como registro habría constituido un falseamiento grave, porque la imagen habría aportado una apariencia de prueba a un hecho en disputa, que es precisamente lo que el documental cuestiona. La forma aporta aquí el razonamiento: al ver las mismas escenas incompatibles, el espectador comprende la fragilidad del relato judicial mejor que con cualquier explicación verbal, y esa comprensión es un resultado periodístico y no estético.",
+  k:"Una reconstrucción es admisible cuando su forma declara que es representación y cuando su función es mostrar la disputa, no zanjarla."},
+
+ {tag:"CASO 3 · ROGER & ME · 1989",t:"La cronología comprimida y el debate que abrió",
+  d:"<em>Roger & Me</em>, dirigida por Michael Moore y estrenada en 1989, documenta el efecto del cierre de plantas de General Motors en Flint, Michigan. Poco después de su estreno, en una entrevista publicada por la revista <em>Film Comment</em>, se puso de manifiesto que algunos hechos aparecían en un orden distinto al real y que ciertos acontecimientos anteriores a los cierres se presentaban como consecuencia de ellos. El debate posterior, en el que participaron críticos destacados, se convirtió en una discusión de referencia sobre los límites de la reordenación en el documental.",
+  ej:"El material era auténtico y la reordenación no inventó nada: alteró el orden. Y en periodismo el orden es una afirmación causal, no una elección de estilo.",
+  p:["¿Por qué el orden importa tanto en no ficción?","¿Cuándo es admisible reordenar?","¿Qué habría bastado para evitar el problema?"],
+  m:"Porque la secuencia temporal es la principal forma en que el espectador atribuye causas: lo que se muestra después de algo se entiende como consecuencia de ello, sin necesidad de que nadie lo afirme. Reordenar es admisible cuando responde a claridad narrativa y no altera relaciones causales ni sugiere simultaneidad, por ejemplo al agrupar temáticamente escenas dispersas en el tiempo cuyo orden no implica causalidad. Habría bastado con señalizar la cronología —fechas en pantalla— o con evitar montajes que presentaran como efecto lo que era anterior; el coste de esa precisión es mínimo y evita que la discusión se desplace del asunto investigado al método del autor.",
+  k:"En no ficción el orden afirma causalidad. Reordenar por claridad es legítimo; reordenar de modo que lo anterior parezca consecuencia, no."},
+
+ {tag:"CASO 4 · BBC · 2007",t:"Un tráiler mal montado y una dimisión",
+  d:"En 2007 la BBC difundió en una presentación a la prensa un avance de un documental sobre la reina Isabel II montado de forma que sugería que la monarca había abandonado indignada una sesión fotográfica, cuando en realidad las imágenes correspondían a momentos distintos y en orden inverso. La cadena reconoció públicamente el error, pidió disculpas y el episodio derivó en la dimisión de un alto responsable y en una revisión de los procedimientos editoriales internos.",
+  ej:"El material era real y no se manipuló ningún plano: se invirtió el orden de dos secuencias. Bastó eso para producir una afirmación falsa y una crisis institucional.",
+  p:["¿Qué falló en el procedimiento, más allá del montaje?","¿Por qué un avance recibe menos control que la pieza?","¿Qué medida lo previene?"],
+  m:"Falló que una pieza promocional se produjo fuera del circuito de verificación editorial, con criterios de impacto y sin el control que se aplica al programa, lo que revela un problema de procedimiento y no de una persona. Los avances reciben menos control porque se consideran material de marketing, cuando en realidad son lo que más gente ve y lo que fija la interpretación del contenido. La medida que lo previene es someter todo material derivado —avances, clips, cortes para redes— al mismo estándar de verificación que la pieza principal, tal como exige la Unidad 1 de este curso para las piezas que circulan solas.",
+  k:"El material promocional afirma tanto como la pieza y suele verse más. Debe pasar por la misma verificación, sin excepción por su carácter accesorio."},
+
+ {tag:"CASO 5 · MAKING A MURDERER · 2015",t:"La omisión como objeto de debate",
+  d:"La serie documental <em>Making a Murderer</em>, estrenada en 2015, reconstruye los procesos judiciales seguidos contra Steven Avery y Brendan Dassey en Wisconsin. Tras su emisión, el fiscal que había llevado el caso y diversos analistas señalaron públicamente que la serie omitía elementos de prueba presentados en el juicio, lo que a su juicio ofrecía al espectador una imagen incompleta. Las directoras respondieron que ninguna obra puede recoger la totalidad de un proceso de años y que su selección respondía a criterios de relevancia narrativa y de foco en el procedimiento.",
+  ej:"La discusión no es si hubo omisión —toda pieza omite— sino si lo omitido contradecía la tesis. Ese es exactamente el criterio que separa la selección legítima de la manipulación.",
+  p:["¿Cómo se decide qué omisión es legítima?","¿Qué obligación de transparencia surge?","¿Qué habría reducido la controversia?"],
+  m:"Se decide por la relación entre lo omitido y lo afirmado: prescindir de material redundante o secundario es selección, mientras que suprimir evidencia que debilita la tesis es manipulación, con independencia de la extensión de la obra. La obligación de transparencia consiste en declarar los criterios de selección y en reconocer expresamente la existencia de elementos que apuntan en otra dirección, aunque no se desarrollen. Habría reducido la controversia incorporar, aunque fuera brevemente, los elementos de cargo más significativos y explicar por qué el foco se situaba en el procedimiento y no en la culpabilidad, que es una decisión editorial legítima cuando se enuncia.",
+  k:"Toda pieza omite. La omisión se vuelve manipulación cuando lo suprimido contradice lo que se afirma, y la defensa es declarar los criterios de selección."},
+
+ {tag:"CASO 6 · SONIDO Y MÚSICA · PRÁCTICA",t:"Lo que dice la banda sonora",
+  d:"La investigación sobre percepción audiovisual y la práctica profesional coinciden en que la música y el diseño sonoro modifican de forma sustancial cómo el espectador interpreta una misma imagen: la atribución de intenciones a una persona, la percepción de amenaza en un espacio o la valoración moral de una acción varían según el acompañamiento sonoro. En no ficción periodística esto plantea un problema específico, porque el espectador atribuye la emoción resultante a lo que ve y no al recurso que la produjo.",
+  ej:"Una música ominosa bajo la imagen de una persona no imputada formula una acusación que ningún documento sostiene y que nadie ha pronunciado. Es impugnable exactamente igual que si estuviera escrita.",
+  p:["¿Qué funciones legítimas cumple la música?","¿Cómo se comprueba si está afirmando algo?","¿Qué hacer cuando la escena no funciona sin ella?"],
+  m:"Cumple funciones de ritmo, transición, respiración y unidad tonal, y su ausencia total puede volver una pieza árida sin ganar exactitud, de modo que el criterio no es prohibirla sino someterla a control. Se comprueba reproduciendo el montaje sin música y observando qué cambia: si la interpretación de una secuencia se altera al retirarla, esa música estaba afirmando algo, y hay que decidir si lo afirmado está documentado. Cuando la escena no funciona sin música, la conclusión honesta suele ser que el material no sostiene lo que la secuencia pretendía: la solución es reformular la secuencia, no reforzar el acompañamiento.",
+  k:"Si la escena solo funciona con música, el material no sostiene lo que afirma. La banda sonora estaba tapando ese hueco, no adornándolo."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La unión que funciona demasiado bien",
+  d:"El montaje une la declaración del responsable con la imagen del edificio dañado. La secuencia es potente y la relación no está documentada.",
+  r:"Montadora · Directora · Editora jefa",
+  ej:"<span class='who'>MONTADORA:</span> Así queda redondo.<br><span class='who'>EDITORA:</span> ¿Qué frase entendería el espectador?<br><span class='who'>MONTADORA:</span> Que él es responsable de eso.<br><span class='who'>DIRECTORA:</span> Y eso no lo tenemos. Separamos los dos bloques.",
+  m:"La prueba es traducir la unión a lenguaje escrito: si la frase resultante no se publicaría en un texto por falta de respaldo, la secuencia afirma más de lo que la investigación permite. Las soluciones son varias y todas conservan el material: separar los bloques con otro contenido, reordenar para romper la contigüidad, o mantenerlos y explicitar en la voz en off qué relación está y cuál no está acreditada. Que la secuencia funcione narrativamente no es un argumento a favor: las uniones más eficaces suelen ser las que más afirman, y el entusiasmo del equipo es mal indicador de exactitud.",
+  c:"Detectar una afirmación implícita y ofrecer alternativas que no obliguen a tirar el material."},
+
+ {tag:"ESCENARIO 2",t:"La respuesta construida",
+  d:"Para ganar claridad, el montaje une dos fragmentos de una misma entrevista separados por veinte minutos. La frase resultante suena natural.",
+  r:"Montadora · Directora · Verificadora",
+  ej:"<span class='who'>MONTADORA:</span> Dijo las dos cosas, solo las junto.<br><span class='who'>VERIFICADORA:</span> Pero no en esa frase, y en medio matizó.<br><span class='who'>MONTADORA:</span> El matiz alarga mucho.<br><span class='who'>DIRECTORA:</span> Entonces se usa un fragmento solo, o se incluye el matiz.",
+  m:"Condensar eliminando repeticiones y titubeos es práctica corriente y legítima; unir fragmentos distantes para construir una frase que la persona no pronunció, no lo es, y menos aún cuando entre ambos hubo una matización. La regla que resume el criterio es que el montaje no puede alterar el sentido de lo que alguien dijo. Las salidas son usar un solo fragmento, incluir el matiz aunque alargue, o parafrasear en voz en off atribuyendo con precisión. Y conviene dejar constancia en el registro de decisiones, porque este es exactamente el punto que una impugnación examinará contra la transcripción.",
+  c:"Sostener el criterio sobre una operación que parece técnica y es sustantiva."},
+
+ {tag:"ESCENARIO 3",t:"El archivo sin ficha",
+  d:"Un plano de archivo mejora mucho la secuencia. Nadie sabe de qué año es ni de dónde salió, y el catálogo solo indica «disturbios».",
+  r:"Documentalista · Montadora · Directora",
+  ej:"<span class='who'>MONTADORA:</span> Encaja perfecto.<br><span class='who'>DOCUMENTALISTA:</span> No sé de qué país es.<br><span class='who'>DIRECTORA:</span> Entonces no entra.<br><span class='who'>MONTADORA:</span> ¿Aunque lo rotulemos como archivo?",
+  m:"Rotular como archivo indica que no es material propio y no acredita qué muestra: usar una imagen de un hecho distinto para ilustrar otro es recontextualización, el patrón de desinformación descrito en la Unidad 2 de JRN-1003, y no se corrige con un rótulo genérico. Antes de incorporar cualquier plano ajeno hacen falta cuatro datos: qué muestra realmente, cuándo y dónde se registró, quién es su titular y en qué condiciones puede usarse. Si falta alguno, el plano no entra, por bien que funcione. Y cuando sí entra, la señalización debe incluir fecha y procedencia visibles.",
+  c:"Aplicar un criterio de exclusión sin negociar, ofreciendo la vía para recuperar el plano si aparecen los datos."},
+
+ {tag:"ESCENARIO 4",t:"La música que acusa",
+  d:"Bajo la imagen de una persona investigada pero no imputada, el montaje coloca una música de tensión que dura toda la secuencia.",
+  r:"Montadora · Directora · Asesor jurídico",
+  ej:"<span class='who'>JURÍDICO:</span> ¿Qué estamos diciendo de él con esa música?<br><span class='who'>MONTADORA:</span> Solo acompaña.<br><span class='who'>DIRECTORA:</span> Quítala y vemos la escena.<br><span class='who'>MONTADORA:</span> Sin música se queda plana.<br><span class='who'>DIRECTORA:</span> Entonces el problema es la escena.",
+  m:"La música que dicta la interpretación de una imagen formula una afirmación por medios sonoros, y cuando esa afirmación no está documentada es tan impugnable como si se hubiera escrito, con el agravante de que nadie la ha pronunciado y por tanto nadie la ha verificado. La prueba de control es reproducir la secuencia sin música: lo que se cae en esa pasada estaba sostenido por el sonido y no por los hechos. Si la escena solo funciona con acompañamiento, la solución no es cambiar la música sino reformular la secuencia con material que sostenga lo que se quiere afirmar, o rebajar la afirmación.",
+  c:"Traducir una intuición jurídica en una prueba práctica que el equipo puede aplicar."},
+
+ {tag:"ESCENARIO 5",t:"El matiz que frena",
+  d:"Una condición importante del hallazgo alarga la secuencia y rompe el ritmo. La propuesta es eliminarla.",
+  r:"Directora · Montadora · Verificadora",
+  ej:"<span class='who'>MONTADORA:</span> Ese inciso mata el ritmo.<br><span class='who'>VERIFICADORA:</span> Y sin él afirmamos más de lo que probamos.<br><span class='who'>DIRECTORA:</span> ¿Cabe en un rótulo?<br><span class='who'>VERIFICADORA:</span> Cabe, y además queda más claro.",
+  m:"Los matices frenan el relato y por eso son lo primero que el montaje elimina, con el efecto de hacer la pieza más eficaz y menos exacta. La decisión correcta no es entre ritmo y precisión, sino sobre dónde colocar el matiz para que no frene: un rótulo, una línea de voz en off, una nota metodológica junto a la pieza o una pieza complementaria del proyecto. Lo inadmisible es eliminarlo sin destino: en ese caso no se está recortando, se está ocultando. Y conviene registrar cada recorte de este tipo, porque es lo que permite responder si alguien alega omisión interesada.",
+  c:"Resolver la tensión entre ritmo y exactitud con una solución concreta, sin ceder ninguna de las dos."},
+
+ {tag:"ESCENARIO 6",t:"La revisión de quien no estuvo",
+  d:"Una colega que no participó ve el montaje y dice que entendió algo que el equipo no pretendía afirmar.",
+  r:"Directora · Colega revisora · Montadora",
+  ej:"<span class='who'>REVISORA:</span> Entendí que la empresa sabía desde el principio.<br><span class='who'>DIRECTORA:</span> No decimos eso en ninguna parte.<br><span class='who'>REVISORA:</span> No lo decís. Se entiende.<br><span class='who'>MONTADORA:</span> Es la secuencia del minuto once.",
+  m:"La revisión externa es la medida individual más eficaz de esta fase, precisamente porque el equipo conoce el material y completa mentalmente lo que la pieza no muestra, de modo que ya no puede ver lo que el montaje sugiere. Cuando alguien ajeno entiende algo que no se afirma, el montaje lo está afirmando, con independencia de la intención: la percepción del espectador es el hecho relevante. La respuesta correcta es localizar la secuencia responsable y corregirla, no explicar a la revisora por qué se equivoca. Y conviene hacer esta revisión con tiempo suficiente para poder rehacer, no la víspera de la entrega.",
+  c:"Aceptar que la intención no cuenta y que lo que el espectador entiende es lo que la pieza dice."}
+];
+
+const IV=[
+ {q:"¿Qué afirma exactamente la unión del minuto once, en una frase?",
+  m:"Obliga a traducir la secuencia a lenguaje escrito, que es la forma de comprobar si está documentada."},
+ {q:"¿Qué documento de la matriz sostiene esa afirmación?",
+  m:"Remite a la prueba y no a la impresión. Si no hay fila en la matriz, la secuencia no se sostiene."},
+ {q:"La respuesta condensada, ¿altera el sentido respecto de la transcripción original?",
+  m:"Es la comprobación decisiva de una condensación y la que una impugnación examinará primero."},
+ {q:"¿Hubo alguna matización entre los dos fragmentos que hemos unido?",
+  m:"Detecta el caso más grave: unir salvando precisamente lo que matizaba la afirmación."},
+ {q:"Si retiramos la música de esa secuencia, ¿cambia lo que se entiende?",
+  m:"Prueba práctica para saber si el sonido está afirmando algo que el material no sostiene."},
+ {q:"¿Qué fecha y qué procedencia tiene el plano de archivo del minuto cuatro?",
+  m:"Sin las cuatro casillas —qué muestra, cuándo, dónde, licencia— el plano no debería estar en el montaje."},
+ {q:"¿Dónde reaparece el matiz que eliminamos por ritmo?",
+  m:"Comprueba que el recorte tiene destino. Sin destino, no es recorte: es ocultación."},
+ {q:"¿Quién de fuera ha visto el montaje y qué entendió?",
+  m:"Cierra con la revisión externa, que es la única forma de detectar lo que el equipo ya no puede ver."}
+];
+
+const AUDIT=[
+ ["v","Los experimentos de montaje atribuidos a Lev Kuleshov en los años posteriores a 1917 mostraron que un mismo plano de rostro se interpreta de forma distinta según la imagen contigua; la reconstrucción exacta de aquellos experimentos ha sido discutida por los historiadores, aunque el fenómeno se ha replicado posteriormente.","Historia y teoría del cine; literatura sobre el efecto Kuleshov. Verificado con la salvedad indicada."],
+ ["v","<em>The Thin Blue Line</em>, dirigida por Errol Morris y estrenada en 1988, emplea reconstrucciones estilizadas y contradictorias del crimen por el que fue condenado Randall Dale Adams; el caso fue revisado y Adams quedó en libertad en 1989.","Documentación del filme y cobertura judicial contemporánea. Verificado."],
+ ["v","Tras el estreno de <em>Roger & Me</em> en 1989, una entrevista publicada en <em>Film Comment</em> puso de manifiesto alteraciones en el orden cronológico de algunos hechos, lo que abrió un debate de referencia sobre los límites de la reordenación en documental.","Film Comment y debate crítico posterior. Verificado."],
+ ["v","En 2007 la BBC difundió un avance montado de forma que sugería que la reina Isabel II había abandonado indignada una sesión fotográfica; las imágenes correspondían a momentos distintos y en orden inverso. La cadena reconoció el error, pidió disculpas y el episodio derivó en una dimisión y en una revisión de procedimientos editoriales.","Comunicados de la BBC y cobertura de 2007. Verificado."],
+ ["v","Tras el estreno de <em>Making a Murderer</em> en 2015, el fiscal del caso y diversos analistas sostuvieron públicamente que la serie omitía elementos de prueba del juicio; las directoras respondieron defendiendo sus criterios de selección y su foco en el procedimiento.","Declaraciones públicas y cobertura de 2015-2016. Verificado."],
+ ["b","El significado en montaje se produce en la unión de planos, de modo que cada unión constituye una afirmación sujeta a verificación.","Teoría del montaje · Murch · Nichols."],
+ ["b","El montaje sobre papel a partir de transcripciones permite estructurar antes de editar y funciona además como registro de decisiones.","Rabiger · práctica de posproducción."],
+ ["b","La compresión temporal y la reordenación son admisibles mientras no alteren relaciones causales ni sugieran simultaneidad inexistente.","Manuales editoriales de servicio público."],
+ ["b","La condensación de una respuesta deja de ser legítima cuando une fragmentos distantes para construir una frase no pronunciada.","Manuales editoriales de servicio público."],
+ ["b","Toda pieza omite; la omisión constituye manipulación cuando lo suprimido contradice lo que se afirma.","Nichols · ética documental establecida."],
+ ["b","El material de archivo exige comprobar qué muestra, cuándo y dónde se registró, quién es su titular y qué contexto falta, con señalización visible en pantalla.","Verification Handbook · práctica editorial."],
+ ["b","El material promocional derivado —avances y cortes para redes— debe someterse al mismo estándar de verificación que la pieza principal.","Derivado del caso de 2007 · JRN-1005 Unidad 1."],
+ ["b","La revisión externa por alguien ajeno al rodaje y al montaje detecta afirmaciones implícitas que el equipo ya no percibe.","Práctica editorial establecida."],
+ ["p","La afirmación de que la música y el diseño sonoro modifican de forma sustancial la interpretación de una misma imagen se apoya en la práctica profesional y en la literatura sobre percepción audiovisual; no se ha realizado para esta unidad una revisión sistemática de esos estudios.","Redactado sin atribuir magnitudes concretas a una investigación determinada."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El efecto Kuleshov demuestra que:",
+ o:["Los actores no necesitan expresividad","El significado se produce en la unión de planos y no en la imagen aislada","El montaje rápido genera más emoción","La música determina la interpretación"],c:1,
+ w:["Es una consecuencia anecdótica del experimento, no su enseñanza.",
+    "",
+    "El ritmo influye en la atención, no en el mecanismo del significado.",
+    "El sonido también influye y no es lo que el experimento demuestra."],
+ e:"El espectador interpreta relaciones, no planos. Por eso cada unión es una afirmación sujeta al mismo estándar que una frase escrita."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El montaje sobre papel consiste en:",
+ o:["Escribir el guion antes de rodar","Seleccionar y ordenar sobre las transcripciones antes de tocar el material","Dibujar el storyboard de la pieza","Redactar la voz en off"],c:1,
+ w:["El guion previo corresponde a la escaleta, en la fase de preproducción.",
+    "",
+    "El storyboard es una herramienta de planificación visual, habitual en ficción.",
+    "La voz en off se escribe cuando la estructura ya existe."],
+ e:"Permite ver la película antes de montarla, discutirla sin visionar días de material y descubrir a tiempo que falta una escena."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Condensar una respuesta es inadmisible cuando:",
+ o:["Se eliminan titubeos y repeticiones","Se unen fragmentos distantes para construir una frase que la persona no dijo","Se acorta para ajustar la duración","Se suprime una digresión irrelevante"],c:1,
+ w:["Eliminar titubeos es práctica corriente y no altera el sentido.",
+    "",
+    "El ajuste de duración es legítimo mientras no cambie lo dicho.",
+    "Suprimir una digresión ajena al asunto no modifica la afirmación."],
+ e:"La regla que resume el criterio: el montaje no puede alterar el sentido de lo que una persona dijo ni el orden real de lo que ocurrió."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La omisión en un documental constituye manipulación cuando:",
+ o:["Se elimina más de la mitad del material grabado","Lo suprimido contradice lo que la pieza afirma","No se declara la duración del material original","Se prescinde de una de las partes implicadas"],c:1,
+ w:["El volumen eliminado es irrelevante: todo montaje descarta la mayor parte.",
+    "",
+    "La duración del material bruto no es información que el espectador necesite.",
+    "Prescindir de una parte es un problema de contradicción y de réplica, no de omisión en sentido técnico."],
+ e:"Toda pieza omite. La defensa frente a la acusación de omisión interesada es declarar los criterios de selección y registrar lo descartado."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Antes de incorporar un plano de archivo hay que establecer:",
+ o:["Su calidad técnica y su formato","Qué muestra realmente, cuándo y dónde se registró, quién es su titular y qué contexto falta","Que no haya sido usado por otro medio","Que se corresponda con el tono de la pieza"],c:1,
+ w:["La calidad afecta a la integración visual, no a la veracidad.",
+    "",
+    "El uso previo por otros no acredita nada sobre su procedencia.",
+    "La coherencia tonal es un criterio estético."],
+ e:"Una imagen de otro lugar o de otra fecha usada para ilustrar convierte un reportaje riguroso en una recontextualización."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El contrato de apertura de un documental incluye la promesa:",
+ o:["De duración y de formato de emisión","Temática, formal y de resolución","De imparcialidad entre las partes","De exclusividad de la información"],c:1,
+ w:["La duración es una convención de emisión, no una promesa narrativa.",
+    "",
+    "La imparcialidad es una obligación general, no una promesa del arranque.",
+    "La exclusividad no forma parte del pacto con el espectador."],
+ e:"Un arranque que promete investigación resuelta y termina en final abierto deja al espectador con la sensación de haber sido conducido."},
+
+/* ---------- BLOQUE B · DECISIONES DE MONTAJE ---------- */
+{blk:"BLOQUE B · DECISIONES DE MONTAJE", t:"mcq",
+ s:"El montaje une la declaración de un responsable con la imagen de un edificio dañado. La relación no está documentada.",
+ q:"¿Qué corresponde?",
+ o:["Mantenerlo: son dos hechos ciertos","Separar los bloques, reordenar o explicitar en la voz en off qué relación está acreditada y cuál no","Añadir un rótulo con la fecha de cada plano","Reducir la duración de la unión"],c:1,
+ w:["Que ambos planos sean ciertos no acredita la relación que su unión afirma.",
+    "",
+    "El rótulo aporta contexto y no desactiva la lectura causal.",
+    "Acortar la unión no elimina la afirmación implícita."],
+ e:"La prueba es escribir la frase que el espectador entenderá. Si no la publicarías en un texto, la secuencia afirma más de lo que puedes sostener."},
+
+{blk:"BLOQUE B · DECISIONES DE MONTAJE", t:"mcq",
+ s:"Se unen dos fragmentos de la misma entrevista separados por veinte minutos; entre ambos la persona matizó lo que decía.",
+ q:"¿Qué se hace?",
+ o:["Se mantiene: dijo las dos cosas","Se usa un solo fragmento, o se incluye el matiz, o se parafrasea en off con atribución precisa","Se añade un rótulo que indique «declaraciones editadas»","Se consulta a la persona si le parece bien"],c:1,
+ w:["Dijo ambas cosas y no en esa frase, y precisamente el matiz eliminado alteraba el sentido.",
+    "",
+    "Un rótulo genérico no repara una alteración del sentido.",
+    "El acuerdo de la persona no convierte en exacta una frase que no pronunció."],
+ e:"Este es el punto exacto que una impugnación examinará contra la transcripción, y conviene dejar constancia en el registro de decisiones."},
+
+{blk:"BLOQUE B · DECISIONES DE MONTAJE", t:"mcq",
+ s:"Un plano de archivo encaja perfectamente pero el catálogo solo indica «disturbios», sin país ni fecha.",
+ q:"¿Puede usarse rotulándolo como archivo?",
+ o:["Sí: el rótulo advierte de que no es material propio","No: el rótulo no acredita qué muestra, y usarlo sería recontextualización","Sí, si se difumina la imagen","Sí, si dura menos de tres segundos"],c:1,
+ w:["Indicar que es archivo no informa de si corresponde al hecho que ilustra.",
+    "",
+    "Difuminar reduce la identificación y no corrige el error de procedencia.",
+    "La duración no altera la naturaleza de la afirmación."],
+ e:"Sin las cuatro casillas —qué muestra, cuándo, dónde, licencia— el plano no entra, por bien que funcione en la secuencia."},
+
+{blk:"BLOQUE B · DECISIONES DE MONTAJE", t:"mcq",
+ s:"Bajo la imagen de una persona investigada y no imputada se coloca música de tensión durante toda la secuencia.",
+ q:"¿Cómo se comprueba si es admisible?",
+ o:["Consultando al departamento jurídico","Reproduciendo la secuencia sin música y observando si cambia lo que se entiende","Preguntando a la persona afectada","Comparando con lo que hacen otros medios"],c:1,
+ w:["La consulta jurídica es útil y llega después de saber qué afirma la secuencia.",
+    "",
+    "La opinión del afectado no determina el criterio editorial.",
+    "La práctica ajena no acredita corrección."],
+ e:"Si la escena solo funciona con música, el material no sostiene lo que afirma. La solución es reformular la secuencia, no cambiar el acompañamiento."},
+
+{blk:"BLOQUE B · DECISIONES DE MONTAJE", t:"mcq",
+ s:"Una condición importante del hallazgo alarga la secuencia y rompe el ritmo.",
+ q:"¿Qué corresponde hacer?",
+ o:["Eliminarla: el ritmo determina que el espectador llegue al final","Decidir dónde reaparece —rótulo, off, nota metodológica o pieza complementaria— y registrarlo","Mantenerla íntegra aunque la pieza pierda","Trasladarla al final, después de los créditos"],c:1,
+ w:["Eliminar el matiz hace la pieza más eficaz y menos exacta, y esa es la decisión que después se lamenta.",
+    "",
+    "No hay que elegir entre ritmo y exactitud: hay que reubicar el matiz.",
+    "Después de los créditos no lo ve nadie: equivale a suprimirlo."],
+ e:"Si el matiz no va a ninguna parte, no lo estás recortando: lo estás ocultando. Y conviene registrar cada recorte de este tipo."},
+
+{blk:"BLOQUE B · DECISIONES DE MONTAJE", t:"mcq",
+ s:"Una colega ajena al proyecto ve el montaje y entiende algo que el equipo no pretendía afirmar.",
+ q:"¿Qué corresponde?",
+ o:["Explicarle por qué su lectura es incorrecta","Localizar la secuencia responsable y corregirla: lo que el espectador entiende es lo que la pieza dice","Añadir una línea de voz en off que lo aclare al final","Ignorarlo si el resto de revisores no lo mencionó"],c:1,
+ w:["La intención del equipo no cuenta frente a lo que la pieza comunica.",
+    "",
+    "Una aclaración tardía no desactiva una lectura ya instalada.",
+    "Una sola lectura errónea basta para revisar: el equipo ya no puede detectarla."],
+ e:"La revisión externa es la medida más eficaz de esta fase, porque quien montó completa mentalmente lo que la pieza no muestra."},
+
+/* ---------- BLOQUE C · MÉTODO Y VERIFICACIÓN ---------- */
+{blk:"BLOQUE C · MÉTODO Y VERIFICACIÓN", t:"mcq",
+ q:"La estructura de un montaje documental debe agruparse:",
+ o:["Por entrevistados, respetando la integridad de cada testimonio","Por temas, porque la estructura la marca el asunto y no el orden de grabación","Por localizaciones, para dar unidad visual","Por orden cronológico de rodaje"],c:1,
+ w:["Agrupar por personas produce una sucesión de intervenciones, no un relato.",
+    "",
+    "La unidad visual es un criterio secundario y a menudo engañoso.",
+    "El orden de rodaje responde a la disponibilidad, no al sentido."],
+ e:"Si tu estructura reproduce el orden de las entrevistas, no has montado el documental: has ordenado el material grabado."},
+
+{blk:"BLOQUE C · MÉTODO Y VERIFICACIÓN", t:"mcq",
+ q:"El texto de la voz en off debe revisarse:",
+ o:["Buscando fluidez y claridad de locución","Como un artículo: subrayando cada afirmación de hecho y anotando su fuente","Comprobando que no repita lo que muestra la imagen","Ajustando su duración a la de las secuencias"],c:1,
+ w:["La fluidez importa y no es lo que evita afirmar de más.",
+    "",
+    "Evitar la redundancia es un criterio de estilo, correcto y secundario.",
+    "El ajuste de duración es técnico."],
+ e:"El riesgo habitual es el deslizamiento: una frase escrita para enlazar acaba afirmando más de lo que la investigación sostiene, y la locución le da autoridad."},
+
+{blk:"BLOQUE C · MÉTODO Y VERIFICACIÓN", t:"mcq",
+ q:"Un rótulo que identifica a una persona entrevistada:",
+ o:["Es un elemento de diseño sin implicaciones","Es una afirmación: debe ser exacto e incluir el vínculo relevante cuando exista","Puede simplificarse para no distraer","Debe repetir el cargo tal como lo declara la persona"],c:1,
+ w:["Sitúa el testimonio y condiciona cómo se recibe: no es neutral.",
+    "",
+    "La simplificación que infla credenciales o esconde vínculos es una inexactitud.",
+    "La autodescripción debe comprobarse, no reproducirse sin más."],
+ e:"Describir a alguien como «experto» o «vecino afectado» afirma algo sobre su posición, y ese algo debe ser cierto y completo."},
+
+{blk:"BLOQUE C · MÉTODO Y VERIFICACIÓN", t:"mcq",
+ q:"El material promocional derivado —avances y cortes para redes—:",
+ o:["Se rige por criterios de marketing","Debe pasar por el mismo estándar de verificación que la pieza principal","Puede simplificar porque remite a la pieza completa","Solo requiere aprobación de la dirección de comunicación"],c:1,
+ w:["Tratarlo como marketing es exactamente lo que produjo el caso documentado de 2007.",
+    "",
+    "Remitir a la pieza no corrige lo que el avance afirma, y es lo que más gente ve.",
+    "La aprobación jerárquica no sustituye a la verificación editorial."],
+ e:"El avance suele verse más que el programa y fija la interpretación del contenido. La excepción por carácter accesorio no existe."},
+
+{blk:"BLOQUE C · MÉTODO Y VERIFICACIÓN", t:"mcq",
+ q:"La verificación final del montaje se hace sobre:",
+ o:["Los hechos comprobados durante la investigación","Lo que la pieza, tal como está montada, afirma al espectador, incluidas las afirmaciones implícitas","Las citas literales de las entrevistas","Los datos que aparecen en pantalla"],c:1,
+ w:["Esa verificación ya se hizo y no cubre lo que el montaje añade.",
+    "",
+    "Las citas son una parte de la comprobación, no su alcance.",
+    "Los datos en pantalla son otra parte del mismo control."],
+ e:"Se listan todas las afirmaciones —incluidas las que resultan de las uniones—, se contrastan con la matriz y se ve la pieza sin música."},
+
+{blk:"BLOQUE C · MÉTODO Y VERIFICACIÓN", t:"mcq",
+ q:"Mostrar el montaje a una persona retratada antes de publicar:",
+ o:["Le concede derecho de veto sobre la pieza","Es una práctica de responsabilidad que permite detectar errores y anticipar riesgos, sin ceder el control editorial","Es incompatible con la independencia periodística","Solo procede si lo exige un contrato"],c:1,
+ w:["Mostrar no es someter a aprobación: la decisión editorial permanece en la redacción.",
+    "",
+    "La independencia se preserva mientras la decisión final no se negocie.",
+    "Es una decisión editorial, no una obligación contractual."],
+ e:"La decisión sobre qué se muestra y a quién debe estar tomada antes, no negociarse bajo presión la víspera de la entrega."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las operaciones de montaje que pueden convertirse en engaño según cómo se apliquen.",
+ o:["La compresión temporal","La reordenación de escenas","La condensación de respuestas","La corrección de color","La omisión de material"],
+ c:[0,1,2,4],
+ w:["","","","El etalonaje afecta a la apariencia visual y no altera lo que la pieza afirma sobre los hechos.",""],
+ e:"Las cuatro son legítimas y necesarias. Se convierten en engaño cuando alteran el sentido de lo dicho o el orden real de lo ocurrido."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe constar en la ficha de un plano de archivo.",
+ o:["Qué muestra realmente","Fecha y lugar de registro","Titular de los derechos y condiciones de uso","Duración del plano en el montaje","Contexto que falta y que el plano no revela"],
+ c:[0,1,2,4],
+ w:["","","","La duración es un dato de edición sin relación con la procedencia ni con los derechos.",""],
+ e:"Y en pantalla, fecha y procedencia visibles cuando el material no es del rodaje: es lo que permite al espectador saber qué está viendo."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el proceso de montaje de un documental periodístico.",
+ o:["Transcribir con marcas de tiempo todo el material utilizable","Marcar fragmentos por función: informativa, emocional o de transición","Agrupar por temas y ordenar los bloques en una estructura","Montar la secuencia con imagen, archivo y sonido","Verificar lo que la pieza afirma y someterla a revisión externa"],
+ c:[0,1,2,3,4],
+ e:"Estructurar sobre papel es el momento más barato para descubrir que falta una escena, porque todavía se puede grabar."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena los pasos de la verificación final.",
+ o:["Listar todas las afirmaciones de la pieza, incluidas las implícitas en las uniones","Contrastar cada una con la matriz documental","Comprobar las citas contra la transcripción original","Revisar rótulos y fichas de archivo","Ver la pieza completa sin música y someterla a revisión externa"],
+ c:[0,1,2,3,4],
+ e:"La última comprobación se hace sobre lo que la pieza afirma, no sobre lo que el equipo quiso decir, y la hace alguien de fuera."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
