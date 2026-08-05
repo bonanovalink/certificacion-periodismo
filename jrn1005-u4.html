@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1005 · Unidad 4 — Distribución, Derechos y Sostenibilidad</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1005, Unidad 4.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  .tab.exam{color:var(--amber)}
+  .tab.exam.on{color:var(--amber);border-color:var(--line);border-bottom-color:var(--bg)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:7px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .score.big{font-size:.95rem;color:var(--amber);padding:14px 18px;background:#3a2408;border:1px solid #6b4d16;border-radius:8px;letter-spacing:.06em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course on" href="jrn1005-u4.html"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1005 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Distribución, Derechos y Sostenibilidad</h2>
+  <div class="sub">Unidad 4 de 4 · Producción Transmedia y Documental</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1005-u1.html">Unidad 1: Narrativa Transmedia y Arquitectura de Proyecto</a>
+    <a class="unit" href="jrn1005-u2.html">Unidad 2: Producción Documental: Investigación, Guion y Rodaje</a>
+    <a class="unit" href="jrn1005-u3.html">Unidad 3: Montaje, Sonido y la Ética del Corte</a>
+    <span class="unit on">Unidad 4: Distribución, Derechos y Sostenibilidad</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Un documental que nadie ve no informa a nadie, y un proyecto que no puede emitirse por un problema de derechos es un proyecto que no existe. Esta unidad cubre lo que decide si el trabajo llega al público y si sigue existiendo dentro de diez años: distribución, derechos, financiación, impacto y preservación.</p>
+    <p style="margin-bottom:0">El eje es que <strong>estas decisiones se toman al principio aunque se ejecuten al final</strong>. Los derechos de una canción se negocian antes de montar con ella; la estrategia de estreno condiciona dónde puede verse la pieza; y el archivo se planifica cuando aún hay presupuesto. Dejarlo todo para después del corte final es la causa más frecuente de que un buen trabajo termine bloqueado, invisible o perdido.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab exam" data-t="exa">Examen Integrador</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Diseñar una estrategia de distribución coherente con el objetivo del proyecto y con su audiencia real.</li>
+      <li>Identificar y resolver los derechos implicados: música, archivo, imagen de personas y obras de terceros.</li>
+      <li>Leer las cláusulas críticas de un contrato de cesión o de financiación y detectar las que comprometen la independencia.</li>
+      <li>Planificar una campaña de impacto distinguiendo el trabajo periodístico del activismo.</li>
+      <li>Evaluar el resultado con indicadores definidos antes de publicar, incluido el coste por pieza.</li>
+      <li>Garantizar la preservación del proyecto y su accesibilidad futura, con archivo, formatos abiertos y plan de actualización.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Michael Rabiger, <em>Directing the Documentary</em> — capítulos de distribución y carrera de la obra</li>
+      <li>Center for Media &amp; Social Impact, <em>Documentary Filmmakers' Statement of Best Practices in Fair Use</em> (2005)</li>
+      <li>Geoffrey Robertson y Andrew Nicol, <em>Media Law</em> — derechos de autor y uso de material ajeno</li>
+      <li>Judith Aston, Sandra Gaudenzi y Mandy Rose (eds.), <em>i-Docs</em> — sostenibilidad de las obras interactivas</li>
+      <li>Jonathan Gray y Liliana Bounegru, <em>The Data Journalism Handbook</em> (2.ª ed., 2021) — publicación y datos abiertos</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Statement of Best Practices in Fair Use</h5>
+        <div class="def">Documento publicado en 2005 por documentalistas estadounidenses con el Center for Media &amp; Social Impact de la American University, que sistematiza cuándo el uso de material ajeno sin licencia es legítimo. Su adopción por aseguradoras cambió la práctica del sector.</div>
+        <p class="src">cmsimpact.org · American University</p></div>
+      <div class="term"><h5>Creative Commons</h5>
+        <div class="def">Sistema de licencias estandarizadas que permite a los autores autorizar usos concretos de su obra sin negociación individual. Es la vía habitual para publicar datos, transcripciones y materiales complementarios de un proyecto periodístico.</div>
+        <p class="src">creativecommons.org</p></div>
+      <div class="term"><h5>Festivales y estatuto de estreno</h5>
+        <div class="def">Los grandes festivales de documental condicionan la selección al estatuto de estreno de la obra —mundial, internacional o nacional—, de modo que publicar antes en abierto puede excluir un proyecto de circuitos relevantes.</div>
+        <p class="src">Reglamentos de festivales internacionales</p></div>
+      <div class="term"><h5>Preservación digital</h5>
+        <div class="def">Las obras interactivas dependen de tecnologías que caducan. La retirada de soportes y reproductores ha dejado inaccesibles numerosos proyectos, y las instituciones de archivo recomiendan conservar datos, versiones estáticas y documentación técnica.</div>
+        <p class="src">Prácticas de archivo y preservación digital</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad contiene el <strong>Examen Integrador</strong> de JRN-1005, que abarca las cuatro unidades. Se aprueba con un 75%, conforme a los requisitos de graduación del certificado. Es requisito haber completado las pruebas y entregas de las Unidades 1 a 3.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>La distribución se diseña</h3>
+    <p>La pregunta de dónde se verá el trabajo no se responde cuando está terminado: condiciona decisiones que se toman mucho antes. La duración, el formato de imagen, el idioma de los rótulos, la existencia de subtítulos, la resolución de entrega e incluso la estructura narrativa dependen de si la pieza irá a un festival, a una televisión, a una plataforma, a la web de un medio o a las tres cosas en un orden determinado.</p>
+    <p>Conviene por tanto escribir la estrategia en el documento maestro de la Unidad 1, junto al resto de decisiones de arquitectura, y revisarla al cerrar el montaje. Esa estrategia debe responder a tres preguntas: <strong>a quién</strong> queremos llegar, <strong>dónde está</strong> esa audiencia realmente y <strong>en qué orden</strong> conviene publicar para no cerrar puertas.</p>
+    <p>La tercera pregunta es la que más problemas causa. Las ventanas de distribución son excluyentes entre sí en el tiempo: los grandes festivales condicionan la selección al estatuto de estreno de la obra, de modo que publicar antes en abierto puede dejar fuera del circuito a un proyecto que lo necesitaba; algunas plataformas exigen exclusividad durante un período; y una televisión puede pedir una ventana previa que retrase meses la publicación en la web del medio. Ninguna de esas condiciones es abusiva por sí misma, y todas se negocian mejor antes de tener la obra terminada.</p>
+    <p>Hay además una decisión de fondo que conviene tomar de forma consciente: si el objetivo prioritario es el alcance o el prestigio. Son compatibles y no siempre coinciden, y confundirlos produce estrategias incoherentes, como retrasar un año la publicación de una investigación urgente para esperar la respuesta de un festival.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Escribe la secuencia de ventanas antes de terminar el montaje, con fechas y con lo que cada una exige. Una estrategia decidida después del corte final es una lista de oportunidades ya perdidas.</div>
+
+    <h3>Ventanas y circuitos</h3>
+    <p>Cada circuito tiene lógica propia, audiencia distinta y exigencias que conviene conocer antes de comprometerse. No hay una vía mejor: hay una vía coherente con el objetivo de cada proyecto.</p>
+    <p>Los <strong>festivales</strong> aportan validación profesional, prensa especializada y contacto con distribuidores y financiadores para el proyecto siguiente. A cambio exigen estatuto de estreno, plazos largos de respuesta y a veces cuotas de inscripción, y su audiencia directa es pequeña. Las <strong>plataformas</strong> aportan alcance y remuneración, con contrapartidas de exclusividad, pérdida de control sobre la presentación y opacidad en los datos de consumo. La <strong>televisión</strong> mantiene la mayor audiencia simultánea en muchos países y suele exigir adaptación de duración y formato. La <strong>web del medio</strong> ofrece control total, publicación inmediata y capacidad de vincular el documental con el resto de piezas del proyecto, pero no aporta remuneración por sí sola. Y la <strong>distribución comunitaria</strong> —proyecciones, centros educativos, organizaciones— alcanza a públicos específicos con enorme profundidad y ninguna métrica automática.</p>
+    <p>La combinación habitual en periodismo consiste en publicar la investigación escrita en el medio, llevar el documental a festivales durante una temporada y liberarlo después en abierto, manteniendo las piezas complementarias accesibles desde el primer día. Esa secuencia respeta la urgencia informativa sin renunciar al circuito profesional.</p>
+    <p>Conviene evaluar cada oferta con dos preguntas concretas: qué audiencia real aporta —no potencial— y qué renuncias exige en control, plazos y derechos. Una plataforma con gran alcance que impide publicar la pieza en la web del medio durante dos años puede ser peor opción que una emisión menor con libertad inmediata, según cuál sea el objetivo declarado.</p>
+    <div class="ej"><b>CRITERIO</b>Antes de firmar, escribe qué pierdes con esa ventana: qué no podrás hacer, durante cuánto tiempo y con qué material. Si la lista es más larga que lo que ganas, la oferta no es buena por muy prestigiosa que sea.</div>
+
+    <h3>Derechos: lo que puede bloquear una emisión</h3>
+    <p>Los derechos son la causa más frecuente de que un documental terminado no pueda publicarse. Y a diferencia de otros problemas, no admiten solución creativa: si la música no está licenciada, la secuencia no se emite.</p>
+    <p>Cuatro categorías concentran casi todos los casos. La <strong>música</strong>, que suele requerir dos autorizaciones distintas —la de la composición y la de la grabación concreta— y cuyo coste varía enormemente según el territorio y la duración de la licencia. El <strong>material de archivo</strong>, con tarifas por segundo y por ámbito de explotación, y con la complicación añadida de que un archivo puede contener a su vez obras de terceros. La <strong>imagen de las personas</strong>, que exige autorización y, en menores y categorías protegidas, criterios reforzados. Y las <strong>obras ajenas que aparecen en plano</strong>: un cuadro, una escultura, un fragmento de televisión encendida al fondo, que pueden requerir licencia según la jurisdicción.</p>
+    <p>Existen excepciones legales que permiten usar material ajeno sin licencia —cita, crítica, reportaje de actualidad, uso justo en algunos sistemas—, y su alcance varía mucho entre países. El documento de buenas prácticas publicado en 2005 por documentalistas estadounidenses fue relevante precisamente porque sistematizó cuándo esos usos son razonables, y su adopción por las aseguradoras que cubren la responsabilidad de las producciones cambió lo que en la práctica se podía emitir.</p>
+    <p>La regla operativa es sencilla: los derechos se resuelven antes de montar, no después. Montar una secuencia con una canción concreta y buscar después la licencia es el camino habitual hacia dos resultados malos: pagar un precio desmedido por falta de alternativa, o rehacer el montaje con prisa.</p>
+    <div class="ej"><b>REGLA</b>Ninguna pieza entra en el montaje sin su casilla de derechos resuelta: qué es, quién lo posee, qué licencia tenemos, para qué territorios y por cuánto tiempo. Lo que no tenga esas cinco respuestas no se monta.</div>
+
+    <h3>Contratos: qué se cede y por cuánto</h3>
+    <p>Un contrato de distribución o de coproducción se lee siempre por las mismas cláusulas, y conviene identificarlas antes de discutir el precio, porque son las que determinan qué podrá hacerse con la obra en los próximos años.</p>
+    <p>El <strong>alcance de la cesión</strong>: qué derechos se ceden —emisión, comunicación pública, distribución, adaptación— y cuáles se conservan. La <strong>exclusividad</strong>: si impide publicar en otros canales y durante cuánto tiempo. El <strong>territorio</strong>: mundial o limitado, y qué ocurre en los territorios no cubiertos. La <strong>duración</strong>: los contratos perpetuos existen y rara vez son necesarios. El <strong>control editorial</strong>: cualquier cláusula que conceda al financiador o al distribuidor aprobación sobre el contenido es incompatible con el trabajo periodístico y no se firma. Y la <strong>reversión</strong>: qué ocurre cuando el contrato termina y quién conserva los materiales.</p>
+    <p>Conviene además prestar atención a dos cláusulas que pasan desapercibidas. La primera es la que obliga a retirar la obra de otros canales, que puede afectar a piezas ya publicadas del proyecto transmedia. La segunda es la que atribuye al distribuidor la decisión sobre subtítulos, versiones y montajes alternativos, que puede terminar produciendo una versión distinta de la que el equipo verificó.</p>
+    <p>En financiación pública o filantrópica el criterio es el mismo: el dinero puede condicionar el tema, el calendario y el formato, y no puede condicionar las conclusiones. Un acuerdo de financiación debe declarar expresamente que el financiador no tiene control editorial ni derecho de revisión previa, y esa cláusula conviene pedirla por escrito aunque nadie la haya planteado.</p>
+    <div class="ej"><b>REGLA</b>Lee siempre seis cláusulas antes que el precio: alcance, exclusividad, territorio, duración, control editorial y reversión. Y una regla sin excepción: ninguna aprobación previa del contenido, venga de donde venga el dinero.</div>
+
+    <h3>Campañas de impacto</h3>
+    <p>Muchos documentales periodísticos se acompañan hoy de una campaña que busca que el trabajo produzca un efecto concreto: proyecciones dirigidas, materiales educativos, encuentros con responsables públicos, difusión coordinada con organizaciones. Bien hecho, multiplica el alcance del trabajo; mal hecho, convierte al medio en parte interesada.</p>
+    <p>La distinción operativa es clara aunque incómoda. Es <strong>legítimo</strong> facilitar que la información llegue a quien puede usarla, producir materiales que ayuden a comprenderla, organizar debates y responder a lo que se pregunte. Es <strong>problemático</strong> definir con una organización aliada qué debe cambiar, coordinar la publicación con una acción política, o aceptar financiación de quien tiene interés directo en el resultado de la campaña.</p>
+    <p>La consecuencia práctica es que la campaña se diseña después de cerrar el contenido, no durante. Cuando la organización que financia la difusión participa en las decisiones de qué se investiga, el trabajo deja de ser verificable como periodismo, por muy correctos que sean sus datos y por muy compartible que sea su causa.</p>
+    <p>Hay además una obligación de transparencia hacia la audiencia: si el proyecto se difunde con el apoyo de organizaciones, eso se declara, igual que se declara un conflicto de interés en la Unidad 4 de JRN-1004. Y hay una obligación hacia las personas retratadas: una campaña puede exponerlas mucho más que la emisión original, y ese aumento de exposición debe consultarse con ellas.</p>
+    <div class="ej"><b>CRITERIO</b>La campaña difunde lo que la investigación estableció; no decide qué se investiga ni qué se concluye. Si la organización aliada participó en esa decisión, el trabajo ya no es periodismo y hay que decirlo.</div>
+
+    <h3>Financiación y sus condiciones</h3>
+    <p>El documental periodístico rara vez se financia con una sola fuente. Lo habitual es combinar aportación del medio, ayudas públicas, fondos filantrópicos, coproducción internacional y, en algunos casos, preventa a una plataforma o televisión. Cada fuente trae condiciones y calendarios distintos, y su combinación es en sí misma una decisión editorial.</p>
+    <p>Conviene evaluar cada una con tres preguntas. <strong>Qué exige</strong>: informes, calendario, formato, participación en decisiones. <strong>Cuándo paga</strong>, porque un fondo que abona al entregar obliga a financiar todo el rodaje por otra vía. Y <strong>qué relación tiene con el asunto investigado</strong>, que es la pregunta decisiva: aceptar dinero de quien tiene interés en lo que se investiga es un conflicto que ninguna cláusula resuelve.</p>
+    <p>La financiación pública añade una exigencia de transparencia y a veces obligaciones de acceso abierto, que suelen ser compatibles con el interés periodístico. La filantrópica plantea la cuestión de la agenda: fundaciones que financian temas concretos orientan, sin proponérselo, qué se investiga en el sector. No es un argumento para rechazarla y sí para declararla y para no depender de una sola fuente.</p>
+    <p>Por último, conviene presupuestar dos partidas que casi nunca aparecen y que después bloquean el proyecto: los derechos y el mantenimiento. Un documental sin presupuesto de derechos es un documental que no podrá emitirse en algunos territorios, y un proyecto interactivo sin presupuesto de mantenimiento dejará de funcionar en pocos años.</p>
+    <div class="ej"><b>PREGUNTA DE CONTROL</b>¿Tiene este financiador algún interés en lo que vamos a investigar? Si la respuesta es sí, no se acepta, y si es dudosa, se declara en la pieza y se documenta la decisión.</div>
+
+    <h3>Evaluar el resultado</h3>
+    <p>La evaluación de un proyecto documental o transmedia repite el problema descrito en la Unidad 1: las métricas disponibles miden lo que es fácil de contar y no lo que el proyecto pretendía. Un documental con pocas visualizaciones que provoca una comparecencia parlamentaria ha cumplido su objetivo mejor que uno viral que no cambió nada.</p>
+    <p>Conviene por eso definir los indicadores antes de publicar, y hacerlo por objetivo. Para <strong>alcance</strong>, personas distintas que vieron al menos una pieza. Para <strong>profundidad</strong>, cuántas completaron la pieza principal y cuántas consumieron más de una. Para <strong>utilidad</strong>, preguntar directamente a la audiencia y a los profesionales del sector afectado. Para <strong>impacto</strong>, el registro documental de lo que ocurrió después. Y para <strong>sostenibilidad</strong>, el coste real por pieza frente al resultado obtenido, que es el indicador que permite diseñar mejor el proyecto siguiente.</p>
+    <p>El impacto exige la misma cautela causal de la Unidad 3 de JRN-1002: entre la publicación y una consecuencia intervienen muchos factores, y atribuirse el cambio es tan tentador como difícil de acreditar. La forma honesta es documental —qué se publicó, qué ocurrió después, quién lo citó y en qué documento consta— y deja al lector la inferencia.</p>
+    <p>Conviene también evaluar lo que no funcionó, y hacerlo por escrito. Qué pieza costó mucho y rindió poco, qué formato no encontró audiencia, qué decisión de calendario resultó equivocada. Esa memoria interna, que casi ningún equipo escribe, es lo que evita repetir los mismos errores en el proyecto siguiente.</p>
+    <div class="ej"><b>REGLA</b>Escribe la definición de éxito y la fecha de evaluación antes de publicar, e incluye el coste por pieza. Sin coste, la evaluación no sirve para decidir nada sobre el proyecto siguiente.</div>
+
+    <h3>Archivo y preservación</h3>
+    <p>Un proyecto periodístico es también un registro público, y su desaparición es una pérdida documental. Sin embargo, la preservación es lo último que se presupuesta y lo primero que se abandona cuando el equipo se disuelve.</p>
+    <p>El riesgo es mayor cuanto más tecnológica es la obra. Las piezas interactivas dependen de librerías, reproductores y servicios que caducan: la retirada de soportes ampliamente utilizados ha dejado inaccesibles numerosos proyectos que fueron premiados en su momento, y recuperarlos exige rehacerlos. El vídeo y el audio envejecen mejor, y aun así dependen de que alguien pague el alojamiento.</p>
+    <p>Un plan mínimo de preservación tiene cuatro elementos. Conservar los <strong>archivos maestros</strong> sin recomprimir, con copias en ubicaciones distintas. Publicar los <strong>datos y transcripciones</strong> en formatos abiertos, que sobreviven a cualquier tecnología de presentación. Producir una <strong>versión estática</strong> de las piezas interactivas —capturas, vídeo de recorrido, documento con el contenido— que conserve la información aunque la interactividad se pierda. Y documentar la <strong>arquitectura técnica</strong>, para que alguien pueda reconstruirla o al menos entender qué había.</p>
+    <p>Conviene además decidir quién es el responsable cuando el equipo se disperse y con qué presupuesto, y considerar el depósito en una institución de archivo. Las hemerotecas, filmotecas y bibliotecas universitarias aceptan con frecuencia proyectos periodísticos, y ese depósito es la única garantía real de que el trabajo siga existiendo cuando el medio cambie de propietario o desaparezca.</p>
+    <div class="ej"><b>REGLA</b>Publica los datos y las transcripciones en formato abierto el mismo día que la pieza. Es lo único que seguirá siendo legible cuando la tecnología de presentación deje de funcionar, y cuesta una tarde.</div>
+
+    <h3>Después de publicar</h3>
+    <p>La publicación no cierra el proyecto: abre una fase con obligaciones propias que conviene haber previsto, porque llegan todas a la vez y en los días de mayor cansancio del equipo.</p>
+    <p>La primera es la <strong>respuesta a impugnaciones</strong>. Si el trabajo afecta a intereses relevantes, habrá reclamaciones, y la defensa se apoya en la matriz documental, el registro de decisiones y el archivo de evidencias. Todo eso debe estar accesible y ordenado antes de publicar, no buscarse el día que llega el requerimiento.</p>
+    <p>La segunda es la <strong>protección de las personas</strong> que aparecen. El riesgo no se materializa en el estreno sino en las semanas siguientes, cuando el contenido circula en su entorno inmediato. Conviene avisar antes de la emisión a quienes puedan verse afectados, tener un canal de contacto y estar disponible, especialmente para fuentes y para personas en situación vulnerable.</p>
+    <p>La tercera es la <strong>corrección</strong>. Un documental corrige peor que un texto —el archivo emitido no se reescribe—, y por eso el procedimiento debe estar decidido: nota visible junto a la pieza en línea, versión corregida si el error es sustantivo, y constancia de qué se modificó y cuándo, con los criterios de la Unidad 2 de JRN-1004.</p>
+    <p>Y la cuarta es el <strong>seguimiento</strong>. Un asunto investigado evoluciona: hay resoluciones judiciales, cambios normativos, consecuencias. Actualizar la pieza o publicar un seguimiento no es un extra: es lo que distingue una investigación de un producto, y suele costar poco comparado con lo que ya se invirtió.</p>
+    <div class="ej"><b>CRITERIO</b>Fija antes de publicar quién responde a las impugnaciones, quién está disponible para las personas retratadas y en qué fecha se revisará la pieza. Las tres cosas llegan juntas y siempre en el peor momento.</div>
+
+    <h3>El proyecto después del proyecto</h3>
+    <p>El material de una investigación audiovisual tiene una vida útil mucho más larga que su estreno, y aprovecharla es una de las decisiones más rentables que puede tomar un equipo pequeño. Lo que se grabó, se transcribió y se verificó puede sostener piezas nuevas con un coste marginal muy bajo.</p>
+    <p>Hay cuatro reutilizaciones habituales y legítimas. Las <strong>piezas derivadas</strong>: cortes temáticos, versiones para otros formatos, material educativo. La <strong>publicación de fuentes</strong>: documentos, datos y transcripciones que otros periodistas o investigadores puedan usar, con las cautelas de protección de fuentes de la Unidad 4 de JRN-1003. Las <strong>actualizaciones</strong> cuando el asunto avanza. Y la <strong>metodología publicada</strong>, que convierte el proyecto en un recurso formativo y refuerza su credibilidad.</p>
+    <p>Todas ellas exigen haber previsto los derechos con alcance suficiente: si la licencia de la música cubre solo la emisión original, no cubrirá las piezas derivadas, y ese detalle bloquea con frecuencia lo que habría sido barato. Por eso conviene negociar desde el principio licencias que contemplen los usos previsibles del proyecto completo.</p>
+    <p>Y conviene cerrar con una evaluación honesta que alimente el trabajo siguiente: qué se aprendió del formato, qué costó más de lo previsto, qué se haría distinto. Ese documento, de dos páginas, es lo que convierte una producción aislada en una capacidad instalada del equipo, que es el resultado más valioso y el que nunca aparece en las métricas.</p>
+    <div class="ej"><b>REGLA FINAL</b>Negocia los derechos pensando en el proyecto completo y no en la primera emisión. Y escribe la evaluación interna aunque nadie la pida: es lo único que hace mejor al equipo siguiente, que casi siempre eres tú.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Reunión con una plataforma interesada en el documental. Ofrece alcance y remuneración, y pide exclusividad mundial por tres años, retirada de las piezas ya publicadas en la web del medio y aprobación de la versión final.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes rechazar la oferta sin explorarla ni aceptar control editorial. Cada pregunta debe separar lo negociable de lo que no lo es. Si la oferta mejora tras la negociación, tienes que poder valorarla.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">PLAN DE DISTRIBUCIÓN Y SOSTENIBILIDAD · OBLIGATORIO</span>
+      <p>Sobre el proyecto diseñado en las unidades anteriores, entrega: la estrategia de ventanas con fechas y con lo que exige cada una; el inventario de derechos con las cinco casillas por elemento —qué es, titular, licencia, territorio y duración—; el análisis de las seis cláusulas críticas de un contrato tipo, señalando cuáles no firmarías; el plan de campaña de impacto con su límite entre difusión y activismo; la definición de éxito con indicadores, fecha y coste por pieza; y el plan de preservación con archivos maestros, datos abiertos, versión estática y responsable.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Estrategia de ventanas coherente con el objetivo y con las exclusiones entre circuitos (20%) · Inventario de derechos completo, con territorios y duración (25%) · Identificación correcta de las cláusulas incompatibles con la independencia (20%) · Límite explícito entre difusión e intervención en la campaña (15%) · Plan de preservación con responsable y presupuesto (20%). Un plan que acepte aprobación previa del contenido por el distribuidor o el financiador no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="exa">
+    <h3>Examen Integrador · JRN-1005</h3>
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">ALCANCE Y CALIFICACIÓN</div>
+      <p>Este examen abarca las cuatro unidades del curso. Se aprueba con un <strong>75%</strong>. Consta de tres partes: opción múltiple (40%), diseño de proyecto (30%) y memorando de posproducción y publicación (30%).</p>
+      <p style="margin-bottom:0">La Parte A es interactiva y se califica sola. Las Partes B y C se entregan por escrito.</p>
+    </div>
+
+    <h3>Parte A · Opción múltiple (40%)</h3>
+    <p style="font-size:.88rem">Doce preguntas sobre las cuatro unidades. Cada una indica de qué unidad procede.</p>
+    <div class="score big" id="escore">RESPONDIDAS 0 / 12 · CORRECTAS 0 · CALIFICACIÓN —</div>
+    <div id="exam"></div>
+
+    <h3>Parte B · Diseño de proyecto (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · 800–1.000 PALABRAS</span>
+      <p>Se entrega el día del examen un expediente de investigación cerrado. El estudiante debe diseñar el proyecto: tesis en una frase, inventario de piezas con aportación específica y sin solapamientos, asignación de soportes justificada por capacidades, puntos de entrada y autonomía, y escaleta de la pieza audiovisual con las escenas imprescindibles marcadas.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS PARTE B</b>Inventario sin solapamientos y con aportación específica (25%) · Asignación de soportes justificada por capacidades (25%) · Autonomía y navegación resueltas (20%) · Escaleta con función narrativa y alternativa por escena (20%) · Coherencia entre la tesis y el conjunto de piezas (10%).</div>
+    </div>
+
+    <h3>Parte C · Memorando de posproducción y publicación (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · EXPEDIENTE CERRADO</span>
+      <p>Con el mismo expediente, y añadiendo un montaje descrito por escrito que contiene una unión problemática, un plano de archivo sin ficha completa, una respuesta condensada y una fuente en riesgo, el estudiante produce el memorando que permitiría publicar.</p>
+      <button class="reveal">Ver estructura y criterios</button>
+      <div class="model"><b>ESTRUCTURA EXIGIDA</b>1. Lista de afirmaciones de la pieza, incluidas las implícitas en las uniones, con su respaldo.<br>2. Decisión sobre la unión problemática y la respuesta condensada, con alternativa concreta.<br>3. Tratamiento del archivo: qué falta y qué se hace mientras falte.<br>4. Protección de la fuente y prueba de deducción aplicada al montaje.<br>5. Derechos: inventario y qué bloquea la emisión.<br>6. Plan de publicación, corrección y preservación.<br><br><b>CRITERIOS</b>Lista completa de afirmaciones, incluidas las implícitas (25%) · Decisiones de montaje justificadas con alternativa (20%) · Tratamiento correcto del archivo (15%) · Protección real de la fuente (20%) · Derechos y preservación resueltos (20%).</div>
+    </div>
+
+    <div class="box">
+      <div class="lbl">REQUISITOS DE GRADUACIÓN DEL CERTIFICADO</div>
+      <p style="margin-bottom:0">Estudiar las 4 unidades de las 6 materias · Aprobar la evaluación de cada módulo · Aprobar el examen integrador de cada materia con un mínimo de 75% · Acreditar los 19 créditos universitarios para desbloquear el diploma.</p>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 4</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1005-u3.html">← Unidad 3: Montaje, Sonido y la Ética del Corte</a> &nbsp;·&nbsp; <a href="jrn1005-u1.html">Volver al inicio del curso</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Ventana de Distribución",d:"Período y circuito en que una obra puede verse. Las ventanas son excluyentes en el tiempo y sus condiciones se negocian antes de terminar la obra.",s:"Práctica de distribución audiovisual"},
+ {t:"Estatuto de Estreno",d:"Condición de la obra como estreno mundial, internacional o nacional. Los grandes festivales condicionan a él la selección, de modo que publicar antes puede excluir el proyecto.",s:"Reglamentos de festivales internacionales"},
+ {t:"Licencia de Sincronización",d:"Autorización para usar una obra musical junto a imagen. Suele requerir dos permisos distintos: el de la composición y el de la grabación concreta.",s:"Derecho de autor · práctica de producción"},
+ {t:"Uso Justo",d:"Excepción que permite emplear material ajeno sin licencia en supuestos como cita, crítica o reportaje. Su alcance varía mucho entre jurisdicciones.",s:"Statement of Best Practices in Fair Use, 2005"},
+ {t:"Cláusula de Exclusividad",d:"Compromiso de no publicar la obra en otros canales durante un plazo. Puede afectar a piezas ya publicadas del proyecto transmedia.",s:"Práctica contractual audiovisual"},
+ {t:"Reversión de Derechos",d:"Recuperación de los derechos cedidos al terminar el contrato. Debe pactarse expresamente, junto con la devolución de materiales.",s:"Práctica contractual audiovisual"},
+ {t:"Control Editorial",d:"Capacidad de decidir sobre el contenido. Ninguna cláusula puede concederlo a un financiador o distribuidor en un trabajo periodístico.",s:"FIP, Carta Ética Global · JRN-1004 Unidad 4"},
+ {t:"Campaña de Impacto",d:"Conjunto de acciones para que el trabajo llegue a quien puede usarlo. Difunde lo que la investigación estableció; no decide qué se investiga.",s:"Práctica documental · formulación docente"},
+ {t:"Coste por Pieza",d:"Recursos invertidos en cada elemento del proyecto frente al resultado obtenido. Es el indicador que permite diseñar mejor el proyecto siguiente.",s:"Formulación docente · gestión de producción"},
+ {t:"Versión Estática",d:"Registro fijo de una pieza interactiva —capturas, vídeo de recorrido, documento de contenido— que conserva la información cuando la interactividad deja de funcionar.",s:"Prácticas de preservación digital"},
+ {t:"Archivo Maestro",d:"Copia sin recomprimir del material final, conservada en ubicaciones distintas. Es la base de cualquier reutilización o restauración futura.",s:"Prácticas de archivo audiovisual"},
+ {t:"Pieza Derivada",d:"Contenido nuevo producido a partir del material ya verificado. Su viabilidad depende de que las licencias contemplen usos más allá de la primera emisión.",s:"Práctica de producción · derechos de autor"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · EYES ON THE PRIZE · 1987-2005",t:"La serie que desapareció por los derechos",
+  d:"<em>Eyes on the Prize</em>, serie documental sobre el movimiento por los derechos civiles en Estados Unidos emitida a partir de 1987, se convirtió en una obra de referencia y en material educativo habitual. Las licencias de buena parte de su material de archivo y de su música se habían negociado por un plazo limitado, y al expirar la serie no pudo reeditarse ni emitirse legalmente, quedando fuera de circulación durante años. Su recuperación exigió una campaña de financiación específica para volver a licenciar los materiales, y la obra pudo reeditarse a mediados de la década de 2000.",
+  ej:"El problema no fue de calidad ni de vigencia: fue de duración de licencias. Una obra considerada esencial resultó inaccesible porque los derechos se negociaron pensando en la primera emisión.",
+  p:["¿Qué debería haberse negociado de otro modo?","¿Cómo afecta esto a un proyecto con presupuesto pequeño?","¿Qué alternativas existen cuando no se puede pagar una licencia amplia?"],
+  m:"Debería haberse negociado la duración y el ámbito pensando en la vida útil real de la obra, incluyendo usos educativos y reediciones, aunque eso encareciera la producción inicial; el coste de renegociar años después, sin la urgencia comercial del estreno, resulta mucho mayor. Para un proyecto pequeño la consecuencia práctica es priorizar material con licencia amplia o abierta desde el diseño, y reservar el archivo caro para lo que sea imprescindible. Las alternativas son usar fondos con licencias abiertas, negociar licencias por tramos con opción de ampliación, apoyarse en excepciones legales cuando el uso lo permita y documentarlo, o sustituir el material por otro equivalente disponible.",
+  k:"Las licencias se negocian pensando en la vida útil de la obra y no en su estreno. Una licencia corta convierte un trabajo esencial en inaccesible."},
+
+ {tag:"CASO 2 · CENTER FOR MEDIA & SOCIAL IMPACT · 2005",t:"El documento que cambió lo que se podía emitir",
+  d:"En 2005, un grupo de asociaciones de documentalistas estadounidenses publicó, con el Center for Media &amp; Social Impact de la American University, el <em>Documentary Filmmakers' Statement of Best Practices in Fair Use</em>. El texto sistematizaba en qué situaciones el uso de material ajeno sin licencia resulta razonable dentro del uso justo: material que ilustra un argumento, capturado incidentalmente, o utilizado en crítica y comentario. Su efecto principal fue práctico: las aseguradoras que cubren la responsabilidad de las producciones empezaron a aceptar esos usos, lo que permitió emitir obras que antes quedaban bloqueadas.",
+  ej:"La barrera no era solo legal sino de seguro: sin cobertura, ninguna cadena emite. Que un estándar profesional modifique la práctica aseguradora muestra cómo se cambian las condiciones reales del oficio.",
+  p:["¿Por qué un documento sin fuerza legal cambió la práctica?","¿Se puede aplicar fuera de su jurisdicción?","¿Qué debe documentar quien invoca una excepción?"],
+  m:"Cambió la práctica porque tradujo un concepto jurídico indeterminado en criterios reconocibles por el sector, y porque los actores que realmente bloqueaban la emisión —aseguradoras y departamentos legales— pudieron apoyarse en un consenso profesional documentado. Fuera de esa jurisdicción no se aplica directamente, ya que las excepciones al derecho de autor varían mucho entre países, y conviene comprobar el régimen local de cita, crítica y reportaje antes de asumir nada. Quien invoca una excepción debe documentar por escrito qué material usa, con qué finalidad, en qué extensión y por qué esa extensión es la mínima necesaria, porque esa documentación es la defensa si el titular reclama.",
+  k:"Las excepciones al derecho de autor existen y varían por país. Invocarlas exige documentar finalidad y extensión, no confiar en que nadie reclame."},
+
+ {tag:"CASO 3 · BLACKFISH · 2013",t:"Impacto medible y sus límites",
+  d:"<em>Blackfish</em>, dirigida por Gabriela Cowperthwaite y estrenada en 2013, aborda el mantenimiento de orcas en cautividad a partir de la muerte de una entrenadora en un parque temático estadounidense. Tras su difusión televisiva y en plataformas, la empresa señalada registró caídas de asistencia e ingresos, varios artistas cancelaron actuaciones, se aprobaron iniciativas legislativas en California relacionadas con el asunto y la compañía anunció el fin de su programa de cría en cautividad. La empresa cuestionó públicamente la exactitud del documental.",
+  ej:"El caso se cita como ejemplo de impacto documental medible, y también ilustra la dificultad de atribuir causalidad: entre la emisión y las decisiones empresariales intervinieron campañas, cobertura periodística y presión regulatoria.",
+  p:["¿Cómo se documenta el impacto sin exagerar la atribución?","¿Qué obligaciones surgen cuando el señalado responde?","¿Dónde está el límite entre documental e intervención?"],
+  m:"Se documenta registrando la secuencia de hechos —qué se publicó, qué ocurrió después, quién lo citó y en qué documento consta— sin afirmar la causalidad, exactamente con el criterio de la Unidad 3 de JRN-1002; el registro es más sólido y menos impugnable que la reclamación de autoría. Cuando el señalado responde cuestionando la exactitud, la obligación es examinar sus objeciones una por una, corregir lo que resulte erróneo con visibilidad y publicar la réplica, porque la solidez posterior depende de cómo se gestione esa fase. El límite entre documental e intervención está en quién decide el contenido: difundir para que la información llegue es legítimo; coordinar la publicación con una acción organizada convierte al medio en parte.",
+  k:"El impacto se registra documentalmente y no se atribuye. Y cuando el señalado responde, la gestión de esa respuesta decide la solidez del trabajo."},
+
+ {tag:"CASO 4 · FIN DE UNA TECNOLOGÍA · 2020",t:"Las obras interactivas que dejaron de funcionar",
+  d:"Numerosos documentales interactivos y proyectos periodísticos publicados entre 2005 y 2015 se construyeron sobre tecnologías de reproducción que sus fabricantes retiraron posteriormente; el caso más extendido fue el fin del soporte de un reproductor ampliamente usado, anunciado con años de antelación y efectivo a finales de 2020. Obras premiadas en festivales y citadas en la bibliografía académica quedaron inaccesibles de un día para otro, y su recuperación exigió reprogramarlas o conservar solo registros en vídeo de su funcionamiento.",
+  ej:"La caducidad estaba anunciada y aun así sorprendió a la mayoría, porque ningún proyecto tenía asignado presupuesto ni responsable para el mantenimiento tras el estreno.",
+  p:["¿Qué debe conservarse para que una obra sobreviva?","¿Quién es responsable del mantenimiento?","¿Qué se hace con una obra ya inaccesible?"],
+  m:"Debe conservarse lo que no depende de la tecnología de presentación: los datos y las transcripciones en formatos abiertos, los archivos maestros sin recomprimir, una versión estática que registre el contenido y el recorrido, y la documentación técnica que permita reconstruir la arquitectura. La responsabilidad debe estar asignada por escrito desde el documento maestro, con presupuesto y con una alternativa cuando el equipo se disuelva, que suele ser el depósito en una institución de archivo. Con una obra ya inaccesible, lo razonable es publicar los datos y una versión estática, dejar constancia visible de qué se perdió y por qué, y valorar la reprogramación solo si el contenido lo justifica.",
+  k:"Toda tecnología de presentación caduca. Lo que sobrevive son los datos, los maestros y una versión estática, y todo eso cuesta poco si se planifica."},
+
+ {tag:"CASO 5 · FESTIVALES Y ESTRENOS",t:"La ventana que se cierra al publicar",
+  d:"Los principales festivales internacionales de documental condicionan la selección de una obra a su estatuto de estreno: exigen que no se haya exhibido públicamente antes, o solo en un ámbito geográfico determinado, y algunos consideran que la publicación en línea equivale a una exhibición pública. Esa condición, común en los reglamentos, obliga a los equipos periodísticos a decidir entre publicar cuando la información es pertinente o retener la obra durante meses para preservar su elegibilidad.",
+  ej:"El conflicto es real y no siempre se percibe a tiempo: la lógica de la actualidad y la del circuito festivalero funcionan con calendarios incompatibles.",
+  p:["¿Cómo se resuelve el conflicto entre urgencia y circuito?","¿Qué aporta realmente un festival a un proyecto periodístico?","¿Qué estrategia mixta funciona?"],
+  m:"Se resuelve decidiendo desde el principio cuál es el objetivo prioritario y aceptando el coste de esa elección: si la información es urgente, se publica y se renuncia a los circuitos que exigen estreno; si el proyecto puede esperar, se planifica el calendario en torno a los plazos del festival. Un festival aporta validación profesional, prensa especializada, contactos para financiar el proyecto siguiente y acceso a públicos que no llegan por otras vías, pero su audiencia directa es pequeña, de modo que no sustituye a la publicación. La estrategia mixta más habitual publica la investigación escrita y las piezas complementarias de inmediato, mantiene el documental para el circuito y lo libera en abierto después.",
+  k:"Publicar y competir en festivales son objetivos con calendarios incompatibles. Elegir a tiempo permite diseñar una estrategia mixta; improvisar hace perder ambos."},
+
+ {tag:"CASO 6 · FINANCIACIÓN E INDEPENDENCIA",t:"El dinero que no puede opinar",
+  d:"La financiación del documental periodístico combina habitualmente fondos públicos, filantropía, coproducción y preventa. Los códigos profesionales internacionales incluyen el rechazo a la injerencia de intereses ajenos entre las obligaciones del periodista, y la práctica establecida en el sector exige que los acuerdos de financiación declaren expresamente que el financiador no dispone de control editorial ni de derecho de revisión previa. La cuestión más discutida no es la injerencia directa, poco frecuente, sino el efecto de orientación: qué temas se investigan depende en parte de qué temas hay fondos disponibles para investigar.",
+  ej:"La influencia relevante rara vez es una llamada pidiendo cambios. Es la convocatoria que financia unos temas y no otros, y que decide sin proponérselo qué se investiga en todo un sector.",
+  p:["¿Qué cláusula debe figurar siempre?","¿Cómo se gestiona el efecto de orientación?","¿Qué se declara al público?"],
+  m:"Debe figurar siempre una cláusula que establezca que el financiador no tiene control editorial ni derecho de revisión previa del contenido, y conviene pedirla por escrito aunque nadie la haya planteado, porque su ausencia se interpreta después en el peor momento. El efecto de orientación se gestiona diversificando fuentes, no dependiendo de un único financiador y manteniendo una parte del presupuesto propio para temas que no encajan en ninguna convocatoria. Al público se le declara quién financió el proyecto, en la propia pieza y en su ficha, con la misma lógica de transparencia que exige la Unidad 4 de JRN-1004 para los conflictos de interés del medio.",
+  k:"La independencia se protege con una cláusula escrita y con diversificación de fuentes. Y se declara siempre quién puso el dinero."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La exclusividad que borra el proyecto",
+  d:"Una plataforma ofrece una cantidad relevante a cambio de exclusividad mundial de tres años y de retirar las piezas ya publicadas en la web del medio.",
+  r:"Productora · Directora · Editora jefa",
+  ej:"<span class='who'>PRODUCTORA:</span> Es el triple de lo que teníamos previsto ingresar.<br><span class='who'>DIRECTORA:</span> Y nos obliga a despublicar la investigación.<br><span class='who'>EDITORA:</span> Eso no se toca. ¿Se puede acotar la exclusividad al documental?<br><span class='who'>PRODUCTORA:</span> Se puede plantear.",
+  m:"La exclusividad es negociable y no todas sus partes tienen el mismo peso: limitarla al documental, reducir el plazo, excluir el territorio propio o preservar las piezas ya publicadas son ajustes habituales. Lo que no es negociable es retirar información ya publicada, porque afecta al registro público y a la relación con la audiencia, y porque las piezas complementarias son parte de la investigación y no material promocional. Conviene calcular además qué se pierde en términos no económicos: enlaces rotos, imposibilidad de citar el propio trabajo y ruptura de la arquitectura transmedia diseñada en la Unidad 1.",
+  c:"Separar en la oferta lo negociable de lo que compromete el trabajo ya publicado."},
+
+ {tag:"ESCENARIO 2",t:"La canción que no se puede licenciar",
+  d:"El montaje está cerrado con una canción concreta. Al pedir la licencia, el precio para todos los territorios multiplica por diez el presupuesto disponible.",
+  r:"Productora · Montadora · Directora",
+  ej:"<span class='who'>MONTADORA:</span> La secuencia está construida sobre esa canción.<br><span class='who'>PRODUCTORA:</span> No hay presupuesto ni de lejos.<br><span class='who'>DIRECTORA:</span> ¿Licencia limitada por territorio y plazo?<br><span class='who'>PRODUCTORA:</span> Eso baja mucho, pero bloquea la distribución internacional.",
+  m:"Este es el resultado previsible de montar antes de resolver derechos, y las salidas disponibles ya son todas peores que haberlo hecho al revés: licencia acotada por territorio y plazo, que limita la distribución; música alternativa con licencia abierta, que obliga a remontar la secuencia; o composición original, que cuesta tiempo y dinero pero resuelve el problema de forma definitiva y permite las piezas derivadas. La decisión debe tomarse valorando la vida útil prevista de la obra, no solo el estreno. Y la lección operativa es de procedimiento: la casilla de derechos se rellena antes de montar, con los cinco datos por elemento.",
+  c:"Elegir entre tres malas opciones con criterio de vida útil, y extraer la regla para la próxima vez."},
+
+ {tag:"ESCENARIO 3",t:"La organización que quiere codecidir",
+  d:"Una organización ofrece financiar la campaña de difusión y propone participar en las decisiones sobre qué aspectos del asunto se destacan.",
+  r:"Directora · Responsable de la organización · Editora jefa",
+  ej:"<span class='who'>ORGANIZACIÓN:</span> Podemos ayudaros a enfocar lo que más moviliza.<br><span class='who'>DIRECTORA:</span> El enfoque lo decide la investigación.<br><span class='who'>ORGANIZACIÓN:</span> Solo queremos aportar experiencia.<br><span class='who'>EDITORA:</span> Bienvenida en la difusión; no en el contenido.",
+  m:"La frontera es la decisión sobre el contenido: una organización puede aportar difusión, contactos, contexto sectorial y capacidad de convocatoria, y no puede participar en qué se investiga, qué se destaca ni qué se concluye. Aceptar esa participación convierte al medio en parte interesada y hace impugnable todo el trabajo, incluidos los datos correctos. La salida práctica es acordar por escrito el ámbito de la colaboración, declararla públicamente en la pieza y en su ficha, y mantener separadas las decisiones editoriales de las de difusión, con responsables distintos.",
+  c:"Aceptar una colaboración útil delimitando por escrito hasta dónde llega."},
+
+ {tag:"ESCENARIO 4",t:"El festival y la urgencia",
+  d:"El documental podría optar a un festival relevante dentro de siete meses, pero la investigación es de actualidad y el asunto está en debate público ahora.",
+  r:"Directora · Productora · Editora jefa",
+  ej:"<span class='who'>PRODUCTORA:</span> Si publicamos, perdemos la elegibilidad.<br><span class='who'>EDITORA:</span> ¿Y si esperamos siete meses?<br><span class='who'>DIRECTORA:</span> La votación es en octubre. Después no sirve.<br><span class='who'>EDITORA:</span> Entonces publicamos y renunciamos al festival.",
+  m:"El conflicto es real y se resuelve por la jerarquía de objetivos: cuando la información es pertinente para una decisión pública próxima, retenerla para preservar la elegibilidad en un circuito profesional invierte la prioridad del periodismo. La estrategia mixta permite salvar parte del valor: publicar la investigación escrita y las piezas complementarias de inmediato, y valorar si algún circuito admite obras ya difundidas o si existen secciones específicas para trabajos periodísticos. Y conviene registrar la decisión y sus motivos, porque es el tipo de elección que después se cuestiona internamente cuando el festival premia a otro proyecto.",
+  c:"Ordenar objetivos en conflicto por prioridad periodística, sin fingir que no hay pérdida."},
+
+ {tag:"ESCENARIO 5",t:"Dos años después, nada funciona",
+  d:"La parte interactiva del proyecto premiado ha dejado de cargar y nadie tiene asignado el mantenimiento ni presupuesto para rehacerla.",
+  r:"Editora · Desarrollador · Productora",
+  ej:"<span class='who'>DESARROLLADOR:</span> Depende de un reproductor que ya no existe.<br><span class='who'>EDITORA:</span> ¿Qué conservamos?<br><span class='who'>DESARROLLADOR:</span> Los datos sí, el recorrido no.<br><span class='who'>PRODUCTORA:</span> Publicamos datos y una versión estática, y lo explicamos.",
+  m:"Con la obra ya inaccesible, la respuesta razonable es preservar lo que sobrevive —datos y transcripciones en formato abierto, archivos maestros— y publicar una versión estática que registre el contenido y el recorrido, dejando constancia visible de qué dejó de funcionar y por qué. Un proyecto roto sin explicación daña más que uno reducido con nota. La reprogramación solo se justifica si el contenido conserva valor y hay presupuesto, y en ese caso conviene rehacerlo con menos dependencias externas. Y la lección se traslada al documento maestro del proyecto siguiente: responsable, presupuesto y fecha de revisión del mantenimiento.",
+  c:"Rescatar lo salvable y convertir un fallo previsible en una regla para el próximo proyecto."},
+
+ {tag:"ESCENARIO 6",t:"La reutilización bloqueada",
+  d:"Un centro educativo pide usar el documental en sus clases y el equipo quiere producir una versión corta. La licencia de archivo cubre solo la primera emisión.",
+  r:"Productora · Documentalista · Directora",
+  ej:"<span class='who'>DOCUMENTALISTA:</span> El archivo está licenciado solo para la emisión original.<br><span class='who'>DIRECTORA:</span> ¿Cuánto costaría ampliar?<br><span class='who'>DOCUMENTALISTA:</span> Menos que entonces, si negociamos los dos usos juntos.<br><span class='who'>PRODUCTORA:</span> Pues los negociamos juntos.",
+  m:"La reutilización educativa y las piezas derivadas son las formas más rentables de aprovechar un trabajo ya verificado, y su viabilidad depende de licencias que contemplen usos posteriores. Cuando la licencia original no los cubre, conviene negociar en bloque todos los usos previsibles, que suele ser más barato que hacerlo por separado, y valorar sustituir el material más caro en la versión derivada. La regla que se extrae para el futuro es negociar desde el principio pensando en el proyecto completo —emisión, piezas derivadas, uso educativo y archivo— porque el coste marginal en ese momento es pequeño y después es prohibitivo.",
+  c:"Convertir una petición externa en la ocasión de resolver los derechos para todos los usos futuros."}
+];
+
+const IV=[
+ {q:"¿Qué derechos exactamente les cederíamos y cuáles conservamos nosotros?",
+  m:"Fija el alcance de la cesión antes de discutir la cifra, que es donde suele concentrarse la conversación."},
+ {q:"¿La exclusividad afecta solo al documental o también a las piezas ya publicadas?",
+  m:"Detecta la cláusula que obligaría a despublicar información, que no es negociable."},
+ {q:"¿Qué plazo y qué territorios cubre la exclusividad, y qué ocurre al terminar?",
+  m:"Plazo, territorio y reversión determinan qué podrá hacerse con la obra en los próximos años."},
+ {q:"¿Qué significa exactamente «aprobación de la versión final» en su contrato?",
+  m:"Distingue entre control técnico de entrega y control editorial, que es inaceptable."},
+ {q:"¿Nos facilitarían datos de consumo desagregados o solo un informe agregado?",
+  m:"La opacidad de datos condiciona la evaluación del proyecto y conviene pactarla por escrito."},
+ {q:"¿Podemos mantener accesibles los datos y las transcripciones en abierto?",
+  m:"Preserva la reproducibilidad y la vida futura del proyecto con independencia del contrato."},
+ {q:"¿Admiten una ventana previa para publicar en nuestro medio antes del estreno en su plataforma?",
+  m:"Explora una estrategia mixta que compatibilice urgencia informativa y alcance."},
+ {q:"Si no llegamos a acuerdo en el control editorial, ¿el resto de la oferta se mantiene?",
+  m:"Cierra separando lo innegociable del conjunto y permite valorar la oferta realista."}
+];
+
+const AUDIT=[
+ ["v","La serie <em>Eyes on the Prize</em>, emitida a partir de 1987, quedó fuera de circulación durante años al expirar las licencias de parte de su material de archivo y de su música; su reedición requirió una campaña específica de financiación para volver a licenciar los materiales.","Documentación pública sobre la serie y su reedición. Verificado."],
+ ["v","En 2005, asociaciones de documentalistas estadounidenses publicaron con el Center for Media &amp; Social Impact de la American University el <em>Documentary Filmmakers' Statement of Best Practices in Fair Use</em>, cuya adopción por las aseguradoras modificó la práctica del sector.","cmsimpact.org · American University. Verificado."],
+ ["v","Tras la difusión de <em>Blackfish</em> en 2013, la empresa señalada registró caídas de asistencia e ingresos, se aprobaron iniciativas legislativas en California relacionadas con el asunto y la compañía anunció el fin de su programa de cría en cautividad; la empresa cuestionó públicamente la exactitud del documental.","Cobertura contemporánea, información financiera pública y comunicados de la empresa. Verificado."],
+ ["v","La retirada del soporte de un reproductor ampliamente utilizado, efectiva a finales de 2020, dejó inaccesibles numerosos documentales interactivos y proyectos periodísticos publicados en la década anterior.","Anuncios del fabricante y documentación del sector. Verificado."],
+ ["v","Los principales festivales internacionales de documental condicionan la selección al estatuto de estreno de la obra, y algunos consideran la publicación en línea como exhibición pública previa.","Reglamentos publicados de festivales internacionales. Verificado."],
+ ["v","Los códigos profesionales internacionales incluyen el rechazo a la injerencia de intereses ajenos a la profesión entre las obligaciones del periodista.","FIP, Carta Ética Global del Periodismo, 2019. Verificado."],
+ ["b","Las ventanas de distribución son excluyentes en el tiempo y sus condiciones deben negociarse antes de terminar la obra.","Práctica de distribución audiovisual."],
+ ["b","El uso de música suele requerir dos autorizaciones distintas: la de la composición y la de la grabación concreta.","Derecho de autor · práctica de producción."],
+ ["b","Los derechos deben resolverse antes de montar: montar con un material y licenciarlo después conduce a pagar de más o a rehacer el montaje.","Práctica de producción establecida."],
+ ["b","Ninguna cláusula puede conceder a un financiador o distribuidor aprobación previa del contenido en un trabajo periodístico.","FIP · JRN-1004 Unidad 4."],
+ ["b","Una campaña de impacto difunde lo que la investigación estableció; si la organización aliada participa en decidir qué se investiga, el trabajo deja de ser periodismo.","Formulación docente · práctica documental."],
+ ["b","La preservación exige archivos maestros sin recomprimir, datos y transcripciones en formatos abiertos, versión estática y documentación técnica.","Prácticas de preservación digital."],
+ ["b","La viabilidad de piezas derivadas y de usos educativos depende de que las licencias contemplen usos posteriores a la primera emisión.","Derecho de autor · práctica de producción."],
+ ["p","La descripción del efecto de orientación de la financiación filantrópica sobre qué temas se investigan se formula a partir de la discusión profesional del sector; no se ha realizado para esta unidad un análisis cuantitativo de convocatorias y temas financiados.","Redactado sin atribuir magnitudes a un estudio concreto."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La estrategia de distribución debe decidirse:",
+ o:["Cuando la obra está terminada y se conoce su duración final","Al diseñar el proyecto, porque condiciona duración, formato, subtítulos y calendario","Después del primer pase a festivales","Cuando aparezca una oferta concreta"],c:1,
+ w:["Para entonces varias ventanas ya se han cerrado por decisiones tomadas sin saberlo.",
+    "",
+    "El circuito de festivales es una de las ventanas, no el punto de partida.",
+    "Esperar una oferta deja la estrategia en manos de quien la haga."],
+ e:"Las ventanas son excluyentes en el tiempo y sus condiciones se negocian mejor antes de tener la obra terminada."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El estatuto de estreno importa porque:",
+ o:["Determina el precio de venta de la obra","Los grandes festivales condicionan a él la selección, y publicar antes puede excluir el proyecto","Fija la fecha de inicio de los derechos","Establece el orden de los créditos"],c:1,
+ w:["El precio depende de otros factores, entre ellos el alcance y la exclusividad.",
+    "",
+    "Los derechos rigen desde la firma del contrato, no desde el estreno.",
+    "Los créditos son una cuestión contractual distinta."],
+ e:"Algunos reglamentos consideran la publicación en línea como exhibición pública previa, de modo que la decisión afecta también a la web del medio."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Usar una canción en un documental suele requerir:",
+ o:["Una única autorización del intérprete","Dos autorizaciones: la de la composición y la de la grabación concreta","Solo el pago de derechos de emisión","Autorización únicamente si la canción es reconocible"],c:1,
+ w:["El intérprete es uno de los titulares implicados, y no siempre el que autoriza la composición.",
+    "",
+    "Los derechos de emisión son un elemento adicional y distinto.",
+    "La reconocibilidad no determina la existencia de derechos."],
+ e:"Y el coste varía enormemente según el territorio y la duración de la licencia, por lo que la casilla se resuelve antes de montar."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"En un contrato de distribución, la cláusula que nunca debe firmarse en un trabajo periodístico es:",
+ o:["La exclusividad temporal","La aprobación previa del contenido por el distribuidor o el financiador","La limitación por territorios","La cesión de derechos de subtitulado"],c:1,
+ w:["La exclusividad es negociable en plazo y alcance.",
+    "",
+    "La limitación territorial es habitual y no afecta al contenido.",
+    "El subtitulado se negocia y conviene conservar control de calidad, sin ser innegociable."],
+ e:"Ninguna aprobación previa del contenido, venga de donde venga el dinero. Es el límite que separa el trabajo periodístico del encargo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una campaña de impacto es problemática cuando:",
+ o:["Organiza proyecciones con públicos específicos","La organización aliada participa en decidir qué se investiga o qué se concluye","Produce materiales educativos","Coincide con un debate público en curso"],c:1,
+ w:["Facilitar que la información llegue a quien puede usarla es legítimo y deseable.",
+    "",
+    "Los materiales educativos son difusión, no intervención en el contenido.",
+    "La pertinencia temporal es un mérito periodístico, no un problema."],
+ e:"La campaña difunde lo que la investigación estableció. Si participó en esa decisión, el trabajo deja de ser verificable como periodismo."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La versión estática de una pieza interactiva sirve para:",
+ o:["Reducir el coste de alojamiento","Conservar el contenido y el recorrido cuando la tecnología de presentación deje de funcionar","Facilitar la traducción a otros idiomas","Mejorar el posicionamiento en buscadores"],c:1,
+ w:["El ahorro es un efecto secundario y menor.",
+    "",
+    "La traducción es una tarea distinta.",
+    "La indexación mejora con transcripciones y datos, que son otra medida."],
+ e:"Toda tecnología de presentación caduca. Lo que sobrevive son los datos, los archivos maestros y una versión estática del recorrido."},
+
+/* ---------- BLOQUE B · DECISIONES ---------- */
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"Una plataforma ofrece una cantidad relevante a cambio de exclusividad mundial de tres años y de retirar las piezas ya publicadas en la web del medio.",
+ q:"¿Qué es lo innegociable?",
+ o:["El plazo de tres años","La retirada de información ya publicada","La exclusividad mundial","La cantidad ofrecida"],c:1,
+ w:["El plazo es negociable y suele acortarse.",
+    "",
+    "El alcance territorial admite excepciones, empezando por el mercado propio.",
+    "El precio es precisamente lo negociable por definición."],
+ e:"Despublicar afecta al registro público y a la relación con la audiencia, y rompe la arquitectura transmedia diseñada al inicio."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"El montaje está cerrado sobre una canción cuya licencia mundial multiplica por diez el presupuesto.",
+ q:"¿Qué opciones quedan?",
+ o:["Emitir igualmente y esperar que no reclamen","Licencia acotada por territorio y plazo, música alternativa con licencia abierta, o composición original","Alegar uso justo por tratarse de un documental","Reducir la duración del fragmento a menos de treinta segundos"],c:1,
+ w:["Emitir sin licencia expone a una reclamación que bloquea la distribución y puede impedir el seguro.",
+    "",
+    "El uso justo no cubre el empleo de música como acompañamiento emocional, y su alcance varía por país.",
+    "No existe un umbral de duración que exima automáticamente de licencia."],
+ e:"Las tres salidas son peores que haber resuelto la casilla de derechos antes de montar, que es la lección operativa del caso."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"Una organización ofrece financiar la difusión y participar en decidir qué aspectos se destacan.",
+ q:"¿Qué corresponde?",
+ o:["Aceptar: aporta experiencia sectorial","Aceptar la colaboración en difusión, delimitarla por escrito y excluirla de las decisiones de contenido","Rechazar toda colaboración externa","Aceptar sin declararlo, para no condicionar al público"],c:1,
+ w:["La experiencia sectorial se puede aprovechar como fuente, no como codecisor editorial.",
+    "",
+    "Rechazar toda colaboración renuncia a difusión útil sin ganancia ética.",
+    "No declarar la colaboración añade un problema de transparencia al de independencia."],
+ e:"La frontera es la decisión sobre el contenido, y la colaboración se declara públicamente en la pieza y en su ficha."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"La investigación es pertinente para una votación que se celebra en octubre. Un festival relevante resolvería en siete meses.",
+ q:"¿Qué prioridad corresponde?",
+ o:["Esperar al festival: aporta prestigio y contactos","Publicar cuando la información es pertinente y renunciar al circuito que exige estreno","Publicar solo el tráiler y esperar","Presentar al festival sin avisar de la publicación"],c:1,
+ w:["Retener información pertinente para una decisión pública invierte la prioridad del periodismo.",
+    "",
+    "Publicar el tráiler puede computar como exhibición previa en algunos reglamentos.",
+    "Ocultar la publicación al festival es un incumplimiento del reglamento y un problema ético."],
+ e:"La estrategia mixta permite salvar parte del valor: publicar la investigación escrita y las piezas complementarias, y explorar secciones específicas para trabajos periodísticos."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"La parte interactiva del proyecto ha dejado de funcionar y no hay presupuesto para rehacerla.",
+ q:"¿Qué corresponde hacer?",
+ o:["Retirar el proyecto completo del sitio","Publicar datos y transcripciones en abierto, una versión estática del recorrido, y dejar constancia visible de qué dejó de funcionar","Dejarlo como está: el enlace sigue existiendo","Sustituirlo por una nota que remita al festival donde se estrenó"],c:1,
+ w:["Retirar todo elimina también el contenido que sí sobrevive.",
+    "",
+    "Un enlace que no carga daña la credibilidad y no informa de nada.",
+    "Remitir a un premio no sustituye al contenido perdido."],
+ e:"Un proyecto roto sin explicación daña más que uno reducido con nota. Y la lección se traslada al documento maestro del siguiente."},
+
+{blk:"BLOQUE B · DECISIONES", t:"mcq",
+ s:"Un centro educativo quiere usar el documental en clase y el equipo quiere producir una versión corta. La licencia de archivo cubre solo la emisión original.",
+ q:"¿Cuál es la actuación más eficiente?",
+ o:["Autorizar el uso educativo sin ampliar licencias","Negociar en bloque todos los usos previsibles y valorar sustituir el material más caro en la versión derivada","Producir la versión corta sin el archivo","Renunciar a ambas cosas"],c:1,
+ w:["Autorizar un uso que las licencias no cubren traslada el riesgo al centro y al medio.",
+    "",
+    "Prescindir del archivo puede ser una solución parcial y no resuelve el uso educativo del original.",
+    "Renunciar desperdicia la reutilización más rentable de un trabajo ya verificado."],
+ e:"Negociar los usos juntos suele ser más barato que hacerlo por separado, y la regla para el futuro es licenciar pensando en el proyecto completo."},
+
+/* ---------- BLOQUE C · SOSTENIBILIDAD Y EVALUACIÓN ---------- */
+{blk:"BLOQUE C · SOSTENIBILIDAD Y EVALUACIÓN", t:"mcq",
+ q:"Al registrar el impacto de un proyecto, la forma honesta consiste en:",
+ o:["Atribuirse los cambios ocurridos tras la publicación","Documentar qué se publicó, qué ocurrió después y quién lo citó, sin afirmar causalidad no probada","Recoger los agradecimientos de las organizaciones implicadas","Medir la repercusión en otros medios"],c:1,
+ w:["Entre publicación y consecuencia intervienen muchos factores: es el error causal de la Unidad 3 de JRN-1002.",
+    "",
+    "Los agradecimientos son valiosos y no acreditan efecto.",
+    "La repercusión mide difusión, no impacto."],
+ e:"El registro documental es más sólido y menos impugnable que la reclamación de autoría, y deja la inferencia al lector."},
+
+{blk:"BLOQUE C · SOSTENIBILIDAD Y EVALUACIÓN", t:"mcq",
+ q:"Un plan mínimo de preservación incluye:",
+ o:["Copias del montaje final en dos discos","Archivos maestros sin recomprimir, datos y transcripciones en formato abierto, versión estática y documentación técnica","Depósito en una plataforma comercial","Migración anual a nuevos formatos"],c:1,
+ w:["Dos copias del montaje son un respaldo, no una estrategia de preservación.",
+    "",
+    "Una plataforma comercial puede desaparecer o cambiar condiciones.",
+    "La migración anual es inviable y no es lo que exige la conservación."],
+ e:"Y conviene asignar responsable y presupuesto por escrito, además de valorar el depósito en una institución de archivo."},
+
+{blk:"BLOQUE C · SOSTENIBILIDAD Y EVALUACIÓN", t:"mcq",
+ q:"Ante un financiador que pretende revisar el contenido antes de publicar:",
+ o:["Se acepta si no impone cambios","Se rechaza: ninguna revisión previa del contenido es admisible, con independencia del origen del dinero","Se acepta limitándola a los datos","Se acepta si se declara públicamente"],c:1,
+ w:["La sola existencia del derecho de revisión condiciona lo que se escribe, aunque nunca se ejerza.",
+    "",
+    "La comprobación de datos puede ofrecerse a las partes implicadas, no al financiador como derecho contractual.",
+    "Declararlo no corrige la pérdida de independencia."],
+ e:"Conviene además pedir por escrito la cláusula que excluye el control editorial, aunque nadie la haya planteado."},
+
+{blk:"BLOQUE C · SOSTENIBILIDAD Y EVALUACIÓN", t:"mcq",
+ q:"La evaluación del proyecto debe incluir, además de audiencia:",
+ o:["El número de premios obtenidos","El coste real por pieza frente al resultado, que es lo que permite diseñar mejor el siguiente","La valoración de la crítica especializada","El número de enlaces recibidos"],c:1,
+ w:["Los premios son reconocimiento y no informan sobre la eficiencia del diseño.",
+    "",
+    "La crítica es útil y no mide el rendimiento del proyecto.",
+    "Los enlaces miden difusión."],
+ e:"Sin coste, la evaluación no sirve para decidir nada sobre el proyecto siguiente. Y conviene escribir también qué no funcionó."},
+
+{blk:"BLOQUE C · SOSTENIBILIDAD Y EVALUACIÓN", t:"mcq",
+ q:"Tras la publicación, el riesgo para las personas retratadas:",
+ o:["Se concentra en el día del estreno","Suele materializarse en las semanas siguientes, cuando el contenido circula en su entorno inmediato","Desaparece si se difuminaron los rostros","Es responsabilidad de la plataforma emisora"],c:1,
+ w:["El estreno concentra la atención mediática, no el efecto sobre el entorno de la persona.",
+    "",
+    "El difuminado reduce la identificación visual y no la deducción por contexto.",
+    "La responsabilidad editorial no se traslada al canal de emisión."],
+ e:"Conviene avisar antes de la emisión a quienes puedan verse afectados y mantener un canal de contacto disponible."},
+
+{blk:"BLOQUE C · SOSTENIBILIDAD Y EVALUACIÓN", t:"mcq",
+ q:"La corrección de un error en una pieza audiovisual ya emitida:",
+ o:["No es posible: el archivo emitido no se reescribe","Exige nota visible junto a la pieza en línea, versión corregida si el error es sustantivo y constancia de qué se modificó","Se resuelve retirando la pieza","Solo procede si alguien reclama"],c:1,
+ w:["La imposibilidad de reescribir la emisión no exime de corregir en los canales donde la pieza sigue accesible.",
+    "",
+    "Retirar elimina también la información correcta y deja al público sin explicación.",
+    "La corrección procede al detectar el error, con independencia de que haya reclamación."],
+ e:"El documental corrige peor que un texto, y por eso el procedimiento debe estar decidido antes de publicar."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las cláusulas que deben revisarse antes que el precio en un contrato de distribución.",
+ o:["Alcance de la cesión de derechos","Exclusividad y su plazo","Territorio cubierto","Formato de entrega técnica","Control editorial y reversión de derechos"],
+ c:[0,1,2,4],
+ w:["","","","El formato de entrega es una especificación técnica que no condiciona lo que podrá hacerse con la obra.",""],
+ e:"Alcance, exclusividad, territorio, duración, control editorial y reversión. Y una regla sin excepción: ninguna aprobación previa del contenido."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todos</strong> los datos que deben constar por cada elemento en el inventario de derechos.",
+ o:["Qué es el elemento","Quién es su titular","Qué licencia se ha obtenido","Qué duración tiene en el montaje","Para qué territorios y por cuánto tiempo"],
+ c:[0,1,2,4],
+ w:["","","","La duración en pantalla es un dato de edición: no determina la licencia necesaria ni su alcance.",""],
+ e:"Lo que no tenga esas cinco respuestas no se monta. Resolver derechos después de montar conduce a pagar de más o a rehacer."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las decisiones de distribución y sostenibilidad.",
+ o:["Definir el objetivo del proyecto y su audiencia real","Diseñar la secuencia de ventanas con sus exigencias","Resolver el inventario de derechos antes del montaje","Negociar contratos revisando las seis cláusulas críticas","Publicar, evaluar con indicadores previos y ejecutar el plan de preservación"],
+ c:[0,1,2,3,4],
+ e:"Estas decisiones se toman al principio aunque se ejecuten al final. Dejarlas para después del corte final es lo que bloquea proyectos terminados."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las obligaciones posteriores a la publicación.",
+ o:["Avisar antes de la emisión a las personas que puedan verse afectadas","Tener accesible la matriz documental y el archivo de evidencias para responder impugnaciones","Mantener un canal de contacto disponible en las semanas siguientes","Corregir con visibilidad los errores detectados","Actualizar la pieza cuando el asunto evolucione"],
+ c:[0,1,2,3,4],
+ e:"Llegan todas a la vez y en los días de mayor cansancio del equipo, por eso conviene tenerlas asignadas antes de publicar."}
+];
+
+const EXAM=[
+ {u:"UNIDAD 1",q:"Una narrativa transmedia se distingue de la distribución multiplataforma en que:",
+  o:["Emplea más plataformas","Cada pieza aporta información que ninguna otra contiene y puede consumirse sola","Usa tecnología interactiva","Se publica de forma simultánea"],c:1,
+  e:"La prueba es preguntar qué pierde quien solo vea una pieza. Si no pierde nada, es distribución."},
+ {u:"UNIDAD 1",q:"La asignación de un contenido a un soporte debe decidirse por:",
+  o:["La disponibilidad del equipo","Las capacidades del formato frente a lo que se quiere transmitir","El presupuesto","La plataforma donde está la audiencia"],c:1,
+  e:"«Esto va en este formato porque permite X, y en otro se perdería Y». Si no puede completarse, la asignación es por costumbre."},
+ {u:"UNIDAD 1",q:"Antes de abrir un canal de participación hay que tener asignado:",
+  o:["Un responsable de comunicación","Quién verifica, quién responde y qué se publica con lo recibido","Un presupuesto de promoción","Un moderador automático"],c:1,
+  e:"Un canal desatendido comunica algo peor que su ausencia: promete escucha y no la entrega."},
+ {u:"UNIDAD 2",q:"El rodaje de un documental periodístico sirve para:",
+  o:["Averiguar qué ocurre","Registrar lo investigado y comprobarlo en el terreno","Obtener material atmosférico","Conseguir declaraciones citables"],c:1,
+  e:"Sin investigación previa la lista de planos es un deseo, y el coste de montaje se multiplica sin mejorar el resultado."},
+ {u:"UNIDAD 2",q:"El consentimiento informado exige que la persona comprenda:",
+  o:["El presupuesto y el calendario de la producción","Quién graba, de qué trata, dónde se verá y qué consecuencias puede tener","La estructura narrativa prevista","El nombre del distribuidor"],c:1,
+  e:"Pide a la persona que lo explique con sus palabras. Si su descripción no coincide con la tuya, no hay consentimiento informado."},
+ {u:"UNIDAD 2",q:"Una condición de acceso inaceptable es:",
+  o:["No grabar en zonas por seguridad","La aprobación previa del montaje","Avisar antes de entrar en un espacio privado","Verificar cifras antes de emitir"],c:1,
+  e:"La frontera está en si la condición afecta a la comprobación de los hechos o a la libertad editorial."},
+ {u:"UNIDAD 3",q:"El efecto Kuleshov demuestra que:",
+  o:["El montaje rápido genera emoción","El significado se produce en la unión de planos","La música determina la interpretación","Los actores no necesitan expresividad"],c:1,
+  e:"Cada unión es una afirmación y debe poder escribirse y sostenerse como cualquier frase publicada."},
+ {u:"UNIDAD 3",q:"Condensar una respuesta es inadmisible cuando:",
+  o:["Se eliminan titubeos","Se unen fragmentos distantes para construir una frase no pronunciada","Se acorta para ajustar la duración","Se suprime una digresión irrelevante"],c:1,
+  e:"El montaje no puede alterar el sentido de lo que una persona dijo ni el orden real de lo que ocurrió."},
+ {u:"UNIDAD 3",q:"Antes de incorporar un plano de archivo hay que establecer:",
+  o:["Su calidad y formato","Qué muestra realmente, cuándo y dónde se registró, su titular y qué contexto falta","Que no lo haya usado otro medio","Que encaje con el tono"],c:1,
+  e:"Una imagen de otro lugar o fecha usada para ilustrar convierte un reportaje riguroso en una recontextualización."},
+ {u:"UNIDAD 4",q:"Los derechos de un elemento deben resolverse:",
+  o:["Al cerrar el montaje","Antes de montar con él, con los cinco datos: qué es, titular, licencia, territorio y duración","Al negociar la distribución","Cuando el titular reclame"],c:1,
+  e:"Montar y licenciar después conduce a pagar un precio desmedido por falta de alternativa o a rehacer el montaje con prisa."},
+ {u:"UNIDAD 4",q:"En un contrato, la cláusula que nunca se firma es:",
+  o:["La exclusividad temporal","La aprobación previa del contenido","La limitación territorial","La cesión de subtitulado"],c:1,
+  e:"Ninguna aprobación previa del contenido, venga de donde venga el dinero: es el límite del trabajo periodístico."},
+ {u:"UNIDAD 4",q:"La preservación de un proyecto interactivo exige, ante todo:",
+  o:["Migrarlo cada año a nuevas tecnologías","Conservar datos y transcripciones en formato abierto, archivos maestros y una versión estática","Depositarlo en una plataforma comercial","Publicar el código fuente"],c:1,
+  e:"Toda tecnología de presentación caduca. Lo que sobrevive es lo que no depende de ella, y cuesta poco si se planifica."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+function buildQuiz(list, holderId, scoreId, withUnit){
+  let done=0,right=0;
+  const holder=document.getElementById(holderId);
+  list.forEach(function(it,i){
+    const from = withUnit ? '<span class="from">'+it.u+'</span>' : '';
+    const card=el('<div class="q">'+from+'<div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts');
+    it.o.forEach(function(o,j){
+      const b=document.createElement('button');
+      b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+      b.onclick=function(){
+        if(card.dataset.done) return;
+        card.dataset.done='1'; done++;
+        var kids=opts.children;
+        for(var k=0;k<kids.length;k++){
+          kids[k].classList.add('done');
+          if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+          else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+        }
+        if(j===it.c) right++;
+        card.querySelector('.exp').classList.add('show');
+        const s=document.getElementById(scoreId);
+        let txt='RESPONDIDAS '+done+' / '+list.length+' · CORRECTAS '+right;
+        if(withUnit){
+          const pct=Math.round(right/list.length*100);
+          txt+=' · CALIFICACIÓN '+pct+'%';
+          if(done===list.length) txt+=pct>=75?' · APROBADO':' · NO APROBADO';
+        }
+        s.textContent=txt;
+      };
+      opts.appendChild(b);
+    });
+    holder.appendChild(card);
+  });
+}
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+buildQuiz(EXAM,'exam','escore',true);
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#exa .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
