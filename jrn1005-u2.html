@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1005 · Unidad 2 — Producción Documental: Investigación, Guion y Rodaje</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1005, Unidad 2.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course on" href="jrn1005-u2.html"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course" href="#"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1005 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Producción Documental: Investigación, Guion y Rodaje</h2>
+  <div class="sub">Unidad 2 de 4 · Producción Transmedia y Documental</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1005-u1.html">Unidad 1: Narrativa Transmedia y Arquitectura de Proyecto</a>
+    <span class="unit on">Unidad 2: Producción Documental: Investigación, Guion y Rodaje</span>
+    <span class="unit">Unidad 3: Montaje, Sonido y la Ética del Corte</span>
+    <span class="unit">Unidad 4: Distribución, Derechos y Sostenibilidad</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Un documental periodístico se decide mucho antes de encender la cámara. Lo que se sabe al empezar a rodar determina qué se puede grabar, y lo que se graba determina qué se podrá montar. Los proyectos que se hunden en la sala de montaje casi siempre se hundieron antes, en una investigación insuficiente o en un rodaje sin plan.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>se rueda con una hipótesis y se monta con lo que la realidad contestó</strong>. Sin hipótesis no hay plan de rodaje posible y el equipo graba de todo por si acaso; con una hipótesis rígida, el documental deja de escuchar y fuerza el material hasta confirmarla. Sostener esa tensión —tener una estructura y estar dispuesto a perderla— es el oficio de esta fase.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Traducir una investigación periodística en una hipótesis documental y en una escaleta de rodaje.</li>
+      <li>Negociar el acceso y reconocer qué compromisos lo condicionan y cuáles son inaceptables.</li>
+      <li>Obtener consentimiento informado en audiovisual, distinguiéndolo de la firma de una autorización.</li>
+      <li>Planificar un rodaje: localización, permisos, riesgos, equipo, cobertura y sonido.</li>
+      <li>Conducir entrevistas documentales, incluidas las que abordan experiencias traumáticas.</li>
+      <li>Aplicar cadena de custodia al material audiovisual: registro, respaldo, metadatos y trazabilidad.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Michael Rabiger, <em>Directing the Documentary</em> — manual de referencia de dirección documental</li>
+      <li>Bill Nichols, <em>Introduction to Documentary</em> — modalidades del documental y sus implicaciones éticas</li>
+      <li>Sheila Curran Bernard, <em>Documentary Storytelling</em> — estructura narrativa en no ficción</li>
+      <li>Dart Center for Journalism and Trauma — guías de entrevista a personas afectadas por violencia</li>
+      <li>Brant Houston e IRE, <em>The Investigative Reporter's Handbook</em> — investigación previa al rodaje</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Dart Center · entrevista informada por el trauma</h5>
+        <div class="def">Guías de la Escuela de Periodismo de la Universidad de Columbia sobre cómo entrevistar a personas que han sufrido violencia: preparación, control del entrevistado sobre el proceso, señales de sobrecarga y cuidado posterior del equipo.</div>
+        <p class="src">dartcenter.org · Columbia Journalism School</p></div>
+      <div class="term"><h5>Documentary Accountability Working Group</h5>
+        <div class="def">Iniciativa profesional que ha sistematizado prácticas de responsabilidad hacia las personas retratadas en el documental: consentimiento continuado, transparencia sobre el proceso y participación en decisiones que las afectan.</div>
+        <p class="src">docaccountability.org</p></div>
+      <div class="term"><h5>Protocolo de Berkeley · material audiovisual</h5>
+        <div class="def">Aplicado al rodaje propio, sus principios de procedencia y preservación exigen registrar dónde, cuándo y por quién se grabó cada plano, y conservar el original con su integridad comprobable.</div>
+        <p class="src">OHCHR · Human Rights Center, UC Berkeley, 2022</p></div>
+      <div class="term"><h5>Committee to Protect Journalists · seguridad en rodaje</h5>
+        <div class="def">Recursos de evaluación de riesgo aplicables a coberturas en terreno: protocolos de contacto, equipos, seguros, y consideración específica para colaboradores locales, que soportan el riesgo mayor.</div>
+        <p class="src">cpj.org · Safety Kit</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de una carpeta de producción con escaleta, plan de rodaje y protocolo de consentimiento. El <strong>Examen Integrador</strong> de JRN-1005 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>El documental empieza en la investigación</h3>
+    <p>La diferencia entre un documental periodístico y un reportaje audiovisual bien filmado está en lo que se sabía antes de rodar. Quien llega a un lugar con la cámara y espera a ver qué pasa obtiene material atmosférico y ninguna respuesta; quien llega con una investigación cerrada obtiene planos que sirven para demostrar algo. El rodaje no es la fase de averiguar: es la fase de registrar lo que ya se averiguó y de comprobar en el terreno lo que solo se conocía por documentos.</p>
+    <p>Esa investigación previa cumple tres funciones concretas. La primera es <strong>definir qué hay que grabar</strong>: sin ella, la lista de planos es un deseo y el equipo graba de más, lo que multiplica el coste de montaje sin mejorar el resultado. La segunda es <strong>identificar a quién hay que grabar</strong>, y en qué orden, porque una entrevista mal situada en el calendario quema el acceso a las siguientes. La tercera, la más olvidada, es <strong>saber qué se está buscando desmentir</strong>: un documental que solo busca imágenes que confirmen su premisa produce material inservible en cuanto aparece una fuente que lo contradice.</p>
+    <p>La investigación previa se hace con los métodos de los cursos anteriores y no con otros. Los registros documentales de JRN-1003, el trabajo con datos de JRN-1002 y la verificación de JRN-1001 son exactamente las herramientas que sostienen un documental, y su ausencia no se compensa con calidad de imagen. Un plano bonito de una afirmación falsa sigue siendo una afirmación falsa, y además es más persuasivo, lo que empeora el problema.</p>
+    <p>Conviene por último fijar una regla de tiempo. El paso al rodaje debería ocurrir cuando la investigación permite enunciar la tesis y prever las tres o cuatro escenas que la sostienen. Antes de eso, cada día de rodaje es una apuesta cara; después de eso, cada día de investigación adicional retrasa un material que ya se puede registrar.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Antes del primer día de rodaje escribe las escenas sin las cuales el documental no existe. Si no puedes nombrarlas, no estás listo para rodar, y ninguna cantidad de material grabado resolverá esa falta en montaje.</div>
+
+    <h3>El acceso y lo que compromete</h3>
+    <p>El acceso es el activo más valioso y el más frágil de una producción documental. Determina qué puede contarse y, sobre todo, condiciona la mirada: quien te deja entrar espera algo a cambio, aunque nunca lo formule, y esa expectativa opera sobre el equipo incluso cuando nadie la menciona.</p>
+    <p>Conviene distinguir tres tipos de condición. Las <strong>razonables y aceptables</strong>: no grabar en determinadas zonas por seguridad, avisar antes de entrar en un espacio privado, respetar horarios de trabajo. Las <strong>negociables</strong>: revisar datos técnicos antes de publicar, comprobar la exactitud de cifras, acordar cómo se describirá a una persona. Y las <strong>inaceptables</strong>: derecho de veto sobre el montaje, aprobación previa del contenido, exclusión de determinadas personas del documental, o compromiso sobre el tono. La frontera está en si la condición afecta a la comprobación de los hechos o a la libertad editorial.</p>
+    <p>Todo eso debe pactarse por escrito antes de empezar, y no de palabra en el pasillo. Un documento de acceso sencillo, de una página, que enumere qué se puede grabar, qué no, quién decide el contenido final y qué revisión se ofrece —de datos, no de enfoque—, evita el conflicto habitual: el que estalla cuando el retratado ve el resultado y sostiene que se le prometió otra cosa.</p>
+    <p>Hay además un riesgo específico del acceso prolongado. Convivir semanas con quienes se documenta genera vínculos reales que son necesarios para el trabajo y peligrosos para la distancia. La solución no es fingir frialdad, sino tener a alguien fuera del rodaje —editora, productora— que lea el material con ojos ajenos y pregunte lo incómodo: qué no estamos grabando, a quién no estamos preguntando, qué versión falta.</p>
+    <div class="ej"><b>REGLA</b>Ninguna condición de acceso puede afectar al contenido final. Revisión de datos, sí; aprobación de montaje, nunca. Y todo lo pactado se escribe antes del primer día de rodaje, con firma de ambas partes.</div>
+
+    <h3>Consentimiento informado, no una firma</h3>
+    <p>La autorización de imagen es un documento jurídico; el consentimiento informado es un proceso. Confundirlos es la causa de la mayoría de los conflictos éticos del documental, porque una firma obtenida sin comprensión real protege legalmente al productor y no protege en absoluto a la persona retratada.</p>
+    <p>Un consentimiento informado exige que la persona entienda cuatro cosas antes de aceptar. <strong>Quién eres y para quién trabajas</strong>, sin ambigüedad. <strong>De qué trata el documental</strong> y qué papel ocupa su testimonio, incluida la posibilidad de que el resultado no le guste. <strong>Dónde se verá y durante cuánto tiempo</strong>, que en la era digital significa indefinidamente y en cualquier país. Y <strong>qué consecuencias previsibles</strong> puede tener aparecer: laborales, familiares, de seguridad, legales.</p>
+    <p>Ese proceso no termina con la firma. Cuando el rodaje dura meses, la situación de la persona cambia y también su exposición al riesgo, de modo que conviene reconfirmar en momentos clave: antes de las escenas sensibles, al terminar el rodaje y antes de la publicación. La práctica del consentimiento continuado, sistematizada por el trabajo reciente sobre responsabilidad en el documental, no consiste en dar derecho de veto, sino en garantizar que nadie se entera de lo que aceptó cuando ya es irreversible.</p>
+    <p>Hay categorías donde el estándar sube. Con menores, con personas en situación de vulnerabilidad, con víctimas de violencia y con quienes están en custodia o en instituciones cerradas, el criterio por defecto es la no identificación, y publicar exige una justificación específica, tal como establece la Unidad 2 de JRN-1004. La firma de un tercero —tutor, responsable de la institución— nunca sustituye a la comprensión de la persona afectada.</p>
+    <div class="ej"><b>PRUEBA</b>Pide a la persona que te explique con sus palabras qué va a pasar con lo que ha grabado. Si su descripción no coincide con la tuya, no hay consentimiento informado, por muy firmada que esté la autorización.</div>
+
+    <h3>La escaleta de un documental que aún no existe</h3>
+    <p>Un documental periodístico no se guioniza como una ficción, porque los hechos aún no han terminado de ocurrir, pero tampoco se rueda sin estructura. El instrumento intermedio es la escaleta: una secuencia de escenas previstas, cada una con lo que debe aportar al conjunto y con las condiciones necesarias para grabarla.</p>
+    <p>Cada entrada de la escaleta debería responder a cuatro preguntas. <strong>Qué muestra</strong> esa escena que ninguna otra muestra. <strong>Qué necesita</strong> para existir: acceso, permiso, presencia de personas, condiciones de luz o de calendario. <strong>Qué pasa si no se consigue</strong>, es decir, cuál es la alternativa. Y <strong>qué función narrativa cumple</strong>: abre, desarrolla, contradice, cierra. Esa cuarta pregunta es la que distingue una escaleta de una lista de deseos.</p>
+    <p>La estructura habitual en no ficción periodística parte de una pregunta que el documental promete responder y avanza por aproximaciones: se establece el asunto y quién está implicado, se despliega el conflicto o la anomalía, aparece la evidencia que reordena lo que creíamos, y se cierra con una consecuencia comprobable, no con una moraleja. Las modalidades que sistematiza la teoría del documental —expositiva, observacional, participativa, reflexiva— no son estilos intercambiables: cada una establece un pacto distinto con el espectador sobre qué está viendo y cuánto interviene quien filma.</p>
+    <p>La escaleta debe revisarse durante el rodaje y no defenderse. Cuando la realidad contradice la previsión, el material nuevo manda; lo que no puede ocurrir es que la escaleta se mantenga intacta y se busquen imágenes que la ilustren. Esa deriva tiene un nombre en periodismo —confirmar la hipótesis en lugar de someterla a prueba— y en documental es más difícil de detectar, porque el resultado suele ser más redondo.</p>
+    <div class="ej"><b>MÉTODO</b>Marca en la escaleta, con otro color, las escenas que solo existirían si tu hipótesis es cierta. Si al terminar el rodaje están todas grabadas y ninguna te sorprendió, probablemente no estuviste escuchando.</div>
+
+    <h3>Preproducción: el plan que ahorra el rodaje</h3>
+    <p>La preproducción es la fase con mejor retorno de todo el proceso: cada hora invertida aquí ahorra varias de rodaje y de montaje. Y sin embargo es la primera que se recorta cuando el calendario aprieta, por una razón engañosa: no produce material visible.</p>
+    <p>Un plan de rodaje mínimo cubre seis apartados. La <strong>localización</strong>: visita previa siempre que sea posible, para conocer luz, ruido, accesos, enchufes y horarios reales. Los <strong>permisos</strong>: espacios privados, instituciones, propiedad de terceros, y en algunos países autorización para grabar en la vía pública con equipo profesional. El <strong>riesgo</strong>: qué puede salir mal, quién avisa a quién, qué hacer si alguien no responde, y con atención especial a los colaboradores locales, que soportan una exposición mayor y suelen quedar fuera de los protocolos. El <strong>equipo técnico</strong>, dimensionado por necesidad y no por costumbre. El <strong>calendario</strong>, con margen real, porque en rodaje siempre falla algo. Y el <strong>presupuesto</strong>, con la partida de montaje calculada desde el principio.</p>
+    <p>Hay dos decisiones de preproducción que condicionan todo lo demás. La primera es el tamaño del equipo: cuanta más gente entra en una habitación, menos ocurre en ella, de modo que en situaciones íntimas un equipo de dos personas obtiene mejor material que uno de seis con mejor técnica. La segunda es el orden de las entrevistas: las que pueden cerrar puertas —al investigado, al responsable señalado— van al final, por la misma lógica de visibilidad que rige la Unidad 4 de JRN-1003.</p>
+    <p>Conviene además preparar el material informativo que se entrega a quien se graba: una hoja con quién eres, de qué trata el proyecto, cómo se usará el material y a quién dirigirse con dudas. Ese documento, que cuesta una tarde, resuelve la mitad de las conversaciones incómodas y acredita el proceso de consentimiento.</p>
+    <div class="ej"><b>REGLA PRÁCTICA</b>Ningún día de rodaje empieza sin saber qué escenas de la escaleta se van a cubrir y qué se hace si no se consiguen. Rodar sin plan no es flexibilidad: es trasladar el problema a la sala de montaje, donde cuesta el triple.</div>
+
+    <h3>Grabar para montar</h3>
+    <p>El error más frecuente de quien viene del texto es grabar contenido y no material. Un documental no se monta con lo que la gente dijo: se monta con planos, sonido, ritmo y transiciones. Rodar pensando en el montaje significa registrar, además de lo que interesa, lo que hará falta para unirlo.</p>
+    <p>Eso se traduce en prácticas concretas. La <strong>cobertura</strong>: cada situación se graba en varios tamaños de plano —general para situar, medio para la acción, detalle para el ritmo— porque sin variedad el montaje queda encadenado a una sola imagen. Los <strong>planos de recurso</strong>: manos, objetos, ventanas, el lugar vacío, que permiten cortar una entrevista sin salto visible y respirar entre bloques. El <strong>sonido ambiente</strong>: al menos un minuto continuo de cada localización, sin hablar, que en montaje resulta imprescindible para empalmar y que nadie recuerda grabar. Y la <strong>continuidad</strong>: si una persona cambia de ropa o de posición entre tomas, esas tomas no podrán unirse.</p>
+    <p>El sonido merece una insistencia particular porque decide la calidad percibida más que la imagen. Una imagen mediocre con buen sonido se ve; una imagen impecable con sonido malo resulta insoportable a los treinta segundos. Eso implica micrófono cerca de la fuente, monitorización con auriculares durante toda la grabación —no al empezar— y comprobación de niveles antes de cada bloque. Grabar sin escuchar es la forma más común de perder una entrevista irrepetible.</p>
+    <p>Por último, la relación entre lo grabado y lo publicado conviene tenerla presente al presupuestar: en documental periodístico es habitual manejar decenas de horas de material para piezas de una hora, y esa proporción crece cuando se rueda sin escaleta. Cada hora grabada de más es tiempo de visionado, transcripción y decisión en montaje.</p>
+    <div class="ej"><b>COMPROBACIÓN</b>Al terminar cada localización, pregunta al equipo: ¿tenemos ambiente, tenemos recursos, tenemos el plano general? Si falta alguno, se graban antes de recoger. Volver cuesta diez veces más que quedarse cinco minutos.</div>
+
+    <h3>La entrevista documental</h3>
+    <p>La entrevista documental se parece poco a la periodística escrita. No busca declaraciones citables sino secuencias sostenidas, y el silencio, que en una entrevista de prensa se rellena, aquí es una herramienta: la mayoría de las respuestas importantes llegan después de una pausa que el entrevistador no interrumpió.</p>
+    <p>La preparación es la misma que en cualquier entrevista de investigación: conocer el asunto mejor que la persona en lo que se le va a preguntar, llevar las preguntas ordenadas de menor a mayor exigencia y tener documentado lo que se va a contrastar. Lo específico es lo demás. El <strong>encuadre</strong> comunica: la altura de cámara, la distancia y el fondo dicen algo sobre la persona antes de que hable, y conviene decidirlo en lugar de heredarlo del espacio. La <strong>duración</strong>: una conversación de dos horas produce cinco minutos utilizables, y acortarla no ahorra tiempo, solo empeora el material. Y la <strong>formulación</strong>: las preguntas cerradas producen respuestas inservibles en montaje, porque el espectador no oye la pregunta.</p>
+    <p>Ese último punto tiene una consecuencia técnica que conviene incorporar como rutina: pedir a la persona que incluya la pregunta en la respuesta. «¿Cuándo se dio cuenta?» produce «en marzo»; en cambio, pedirle que empiece diciendo «me di cuenta en marzo, cuando…» produce una frase que se sostiene sola en el montaje final.</p>
+    <p>Cuando la entrevista aborda experiencias de violencia o pérdida, el marco cambia. Las guías del Dart Center establecen prácticas concretas: explicar antes cómo será la conversación y que puede detenerse en cualquier momento, dar a la persona control sobre el ritmo, evitar preguntas que obliguen a reconstruir el momento más duro sin necesidad informativa, atender a las señales de sobrecarga y no confundir el llanto con una buena secuencia. Y hay una obligación posterior que casi nunca se presupuesta: no desaparecer después de grabar.</p>
+    <div class="ej"><b>REGLA</b>Pide siempre que la respuesta incluya la pregunta, deja tres segundos de silencio antes de pasar a la siguiente y no interrumpas nunca una pausa larga. Ahí está, casi siempre, la frase que sostendrá la secuencia.</div>
+
+    <h3>Rodaje en situaciones sensibles</h3>
+    <p>Grabar en contextos de violencia, duelo, enfermedad o precariedad extrema plantea decisiones que no admiten reglas automáticas, pero sí criterios previos. Tomarlos en el momento, con la cámara encendida y la escena ocurriendo, produce las decisiones que después se lamentan.</p>
+    <p>El primer criterio es la <strong>necesidad informativa</strong>: qué acredita esta imagen que no pueda acreditarse de otro modo. Si el hecho se sostiene sin mostrarla, no se muestra, y ese criterio de la Unidad 4 de JRN-1003 se aplica igual al material propio que al ajeno. El segundo es la <strong>dignidad</strong>: cómo aparecerá esa persona ante quienes la conocen, y si podrá seguir viviendo en su comunidad después de la emisión. El tercero es el <strong>riesgo derivado</strong>: qué puede ocurrirle a quien aparece cuando el documental se vea, especialmente si hay actores con poder implicados.</p>
+    <p>Hay además una decisión que se toma en el terreno y que conviene haber pensado antes: cuándo dejar de grabar. La presencia de la cámara altera lo que ocurre, y hay momentos —una crisis médica, una detención, un derrumbe emocional— en los que seguir grabando aporta poco y expone mucho. Bajar la cámara es una decisión editorial legítima y debe poder explicarse, igual que la contraria.</p>
+    <p>Y está la seguridad del propio equipo, que en estos contextos deja de ser una cuestión administrativa. El plan debe cubrir a todos, incluidos traductores, conductores y colaboradores locales, que suelen quedar fuera de los seguros y de los protocolos y son quienes permanecen en el lugar cuando el equipo se marcha. Ese desequilibrio es conocido y sigue siendo el punto débil de la mayoría de las producciones.</p>
+    <div class="ej"><b>CRITERIO</b>Decide antes del rodaje en qué situaciones bajarás la cámara y quién puede tomar esa decisión sobre el terreno. Improvisarlo produce material que después nadie quiere montar y que ya no se puede desgrabar.</div>
+
+    <h3>Registro, respaldo y trazabilidad</h3>
+    <p>El material audiovisual es evidencia, y como tal necesita cadena de custodia. Lo que en la Unidad 1 de JRN-1003 se exige al material ajeno se exige también al propio: saber dónde, cuándo y por quién se grabó cada plano, y poder demostrar que no se alteró.</p>
+    <p>El procedimiento en campo tiene cuatro elementos. El <strong>parte de rodaje</strong>: qué se grabó, dónde, cuándo, con quién, y qué autorizaciones se obtuvieron ese día, anotado en el momento y no de memoria al volver. El <strong>respaldo</strong>: dos copias en soportes distintos antes de formatear ninguna tarjeta, regla que parece obvia y que se incumple sistemáticamente al final de un día largo. Los <strong>metadatos</strong>: nomenclatura consistente de archivos que permita localizar cualquier toma meses después sin abrirla. Y la <strong>integridad</strong>: conservar el material original sin recomprimir, con su huella si el proyecto puede terminar en un procedimiento judicial.</p>
+    <p>La transcripción merece plan propio. Es cara, es lenta y es lo que permite montar: sin transcripciones con marca de tiempo, el montaje consiste en recordar dónde estaba aquella frase. Conviene transcribir durante el rodaje y no al final, porque además revela vacíos que todavía se pueden cubrir con una jornada adicional.</p>
+    <p>Por último, la protección del material sensible sigue las reglas de la Unidad 4 de JRN-1003: cifrado de discos, acceso restringido y una decisión explícita sobre qué se conserva y qué se destruye al terminar, particularmente cuando hay personas identificables en riesgo. Un disco con entrevistas sin proteger, olvidado en una redacción, es una filtración esperando a ocurrir.</p>
+    <div class="ej"><b>REGLA FINAL</b>Ninguna tarjeta se formatea sin dos copias verificadas en soportes distintos, y ningún día termina sin el parte de rodaje escrito. Es la parte más aburrida del oficio y la que evita las pérdidas irreparables.</div>
+
+    <h3>Cuándo parar de rodar</h3>
+    <p>Todo documental podría rodar un día más, y esa posibilidad es una trampa. Los proyectos que no terminan rara vez fracasan por falta de material: fracasan porque nunca se decidió que el material era suficiente, y cada jornada añadida amplía el corpus a montar y retrasa el momento de enfrentarse a la estructura.</p>
+    <p>Hay tres señales razonables de cierre. La primera es que las <strong>escenas imprescindibles</strong> de la escaleta estén grabadas, o descartadas con una alternativa cubierta. La segunda es la <strong>saturación</strong>: las nuevas entrevistas confirman lo que ya se sabe y no aportan matices nuevos, lo que en investigación cualitativa es el criterio clásico de suficiencia. La tercera es que el equipo pueda <strong>describir el documental completo</strong> —qué se ve al principio, qué revela la mitad, cómo cierra— sin recurrir a lo que espera grabar.</p>
+    <p>Hay también una señal de alarma en sentido contrario: si tras muchas jornadas el equipo no puede describir la película, el problema no es de material sino de investigación o de hipótesis, y seguir rodando lo agravará. En ese punto conviene detener el rodaje, montar un avance con lo que hay y comprobar qué falta realmente, que casi nunca es lo que el equipo cree.</p>
+    <p>Cerrar el rodaje no impide grabar algo puntual más adelante: impide seguir acumulando de forma indefinida. Y conviene fijar esa fecha en el calendario desde la preproducción, porque una fecha decidida en frío se defiende mejor que una decisión tomada cuando todos están cansados y el presupuesto se ha consumido.</p>
+    <div class="ej"><b>PRUEBA DE CIERRE</b>Pide a cada miembro del equipo que cuente la película en tres minutos, sin mencionar nada que aún no esté grabado. Si lo consigue, se cierra el rodaje. Si no, el problema está en la hipótesis y no en la cámara.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Reunión previa con el director de una institución que podría permitirte grabar dentro. Está dispuesto, y a cambio pide ver el montaje antes de la emisión y que no aparezcan determinados trabajadores.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes aceptar veto sobre el contenido ni renunciar al acceso sin intentarlo. Cada pregunta debe separar lo que es una condición razonable de lo que compromete la independencia. Si su preocupación es legítima, tienes que poder ofrecer una salida.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">CARPETA DE PRODUCCIÓN · OBLIGATORIA</span>
+      <p>Prepara la producción de un documental corto sobre un asunto que hayas investigado. Entrega: la hipótesis y el estado de la investigación; la escaleta con las cuatro preguntas resueltas por escena y las escenas imprescindibles marcadas; el plan de rodaje con localizaciones, permisos, riesgos, equipo y calendario; el documento de acceso pactado, distinguiendo condiciones aceptables de inaceptables; el protocolo de consentimiento informado, con la hoja informativa que entregarás; y el procedimiento de respaldo, nomenclatura y protección del material.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Escaleta con función narrativa y alternativa por escena (25%) · Plan de rodaje realista, con riesgos y con los colaboradores locales incluidos (20%) · Documento de acceso que preserve la independencia editorial (20%) · Protocolo de consentimiento como proceso y no como firma (20%) · Procedimiento de respaldo, metadatos y protección del material (15%). Una carpeta que acepte revisión de montaje por la parte retratada no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 2</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1005-u1.html">← Unidad 1: Narrativa Transmedia y Arquitectura de Proyecto</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Hipótesis Documental",d:"Enunciado provisional que orienta el rodaje sin cerrarlo. Sin ella no hay plan posible; sostenida con rigidez, impide escuchar lo que la realidad contesta.",s:"Rabiger, Directing the Documentary"},
+ {t:"Escaleta",d:"Secuencia de escenas previstas, cada una con lo que aporta, lo que necesita, su alternativa si falla y su función narrativa.",s:"Bernard, Documentary Storytelling"},
+ {t:"Acceso",d:"Permiso efectivo para grabar en un espacio o con unas personas. Es el activo más valioso de la producción y el que más condiciona la mirada.",s:"Práctica documental establecida"},
+ {t:"Consentimiento Informado",d:"Proceso por el que la persona comprende quién graba, para qué, dónde se verá y qué consecuencias puede tener. No equivale a firmar una autorización.",s:"Documentary Accountability Working Group · Dart Center"},
+ {t:"Consentimiento Continuado",d:"Reconfirmación del acuerdo en momentos clave del rodaje y antes de publicar, porque la situación y el riesgo de la persona cambian con el tiempo.",s:"Documentary Accountability Working Group"},
+ {t:"Cobertura",d:"Registro de una misma situación en varios tamaños de plano. Sin ella el montaje queda encadenado a una sola imagen.",s:"Rabiger · práctica de producción"},
+ {t:"Plano de Recurso",d:"Imagen complementaria —manos, objetos, el lugar vacío— que permite cortar una entrevista sin salto visible y dar respiración al montaje.",s:"Práctica de producción audiovisual"},
+ {t:"Sonido Ambiente",d:"Grabación continua del sonido de una localización sin diálogo. Es imprescindible para empalmar en montaje y casi siempre se olvida.",s:"Práctica de producción audiovisual"},
+ {t:"Modalidades del Documental",d:"Formas de relación entre quien filma y lo filmado —expositiva, observacional, participativa, reflexiva— que establecen pactos distintos con el espectador.",s:"Nichols, Introduction to Documentary"},
+ {t:"Parte de Rodaje",d:"Registro diario de qué se grabó, dónde, cuándo, con quién y con qué autorizaciones. Es la cadena de custodia del material propio.",s:"Protocolo de Berkeley · práctica de producción"},
+ {t:"Saturación",d:"Punto en que las nuevas entrevistas confirman lo conocido sin aportar matices. Es el criterio clásico de suficiencia para cerrar el trabajo de campo.",s:"Metodología cualitativa establecida"},
+ {t:"Entrevista Informada por el Trauma",d:"Conducción que da a la persona control sobre el ritmo, evita reconstrucciones innecesarias del momento más duro y prevé el cuidado posterior.",s:"Dart Center, Columbia Journalism School"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · TITICUT FOLLIES · 1967",t:"Wiseman, el acceso y sus consecuencias",
+  d:"Frederick Wiseman rodó en 1967 <em>Titicut Follies</em> dentro de un hospital estatal para personas con enfermedad mental sujetas a procedimiento penal, en Bridgewater, Massachusetts. La película, sin narración ni entrevistas, documentaba el trato que recibían los internos. Tras su estreno, las autoridades del estado emprendieron acciones judiciales alegando la privacidad de los internos, y la exhibición pública quedó restringida en Massachusetts durante décadas, hasta que una resolución judicial de los años noventa levantó buena parte de las limitaciones. El caso es la referencia clásica sobre el conflicto entre interés público, acceso institucional y derechos de personas que no pueden consentir libremente.",
+  ej:"El conflicto no fue sobre la veracidad de lo filmado, que nadie discutió, sino sobre el consentimiento de personas internadas y sobre quién podía autorizarlo en su nombre.",
+  p:["¿Puede una institución consentir por las personas que custodia?","¿Qué habría cambiado un protocolo de consentimiento actual?","¿Cómo se equilibra interés público y dignidad en instituciones cerradas?"],
+  m:"Una institución puede autorizar el acceso a sus instalaciones, y eso es distinto de consentir en nombre de personas cuya autonomía está limitada: el permiso del director no sustituye la comprensión del interno, y ahí está el núcleo del problema. Un protocolo actual exigiría evaluar la capacidad de consentir caso por caso, ofrecer no identificación por defecto, documentar cada decisión y prever revisión antes de publicar, lo que probablemente habría producido una película distinta y publicable sin litigio. El equilibrio se resuelve mostrando el sistema sin exponer a los individuos: se puede acreditar el trato degradante sin que los rostros identifiquen a personas que no eligieron aparecer.",
+  k:"El permiso de la institución no es el consentimiento de las personas. En espacios cerrados, la no identificación es el criterio por defecto y publicar exige justificarlo."},
+
+ {tag:"CASO 2 · NANOOK OF THE NORTH · 1922",t:"La reconstrucción y el pacto con el espectador",
+  d:"<em>Nanook of the North</em>, dirigida por Robert Flaherty y estrenada en 1922, es una de las obras fundacionales del documental. Su producción incluyó escenas puestas en escena para la cámara: secuencias repetidas, prácticas ya en desuso representadas para el rodaje y un iglú construido a medias para permitir la iluminación. Durante décadas la película se presentó como registro directo de la vida cotidiana, y el debate posterior sobre esas decisiones ha estructurado buena parte de la discusión ética del género.",
+  ej:"La reconstrucción no es ilegítima por sí misma: lo problemático es presentarla como registro espontáneo. El pacto con el espectador se rompe por la omisión, no por la puesta en escena.",
+  p:["¿Cuándo es admisible una reconstrucción en periodismo audiovisual?","¿Cómo se declara sin romper el relato?","¿Qué diferencia hay entre reconstruir y falsear?"],
+  m:"Es admisible cuando el hecho está acreditado por otras vías y la reconstrucción solo lo representa visualmente, nunca cuando aporta la prueba de que ocurrió; y exige que el espectador sepa que lo que ve es una representación. Se declara con recursos que el lenguaje audiovisual tiene resueltos —rótulo, tratamiento visual diferenciado, voz que lo enuncia— y que no interrumpen el relato si se integran desde el montaje y no como un parche final. La diferencia con el falseamiento está en la relación entre imagen y prueba: reconstruir ilustra algo documentado; falsear hace pasar por documento lo que es una escenificación.",
+  k:"Reconstruir es legítimo si el hecho está probado por otra vía y el espectador sabe que ve una representación. Lo que rompe el pacto es la omisión."},
+
+ {tag:"CASO 3 · THE ACT OF KILLING · 2012",t:"Cuando el método es el hallazgo",
+  d:"<em>The Act of Killing</em>, dirigida por Joshua Oppenheimer y estrenada en 2012, aborda las matanzas ocurridas en Indonesia a partir de 1965 proponiendo a algunos de sus responsables que reconstruyeran sus propios crímenes con los géneros cinematográficos que admiraban. La película obtuvo numerosos premios y una nominación al Oscar, y generó un debate intenso sobre la ética de dar espacio a perpetradores y sobre el efecto de convertir la reconstrucción en el dispositivo central de la obra.",
+  ej:"El dispositivo produce una evidencia que la entrevista convencional no habría obtenido: al escenificar, los responsables revelan cómo se piensan a sí mismos. Y plantea simultáneamente la pregunta de qué se le concede a quien participa.",
+  p:["¿Qué justifica dar espacio prolongado a un perpetrador?","¿Qué riesgos tiene ese dispositivo?","¿Qué obligaciones surgen hacia las víctimas?"],
+  m:"Lo justifica que la comprensión de cómo se cometen y se justifican los crímenes exige acceder al relato de quien los cometió, algo que ninguna otra fuente proporciona, siempre que el dispositivo no otorgue impunidad narrativa ni convierta al responsable en protagonista simpático. Los riesgos son dos: la espectacularización de la violencia y la posibilidad de que el perpetrador utilice la plataforma para su propia versión sin contradicción. Las obligaciones hacia las víctimas incluyen no exponerlas a nuevas represalias, no presentar la reconstrucción como equivalente a su testimonio y garantizar que el marco de la obra sitúe los hechos con precisión histórica.",
+  k:"Dar espacio a un perpetrador puede producir evidencia irremplazable y exige un marco que impida convertir el espacio en impunidad narrativa."},
+
+ {tag:"CASO 4 · CITIZENFOUR · 2014",t:"Rodar bajo riesgo",
+  d:"<em>Citizenfour</em>, dirigida por Laura Poitras y estrenada en 2014, documenta los días de Hong Kong en los que Edward Snowden entregó a periodistas documentación sobre programas de vigilancia masiva. La producción se desarrolló bajo condiciones de seguridad operacional estrictas: comunicaciones cifradas antes del primer encuentro, decisiones sobre qué material podía almacenarse y dónde, y una evaluación permanente del riesgo para la fuente y para el equipo. La película obtuvo el Oscar al mejor documental.",
+  ej:"El rodaje es aquí inseparable de la seguridad operacional: cada decisión de producción —dónde guardar el material, con quién comunicarse, qué grabar— es también una decisión de protección.",
+  p:["¿Cómo cambia la producción cuando la fuente está en riesgo?","¿Qué material no debe grabarse?","¿Qué se le explica a la fuente antes de grabar?"],
+  m:"Cambia el orden de prioridades: la protección determina el calendario, la ubicación, el equipo presente en la sala y el flujo del material, y la calidad audiovisual se subordina a esas restricciones. No debe grabarse nada que revele rutas, contactos, ubicaciones seguras o el método por el que el material llegó, porque un plano descuidado puede identificar a terceros que no consintieron. Y a la fuente se le explica, con la lógica del consentimiento informado de esta unidad y de la Unidad 4 de JRN-1003, qué se grabará, qué se publicará, qué no puede garantizarse y qué consecuencias son previsibles, dejando la decisión en sus manos con información real.",
+  k:"Cuando la fuente está en riesgo, la seguridad operacional deja de ser un anexo del rodaje y pasa a determinar su diseño completo."},
+
+ {tag:"CASO 5 · MINDING THE GAP · 2018",t:"Filmar a quienes conoces",
+  d:"<em>Minding the Gap</em>, dirigida por Bing Liu y estrenada en 2018, se construye a partir de material grabado durante años entre amigos del propio director, y deriva hacia la violencia doméstica que atraviesa sus historias familiares, incluida la del realizador. La película fue nominada al Oscar y se cita habitualmente al discutir el consentimiento en relaciones de proximidad, porque quienes aparecen aceptaron ser grabados mucho antes de saber en qué se convertiría el material.",
+  ej:"La proximidad da acceso a lo que ninguna producción convencional obtendría, y a la vez hace que el consentimiento inicial resulte insuficiente: nadie consintió aquello en lo que el proyecto acabó.",
+  p:["¿Cómo se gestiona el consentimiento en un rodaje de años?","¿Qué obligaciones añade la amistad?","¿Quién revisa la distancia editorial?"],
+  m:"Se gestiona reconfirmando en los puntos donde el proyecto cambia de naturaleza, mostrando el material antes de publicar y aceptando que una parte pueda quedar fuera si la persona, comprendiendo ya el resultado, no lo autoriza. La amistad añade una obligación de cuidado que no desaparece cuando termina la película: quien aparece seguirá viviendo con las consecuencias en su entorno inmediato, y el director también. La distancia editorial no puede revisarla quien está dentro: hace falta una editora o productora externa que lea el material y pregunte lo que el equipo ya no ve, que es exactamente la función descrita en esta unidad.",
+  k:"En rodajes largos y cercanos, el consentimiento inicial caduca. Reconfirmar cuando el proyecto cambia de naturaleza no es cortesía: es la condición de que sea publicable."},
+
+ {tag:"CASO 6 · DART CENTER · ENTREVISTA Y TRAUMA",t:"Cómo se pregunta por lo peor",
+  d:"El Dart Center for Journalism and Trauma, de la Escuela de Periodismo de la Universidad de Columbia, ha sistematizado prácticas para entrevistar a personas que han sufrido violencia o pérdida. Sus recomendaciones incluyen explicar antes cómo será la conversación y que puede detenerse en cualquier momento, dar control sobre el ritmo y el lugar, evitar preguntas que obliguen a reconstruir el momento más duro cuando no aportan información necesaria, reconocer las señales de sobrecarga y prever el contacto posterior. El centro documenta además el efecto acumulativo de este trabajo sobre los propios profesionales.",
+  ej:"El criterio no es la delicadeza sino la calidad: una persona que conserva el control de la conversación aporta un testimonio más preciso y más utilizable que una desbordada.",
+  p:["¿Qué se explica antes de empezar?","¿Cómo se distingue una pregunta necesaria de una gratuita?","¿Qué obligación hay después de la grabación?"],
+  m:"Se explica quién eres, de qué trata el trabajo, cuánto durará aproximadamente, que puede parar o retomar cuando quiera, qué pasará con el material y cómo contactarte después; esa introducción ordena la conversación y reduce la sensación de exposición. Una pregunta es necesaria cuando su respuesta aporta información que el reportaje requiere y no puede obtenerse de otra fuente; es gratuita cuando busca reacción emocional o detalle que solo intensifica la escena. Después de grabar hay una obligación de continuidad —informar de cuándo se publicará, avisar antes de la emisión, responder a las dudas— que casi nunca se presupuesta y que distingue una relación profesional de una extracción.",
+  k:"Dar control a la persona sobre el ritmo y el proceso mejora el testimonio además de reducir el daño. La obligación no termina cuando se apaga la cámara."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El veto disfrazado de revisión",
+  d:"La institución concede el acceso a cambio de ver el montaje antes de la emisión «solo para comprobar datos».",
+  r:"Directora · Director de la institución · Productora",
+  ej:"<span class='who'>INSTITUCIÓN:</span> Solo queremos verificar que no haya errores.<br><span class='who'>DIRECTORA:</span> Le ofrezco revisión de datos por escrito: cifras, nombres, procedimientos.<br><span class='who'>INSTITUCIÓN:</span> Preferimos ver el montaje completo.<br><span class='who'>PRODUCTORA:</span> Eso es aprobación previa, y eso no podemos concederlo.",
+  m:"La distinción es nítida y conviene formularla así desde la primera reunión: la revisión de datos comprueba exactitud y es deseable; la revisión del montaje concede control sobre el contenido y es incompatible con la independencia editorial. La salida práctica consiste en ofrecer por escrito la comprobación de todos los elementos factuales, con un plazo, y en documentar que se ofreció, lo que además refuerza la posición del equipo si después se alega inexactitud. Si el acceso se pierde por no ceder, se pierde: un documental con derecho de veto no es un documental periodístico, y esa decisión debe tomarla la dirección editorial y no la producción.",
+  c:"Ofrecer una alternativa real que atienda la preocupación legítima sin conceder control editorial."},
+
+ {tag:"ESCENARIO 2",t:"La firma que no entendió",
+  d:"Una persona firmó la autorización el primer día. Tres meses después, el documental ha derivado hacia un asunto que la expone laboralmente.",
+  r:"Directora · Persona retratada · Productora",
+  ej:"<span class='who'>PERSONA:</span> Yo firmé para lo del barrio, no para esto.<br><span class='who'>DIRECTORA:</span> Tiene razón: el proyecto cambió. Vamos a ver juntos qué material la afecta.<br><span class='who'>PRODUCTORA:</span> Y qué podemos hacer sin perder lo esencial.<br><span class='who'>PERSONA:</span> ¿Puedo verlo antes?",
+  m:"La autorización cubre jurídicamente y no resuelve el problema ético ni el riesgo real: nadie consintió aquello en lo que el proyecto derivó. El procedimiento correcto es reconfirmar, mostrar el material que la afecta, explicar las consecuencias previsibles y buscar una solución técnica —no identificación, uso parcial, descripción sin imagen— que preserve lo informativo sin exponerla. Mostrar material a una persona retratada no equivale a concederle derecho de veto sobre el documental: se le muestra lo que la afecta y se decide con ella sobre eso, manteniendo la dirección editorial del conjunto.",
+  c:"Reconocer que la autorización quedó desfasada y reabrir el consentimiento sin ceder el control del proyecto."},
+
+ {tag:"ESCENARIO 3",t:"El día de rodaje sin plan",
+  d:"El equipo llega a la localización sin escaleta cerrada. La propuesta es grabar todo lo que ocurra y decidir en montaje.",
+  r:"Directora · Cámara · Productora",
+  ej:"<span class='who'>CÁMARA:</span> Grabamos todo y ya veremos.<br><span class='who'>PRODUCTORA:</span> Todo son ocho horas y dos días de visionado.<br><span class='who'>DIRECTORA:</span> ¿Qué tres escenas necesitamos sí o sí?<br><span class='who'>CÁMARA:</span> Si me las dices, las cubro con recursos y ambiente.",
+  m:"Grabar sin plan no es flexibilidad: traslada el problema a montaje, donde cuesta varias veces más resolverlo. La conversación se reconduce fijando las escenas imprescindibles del día y qué se hace si no se consiguen, lo que permite además cubrir cada una con la variedad de planos, los recursos y el minuto de ambiente que el montaje necesitará. La flexibilidad real consiste en tener un plan y estar dispuesto a abandonarlo cuando ocurra algo mejor, no en carecer de él. Y el material imprevisto se aprovecha igual: la escaleta no impide grabar, ordena la prioridad cuando el tiempo es limitado.",
+  c:"Convertir una intención vaga en tres objetivos concretos, sin frenar la disposición del equipo."},
+
+ {tag:"ESCENARIO 4",t:"La escena que no hay que grabar",
+  d:"Durante el rodaje, una persona entrevistada sufre una crisis emocional intensa. La imagen sería impactante.",
+  r:"Directora · Cámara · Productora",
+  ej:"<span class='who'>CÁMARA:</span> ¿Sigo?<br><span class='who'>DIRECTORA:</span> Baja la cámara. Nos quedamos con ella.<br><span class='who'>PRODUCTORA:</span> ¿Y si luego nos hace falta?<br><span class='who'>DIRECTORA:</span> Se lo preguntamos después, cuando esté en condiciones de decidir.",
+  m:"La decisión sobre cuándo bajar la cámara debe estar tomada antes del rodaje y debe saber quién puede tomarla en el terreno, porque improvisarla produce material que después nadie quiere montar y que ya no puede desgrabarse. El criterio es doble: qué aporta esa imagen que no se acredite de otro modo, y en qué condiciones está la persona para consentir en ese momento, que es cuando menos capacidad tiene de valorar las consecuencias. Si más adelante el material resulta necesario, cabe volver a plantearlo con la persona ya recuperada, explicando para qué serviría y aceptando su negativa.",
+  c:"Tomar una decisión de protección sin dramatizarla y sin cerrar la puerta a retomarlo con consentimiento real."},
+
+ {tag:"ESCENARIO 5",t:"Las tarjetas sin copiar",
+  d:"Final de una jornada de doce horas. El equipo quiere formatear tarjetas para el día siguiente y hay una sola copia del material.",
+  r:"Productora · Cámara · Ayudante",
+  ej:"<span class='who'>CÁMARA:</span> Está copiado en el disco, vamos bien.<br><span class='who'>PRODUCTORA:</span> Una copia no es respaldo. ¿Dónde está la segunda?<br><span class='who'>AYUDANTE:</span> Nos faltan tarjetas para mañana.<br><span class='who'>PRODUCTORA:</span> Compramos tarjetas. El material de hoy no se repite.",
+  m:"La regla no admite excepciones por cansancio: dos copias verificadas en soportes distintos antes de formatear cualquier tarjeta, y la verificación significa comprobar que los archivos abren, no que el copiado terminó. El coste de unas tarjetas adicionales es siempre menor que el de repetir una jornada, y en documental muchas escenas simplemente no se repiten. Conviene además cerrar el día con el parte de rodaje escrito y la nomenclatura aplicada, porque esa información se pierde en dos días y es la que permitirá localizar cualquier toma meses después.",
+  c:"Sostener un procedimiento de seguridad al final de una jornada larga, ofreciendo la solución práctica."},
+
+ {tag:"ESCENARIO 6",t:"Una jornada más",
+  d:"Tras veinte días de rodaje, la directora pide cinco jornadas adicionales. El equipo no sabe describir la película completa.",
+  r:"Directora · Productora · Montadora",
+  ej:"<span class='who'>DIRECTORA:</span> Con cinco días más lo tenemos.<br><span class='who'>MONTADORA:</span> Cuéntame la película en tres minutos, sin lo que falta por grabar.<br><span class='who'>DIRECTORA:</span> Es que depende de lo que consigamos.<br><span class='who'>PRODUCTORA:</span> Entonces el problema no es de material.",
+  m:"Cuando el equipo no puede describir la película con lo que ya tiene, el problema está en la hipótesis o en la investigación, y seguir rodando lo agrava en lugar de resolverlo. La actuación razonable es detener el rodaje, montar un avance con el material existente y comprobar qué falta realmente, que casi nunca coincide con lo que el equipo cree que falta. Si tras ese montaje se identifican dos escenas concretas, se graban con objetivos definidos; si lo que aparece es una necesidad difusa de más material, la respuesta es volver a la investigación y no a la cámara.",
+  c:"Frenar una petición de recursos con una prueba concreta, sin descalificar el criterio de la dirección."}
+];
+
+const IV=[
+ {q:"¿Qué le preocupa exactamente de que grabemos dentro?",
+  m:"Identifica la preocupación real, que casi nunca es la que se formula primero, y permite ofrecer una salida ajustada."},
+ {q:"¿Hay zonas o momentos en los que grabar sería un problema de seguridad o de intimidad?",
+  m:"Distingue condiciones razonables, que se aceptan, de restricciones de contenido, que no."},
+ {q:"¿Qué datos concretos le gustaría verificar antes de la emisión?",
+  m:"Convierte una petición de revisión general en una comprobación factual acotada y ofrecible por escrito."},
+ {q:"¿Por qué prefiere que esos trabajadores no aparezcan?",
+  m:"Puede haber un motivo legítimo —riesgo, situación personal— que se resuelve con no identificación en lugar de exclusión."},
+ {q:"¿Podrían esos trabajadores decidir por sí mismos si quieren participar?",
+  m:"Devuelve la decisión a quien la titula y evita que la institución consienta en nombre de terceros."},
+ {q:"¿Quién puede autorizar el acceso y con qué documento?",
+  m:"Fija la autoridad competente y evita que el permiso se caiga a mitad del rodaje."},
+ {q:"¿Le parece bien que pongamos por escrito lo que hemos acordado hoy?",
+  m:"Documenta el pacto y evita la discusión posterior sobre lo que se prometió."},
+ {q:"Si finalmente no hay acceso, ¿puede indicarme a quién más debería preguntar?",
+  m:"Cierra sin ruptura y mantiene abiertas otras vías, que es lo que permite continuar la investigación."}
+];
+
+const AUDIT=[
+ ["v","Frederick Wiseman rodó en 1967 <em>Titicut Follies</em> en el hospital estatal de Bridgewater, Massachusetts; tras su estreno, la exhibición pública quedó restringida durante décadas por acciones judiciales basadas en la privacidad de los internos, hasta que una resolución de los años noventa levantó buena parte de las limitaciones.","Documentación del caso y cobertura contemporánea. Verificado."],
+ ["v","<em>Nanook of the North</em>, de Robert Flaherty, estrenada en 1922, incluyó escenas puestas en escena para la cámara, entre ellas prácticas ya en desuso y un iglú construido a medias para permitir la iluminación.","Documentación histórica sobre la producción. Verificado."],
+ ["v","<em>The Act of Killing</em>, dirigida por Joshua Oppenheimer y estrenada en 2012, propuso a responsables de las matanzas ocurridas en Indonesia desde 1965 que reconstruyeran sus crímenes con géneros cinematográficos; obtuvo una nominación al Oscar.","Documentación del filme y cobertura internacional. Verificado."],
+ ["v","<em>Citizenfour</em>, dirigida por Laura Poitras y estrenada en 2014, documenta la entrega de documentación sobre vigilancia masiva por parte de Edward Snowden en Hong Kong y obtuvo el Oscar al mejor documental.","Academia de Artes y Ciencias Cinematográficas y documentación del filme. Verificado."],
+ ["v","<em>Minding the Gap</em>, dirigida por Bing Liu y estrenada en 2018, se construyó con material grabado durante años entre personas cercanas al director y fue nominada al Oscar al mejor documental.","Documentación del filme y nominaciones. Verificado."],
+ ["v","El Dart Center for Journalism and Trauma, de la Universidad de Columbia, publica guías sobre entrevista a personas afectadas por violencia y documenta el efecto acumulativo del trabajo con material traumático sobre los profesionales.","dartcenter.org. Verificado."],
+ ["b","La investigación previa determina qué se puede grabar; el rodaje registra y comprueba, no averigua desde cero.","Rabiger · Houston e IRE."],
+ ["b","Las condiciones de acceso son aceptables cuando no afectan a la comprobación de los hechos ni a la libertad editorial; la aprobación previa del montaje no lo es.","Práctica profesional establecida."],
+ ["b","El consentimiento informado es un proceso que exige comprensión de quién graba, para qué, dónde se verá y con qué consecuencias, y no equivale a la firma de una autorización.","Documentary Accountability Working Group · Dart Center."],
+ ["b","En rodajes prolongados el consentimiento debe reconfirmarse cuando el proyecto cambia de naturaleza y antes de publicar.","Documentary Accountability Working Group."],
+ ["b","Grabar para montar exige cobertura en varios tamaños de plano, planos de recurso y sonido ambiente de cada localización.","Rabiger · práctica de producción audiovisual."],
+ ["b","Pedir que la respuesta incluya la pregunta produce frases utilizables en montaje, donde el espectador no oye al entrevistador.","Práctica de producción documental."],
+ ["b","El material propio requiere cadena de custodia: parte de rodaje, doble copia verificada antes de formatear, nomenclatura consistente y conservación del original.","Protocolo de Berkeley · práctica de producción."],
+ ["p","La proporción habitual entre horas grabadas y minutos publicados en documental periodístico se enuncia como orden de magnitud, ya que varía enormemente según el formato y el método de rodaje; no se ha realizado para esta unidad un estudio comparado de producciones.","Redactado sin atribuir una ratio concreta a una fuente determinada."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La función principal del rodaje en un documental periodístico es:",
+ o:["Averiguar qué ocurre en el terreno","Registrar lo ya investigado y comprobar en el terreno lo conocido por documentos","Obtener material atmosférico para el montaje","Conseguir declaraciones citables"],c:1,
+ w:["Llegar a averiguar con la cámara produce material sin respuestas y multiplica el coste de montaje.",
+    "",
+    "La atmósfera es un complemento, no la función de la fase.",
+    "Las declaraciones son un elemento más y no justifican por sí solas un rodaje."],
+ e:"Sin investigación previa la lista de planos es un deseo. El paso al rodaje llega cuando puedes nombrar las escenas sin las cuales el documental no existe."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una condición de acceso inaceptable es:",
+ o:["No grabar en determinadas zonas por seguridad","La aprobación previa del montaje por la parte retratada","Avisar antes de entrar en un espacio privado","Verificar cifras y nombres antes de emitir"],c:1,
+ w:["Las restricciones de seguridad son razonables y no afectan al contenido.",
+    "",
+    "El aviso previo es cortesía operativa y no compromete nada.",
+    "La comprobación de datos es deseable y refuerza la exactitud."],
+ e:"La frontera está en si la condición afecta a la comprobación de los hechos o a la libertad editorial. Revisión de datos, sí; aprobación de montaje, nunca."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El consentimiento informado se distingue de la autorización de imagen en que:",
+ o:["Debe firmarse ante notario","Es un proceso de comprensión, no un documento","Solo se aplica a menores","Se obtiene después del rodaje"],c:1,
+ w:["La forma notarial no aporta comprensión ni protege a la persona.",
+    "",
+    "Se aplica a toda persona identificable, con estándar reforzado en categorías protegidas.",
+    "Debe existir antes de grabar y reconfirmarse después."],
+ e:"Una firma obtenida sin comprensión protege legalmente al productor y no protege en absoluto a la persona retratada."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Cada escena de una escaleta debe responder a:",
+ o:["Qué plano abre y qué plano cierra","Qué muestra, qué necesita, qué alternativa hay si falla y qué función narrativa cumple","Cuánto costará grabarla","Quién aparece y con qué autorización"],c:1,
+ w:["El desglose de planos es posterior y depende de estas cuatro respuestas.",
+    "",
+    "El coste se calcula después, cuando la escena está definida.",
+    "Las autorizaciones son parte del plan de rodaje, no de la función narrativa."],
+ e:"La cuarta pregunta —qué función cumple— es la que distingue una escaleta de una lista de deseos."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El sonido ambiente de una localización sirve para:",
+ o:["Sustituir la música en el montaje","Empalmar planos y dar continuidad sonora, y casi siempre se olvida grabarlo","Comprobar los niveles de grabación","Documentar la hora de la grabación"],c:1,
+ w:["La música cumple otra función y plantea además cuestiones de derechos.",
+    "",
+    "La comprobación de niveles se hace antes de cada bloque, con la fuente real.",
+    "La hora consta en los metadatos del archivo y en el parte de rodaje."],
+ e:"Un minuto continuo de cada localización, sin hablar, resulta imprescindible en montaje. Volver a grabarlo cuesta diez veces más que quedarse cinco minutos."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La saturación como criterio de cierre del rodaje significa que:",
+ o:["Se agotó el presupuesto previsto","Las nuevas entrevistas confirman lo conocido sin aportar matices","Se cubrieron todas las localizaciones","El material grabado supera las horas previstas"],c:1,
+ w:["El agotamiento del presupuesto es una restricción, no un criterio de suficiencia.",
+    "",
+    "Cubrir localizaciones no garantiza que el asunto esté comprendido.",
+    "El volumen de material no indica suficiencia: puede ser repetición."],
+ e:"Es el criterio clásico de la metodología cualitativa. Junto a él, las escenas imprescindibles cubiertas y la capacidad de describir la película completa."},
+
+/* ---------- BLOQUE B · DECISIONES DE PRODUCCIÓN ---------- */
+{blk:"BLOQUE B · DECISIONES DE PRODUCCIÓN", t:"mcq",
+ s:"Una institución concede acceso a cambio de ver el montaje antes de la emisión «solo para comprobar datos».",
+ q:"¿Qué corresponde ofrecer?",
+ o:["Aceptar: la comprobación de datos es legítima","Revisión escrita de los elementos factuales, con plazo, sin acceso al montaje","Rechazar cualquier revisión y renunciar al acceso","Aceptar y no cumplirlo llegado el momento"],c:1,
+ w:["Ver el montaje es aprobación previa, aunque se presente como comprobación.",
+    "",
+    "Rechazar toda revisión desaprovecha una vía que mejora la exactitud y no compromete nada.",
+    "Pactar lo que no se piensa cumplir destruye la relación y la credibilidad del equipo."],
+ e:"Ofrecerlo por escrito además documenta que se dio oportunidad de corregir, lo que refuerza la posición si después se alega inexactitud."},
+
+{blk:"BLOQUE B · DECISIONES DE PRODUCCIÓN", t:"mcq",
+ s:"Una persona firmó la autorización hace tres meses y el proyecto ha derivado hacia un asunto que la expone laboralmente.",
+ q:"¿Qué corresponde hacer?",
+ o:["Nada: la autorización cubre el uso del material","Reconfirmar el consentimiento, mostrarle el material que la afecta y buscar una solución que preserve lo informativo","Retirar todas sus intervenciones","Publicar avisándole el día anterior"],c:1,
+ w:["La cobertura jurídica no resuelve el riesgo real ni el problema ético.",
+    "",
+    "Retirar todo puede no ser necesario si existe una solución técnica intermedia.",
+    "Avisar sin margen no es consentimiento: es notificación."],
+ e:"Nadie consintió aquello en lo que el proyecto derivó. Mostrar el material que la afecta no equivale a conceder derecho de veto sobre el conjunto."},
+
+{blk:"BLOQUE B · DECISIONES DE PRODUCCIÓN", t:"mcq",
+ s:"El equipo llega a la localización sin escaleta cerrada y propone grabar todo y decidir en montaje.",
+ q:"¿Qué problema plantea?",
+ o:["Ninguno: es la práctica del cine observacional","Traslada el problema a montaje, donde cuesta varias veces más, y suele dejar sin cubrir recursos y ambiente","Encarece el alquiler de equipo","Impide obtener autorizaciones"],c:1,
+ w:["El cine observacional también trabaja con criterios previos sobre qué situaciones cubrir.",
+    "",
+    "El coste de equipo es el mismo; el que se dispara es el de visionado y montaje.",
+    "Las autorizaciones dependen de la preproducción, no de la escaleta."],
+ e:"La flexibilidad real consiste en tener un plan y estar dispuesto a abandonarlo cuando ocurra algo mejor, no en carecer de él."},
+
+{blk:"BLOQUE B · DECISIONES DE PRODUCCIÓN", t:"mcq",
+ s:"Durante una entrevista, la persona sufre una crisis emocional intensa y la imagen sería muy impactante.",
+ q:"¿Qué criterio decide?",
+ o:["El valor narrativo de la secuencia","Qué acredita esa imagen que no pueda acreditarse de otro modo, y en qué condiciones está la persona para consentir","La existencia de una autorización firmada","La duración prevista de la pieza"],c:1,
+ w:["El impacto no es interés público, y aquí es precisamente lo que induce al error.",
+    "",
+    "La firma previa no cubre una situación en la que la persona no puede valorar consecuencias.",
+    "La duración es una restricción de formato sin relación con la decisión ética."],
+ e:"La decisión sobre cuándo bajar la cámara se toma antes del rodaje, y se decide quién puede tomarla sobre el terreno."},
+
+{blk:"BLOQUE B · DECISIONES DE PRODUCCIÓN", t:"mcq",
+ s:"Fin de una jornada de doce horas. Hay una sola copia del material y faltan tarjetas para el día siguiente.",
+ q:"¿Qué se hace?",
+ o:["Formatear una tarjeta ya copiada al disco","Hacer y verificar una segunda copia en otro soporte antes de formatear nada, y comprar tarjetas si hace falta","Formatear las tarjetas más antiguas","Copiar al disco y a la nube durante la noche, y formatear ya"],c:1,
+ w:["Una copia no es respaldo: cualquier fallo del disco elimina la jornada.",
+    "",
+    "La antigüedad del material no reduce su valor ni el riesgo de perderlo.",
+    "Formatear antes de verificar que la segunda copia terminó y abre correctamente es el mismo riesgo con otro nombre."],
+ e:"El coste de unas tarjetas es siempre menor que el de repetir una jornada, y en documental muchas escenas no se repiten."},
+
+{blk:"BLOQUE B · DECISIONES DE PRODUCCIÓN", t:"mcq",
+ s:"Tras veinte jornadas, el equipo no consigue describir la película sin mencionar lo que aún espera grabar.",
+ q:"¿Qué indica y qué corresponde?",
+ o:["Falta material: conceder las jornadas adicionales","El problema está en la hipótesis o en la investigación: parar, montar un avance y comprobar qué falta realmente","El montaje debe empezar igualmente","Hay que cambiar de protagonista"],c:1,
+ w:["Añadir jornadas sobre una hipótesis débil amplía el corpus sin resolver la estructura.",
+    "",
+    "Empezar el montaje sin diagnóstico repite el problema en otra fase.",
+    "Cambiar de protagonista es una decisión narrativa que no aborda la causa."],
+ e:"Lo que falta casi nunca coincide con lo que el equipo cree que falta, y montar un avance es la forma más rápida de averiguarlo."},
+
+/* ---------- BLOQUE C · MÉTODO Y ÉTICA ---------- */
+{blk:"BLOQUE C · MÉTODO Y ÉTICA", t:"mcq",
+ q:"Una reconstrucción es admisible en periodismo audiovisual cuando:",
+ o:["Mejora la comprensión del relato","El hecho está acreditado por otras vías y el espectador sabe que ve una representación","Se basa en el testimonio de un participante","No hay imágenes reales disponibles"],c:1,
+ w:["La comprensión es el objetivo y no la condición que legitima la técnica.",
+    "",
+    "Un testimonio acredita lo dicho, no convierte la escenificación en prueba.",
+    "La falta de imágenes explica por qué se recurre a ella, no la autoriza sin declararla."],
+ e:"Lo que rompe el pacto con el espectador no es la puesta en escena, sino presentarla como registro espontáneo."},
+
+{blk:"BLOQUE C · MÉTODO Y ÉTICA", t:"mcq",
+ q:"El permiso de una institución para grabar en sus instalaciones:",
+ o:["Incluye el consentimiento de las personas que la habitan","No sustituye al consentimiento de esas personas, especialmente si su autonomía está limitada","Basta si el interés público es alto","Exime de identificar a los responsables"],c:1,
+ w:["Confundir ambas cosas es el núcleo del conflicto clásico del documental en espacios cerrados.",
+    "",
+    "El interés público justifica informar, no prescinde del consentimiento ni de la no identificación.",
+    "La identificación de responsables es otra cuestión, ajena al permiso de acceso."],
+ e:"En instituciones cerradas la no identificación es el criterio por defecto: se puede acreditar el trato sin exponer a quien no eligió aparecer."},
+
+{blk:"BLOQUE C · MÉTODO Y ÉTICA", t:"mcq",
+ q:"Pedir a la persona entrevistada que incluya la pregunta en su respuesta sirve para:",
+ o:["Comprobar que entendió la pregunta","Obtener frases que se sostengan solas en el montaje, donde no se oye al entrevistador","Alargar la respuesta","Facilitar la transcripción"],c:1,
+ w:["La comprensión se verifica de otro modo, y no es el motivo de la práctica.",
+    "",
+    "El objetivo no es la duración sino la autonomía de la frase.",
+    "La transcripción se beneficia y no es la razón principal."],
+ e:"«¿Cuándo se dio cuenta?» produce «en marzo». Pedir que empiece con «me di cuenta en marzo, cuando…» produce una frase montable."},
+
+{blk:"BLOQUE C · MÉTODO Y ÉTICA", t:"mcq",
+ q:"En una entrevista informada por el trauma, lo primero es:",
+ o:["Preguntar por el momento más difícil mientras la emoción está presente","Explicar cómo será la conversación, que puede detenerse y qué pasará con el material","Grabar sin avisar para captar naturalidad","Reducir la duración al mínimo"],c:1,
+ w:["Forzar la reconstrucción del peor momento sin necesidad informativa es la práctica que las guías desaconsejan expresamente.",
+    "",
+    "Grabar sin aviso vulnera el consentimiento y destruye la confianza.",
+    "Acortar por sistema no protege: lo que protege es el control de la persona sobre el ritmo."],
+ e:"Una persona que conserva el control de la conversación aporta un testimonio más preciso y más utilizable, además de sufrir menos."},
+
+{blk:"BLOQUE C · MÉTODO Y ÉTICA", t:"mcq",
+ q:"El parte de rodaje diario cumple la función de:",
+ o:["Justificar los gastos ante producción","Documentar qué se grabó, dónde, cuándo, con quién y con qué autorizaciones: la cadena de custodia del material propio","Planificar la jornada siguiente","Registrar las horas del equipo"],c:1,
+ w:["La justificación de gastos es contable y usa otros documentos.",
+    "",
+    "La planificación del día siguiente es otra herramienta.",
+    "El control horario es una obligación laboral distinta."],
+ e:"Es lo que permite localizar y acreditar cualquier plano meses después. Escrito en el momento, no de memoria al volver."},
+
+{blk:"BLOQUE C · MÉTODO Y ÉTICA", t:"mcq",
+ q:"En un rodaje con riesgo para la fuente, la seguridad operacional:",
+ o:["Se resuelve al final, antes de publicar","Determina el diseño de la producción: calendario, ubicaciones, equipo presente y flujo del material","Es responsabilidad exclusiva de la fuente","Se limita a cifrar los discos"],c:1,
+ w:["Resolverlo al final llega tarde: el rastro ya existe.",
+    "",
+    "El riesgo lo asume la fuente y la responsabilidad de gestionarlo es compartida.",
+    "El cifrado es una medida entre varias y no cubre el diseño del rodaje."],
+ e:"Cada decisión de producción es también una decisión de protección, y la calidad audiovisual se subordina a esas restricciones."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe comprenderse para que haya consentimiento informado.",
+ o:["Quién graba y para quién trabaja","De qué trata el proyecto y qué papel ocupa su testimonio","Dónde se verá y durante cuánto tiempo","El presupuesto de la producción","Qué consecuencias previsibles puede tener aparecer"],
+ c:[0,1,2,4],
+ w:["","","","El presupuesto no afecta a la decisión de la persona ni a su exposición.",""],
+ e:"La prueba es pedirle que explique con sus palabras qué va a pasar. Si su descripción no coincide con la tuya, no hay consentimiento informado."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que hay que registrar en cada localización pensando en el montaje.",
+ o:["Varios tamaños de plano de la misma situación","Planos de recurso: manos, objetos, el lugar vacío","Un minuto continuo de sonido ambiente","El plano general que sitúa el espacio","Una toma con el equipo trabajando"],
+ c:[0,1,2,3],
+ w:["","","","","El making of puede tener valor promocional y no cumple ninguna función en el montaje del documental."],
+ e:"Al terminar cada localización conviene preguntar: ¿tenemos ambiente, recursos y general? Si falta alguno, se graba antes de recoger."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las fases de preparación de un documental periodístico.",
+ o:["Cerrar la investigación hasta poder enunciar la tesis","Escribir la escaleta con las escenas imprescindibles","Negociar y documentar el acceso y el consentimiento","Preparar el plan de rodaje: localizaciones, permisos, riesgos y equipo","Rodar según plan, revisando la escaleta con lo que la realidad conteste"],
+ c:[0,1,2,3,4],
+ e:"Se rueda con una hipótesis y se monta con lo que la realidad contestó. Sin investigación cerrada, ninguna de las fases siguientes puede planificarse."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el cierre de una jornada de rodaje.",
+ o:["Comprobar que se cubrieron las escenas previstas del día","Grabar lo que falte de ambiente, recursos o plano general","Escribir el parte de rodaje con autorizaciones obtenidas","Hacer dos copias verificadas en soportes distintos","Aplicar la nomenclatura y anotar los descartes evidentes"],
+ c:[0,1,2,3,4],
+ e:"Ninguna tarjeta se formatea sin dos copias verificadas. Es la parte más aburrida del oficio y la que evita las pérdidas irreparables."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
