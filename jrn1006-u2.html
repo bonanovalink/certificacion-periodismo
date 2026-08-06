@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1006 · Unidad 2 — Salud, Medicina y Jerarquía de la Evidencia</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1006, Unidad 2.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="jrn1005-u1.html"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course on" href="jrn1006-u2.html"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1006 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Salud, Medicina y Jerarquía de la Evidencia</h2>
+  <div class="sub">Unidad 2 de 4 · Periodismo Científico y Ambiental</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1006-u1.html">Unidad 1: Cómo Funciona la Ciencia y Cómo se Cubre</a>
+    <span class="unit on">Unidad 2: Salud, Medicina y Jerarquía de la Evidencia</span>
+    <span class="unit">Unidad 3: Clima y Medio Ambiente</span>
+    <span class="unit">Unidad 4: Riesgo, Incertidumbre y Comunicación Pública</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>La información sanitaria es la que más directamente cambia el comportamiento de las personas: alguien deja un tratamiento, se somete a una prueba o modifica su dieta por lo que leyó. Esa capacidad de influir convierte la precisión en una obligación distinta de la habitual, porque el error no produce una rectificación incómoda sino un daño concreto.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>en salud no basta con que un dato sea cierto: debe presentarse de forma que permita decidir</strong>. Un aumento del riesgo del cuarenta por ciento puede significar pasar de dos casos por cada diez mil personas a tres, y esas dos formulaciones —ambas exactas— producen decisiones distintas. Elegir cómo se expresa una cifra no es un asunto de estilo: es la información.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Situar un estudio en la jerarquía de la evidencia y explicar qué tipo de afirmación permite cada diseño.</li>
+      <li>Traducir riesgos relativos a riesgos absolutos y comunicar magnitudes de forma que permitan decidir.</li>
+      <li>Interpretar los resultados de un ensayo clínico: comparador, variable medida, seguimiento y efectos adversos.</li>
+      <li>Explicar el sobrediagnóstico y las limitaciones de los programas de cribado sin desincentivar la prevención útil.</li>
+      <li>Cubrir emergencias sanitarias con datos provisionales, declarando lo que se desconoce.</li>
+      <li>Aplicar criterios de cobertura responsable en salud mental y en desinformación sanitaria.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Gerd Gigerenzer, <em>Calculated Risks</em> — comunicación de riesgo y comprensión de cifras sanitarias</li>
+      <li>Ben Goldacre, <em>Bad Science</em> y <em>Bad Pharma</em> — evidencia clínica y transparencia de ensayos</li>
+      <li>Cochrane, <em>Handbook for Systematic Reviews of Interventions</em> — jerarquía y síntesis de la evidencia</li>
+      <li>Organización Mundial de la Salud, guías para profesionales de medios sobre información y suicidio</li>
+      <li>Sense about Science, <em>Making Sense of Statistics</em></li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>Cochrane</h5>
+        <div class="def">Red internacional que elabora revisiones sistemáticas de intervenciones sanitarias con metodología explícita y actualizable. Sus revisiones son la referencia habitual para saber qué dice el conjunto de la evidencia sobre un tratamiento.</div>
+        <p class="src">cochrane.org</p></div>
+      <div class="term"><h5>IARC — Agencia Internacional para la Investigación del Cáncer</h5>
+        <div class="def">Organismo de la OMS que clasifica agentes según la solidez de la evidencia de que son cancerígenos. Su clasificación mide certeza sobre la existencia del riesgo, no magnitud del riesgo, y esa distinción se malinterpreta con frecuencia.</div>
+        <p class="src">iarc.who.int</p></div>
+      <div class="term"><h5>AllTrials y registro de ensayos</h5>
+        <div class="def">Iniciativa que exige el registro previo de todos los ensayos clínicos y la publicación de sus resultados, incluidos los negativos, para corregir el sesgo que produce publicar solo lo favorable.</div>
+        <p class="src">alltrials.net</p></div>
+      <div class="term"><h5>OMS · información y suicidio</h5>
+        <div class="def">Guías dirigidas a profesionales de medios sobre cómo informar de suicidios reduciendo el riesgo de imitación: evitar detalles del método y del lugar, no presentar el hecho como solución y ofrecer recursos de ayuda.</div>
+        <p class="src">Organización Mundial de la Salud</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de una traducción completa de riesgos a cifras comprensibles. El <strong>Examen Integrador</strong> de JRN-1006 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>La jerarquía de la evidencia</h3>
+    <p>No todos los estudios pesan igual, y conocer el orden es la herramienta más rentable de esta materia. En la base están los estudios <strong>en laboratorio y en animales</strong>, que sugieren mecanismos y no permiten afirmar nada sobre personas. Después los <strong>estudios observacionales</strong> —de cohortes, de casos y controles—, que detectan asociaciones en poblaciones reales y no establecen causalidad. Encima, los <strong>ensayos controlados con asignación aleatoria</strong>, que sí permiten atribuir el efecto a la intervención porque el azar reparte los factores desconocidos entre los grupos. Y en la cúspide, las <strong>revisiones sistemáticas con metaanálisis</strong>, que sintetizan todos los ensayos disponibles con un método explícito.</p>
+    <p>Esta jerarquía no significa que los diseños inferiores carezcan de valor. Hay preguntas que no admiten ensayo por razones éticas o prácticas —nadie asigna aleatoriamente a un grupo de personas a fumar durante veinte años—, y ahí la evidencia observacional acumulada es lo mejor disponible, como muestra el caso del tabaco tratado en la Unidad 3 de JRN-1002.</p>
+    <p>Lo que sí significa es que la afirmación publicable cambia con el diseño. De un estudio en ratones se puede escribir que un compuesto tuvo cierto efecto en ratones, y nada más. De un estudio observacional, que existe una asociación. De un ensayo, que la intervención produjo un efecto de tal magnitud en esa población. Y de una revisión sistemática, que el conjunto de la evidencia apunta en una dirección con determinada consistencia.</p>
+    <p>La comprobación operativa es una sola pregunta al empezar: qué tipo de estudio es. Responderla antes de leer el resumen evita casi todos los errores de la cobertura sanitaria, porque fija de antemano el techo de lo que la pieza podrá afirmar.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Identifica el diseño antes de leer los resultados. El diseño fija el techo de lo que puedes escribir, y ningún hallazgo espectacular eleva ese techo.</div>
+
+    <h3>Riesgo relativo y riesgo absoluto</h3>
+    <p>Es la distinción que más errores produce en información sanitaria y la más fácil de corregir. El <strong>riesgo relativo</strong> compara la frecuencia de un suceso entre dos grupos: si pasa del 1% al 1,4%, el riesgo relativo aumenta un 40%. El <strong>riesgo absoluto</strong> expresa cuántos casos más se producen: en ese ejemplo, cuatro casos adicionales por cada mil personas.</p>
+    <p>Ambas cifras son exactas y comunican cosas muy distintas. Un titular con el riesgo relativo produce alarma; el mismo dato en términos absolutos permite decidir. Por eso la regla profesional es publicar siempre el riesgo absoluto, y añadir el relativo si aporta contexto, nunca al revés.</p>
+    <p>El ejemplo canónico es la clasificación de la carne procesada como cancerígena publicada por la agencia especializada de la OMS en 2015. La agencia informó de un aumento aproximado del 18% en el riesgo relativo de cáncer colorrectal por cada cincuenta gramos diarios consumidos. Numerosos titulares equipararon ese resultado con el tabaco, porque ambos figuran en la misma categoría de clasificación, y esa lectura es incorrecta: la categoría expresa cuán segura es la evidencia de que algo causa cáncer, no cuánto riesgo produce. La magnitud del riesgo asociado al tabaco es muy superior.</p>
+    <p>La consecuencia práctica es doble: traducir siempre a casos por cada mil o diez mil personas, y explicar sobre qué línea base se aplica el aumento, porque un incremento relativo sobre un riesgo basal minúsculo sigue siendo minúsculo.</p>
+    <div class="ej"><b>REGLA</b>Nunca publiques un porcentaje de aumento sin el número de casos por cada mil o diez mil personas y sin la línea base. La cifra relativa sola no permite decidir nada, que es justo para lo que sirve la información sanitaria.</div>
+
+    <h3>Cómo se lee un ensayo clínico</h3>
+    <p>Un ensayo bien diseñado responde a una pregunta acotada y hay que saber cuál es. Cinco elementos determinan qué permite afirmar y conviene comprobarlos en este orden.</p>
+    <ol>
+      <li><strong>Comparador</strong>: contra qué se compara la intervención. Frente a placebo se demuestra que funciona; frente al tratamiento estándar, que funciona mejor, que es la pregunta clínicamente relevante.</li>
+      <li><strong>Variable medida</strong>: si se mide un resultado que importa —muerte, ingreso, recuperación— o una variable sustitutiva como un marcador analítico.</li>
+      <li><strong>Población</strong>: a quién se incluyó y a quién se excluyó, porque los ensayos suelen excluir a personas mayores, con varias enfermedades o embarazadas, y esa exclusión limita la extrapolación.</li>
+      <li><strong>Duración</strong>: cuánto tiempo se siguió a los participantes, dato decisivo para tratamientos crónicos.</li>
+      <li><strong>Efectos adversos</strong>: qué daños se registraron, que casi nunca aparecen en el comunicado y siempre en el artículo.</li>
+    </ol>
+    <p>Y una comprobación adicional que ahorra disgustos: si el ensayo estaba registrado previamente y si la variable principal declarada al registrarlo coincide con la que se presenta en el artículo. Cuando no coincide, el resultado puede ser fruto de haber elegido después la medida que salió bien.</p>
+    <div class="ej"><b>COMPROBACIÓN</b>Busca el registro previo del ensayo y compara la variable principal declarada con la publicada. Si cambió, pregunta por qué: es una de las señales más informativas y casi nadie la comprueba.</div>
+
+    <h3>Número necesario a tratar</h3>
+    <p>Hay una cifra que traduce cualquier resultado clínico a lenguaje comprensible y que rara vez aparece en la cobertura: el número de personas que deben recibir un tratamiento para que una obtenga el beneficio. Se calcula a partir del riesgo absoluto y convierte una discusión sobre porcentajes en una descripción concreta.</p>
+    <p>Si un tratamiento reduce la mortalidad del 2% al 1%, hace falta tratar a cien personas para evitar una muerte. Ese enunciado es exacto, comprensible y permite valorar el beneficio junto a los costes: efectos adversos, precio, molestias y las noventa y nueve personas que reciben el tratamiento sin obtener ventaja.</p>
+    <p>Su equivalente en el lado del daño es igual de útil: cuántas personas deben recibir el tratamiento para que una sufra un efecto adverso determinado. Publicar ambas cifras juntas ofrece al lector la comparación que un profesional sanitario hace mentalmente y que el titular habitual oculta.</p>
+    <p>Conviene además evitar la trampa de presentar el beneficio en términos relativos y el daño en absolutos, o al revés, que es una forma sutil y frecuente de sesgar la presentación. La regla es simple: la misma escala para lo bueno y para lo malo.</p>
+    <div class="ej"><b>MÉTODO</b>Pide siempre el número necesario a tratar y el número necesario para dañar. Si el equipo investigador no los calcula, se obtienen del riesgo absoluto en un minuto y transforman la pieza.</div>
+
+    <h3>Cribado y sobrediagnóstico</h3>
+    <p>Los programas de cribado buscan detectar enfermedad antes de que dé síntomas, y su intuición —cuanto antes, mejor— es correcta en muchos casos y no en todos. El fenómeno que lo explica es el sobrediagnóstico: la detección de lesiones que nunca habrían causado daño durante la vida de la persona y que, sin embargo, se tratan.</p>
+    <p>El caso mejor documentado es el aumento extraordinario de diagnósticos de cáncer de tiroides registrado en Corea del Sur tras la difusión de la ecografía como prueba de detección. Un análisis publicado en <em>The New England Journal of Medicine</em> en 2014 describió el fenómeno como una epidemia de diagnóstico: los casos detectados se multiplicaron mientras la mortalidad por esa enfermedad permanecía prácticamente estable, lo que indica que se estaban detectando lesiones que no habrían llegado a causar la muerte.</p>
+    <p>Explicar esto es delicado porque puede leerse como un argumento contra la prevención, y no lo es: hay cribados con beneficio demostrado. Lo que exige es precisión sobre qué programa, para qué población y con qué balance entre beneficios y daños, que incluyen falsos positivos, pruebas invasivas y tratamientos innecesarios.</p>
+    <p>La cobertura útil da al lector las tres cifras que permiten entender un cribado: cuántas muertes evita por cada mil personas cribadas, cuántos falsos positivos genera y cuántos sobrediagnósticos produce. Sin esas tres, la información es incompleta en la dirección que sea.</p>
+    <div class="ej"><b>CRITERIO</b>Al cubrir un cribado, publica siempre las tres cifras por cada mil personas: muertes evitadas, falsos positivos y sobrediagnósticos. Cualquiera de las tres por separado produce una imagen falsa.</div>
+
+    <h3>Reguladores, guías y aprobación</h3>
+    <p>Que un tratamiento esté aprobado no significa que sea mejor que el existente ni que su beneficio sea grande. Las agencias reguladoras evalúan calidad, seguridad y eficacia frente a un comparador que a veces es el placebo, y la aprobación puede apoyarse en variables sustitutivas cuando la enfermedad es grave y no hay alternativa.</p>
+    <p>Junto a los reguladores operan las <strong>guías clínicas</strong>, elaboradas por sociedades científicas y organismos públicos, que sintetizan la evidencia y recomiendan actuaciones. Su calidad varía y conviene comprobar dos cosas: qué metodología usaron para revisar la evidencia y qué conflictos de interés declaran quienes las firman.</p>
+    <p>Existe además la vía de <strong>aprobación acelerada</strong>, que permite autorizar un fármaco antes de disponer de resultados definitivos con el compromiso de aportarlos después. Es una herramienta razonable para enfermedades graves sin tratamiento, y su seguimiento —si los estudios comprometidos llegan y qué dicen— es un asunto periodístico recurrente y poco cubierto.</p>
+    <p>La pregunta útil ante cualquier aprobación es qué añade respecto a lo que ya existía, medido en resultados que importen a las personas. Muchos tratamientos nuevos aportan una mejora marginal a un precio muy superior, y ese contraste es información de interés público que rara vez aparece en el anuncio.</p>
+    <div class="ej"><b>PREGUNTA DE CONTROL</b>¿Qué añade este tratamiento frente al que ya existía, medido en resultados relevantes, y a qué precio? Es la pregunta que ninguna nota de aprobación responde y la que más importa al lector.</div>
+
+    <h3>Cubrir una emergencia sanitaria</h3>
+    <p>En un brote, la información llega incompleta, cambia deprisa y se difunde antes de estar verificada. El error habitual no es publicar datos provisionales —a veces es necesario— sino presentarlos como definitivos y no actualizarlos después.</p>
+    <p>Cuatro cifras aparecen siempre y las cuatro se malinterpretan. Los <strong>casos confirmados</strong> dependen de cuántas pruebas se hagan, de modo que su aumento puede reflejar más detección y no más enfermedad. La <strong>letalidad</strong> calculada dividiendo muertes entre casos confirmados sobrestima el riesgo al principio, porque los casos leves no se detectan. El <strong>tiempo de duplicación</strong> es útil y muy sensible a cambios en el registro. Y las <strong>comparaciones entre países</strong> son casi siempre engañosas, porque cada uno cuenta de manera distinta, que es exactamente el problema descrito en la Unidad 2 de JRN-1002.</p>
+    <p>La cobertura responsable acompaña cada cifra de su denominador y de su fecha, distingue lo que se sabe de lo que se supone y explica qué mediciones cambiarían la interpretación. Y evita el tono de certeza: en las primeras semanas de un brote, la honestidad sobre lo que se ignora es el dato más valioso que puede ofrecerse.</p>
+    <p>Conviene además cuidar el efecto de las piezas sobre el comportamiento. Una información correcta pero alarmista puede saturar servicios sanitarios; una tranquilizadora en exceso puede retrasar medidas. La solución no es calibrar el tono a un efecto deseado —eso es comunicación institucional, no periodismo— sino ser preciso sobre magnitudes e incertidumbre.</p>
+    <div class="ej"><b>REGLA</b>Cada cifra con su denominador, su fecha y su fuente. Y una frase explícita sobre qué no se sabe todavía: en una emergencia, esa frase es información y no una excusa.</div>
+
+    <h3>Salud mental y cobertura responsable</h3>
+    <p>La información sobre suicidio es el ámbito donde mejor documentado está el efecto de la cobertura sobre la conducta. La investigación describe dos fenómenos: el aumento de casos tras coberturas detalladas y sensacionalistas, y el efecto protector de las informaciones que muestran alternativas y recuperación.</p>
+    <p>Las guías de la Organización Mundial de la Salud dirigidas a profesionales de medios recogen recomendaciones concretas: no describir el método ni el lugar, no situar la información en portada ni con titulares llamativos, no presentar el suicidio como una solución o una respuesta comprensible a un problema, evitar el uso de imágenes del lugar, informar del contexto de salud mental cuando proceda y ofrecer siempre recursos de ayuda disponibles.</p>
+    <p>Esas recomendaciones no equivalen a silencio. Informar sobre salud mental es necesario y útil: la cobertura que explica factores de riesgo, que muestra tratamientos eficaces y que da voz a personas que se recuperaron tiene efectos positivos documentados. Lo que se desaconseja es el tratamiento detallado del caso individual con elementos que facilitan la identificación y la imitación.</p>
+    <p>El mismo criterio de proporcionalidad se aplica a otros temas sensibles de salud: trastornos alimentarios, adicciones y enfermedades estigmatizadas, donde el detalle innecesario y el lenguaje que reduce a la persona a su diagnóstico producen un daño que ninguna información compensa.</p>
+    <div class="ej"><b>CRITERIO</b>Informa del fenómeno, no del método. Y acompaña siempre con recursos de ayuda: es la medida más eficaz y la que menos espacio ocupa en la pieza.</div>
+
+    <h3>Desinformación sanitaria</h3>
+    <p>La información falsa sobre salud circula con ventaja: promete certezas donde la ciencia ofrece probabilidades, ofrece soluciones simples y apela a la desconfianza hacia instituciones. Combatirla repitiendo el bulo para desmentirlo puede reforzarlo, y ese efecto conviene tenerlo en cuenta al diseñar la pieza.</p>
+    <p>Las prácticas que funcionan mejor son conocidas. <strong>Encabezar con el hecho</strong> y no con el bulo, de modo que el titular afirme lo cierto en lugar de repetir lo falso. <strong>Explicar el mecanismo</strong> por el que la afirmación falsa es incorrecta, porque una negación sin explicación deja un vacío que el bulo vuelve a llenar. <strong>Advertir antes de repetir</strong> la afirmación falsa, si es necesario mencionarla. Y <strong>ofrecer una alternativa completa</strong>: sustituir la explicación errónea por otra que responda a la misma inquietud.</p>
+    <p>Conviene además decidir cuándo no cubrir. Un bulo con difusión mínima puede amplificarse precisamente al desmentirlo, y esa valoración —alcance real, daño potencial, existencia de demanda informativa— debe hacerse antes de escribir. No todo lo falso que circula merece una pieza.</p>
+    <p>Y hay un componente que suele olvidarse: la desinformación sanitaria prospera donde hay una necesidad no atendida. Explicar por qué existe la duda, qué incertidumbre real hay detrás y por qué las instituciones no la resolvieron es más eficaz que la corrección aislada, y además es mejor periodismo.</p>
+    <div class="ej"><b>MÉTODO</b>Titula con el hecho, no con el bulo. Explica el mecanismo del error y ofrece la explicación correcta completa: una negación sin sustituto deja el hueco donde el bulo vuelve a instalarse.</div>
+
+    <h3>Publicar sin causar daño</h3>
+    <p>La cobertura sanitaria tiene una obligación específica derivada de su capacidad de influir en decisiones individuales. Antes de publicar conviene preguntarse qué hará el lector con esta información, porque algunas piezas correctas producen conductas indeseadas: abandonar un tratamiento, exigir una prueba innecesaria, retrasar una consulta o automedicarse.</p>
+    <p>Esto no obliga a la autocensura ni a suavizar hallazgos incómodos: obliga a completar la información. Si un estudio cuestiona un tratamiento extendido, la pieza debe decir qué se recomienda hacer entretanto y advertir de que no conviene interrumpirlo sin consultar. Si informa de un efecto adverso, debe situar su frecuencia. Si describe una técnica, debe indicar en qué casos está indicada.</p>
+    <p>Hay además una obligación con las personas que aparecen. Los testimonios individuales son eficaces y engañosos: una recuperación excepcional comunica esperanza y una expectativa que la evidencia no sostiene. Cuando se usen, deben acompañarse de la cifra que sitúa ese caso dentro del conjunto.</p>
+    <p>Y una última: el seguimiento. La información sanitaria envejece, los tratamientos cambian y las recomendaciones se actualizan. Revisar el archivo de las piezas más consultadas y actualizarlas es una tarea poco vistosa que evita que un texto de hace cinco años siga orientando decisiones con criterios superados.</p>
+    <div class="ej"><b>REGLA FINAL</b>Antes de publicar, pregúntate qué hará el lector con esto. Si la respuesta es una conducta que la pieza no ha previsto, falta información, y añadirla cuesta dos frases.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista al responsable de un laboratorio que anuncia un fármaco «un 40% más eficaz». El ensayo compara contra placebo, mide una variable analítica y siguió a los participantes durante doce semanas.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes afirmar que el fármaco no funciona: no lo sabes. Cada pregunta debe apuntar a comparador, variable, población, duración o efectos adversos. Si aporta datos que refuerzan el resultado, tienes que poder incorporarlos.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">TRADUCCIÓN DE RIESGOS · OBLIGATORIA</span>
+      <p>Toma una información sanitaria publicada con cifras de riesgo. Entrega: la identificación del diseño del estudio y su posición en la jerarquía de la evidencia; la conversión del riesgo relativo a riesgo absoluto, con la línea base y los casos por cada mil o diez mil personas; el número necesario a tratar y, si procede, el número necesario para dañar; la comprobación del registro previo del ensayo y de la coincidencia de la variable principal; el listado de efectos adversos declarados; y una reescritura de trescientas palabras que permita al lector decidir.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Identificación correcta del diseño y de lo que permite afirmar (20%) · Conversión completa a riesgo absoluto con línea base (30%) · Cálculo e interpretación del número necesario a tratar (20%) · Comprobación del registro y de la variable principal (15%) · Reescritura que informe de beneficios y daños en la misma escala (15%). Un trabajo que publique solo el riesgo relativo no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 2</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1006-u1.html">← Unidad 1: Cómo Funciona la Ciencia y Cómo se Cubre</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Jerarquía de la Evidencia",d:"Orden de solidez de los diseños de estudio, desde el laboratorio hasta la revisión sistemática. Determina qué tipo de afirmación permite cada trabajo.",s:"Cochrane Handbook · metodología establecida"},
+ {t:"Ensayo Aleatorizado",d:"Estudio en que la asignación al azar reparte los factores desconocidos entre grupos, lo que permite atribuir el efecto observado a la intervención.",s:"Metodología clínica establecida"},
+ {t:"Riesgo Relativo",d:"Comparación de la frecuencia de un suceso entre dos grupos, expresada como porcentaje de aumento o descenso. Alarma cuando se publica sin la línea base.",s:"Gigerenzer, Calculated Risks"},
+ {t:"Riesgo Absoluto",d:"Número de casos adicionales por cada mil o diez mil personas. Es la cifra que permite decidir y la que debe encabezar cualquier información de riesgo.",s:"Gigerenzer · Sense about Science"},
+ {t:"Número Necesario a Tratar",d:"Cantidad de personas que deben recibir un tratamiento para que una obtenga el beneficio. Traduce el resultado clínico a lenguaje comprensible.",s:"Epidemiología clínica establecida"},
+ {t:"Variable Sustitutiva",d:"Marcador intermedio que se mide en lugar del resultado que importa. Su mejora no acredita beneficio clínico.",s:"Metodología de investigación biomédica"},
+ {t:"Sobrediagnóstico",d:"Detección de lesiones que nunca habrían causado daño durante la vida de la persona y que, sin embargo, se tratan.",s:"Ahn, Kim y Welch, NEJM, 2014"},
+ {t:"Cribado",d:"Programa de detección precoz en población sin síntomas. Su evaluación exige tres cifras: muertes evitadas, falsos positivos y sobrediagnósticos.",s:"Cochrane · salud pública establecida"},
+ {t:"Aprobación Acelerada",d:"Autorización de un fármaco antes de disponer de resultados definitivos, con compromiso de aportarlos después. Su seguimiento posterior es un asunto periodístico recurrente.",s:"Práctica de agencias reguladoras"},
+ {t:"Registro de Ensayos",d:"Depósito público previo del protocolo y la variable principal. Permite detectar si el resultado presentado se eligió después de ver los datos.",s:"AllTrials · práctica editorial biomédica"},
+ {t:"Letalidad Aparente",d:"Cociente entre muertes y casos confirmados. Sobrestima el riesgo al inicio de un brote, porque los casos leves no se detectan.",s:"Epidemiología de campo establecida"},
+ {t:"Cobertura Responsable",d:"Conjunto de criterios para informar de suicidio y salud mental reduciendo el riesgo de imitación y ofreciendo recursos de ayuda.",s:"Organización Mundial de la Salud"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · IARC · OCTUBRE DE 2015",t:"Clasificar la certeza, no el riesgo",
+  d:"En octubre de 2015 la Agencia Internacional para la Investigación del Cáncer, organismo de la Organización Mundial de la Salud, clasificó la carne procesada en su categoría de mayor certeza sobre el carácter cancerígeno e informó de un aumento aproximado del 18% en el riesgo relativo de cáncer colorrectal por cada cincuenta gramos consumidos al día. Numerosas coberturas equipararon ese resultado con el tabaco, que figura en la misma categoría. La equiparación es incorrecta: la clasificación expresa cuán sólida es la evidencia de que un agente causa cáncer, no la magnitud del riesgo que produce, que en el caso del tabaco es de un orden muy superior.",
+  ej:"El malentendido no estaba en las cifras sino en qué mide la clasificación. Una categoría de certeza leída como escala de peligrosidad produce titulares exactos en el dato y falsos en el significado.",
+  p:["¿Cómo debería haberse formulado el titular?","¿Qué papel juega la línea base en este caso?","¿Qué obligación tiene el medio cuando la fuente institucional se malinterpreta?"],
+  m:"El titular debería haber expresado el riesgo en términos absolutos —cuántos casos adicionales por cada mil personas con ese consumo— y explicar que la categoría indica solidez de la evidencia y no magnitud del daño, dos frases que caben en una entradilla. La línea base es decisiva porque un aumento relativo del 18% sobre un riesgo basal moderado produce un incremento absoluto pequeño, y sin esa referencia la cifra no permite decidir nada. Cuando una clasificación institucional se malinterpreta de forma generalizada, el medio tiene la obligación de explicar el sistema de clasificación, no de repetir la lectura errónea que circula, y esa explicación suele ser en sí misma la pieza más útil.",
+  k:"Una escala de certeza no es una escala de peligro. Y ningún porcentaje relativo informa sin la línea base y el número de casos por cada mil personas."},
+
+ {tag:"CASO 2 · NEJM · 2014",t:"La epidemia de diagnóstico",
+  d:"Un análisis publicado en <em>The New England Journal of Medicine</em> en 2014 por Hyeong Sik Ahn, Hyun Jung Kim y H. Gilbert Welch describió el aumento extraordinario de diagnósticos de cáncer de tiroides en Corea del Sur tras la extensión de la ecografía como prueba de detección. Los casos detectados se multiplicaron de forma sostenida durante dos décadas mientras la mortalidad por esa enfermedad permanecía prácticamente estable. Los autores caracterizaron el fenómeno como una epidemia de diagnóstico y no de enfermedad: se estaban detectando y tratando lesiones que no habrían llegado a causar la muerte.",
+  ej:"La curva de diagnósticos y la de mortalidad cuentan historias opuestas, y solo mirando ambas se entiende lo que ocurre. Publicar la primera sin la segunda produce una alarma inexistente.",
+  p:["¿Por qué la comparación de ambas curvas es decisiva?","¿Cómo se explica esto sin desincentivar la prevención útil?","¿Qué tres cifras necesita el lector ante un cribado?"],
+  m:"Es decisiva porque un aumento de diagnósticos sin aumento de mortalidad indica detección de casos que no habrían causado daño, mientras que un cribado eficaz produce el patrón contrario: más detección precoz y descenso posterior de la mortalidad. Se explica distinguiendo programas: hay cribados con beneficio demostrado y otros cuyo balance es discutido, y la precisión sobre cuál se está tratando evita que la crítica a uno se lea como rechazo a todos. Las tres cifras que el lector necesita son, por cada mil personas cribadas, cuántas muertes se evitan, cuántos falsos positivos se producen y cuántos sobrediagnósticos, porque cualquiera de ellas por separado produce una imagen falsa.",
+  k:"Más diagnósticos sin menos muertes no es mejor detección: es sobrediagnóstico. Las dos curvas juntas son la información; por separado, cada una engaña."},
+
+ {tag:"CASO 3 · TRANSPARENCIA DE ENSAYOS · 2009-2014",t:"Los datos que no se publicaban",
+  d:"La revisión Cochrane sobre un antiviral ampliamente adquirido por los gobiernos como reserva frente a una pandemia se enfrentó durante años a la imposibilidad de acceder a los informes completos de los ensayos, en manos del fabricante. La disputa, sostenida públicamente por investigadores y por revistas médicas, terminó con la entrega de los informes y la publicación de una revisión actualizada en 2014 cuyas conclusiones sobre la eficacia del fármaco fueron más modestas que las asumidas hasta entonces. El episodio impulsó la iniciativa AllTrials, que reclama el registro de todos los ensayos y la publicación de sus resultados, incluidos los negativos.",
+  ej:"El problema no era que los estudios estuvieran mal hechos: era que solo se conocía una parte de ellos, y esa selección producía una imagen sistemáticamente favorable.",
+  p:["¿Qué es el sesgo de publicación y cómo afecta a una revisión?","¿Qué puede comprobar un periodista sobre los ensayos de un fármaco?","¿Por qué importa el registro previo?"],
+  m:"El sesgo de publicación es la tendencia a publicar los estudios con resultados positivos y dejar sin publicar los negativos, de modo que una revisión que sintetice solo lo publicado sobrestima el efecto aunque su metodología sea impecable. Un periodista puede comprobar en los registros públicos cuántos ensayos se registraron sobre ese fármaco, cuántos publicaron resultados y cuánto tiempo pasó, y esa diferencia es información publicable por sí sola. El registro previo importa porque fija de antemano cuántos estudios existen y qué medían, lo que permite detectar tanto los que desaparecieron como los que cambiaron su variable principal.",
+  k:"Una revisión solo puede sintetizar lo que se publicó. Comprobar cuántos ensayos registrados nunca publicaron resultados es una pieza en sí misma."},
+
+ {tag:"CASO 4 · COBERTURA DE BROTES",t:"Las cifras que cambian de significado",
+  d:"En las primeras semanas de cualquier brote epidémico, las cifras disponibles miden en parte el fenómeno y en parte la capacidad de detectarlo. El número de casos confirmados depende de cuántas pruebas se realicen; la letalidad calculada dividiendo muertes entre casos confirmados sobrestima el riesgo porque los casos leves no se detectan; y las comparaciones entre países reflejan diferencias en los criterios de registro tanto como diferencias reales. Estos efectos son conocidos en epidemiología de campo y se reproducen en todos los brotes.",
+  ej:"Las mismas cifras significan cosas distintas según la fase del brote y el sistema que las produce. Publicarlas sin denominador ni fecha convierte un dato provisional en una afirmación.",
+  p:["¿Qué acompaña siempre a una cifra en un brote?","¿Por qué las comparaciones internacionales son engañosas?","¿Cómo se comunica lo que aún no se sabe?"],
+  m:"Cada cifra debe ir con su denominador —casos sobre pruebas realizadas, muertes sobre casos estimados—, su fecha de corte y la fuente que la produce, porque sin esos tres elementos no es interpretable y en dos semanas será incomparable consigo misma. Las comparaciones internacionales engañan porque cada país define caso, muerte atribuible y criterio de prueba de manera distinta, que es el problema de comparabilidad descrito en la Unidad 2 de JRN-1002. Lo que no se sabe se comunica con una frase explícita en el cuerpo del texto —qué se ignora y qué mediciones lo aclararían—, que en una emergencia es información valiosa y no una excusa.",
+  k:"En un brote, cada cifra con denominador, fecha y fuente. Y una frase sobre lo que aún no se sabe, que es de las informaciones más útiles que se pueden dar."},
+
+ {tag:"CASO 5 · OMS · INFORMACIÓN Y SUICIDIO",t:"Cómo se informa y qué efecto tiene",
+  d:"La Organización Mundial de la Salud publica guías dirigidas a profesionales de medios sobre la información relativa al suicidio, elaboradas a partir de la investigación que documenta dos fenómenos opuestos: el aumento de casos tras coberturas detalladas y sensacionalistas, y el efecto protector de las informaciones que muestran alternativas, tratamientos y procesos de recuperación. Las recomendaciones incluyen no describir el método ni el lugar, evitar titulares llamativos y ubicaciones destacadas, no presentar el hecho como solución a un problema y ofrecer siempre información sobre recursos de ayuda disponibles.",
+  ej:"La evidencia no aconseja silencio, sino un tipo distinto de cobertura. Informar de salud mental con rigor tiene efectos positivos documentados; el daño se asocia al tratamiento detallado del caso individual.",
+  p:["¿Qué distingue una cobertura que ayuda de una que daña?","¿Por qué los recursos de ayuda son parte de la información?","¿Cómo se aplica este criterio a otros temas sensibles?"],
+  m:"La distingue el foco: la cobertura que explica factores de riesgo, muestra que existen tratamientos eficaces y da voz a personas que se recuperaron tiene efecto protector, mientras que la que detalla el caso concreto con método, lugar e imágenes se asocia al aumento de casos. Los recursos de ayuda forman parte de la información porque una parte del público lector está afectada por el asunto en ese momento, y ofrecerlos es la medida más eficaz y la que menos espacio ocupa. El criterio se extiende a trastornos alimentarios, adicciones y enfermedades estigmatizadas: evitar el detalle innecesario, no reducir a la persona a su diagnóstico y acompañar con información útil.",
+  k:"Informar del fenómeno, no del método, y acompañar siempre con recursos de ayuda. El silencio no protege; la cobertura detallada del caso individual sí daña."},
+
+ {tag:"CASO 6 · TRATAMIENTOS EN EMERGENCIA · 2020",t:"Estudios pequeños y decisiones grandes",
+  d:"Durante los primeros meses de la pandemia de covid-19, varios tratamientos alcanzaron enorme visibilidad a partir de estudios con muestras muy reducidas, diseño abierto y ausencia de grupo de control adecuado. Uno de ellos generó cobertura mundial y decisiones de compra y de política sanitaria antes de que existieran ensayos amplios. Cuando estos llegaron, con miles de participantes y asignación aleatoria, no confirmaron el beneficio inicialmente atribuido. La sociedad científica que edita la revista donde se publicó uno de los estudios más citados hizo pública una declaración señalando que el trabajo no cumplía sus estándares.",
+  ej:"La secuencia se repite en todas las emergencias: un estudio pequeño produce una expectativa enorme, y el ensayo que la desmiente llega meses después, con mucha menos cobertura.",
+  p:["¿Qué comprobaciones habrían frenado la cobertura inicial?","¿Cómo se cubre un tratamiento prometedor sin generar expectativa infundada?","¿Qué obligación queda cuando el ensayo amplio desmiente?"],
+  m:"Habrían bastado tres: el tamaño de la muestra, la existencia y calidad del grupo de control, y si el estudio estaba registrado con la variable principal declarada; las tres son comprobaciones de la Unidad 1 y se resuelven en minutos. Un tratamiento prometedor se cubre situándolo en la jerarquía de la evidencia, indicando qué haría falta para confirmarlo y en qué plazo, y evitando el verbo que atribuye eficacia establecida. Cuando el ensayo amplio desmiente el resultado inicial, la obligación es dar a esa información la misma visibilidad que tuvo la expectativa, algo que casi nunca ocurre y que explica buena parte de la desconfianza posterior del público.",
+  k:"La expectativa se publica en portada y el desmentido en breves. Igualar la visibilidad de ambos es una obligación y la mejor defensa contra la desconfianza."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El 40% del titular",
+  d:"El comunicado anuncia que el fármaco «reduce un 40% el riesgo». El ensayo pasa de dos casos por cada mil a 1,2 por cada mil.",
+  r:"Reportera · Jefe de sección · Especialista consultada",
+  ej:"<span class='who'>JEFE:</span> Cuarenta por ciento es un titular excelente.<br><span class='who'>REPORTERA:</span> Son ocho casos evitados por cada diez mil personas.<br><span class='who'>JEFE:</span> Eso suena a mucho menos.<br><span class='who'>REPORTERA:</span> Suena a lo que es, y con eso el lector puede decidir.",
+  m:"Ambas cifras son exactas y comunican cosas distintas: el porcentaje relativo produce alarma o entusiasmo y el absoluto permite decidir, que es la función de la información sanitaria. La regla profesional es encabezar con el riesgo absoluto —casos por cada mil o diez mil personas— y añadir el relativo como contexto. Conviene además calcular el número necesario a tratar, que traduce el resultado a una frase comprensible, y presentar beneficios y daños en la misma escala, porque mezclar relativo para lo bueno y absoluto para lo malo es una forma habitual de sesgar sin faltar a la verdad.",
+  c:"Sostener la formulación que informa frente a la que impacta, con la cifra alternativa ya calculada."},
+
+ {tag:"ESCENARIO 2",t:"El estudio en ratones",
+  d:"Un trabajo en animales muestra que un compuesto reduce tumores. El comunicado habla de «esperanza para pacientes».",
+  r:"Reportera · Editora · Investigador",
+  ej:"<span class='who'>EDITORA:</span> ¿Se puede titular como avance contra el cáncer?<br><span class='who'>REPORTERA:</span> Es en ratones y no hay ensayo clínico.<br><span class='who'>INVESTIGADOR:</span> Yo nunca dije que sirviera en personas.<br><span class='who'>REPORTERA:</span> Lo dice su oficina de prensa, y eso también es noticia.",
+  m:"La extrapolación de animales a personas es una de las tres exageraciones que la investigación sobre comunicados identificó como más frecuentes, y el techo de lo publicable lo fija el diseño: en ratones se puede afirmar lo que ocurrió en ratones. La pieza correcta explica en qué punto del camino está el hallazgo, cuántos compuestos que funcionan en animales llegan a tratamientos y qué haría falta para avanzar. Y la distancia entre lo que dice el investigador y lo que dice la nota institucional es material informativo: cuando el propio autor no sostiene la afirmación del comunicado, eso se puede publicar.",
+  c:"Fijar el techo de la afirmación por el diseño y convertir la exageración institucional en información."},
+
+ {tag:"ESCENARIO 3",t:"El cribado que el reportaje cuestiona",
+  d:"La pieza explica el sobrediagnóstico de un programa de cribado. El editor teme que desincentive la prevención.",
+  r:"Reportera · Editor · Salubrista consultada",
+  ej:"<span class='who'>EDITOR:</span> La gente va a dejar de hacerse pruebas.<br><span class='who'>REPORTERA:</span> Por eso hay que distinguir qué programa y para qué población.<br><span class='who'>SALUBRISTA:</span> Y dar las tres cifras: muertes evitadas, falsos positivos y sobrediagnósticos.<br><span class='who'>REPORTERA:</span> Con eso cada lector decide con su médico.",
+  m:"El riesgo de que una crítica a un programa concreto se lea como rechazo a la prevención en general es real y se corrige con precisión, no con silencio: nombrar el programa, la población y el rango de edad evita la generalización. Las tres cifras por cada mil personas cribadas dan al lector el balance completo, que es exactamente lo que una recomendación oficial resume sin mostrar. Y conviene cerrar indicando qué hacer: consultar la situación individual con un profesional, porque el balance de un cribado cambia con la edad y con el riesgo personal.",
+  c:"Publicar una crítica incómoda con la precisión que impide la lectura generalizada."},
+
+ {tag:"ESCENARIO 4",t:"La cifra del brote sin denominador",
+  d:"Los casos confirmados se duplican en una semana. Se han triplicado las pruebas realizadas en el mismo período.",
+  r:"Reportera · Editora · Epidemiólogo consultado",
+  ej:"<span class='who'>EDITORA:</span> Los casos se duplican, es el titular.<br><span class='who'>REPORTERA:</span> Con el triple de pruebas. La positividad ha bajado.<br><span class='who'>EPIDEMIÓLOGO:</span> Ese es el indicador que hay que mirar.<br><span class='who'>EDITORA:</span> Entonces el titular es otro.",
+  m:"El número de casos confirmados mide en parte el fenómeno y en parte la capacidad de detectarlo, de modo que su variación no es interpretable sin el número de pruebas realizadas. La positividad —proporción de pruebas con resultado positivo— y los ingresos hospitalarios son indicadores menos sensibles a la capacidad de test y por eso más informativos en esa fase. Publicar la cifra bruta sin denominador produce una alarma o una tranquilidad injustificadas, y la corrección posterior nunca alcanza a quien leyó el titular.",
+  c:"Cambiar el titular con un indicador mejor, en lugar de matizar el titular equivocado."},
+
+ {tag:"ESCENARIO 5",t:"La cobertura de un suicidio",
+  d:"Una persona conocida ha fallecido por suicidio. La redacción discute el nivel de detalle y la ubicación de la pieza.",
+  r:"Reportera · Editor · Defensora del lector",
+  ej:"<span class='who'>EDITOR:</span> Es información de interés y hay mucha demanda.<br><span class='who'>REPORTERA:</span> Informamos del hecho, sin método ni lugar.<br><span class='who'>DEFENSORA:</span> Y con recursos de ayuda al final y en la versión en redes.<br><span class='who'>EDITOR:</span> ¿Y la portada?<br><span class='who'>REPORTERA:</span> Sin titular llamativo ni imagen del lugar.",
+  m:"Las guías internacionales dirigidas a medios recogen recomendaciones concretas y basadas en evidencia: no describir método ni lugar, evitar titulares y ubicaciones que amplifiquen, no presentar el hecho como solución y ofrecer recursos de ayuda. No equivalen a no informar: la muerte de una figura pública es información legítima y lo que se regula es el tratamiento. Conviene además aprovechar la ocasión para informar bien de salud mental —factores de riesgo, tratamientos eficaces, procesos de recuperación—, que es la cobertura con efecto protector documentado.",
+  c:"Aplicar un protocolo con base empírica sin convertir la decisión en una discusión moral."},
+
+ {tag:"ESCENARIO 6",t:"El bulo que circula",
+  d:"Una afirmación falsa sobre un tratamiento se difunde ampliamente. La redacción decide si desmentirla y cómo.",
+  r:"Reportera · Editora · Verificadora",
+  ej:"<span class='who'>VERIFICADORA:</span> Tiene alcance alto y daño potencial claro.<br><span class='who'>REPORTERA:</span> Entonces se cubre. Titular con el hecho, no con el bulo.<br><span class='who'>EDITORA:</span> ¿Y explicamos por qué es falso?<br><span class='who'>REPORTERA:</span> Sí: sin mecanismo, la negación deja un hueco.",
+  m:"La decisión de cubrir depende de tres factores —alcance real, daño potencial y existencia de demanda informativa—, porque desmentir un bulo minoritario puede amplificarlo. Cuando se cubre, las prácticas eficaces son encabezar con el hecho cierto, explicar el mecanismo del error, advertir antes de repetir la afirmación falsa si es necesario mencionarla, y ofrecer una explicación alternativa completa que responda a la misma inquietud. Y conviene abordar la causa: la desinformación sanitaria prospera donde hay una necesidad no atendida o una incertidumbre real que nadie explicó.",
+  c:"Decidir con criterio si se cubre y, si se cubre, hacerlo con la estructura que no refuerza el bulo."}
+];
+
+const IV=[
+ {q:"¿Contra qué se comparó el fármaco: placebo o el tratamiento estándar?",
+  m:"Frente a placebo se demuestra que funciona; frente al estándar, que funciona mejor, que es la pregunta clínicamente relevante."},
+ {q:"¿Qué variable midieron: un marcador analítico o un resultado clínico?",
+  m:"Una mejora en una variable sustitutiva no acredita beneficio real para la persona."},
+ {q:"¿Cuál es el riesgo absoluto en cada grupo y cuántos casos por cada mil personas?",
+  m:"Traduce el porcentaje relativo a la cifra que permite decidir, que es la que debe publicarse."},
+ {q:"¿Cuál es el número necesario a tratar para evitar un caso?",
+  m:"Convierte el resultado en una frase comprensible y sitúa el beneficio frente a los costes."},
+ {q:"¿A quién excluyeron del ensayo y por qué?",
+  m:"Las exclusiones habituales limitan la extrapolación a la población que realmente tomará el fármaco."},
+ {q:"¿Durante cuánto tiempo siguieron a los participantes?",
+  m:"En tratamientos crónicos, doce semanas no informan sobre beneficios ni daños a largo plazo."},
+ {q:"¿Qué efectos adversos se registraron y con qué frecuencia?",
+  m:"Los daños casi nunca aparecen en el comunicado y siempre en el artículo; publicarlos es parte de la información."},
+ {q:"¿El ensayo estaba registrado y la variable principal coincide con la declarada?",
+  m:"Un cambio de variable principal sugiere que el resultado presentado pudo elegirse después de ver los datos."}
+];
+
+const AUDIT=[
+ ["v","En octubre de 2015 la Agencia Internacional para la Investigación del Cáncer clasificó la carne procesada en su categoría de mayor certeza sobre el carácter cancerígeno e informó de un aumento aproximado del 18% del riesgo relativo de cáncer colorrectal por cada cincuenta gramos diarios; la clasificación expresa solidez de la evidencia y no magnitud del riesgo.","IARC/OMS, comunicado y monografía de 2015. Verificado."],
+ ["v","Ahn, Kim y Welch describieron en <em>The New England Journal of Medicine</em> en 2014 el aumento sostenido de diagnósticos de cáncer de tiroides en Corea del Sur tras la difusión de la ecografía, con mortalidad prácticamente estable, y lo caracterizaron como una epidemia de diagnóstico.","NEJM, 2014. Verificado."],
+ ["v","La revisión Cochrane sobre un antiviral adquirido masivamente por los gobiernos se enfrentó durante años a la falta de acceso a los informes completos de los ensayos; tras su entrega, la revisión actualizada de 2014 ofreció conclusiones más modestas sobre su eficacia, y el episodio impulsó la iniciativa AllTrials.","Cochrane, 2014, y documentación de AllTrials. Verificado."],
+ ["v","La Organización Mundial de la Salud publica guías dirigidas a profesionales de medios sobre información y suicidio, que desaconsejan describir el método y el lugar, evitar titulares y ubicaciones que amplifiquen, no presentar el hecho como solución y ofrecer recursos de ayuda.","OMS, guías para profesionales de medios. Verificado."],
+ ["v","Durante los primeros meses de la pandemia de covid-19, varios tratamientos alcanzaron gran visibilidad a partir de estudios con muestras reducidas y control inadecuado; los ensayos amplios posteriores no confirmaron el beneficio atribuido, y la sociedad científica editora de una de las revistas implicadas declaró públicamente que el trabajo no cumplía sus estándares.","Declaraciones públicas de 2020 y ensayos clínicos posteriores. Verificado."],
+ ["b","La jerarquía de la evidencia ordena los diseños desde el laboratorio hasta la revisión sistemática y determina qué afirmación permite cada estudio.","Cochrane Handbook · metodología establecida."],
+ ["b","El riesgo absoluto debe encabezar cualquier información de riesgo, y el relativo añadirse como contexto, nunca al revés.","Gigerenzer · Sense about Science."],
+ ["b","El número necesario a tratar traduce el resultado clínico a lenguaje comprensible y debe acompañarse del número necesario para dañar.","Epidemiología clínica establecida."],
+ ["b","Los ensayos suelen excluir a personas mayores, con varias enfermedades o embarazadas, lo que limita la extrapolación de sus resultados.","Metodología clínica establecida."],
+ ["b","La evaluación de un cribado exige tres cifras por cada mil personas: muertes evitadas, falsos positivos y sobrediagnósticos.","Cochrane · salud pública establecida."],
+ ["b","En un brote, los casos confirmados dependen del número de pruebas y la letalidad calculada sobre casos confirmados sobrestima el riesgo inicial.","Epidemiología de campo establecida."],
+ ["b","Desmentir un bulo repitiéndolo puede reforzarlo; las prácticas eficaces encabezan con el hecho y explican el mecanismo del error.","Investigación sobre corrección de desinformación."],
+ ["b","La aprobación de un fármaco no acredita superioridad frente al tratamiento existente ni magnitud del beneficio.","Práctica de agencias reguladoras."],
+ ["p","La descripción de los efectos de imitación y de protección asociados a la cobertura del suicidio se formula a partir de las guías internacionales citadas; no se ha realizado para esta unidad una revisión de los estudios primarios que las sustentan.","Redactado sin atribuir magnitudes a investigaciones concretas."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"En la jerarquía de la evidencia, el escalón superior lo ocupa:",
+ o:["El ensayo con mayor número de participantes","La revisión sistemática con metaanálisis de los ensayos disponibles","El estudio publicado en la revista de mayor prestigio","El estudio más reciente"],c:1,
+ w:["Un ensayo grande pesa mucho y sigue siendo un estudio individual.",
+    "",
+    "El prestigio de la revista no altera la jerarquía del diseño.",
+    "La novedad no es un criterio de solidez: lo replicado pesa más."],
+ e:"Lo que establece conocimiento es la síntesis de la evidencia disponible con un método explícito, no un resultado aislado."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un aumento del riesgo relativo del 40% significa:",
+ o:["Que cuatro de cada diez personas enfermarán","Que la frecuencia pasa de una línea base a otra un 40% mayor, cuyo efecto absoluto depende de esa base","Que el riesgo se multiplica por cuatro","Que el efecto es clínicamente relevante"],c:1,
+ w:["Esa lectura confunde porcentaje de aumento con proporción de afectados.",
+    "",
+    "Un aumento del 40% multiplica por 1,4, no por cuatro.",
+    "La relevancia depende de la magnitud absoluta, no del porcentaje."],
+ e:"Sobre una base pequeña, un aumento relativo grande sigue siendo pequeño en casos. Por eso el absoluto encabeza y el relativo acompaña."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El número necesario a tratar indica:",
+ o:["Cuántas dosis debe tomar cada paciente","Cuántas personas deben recibir el tratamiento para que una obtenga el beneficio","Cuántos pacientes participaron en el ensayo","Cuántos tratamientos existen para esa enfermedad"],c:1,
+ w:["La posología es una cuestión distinta.",
+    "",
+    "El tamaño de la muestra es otro dato del estudio.",
+    "El número de alternativas terapéuticas no se deriva de esta medida."],
+ e:"Traduce el resultado a una frase comprensible y permite valorar el beneficio junto a los efectos adversos, el precio y las molestias."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El sobrediagnóstico consiste en:",
+ o:["Diagnosticar erróneamente una enfermedad que no existe","Detectar lesiones reales que nunca habrían causado daño durante la vida de la persona","Repetir pruebas innecesariamente","Diagnosticar tarde una enfermedad grave"],c:1,
+ w:["Eso es un falso positivo, que es un fenómeno distinto.",
+    "",
+    "La repetición de pruebas es un problema de uso de recursos.",
+    "El retraso diagnóstico es el problema contrario."],
+ e:"La señal característica es un aumento sostenido de diagnósticos sin descenso de la mortalidad, como describió el análisis publicado en 2014."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Que un agente figure en la categoría de mayor certeza de la clasificación de la IARC significa:",
+ o:["Que es tan peligroso como los demás agentes de esa categoría","Que la evidencia de que causa cáncer es sólida, con independencia de la magnitud del riesgo","Que su consumo debe prohibirse","Que produce cáncer en todas las personas expuestas"],c:1,
+ w:["La categoría no ordena por peligrosidad: agrupa por solidez de la evidencia.",
+    "",
+    "La clasificación es científica y no normativa.",
+    "El riesgo es poblacional y probabilístico, no determinista."],
+ e:"Confundir escala de certeza con escala de peligro produjo en 2015 titulares exactos en el dato y falsos en el significado."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El sesgo de publicación consiste en que:",
+ o:["Las revistas favorecen a autores conocidos","Los estudios con resultados positivos se publican más que los negativos, distorsionando la evidencia disponible","Los medios cubren solo lo llamativo","Los autores exageran sus conclusiones"],c:1,
+ w:["El favoritismo editorial es otro problema, distinto y menos sistemático.",
+    "",
+    "La selección mediática es un fenómeno posterior y adicional.",
+    "La exageración en las conclusiones es un problema de redacción del artículo."],
+ e:"Una revisión sistemática solo puede sintetizar lo publicado: por eso el registro previo de todos los ensayos es una exigencia estructural."},
+
+/* ---------- BLOQUE B · EVALUAR Y TRADUCIR ---------- */
+{blk:"BLOQUE B · EVALUAR Y TRADUCIR", t:"mcq",
+ s:"Un ensayo reduce la incidencia de un evento del 2% al 1,2% en dos años.",
+ q:"¿Cómo se comunica mejor?",
+ o:["Reduce el riesgo un 40%","Evita ocho casos por cada mil personas tratadas durante dos años","Reduce el riesgo a la mitad","Mejora significativamente el pronóstico"],c:1,
+ w:["El porcentaje relativo sin base no permite valorar la magnitud.",
+    "",
+    "No es la mitad: pasa de 2 a 1,2, y esa imprecisión añade error al problema de formulación.",
+    "«Significativamente» remite a la estadística y no informa de cuánto."],
+ e:"Y conviene añadir el número necesario a tratar: en este caso, 125 personas tratadas dos años para evitar un evento."},
+
+{blk:"BLOQUE B · EVALUAR Y TRADUCIR", t:"mcq",
+ s:"Un fármaco nuevo se compara contra placebo, no contra el tratamiento estándar disponible.",
+ q:"¿Qué puede afirmarse?",
+ o:["Que es mejor que el tratamiento actual","Que funciona mejor que no tratar, sin que ello acredite superioridad frente al estándar","Que su eficacia es equivalente al estándar","Que no aporta nada nuevo"],c:1,
+ w:["La comparación contra placebo no informa sobre la comparación con el estándar.",
+    "",
+    "La equivalencia exige un ensayo diseñado para demostrarla.",
+    "Puede aportar valor —tolerancia, vía de administración, coste— aunque no se haya comparado."],
+ e:"La pregunta clínicamente relevante es casi siempre si mejora lo que ya existe, y el comparador elegido decide si el ensayo la responde."},
+
+{blk:"BLOQUE B · EVALUAR Y TRADUCIR", t:"mcq",
+ s:"El estudio mide descenso de un marcador en sangre a doce semanas, en pacientes de entre 40 y 65 años sin otras enfermedades.",
+ q:"¿Qué limitaciones señalarías en la pieza?",
+ o:["Ninguna: el diseño es correcto","Variable sustitutiva, seguimiento corto y población que excluye a mayores y a personas con varias enfermedades","Solo el tamaño de la muestra","Solo la ausencia de grupo control"],c:1,
+ w:["El diseño puede ser correcto y aun así tener limitaciones que condicionan la extrapolación.",
+    "",
+    "El tamaño no es el problema descrito en el enunciado.",
+    "El enunciado no indica que falte grupo control."],
+ e:"Las tres limitaciones se leen en el apartado de métodos y son las que determinan a quién se aplica el resultado y con qué alcance."},
+
+{blk:"BLOQUE B · EVALUAR Y TRADUCIR", t:"mcq",
+ s:"En una semana los casos confirmados se duplican y las pruebas realizadas se triplican.",
+ q:"¿Qué indicador es más informativo?",
+ o:["El número de casos confirmados","La positividad y los ingresos hospitalarios","La comparación con el país vecino","El total acumulado desde el inicio"],c:1,
+ w:["Depende de la capacidad de detección y no es interpretable por sí solo.",
+    "",
+    "Las comparaciones internacionales reflejan diferencias de criterio de registro tanto como diferencias reales.",
+    "El acumulado no informa sobre la dinámica actual."],
+ e:"Cada cifra con su denominador, su fecha y su fuente. Sin denominador, el dato bruto produce alarma o tranquilidad injustificadas."},
+
+{blk:"BLOQUE B · EVALUAR Y TRADUCIR", t:"mcq",
+ s:"Vas a informar sobre un programa de cribado cuyo balance está en discusión.",
+ q:"¿Qué cifras debe contener la pieza?",
+ o:["El número de personas cribadas al año","Muertes evitadas, falsos positivos y sobrediagnósticos, todas por cada mil personas cribadas","El coste del programa","La tasa de participación"],c:1,
+ w:["El volumen del programa no informa sobre su balance.",
+    "",
+    "El coste es relevante para la política pública y no responde a la pregunta del lector.",
+    "La participación mide adhesión, no beneficio."],
+ e:"Cualquiera de las tres por separado produce una imagen falsa, en un sentido o en el contrario."},
+
+{blk:"BLOQUE B · EVALUAR Y TRADUCIR", t:"mcq",
+ s:"El ensayo publicado presenta como resultado principal una variable distinta de la que consta en su registro previo.",
+ q:"¿Qué significa?",
+ o:["Es habitual y no tiene relevancia","Puede indicar que el resultado presentado se eligió después de ver los datos, y obliga a preguntar por qué cambió","Invalida automáticamente el estudio","Indica fraude"],c:1,
+ w:["Es relativamente frecuente y precisamente por eso conviene comprobarlo.",
+    "",
+    "Puede haber razones legítimas, documentadas en enmiendas al protocolo.",
+    "Afirmar fraude exige mucho más que una discrepancia de variable."],
+ e:"Es una de las comprobaciones más informativas y casi nadie la hace: el registro es público y la comparación toma dos minutos."},
+
+/* ---------- BLOQUE C · REDACCIÓN RESPONSABLE ---------- */
+{blk:"BLOQUE C · REDACCIÓN RESPONSABLE", t:"mcq",
+ q:"Al informar de un suicidio, las guías internacionales recomiendan:",
+ o:["No informar en ningún caso","Informar del hecho sin describir método ni lugar, evitar titulares que amplifiquen y ofrecer recursos de ayuda","Informar solo si la persona era conocida","Detallar las circunstancias para prevenir casos similares"],c:1,
+ w:["Las guías no recomiendan el silencio: recomiendan un tratamiento distinto.",
+    "",
+    "La notoriedad afecta al interés informativo, no al tratamiento recomendado.",
+    "El detalle del método se asocia con aumento de casos, no con prevención."],
+ e:"La cobertura que explica factores de riesgo, tratamientos eficaces y procesos de recuperación tiene efecto protector documentado."},
+
+{blk:"BLOQUE C · REDACCIÓN RESPONSABLE", t:"mcq",
+ q:"Para desmentir un bulo sanitario, la estructura más eficaz:",
+ o:["Repite el bulo en el titular y lo niega en el cuerpo","Encabeza con el hecho cierto, explica el mecanismo del error y ofrece una explicación alternativa completa","Ridiculiza la afirmación falsa","Enumera todas las versiones del bulo"],c:1,
+ w:["Repetir el bulo en el titular puede reforzarlo en quien solo lee el titular.",
+    "",
+    "La ridiculización refuerza la desconfianza de quien creía la afirmación.",
+    "Enumerar variantes amplifica el alcance sin corregir nada."],
+ e:"Una negación sin mecanismo deja un vacío explicativo que el bulo vuelve a llenar. Y conviene decidir antes si cubrirlo, por alcance y daño."},
+
+{blk:"BLOQUE C · REDACCIÓN RESPONSABLE", t:"mcq",
+ q:"Un testimonio individual de recuperación excepcional debe acompañarse de:",
+ o:["Otro testimonio contrario","La cifra que sitúa ese caso dentro del conjunto de pacientes","La opinión del médico que lo trató","Un aviso legal"],c:1,
+ w:["Contraponer testimonios no informa sobre frecuencia.",
+    "",
+    "La opinión clínica es útil y no cuantifica la excepcionalidad.",
+    "Un aviso genérico no aporta contexto."],
+ e:"Los testimonios son eficaces y engañosos: comunican una expectativa que la evidencia no sostiene si no se sitúan en su frecuencia real."},
+
+{blk:"BLOQUE C · REDACCIÓN RESPONSABLE", t:"mcq",
+ q:"Si un estudio cuestiona un tratamiento de uso extendido, la pieza debe:",
+ o:["Recomendar suspenderlo hasta que se aclare","Indicar qué se recomienda entretanto y advertir de no interrumpirlo sin consultar","Omitir el hallazgo hasta que haya consenso","Publicarlo sin más contexto"],c:1,
+ w:["Recomendar suspender un tratamiento es una indicación clínica que no corresponde a un medio.",
+    "",
+    "Omitir un hallazgo relevante priva al público de información de interés.",
+    "Publicar sin indicación de conducta produce decisiones no previstas por la pieza."],
+ e:"La obligación no es suavizar el hallazgo sino completarlo: qué hacer entretanto es parte de la información sanitaria."},
+
+{blk:"BLOQUE C · REDACCIÓN RESPONSABLE", t:"mcq",
+ q:"La aprobación de un fármaco por una agencia reguladora acredita:",
+ o:["Que es superior al tratamiento existente","Que cumple criterios de calidad, seguridad y eficacia frente al comparador utilizado","Que su beneficio es clínicamente relevante","Que su precio está justificado"],c:1,
+ w:["La superioridad exige una comparación directa que muchas aprobaciones no incluyen.",
+    "",
+    "La relevancia clínica depende de la magnitud del efecto y de la variable medida.",
+    "El precio se negocia por vías distintas de la autorización."],
+ e:"La pregunta útil es qué añade frente a lo que ya existía, medido en resultados que importen, y a qué coste."},
+
+{blk:"BLOQUE C · REDACCIÓN RESPONSABLE", t:"mcq",
+ q:"Publicar beneficios en términos relativos y daños en términos absolutos:",
+ o:["Es la práctica recomendada","Sesga la presentación aunque ambas cifras sean exactas","Facilita la comprensión del lector","Es indiferente si se citan las fuentes"],c:1,
+ w:["No es recomendable: distorsiona la comparación entre ambos platillos.",
+    "",
+    "Mezclar escalas dificulta la comparación en lugar de facilitarla.",
+    "La cita de fuentes no corrige un problema de presentación."],
+ e:"La regla es la misma escala para lo bueno y para lo malo, preferentemente absoluta, con el número necesario a tratar y el necesario para dañar."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe comprobarse en un ensayo clínico.",
+ o:["Contra qué se compara la intervención","Si la variable medida es un resultado relevante o una sustitutiva","A quién se excluyó del estudio","El factor de impacto de la revista","Los efectos adversos registrados"],
+ c:[0,1,2,4],
+ w:["","","","El indicador bibliométrico de la revista no informa sobre la calidad del ensayo concreto.",""],
+ e:"Y una comprobación adicional: si el ensayo estaba registrado y si la variable principal coincide con la declarada."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las cifras que debe contener una información de riesgo.",
+ o:["El riesgo absoluto en cada grupo","La línea base sobre la que se aplica el aumento","Los casos por cada mil o diez mil personas","El porcentaje de aumento relativo","El número de estudios publicados sobre el tema"],
+ c:[0,1,2,3],
+ w:["","","","","El volumen de literatura publicada no informa sobre la magnitud del riesgo para el lector."],
+ e:"El relativo puede publicarse como contexto; lo que no puede es publicarse solo, porque no permite decidir nada."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena los diseños según su capacidad para sostener una afirmación causal, de menor a mayor.",
+ o:["Estudio en cultivo celular","Estudio en animales","Estudio observacional en personas","Ensayo controlado con asignación aleatoria","Revisión sistemática con metaanálisis de ensayos"],
+ c:[0,1,2,3,4],
+ e:"El diseño fija el techo de lo publicable, y ningún resultado espectacular eleva ese techo."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el trabajo sobre una información de riesgo sanitario.",
+ o:["Identificar el diseño y su posición en la jerarquía","Obtener el riesgo absoluto y la línea base","Calcular el número necesario a tratar y el necesario para dañar","Comprobar registro previo, población excluida y efectos adversos","Redactar con beneficios y daños en la misma escala"],
+ c:[0,1,2,3,4],
+ e:"En salud no basta con que el dato sea cierto: debe presentarse de forma que permita decidir, y ese es el objeto de toda la secuencia."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
