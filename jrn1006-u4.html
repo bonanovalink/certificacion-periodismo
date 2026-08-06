@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1006 · Unidad 4 — Riesgo, Incertidumbre y Comunicación Pública</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1006, Unidad 4.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  .tab.exam{color:var(--amber)}
+  .tab.exam.on{color:var(--amber);border-color:var(--line);border-bottom-color:var(--bg)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:7px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .score.big{font-size:.95rem;color:var(--amber);padding:14px 18px;background:#3a2408;border:1px solid #6b4d16;border-radius:8px;letter-spacing:.06em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="jrn1005-u1.html"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course on" href="jrn1006-u4.html"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1006 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Riesgo, Incertidumbre y Comunicación Pública</h2>
+  <div class="sub">Unidad 4 de 4 · Periodismo Científico y Ambiental</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1006-u1.html">Unidad 1: Cómo Funciona la Ciencia y Cómo se Cubre</a>
+    <a class="unit" href="jrn1006-u2.html">Unidad 2: Salud, Medicina y Jerarquía de la Evidencia</a>
+    <a class="unit" href="jrn1006-u3.html">Unidad 3: Clima y Medio Ambiente</a>
+    <span class="unit on">Unidad 4: Riesgo, Incertidumbre y Comunicación Pública</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Esta unidad cierra el curso con la competencia que atraviesa todas las anteriores: comunicar magnitudes inciertas a personas que deben tomar decisiones con ellas. Es una habilidad técnica, con reglas comprobadas, y no una cuestión de sensibilidad o de talento narrativo.</p>
+    <p style="margin-bottom:0">El eje es que <strong>la forma en que se presenta una cifra determina la decisión que produce</strong>. La misma información expresada en porcentajes o en frecuencias naturales, en términos de supervivencia o de mortalidad, con o sin línea base, genera comportamientos distintos en el mismo lector. Elegir el formato no es una decisión de estilo: es la parte de la información que el periodista aporta.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab exam" data-t="exa">Examen Integrador</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Expresar riesgos en formatos comprensibles y comprobar el efecto del encuadre sobre la interpretación.</li>
+      <li>Calcular e interpretar el valor predictivo de una prueba y explicar el problema de los falsos positivos.</li>
+      <li>Distinguir incertidumbre científica de indeterminación de escenario y comunicar cada una con su lenguaje.</li>
+      <li>Aplicar los principios de comunicación de riesgo en emergencias y evaluar críticamente a los emisores oficiales.</li>
+      <li>Reconocer el efecto del vacío informativo en la aparición de rumores y responder con información útil.</li>
+      <li>Entrevistar a científicos y a responsables públicos obteniendo magnitudes, plazos y grados de certeza.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Gerd Gigerenzer, <em>Calculated Risks</em> y <em>Risk Savvy</em> — formatos de riesgo y alfabetización estadística</li>
+      <li>Daniel Kahneman, <em>Pensar rápido, pensar despacio</em> — encuadre y heurísticas de juicio</li>
+      <li>Organización Mundial de la Salud, <em>Communicating Risk in Public Health Emergencies</em> (2017)</li>
+      <li>Alberto Cairo, <em>The Truthful Art</em> — comunicación visual de incertidumbre</li>
+      <li>Sense about Science, <em>Making Sense of Uncertainty</em></li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>OMS · comunicación de riesgo en emergencias</h5>
+        <div class="def">Directriz publicada en 2017 que sintetiza la evidencia sobre comunicación en emergencias de salud pública: anuncio temprano, transparencia sobre la incertidumbre, coordinación de emisores y escucha activa de las preocupaciones del público.</div>
+        <p class="src">Organización Mundial de la Salud, 2017</p></div>
+      <div class="term"><h5>Frecuencias naturales</h5>
+        <div class="def">Formato de presentación de riesgos como recuentos sobre una población de referencia —diez de cada mil— en lugar de porcentajes condicionados. La investigación muestra que mejora sustancialmente la comprensión, también entre profesionales.</div>
+        <p class="src">Gigerenzer y Edwards, The BMJ, 2003</p></div>
+      <div class="term"><h5>Efecto de encuadre</h5>
+        <div class="def">Fenómeno por el que descripciones lógicamente equivalentes de un mismo resultado producen preferencias distintas. Documentado experimentalmente por Amos Tversky y Daniel Kahneman en 1981.</div>
+        <p class="src">Tversky y Kahneman, Science, 1981</p></div>
+      <div class="term"><h5>Sense about Science · incertidumbre</h5>
+        <div class="def">Guías elaboradas con investigadores para explicar al público qué significa la incertidumbre científica y por qué su presencia no invalida el conocimiento disponible.</div>
+        <p class="src">senseaboutscience.org</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad contiene el <strong>Examen Integrador</strong> de JRN-1006, que abarca las cuatro unidades. Se aprueba con un 75%, conforme a los requisitos de graduación del certificado. Es requisito haber completado las pruebas y entregas de las Unidades 1 a 3.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Qué es el riesgo y cómo se percibe</h3>
+    <p>El riesgo tiene una definición técnica —probabilidad de que ocurra un suceso combinada con la magnitud de sus consecuencias— y una dimensión perceptiva que no coincide con ella. La investigación en percepción de riesgo muestra que las personas juzgan más peligroso lo que es involuntario, desconocido, incontrolable, catastrófico en un solo episodio o que afecta a niños, con independencia de su probabilidad estadística.</p>
+    <p>Esa discrepancia no es irracionalidad y conviene no tratarla como tal. Reflejar preferencias legítimas: aceptar voluntariamente un riesgo no equivale a que te lo impongan, y un suceso que mata a cien personas de golpe tiene consecuencias sociales distintas de cien muertes dispersas, aunque la cifra coincida.</p>
+    <p>Para el periodismo, esto tiene dos consecuencias. La primera es que corregir la percepción con estadística rara vez funciona: repetir que volar es más seguro que conducir no reduce el miedo a volar, porque el miedo no se apoya en la comparación de tasas. La segunda es que la cobertura contribuye a la percepción por su selección: los sucesos raros y espectaculares reciben más atención que los riesgos frecuentes y difusos, y esa asimetría es en sí misma un sesgo informativo.</p>
+    <p>La respuesta profesional no consiste en calibrar el tono para producir la reacción adecuada, que sería comunicación institucional, sino en dar magnitudes comparables, explicar quién asume el riesgo y quién decide, y reconocer las dimensiones que la cifra no captura.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Da la magnitud, señala si el riesgo es voluntario o impuesto y di quién decide sobre él. Esas tres cosas informan mucho más que la comparación con otro riesgo que nadie te ha pedido.</div>
+
+    <h3>Formatos que se entienden</h3>
+    <p>La investigación sobre comprensión de cifras sanitarias es inusualmente clara en un punto: los porcentajes condicionados se entienden mal, incluso entre profesionales, y las frecuencias naturales se entienden bien. Presentar un riesgo como «diez de cada mil personas» produce comprensiones correctas en una proporción muy superior a la misma información expresada como probabilidades condicionadas.</p>
+    <p>El trabajo de Gerd Gigerenzer y Adrian Edwards publicado en <em>The BMJ</em> en 2003 sistematizó el problema y propuso soluciones concretas: usar frecuencias naturales sobre una población de referencia constante, evitar los porcentajes condicionados, dar siempre el denominador y presentar beneficios y daños en la misma escala.</p>
+    <p>La regla del denominador constante merece énfasis porque su incumplimiento es la fuente principal de confusión. Si en una pieza se dice «de cada mil personas» en un punto y «de cada cien» en otro, el lector no puede comparar, aunque ambas cifras sean exactas. Mantener la misma base a lo largo de todo el texto es una decisión editorial de primer orden.</p>
+    <p>Conviene además evitar las comparaciones cualitativas —«un riesgo pequeño», «un aumento significativo»— que no aportan magnitud y que cada lector interpreta a su manera. Y cuando el número sea muy pequeño o muy grande, ayuda anclarlo en una referencia conocida del mismo tipo, no en una arbitraria.</p>
+    <div class="ej"><b>REGLA</b>Frecuencias naturales, denominador constante en toda la pieza y la misma escala para beneficios y daños. Tres reglas que caben en una línea y que resuelven la mayoría de los problemas de comprensión.</div>
+
+    <h3>Falsos positivos y valor predictivo</h3>
+    <p>Es el error de razonamiento más extendido en información sanitaria y el más fácil de explicar con frecuencias. Cuando una prueba tiene alta sensibilidad y se aplica a una población donde la enfermedad es poco frecuente, la mayoría de los resultados positivos pueden ser falsos, aunque la prueba sea buena.</p>
+    <p>El razonamiento se ve con claridad en frecuencias naturales. Supongamos mil personas, de las cuales diez tienen la enfermedad. Una prueba que detecta al 90% de los enfermos encontrará a nueve de esos diez. Si además da un 5% de falsos positivos entre los sanos, señalará a unas cincuenta personas sanas. En total, unos cincuenta y nueve resultados positivos, de los cuales solo nueve corresponden a personas enfermas: menos de uno de cada seis.</p>
+    <p>Ese número —la proporción de positivos que realmente lo son— es el valor predictivo positivo, y depende de la frecuencia de la enfermedad en la población, no solo de la calidad de la prueba. Es la razón por la que aplicar una prueba a población general produce resultados muy distintos que aplicarla a personas con síntomas.</p>
+    <p>Para la cobertura, esto tiene una consecuencia directa: cuando se informa de una nueva prueba diagnóstica, la cifra relevante no es su sensibilidad sino cuántos de los positivos serán reales en la población donde se aplicará. Y ese cálculo, hecho con frecuencias, cabe en un párrafo y transforma la pieza.</p>
+    <div class="ej"><b>MÉTODO</b>Traduce siempre a mil personas: cuántas tienen la enfermedad, cuántas dan positivo siendo enfermas y cuántas dan positivo estando sanas. Con esas tres cifras el lector entiende el resultado sin ninguna fórmula.</div>
+
+    <h3>Decidir bajo incertidumbre</h3>
+    <p>Conviene distinguir tres situaciones que se confunden y que exigen lenguajes distintos. El <strong>riesgo</strong> propiamente dicho, cuando se conocen los resultados posibles y sus probabilidades. La <strong>incertidumbre</strong>, cuando se conocen los resultados posibles pero no sus probabilidades con precisión. Y la <strong>ignorancia</strong>, cuando ni siquiera se conoce el conjunto de resultados posibles, situación frecuente al inicio de un fenómeno nuevo.</p>
+    <p>Presentar como riesgo cuantificado lo que es incertidumbre produce una falsa precisión que después se paga; presentar como ignorancia total lo que sí tiene probabilidades estimadas es igualmente inexacto y suele servir para justificar la inacción. La formulación correcta declara en cuál de las tres situaciones estamos.</p>
+    <p>De ahí deriva el debate sobre la precaución. Actuar antes de tener certeza es razonable cuando el daño potencial es grave e irreversible y la medida es proporcionada, y deja de serlo cuando se invoca para bloquear cualquier decisión con el argumento de que nunca hay certeza total. El periodismo no resuelve ese debate: lo describe con precisión, indicando qué se sabe, qué no y qué está en juego en cada opción.</p>
+    <p>Y hay una cuestión que conviene explicitar siempre: quién soporta el riesgo y quién obtiene el beneficio, que en la mayoría de las controversias ambientales y sanitarias no son los mismos, y que es la información que permite entender el conflicto.</p>
+    <div class="ej"><b>CRITERIO</b>Declara si estamos ante riesgo cuantificado, incertidumbre o desconocimiento. Y di siempre quién asume el riesgo y quién recibe el beneficio: casi nunca coinciden, y ahí está el conflicto.</div>
+
+    <h3>Comunicar en emergencia</h3>
+    <p>La directriz de la Organización Mundial de la Salud sobre comunicación de riesgo en emergencias de salud pública, publicada en 2017, sintetiza décadas de experiencia en unos pocos principios que también sirven al periodista para evaluar a quien comunica.</p>
+    <p>Los principales son cinco. <strong>Anuncio temprano</strong>: informar pronto aunque la información sea incompleta, porque el vacío lo llena el rumor. <strong>Transparencia</strong> sobre lo que se sabe, lo que no y lo que se está haciendo para averiguarlo. <strong>Coherencia</strong> entre emisores, porque los mensajes contradictorios de distintas autoridades destruyen la credibilidad más que una mala noticia. <strong>Escucha</strong> de las preocupaciones reales del público, que no siempre coinciden con las que la autoridad supone. Y <strong>acción practicable</strong>: decir qué puede hacer cada persona, porque una advertencia sin instrucción produce angustia sin conducta.</p>
+    <p>Para el periodismo, esos principios funcionan como criterios de evaluación: si una autoridad tardó en anunciar, ocultó incertidumbre, se contradijo con otra instancia o no ofreció instrucciones aplicables, eso es materia informativa y no un detalle de gestión.</p>
+    <p>Y hay una tentación que conviene resistir: convertirse en portavoz. El periodismo en emergencia comprueba, contextualiza y pregunta, y su valor añadido está precisamente en no ser el canal institucional, por muy razonable que sea el mensaje que la autoridad quiere transmitir.</p>
+    <div class="ej"><b>REGLA</b>Evalúa a quien comunica con los mismos cinco criterios: si anunció pronto, si reconoció lo que ignoraba, si fue coherente con otras instancias, si escuchó y si dijo qué hacer. Los fallos en cualquiera de ellos son noticia.</div>
+
+    <h3>El vacío informativo</h3>
+    <p>Los rumores no aparecen porque la gente sea crédula: aparecen donde hay una pregunta sin respuesta y una preocupación real. Esa es la explicación más robusta de por qué la desinformación prospera en emergencias y en asuntos técnicos, y también la que indica cómo responder.</p>
+    <p>La respuesta eficaz combina tres elementos. <strong>Rapidez</strong>: informar de lo que se sabe cuanto antes, aunque sea poco, porque el primer relato que llena el vacío es el que se instala. <strong>Concreción</strong>: responder a la pregunta que la gente se hace, que a menudo no es la que la autoridad responde; si la preocupación es si el agua es potable, el dato relevante no es la inversión prevista en depuración. Y <strong>continuidad</strong>: volver sobre el asunto con actualizaciones, porque una única pieza en el día uno deja el resto del tiempo sin cobertura.</p>
+    <p>Conviene también identificar las preocupaciones reales antes de escribir. Los comentarios, las preguntas recibidas y las búsquedas más frecuentes son indicadores útiles de qué necesita saber la audiencia, y con frecuencia revelan un desajuste con lo que las instituciones están comunicando.</p>
+    <p>Y hay un límite: no todo rumor merece respuesta. Amplificar una afirmación falsa con poca difusión puede extenderla, de modo que la decisión de cubrir se toma valorando alcance real y daño potencial, con los criterios de desinformación sanitaria de la Unidad 2 de este curso.</p>
+    <div class="ej"><b>MÉTODO</b>Averigua qué se está preguntando la gente y responde a eso. Un vacío informativo se llena solo, y quien llegue primero fija el relato durante semanas.</div>
+
+    <h3>Encuadre: la misma cifra, dos decisiones</h3>
+    <p>Amos Tversky y Daniel Kahneman demostraron experimentalmente en 1981 que descripciones lógicamente equivalentes de un mismo resultado producen preferencias distintas: presentar una opción en términos de vidas salvadas o de vidas perdidas cambia sistemáticamente lo que la gente elige, aunque los números sean idénticos.</p>
+    <p>En información sanitaria y ambiental ese efecto aparece constantemente. Una supervivencia del noventa por ciento y una mortalidad del diez por ciento son la misma cifra y no producen la misma decisión. Un tratamiento que «duplica las posibilidades» y otro que «pasa de dos a cuatro casos por cada mil» son el mismo dato.</p>
+    <p>La consecuencia no es que exista un encuadre neutro —no existe—, sino que la elección debe ser consciente y, cuando el asunto lo justifique, doble: dar ambas formulaciones. Escribir «sobrevive el noventa por ciento; fallece el diez por ciento» ocupa una línea más y neutraliza el efecto.</p>
+    <p>Conviene además vigilar el encuadre implícito de la selección: qué riesgo se cubre y cuál no, qué comparación se ofrece, qué se sitúa como referencia. Un titular que compara un riesgo nuevo con uno cotidiano familiar está haciendo una afirmación evaluativa, no solo informativa.</p>
+    <div class="ej"><b>PRUEBA</b>Escribe la cifra en las dos direcciones —lo que se gana y lo que se pierde— y comprueba si suenan distintas. Si es así, publica ambas: es la única forma de no elegir por el lector.</div>
+
+    <h3>Entrevistar a científicos y a autoridades</h3>
+    <p>La entrevista científica tiene un objetivo concreto: obtener magnitudes, plazos y grados de certeza en un lenguaje que pueda publicarse. Y tiene una dificultad característica: la persona experta tiende a la precisión técnica y a la cautela, mientras que el periodista necesita una formulación comprensible sin perder exactitud.</p>
+    <p>Cuatro preguntas resuelven la mayor parte de las entrevistas. <strong>¿Cuánto?</strong>, para obtener la magnitud en cifras y no en adjetivos. <strong>¿Comparado con qué?</strong>, para situarla. <strong>¿Cómo de seguros estamos?</strong>, para obtener el grado de certeza en sus propios términos. Y <strong>¿qué haría falta para saber más?</strong>, que convierte la incertidumbre en información útil y suele producir la mejor cita de la conversación.</p>
+    <p>Con responsables públicos el objetivo cambia: se trata de obtener decisiones, plazos y responsabilidades. Ahí funciona mejor la pregunta por el documento —qué informe respalda esa medida, quién lo firma, cuándo se publicará— que la pregunta por la opinión, con la lógica de la Unidad 3 de JRN-1003.</p>
+    <p>Y conviene una práctica que mejora la exactitud sin ceder control editorial: leer a la fuente la frase concreta que se va a publicar y preguntarle si es exacta. No es enseñar el texto ni negociar el enfoque; es comprobar una formulación técnica, y evita la mayoría de las rectificaciones en esta materia.</p>
+    <div class="ej"><b>MÉTODO</b>Cierra toda entrevista técnica leyendo en voz alta la frase que vas a publicar y preguntando si es exacta. No es enseñar el texto: es verificar una formulación, y ahorra casi todas las correcciones.</div>
+
+    <h3>Errores frecuentes y su corrección</h3>
+    <p>Los errores de esta materia se repiten con tanta regularidad que pueden enumerarse, y esa lista funciona como comprobación final antes de publicar.</p>
+    <ul>
+      <li>Publicar un riesgo relativo sin su línea base ni el absoluto.</li>
+      <li>Atribuir causalidad a un estudio observacional.</li>
+      <li>Extrapolar a personas resultados obtenidos en animales o en laboratorio.</li>
+      <li>Confundir escala de certeza con escala de magnitud.</li>
+      <li>Presentar una proyección como predicción, sin su escenario.</li>
+      <li>Comparar cifras entre territorios que las definen de forma distinta.</li>
+      <li>Dar por equivalente el cumplimiento legal y la recomendación sanitaria.</li>
+    </ul>
+    <p>Cuando alguno se produce, la corrección debe ser proporcional al alcance del error: nota visible junto a la pieza, actualización del archivo y, si el error afectó a una decisión de salud, una pieza específica que lo aclare. Los criterios son los de la Unidad 2 de JRN-1004 y su aplicación en esta materia es más exigente, porque el daño potencial es mayor.</p>
+    <div class="ej"><b>COMPROBACIÓN FINAL</b>Repasa la lista antes de enviar. Siete comprobaciones, dos minutos, y cubren la práctica totalidad de los errores que después obligan a rectificar.</div>
+
+    <h3>La pieza que permite decidir</h3>
+    <p>El criterio último de una información científica o ambiental no es que sea correcta —eso es el mínimo— sino que permita a quien la lee entender la situación y, cuando proceda, decidir. Esa exigencia se traduce en cuatro elementos que conviene comprobar en el texto final.</p>
+    <p><strong>Magnitud</strong>: cuánto, en cifras comprensibles y con denominador constante. <strong>Certeza</strong>: cuánto sabemos, con qué respaldo y qué queda por saber. <strong>Alcance</strong>: a quién afecta y a quién no, porque un riesgo medio puede ser alto para un grupo concreto. Y <strong>agencia</strong>: qué puede hacer el lector y quién decide lo que él no puede decidir.</p>
+    <p>Ese último elemento es el que distingue la información útil de la información completa. Una pieza puede ser impecable en datos y dejar al lector sin saber qué hacer con ellos, y en materia de salud y de medio ambiente esa omisión tiene consecuencias.</p>
+    <p>Y hay una obligación final que atraviesa todo el curso: el seguimiento. La ciencia cambia, las recomendaciones se actualizan y los compromisos vencen. Volver sobre lo publicado, comprobar qué se cumplió y actualizar el archivo es lo que convierte una serie de piezas en cobertura, y es también lo que más se parece a lo que el público espera de un medio en el que confía.</p>
+    <div class="ej"><b>REGLA FINAL</b>Magnitud, certeza, alcance y agencia. Si tu pieza tiene las cuatro, informa; si le falta la última, describe un problema y deja al lector sin nada que hacer con él.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Rueda de prensa de una autoridad sanitaria durante un brote. Los datos son provisionales, hay dos organismos dando cifras distintas y el portavoz insiste en pedir tranquilidad sin indicar qué debe hacer la población.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes alarmar ni actuar como portavoz. Cada pregunta debe buscar una magnitud, un plazo, una instrucción practicable o una explicación de la discrepancia entre fuentes.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">PIEZA DE RIESGO · OBLIGATORIA</span>
+      <p>Elige un riesgo sanitario o ambiental de actualidad. Entrega: la expresión del riesgo en frecuencias naturales con denominador constante; el cálculo del valor predictivo si hay una prueba implicada; la clasificación explícita entre riesgo cuantificado, incertidumbre y desconocimiento; el doble encuadre de la cifra principal; la evaluación del emisor oficial con los cinco criterios de comunicación en emergencia; y un texto de quinientas palabras que contenga magnitud, certeza, alcance y agencia.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Frecuencias naturales con denominador constante en toda la pieza (25%) · Cálculo correcto del valor predictivo o justificación de su ausencia (15%) · Clasificación explícita del tipo de incertidumbre (20%) · Doble encuadre de la cifra principal (15%) · Texto final con los cuatro elementos, incluida la agencia (25%). Una pieza sin indicación de qué puede hacer el lector y quién decide no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="exa">
+    <h3>Examen Integrador · JRN-1006</h3>
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">ALCANCE Y CALIFICACIÓN</div>
+      <p>Este examen abarca las cuatro unidades del curso. Se aprueba con un <strong>75%</strong>. Consta de tres partes: opción múltiple (40%), evaluación de un estudio y su cobertura (30%) y pieza de riesgo (30%).</p>
+      <p style="margin-bottom:0">La Parte A es interactiva y se califica sola. Las Partes B y C se entregan por escrito.</p>
+    </div>
+
+    <h3>Parte A · Opción múltiple (40%)</h3>
+    <p style="font-size:.88rem">Doce preguntas sobre las cuatro unidades. Cada una indica de qué unidad procede.</p>
+    <div class="score big" id="escore">RESPONDIDAS 0 / 12 · CORRECTAS 0 · CALIFICACIÓN —</div>
+    <div id="exam"></div>
+
+    <h3>Parte B · Evaluación de un estudio y su cobertura (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · 800–1.000 PALABRAS</span>
+      <p>Se entrega el día del examen un artículo científico, el comunicado de su institución y tres coberturas periodísticas. El estudiante debe: completar las seis comprobaciones básicas del artículo; identificar dónde se introdujo cada exageración en la cadena; situar el hallazgo en la jerarquía de la evidencia y en la literatura previa; y señalar qué verbo admite cada afirmación publicada.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS PARTE B</b>Seis comprobaciones completas (25%) · Localización precisa de las exageraciones en la cadena (25%) · Situación en la jerarquía y en la literatura previa (20%) · Análisis de los verbos empleados frente al diseño (20%) · Detección de conflictos de interés y su tratamiento (10%).</div>
+    </div>
+
+    <h3>Parte C · Pieza de riesgo (30%)</h3>
+    <div class="case"><span class="tag">ENTREGA ESCRITA · EXPEDIENTE CERRADO</span>
+      <p>Con un expediente que incluye datos de una prueba diagnóstica, una serie ambiental local con lagunas, un compromiso corporativo de neutralidad y declaraciones oficiales contradictorias, el estudiante redacta la pieza y el memorando metodológico que la acompaña.</p>
+      <button class="reveal">Ver estructura y criterios</button>
+      <div class="model"><b>ESTRUCTURA EXIGIDA</b>1. Riesgo expresado en frecuencias naturales, con denominador constante.<br>2. Valor predictivo de la prueba, calculado y explicado.<br>3. Evaluación de la serie ambiental: fuente, cobertura y lagunas.<br>4. Verificación del compromiso de neutralidad con las cuatro preguntas.<br>5. Tratamiento de la contradicción entre fuentes oficiales.<br>6. Texto final con magnitud, certeza, alcance y agencia.<br><br><b>CRITERIOS</b>Formato de riesgo correcto y constante (25%) · Valor predictivo bien calculado e interpretado (20%) · Evaluación honesta de los datos y sus lagunas (20%) · Verificación del compromiso corporativo (15%) · Texto final que permita decidir (20%).</div>
+    </div>
+
+    <div class="box">
+      <div class="lbl">REQUISITOS DE GRADUACIÓN DEL CERTIFICADO</div>
+      <p style="margin-bottom:0">Estudiar las 4 unidades de las 6 materias · Aprobar la evaluación de cada módulo · Aprobar el examen integrador de cada materia con un mínimo de 75% · Acreditar los 19 créditos universitarios para desbloquear el diploma.</p>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 4</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1006-u3.html">← Unidad 3: Clima y Medio Ambiente</a> &nbsp;·&nbsp; <a href="jrn1006-u1.html">Volver al inicio del curso</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Riesgo",d:"Probabilidad de que ocurra un suceso combinada con la magnitud de sus consecuencias. Su percepción no coincide con su medida y esa discrepancia no es irracionalidad.",s:"Literatura sobre percepción de riesgo"},
+ {t:"Frecuencia Natural",d:"Expresión de un riesgo como recuento sobre una población de referencia —diez de cada mil— en lugar de porcentajes condicionados. Mejora la comprensión también entre profesionales.",s:"Gigerenzer y Edwards, The BMJ, 2003"},
+ {t:"Denominador Constante",d:"Uso de la misma población de referencia a lo largo de toda la pieza. Cambiarlo impide comparar aunque cada cifra sea exacta.",s:"Gigerenzer · práctica de comunicación de riesgo"},
+ {t:"Valor Predictivo Positivo",d:"Proporción de resultados positivos que corresponden a personas realmente enfermas. Depende de la frecuencia de la enfermedad, no solo de la calidad de la prueba.",s:"Epidemiología clínica establecida"},
+ {t:"Falso Positivo",d:"Resultado que señala enfermedad en una persona sana. En poblaciones con baja prevalencia puede superar ampliamente a los positivos reales.",s:"Epidemiología clínica establecida"},
+ {t:"Incertidumbre",d:"Situación en que se conocen los resultados posibles pero no sus probabilidades con precisión. Distinta del riesgo cuantificado y del desconocimiento.",s:"Sense about Science · teoría de la decisión"},
+ {t:"Efecto de Encuadre",d:"Fenómeno por el que descripciones lógicamente equivalentes producen preferencias distintas. No existe un encuadre neutro: existe la elección consciente.",s:"Tversky y Kahneman, Science, 1981"},
+ {t:"Anuncio Temprano",d:"Principio de comunicación en emergencias que recomienda informar pronto aunque la información sea incompleta, porque el vacío lo llena el rumor.",s:"OMS, comunicación de riesgo, 2017"},
+ {t:"Coherencia entre Emisores",d:"Necesidad de que las distintas autoridades emitan mensajes compatibles. Las contradicciones dañan la credibilidad más que una mala noticia.",s:"OMS, comunicación de riesgo, 2017"},
+ {t:"Acción Practicable",d:"Instrucción concreta que el público puede ejecutar. Una advertencia sin instrucción produce angustia sin conducta.",s:"OMS · práctica de comunicación de riesgo"},
+ {t:"Vacío Informativo",d:"Espacio entre una pregunta del público y su respuesta, donde se instala el rumor. Se cierra con rapidez, concreción y continuidad.",s:"Investigación sobre desinformación · práctica establecida"},
+ {t:"Agencia",d:"Información sobre qué puede hacer el lector y quién decide lo que él no puede decidir. Es lo que distingue una pieza útil de una completa.",s:"Formulación docente · comunicación de riesgo"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · THE BMJ · 2003",t:"Frecuencias naturales frente a porcentajes",
+  d:"Gerd Gigerenzer y Adrian Edwards publicaron en <em>The BMJ</em> en 2003 un trabajo que sistematizaba por qué las cifras sanitarias se comprenden mal y cómo corregirlo. El análisis mostraba que los porcentajes condicionados producen errores de interpretación sistemáticos, incluso entre profesionales sanitarios con formación estadística, y que la misma información expresada en frecuencias naturales —recuentos sobre una población de referencia constante— produce comprensiones correctas en una proporción muy superior. Los autores proponían además presentar beneficios y daños en la misma escala y evitar los riesgos relativos sin línea base.",
+  ej:"El hallazgo desplaza la responsabilidad: si profesionales con formación se equivocan con un formato, el problema no es la capacidad del público sino la presentación de la información.",
+  p:["¿Por qué las frecuencias funcionan mejor que los porcentajes?","¿Qué significa mantener el denominador constante?","¿Cómo se aplica esto en un titular?"],
+  m:"Funcionan mejor porque el razonamiento con recuentos absolutos sobre una población fija no exige encadenar probabilidades condicionadas, que es la operación mental donde se produce el error, y porque permite visualizar la situación completa: cuántos de mil, en cada categoría. Mantener el denominador constante significa usar la misma base a lo largo de toda la pieza —siempre por cada mil, o siempre por cada diez mil—, porque alternarlos impide comparar aunque cada cifra sea correcta. En un titular se aplica eligiendo el absoluto por delante del relativo: «ocho casos más por cada diez mil personas» cabe en una línea y significa algo, y el porcentaje puede acompañarlo en la entradilla.",
+  k:"Si profesionales con formación estadística se equivocan con un formato, el formato es el problema. Frecuencias naturales y denominador constante lo resuelven."},
+
+ {tag:"CASO 2 · REINO UNIDO · 1995",t:"El aviso que produjo el efecto contrario",
+  d:"En octubre de 1995, el comité asesor británico de seguridad de medicamentos emitió una advertencia sobre determinados anticonceptivos orales, informando de que duplicaban el riesgo de trombosis venosa respecto de los anteriores. La cifra era correcta en términos relativos y correspondía, en términos absolutos, a un aumento de aproximadamente uno a dos casos por cada siete mil usuarias al año. La advertencia produjo un abandono masivo del tratamiento y, según los análisis posteriores, un aumento de embarazos no planificados y de interrupciones del embarazo en los meses siguientes.",
+  ej:"La comunicación era técnicamente exacta y produjo un daño mayor que el riesgo que pretendía evitar, porque la magnitud absoluta nunca llegó al público.",
+  p:["¿Qué habría cambiado con la cifra absoluta?","¿Quién es responsable cuando la fuente comunica mal?","¿Qué obligación tiene el medio que reproduce la advertencia?"],
+  m:"Con la cifra absoluta —uno o dos casos adicionales por cada siete mil usuarias— la mayoría de las personas habría comparado ese riesgo con el del embarazo no planificado y con el de la propia gestación, que es la comparación relevante y que la formulación relativa impedía hacer. La responsabilidad es compartida: la fuente eligió el formato, y el medio que lo reproduce sin traducirlo asume su parte, porque la traducción a absolutos es una comprobación de dos minutos. La obligación del medio es publicar siempre la cifra absoluta junto a la relativa y, cuando la advertencia implique interrumpir un tratamiento, indicar expresamente qué se recomienda hacer entretanto.",
+  k:"Una advertencia exacta puede causar más daño que el riesgo que anuncia si se comunica en términos relativos. La traducción a absolutos es obligatoria."},
+
+ {tag:"CASO 3 · L'AQUILA · 2009-2015",t:"Comunicar riesgo y responsabilidad",
+  d:"Tras el terremoto que golpeó L'Aquila en abril de 2009, un tribunal italiano condenó en 2012 a varios miembros de una comisión de expertos y a un responsable de protección civil, en un procedimiento relacionado con la información pública ofrecida días antes del seísmo, que fue percibida como tranquilizadora. La sentencia generó una reacción internacional de la comunidad científica, que advirtió del efecto disuasorio sobre la participación de los expertos en la comunicación pública. En instancias posteriores, en 2014 y 2015, las condenas de los científicos fueron revocadas, manteniéndose la del responsable de la comunicación oficial.",
+  ej:"El caso no trata de la capacidad de predecir terremotos, que no existe, sino de cómo se comunicó la incertidumbre y de quién asumió la voz pública.",
+  p:["¿Qué diferencia hay entre evaluar el riesgo y comunicarlo?","¿Qué debe exigirse a una comunicación oficial de riesgo?","¿Qué papel tiene el periodismo en estos episodios?"],
+  m:"Evaluar el riesgo es una tarea técnica que produce probabilidades y rangos; comunicarlo es una tarea distinta que exige traducir esos rangos a instrucciones y consecuencias, y confundir ambas hace que un experto acabe respondiendo por un mensaje que no diseñó. A una comunicación oficial se le exige que declare la incertidumbre en lugar de proyectar tranquilidad, que indique qué hacer y que identifique quién habla en nombre de quién. El periodismo tiene aquí un papel específico: preguntar por la probabilidad y su rango en lugar de pedir una predicción, y distinguir en la pieza entre lo que dijo el comité técnico y lo que transmitió la autoridad.",
+  k:"Evaluar el riesgo y comunicarlo son tareas distintas. Preguntar por probabilidades y rangos, y no por predicciones, es lo que evita convertir a un experto en oráculo."},
+
+ {tag:"CASO 4 · TVERSKY Y KAHNEMAN · 1981",t:"La misma cifra, dos decisiones",
+  d:"Amos Tversky y Daniel Kahneman publicaron en <em>Science</em> en 1981 un experimento en el que se presentaba a los participantes un mismo programa de respuesta ante una enfermedad hipotética, descrito en unos casos en términos de personas salvadas y en otros en términos de personas fallecidas. Las descripciones eran lógicamente equivalentes y las preferencias resultaron sistemáticamente distintas: los participantes preferían la opción segura cuando el marco era de ganancia y la arriesgada cuando el marco era de pérdida.",
+  ej:"El resultado establece que no existe una forma neutra de presentar una cifra. La elección del marco es inevitable, y por eso debe ser consciente y, cuando importa, doble.",
+  p:["¿Qué implica que no exista encuadre neutro?","¿Cuándo conviene dar los dos marcos?","¿Cómo afecta esto a la selección de comparaciones?"],
+  m:"Implica que el periodista está eligiendo por el lector aunque no quiera, de modo que la responsabilidad no consiste en evitar el marco sino en escogerlo con criterio y declararlo cuando la decisión sea relevante. Conviene dar los dos marcos siempre que la cifra sostenga una decisión personal —tratamientos, cribados, conductas de riesgo—, porque escribir «sobrevive el noventa por ciento; fallece el diez» ocupa una línea y neutraliza el efecto. Y afecta también a las comparaciones: elegir con qué riesgo cotidiano se compara uno nuevo es una afirmación evaluativa, no un recurso didáctico neutro.",
+  k:"No hay encuadre neutro: hay elección consciente. Cuando la cifra sostiene una decisión personal, se publican los dos marcos."},
+
+ {tag:"CASO 5 · OMS · 2017",t:"Los cinco principios de la emergencia",
+  d:"En 2017 la Organización Mundial de la Salud publicó una directriz sobre comunicación de riesgo en emergencias de salud pública, elaborada a partir de revisiones de la evidencia disponible y de la experiencia de brotes anteriores. Sus recomendaciones centrales incluyen anunciar pronto aunque la información sea incompleta, ser transparente sobre lo que se sabe y lo que no, coordinar los mensajes entre las distintas instituciones emisoras, escuchar activamente las preocupaciones del público y ofrecer siempre acciones que las personas puedan ejecutar.",
+  ej:"El documento está dirigido a autoridades y funciona igual de bien como lista de comprobación periodística: permite evaluar si quien comunica lo está haciendo conforme al estándar.",
+  p:["¿Por qué el anuncio temprano prevalece sobre la certeza?","¿Qué daña más: una mala noticia o mensajes contradictorios?","¿Cómo se usa esta directriz en una pieza?"],
+  m:"Porque el vacío informativo se llena solo, y el primer relato que ocupa ese espacio condiciona la interpretación de todo lo que llegue después, de modo que esperar a la certeza equivale a ceder el terreno. Los mensajes contradictorios entre instituciones dañan más que una mala noticia, porque destruyen la referencia: el público deja de saber a quién atender y busca alternativas fuera del sistema oficial. En una pieza se usa como criterio de evaluación —si la autoridad tardó, ocultó la incertidumbre, se contradijo o no dio instrucciones aplicables, eso es información— y como guía para estructurar la propia cobertura.",
+  k:"Los principios de comunicación en emergencia sirven al periodista como lista de comprobación sobre quien comunica, y sus incumplimientos son noticia."},
+
+ {tag:"CASO 6 · EVACUACIÓN Y RIESGO COMPARADO",t:"Cuando la respuesta también tiene consecuencias",
+  d:"Tras el accidente nuclear de Fukushima en marzo de 2011, las evaluaciones internacionales posteriores —entre ellas las de la Organización Mundial de la Salud y del comité científico de Naciones Unidas sobre efectos de la radiación— concluyeron que los efectos sanitarios directamente atribuibles a la exposición radiológica en la población general serían limitados, mientras que documentaron impactos considerables asociados a la evacuación y a sus consecuencias sociales y psicológicas, especialmente entre personas mayores y en situación de dependencia.",
+  ej:"El caso muestra que las medidas de protección tienen a su vez consecuencias, y que informar solo del riesgo original ofrece una imagen incompleta de la decisión que se está tomando.",
+  p:["¿Cómo se informa de un riesgo cuya respuesta también genera daño?","¿Qué papel juega la percepción diferencial del riesgo?","¿Qué evita la simplificación en ambas direcciones?"],
+  m:"Se informa presentando ambos lados de la decisión con la misma escala y el mismo nivel de detalle: qué daño evita la medida y qué daño produce, en cifras comparables, que es la única forma de que el lector entienda por qué la decisión es difícil. La percepción diferencial es central: la radiación es un riesgo involuntario, invisible y asociado a consecuencias catastróficas, de modo que se percibe como mucho más grave que riesgos estadísticamente mayores y voluntarios, y esa percepción condiciona las decisiones políticas. La simplificación se evita declarando la incertidumbre de las estimaciones y distinguiendo entre efectos documentados, efectos proyectados y efectos temidos, tres categorías que suelen mezclarse.",
+  k:"Las medidas de protección también producen daños. Informar de un riesgo sin informar del coste de la respuesta describe media decisión."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El porcentaje que nadie entiende",
+  d:"El comunicado dice que la prueba tiene un 95% de sensibilidad. El titular propuesto afirma que detecta el 95% de los casos.",
+  r:"Reportera · Editor · Epidemiólogo consultado",
+  ej:"<span class='who'>EDITOR:</span> Detecta el 95%, eso se entiende.<br><span class='who'>EPIDEMIÓLOGO:</span> De los enfermos, sí. La pregunta es cuántos positivos son reales.<br><span class='who'>REPORTERA:</span> Con esta prevalencia, menos de uno de cada seis.<br><span class='who'>EDITOR:</span> Eso es otra noticia.",
+  m:"La sensibilidad describe cuántos enfermos detecta la prueba; el valor predictivo positivo describe cuántos de los positivos son enfermos, y esa segunda cifra es la que importa a quien recibe el resultado. Depende de la prevalencia en la población donde se aplica, de modo que la misma prueba tiene valores muy distintos en cribado general y en personas con síntomas. La forma de explicarlo sin fórmulas es traducir a mil personas: cuántas tienen la enfermedad, cuántas dan positivo siendo enfermas y cuántas dan positivo estando sanas, tres cifras que caben en un párrafo.",
+  c:"Sustituir un dato técnico por el que responde a la pregunta del lector, con el cálculo ya hecho."},
+
+ {tag:"ESCENARIO 2",t:"La advertencia que provoca abandono",
+  d:"Una autoridad advierte de que un tratamiento duplica cierto riesgo. La cifra absoluta es de uno a dos casos por cada siete mil personas al año.",
+  r:"Reportera · Editora · Farmacóloga consultada",
+  ej:"<span class='who'>EDITORA:</span> Duplicar suena grave.<br><span class='who'>FARMACÓLOGA:</span> Es pasar de uno a dos por cada siete mil.<br><span class='who'>REPORTERA:</span> Y hay que decir qué hacer: no interrumpir sin consultar.<br><span class='who'>EDITORA:</span> Entonces el titular lleva la cifra absoluta.",
+  m:"Publicar el riesgo relativo sin el absoluto puede producir un abandono masivo del tratamiento cuyo daño supere al del riesgo advertido, como documentó el episodio británico de 1995. La pieza correcta encabeza con la cifra absoluta, sitúa la comparación relevante —el riesgo de la alternativa, incluida la de no tratarse— e incluye una indicación explícita de no interrumpir el tratamiento sin consultar. Y conviene contactar con la autoridad emisora para preguntar por qué eligió ese formato, porque la respuesta suele ser publicable.",
+  c:"Reformular una advertencia oficial sin desautorizarla, añadiendo lo que le falta para ser útil."},
+
+ {tag:"ESCENARIO 3",t:"Dos organismos, dos cifras",
+  d:"Durante un brote, el ministerio y la autoridad regional publican cifras distintas de casos para el mismo día.",
+  r:"Reportera · Editora · Portavoz",
+  ej:"<span class='who'>EDITORA:</span> ¿Cuál publicamos?<br><span class='who'>REPORTERA:</span> Las dos, con la explicación de por qué difieren.<br><span class='who'>PORTAVOZ:</span> Es una cuestión de fecha de corte.<br><span class='who'>REPORTERA:</span> Entonces eso es lo que hay que explicar al lector.",
+  m:"Elegir una de las dos cifras sin explicar la discrepancia oculta información y expone al medio a que la otra fuente lo desmienta. Las diferencias suelen tener causas técnicas identificables —fecha de corte, criterio de asignación territorial, definición de caso— y explicarlas es más informativo que la cifra misma, porque enseña a interpretar todas las que vengan después. La incoherencia entre emisores es además un incumplimiento de un principio básico de comunicación en emergencia, y como tal es materia informativa sobre la gestión.",
+  c:"Convertir una discrepancia incómoda en una explicación útil sobre cómo se cuentan los datos."},
+
+ {tag:"ESCENARIO 4",t:"Tranquilidad sin instrucciones",
+  d:"El portavoz pide calma y no indica qué debe hacer la población. La rueda de prensa termina sin acciones concretas.",
+  r:"Reportera · Portavoz · Editora",
+  ej:"<span class='who'>PORTAVOZ:</span> Pedimos tranquilidad a la ciudadanía.<br><span class='who'>REPORTERA:</span> ¿Qué debe hacer una familia que viva en la zona afectada?<br><span class='who'>PORTAVOZ:</span> Seguir las recomendaciones habituales.<br><span class='who'>REPORTERA:</span> ¿Cuáles son y dónde están publicadas?",
+  m:"Una advertencia sin instrucción produce angustia sin conducta, y la ausencia de acción practicable es un fallo de comunicación que el periodista debe señalar y suplir en la medida de lo posible. Las preguntas útiles buscan lo concreto: qué hacer, quién debe hacerlo, desde cuándo y dónde está publicado, porque una recomendación que no existe por escrito no puede seguirse. Si la autoridad no las proporciona, la pieza informa de esa ausencia y recurre a fuentes técnicas independientes para ofrecer al lector algo aplicable.",
+  c:"Insistir en lo practicable sin convertir la pregunta en un reproche, y suplir la falta con fuentes propias."},
+
+ {tag:"ESCENARIO 5",t:"El titular en un solo marco",
+  d:"Un tratamiento tiene un noventa por ciento de supervivencia a cinco años. El titular propuesto habla de un diez por ciento de mortalidad.",
+  r:"Reportera · Redactor de titulares · Editora",
+  ej:"<span class='who'>TITULARES:</span> Diez por ciento de mortalidad impacta más.<br><span class='who'>REPORTERA:</span> Es la misma cifra que noventa por ciento de supervivencia.<br><span class='who'>EDITORA:</span> ¿Y cuál usamos?<br><span class='who'>REPORTERA:</span> Las dos, en la entradilla. El titular con la que describa mejor el hallazgo.",
+  m:"Ambas formulaciones son exactas y producen decisiones distintas, de modo que la elección no puede hacerse por impacto. Cuando la cifra sostiene una decisión personal, la práctica correcta es dar los dos marcos en el mismo párrafo, lo que ocupa una línea y neutraliza el efecto documentado desde 1981. El titular debe elegirse por lo que la pieza aporta —si la noticia es una mejora, la supervivencia; si es un riesgo desconocido hasta ahora, la mortalidad—, y no por cuál genera más reacción.",
+  c:"Aplicar el doble encuadre como norma y justificar la elección del titular por el contenido."},
+
+ {tag:"ESCENARIO 6",t:"La pieza sin agencia",
+  d:"El reportaje explica bien un riesgo ambiental local. En la revisión, nadie sabe decir qué puede hacer un vecino ni quién decide.",
+  r:"Reportera · Editora · Defensora del lector",
+  ej:"<span class='who'>DEFENSORA:</span> Lo he entendido todo y no sé qué hacer con ello.<br><span class='who'>REPORTERA:</span> Falta quién decide y qué está pendiente.<br><span class='who'>EDITORA:</span> ¿Eso lo tenemos?<br><span class='who'>REPORTERA:</span> Lo tenemos: hay un plan municipal en información pública hasta el día 30.",
+  m:"Una pieza puede ser impecable en datos y dejar al lector sin nada que hacer con ellos, y en materia de salud y medio ambiente esa omisión tiene consecuencias. Los cuatro elementos que la completan son magnitud, certeza, alcance y agencia, y el último suele ser el que falta: qué puede hacer quien lee y quién decide lo que él no puede decidir. Añadirlo no convierte la pieza en activismo: informar de un plazo administrativo abierto o de qué organismo tiene la competencia es rendición de cuentas, no militancia.",
+  c:"Completar una pieza correcta con la información que la hace utilizable, sin cambiar su enfoque."}
+];
+
+const IV=[
+ {q:"¿Cuántas personas están afectadas, sobre qué población total y en qué período?",
+  m:"Obtiene magnitud y denominador, que son las dos cifras sin las cuales ningún dato es interpretable."},
+ {q:"¿Esa cifra procede del mismo criterio de recuento que la publicada ayer por la otra administración?",
+  m:"Aborda la discrepancia entre emisores sin acusar, y suele revelar la causa técnica que conviene explicar."},
+ {q:"¿Qué debe hacer concretamente una familia que viva en la zona afectada?",
+  m:"Busca la acción practicable, cuya ausencia es un fallo de comunicación y por tanto materia informativa."},
+ {q:"¿Dónde está publicada esa recomendación y desde cuándo?",
+  m:"Comprueba que la instrucción existe por escrito: una recomendación no publicada no puede seguirse."},
+ {q:"¿Qué es lo que todavía no saben y cuándo esperan saberlo?",
+  m:"Convierte la incertidumbre en información con fecha, y evita que el silencio se interprete como ocultación."},
+ {q:"¿Qué tendría que ocurrir para que cambiaran esta recomendación?",
+  m:"Obtiene el criterio de decisión, que permite al público interpretar los cambios posteriores sin percibirlos como improvisación."},
+ {q:"¿Quién es la autoridad que coordina la respuesta y quién habla en su nombre?",
+  m:"Fija la referencia única, cuya ausencia explica buena parte de las contradicciones entre organismos."},
+ {q:"¿Puedo leerle la frase que vamos a publicar para comprobar que es exacta?",
+  m:"Verifica la formulación técnica sin ceder control editorial, y evita la mayoría de las rectificaciones en esta materia."}
+];
+
+const AUDIT=[
+ ["v","Gigerenzer y Edwards publicaron en <em>The BMJ</em> en 2003 un trabajo que documenta los errores sistemáticos de interpretación asociados a los porcentajes condicionados, también entre profesionales sanitarios, y propone el uso de frecuencias naturales con población de referencia constante.","The BMJ, 2003. Verificado."],
+ ["v","En octubre de 1995 el comité asesor británico de seguridad de medicamentos advirtió de que determinados anticonceptivos orales duplicaban el riesgo de trombosis venosa; en términos absolutos el aumento era de aproximadamente uno a dos casos por cada siete mil usuarias al año, y los análisis posteriores documentaron un aumento de embarazos no planificados y de interrupciones tras el abandono masivo del tratamiento.","Documentación y literatura posterior sobre el episodio de 1995. Verificado."],
+ ["v","Tras el terremoto de L'Aquila de 2009, un tribunal italiano condenó en 2012 a varios expertos y a un responsable de protección civil por la comunicación previa del riesgo; las condenas de los científicos fueron revocadas en instancias posteriores en 2014 y 2015.","Resoluciones judiciales italianas y cobertura internacional. Verificado."],
+ ["v","Tversky y Kahneman publicaron en <em>Science</em> en 1981 el experimento que demuestra que descripciones lógicamente equivalentes de un mismo resultado, formuladas como ganancia o como pérdida, producen preferencias sistemáticamente distintas.","Science, 1981. Verificado."],
+ ["v","La Organización Mundial de la Salud publicó en 2017 una directriz sobre comunicación de riesgo en emergencias de salud pública que recomienda anuncio temprano, transparencia sobre la incertidumbre, coordinación entre emisores, escucha del público y provisión de acciones practicables.","OMS, 2017. Verificado."],
+ ["v","Las evaluaciones internacionales posteriores al accidente de Fukushima de 2011 concluyeron que los efectos sanitarios directamente atribuibles a la exposición radiológica en la población general serían limitados, y documentaron impactos considerables asociados a la evacuación y a sus consecuencias sociales y psicológicas.","Informes de la OMS y del comité científico de Naciones Unidas sobre efectos de la radiación. Verificado."],
+ ["b","La percepción del riesgo depende de si es voluntario, conocido, controlable y catastrófico, y no solo de su probabilidad estadística.","Literatura sobre percepción de riesgo."],
+ ["b","El valor predictivo positivo de una prueba depende de la prevalencia en la población donde se aplica, y no solo de su sensibilidad y especificidad.","Epidemiología clínica establecida."],
+ ["b","Conviene distinguir riesgo cuantificado, incertidumbre y desconocimiento, porque cada situación exige un lenguaje distinto.","Sense about Science · teoría de la decisión."],
+ ["b","El vacío informativo se llena con rumores; la respuesta eficaz combina rapidez, concreción sobre la pregunta real y continuidad.","Investigación sobre desinformación · OMS."],
+ ["b","No existe un encuadre neutro: cuando la cifra sostiene una decisión personal, conviene publicar los dos marcos.","Tversky y Kahneman · práctica de comunicación de riesgo."],
+ ["b","Una advertencia sin instrucción practicable produce angustia sin conducta.","OMS, comunicación de riesgo, 2017."],
+ ["b","Una pieza de riesgo debe contener magnitud, certeza, alcance y agencia; la ausencia de la última deja al lector sin nada que hacer con la información.","Formulación docente · comunicación de riesgo."],
+ ["p","La descripción de los efectos del episodio británico de 1995 sobre embarazos e interrupciones se apoya en los análisis publicados posteriormente, cuyas estimaciones varían entre estudios; no se ha realizado para esta unidad una revisión de esas cifras.","Redactado sin atribuir magnitudes concretas a un estudio determinado."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Que la percepción del riesgo no coincida con su medida estadística indica:",
+ o:["Que el público razona mal y hay que corregirlo con datos","Que intervienen factores legítimos como la voluntariedad, el control y el carácter catastrófico","Que las cifras de riesgo son poco fiables","Que la comunicación de riesgo es inútil"],c:1,
+ w:["Tratarlo como irracionalidad lleva a coberturas que no funcionan: repetir tasas no reduce el miedo.",
+    "",
+    "Las cifras pueden ser sólidas y aun así no capturar lo que preocupa a la gente.",
+    "Precisamente por esa discrepancia la comunicación de riesgo tiene reglas propias."],
+ e:"Aceptar voluntariamente un riesgo no equivale a que te lo impongan, y cien muertes de golpe tienen consecuencias sociales distintas de cien dispersas."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Las frecuencias naturales consisten en:",
+ o:["Expresar el riesgo con decimales en lugar de porcentajes","Presentarlo como recuento sobre una población de referencia: diez de cada mil","Usar solo números redondos","Comparar con un riesgo cotidiano conocido"],c:1,
+ w:["El problema no es la notación decimal sino el encadenamiento de probabilidades condicionadas.",
+    "",
+    "El redondeo facilita la lectura y no resuelve el error de razonamiento.",
+    "La comparación con otro riesgo es un recurso distinto, y no siempre neutral."],
+ e:"Producen comprensiones correctas en proporción muy superior, también entre profesionales con formación estadística."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El valor predictivo positivo de una prueba depende de:",
+ o:["Solo de su sensibilidad","De la prevalencia de la enfermedad en la población donde se aplica","Del laboratorio que la fabrica","Del número de pruebas realizadas"],c:1,
+ w:["La sensibilidad describe cuántos enfermos detecta, no cuántos positivos son reales.",
+    "",
+    "El fabricante no altera la aritmética del valor predictivo.",
+    "El volumen de pruebas no cambia la proporción de positivos reales."],
+ e:"La misma prueba tiene valores muy distintos en cribado poblacional y en personas con síntomas: es la razón de la mayoría de los malentendidos."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La diferencia entre riesgo e incertidumbre es que:",
+ o:["El riesgo es grave y la incertidumbre leve","En el riesgo se conocen los resultados posibles y sus probabilidades; en la incertidumbre, no las probabilidades","La incertidumbre es subjetiva y el riesgo objetivo","Son sinónimos en contextos técnicos"],c:1,
+ w:["La gravedad no distingue ambos conceptos.",
+    "",
+    "Ambos son conceptos técnicos y no dependen de la percepción individual.",
+    "Se distinguen precisamente en la disponibilidad de probabilidades."],
+ e:"Y hay una tercera situación, el desconocimiento, en la que ni siquiera se conoce el conjunto de resultados posibles. Cada una exige un lenguaje distinto."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El efecto de encuadre implica que:",
+ o:["Los datos pueden manipularse","Descripciones lógicamente equivalentes producen preferencias distintas, y por tanto no existe presentación neutra","Los lectores no entienden los porcentajes","Conviene evitar las cifras en los titulares"],c:1,
+ w:["No se trata de manipulación: ocurre con descripciones igualmente exactas.",
+    "",
+    "La comprensión es un problema distinto, aunque relacionado.",
+    "Las cifras son necesarias: lo que exige criterio es su formulación."],
+ e:"Documentado experimentalmente en 1981. La responsabilidad no es evitar el marco sino elegirlo conscientemente y, cuando importa, dar los dos."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El principio de anuncio temprano en emergencias sostiene que:",
+ o:["Hay que esperar a tener datos confirmados para no alarmar","Conviene informar pronto aunque la información sea incompleta, porque el vacío lo llena el rumor","Solo debe hablar una autoridad","La primera comunicación debe ser tranquilizadora"],c:1,
+ w:["Esperar a la certeza cede el espacio al primer relato que aparezca, que fijará la interpretación.",
+    "",
+    "La coherencia entre emisores es otro principio, complementario y distinto.",
+    "El tono tranquilizador sin base es precisamente lo que destruye la credibilidad después."],
+ e:"Junto a él: transparencia sobre lo que no se sabe, coherencia entre emisores, escucha del público y acciones practicables."},
+
+/* ---------- BLOQUE B · APLICACIÓN ---------- */
+{blk:"BLOQUE B · APLICACIÓN", t:"mcq",
+ s:"Una prueba detecta al 90% de los enfermos y da 5% de falsos positivos. La enfermedad afecta a 10 de cada 1.000 personas.",
+ q:"¿Cuántos de los positivos serán reales, aproximadamente?",
+ o:["Nueve de cada diez","Unos nueve de cada cincuenta y nueve, es decir, menos de uno de cada seis","La mitad","Depende del laboratorio"],c:1,
+ w:["Ese sería el valor si todos los examinados estuvieran enfermos: confunde sensibilidad con valor predictivo.",
+    "",
+    "La mitad correspondería a una prevalencia mucho mayor.",
+    "El resultado se deriva de la aritmética, no del proveedor."],
+ e:"Nueve verdaderos positivos entre los diez enfermos, más unos cincuenta falsos positivos entre los novecientos noventa sanos. Con frecuencias se ve sin fórmulas."},
+
+{blk:"BLOQUE B · APLICACIÓN", t:"mcq",
+ s:"Una autoridad advierte de que un tratamiento duplica un riesgo que pasa de uno a dos casos por cada siete mil personas al año.",
+ q:"¿Cómo debe titularse?",
+ o:["El tratamiento duplica el riesgo de trombosis","Un caso adicional por cada siete mil usuarias al año, sin interrumpir el tratamiento sin consultar","El tratamiento es peligroso","Las autoridades alertan sobre el tratamiento"],c:1,
+ w:["Duplicar sin la base absoluta produjo en 1995 un abandono masivo con más daño que el riesgo advertido.",
+    "",
+    "«Peligroso» es una valoración sin magnitud.",
+    "Atribuir a la alerta sin dar la cifra reproduce el problema sin asumirlo."],
+ e:"Y la indicación de no interrumpir sin consultar no es un añadido de cortesía: es parte de la información sanitaria."},
+
+{blk:"BLOQUE B · APLICACIÓN", t:"mcq",
+ s:"Dos administraciones publican cifras distintas de casos para el mismo día.",
+ q:"¿Qué corresponde?",
+ o:["Publicar la del organismo de mayor rango","Publicar ambas y explicar la causa técnica de la discrepancia","Publicar la más alta, por prudencia","Esperar a que se pongan de acuerdo"],c:1,
+ w:["El rango del emisor no acredita la exactitud del dato.",
+    "",
+    "Elegir por prudencia introduce un sesgo sistemático.",
+    "Esperar deja el vacío informativo abierto durante el tiempo crítico."],
+ e:"La causa suele ser identificable —fecha de corte, criterio territorial, definición de caso— y explicarla enseña a interpretar todas las cifras posteriores."},
+
+{blk:"BLOQUE B · APLICACIÓN", t:"mcq",
+ s:"El portavoz pide calma y no indica ninguna acción concreta para la población.",
+ q:"¿Qué debe hacer el periodista?",
+ o:["Reproducir el llamamiento a la calma","Preguntar qué debe hacer una persona afectada, dónde está publicado y desde cuándo","Contradecir a la autoridad","Buscar declaraciones alarmistas de otras fuentes"],c:1,
+ w:["Reproducir el llamamiento convierte al medio en canal institucional.",
+    "",
+    "Contradecir sin base es tan poco informativo como reproducir sin comprobar.",
+    "Buscar el contraste alarmista sustituye un sesgo por otro."],
+ e:"Una advertencia sin instrucción produce angustia sin conducta, y su ausencia es un fallo de comunicación que debe señalarse."},
+
+{blk:"BLOQUE B · APLICACIÓN", t:"mcq",
+ s:"Un tratamiento tiene un noventa por ciento de supervivencia a cinco años.",
+ q:"¿Cómo se presenta la cifra?",
+ o:["Como supervivencia, que es más comprensible","Dando los dos marcos: sobrevive el noventa por ciento y fallece el diez","Como mortalidad, que es más honesto","Solo con el dato relativo frente al tratamiento anterior"],c:1,
+ w:["Elegir un solo marco por comprensibilidad decide por el lector sin declararlo.",
+    "",
+    "Ningún marco es más honesto: ambos son exactos y producen decisiones distintas.",
+    "El dato relativo sin absoluto reproduce el problema de la Unidad 2."],
+ e:"Ocupa una línea más y neutraliza un efecto documentado desde 1981, especialmente relevante cuando la cifra sostiene una decisión personal."},
+
+{blk:"BLOQUE B · APLICACIÓN", t:"mcq",
+ s:"Circula un rumor sobre la potabilidad del agua tras un vertido. La administración informa de la inversión prevista en depuración.",
+ q:"¿Qué falla en esa comunicación?",
+ o:["La cifra de inversión es insuficiente","No responde a la pregunta que la gente se está haciendo","Debería haberse publicado antes","El emisor no es competente"],c:1,
+ w:["La cuantía de la inversión es otro asunto, no el que preocupa ahora.",
+    "",
+    "El momento importa y no corrige el desajuste de contenido.",
+    "La competencia del organismo no está en cuestión en el enunciado."],
+ e:"El vacío se cierra respondiendo a la pregunta real —si el agua es potable hoy y quién lo ha comprobado—, no con información adyacente."},
+
+/* ---------- BLOQUE C · MÉTODO Y CIERRE ---------- */
+{blk:"BLOQUE C · MÉTODO Y CIERRE", t:"mcq",
+ q:"Las cuatro preguntas que estructuran una entrevista científica son:",
+ o:["Quién, qué, cuándo y dónde","Cuánto, comparado con qué, cómo de seguros estamos y qué haría falta para saber más","Cómo funciona, para qué sirve, cuánto cuesta y quién lo paga","Qué opina, qué recomienda, qué teme y qué espera"],c:1,
+ w:["Las preguntas clásicas sirven para un suceso, no para obtener magnitudes y grados de certeza.",
+    "",
+    "Son preguntas útiles sobre una tecnología, no sobre un resultado científico.",
+    "Preguntar por opiniones produce declaraciones, no información verificable."],
+ e:"La última suele producir la mejor cita, porque convierte la incertidumbre en información con fecha y condición."},
+
+{blk:"BLOQUE C · MÉTODO Y CIERRE", t:"mcq",
+ q:"Leer a la fuente la frase exacta que se va a publicar:",
+ o:["Equivale a enseñarle el texto y ceder control editorial","Es una verificación de la formulación técnica que evita la mayoría de las rectificaciones","Solo procede con responsables públicos","Obliga a aceptar sus cambios"],c:1,
+ w:["No es mostrar el enfoque ni el conjunto: es comprobar una formulación concreta.",
+    "",
+    "Es especialmente útil con fuentes técnicas, donde el error de formulación es más probable.",
+    "Comprobar exactitud no implica aceptar reescrituras del enfoque."],
+ e:"La decisión editorial permanece en la redacción; lo que se verifica es si la frase dice técnicamente lo que la fuente sostiene."},
+
+{blk:"BLOQUE C · MÉTODO Y CIERRE", t:"mcq",
+ q:"Informar de una medida de protección que también genera daños exige:",
+ o:["Omitir el daño de la medida para no desincentivarla","Presentar ambos lados con la misma escala y nivel de detalle","Dejar la decisión a las autoridades sin analizarla","Publicar solo el riesgo original"],c:1,
+ w:["Omitir el coste de la respuesta describe media decisión y produce sorpresa después.",
+    "",
+    "Renunciar al análisis convierte al medio en transmisor.",
+    "El riesgo original sin el coste de la medida no permite entender el dilema."],
+ e:"Es la lección de las evaluaciones posteriores a Fukushima: la evacuación tuvo impactos considerables que forman parte de la decisión."},
+
+{blk:"BLOQUE C · MÉTODO Y CIERRE", t:"mcq",
+ q:"Entre los errores frecuentes de esta materia NO está:",
+ o:["Publicar un riesgo relativo sin línea base","Publicar el intervalo de confianza junto al resultado","Extrapolar a personas resultados en animales","Confundir escala de certeza con escala de magnitud"],c:1,
+ w:["Es el error más común de todos y el más fácil de corregir.",
+    "",
+    "La extrapolación indebida es una de las tres exageraciones documentadas.",
+    "Confundir ambas escalas produjo los titulares de 2015 sobre la carne procesada."],
+ e:"Publicar el intervalo es buena práctica: es exactamente lo que permite al lector valorar la precisión del resultado."},
+
+{blk:"BLOQUE C · MÉTODO Y CIERRE", t:"mcq",
+ q:"Los cuatro elementos de una pieza de riesgo útil son:",
+ o:["Titular, entradilla, cuerpo y cierre","Magnitud, certeza, alcance y agencia","Datos, fuentes, contexto y opinión","Qué, quién, cómo y por qué"],c:1,
+ w:["La estructura formal no garantiza que la información sirva para decidir.",
+    "",
+    "La opinión no forma parte de la información de riesgo.",
+    "Las preguntas clásicas describen un suceso, no un riesgo."],
+ e:"La agencia es la que más se olvida: qué puede hacer el lector y quién decide lo que él no puede decidir."},
+
+{blk:"BLOQUE C · MÉTODO Y CIERRE", t:"mcq",
+ q:"El seguimiento de lo publicado en esta materia es obligatorio porque:",
+ o:["Aumenta el tráfico del archivo","La ciencia cambia, las recomendaciones se actualizan y las piezas antiguas siguen orientando decisiones","Lo exigen los códigos deontológicos","Permite reutilizar contenido"],c:1,
+ w:["El tráfico es un efecto secundario y no un motivo.",
+    "",
+    "Los códigos lo respaldan y no son la razón sustantiva.",
+    "La reutilización es una ventaja de producción, no una obligación."],
+ e:"Un texto de hace cinco años puede seguir orientando decisiones de salud con criterios superados, y revisarlo es parte de la responsabilidad."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todos</strong> los principios de comunicación de riesgo en emergencias.",
+ o:["Anuncio temprano aunque la información sea incompleta","Transparencia sobre lo que no se sabe","Coherencia entre las distintas instituciones emisoras","Uso de un tono tranquilizador","Acciones practicables para el público"],
+ c:[0,1,2,4],
+ w:["","","","El tono tranquilizador sin base destruye la credibilidad cuando la situación empeora: lo que se recomienda es exactitud, no calma.",""],
+ e:"Sirven también como lista de comprobación periodística: los incumplimientos de quien comunica son materia informativa."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todos</strong> los errores frecuentes en cobertura científica y ambiental.",
+ o:["Publicar riesgo relativo sin línea base","Atribuir causalidad a un estudio observacional","Presentar una proyección como predicción","Citar el nivel de confianza tal como aparece en el informe","Equiparar cumplimiento legal y recomendación sanitaria"],
+ c:[0,1,2,4],
+ w:["","","","Citar el nivel de confianza con la expresión exacta del informe es la práctica correcta, no un error.",""],
+ e:"La lista de comprobación son siete errores y dos minutos de revisión antes de enviar."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena la preparación de una pieza de riesgo.",
+ o:["Obtener la magnitud y su denominador","Traducir a frecuencias naturales con base constante","Clasificar la situación: riesgo, incertidumbre o desconocimiento","Comprobar los dos marcos de la cifra principal","Añadir alcance y agencia: a quién afecta y quién decide"],
+ c:[0,1,2,3,4],
+ e:"Magnitud, certeza, alcance y agencia. Si falta la última, la pieza describe un problema y deja al lector sin nada que hacer con él."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena las preguntas de una entrevista técnica, de la más básica a la más orientada al futuro.",
+ o:["¿Cuánto es, en cifras?","¿Comparado con qué?","¿Cómo de seguros estamos de ese resultado?","¿Qué haría falta para saber más y en qué plazo?","¿Puedo leerle la frase que vamos a publicar?"],
+ c:[0,1,2,3,4],
+ e:"La última no es una pregunta de contenido sino de verificación, y es la que más rectificaciones evita en esta materia."}
+];
+
+const EXAM=[
+ {u:"UNIDAD 1",q:"Un estudio publicado y revisado por pares establece:",
+  o:["Un hecho comprobado","Una aportación provisional cuyo peso depende de la convergencia con otros estudios","La posición de la comunidad científica","Un resultado válido hasta que se refute"],c:1,
+  e:"La pregunta útil no es qué han descubierto, sino cuánto peso tiene esto dentro de lo que ya se sabía."},
+ {u:"UNIDAD 1",q:"La revisión por pares NO garantiza:",
+  o:["Que se haya considerado la literatura previa","Que los datos brutos existan y sean correctos","Que no haya errores metodológicos evidentes","Que las conclusiones no excedan groseramente los datos"],c:1,
+  e:"Los revisores evalúan el manuscrito, no los datos. Fue el límite que mostraron las retractaciones de 2020."},
+ {u:"UNIDAD 1",q:"Al cubrir un preprint es obligatorio:",
+  o:["Esperar a la publicación revisada","Declararlo en el cuerpo del texto y obtener valoración independiente","Citar solo si lo respalda una institución","Publicarlo sin advertencias si el asunto es urgente"],c:1,
+  e:"Y comprometerse al seguimiento: un preprint cubierto y nunca actualizado deja una afirmación flotando."},
+ {u:"UNIDAD 2",q:"Un aumento del riesgo relativo del 40% debe publicarse:",
+  o:["Tal cual, es una cifra exacta","Con la línea base y los casos adicionales por cada mil o diez mil personas","Solo si supera el 50%","Convertido a probabilidad condicionada"],c:1,
+  e:"Sobre una base pequeña, un aumento relativo grande sigue siendo pequeño en casos. Sin base, la cifra no permite decidir."},
+ {u:"UNIDAD 2",q:"El sobrediagnóstico se detecta cuando:",
+  o:["Aumentan los falsos positivos","Aumentan los diagnósticos sin descender la mortalidad","Se repiten pruebas innecesarias","Se diagnostica tarde"],c:1,
+  e:"Es el patrón que describió el análisis de 2014 sobre el cáncer de tiroides: las dos curvas juntas son la información."},
+ {u:"UNIDAD 2",q:"Un ensayo comparado contra placebo permite afirmar:",
+  o:["Que es mejor que el tratamiento estándar","Que funciona mejor que no tratar","Que es equivalente al estándar","Que no aporta nada"],c:1,
+  e:"La pregunta clínicamente relevante suele ser si mejora lo existente, y el comparador decide si el ensayo la responde."},
+ {u:"UNIDAD 3",q:"Una cifra de calentamiento futuro exige siempre:",
+  o:["El modelo climático empleado","El escenario de emisiones y el horizonte temporal","El margen instrumental","La institución que la publica"],c:1,
+  e:"Las proyecciones están condicionadas a escenarios y no son predicciones: la condición es precisamente la información relevante."},
+ {u:"UNIDAD 3",q:"Ante una ola de calor sin estudio de atribución puede publicarse:",
+  o:["Que la causó el cambio climático","Que este tipo de episodios se ha hecho más frecuente e intenso","Que no guarda relación con el clima","Que habrá que esperar años para saberlo"],c:1,
+  e:"La tendencia está establecida; atribuir el episodio concreto exige un análisis específico, que suele llegar en semanas."},
+ {u:"UNIDAD 3",q:"Ante un compromiso corporativo de neutralidad, la primera comprobación es:",
+  o:["La inversión comprometida","Qué alcance de emisiones cubre","La consultora que lo diseñó","Si el sector hace lo mismo"],c:1,
+  e:"Si excluye la cadena de valor puede estar dejando fuera la mayor parte del total, y esa es la diferencia entre compromiso y anuncio."},
+ {u:"UNIDAD 4",q:"El valor predictivo positivo depende de:",
+  o:["La sensibilidad de la prueba únicamente","La prevalencia de la enfermedad en la población donde se aplica","El número de pruebas realizadas","El fabricante de la prueba"],c:1,
+  e:"Por eso la misma prueba rinde de forma muy distinta en cribado poblacional y en personas con síntomas."},
+ {u:"UNIDAD 4",q:"El efecto de encuadre implica que:",
+  o:["Los datos se manipulan","No existe presentación neutra y la elección del marco debe ser consciente","El público no entiende porcentajes","Conviene evitar cifras"],c:1,
+  e:"Cuando la cifra sostiene una decisión personal, se publican los dos marcos: ocupa una línea y neutraliza el efecto."},
+ {u:"UNIDAD 4",q:"Los cuatro elementos de una pieza de riesgo útil son:",
+  o:["Datos, fuentes, contexto y opinión","Magnitud, certeza, alcance y agencia","Qué, quién, cómo y por qué","Titular, entradilla, cuerpo y cierre"],c:1,
+  e:"La agencia es la que más se olvida y la que convierte una pieza completa en una pieza útil."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+function buildQuiz(list, holderId, scoreId, withUnit){
+  let done=0,right=0;
+  const holder=document.getElementById(holderId);
+  list.forEach(function(it,i){
+    const from = withUnit ? '<span class="from">'+it.u+'</span>' : '';
+    const card=el('<div class="q">'+from+'<div class="stem">'+(i+1)+'. '+it.q+'</div><div class="opts"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts');
+    it.o.forEach(function(o,j){
+      const b=document.createElement('button');
+      b.className='opt'; b.textContent=String.fromCharCode(97+j)+') '+o;
+      b.onclick=function(){
+        if(card.dataset.done) return;
+        card.dataset.done='1'; done++;
+        var kids=opts.children;
+        for(var k=0;k<kids.length;k++){
+          kids[k].classList.add('done');
+          if(k===it.c){kids[k].classList.add('ok');kids[k].insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');}
+          else if(k===j){kids[k].classList.add('bad');kids[k].insertAdjacentHTML('beforeend','<span class="mk">tu respuesta</span>');}
+        }
+        if(j===it.c) right++;
+        card.querySelector('.exp').classList.add('show');
+        const s=document.getElementById(scoreId);
+        let txt='RESPONDIDAS '+done+' / '+list.length+' · CORRECTAS '+right;
+        if(withUnit){
+          const pct=Math.round(right/list.length*100);
+          txt+=' · CALIFICACIÓN '+pct+'%';
+          if(done===list.length) txt+=pct>=75?' · APROBADO':' · NO APROBADO';
+        }
+        s.textContent=txt;
+      };
+      opts.appendChild(b);
+    });
+    holder.appendChild(card);
+  });
+}
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+buildQuiz(EXAM,'exam','escore',true);
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#exa .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
