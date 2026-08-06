@@ -226,11 +226,15 @@
     <h3>Qué es OSINT y qué no</h3>
     <p>La investigación con fuentes abiertas trabaja con información que está disponible para cualquiera sin necesidad de vulnerar un control de acceso: publicaciones en redes, registros públicos, imágenes satelitales comerciales, expedientes judiciales, bases de datos societarias. Abierta significa accesible legítimamente, no necesariamente gratuita ni fácil de encontrar.</p>
     <p>Queda fuera todo lo que exige suplantar identidad para acceder a un espacio cerrado, vulnerar una contraseña o extraer datos de un sistema sin autorización. La frontera no es técnica sino de legitimidad del acceso, y cruzarla convierte al investigador en parte del problema que investiga.</p>
+    <p>Conviene precisar además que la frontera no depende de la habilidad técnica empleada. Extraer información de un sitio web público mediante recopilación sistemática sigue siendo fuente abierta; probar contraseñas hasta acceder a una zona restringida no lo es, por sencilla que resulte la operación. Lo que define la categoría es el control de acceso, no la dificultad.</p>
+    <p>Hay también una zona intermedia que conviene resolver por escrito antes de trabajar: perfiles falsos para observar sin interactuar, grupos que exigen solicitud de admisión, materiales accesibles por un enlace no indexado. En cada caso la pregunta es la misma —¿hay un control de acceso y lo estoy superando mediante engaño?— y la respuesta debe documentarse, porque será lo primero que se discuta si la investigación se impugna.</p>
     <div class="ej"><b>PRINCIPIO OPERATIVO</b>Si para obtener el dato tuviste que hacerte pasar por otra persona o saltarte un control de acceso, no es fuente abierta. Y si no es fuente abierta, la pregunta ya no es cómo verificarlo sino si puedes usarlo.</div>
 
     <h3>El método es la prueba</h3>
     <p>Un documento oficial llega con un emisor que responde por él. Una captura de pantalla no llega con nada: no tiene autor identificable, ni fecha fiable, ni garantía de integridad. Su valor probatorio no es una propiedad del material, sino el resultado del trabajo que el investigador hace sobre él.</p>
     <p>De ahí que el producto de una investigación de fuentes abiertas sea siempre doble: el hallazgo y el procedimiento que lo sostiene. Publicar el segundo no es generosidad, es lo que convierte una afirmación en un resultado comprobable.</p>
+    <p>Esa exigencia tiene una consecuencia práctica sobre el ritmo de trabajo: documentar el procedimiento mientras se investiga cuesta poco y reconstruirlo después resulta casi imposible. Quien anota al final recuerda los hallazgos y olvida los pasos, que es justamente lo que hay que poder mostrar.</p>
+    <p>Conviene además distinguir entre publicar el método y publicar todo. El procedimiento se describe con el detalle suficiente para que otro investigador llegue al mismo resultado, y se omite lo que permita identificar a fuentes en riesgo o lo que funcione como manual operativo para causar daño, decisión que se explica en la propia pieza y se desarrolla en la Unidad 4 de este curso.</p>
     <div class="ej"><b>REGLA</b>Antes de afirmar nada, pregúntate qué tendría que hacer otro investigador para llegar a tu misma conclusión. Si no puedes describirlo paso a paso, todavía no tienes un hallazgo.</div>
 
     <h3>Procedencia: de dónde salió exactamente</h3>
@@ -241,6 +245,8 @@
       <li><strong>Cadena de reenvíos.</strong> Quién lo difundió, en qué orden y con qué texto.</li>
       <li><strong>Autor original.</strong> Si es localizable, contactarlo cambia por completo la solidez del material.</li>
     </ol>
+    <p>La búsqueda de la primera aparición tiene además un efecto secundario valioso: al rastrear hacia atrás suelen encontrarse versiones anteriores del mismo material con más resolución, más duración o menos recortes, y esas versiones permiten comprobaciones que la copia degradada impide.</p>
+    <p>Conviene registrar la cadena tal como se reconstruye, con capturas fechadas de cada eslabón, porque las cuentas intermedias se borran con frecuencia cuando el material se vuelve conflictivo. Un rastro documentado hoy es la única forma de sostener mañana que la secuencia de difusión fue la que se afirma.</p>
     <div class="ej"><b>CASO TÍPICO</b>Un video de un ataque «de esta madrugada» que aparece publicado tres años antes en otro país. Dos minutos de búsqueda inversa evitan una rectificación.</div>
 
     <h3>Preservar antes de analizar</h3>
@@ -251,36 +257,50 @@
       <li>Marca temporal y captura de la página completa, con su dirección y su fecha.</li>
       <li>Copia en un servicio de archivo web independiente, cuando sea posible.</li>
     </ul>
+    <p>La preservación debe alcanzar también al contexto y no solo al archivo: el texto que acompañaba a la publicación, la fecha visible, el número de reacciones y las respuestas relevantes forman parte de la evidencia y desaparecen con ella. Guardar únicamente el vídeo o la imagen deja fuera lo que permitirá después reconstruir cómo circuló.</p>
+    <p>Conviene además decidir desde el principio dónde se conserva y quién tiene acceso. Un archivo de evidencias disperso entre ordenadores personales es a la vez frágil y peligroso: frágil porque se pierde con un cambio de equipo, y peligroso porque multiplica los puntos por los que puede filtrarse material sensible, con los criterios de custodia de la Unidad 4.</p>
     <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>La captura de pantalla no es preservación: no conserva metadatos, no permite comprobar integridad y es trivialmente falsificable. Sirve como ilustración, nunca como evidencia.</div>
 
     <h3>La huella criptográfica y la integridad</h3>
     <p>Una función de huella produce, a partir de un archivo, una cadena de caracteres que cambia por completo si se modifica un solo bit. Calcularla en el momento de la descarga y registrarla permite demostrar meses después que el archivo que se publica es exactamente el que se obtuvo.</p>
     <p>No acredita que el contenido sea verdadero, ni que la escena ocurriera como parece: acredita integridad, que es una pieza distinta y necesaria. Confundir ambas cosas es el error conceptual más frecuente al empezar.</p>
+    <p>El procedimiento es sencillo y conviene incorporarlo como rutina: calcular la huella al descargar, anotarla junto a la fecha y la hora en el registro de investigación, y volver a calcularla antes de publicar para comprobar que el archivo no se alteró durante el trabajo, algo que ocurre con más frecuencia de la que se supone al recomprimir o al editar por error.</p>
+    <p>Su utilidad aparece en dos momentos concretos: cuando alguien sostiene que el material publicado no es el que circulaba, y cuando la investigación termina en un procedimiento donde se discute la integridad de la prueba. En ambos casos, una huella registrada en su momento vale más que cualquier declaración posterior.</p>
     <div class="ej"><b>PRECISIÓN</b>La huella responde a «¿es el mismo archivo?». La verificación responde a «¿muestra lo que dice mostrar?». Hacen falta las dos, y la primera no sustituye nunca a la segunda.</div>
 
     <h3>El registro de investigación</h3>
     <p>El registro es el cuaderno de la investigación: cada búsqueda realizada, cada hallazgo, cada callejón sin salida, con su fecha y su dirección exacta. Cumple la misma función que el cuaderno de análisis del periodismo de datos, y por las mismas razones.</p>
     <p>Su utilidad aparece tarde y de golpe: cuando alguien impugna la pieza, cuando hay que responder a un requerimiento legal, o cuando otro colega retoma el trabajo seis meses después. Escribirlo al final nunca funciona, porque para entonces ya se olvidó cómo se llegó a la mitad de las cosas.</p>
+    <p>Conviene anotar también las hipótesis descartadas y por qué se descartaron, no solo los hallazgos. Ese apartado, que parece inútil mientras se trabaja, es el que permite responder a la acusación más habitual: que se buscó únicamente lo que confirmaba la tesis y se ignoró lo demás.</p>
+    <p>El formato importa menos que la constancia. Un documento con entradas fechadas cumple perfectamente, y lo decisivo es que se escriba en el momento y que incluya lo que no funcionó: las búsquedas sin resultado, las cuentas que no eran, las coincidencias que se comprobaron y resultaron falsas.</p>
     <div class="ej"><b>PRUEBA DE SUFICIENCIA</b>Entrega tu registro a alguien que no participó. Si no puede reconstruir el camino hasta el hallazgo sin preguntarte nada, el registro está incompleto.</div>
 
     <h3>Lo legal y lo ético no son lo mismo</h3>
     <p>Que un dato esté accesible no autoriza a publicarlo. Los registros públicos contienen domicilios, datos de familiares y de terceros sin relevancia pública, y la agregación de fragmentos individualmente inocuos puede producir un perfil que ninguna de las piezas sostiene por separado.</p>
     <p>El criterio es doble: interés público concreto —no genérico— y proporcionalidad entre lo que se revela y lo que se acredita. La condición de figura pública gradúa la exposición admisible, y no la abre por completo.</p>
+    <p>La agregación merece atención propia porque es donde el criterio se vuelve contraintuitivo. Cada dato puede ser individualmente público e inocuo —el lugar de trabajo, la afición, el barrio, la matrícula del coche— y su combinación producir un perfil que permite localizar a una persona en cualquier momento del día, que es exactamente lo que ninguna de las piezas autorizaba por separado.</p>
+    <p>Conviene por eso aplicar una prueba antes de publicar cualquier conjunto de datos personales: qué podría hacer con esto alguien que quisiera dañar a esta persona. Si la respuesta es preocupante y el dato no acredita nada esencial, se retira, con independencia de que su obtención fuera perfectamente legítima.</p>
     <div class="ej"><b>PREGUNTA DE CONTROL</b>¿Qué añade este dato a lo que el lector necesita saber? Si la respuesta es «demuestra que lo encontramos», el dato sobra.</div>
 
     <h3>El sesgo de lo que está en abierto</h3>
     <p>El material disponible no es una muestra del mundo. Está condicionado por la penetración de internet, por el idioma, por quién tiene teléfono y batería, por qué plataformas operan en cada país y por lo que sus sistemas de moderación retiran. Los conflictos y los territorios peor documentados no son los que menos ocurre en ellos.</p>
     <p>La consecuencia práctica es que la ausencia de material no es evidencia de ausencia del hecho, y que la abundancia tampoco indica magnitud: puede indicar simplemente conectividad, o una campaña coordinada.</p>
+    <p>El sesgo opera también en sentido inverso y conviene tenerlo presente: la abundancia de material sobre un hecho puede reflejar una campaña coordinada de difusión y no la magnitud real de lo ocurrido. Contar publicaciones no es medir la realidad, y confundir volumen con relevancia es el equivalente digital de confundir denuncias con delitos.</p>
+    <p>La forma honesta de manejarlo consiste en declarar la cobertura del material analizado: qué plataformas se revisaron, en qué idiomas, en qué período y con qué método de búsqueda. Esa declaración acota lo que la pieza puede afirmar y protege frente a la generalización, del mismo modo que la ficha técnica protege un mapa.</p>
     <div class="ej"><b>REGLA DE REDACCIÓN</b>Declara qué buscaste y no encontraste. «No se localizaron imágenes de la zona norte, sin cobertura de red desde el 3 de marzo» informa más que el silencio.</div>
 
     <h3>Cuentas, redes y comportamiento coordinado</h3>
     <p>Antes de tratar un perfil como fuente hay que caracterizarlo: fecha de creación, historial de publicaciones, coherencia entre lo que dice ser y lo que hace, relación con otras cuentas que publican lo mismo al mismo tiempo. La coordinación en el tiempo es el indicio más robusto y el más difícil de fabricar.</p>
     <p>La atribución, en cambio, es el punto donde más investigaciones se rompen. Demostrar que un conjunto de cuentas actúa coordinadamente es factible con material abierto; demostrar quién las opera casi nunca lo es, y ambas afirmaciones exigen pruebas de naturaleza distinta.</p>
+    <p>El análisis temporal es la evidencia más robusta y la más sencilla de reproducir: registrar la hora exacta de publicación de cada mensaje y representar la distribución permite mostrar la coordinación de forma que cualquiera pueda comprobarla, sin recurrir a herramientas cerradas cuyo funcionamiento no puede auditarse.</p>
+    <p>Conviene desconfiar de las etiquetas automáticas. Los sistemas que puntúan cuentas como automatizadas emplean criterios opacos y producen falsos positivos con usuarios muy activos, de modo que citar una puntuación de ese tipo como prueba equivale a delegar la afirmación en una herramienta que no puede explicarse ante el lector.</p>
     <div class="ej"><b>UMBRAL DE PUBLICACIÓN</b>«Estas cuentas publicaron el mismo texto en el mismo minuto» es un hecho documentado. «Estas cuentas son de tal gobierno» es una atribución, y requiere evidencia que el material abierto rara vez proporciona.</div>
 
     <h3>Del hallazgo a la pieza</h3>
     <p>Una investigación de fuentes abiertas se publica con su metodología incorporada: qué se verificó, cómo, con qué grado de certeza y qué quedó sin resolver. La distinción entre lo probado, lo indiciario y lo alegado debe ser legible en el propio texto, no en una nota al pie.</p>
     <p>Y el derecho de réplica sigue siendo obligatorio. Que la evidencia sea abierta y verificable no exime de buscar a la parte señalada, dejar constancia del intento y recoger su versión.</p>
+    <p>Publicar el material verificado plantea además una decisión sobre qué se muestra. Reproducir íntegramente un vídeo o una imagen amplifica su circulación, y en algunos casos —contenido violento, material que identifica a personas en riesgo, propaganda de un actor interesado— la descripción precisa cumple la función informativa sin ese efecto.</p>
+    <p>Y conviene fijar desde el principio quién responderá a las impugnaciones y con qué material. Una investigación de fuentes abiertas se cuestiona atacando pasos concretos del procedimiento, de modo que tener ordenado el registro, el archivo de evidencias y las fichas de procedencia antes de publicar es lo que permite responder en horas en lugar de en semanas.</p>
     <div class="ej"><b>REGLA FINAL</b>Publica el método junto al resultado. Es lo que separa una investigación de fuentes abiertas de una acusación con capturas de pantalla, y es lo único que resiste una impugnación.</div>
     </div>
   </section>
