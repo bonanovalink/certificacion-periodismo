@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1006 · Unidad 1 — Cómo Funciona la Ciencia y Cómo se Cubre</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1006, Unidad 1.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="jrn1005-u1.html"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course on" href="jrn1006-u1.html"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1006 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Cómo Funciona la Ciencia y Cómo se Cubre</h2>
+  <div class="sub">Unidad 1 de 4 · Periodismo Científico y Ambiental</div>
+
+  <div class="units">
+    <span class="unit on">Unidad 1: Cómo Funciona la Ciencia y Cómo se Cubre</span>
+    <span class="unit">Unidad 2: Salud, Medicina y Jerarquía de la Evidencia</span>
+    <span class="unit">Unidad 3: Clima y Medio Ambiente</span>
+    <span class="unit">Unidad 4: Riesgo, Incertidumbre y Comunicación Pública</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>Cubrir ciencia no consiste en traducir a lenguaje llano lo que dicen los científicos. Consiste en evaluar cuánto peso tiene un resultado antes de contarlo, y eso exige entender cómo se produce el conocimiento: quién lo revisa, con qué método, con qué incertidumbre y con qué intereses alrededor. Sin esa evaluación, el periodismo científico se reduce a reproducir comunicados con mejor redacción.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>la ciencia no es un cuerpo de verdades sino un procedimiento de corrección</strong>. Un estudio aislado casi nunca establece nada; lo que establece algo es la acumulación convergente de estudios independientes. Confundir ambas cosas es el origen de la mayoría de los titulares que envejecen mal, de las expectativas defraudadas y de la desconfianza que después se atribuye al público.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Explicar el proceso de producción del conocimiento científico y situar en él el valor de un resultado concreto.</li>
+      <li>Evaluar qué garantiza y qué no garantiza la revisión por pares, y cubrir preprints con las cautelas que exigen.</li>
+      <li>Leer un artículo científico sin formación especializada: diseño, muestra, medida del efecto, limitaciones declaradas.</li>
+      <li>Identificar las deformaciones que introducen los comunicados institucionales y la cadena de difusión.</li>
+      <li>Distinguir consenso de disenso legítimo y evitar el falso equilibrio sin caer en el argumento de autoridad.</li>
+      <li>Redactar resultados científicos declarando la incertidumbre sin vaciar la información de contenido.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Deborah Blum, Mary Knudson y Robin Marantz Henig (eds.), <em>A Field Guide for Science Writers</em></li>
+      <li>Cornelia Dean, <em>Am I Making Myself Clear? A Scientist's Guide to Talking to the Public</em></li>
+      <li>Alberto Cairo, <em>The Truthful Art</em> — capítulos de estadística e incertidumbre</li>
+      <li>Sense about Science, <em>Making Sense of Statistics</em> y guías asociadas</li>
+      <li>Brant Houston e IRE, <em>The Investigative Reporter's Handbook</em> — investigación aplicada a instituciones científicas</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>COPE — Committee on Publication Ethics</h5>
+        <div class="def">Organización internacional que fija estándares de conducta en publicación científica: criterios de autoría, gestión de conflictos de interés, procedimientos de corrección y directrices sobre cuándo y cómo debe retractarse un artículo.</div>
+        <p class="src">publicationethics.org</p></div>
+      <div class="term"><h5>Retraction Watch</h5>
+        <div class="def">Proyecto periodístico especializado en el seguimiento de retractaciones y correcciones en la literatura científica. Mantiene una base de datos pública que permite comprobar si un trabajo o un autor tienen antecedentes.</div>
+        <p class="src">retractionwatch.com</p></div>
+      <div class="term"><h5>Science Media Centre</h5>
+        <div class="def">Modelo de organización, replicado en varios países, que facilita a los periodistas reacciones rápidas de especialistas independientes ante un estudio o una controversia, con declaración expresa de sus conflictos de interés.</div>
+        <p class="src">sciencemediacentre.org</p></div>
+      <div class="term"><h5>Sense about Science</h5>
+        <div class="def">Organización dedicada a que el público y los periodistas puedan interrogar la evidencia. Publica guías sobre revisión por pares, incertidumbre y lectura crítica de estudios, elaboradas con investigadores en activo.</div>
+        <p class="src">senseaboutscience.org</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de una ficha de evaluación de un estudio real. El <strong>Examen Integrador</strong> de JRN-1006 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>La ciencia es un procedimiento, no un catálogo</h3>
+    <p>El error inicial de casi toda cobertura científica deficiente consiste en tratar la ciencia como una fuente de afirmaciones definitivas que solo hay que traducir. La ciencia no funciona así: produce resultados provisionales, los somete a crítica, los corrige y avanza por acumulación. Un estudio no es una verdad establecida, es una aportación al debate que otros intentarán replicar, matizar o refutar.</p>
+    <p>De ahí se derivan tres consecuencias prácticas para el periodismo. La primera es que <strong>un resultado aislado rara vez establece algo</strong>: lo que establece conocimiento es la convergencia de estudios independientes, con métodos distintos, que apuntan en la misma dirección. La segunda es que <strong>la corrección es parte del método y no su fracaso</strong>: que un hallazgo se revise a la baja no significa que la ciencia fallara, significa que funcionó. Y la tercera es que <strong>el grado de certeza es información</strong>, no un matiz que estorba: comunicar un resultado sin su incertidumbre es comunicarlo mal.</p>
+    <p>Este marco cambia la pregunta que el periodista lleva a cada estudio. En lugar de preguntar «¿qué han descubierto?», que casi siempre produce una respuesta inflada, conviene preguntar «¿cuánto peso tiene esto dentro de lo que ya se sabía?». Esa segunda pregunta sitúa el hallazgo, permite explicar por qué importa y protege frente al titular que envejece en seis meses.</p>
+    <p>El paralelismo con la Unidad 1 de JRN-1001 es exacto y conviene tenerlo presente: el periodismo también se define por un método de verificación y no por la autoridad de quien afirma. Cubrir ciencia bien consiste en aplicar el método propio al método ajeno, no en delegar la comprobación en la credencial del investigador.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Antes de escribir, responde: ¿cuántos estudios independientes apuntan en esta dirección y con qué métodos? Si la respuesta es «uno», el titular no puede afirmar más de lo que afirma un estudio aislado.</div>
+
+    <h3>Qué garantiza la revisión por pares</h3>
+    <p>La revisión por pares es el filtro por el que pasa un manuscrito antes de publicarse en una revista científica: uno o varios especialistas evalúan el trabajo y recomiendan aceptarlo, rechazarlo o pedir cambios. Es un mecanismo valioso y con frecuencia se le atribuye una capacidad que no tiene.</p>
+    <p><strong>Lo que garantiza</strong>, con matices, es que el trabajo no contiene errores metodológicos evidentes, que la literatura previa está considerada y que las conclusiones no exceden groseramente lo que los datos permiten. <strong>Lo que no garantiza</strong> es que los datos sean reales —los revisores casi nunca acceden a los datos brutos—, que el resultado sea replicable, que el efecto sea relevante, ni que no exista un conflicto de interés no declarado.</p>
+    <p>Conviene además saber que el proceso varía enormemente entre revistas: hay publicaciones con revisión exigente y meses de plazo, y hay otras que aceptan casi cualquier envío a cambio de una tarifa. La existencia de ese segundo grupo hace que la frase «publicado en una revista revisada por pares» no signifique gran cosa por sí sola, y obliga a comprobar de qué revista se trata.</p>
+    <p>La consecuencia para la cobertura es doble. Por un lado, la revisión por pares es un mínimo y no un sello de verdad, de modo que citarla como aval basta para orientar y no para acreditar. Por otro, cuando un estudio no ha pasado por ella, eso debe decirse con claridad, lo que nos lleva directamente al problema de los preprints.</p>
+    <div class="ej"><b>COMPROBACIÓN</b>Antes de citar «revisado por pares», comprueba qué revista es, qué plazo tuvo el proceso y si la editorial figura en los repertorios de publicaciones cuestionadas. La etiqueta sin el nombre de la revista no informa de nada.</div>
+
+    <h3>Preprints: velocidad y riesgo</h3>
+    <p>Un preprint es un manuscrito que los autores publican en un repositorio abierto antes —o al margen— de la revisión por pares. Su expansión ha transformado la comunicación científica: acelera enormemente la circulación de resultados, permite el escrutinio abierto de la comunidad y elimina barreras de acceso. Y traslada al lector, y por tanto al periodista, un filtro que antes hacía la revista.</p>
+    <p>Durante la pandemia esa tensión se hizo visible a gran escala: miles de preprints circularon en semanas, algunos resultaron sólidos y otros contenían errores graves que la comunidad detectó en cuestión de días, a veces después de haber generado titulares en todo el mundo y decisiones de política pública.</p>
+    <p>Cubrir un preprint es legítimo cuando el asunto es de interés público urgente, y exige tres cautelas explícitas. Declararlo en el texto y no en un pie: <em>este trabajo no ha sido revisado por pares</em>. Buscar valoración de especialistas independientes que no participaron en el estudio, que es lo que sustituye funcionalmente a la revisión. Y describir el diseño y sus límites con más detalle del habitual, precisamente porque nadie los ha filtrado antes.</p>
+    <p>Conviene además hacer seguimiento. Un preprint que después se publica con cambios sustanciales, o que no llega a publicarse nunca, es información relevante para quien leyó la primera pieza, y actualizar es una obligación derivada de haberlo cubierto.</p>
+    <div class="ej"><b>REGLA</b>Si cubres un preprint, dilo en el cuerpo del texto, consigue al menos una valoración independiente y anota la fecha de revisión. Un preprint cubierto y nunca actualizado es una afirmación que queda flotando.</div>
+
+    <h3>La cadena de deformación</h3>
+    <p>Entre el resultado de un estudio y el titular que lee el público hay una cadena con varios eslabones, y en cada uno puede añadirse una exageración. El artículo científico dice una cosa; el resumen del propio artículo la simplifica; el comunicado de prensa de la institución la refuerza para conseguir cobertura; la agencia la resume; el medio la titula; y la red social la comprime en una frase.</p>
+    <p>La investigación sobre este fenómeno es concluyente en un punto: buena parte de la exageración que aparece en las noticias de salud ya está presente en los comunicados institucionales. Un análisis publicado en <em>The BMJ</em> en 2014 examinó comunicados de universidades británicas y las noticias derivadas, y encontró que las exageraciones en la prensa —consejos no justificados, inferencias causales a partir de estudios correlacionales, extrapolación de animales a humanos— se asociaban fuertemente con exageraciones ya contenidas en el comunicado.</p>
+    <p>Ese hallazgo tiene una consecuencia operativa muy concreta: <strong>el comunicado no es la fuente, el estudio lo es</strong>. Trabajar sobre el comunicado equivale a citar la nota de prensa de una empresa como si fuera su balance auditado. El artículo original está casi siempre disponible, y cuando no lo está, pedirlo a los autores es un correo.</p>
+    <p>Conviene también recordar que el investigador no controla el titular ni la nota institucional. Muchos científicos se ven atribuidas afirmaciones que nunca hicieron, y preguntarles directamente qué dice su trabajo suele revelar una versión mucho más contenida que la del comunicado.</p>
+    <div class="ej"><b>MÉTODO</b>Pide siempre el artículo original y compáralo con el comunicado. Si el comunicado afirma más, la diferencia es exactamente la exageración que no debes reproducir, y a menudo es en sí misma una historia.</div>
+
+    <h3>Leer un artículo sin ser especialista</h3>
+    <p>No hace falta dominar la materia para evaluar la solidez de un trabajo. Hay seis comprobaciones que cualquier periodista puede hacer y que filtran la mayor parte de los problemas.</p>
+    <ol>
+      <li><strong>Diseño</strong>: ¿es un experimento con asignación aleatoria, un estudio observacional, una revisión, un modelo? El diseño determina qué tipo de afirmación permite.</li>
+      <li><strong>Muestra</strong>: cuántos casos, de qué población, y si esa población se parece a aquella a la que se extrapola.</li>
+      <li><strong>Tamaño del efecto</strong>: cuánto cambia realmente, no solo si el cambio es estadísticamente distinguible del azar.</li>
+      <li><strong>Comparación</strong>: contra qué se compara, porque sin grupo de comparación no hay conclusión posible.</li>
+      <li><strong>Limitaciones</strong>: los propios autores las declaran en un apartado que casi nadie lee y que suele contener la mejor información del artículo.</li>
+      <li><strong>Financiación y conflictos</strong>: quién pagó y qué relación tienen los autores con el resultado.</li>
+    </ol>
+    <p>Estas seis casillas se rellenan en veinte minutos y evitan casi todos los errores graves. Y hay una séptima pregunta, decisiva, que enlaza con la Unidad 3 de JRN-1002: si el estudio es observacional, ninguna redacción puede afirmar causalidad, por mucho que los autores empleen verbos ambiguos.</p>
+    <div class="ej"><b>PRUEBA RÁPIDA</b>Lee primero el apartado de limitaciones y después el resumen. Si el resumen no refleja lo que dicen las limitaciones, ya sabes dónde está el problema del artículo, y probablemente el de la nota de prensa.</div>
+
+    <h3>Consenso, disenso y falso equilibrio</h3>
+    <p>Tratar todas las posiciones como equivalentes es una forma de desinformar con apariencia de neutralidad. Cuando existe un consenso amplio y bien fundado, presentar una posición minoritaria como si tuviera el mismo respaldo transmite al público una imagen falsa del estado del conocimiento, aunque cada declaración citada sea literal.</p>
+    <p>La dificultad está en distinguir el disenso legítimo del ruido, porque la ciencia avanza precisamente cuando alguien contradice el consenso con evidencia. Tres criterios ayudan. El <strong>respaldo empírico</strong>: qué datos aporta quien discrepa y si han sido examinados por otros. La <strong>trayectoria</strong>: si la persona investiga y publica en ese campo o solo opina sobre él. Y la <strong>proporción</strong>: cuánta parte de la comunidad especializada sostiene cada posición, que se puede estimar consultando revisiones sistemáticas e informes de organismos científicos.</p>
+    <p>La solución no es silenciar la discrepancia sino situarla con precisión. Escribir «una minoría de investigadores sostiene» es informativo; presentar a esa minoría frente a la mayoría en un formato de debate a dos, sin más, es engañoso. Y el criterio funciona en ambas direcciones: cuando el consenso es débil o está en disputa real, presentarlo como cerrado es igual de inexacto.</p>
+    <p>Conviene además evitar el atajo contrario, que consiste en resolver todo apelando a la autoridad. Que una institución respetada afirme algo es un indicio fuerte y no una prueba; el periodismo científico explica en qué se apoya esa afirmación, no se limita a citarla.</p>
+    <div class="ej"><b>CRITERIO</b>Sitúa cada posición con su respaldo: cuántos estudios, con qué métodos y qué dicen las revisiones. Equilibrar por número de voces en lugar de por peso de la evidencia es desinformar con formato de neutralidad.</div>
+
+    <h3>Financiación, intereses y presión por publicar</h3>
+    <p>La investigación se financia, y quien financia tiene intereses. Eso no invalida los resultados y sí obliga a declararlos y a examinarlos con más atención en determinados casos. La comprobación es rutinaria: casi todos los artículos incluyen apartados de financiación y de conflictos de interés, y su lectura toma un minuto.</p>
+    <p>Hay tres situaciones que exigen cautela reforzada. Cuando el financiador tiene un <strong>interés económico directo</strong> en el resultado. Cuando los autores mantienen <strong>relaciones remuneradas</strong> con la industria del sector. Y cuando el diseño del estudio parece elegido para producir un resultado favorable: comparaciones contra dosis subóptimas, variables sustitutivas en lugar de resultados clínicos relevantes, o seguimientos demasiado cortos.</p>
+    <p>Existe además una presión estructural que afecta a toda la literatura: el sistema académico premia publicar resultados positivos y novedosos, lo que produce un sesgo de publicación —los estudios que no encuentran efecto se publican menos— y prácticas de análisis que aumentan la probabilidad de encontrar algo, descritas en la Unidad 3 de JRN-1002.</p>
+    <p>Ese contexto no debe llevar al cinismo, que es tan poco informativo como la credulidad. Lleva a una práctica concreta: comprobar quién financia, buscar si existen estudios independientes que apunten en la misma dirección y preguntar a especialistas sin vínculo con el trabajo.</p>
+    <div class="ej"><b>REGLA</b>Declara siempre quién financió el estudio, aunque no haya indicio de sesgo. Es un dato que el lector necesita y su ausencia en la pieza se interpretará después como ocultación.</div>
+
+    <h3>Reproducibilidad y corrección</h3>
+    <p>Un resultado científico vale poco si nadie consigue obtenerlo de nuevo. En la última década varias disciplinas han examinado sistemáticamente cuántos hallazgos publicados se replican, y los resultados han sido lo bastante llamativos como para generar un campo de discusión propio sobre reproducibilidad.</p>
+    <p>El trabajo de referencia en psicología, publicado en <em>Science</em> en 2015 por la Open Science Collaboration, intentó replicar cien estudios publicados en revistas destacadas y obtuvo resultados significativos en una proporción sustancialmente menor que la original, con tamaños de efecto también menores. Otros campos han encontrado problemas comparables, y ese hallazgo ha impulsado prácticas correctoras: registro previo de hipótesis, publicación de datos y código, y revistas que aceptan artículos por su diseño antes de conocer el resultado.</p>
+    <p>Para el periodismo esto tiene una lectura doble y conviene no quedarse en la primera. La lectura fácil es «la ciencia está en crisis», que además de simplificar alimenta el descrédito. La lectura correcta es que la ciencia detectó un problema propio, lo midió y está corrigiéndolo, que es exactamente lo que se espera de un procedimiento de autocorrección.</p>
+    <p>La consecuencia práctica es dar más peso a lo replicado que a lo novedoso. Un hallazgo espectacular y único merece cautela; uno modesto confirmado por equipos independientes merece confianza. Esa jerarquía es lo contrario de la que aplica el criterio de novedad periodística, y ahí está la tensión permanente del oficio.</p>
+    <div class="ej"><b>CRITERIO</b>Pregunta siempre si alguien ha replicado el resultado. Un hallazgo único y llamativo es una noticia con condicional; uno replicado por equipos independientes es un hecho que puede contarse sin reservas.</div>
+
+    <h3>Retractaciones y errores</h3>
+    <p>La retractación es la retirada formal de un artículo por parte de la revista o de los autores, y puede deberse a error honesto o a mala conducta. Es un mecanismo sano y a la vez lento: entre la detección del problema y la retirada pueden pasar años durante los cuales el trabajo sigue citándose.</p>
+    <p>El caso más conocido es el artículo publicado en <em>The Lancet</em> en 1998 que sugería una relación entre una vacuna y el autismo. La revista se retractó formalmente en 2010 y el organismo regulador británico retiró la licencia médica a su autor principal, tras un procedimiento que acreditó irregularidades graves. Para entonces, la afirmación llevaba doce años circulando, con consecuencias sanitarias medibles en las tasas de vacunación.</p>
+    <p>Y hay ejemplos recientes de detección rápida: en 2020, dos artículos sobre tratamientos para la covid-19, publicados en revistas de primer nivel a partir de datos de una empresa privada, fueron retractados en pocas semanas cuando los autores no pudieron verificar la base de datos. El episodio mostró a la vez el fallo del filtro y la capacidad de corrección de la comunidad.</p>
+    <p>Para el periodista, la práctica es doble: comprobar antes de citar si un trabajo o un autor tienen antecedentes de retractación, algo que hoy se consulta en bases de datos públicas; y, si se cubrió un estudio que después se retracta, publicar la corrección con la misma visibilidad que tuvo la pieza original, tal como exige la Unidad 2 de JRN-1004.</p>
+    <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>Antes de citar un estudio antiguo, comprueba si sigue vigente o fue retractado o corregido. Citar un trabajo retractado es un error evitable con una búsqueda de treinta segundos.</div>
+
+    <h3>Escribir la incertidumbre</h3>
+    <p>La objeción habitual a comunicar incertidumbre es que confunde al público y le resta interés a la información. La experiencia y la investigación en comunicación apuntan en otra dirección: lo que erosiona la confianza no es reconocer los límites, sino afirmar con seguridad algo que después se corrige.</p>
+    <p>Escribir la incertidumbre bien exige tres cosas. <strong>Cuantificarla</strong> cuando se pueda: un intervalo, un rango, una probabilidad, siempre mejor que un adverbio. <strong>Localizarla</strong>: decir en qué parte concreta del hallazgo está la duda, porque casi nunca todo es incierto por igual. Y <strong>explicar qué la reduciría</strong>: qué estudio, qué dato o qué plazo permitiría saber más, lo que convierte la incertidumbre en información útil en lugar de en una advertencia genérica.</p>
+    <p>Conviene además cuidar los verbos, con el mismo criterio de la Unidad 3 de JRN-1002: «se asocia con» no es «causa», «sugiere» no es «demuestra», «en ratones» no es «en personas». Esa precisión no debilita el texto, lo hace defendible, y su ausencia es lo que produce las rectificaciones que después se recuerdan más que el hallazgo.</p>
+    <p>Y hay una última obligación con el lector: explicar por qué importa. Un resultado incierto puede ser enormemente relevante —una señal temprana, un riesgo emergente— y el trabajo consiste en transmitir a la vez su importancia y su provisionalidad, sin sacrificar ninguna de las dos.</p>
+    <div class="ej"><b>REGLA FINAL</b>Escribe qué se sabe, con qué grado de certeza y qué haría falta para saber más. Las tres cosas caben en dos frases, y son la diferencia entre informar de ciencia y anunciar descubrimientos.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista al autor principal de un estudio cuyo comunicado institucional afirma que un compuesto «previene» una enfermedad. El trabajo es observacional, con una muestra modesta, y el propio artículo habla de asociación.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes acusar al investigador de exagerar: el comunicado suele redactarlo la oficina de prensa. Cada pregunta debe apuntar al diseño, la muestra o el efecto. Si el trabajo es más sólido de lo que parece, tienes que poder reconocerlo.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">FICHA DE EVALUACIÓN DE UN ESTUDIO · OBLIGATORIA</span>
+      <p>Elige un estudio publicado en los últimos seis meses que haya generado cobertura. Entrega: la ficha con las seis comprobaciones —diseño, muestra, tamaño del efecto, comparación, limitaciones y financiación—; la comparación entre lo que dice el artículo, lo que dice el comunicado institucional y lo que dijeron los titulares, señalando dónde se añadió cada exageración; la búsqueda de estudios previos convergentes o discrepantes; una valoración independiente obtenida de un especialista sin vínculo con el trabajo; y un texto de trescientas palabras que informe del hallazgo con su incertidumbre.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Seis comprobaciones completas y correctamente interpretadas (25%) · Identificación precisa de dónde se introdujo la exageración en la cadena (25%) · Búsqueda de convergencia con la literatura previa (20%) · Valoración independiente obtenida y citada (15%) · Texto final con verbos ajustados al diseño del estudio (15%). Un trabajo que atribuya causalidad a un estudio observacional no aprueba, con independencia del resto.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 1</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    Unidades 2 a 4 en preparación
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Revisión por Pares",d:"Evaluación de un manuscrito por especialistas antes de su publicación. Filtra errores metodológicos evidentes; no garantiza que los datos sean reales ni que el resultado se replique.",s:"Sense about Science · práctica editorial científica"},
+ {t:"Preprint",d:"Manuscrito publicado en un repositorio abierto antes o al margen de la revisión por pares. Acelera la circulación y traslada el filtro al lector.",s:"Repositorios de preprints · práctica establecida"},
+ {t:"Reproducibilidad",d:"Capacidad de obtener el mismo resultado repitiendo el estudio. Un hallazgo no replicado es provisional por definición.",s:"Open Science Collaboration, Science, 2015"},
+ {t:"Sesgo de Publicación",d:"Tendencia del sistema a publicar resultados positivos y novedosos, lo que distorsiona la literatura disponible sobre cualquier cuestión.",s:"Metodología científica establecida"},
+ {t:"Tamaño del Efecto",d:"Magnitud del cambio observado. Responde a cuánto, mientras que la significación solo responde a si es distinguible del azar.",s:"ASA, 2016 · JRN-1002 Unidad 3"},
+ {t:"Variable Sustitutiva",d:"Medida intermedia que se usa en lugar del resultado que realmente importa. Un cambio en ella no acredita un beneficio clínico o práctico.",s:"Metodología de investigación biomédica"},
+ {t:"Comunicado Institucional",d:"Nota de prensa emitida por la institución del investigador. Es una fuente interesada y no sustituye al artículo original.",s:"Sumner et al., The BMJ, 2014"},
+ {t:"Falso Equilibrio",d:"Presentación de posiciones con respaldo muy desigual como si tuvieran peso equivalente. Desinforma con apariencia de neutralidad.",s:"Práctica periodística establecida"},
+ {t:"Consenso Científico",d:"Posición mayoritaria y fundada de la comunidad especializada, estimable mediante revisiones sistemáticas e informes de organismos científicos.",s:"Práctica establecida · organismos científicos"},
+ {t:"Conflicto de Interés",d:"Relación que puede influir en el diseño, el análisis o la comunicación de un estudio. Se declara en el propio artículo y se comprueba en un minuto.",s:"COPE · práctica editorial científica"},
+ {t:"Retractación",d:"Retirada formal de un artículo por error o mala conducta. Puede tardar años, durante los cuales el trabajo sigue citándose.",s:"COPE · Retraction Watch"},
+ {t:"Registro Previo",d:"Depósito público de hipótesis y plan de análisis antes de recoger datos. Reduce las prácticas que fabrican significación y facilita evaluar el estudio.",s:"Prácticas de ciencia abierta"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · THE BMJ · 2014",t:"La exageración empieza en el comunicado",
+  d:"Un estudio dirigido por Petroc Sumner y publicado en <em>The BMJ</em> en 2014 analizó comunicados de prensa emitidos por universidades británicas sobre investigación biomédica y las noticias derivadas de ellos. El trabajo examinó tres tipos de exageración: consejos de conducta no justificados por el estudio, inferencias causales a partir de investigaciones correlacionales y extrapolación a personas de resultados obtenidos en animales. La conclusión principal fue que la presencia de esas exageraciones en las noticias se asociaba fuertemente con su presencia previa en el comunicado institucional.",
+  ej:"El hallazgo desplaza el foco del análisis habitual. La cobertura deficiente no siempre empieza en la redacción: con frecuencia reproduce una deformación ya introducida por la oficina de prensa de la propia universidad.",
+  p:["¿Qué cambia esto en la rutina de trabajo?","¿Por qué las instituciones exageran?","¿Qué se hace cuando el investigador no está disponible?"],
+  m:"Cambia la fuente de partida: el comunicado deja de ser el documento de trabajo y pasa a ser un objeto que se compara con el artículo original, y la diferencia entre ambos es a menudo una historia en sí misma. Las instituciones exageran por incentivos: compiten por visibilidad, financiación y posición, y una nota contenida obtiene menos cobertura que una entusiasta, sin que casi nunca haya intención de engañar. Cuando el investigador no está disponible, el artículo sigue estando y sus apartados de métodos y limitaciones permiten evaluar el trabajo; además puede pedirse valoración a un especialista independiente, que suele responder más rápido que el autor.",
+  k:"El comunicado no es la fuente: el artículo lo es. Y la distancia entre ambos, cuando existe, es información publicable sobre cómo se comunica la ciencia."},
+
+ {tag:"CASO 2 · SCIENCE · 2015",t:"El proyecto de reproducibilidad",
+  d:"En 2015 la Open Science Collaboration publicó en <em>Science</em> los resultados de un esfuerzo colectivo para replicar cien estudios publicados en revistas destacadas de psicología. Los equipos replicantes trabajaron con protocolos revisados por los autores originales cuando fue posible. La proporción de resultados que alcanzaron significación estadística en la réplica fue sustancialmente menor que en los estudios originales, y los tamaños de efecto obtenidos fueron en promedio menores. El trabajo impulsó la adopción de prácticas correctoras: registro previo de hipótesis, publicación de datos y código, y formatos editoriales que aceptan artículos por su diseño antes de conocer los resultados.",
+  ej:"La lectura periodística fácil fue «la ciencia está en crisis». La lectura correcta es que un campo detectó un problema propio, lo midió con sus propios métodos y empezó a corregirlo.",
+  p:["¿Cómo se cubre un hallazgo sobre los fallos de la ciencia sin alimentar el descrédito?","¿Qué implica para la cobertura de estudios individuales?","¿Qué prácticas indican que un estudio es más fiable?"],
+  m:"Se cubre explicando el mecanismo: que la autocorrección funcione es precisamente lo que distingue a la ciencia de otros sistemas de creencias, y omitir esa dimensión convierte una noticia sobre control de calidad en munición para el negacionismo. Para la cobertura de estudios individuales implica una jerarquía distinta de la periodística: lo replicado pesa más que lo novedoso, y un hallazgo espectacular y único merece condicional. Indican mayor fiabilidad el registro previo del plan de análisis, la publicación de datos y código, muestras grandes, resultados replicados por equipos independientes y la coherencia con revisiones sistemáticas previas.",
+  k:"Lo replicado vale más que lo novedoso. Esa jerarquía es la contraria a la del criterio de novedad, y ahí está la tensión permanente del oficio."},
+
+ {tag:"CASO 3 · THE LANCET · 1998-2010",t:"Doce años de una afirmación retractada",
+  d:"En 1998 <em>The Lancet</em> publicó un artículo, encabezado por Andrew Wakefield, que sugería una posible relación entre la vacuna triple vírica y trastornos del desarrollo. El trabajo se basaba en doce casos. En los años siguientes, numerosos estudios con muestras muy superiores no encontraron esa asociación, y la investigación posterior sobre el propio artículo reveló irregularidades graves en su elaboración. La revista se retractó formalmente en 2010, y ese mismo año el organismo regulador británico retiró la licencia médica a su autor principal. En ese intervalo, las tasas de vacunación descendieron en varios países.",
+  ej:"El caso reúne todos los fallos de la cadena: una muestra minúscula, una hipótesis presentada con más fuerza de la que permitía, una cobertura que la amplificó y una corrección que llegó doce años tarde.",
+  p:["¿Qué señales de alarma tenía el artículo original?","¿Por qué la corrección posterior no revirtió el daño?","¿Qué obligación tiene un medio que cubrió el estudio original?"],
+  m:"Tenía dos señales visibles desde el primer día: una muestra de doce casos, insuficiente para sostener una asociación poblacional, y un diseño que no permitía inferir causalidad, además de una difusión pública que excedía lo que el propio artículo afirmaba. La corrección no revirtió el daño porque la retractación no alcanza a quienes recibieron el mensaje original, y porque una afirmación sobre riesgo se instala con mucha más facilidad de la que se desmonta. La obligación del medio que lo cubrió es publicar la corrección con la misma visibilidad que la pieza inicial, explicar qué se sabe hoy y actualizar el archivo, aplicando los criterios de la Unidad 2 de JRN-1004.",
+  k:"El tamaño de la muestra y el tipo de diseño son comprobables el primer día. La retractación llega años después y no alcanza a quien leyó el titular."},
+
+ {tag:"CASO 4 · REVISTAS DE PRIMER NIVEL · 2020",t:"Retractación en semanas",
+  d:"En 2020, en plena pandemia, dos artículos sobre tratamientos para la covid-19 —publicados respectivamente en <em>The Lancet</em> y en <em>The New England Journal of Medicine</em>— se apoyaban en una base de datos hospitalaria internacional proporcionada por una empresa privada. Tras la publicación, investigadores independientes señalaron incoherencias en los datos y varios coautores solicitaron una auditoría que no pudo realizarse porque la empresa no facilitó el acceso a la base. Ambos artículos fueron retractados pocas semanas después de su publicación.",
+  ej:"El episodio muestra las dos caras del sistema: la revisión por pares no detectó el problema porque los revisores no acceden a los datos brutos, y la comunidad lo detectó en días una vez publicado.",
+  p:["¿Qué revela sobre los límites de la revisión por pares?","¿Qué habría podido comprobar un periodista?","¿Cómo se cubre una retractación?"],
+  m:"Revela que el filtro evalúa el manuscrito y no los datos: los revisores trabajan con lo que los autores describen, de modo que un conjunto de datos inexistente o defectuoso puede atravesar el proceso sin ser detectado. Un periodista podía comprobar el origen de los datos y preguntar quién los había auditado, que fue exactamente la pregunta que hicieron los investigadores que destaparon el caso; la procedencia de una base de datos es verificable con los criterios de la Unidad 3 de JRN-1003. Una retractación se cubre explicando qué se afirmó, por qué se retiró y qué se sabe ahora, con la misma visibilidad que tuvo la información original.",
+  k:"La revisión por pares evalúa el manuscrito, no los datos. Preguntar por el origen y la auditoría de una base de datos es una comprobación periodística elemental."},
+
+ {tag:"CASO 5 · PREPRINTS · DESDE 2020",t:"Velocidad sin filtro",
+  d:"Durante la pandemia, los repositorios de preprints pasaron de ser una herramienta conocida en algunas disciplinas a convertirse en el canal principal de circulación rápida de resultados. Miles de trabajos se difundieron sin revisión por pares, con dos efectos simultáneos: aceleraron enormemente el intercambio científico y permitieron que resultados con errores graves alcanzaran cobertura internacional y, en algunos casos, influyeran en decisiones públicas antes de ser corregidos por la comunidad.",
+  ej:"Los repositorios advierten expresamente de que los trabajos no han sido revisados. Esa advertencia, que en el sitio original es visible, desaparece con frecuencia en la cadena de difusión.",
+  p:["¿Cuándo está justificado cubrir un preprint?","¿Qué cautelas exige?","¿Qué obligación de seguimiento genera?"],
+  m:"Está justificado cuando el asunto es de interés público urgente y esperar a la publicación revisada supondría privar al público de información relevante durante meses, que es exactamente el caso de una emergencia sanitaria. Las cautelas son tres: declararlo en el cuerpo del texto y no en un pie, obtener valoración de especialistas independientes que sustituya funcionalmente al filtro ausente, y describir diseño y limitaciones con más detalle del habitual. Y genera una obligación de seguimiento: si el trabajo se publica después con cambios sustanciales, o no llega a publicarse, quien cubrió la primera versión debe informar de ello.",
+  k:"Cubrir un preprint es legítimo con tres cautelas: decirlo en el texto, buscar valoración independiente y comprometerse al seguimiento."},
+
+ {tag:"CASO 6 · COPE Y RETRACTION WATCH",t:"La infraestructura de la corrección",
+  d:"El Committee on Publication Ethics, conocido como COPE, agrupa a miles de revistas y editoriales y publica directrices sobre autoría, conflictos de interés, correcciones y retractaciones, incluidos diagramas de decisión sobre cómo actuar ante una sospecha de mala conducta. En paralelo, el proyecto periodístico Retraction Watch documenta desde 2010 los casos de retractación y mantiene una base de datos pública que permite comprobar si un artículo o un autor tienen antecedentes.",
+  ej:"Existe una infraestructura pública de corrección que la mayoría de los periodistas no usa. Consultarla antes de citar un trabajo cuesta menos de un minuto y evita errores que después son difíciles de reparar.",
+  p:["¿Qué se comprueba antes de citar un estudio antiguo?","¿Qué significa que un autor tenga retractaciones previas?","¿Cómo se informa de una corrección menor?"],
+  m:"Se comprueba si el artículo sigue vigente, si ha sido corregido o retractado y si la revista publicó alguna expresión de preocupación, algo que las bases de datos de retractaciones permiten consultar por título o por autor. Que un autor tenga retractaciones previas no invalida su trabajo posterior y sí obliga a una verificación reforzada y a preguntar directamente por los antecedentes, con la misma lógica con que se trata a cualquier fuente con historial. Una corrección menor se informa con una nota visible junto a la pieza, indicando qué cambió y cuándo, sin necesidad de rehacer el texto completo, y actualizando el archivo para que quien llegue después lea la versión correcta.",
+  k:"La comprobación de retractaciones cuesta treinta segundos y evita citar como vigente un trabajo que la propia revista retiró."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"El comunicado que dice más",
+  d:"La nota de la universidad afirma que un compuesto «previene» la enfermedad. El artículo habla de asociación en un estudio observacional.",
+  r:"Reportera · Jefe de sección · Oficina de prensa",
+  ej:"<span class='who'>JEFE:</span> El titular está en la nota, vamos con eso.<br><span class='who'>REPORTERA:</span> El artículo dice «se asocia», no «previene».<br><span class='who'>PRENSA:</span> Es una simplificación para el público.<br><span class='who'>REPORTERA:</span> Es un cambio de verbo, y el verbo es la afirmación.",
+  m:"La diferencia entre asociación y prevención no es de estilo: es la diferencia entre lo que un estudio observacional permite y lo que exigiría un ensayo. Reproducir el verbo del comunicado traslada al lector una afirmación que el trabajo no sostiene, y la responsabilidad es del medio que publica, no de la oficina que redacta. La actuación correcta es titular con lo que el artículo permite, preguntar a los autores por la discrepancia —que a menudo desconocen— y, si la distancia es grande, contarla: cómo se comunica la ciencia es en sí mismo un asunto de interés público.",
+  c:"Sostener la precisión del verbo frente a la presión del titular ya redactado por otro."},
+
+ {tag:"ESCENARIO 2",t:"El preprint urgente",
+  d:"Un preprint sobre un tratamiento circula masivamente. El asunto es urgente y todavía no ha pasado revisión.",
+  r:"Reportera · Editora · Especialista consultada",
+  ej:"<span class='who'>EDITORA:</span> Lo tiene todo el mundo.<br><span class='who'>REPORTERA:</span> Lo cubrimos diciendo que no está revisado y con dos valoraciones independientes.<br><span class='who'>ESPECIALISTA:</span> La muestra es pequeña y el control es débil.<br><span class='who'>REPORTERA:</span> Eso va en el segundo párrafo, no en el último.",
+  m:"Cubrir un preprint en una urgencia sanitaria es legítimo, y la legitimidad depende de las cautelas: declararlo en el cuerpo del texto, obtener valoración de especialistas sin vínculo con el trabajo y describir el diseño con detalle. La posición de esas advertencias importa: al final del texto no las lee quien más las necesita, y en redes desaparecen. Conviene además fijar desde el primer día quién hará el seguimiento y en qué plazo, porque un preprint cubierto y nunca actualizado deja una afirmación flotando indefinidamente.",
+  c:"Publicar con urgencia sin renunciar al filtro, y situar las advertencias donde se leen."},
+
+ {tag:"ESCENARIO 3",t:"El debate a dos voces",
+  d:"El programa quiere enfrentar a un investigador que representa el consenso con alguien que sostiene la posición contraria, en formato de debate.",
+  r:"Reportera · Realizador · Editora",
+  ej:"<span class='who'>REALIZADOR:</span> Dos posturas, el espectador que juzgue.<br><span class='who'>REPORTERA:</span> No son dos posturas equivalentes: una la sostienen la mayoría de los estudios.<br><span class='who'>REALIZADOR:</span> ¿Entonces no damos voz a la otra?<br><span class='who'>REPORTERA:</span> Se da, situada: cuántos la sostienen y con qué evidencia.",
+  m:"El formato de debate a dos comunica equivalencia con independencia de lo que se diga, porque la estructura visual iguala a los intervinientes. Eso no obliga a silenciar la discrepancia sino a situarla: indicar cuántos estudios la respaldan, con qué métodos y qué dicen las revisiones sistemáticas y los organismos científicos. Y el criterio funciona en ambos sentidos: cuando el consenso es débil o está en disputa real, presentarlo como cerrado es igual de inexacto. La alternativa práctica es explicar el estado de la evidencia y recoger la posición minoritaria dentro de ese marco.",
+  c:"Rechazar un formato que desinforma proponiendo otro que sí informa."},
+
+ {tag:"ESCENARIO 4",t:"Quién financió el estudio",
+  d:"El estudio favorece un producto y está financiado por la empresa que lo fabrica. Los autores lo declaran en el artículo.",
+  r:"Reportera · Editor · Especialista consultada",
+  ej:"<span class='who'>EDITOR:</span> Si lo declaran, no hay problema.<br><span class='who'>REPORTERA:</span> No hay ocultación. Sigue habiendo interés.<br><span class='who'>ESPECIALISTA:</span> Y el comparador elegido es una dosis baja.<br><span class='who'>REPORTERA:</span> Eso es lo que hay que explicar al lector.",
+  m:"La declaración de conflicto de interés es un requisito de transparencia y no una absolución: obliga a examinar el diseño con atención reforzada, especialmente el comparador elegido, las variables medidas y la duración del seguimiento. Las tres preguntas útiles son contra qué se compara, qué resultado se mide —el que importa o una variable sustitutiva— y si existen estudios independientes que apunten en la misma dirección. Y en la pieza se declara siempre quién financió, aunque no haya indicio de sesgo, porque es un dato que el lector necesita para ponderar.",
+  c:"Traducir un conflicto declarado en comprobaciones concretas sobre el diseño."},
+
+ {tag:"ESCENARIO 5",t:"El estudio que citamos y fue retractado",
+  d:"Un lector avisa de que el estudio central de una pieza publicada hace dos años fue retractado por la revista.",
+  r:"Reportera · Editora · Defensora del lector",
+  ej:"<span class='who'>DEFENSORA:</span> El artículo sigue en línea sin ninguna nota.<br><span class='who'>REPORTERA:</span> Comprobé la retractación: es de hace ocho meses.<br><span class='who'>EDITORA:</span> ¿Retiramos la pieza?<br><span class='who'>REPORTERA:</span> No: nota visible, explicación y qué se sabe ahora.",
+  m:"Retirar la pieza elimina el registro de lo que se publicó y deja al lector sin explicación; lo correcto es una nota visible en cabecera que indique que el estudio fue retractado, cuándo y por qué, junto a lo que la evidencia dice hoy. Esa actualización debe tener la misma visibilidad que tuvo la información original, con los criterios de la Unidad 2 de JRN-1004. Y conviene extraer la regla de procedimiento: comprobar el estado de vigencia de los estudios citados en piezas anteriores cuando el asunto vuelve a la actualidad, algo que las bases de datos públicas de retractaciones permiten hacer en minutos.",
+  c:"Corregir el archivo sin destruirlo y convertir el aviso en una rutina de comprobación."},
+
+ {tag:"ESCENARIO 6",t:"La incertidumbre que el editor quiere quitar",
+  d:"El texto explica que el hallazgo es provisional y que hará falta un ensayo. El editor considera que esa parte «desinfla» la noticia.",
+  r:"Reportera · Editor · Editora jefa",
+  ej:"<span class='who'>EDITOR:</span> Con tanto condicional no hay noticia.<br><span class='who'>REPORTERA:</span> La noticia es que hay una señal, no que esté probado.<br><span class='who'>EDITOR:</span> El lector quiere saber si funciona.<br><span class='who'>REPORTERA:</span> Y eso es exactamente lo que todavía no sabemos.",
+  m:"Comunicar incertidumbre no debilita la información: lo que erosiona la confianza es afirmar con seguridad algo que después se corrige, y ese coste lo paga el medio y no el investigador. La solución práctica es escribir la incertidumbre bien: cuantificarla cuando se pueda, localizarla en la parte concreta del hallazgo donde está la duda, y explicar qué la reduciría —qué estudio, qué dato, qué plazo—, lo que convierte la advertencia en información útil. Un hallazgo provisional puede ser enormemente relevante, y el oficio consiste en transmitir a la vez su importancia y su provisionalidad.",
+  c:"Defender la incertidumbre como contenido informativo y no como cautela que resta interés."}
+];
+
+const IV=[
+ {q:"¿Qué tipo de estudio es: observacional, experimental, revisión o modelo?",
+  m:"El diseño determina qué afirmaciones permite el trabajo y evita el error causal más frecuente."},
+ {q:"¿Cuántos participantes tuvo y a qué población representan?",
+  m:"Muestra y representatividad acotan la extrapolación, que es donde se produce la exageración habitual."},
+ {q:"¿Cuál es el tamaño del efecto y su intervalo de confianza?",
+  m:"Distingue entre un resultado distinguible del azar y un resultado que importa en la práctica."},
+ {q:"¿Contra qué se comparó el grupo de intervención?",
+  m:"Sin comparador adecuado no hay conclusión, y la elección del comparador puede determinar el resultado."},
+ {q:"¿Qué limitaciones señalan ustedes mismos en el artículo?",
+  m:"Remite al apartado que casi nadie lee y que suele contener la información más honesta del trabajo."},
+ {q:"El comunicado de su universidad dice «previene». ¿Sostiene usted esa palabra?",
+  m:"Distingue la responsabilidad del autor de la de la oficina de prensa, y suele producir una respuesta más contenida."},
+ {q:"¿Hay estudios previos que apunten en la misma dirección o que la contradigan?",
+  m:"Sitúa el hallazgo en la literatura, que es la pregunta que convierte un resultado en conocimiento."},
+ {q:"¿Qué estudio haría falta para confirmar esto y cuánto tardaría?",
+  m:"Convierte la incertidumbre en información útil y cierra con una previsión comprobable."}
+];
+
+const AUDIT=[
+ ["v","Un estudio dirigido por Petroc Sumner y publicado en <em>The BMJ</em> en 2014 analizó comunicados de prensa de universidades británicas sobre investigación biomédica y las noticias derivadas, y halló que las exageraciones en la prensa —consejos no justificados, inferencias causales y extrapolación de animales a humanos— se asociaban fuertemente con exageraciones ya presentes en el comunicado.","The BMJ, 2014. Verificado."],
+ ["v","La Open Science Collaboration publicó en <em>Science</em> en 2015 un proyecto de replicación de cien estudios de psicología en el que la proporción de resultados significativos y el tamaño medio de los efectos fueron sustancialmente menores que en los trabajos originales.","Science, 2015, Estimating the reproducibility of psychological science. Verificado."],
+ ["v","<em>The Lancet</em> publicó en 1998 un artículo encabezado por Andrew Wakefield que sugería una relación entre la vacuna triple vírica y trastornos del desarrollo, basado en doce casos; la revista se retractó formalmente en 2010 y el regulador británico retiró ese mismo año la licencia médica a su autor principal.","The Lancet, retractación de 2010, y resolución del General Medical Council. Verificado."],
+ ["v","En 2020 fueron retractados en pocas semanas dos artículos sobre tratamientos para la covid-19 publicados en <em>The Lancet</em> y en <em>The New England Journal of Medicine</em>, basados en una base de datos hospitalaria de una empresa privada que no pudo ser auditada.","Retractaciones publicadas por ambas revistas, junio de 2020. Verificado."],
+ ["v","El Committee on Publication Ethics publica directrices y diagramas de decisión sobre autoría, conflictos de interés, correcciones y retractaciones para revistas y editoriales científicas.","publicationethics.org. Verificado."],
+ ["v","El proyecto Retraction Watch documenta desde 2010 casos de retractación y mantiene una base de datos pública consultable por artículo y por autor.","retractionwatch.com. Verificado."],
+ ["b","La revisión por pares filtra errores metodológicos evidentes y no garantiza que los datos sean reales, que el resultado se replique ni que no exista un conflicto no declarado.","Sense about Science · práctica editorial científica."],
+ ["b","Un resultado aislado rara vez establece conocimiento: lo establece la convergencia de estudios independientes con métodos distintos.","Metodología científica establecida."],
+ ["b","Cubrir un preprint exige declararlo en el cuerpo del texto, obtener valoración independiente y comprometerse al seguimiento.","Práctica periodística establecida · repositorios de preprints."],
+ ["b","Las seis comprobaciones básicas de un artículo son diseño, muestra, tamaño del efecto, comparación, limitaciones y financiación.","Formulación docente · Sense about Science."],
+ ["b","El falso equilibrio presenta como equivalentes posiciones con respaldo muy desigual y desinforma con apariencia de neutralidad.","Práctica periodística establecida."],
+ ["b","Comunicar incertidumbre exige cuantificarla, localizarla en la parte concreta del hallazgo y explicar qué la reduciría.","Cairo, The Truthful Art · Sense about Science."],
+ ["b","Un estudio observacional no permite afirmar causalidad, con independencia de los verbos que empleen los autores o el comunicado.","JRN-1002 Unidad 3 · metodología establecida."],
+ ["p","La afirmación de que existen revistas que aceptan casi cualquier envío a cambio de una tarifa se apoya en la literatura sobre publicaciones cuestionadas y en repertorios de uso profesional; no se ha realizado para esta unidad una evaluación propia de editoriales concretas.","Redactado sin señalar editoriales determinadas."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un estudio publicado en una revista científica establece:",
+ o:["Un hecho comprobado que puede afirmarse sin reservas","Una aportación provisional cuyo peso depende de la convergencia con otros estudios","La posición oficial de la comunidad científica","Un resultado válido hasta que se demuestre lo contrario"],c:1,
+ w:["La publicación no equivale a confirmación: es el inicio del escrutinio, no su final.",
+    "",
+    "La posición de la comunidad se establece en revisiones sistemáticas e informes, no en un artículo.",
+    "Esa formulación invierte la carga: un resultado único es provisional por definición."],
+ e:"La pregunta útil no es «¿qué han descubierto?» sino «¿cuánto peso tiene esto dentro de lo que ya se sabía?»."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La revisión por pares garantiza, con matices:",
+ o:["Que los datos del estudio son reales","Que no hay errores metodológicos evidentes y que las conclusiones no exceden groseramente los datos","Que el resultado se replicará","Que no existe conflicto de interés"],c:1,
+ w:["Los revisores casi nunca acceden a los datos brutos: evalúan el manuscrito.",
+    "",
+    "La replicación es un proceso posterior e independiente.",
+    "Los conflictos se declaran; la revisión no los detecta si no se declaran."],
+ e:"Es un mínimo, no un sello de verdad. Y el proceso varía enormemente entre revistas, por lo que la etiqueta sin el nombre de la publicación no informa."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Cubrir un preprint exige:",
+ o:["Esperar a que se publique en una revista","Declararlo en el cuerpo del texto, obtener valoración independiente y comprometerse al seguimiento","Citarlo solo si lo respalda una institución conocida","Evitarlo salvo en revistas de acceso abierto"],c:1,
+ w:["Esperar puede privar al público de información urgente durante meses.",
+    "",
+    "El respaldo institucional no sustituye al filtro metodológico ausente.",
+    "El acceso abierto es una cuestión de modelo editorial, no de revisión."],
+ e:"El preprint traslada al lector un filtro que antes hacía la revista, y la valoración independiente es lo que lo sustituye funcionalmente."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El comunicado de prensa de una universidad debe tratarse como:",
+ o:["La fuente principal, por proceder de la institución investigadora","Una fuente interesada que se compara con el artículo original","Un resumen fiable elaborado por especialistas","Un documento equivalente al resumen del artículo"],c:1,
+ w:["La institución compite por visibilidad y financiación: su nota es promocional además de informativa.",
+    "",
+    "Lo redacta habitualmente la oficina de prensa, no los autores.",
+    "El resumen del artículo pasa por revisión; el comunicado no."],
+ e:"La investigación publicada en 2014 mostró que buena parte de la exageración en las noticias ya estaba presente en el comunicado institucional."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El falso equilibrio consiste en:",
+ o:["Dar voz a una posición minoritaria","Presentar posiciones con respaldo muy desigual como si tuvieran peso equivalente","Citar a dos investigadores del mismo campo","No incluir la versión de la parte afectada"],c:1,
+ w:["Recoger una posición minoritaria es legítimo si se sitúa con su respaldo real.",
+    "",
+    "El número de fuentes no define el problema.",
+    "Eso es un defecto de contradicción, distinto del falso equilibrio."],
+ e:"La solución no es silenciar la discrepancia sino situarla: cuántos estudios la respaldan, con qué métodos y qué dicen las revisiones."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Que un hallazgo se corrija a la baja años después indica:",
+ o:["Que la ciencia falló","Que el procedimiento de autocorrección funcionó","Que el estudio original fue fraudulento","Que la revisión por pares es inútil"],c:1,
+ w:["La corrección es parte del método, no su fracaso.",
+    "",
+    "La mayoría de las correcciones responden a error honesto, no a fraude.",
+    "El filtro tiene límites conocidos y cumple una función."],
+ e:"La lectura fácil —«la ciencia está en crisis»— alimenta el descrédito. La correcta es que un sistema detectó un problema propio y lo está corrigiendo."},
+
+/* ---------- BLOQUE B · EVALUAR UN ESTUDIO ---------- */
+{blk:"BLOQUE B · EVALUAR UN ESTUDIO", t:"mcq",
+ s:"Un estudio observacional encuentra que quienes consumen cierto alimento presentan menos casos de una enfermedad.",
+ q:"¿Qué verbo admite la pieza?",
+ o:["Previene","Se asocia con una menor frecuencia","Reduce el riesgo","Protege frente a"],c:1,
+ w:["Prevenir afirma causalidad, que un diseño observacional no permite establecer.",
+    "",
+    "Reducir el riesgo también afirma un efecto causal.",
+    "Proteger es igualmente causal, con matiz de mecanismo."],
+ e:"Es el criterio de la Unidad 3 de JRN-1002 aplicado a la cobertura científica: el diseño determina el verbo, y el verbo es la afirmación."},
+
+{blk:"BLOQUE B · EVALUAR UN ESTUDIO", t:"mcq",
+ s:"El comunicado afirma que un compuesto «previene» la enfermedad; el artículo habla de asociación en una muestra de sesenta personas.",
+ q:"¿Qué corresponde hacer?",
+ o:["Titular con el comunicado y matizar en el cuerpo","Titular con lo que el artículo permite y preguntar a los autores por la discrepancia","Publicar ambas versiones y dejar que el lector juzgue","No publicar la noticia"],c:1,
+ w:["El titular es la afirmación que más gente lee: matizar después no la corrige.",
+    "",
+    "Presentar dos versiones de un mismo hecho traslada al lector una comprobación que corresponde al medio.",
+    "El hallazgo puede ser relevante: lo que no procede es la formulación del comunicado."],
+ e:"Los autores desconocen a menudo el contenido de la nota, y la distancia entre ambos documentos suele ser en sí misma una historia."},
+
+{blk:"BLOQUE B · EVALUAR UN ESTUDIO", t:"mcq",
+ s:"Un ensayo compara un fármaco nuevo con una dosis del fármaco habitual inferior a la recomendada.",
+ q:"¿Qué problema plantea?",
+ o:["Ninguno, si la comparación está declarada","El comparador está elegido de modo que favorece el resultado, y eso condiciona la conclusión","El tamaño de la muestra será insuficiente","La duración del seguimiento será corta"],c:1,
+ w:["Declararlo es necesario y no corrige el sesgo del diseño.",
+    "",
+    "El tamaño muestral es una cuestión independiente.",
+    "La duración es otro elemento a comprobar, no el que describe el enunciado."],
+ e:"Las tres preguntas ante un estudio financiado por parte interesada son contra qué se compara, qué resultado se mide y si hay estudios independientes convergentes."},
+
+{blk:"BLOQUE B · EVALUAR UN ESTUDIO", t:"mcq",
+ s:"El estudio mide un marcador intermedio en sangre, no la aparición de la enfermedad.",
+ q:"¿Qué implica para la cobertura?",
+ o:["Nada: el marcador es un indicador aceptado","Que el trabajo no acredita beneficio clínico, sino un cambio en una variable sustitutiva","Que el estudio carece de valor","Que debe citarse solo en medios especializados"],c:1,
+ w:["Un marcador puede correlacionar con la enfermedad sin que su mejora implique beneficio real.",
+    "",
+    "El trabajo puede tener valor como paso previo: lo que no puede es presentarse como resultado clínico.",
+    "La cuestión no es dónde se publica sino cómo se formula."],
+ e:"La distinción entre variable sustitutiva y resultado relevante es una de las comprobaciones que más errores evita en cobertura de salud."},
+
+{blk:"BLOQUE B · EVALUAR UN ESTUDIO", t:"mcq",
+ s:"Vas a citar un estudio de hace cinco años que sostiene la tesis de tu pieza.",
+ q:"¿Qué compruebas antes?",
+ o:["Que la revista siga existiendo","Si el artículo sigue vigente o fue corregido, retractado o objeto de una expresión de preocupación","Cuántas veces ha sido citado","Si los autores siguen en la misma institución"],c:1,
+ w:["La continuidad de la revista no informa sobre el estado del artículo.",
+    "",
+    "El número de citas mide difusión, no vigencia: los artículos retractados siguen citándose.",
+    "La afiliación actual de los autores es irrelevante."],
+ e:"La comprobación cuesta menos de un minuto en las bases de datos públicas de retractaciones y evita un error difícil de reparar."},
+
+{blk:"BLOQUE B · EVALUAR UN ESTUDIO", t:"mcq",
+ s:"Un preprint con resultados llamativos circula ampliamente y el asunto es urgente.",
+ q:"¿Dónde se sitúa la advertencia de que no está revisado?",
+ o:["En un pie de página al final","En el cuerpo del texto, en los primeros párrafos","En la ficha técnica de la pieza","En la respuesta a los comentarios"],c:1,
+ w:["Al final no lo lee quien más lo necesita, y desaparece al compartir.",
+    "",
+    "La ficha técnica es complementaria y no sustituye al texto principal.",
+    "Los comentarios no forman parte de la información publicada."],
+ e:"La posición de las advertencias importa tanto como su existencia: en circulación fragmentada, lo que no está arriba no existe."},
+
+/* ---------- BLOQUE C · REDACCIÓN Y CONTEXTO ---------- */
+{blk:"BLOQUE C · REDACCIÓN Y CONTEXTO", t:"mcq",
+ q:"Comunicar bien la incertidumbre exige:",
+ o:["Añadir adverbios de cautela al texto","Cuantificarla, localizarla en la parte concreta del hallazgo y explicar qué la reduciría","Evitar cifras que el público no entiende","Recoger dos opiniones enfrentadas"],c:1,
+ w:["Los adverbios genéricos no informan y sí restan claridad.",
+    "",
+    "Las cifras con un rango son más comprensibles que un adverbio vago.",
+    "El contraste de opiniones no cuantifica la incertidumbre del hallazgo."],
+ e:"Lo que erosiona la confianza no es reconocer los límites, sino afirmar con seguridad algo que después se corrige."},
+
+{blk:"BLOQUE C · REDACCIÓN Y CONTEXTO", t:"mcq",
+ q:"Ante una posición minoritaria en un campo con consenso amplio, corresponde:",
+ o:["Omitirla para no confundir","Recogerla situada: cuántos la sostienen, con qué evidencia y qué dicen las revisiones","Presentarla en pie de igualdad con el consenso","Citarla solo si procede de una institución reconocida"],c:1,
+ w:["Silenciar la discrepancia impide informar de debates reales y alimenta la sospecha.",
+    "",
+    "La igualdad formal comunica equivalencia de respaldo, que es falsa.",
+    "La institución de procedencia no mide el respaldo empírico."],
+ e:"Los criterios son tres: respaldo empírico, trayectoria en el campo y proporción de la comunidad especializada que sostiene cada posición."},
+
+{blk:"BLOQUE C · REDACCIÓN Y CONTEXTO", t:"mcq",
+ q:"La financiación de un estudio debe declararse en la pieza:",
+ o:["Solo si hay indicios de sesgo","Siempre, porque es un dato que el lector necesita para ponderar","Solo si el financiador es una empresa","Solo si los autores no lo declararon en el artículo"],c:1,
+ w:["Esperar a que haya indicios deja la decisión en manos de una valoración subjetiva.",
+    "",
+    "También la financiación pública o filantrópica orienta la investigación y es información relevante.",
+    "Que conste en el artículo no significa que el lector de la pieza lo sepa."],
+ e:"Su ausencia se interpreta después como ocultación, y declararlo cuesta una línea."},
+
+{blk:"BLOQUE C · REDACCIÓN Y CONTEXTO", t:"mcq",
+ q:"Si un estudio citado en una pieza publicada es retractado después:",
+ o:["Se retira la pieza del archivo","Se añade una nota visible que explique la retractación y lo que se sabe hoy","Se corrige el texto sin advertirlo","No se hace nada si la pieza ya no tiene tráfico"],c:1,
+ w:["Retirar elimina el registro y deja al lector sin explicación.",
+    "",
+    "La corrección silenciosa destruye la confianza si alguien la descubre.",
+    "El archivo sigue siendo consultable y citable con independencia del tráfico."],
+ e:"La actualización debe tener la misma visibilidad que tuvo la información original, con los criterios de la Unidad 2 de JRN-1004."},
+
+{blk:"BLOQUE C · REDACCIÓN Y CONTEXTO", t:"mcq",
+ q:"Frente a un hallazgo espectacular y único, y otro modesto replicado por equipos independientes:",
+ o:["El primero tiene más valor informativo","El segundo merece más confianza, aunque el primero tenga más interés periodístico","Ambos deben tratarse igual","El segundo no es noticia por no ser novedoso"],c:1,
+ w:["El interés no equivale a solidez, y confundirlos produce los titulares que envejecen mal.",
+    "",
+    "Tratarlos igual ignora la diferencia decisiva entre hallazgo único y resultado replicado.",
+    "Una confirmación robusta puede ser mucho más relevante que una novedad frágil."],
+ e:"Esa jerarquía es la contraria a la del criterio de novedad, y ahí está la tensión permanente del periodismo científico."},
+
+{blk:"BLOQUE C · REDACCIÓN Y CONTEXTO", t:"mcq",
+ q:"El apartado de un artículo científico que más información aporta a un periodista no especialista suele ser:",
+ o:["El resumen","Las limitaciones declaradas por los propios autores","La introducción","La lista de referencias"],c:1,
+ w:["El resumen es la parte más optimista del artículo y la que alimenta el comunicado.",
+    "",
+    "La introducción sitúa el problema y no evalúa el trabajo.",
+    "Las referencias sirven para rastrear la literatura previa."],
+ e:"Si el resumen no refleja lo que dicen las limitaciones, ya sabes dónde está el problema del artículo y probablemente el de la nota de prensa."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las comprobaciones básicas de un artículo científico.",
+ o:["Diseño del estudio","Tamaño y representatividad de la muestra","Tamaño del efecto y su intervalo","Prestigio de la institución firmante","Limitaciones declaradas y financiación"],
+ c:[0,1,2,4],
+ w:["","","","El prestigio institucional no sustituye a la evaluación del trabajo concreto y es la vía habitual del argumento de autoridad.",""],
+ e:"Las seis casillas se rellenan en veinte minutos y filtran la mayoría de los errores graves de cobertura científica."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que la revisión por pares NO garantiza.",
+ o:["Que los datos brutos existan y sean correctos","Que el resultado se replique","Que el efecto tenga relevancia práctica","Que la bibliografía previa esté considerada","Que no haya conflictos de interés no declarados"],
+ c:[0,1,2,4],
+ w:["","","","La consideración de la literatura previa sí forma parte de lo que los revisores evalúan habitualmente.",""],
+ e:"Es un mínimo, no un sello de verdad. Citarla como aval orienta; no acredita."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena el trabajo sobre un estudio recién publicado.",
+ o:["Obtener el artículo original, no solo el comunicado","Rellenar las seis comprobaciones básicas","Situarlo en la literatura previa: convergencia o discrepancia","Obtener valoración de un especialista independiente","Redactar con el verbo que el diseño permite y declarar la incertidumbre"],
+ c:[0,1,2,3,4],
+ e:"El comunicado no es la fuente. Y la comparación entre lo que dice el artículo y lo que dice la nota suele ser en sí misma una historia."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena los grados de solidez, de menor a mayor.",
+ o:["Un preprint no revisado con muestra pequeña","Un estudio observacional publicado y revisado","Un ensayo controlado con asignación aleatoria","Varios ensayos independientes que apuntan en la misma dirección","Una revisión sistemática con metaanálisis de esos ensayos"],
+ c:[0,1,2,3,4],
+ e:"Lo que establece conocimiento no es el estudio individual sino la convergencia. Por eso la revisión sistemática ocupa el escalón superior."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
