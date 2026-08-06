@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JRN-1006 · Unidad 3 — Clima y Medio Ambiente</title>
+<meta name="description" content="Certificado Universitario en Comunicación Social y Periodismo de Investigación. JRN-1006, Unidad 3.">
+<style>
+  :root{
+    --bg:#0a0d0c; --panel:#111614; --panel2:#161d1a; --line:#1f2a26;
+    --green:#3ecf8e; --green-dim:#2a7d57; --amber:#d9a441; --red:#e2555a; --blue:#5b8ff9;
+    --text:#e8eeeb; --text-dim:#9fb0a8; --text-faint:#6b7d75;
+    --mono:'SF Mono',Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;font-size:16px}
+  .wrap{display:flex;min-height:100vh}
+  aside{width:280px;flex-shrink:0;background:var(--panel);border-right:1px solid var(--line);padding:26px 0}
+  .brand{padding:0 22px 22px;border-bottom:1px solid var(--line)}
+  .brand .k{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--text-faint)}
+  .brand h1{font-size:1.05rem;font-weight:600;margin-top:8px;line-height:1.3}
+  .navlabel{font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;color:var(--text-faint);padding:22px 22px 10px}
+  .course{display:flex;gap:11px;align-items:flex-start;padding:11px 22px;border-bottom:1px solid rgba(31,42,38,.5);text-decoration:none;color:var(--text-dim)}
+  .course.on{color:var(--green);background:var(--panel2)}
+  .code{font-family:var(--mono);font-size:.66rem;background:#12291f;color:var(--amber);
+        border:1px solid #1d4433;border-radius:4px;padding:3px 7px;white-space:nowrap;margin-top:2px}
+  .cname{font-size:.86rem;line-height:1.35}
+  main{flex:1;padding:38px 46px 90px;max-width:1000px}
+  .crumb{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--text-faint);margin-bottom:26px}
+  h2{font-size:1.85rem;font-weight:650;line-height:1.25;margin-bottom:10px}
+  .sub{color:var(--green);font-size:.95rem;margin-bottom:26px}
+  .units{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 34px}
+  .unit{font-size:.85rem;padding:9px 15px;border:1px solid var(--line);border-radius:7px;color:var(--text-dim);background:var(--panel);text-decoration:none}
+  .unit:hover{border-color:var(--green-dim);color:var(--text)}
+  .unit.on{background:#12291f;border-color:var(--green-dim);color:var(--green)}
+  .tabs{display:flex;flex-wrap:wrap;gap:6px;border-bottom:1px solid var(--line);margin-bottom:30px;padding-bottom:2px}
+  .tab{font-size:.82rem;padding:9px 15px;border:1px solid transparent;border-radius:7px 7px 0 0;color:var(--text-faint);background:none;cursor:pointer;font-family:inherit}
+  .tab:hover{color:var(--text-dim)}
+  .tab.on{color:var(--green);border-color:var(--line);border-bottom-color:var(--bg);background:var(--panel)}
+  section{display:none} section.on{display:block}
+  .box{background:var(--panel);border-left:3px solid var(--green);border-radius:0 8px 8px 0;padding:18px 22px;margin-bottom:26px}
+  .box .lbl{font-family:var(--mono);font-size:.62rem;letter-spacing:.15em;color:var(--green);margin-bottom:8px}
+  h3{font-size:1.12rem;margin:30px 0 12px;color:var(--text);font-weight:600}
+  p{margin-bottom:13px;color:var(--text-dim)}
+  strong{color:var(--text);font-weight:600}
+  ul,ol{margin:0 0 15px 22px;color:var(--text-dim)} li{margin-bottom:7px}
+  .terms{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px;margin-bottom:26px}
+  .term{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:18px 20px;transition:border-color .15s}
+  .term:hover{border-color:var(--green-dim)}
+  .term h5{font-family:var(--mono);color:var(--green);font-size:.95rem;margin-bottom:10px;font-weight:500}
+  .term .def{font-size:.92rem;margin-bottom:10px;color:var(--text-dim);line-height:1.55}
+  .term .src{font-size:.78rem;color:var(--text-faint);font-style:italic;margin:0}
+  .pill{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;padding:4px 9px;border-radius:4px;white-space:nowrap}
+  .pill.v{background:#12291f;color:var(--green);border:1px solid var(--green-dim)}
+  .pill.b{background:#3a2408;color:var(--amber);border:1px solid #6b4d16}
+  .pill.p{background:#2a1416;color:var(--red);border:1px solid #6b2a2e}
+  .arow{display:grid;grid-template-columns:110px 1fr 240px;gap:14px;padding:13px 0;border-bottom:1px solid rgba(31,42,38,.6);align-items:start}
+  .arow .cl{color:var(--text-dim);font-size:.9rem}
+  .arow .sr{font-family:var(--mono);font-size:.73rem;color:var(--text-faint);line-height:1.5}
+  @media(max-width:760px){.arow{grid-template-columns:1fr;gap:6px}}
+  .pager{text-align:center;padding:22px 0 26px;border-bottom:1px solid var(--line);margin-bottom:24px}
+  .plabel{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;margin-bottom:9px}
+  .plabel.amber{color:var(--amber)} .plabel.blue{color:var(--blue)}
+  .ptitle{font-size:1.28rem;color:var(--text);margin-bottom:18px;font-weight:500}
+  .pnums{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+  .pnum{width:46px;height:46px;border-radius:8px;border:1px solid var(--line);background:var(--panel2);
+        color:var(--text-faint);font-family:var(--mono);font-size:1rem;cursor:pointer;transition:all .15s}
+  .pnum:hover{color:var(--text);border-color:var(--text-faint)}
+  .pnum.on.amber{background:#3a2408;border-color:var(--amber);color:var(--amber)}
+  .pnum.on.blue{background:#12224a;border-color:var(--blue);color:var(--blue)}
+  .case{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:20px 23px;margin-bottom:17px}
+  .case h4{font-size:1rem;color:var(--green);margin-bottom:11px;font-weight:600}
+  .case .tag{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:6px}
+  .key{margin-top:12px;padding:11px 15px;background:#12291f;border-radius:6px;font-size:.88rem;color:var(--text-dim)}
+  .key b{color:var(--green);font-family:var(--mono);font-size:.62rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .ej{margin-top:12px;padding:12px 15px;background:var(--panel2);border-left:2px solid var(--amber);border-radius:0 6px 6px 0;font-size:.88rem;color:var(--text-dim)}
+  .ej b{color:var(--amber);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .reveal{margin-top:12px;padding:9px 16px;border:1px solid var(--green-dim);background:none;color:var(--green);
+          border-radius:6px;font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .reveal:hover{background:#12291f}
+  .model{display:none;margin-top:12px;padding:14px 17px;background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;font-size:.9rem;color:var(--text-dim)}
+  .model.show{display:block}
+  .model b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:7px;font-weight:400}
+  .dlg{font-family:var(--mono);font-size:.82rem;line-height:1.8;color:var(--text-dim)}
+  .dlg .who{color:var(--amber)}
+  .q{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:17px 20px;margin-bottom:15px}
+  .q .stem{color:var(--text);font-weight:600;margin-bottom:12px}
+  .opt{display:block;width:100%;text-align:left;padding:10px 14px;margin-bottom:7px;border:1px solid var(--line);
+       border-radius:6px;background:var(--panel2);color:var(--text-dim);font-size:.92rem;cursor:pointer;font-family:inherit;transition:border-color .15s}
+  .opt:hover:not(.done){border-color:var(--green-dim);color:var(--text)}
+  .opt.ok{border-color:var(--green);background:#12291f;color:var(--green)}
+  .opt.bad{border-color:var(--red);background:#2a1416;color:var(--red)}
+  .opt .mk{float:right;font-family:var(--mono);font-size:.72rem;opacity:.85}
+  .exp{margin-top:12px;padding:12px 15px;border-radius:6px;background:#12291f;font-size:.88rem;color:var(--text-dim);display:none}
+  .exp.show{display:block}
+  .exp b{color:var(--green);font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;display:block;margin-bottom:5px;font-weight:400}
+  .blk{font-family:var(--mono);font-size:.62rem;letter-spacing:.16em;color:var(--amber);margin:34px 0 14px;
+       padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .q .from{font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px}
+  .sit{background:var(--panel2);border-left:2px solid var(--blue);border-radius:0 6px 6px 0;padding:12px 15px;
+       margin-bottom:13px;font-size:.9rem;color:var(--text-dim)}
+  .frag{background:#0e1a15;border:1px solid var(--green-dim);border-radius:6px;padding:13px 16px;margin-bottom:13px;
+        font-family:var(--mono);font-size:.86rem;color:var(--text);line-height:1.7}
+  .opt.done{cursor:default}
+  .opt.sel{border-color:var(--blue);background:#12224a;color:var(--blue)}
+  .opt .why{display:block;margin-top:7px;font-size:.82rem;color:var(--red);font-style:italic}
+  .tries{font-family:var(--mono);font-size:.66rem;color:var(--text-faint);margin-top:9px}
+  .ordslot{font-family:var(--mono);color:var(--amber);margin-right:9px}
+  .score{font-family:var(--mono);font-size:.72rem;color:var(--text-faint);margin-bottom:18px;letter-spacing:.1em}
+  .iv{background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:22px 24px;margin-bottom:18px}
+  .qbox{padding:14px 17px;background:var(--panel2);border-left:2px solid var(--green);border-radius:0 6px 6px 0;margin-bottom:16px;color:var(--text)}
+  textarea{width:100%;min-height:110px;background:var(--bg);border:1px solid var(--line);border-radius:7px;
+           color:var(--text);padding:13px 15px;font-family:inherit;font-size:.92rem;line-height:1.6;resize:vertical}
+  textarea:focus{outline:none;border-color:var(--green-dim)}
+  .row{display:flex;gap:9px;flex-wrap:wrap;margin-top:11px;align-items:center}
+  .btn{padding:9px 17px;border:1px solid var(--green-dim);background:none;color:var(--green);border-radius:6px;
+       font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;cursor:pointer}
+  .btn:hover{background:#12291f}
+  .btn.rec{border-color:var(--red);color:var(--red)}
+  .btn.rec.on{background:#2a1416;animation:pulse 1.4s infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.55}}
+  .hint{font-size:.76rem;color:var(--text-faint);font-family:var(--mono)}
+  footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--text-faint)}
+  footer a{color:var(--green)}
+  @media(max-width:900px){.wrap{flex-direction:column}aside{width:100%}main{padding:26px 20px 70px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<aside>
+  <div class="brand">
+    <div class="k">ACADEMIA INTERNACIONAL DE PERIODISMO</div>
+    <h1>Comunicación Social<br>y Periodismo</h1>
+  </div>
+  <div class="navlabel">CURSOS DISPONIBLES</div>
+  <a class="course" href="index.html"><span class="code">JRN-1001</span><span class="cname">Comunicación Social y Periodismo Internacional</span></a>
+  <a class="course" href="jrn1002-u1.html"><span class="code">JRN-1002</span><span class="cname">Periodismo de Datos y Visualización</span></a>
+  <a class="course" href="jrn1003-u1.html"><span class="code">JRN-1003</span><span class="cname">Periodismo de Investigación y OSINT</span></a>
+  <a class="course" href="jrn1004-u1.html"><span class="code">JRN-1004</span><span class="cname">Leyes de Prensa y Ética Comparada</span></a>
+  <a class="course" href="jrn1005-u1.html"><span class="code">JRN-1005</span><span class="cname">Producción Transmedia y Documental</span></a>
+  <a class="course on" href="jrn1006-u3.html"><span class="code">JRN-1006</span><span class="cname">Periodismo Científico y Ambiental</span></a>
+</aside>
+
+<main>
+  <div class="crumb">JRN-1006 · 3 CRÉDITOS · CERTIFICADO PROFESIONAL</div>
+  <h2>Clima y Medio Ambiente</h2>
+  <div class="sub">Unidad 3 de 4 · Periodismo Científico y Ambiental</div>
+
+  <div class="units">
+    <a class="unit" href="jrn1006-u1.html">Unidad 1: Cómo Funciona la Ciencia y Cómo se Cubre</a>
+    <a class="unit" href="jrn1006-u2.html">Unidad 2: Salud, Medicina y Jerarquía de la Evidencia</a>
+    <span class="unit on">Unidad 3: Clima y Medio Ambiente</span>
+    <span class="unit">Unidad 4: Riesgo, Incertidumbre y Comunicación Pública</span>
+  </div>
+
+  <div class="box">
+    <div class="lbl">DESCRIPCIÓN DE LA UNIDAD</div>
+    <p>La información climática y ambiental combina tres dificultades a la vez: una base científica compleja, un conflicto de intereses económicos de enorme escala y una escala temporal que no encaja con el ciclo informativo. A eso se añade que el asunto llega al público mezclado con posiciones políticas, de modo que la precisión técnica es también la única defensa frente a la instrumentalización.</p>
+    <p style="margin-bottom:0">El eje de la unidad es que <strong>el debate sobre si ocurre está cerrado y el debate sobre qué hacer no lo está</strong>. Confundir ambos produce los dos errores simétricos de la cobertura: presentar como discutible lo que la evidencia estableció, y presentar como técnicamente obligada una decisión política que admite alternativas. Separar con precisión ambos planos es el trabajo central de esta materia.</p>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" data-t="obj">Objetivos</button>
+    <button class="tab" data-t="ter">Términos Clave</button>
+    <button class="tab" data-t="dia">Diapositivas (10)</button>
+    <button class="tab" data-t="cas">Casos de Estudio (6)</button>
+    <button class="tab" data-t="rol">Juegos de Roles (6)</button>
+    <button class="tab" data-t="ent">Entrevista Simulada</button>
+    <button class="tab" data-t="pru">Prueba</button>
+    <button class="tab" data-t="aud">Auditoría de Fuentes</button>
+  </div>
+
+  <section id="obj" class="on">
+    <h3>Objetivos de aprendizaje</h3>
+    <ol>
+      <li>Explicar cómo se establece el consenso climático y cómo se lee un informe de evaluación internacional.</li>
+      <li>Distinguir tendencia climática de fenómeno meteorológico y aplicar correctamente la ciencia de atribución.</li>
+      <li>Interpretar escenarios y proyecciones sin presentarlos como predicciones.</li>
+      <li>Identificar las formas actuales del negacionismo, incluidas las que ya no niegan el fenómeno sino la urgencia.</li>
+      <li>Evaluar la calidad y las lagunas de los datos ambientales y de los compromisos corporativos.</li>
+      <li>Cubrir el asunto localmente, con impactos, adaptación y reparto desigual de las consecuencias.</li>
+    </ol>
+
+    <h3>Bibliografía obligatoria</h3>
+    <ul>
+      <li>Grupo Intergubernamental de Expertos sobre el Cambio Climático, informes de evaluación y resúmenes para responsables de políticas</li>
+      <li>Naomi Oreskes y Erik Conway, <em>Merchants of Doubt</em> — fabricación de incertidumbre y su historia</li>
+      <li>Maxwell Boykoff, <em>Who Speaks for the Climate?</em> — cobertura mediática del clima</li>
+      <li>Alberto Cairo, <em>How Charts Lie</em> — representación de series y proyecciones</li>
+      <li>Organización Mundial de la Salud, <em>Global Air Quality Guidelines</em> (2021)</li>
+    </ul>
+
+    <h3>Marco internacional de referencia</h3>
+    <div class="terms">
+      <div class="term"><h5>IPCC</h5>
+        <div class="def">Órgano de Naciones Unidas que evalúa periódicamente la literatura científica sobre cambio climático. No investiga: revisa y sintetiza miles de trabajos, con un procedimiento de revisión abierta y aprobación línea a línea del resumen por parte de los gobiernos.</div>
+        <p class="src">ipcc.ch</p></div>
+      <div class="term"><h5>World Weather Attribution</h5>
+        <div class="def">Iniciativa científica internacional que analiza, en semanas, en qué medida el cambio climático alteró la probabilidad o la intensidad de un fenómeno extremo concreto, publicando su metodología junto a cada resultado.</div>
+        <p class="src">worldweatherattribution.org</p></div>
+      <div class="term"><h5>Curva de Keeling</h5>
+        <div class="def">Serie continua de mediciones de dióxido de carbono atmosférico iniciada en 1958 en el observatorio de Mauna Loa. Es el registro instrumental de referencia sobre la acumulación de este gas en la atmósfera.</div>
+        <p class="src">Scripps Institution of Oceanography · NOAA</p></div>
+      <div class="term"><h5>OMS · Guías de calidad del aire</h5>
+        <div class="def">Recomendaciones internacionales sobre niveles de contaminantes atmosféricos, revisadas en 2021 con umbrales sustancialmente más estrictos que los anteriores a partir de la evidencia acumulada sobre efectos en salud.</div>
+        <p class="src">Organización Mundial de la Salud, 2021</p></div>
+    </div>
+
+    <div class="box" style="border-left-color:var(--amber)">
+      <div class="lbl" style="color:var(--amber)">EVALUACIÓN DE LA UNIDAD</div>
+      <p style="margin-bottom:0">Esta unidad se evalúa con la <strong>Prueba</strong> y la entrega de una pieza local con datos verificados y atribución correcta. El <strong>Examen Integrador</strong> de JRN-1006 corresponde a la Unidad 4.</p>
+    </div>
+  </section>
+
+  <section id="ter">
+    <h3>Términos clave de la unidad</h3>
+    <p style="font-size:.88rem">Doce términos con su fuente. Todos aparecen en las diapositivas y entran en el examen integrador.</p>
+    <div class="terms" id="terms"></div>
+  </section>
+
+  <section id="dia">
+    <div class="pager"><div class="plabel" style="color:var(--green)" id="sLabel"></div><div class="ptitle" id="sTitle"></div><div class="pnums" id="sNums"></div></div>
+    <div id="slidesBody"></div>
+    <div id="slidesSrc" hidden>
+    <h3>Qué está establecido y qué se discute</h3>
+    <p>El primer trabajo de quien cubre clima es saber con precisión dónde termina lo establecido y dónde empieza el debate legítimo, porque los dos errores de esta cobertura consisten en cruzar esa línea en una dirección o en la otra.</p>
+    <p>Está establecido que la temperatura media global ha aumentado, que ese aumento se debe a la actividad humana y que sus efectos ya son observables. El sexto informe de evaluación del IPCC, en su contribución del grupo de trabajo I publicada en 2021, lo formula sin ambigüedad: es inequívoco que la influencia humana ha calentado la atmósfera, el océano y la tierra. Esa formulación es el resultado de evaluar miles de estudios y no la opinión de un panel.</p>
+    <p>Y hay mucho que se discute legítimamente: la sensibilidad exacta del sistema climático, la velocidad de determinados procesos, el comportamiento de los puntos de inflexión, la magnitud de los impactos regionales y, sobre todo, qué hacer al respecto, que es una discusión política y económica donde caben posiciones distintas con los mismos datos.</p>
+    <p>Presentar como abierta la primera cuestión desinforma; presentar como cerrada la segunda convierte al periodista en portavoz de una posición política concreta. La cobertura precisa distingue explícitamente ambos planos y sitúa cada afirmación en el que le corresponde, lo que además protege frente a la acusación de activismo, que es la vía habitual para descalificar la información climática.</p>
+    <div class="ej"><b>PRINCIPIO OPERATIVO</b>Antes de escribir, clasifica cada afirmación: hecho establecido, incertidumbre científica real o decisión política. Mezclarlas en un mismo párrafo es lo que permite descalificar el conjunto.</div>
+
+    <h3>Cómo leer un informe del IPCC</h3>
+    <p>El IPCC no investiga: evalúa. Cada ciclo, cientos de autores revisan la literatura publicada y producen informes por grupos de trabajo —bases físicas, impactos y adaptación, mitigación—, con miles de comentarios de revisión que se publican junto a las respuestas. El documento más citado, el resumen para responsables de políticas, se aprueba línea a línea con participación de los gobiernos, lo que introduce un componente de negociación sobre la redacción que conviene conocer.</p>
+    <p>Ese proceso tiene dos consecuencias para el periodista. La primera es que los informes son conservadores por construcción: al exigir consenso amplio, tienden a reflejar el extremo prudente de la literatura, de modo que los hallazgos más recientes o más alarmantes suelen quedar fuera o matizados. La segunda es que el lenguaje está calibrado: expresiones como <em>probable</em>, <em>muy probable</em> o <em>prácticamente cierto</em> corresponden a rangos de probabilidad definidos en el propio informe, y traducirlas por sinónimos coloquiales destruye información.</p>
+    <p>La lectura útil no empieza por el resumen de prensa sino por el resumen para responsables de políticas, y cuando el asunto lo justifica, por el capítulo correspondiente, donde están los matices y las incertidumbres declaradas. Los informes incluyen además tablas de niveles de confianza que permiten citar con precisión.</p>
+    <p>Conviene también saber qué no hace el IPCC: no recomienda políticas concretas ni prescribe soluciones. Atribuirle recomendaciones que no formula es un error frecuente y facilita la acusación de que el organismo es un actor político.</p>
+    <div class="ej"><b>MÉTODO</b>Cita el nivel de confianza tal como aparece en el informe y no lo traduzcas por adverbios propios. «Muy probable» tiene un rango numérico definido; «casi seguro» no significa lo mismo y no está en el documento.</div>
+
+    <h3>Tiempo, clima y atribución</h3>
+    <p>Una ola de calor no demuestra el cambio climático y un invierno frío no lo refuta. El clima es la distribución estadística de las condiciones a lo largo de décadas; el tiempo es lo que ocurre un día concreto. Confundirlos es el error más elemental y el más explotado en las dos direcciones.</p>
+    <p>La ciencia de atribución permite hoy ir más allá de esa cautela clásica. Combinando observaciones con simulaciones de un mundo sin influencia humana, es posible estimar en qué medida el cambio climático alteró la probabilidad o la intensidad de un fenómeno concreto. La iniciativa World Weather Attribution, activa desde 2015, publica análisis de este tipo en semanas y difunde su metodología junto a cada resultado.</p>
+    <p>El resultado de un estudio de atribución tiene una forma característica que conviene reproducir con exactitud: no dice que el cambio climático causó el evento, sino que lo hizo, por ejemplo, cierto número de veces más probable, o cierta magnitud más intenso, con un rango de incertidumbre. Y no todos los fenómenos son igualmente atribuibles: las olas de calor lo son con alta confianza, y otros como las sequías o los ciclones presentan más dificultades metodológicas.</p>
+    <p>Para el periodismo local esto cambia lo que se puede escribir: permite vincular un episodio concreto con el fenómeno global sin caer en la generalización, siempre que se cite el estudio, su rango y su fecha, y que se distinga entre estudios revisados y análisis rápidos aún no publicados.</p>
+    <div class="ej"><b>REGLA</b>No escribas «este incendio lo causó el cambio climático». Escribe qué dice el estudio de atribución: cuántas veces más probable o cuánto más intenso, con su rango, o reconoce que aún no hay análisis para ese evento.</div>
+
+    <h3>Escenarios y proyecciones</h3>
+    <p>Las cifras de calentamiento futuro no son predicciones: son proyecciones condicionadas a supuestos sobre emisiones, población, tecnología y políticas. Los informes trabajan con conjuntos de escenarios que abarcan desde trayectorias de emisiones muy bajas hasta trayectorias muy altas, y cada resultado va asociado a uno de ellos.</p>
+    <p>El error habitual consiste en publicar la cifra de un escenario extremo como si fuera lo que va a ocurrir, o en presentar la de un escenario optimista como si estuviera garantizada. Ambas cosas producen desinformación y, con el tiempo, descrédito: cuando la proyección no se cumple porque el escenario asociado no se materializó, el público concluye que la ciencia falló.</p>
+    <p>La formulación correcta explicita siempre la condición: cuánto calentamiento en qué horizonte y bajo qué supuesto de emisiones. Esa frase es más larga y es la que permite entender que el resultado depende de decisiones que aún no se han tomado, que es precisamente la información relevante para el público.</p>
+    <p>Conviene además distinguir entre incertidumbre de escenario —qué haremos— e incertidumbre científica —cómo responde el sistema—, porque se comunican de forma distinta. La primera depende de decisiones humanas; la segunda se expresa en rangos y niveles de confianza y se reduce con más investigación.</p>
+    <div class="ej"><b>REGLA DE REDACCIÓN</b>Ninguna cifra de calentamiento futuro sin su escenario y su horizonte temporal. «Tres grados» no significa nada; «unos tres grados hacia final de siglo bajo un escenario de emisiones altas» sí.</div>
+
+    <h3>Del negacionismo al retraso</h3>
+    <p>La estrategia de fabricar incertidumbre sobre un consenso científico tiene una historia documentada. El trabajo de Naomi Oreskes y Erik Conway describió cómo un conjunto reducido de actores replicó, en asuntos sucesivos, un mismo patrón: no negar frontalmente la evidencia sino sostener que la ciencia no está resuelta y que conviene esperar.</p>
+    <p>En clima, la investigación académica ha documentado además la distancia entre lo que algunas compañías energéticas conocían internamente y lo que comunicaban en público. Un análisis publicado en <em>Science</em> en 2023 por Geoffrey Supran, Stefan Rahmstorf y Naomi Oreskes evaluó las proyecciones climáticas elaboradas internamente por Exxon entre los años setenta y noventa y concluyó que eran notablemente precisas, en contraste con los mensajes públicos de la compañía en aquel período.</p>
+    <p>Hoy la negación explícita ha perdido peso y ha sido sustituida por argumentos de retraso: que las medidas son inasumibles, que el esfuerzo propio es irrelevante frente al de otros países, que la tecnología futura lo resolverá o que las soluciones perjudican más que el problema. Son argumentos con contenido discutible y legítimo en parte, y su tratamiento periodístico exige distinguir el dato del marco.</p>
+    <p>La cobertura precisa no consiste en descalificar a quien sostiene esas posiciones sino en comprobar sus afirmaciones factuales —costes, plazos, comparaciones entre países— con la misma exigencia que se aplica a cualquier otra fuente, y en declarar los intereses económicos implicados, como exige la Unidad 4 de JRN-1004.</p>
+    <div class="ej"><b>CRITERIO</b>Trata los argumentos de retraso como afirmaciones verificables: cuánto cuesta, en qué plazo, comparado con qué. Y declara siempre el interés económico de quien las sostiene, igual que en cualquier otro asunto.</div>
+
+    <h3>Falso equilibrio</h3>
+    <p>Durante décadas, la cobertura del clima incurrió sistemáticamente en el falso equilibrio: presentar la posición del consenso científico y la de quienes lo negaban como dos caras de un debate abierto. Un análisis de Maxwell Boykoff y Jules Boykoff publicado en 2004 examinó la cobertura de la prensa estadounidense de referencia durante más de una década y encontró que una mayoría sustancial de los artículos ofrecía ese tratamiento equilibrado, en contraste con el estado de la literatura científica.</p>
+    <p>El mecanismo es instructivo porque el sesgo no procedía de una posición ideológica sino de una norma profesional bien intencionada: dar voz a las dos partes. Aplicada a una cuestión con evidencia asimétrica, esa norma produce una imagen falsa del conocimiento disponible, y es el mismo problema descrito en la Unidad 1 de este curso.</p>
+    <p>La corrección no consiste en excluir la discrepancia sino en ponderarla: indicar cuánta parte de la comunidad científica sostiene cada posición y con qué respaldo empírico. Y en trasladar el equilibrio al lugar donde sí hay debate real, que es el de las políticas: ahí sí existen posiciones legítimas enfrentadas y contrastarlas es exactamente el trabajo periodístico.</p>
+    <p>Conviene además vigilar una versión más sutil del mismo problema: el equilibrio en la selección de fuentes técnicas. Convocar a un climatólogo y a un economista crítico con las políticas climáticas no es equilibrio si se presenta como discusión sobre la ciencia, porque están respondiendo a preguntas distintas.</p>
+    <div class="ej"><b>REGLA</b>Equilibra donde hay debate: en las políticas. En la descripción del fenómeno, la proporción de la evidencia es el criterio, y presentarla al cincuenta por ciento es desinformar con formato de neutralidad.</div>
+
+    <h3>Datos ambientales y sus lagunas</h3>
+    <p>El periodismo ambiental trabaja con datos que suelen tener tres problemas: cobertura desigual, definiciones cambiantes y titularidad interesada. Conviene identificarlos antes de construir una pieza sobre ellos, con los criterios de la Unidad 1 de JRN-1002.</p>
+    <p>Las series climáticas de referencia son sólidas y públicas: la curva de dióxido de carbono iniciada en 1958 en Mauna Loa, los registros de temperatura de varias agencias independientes que coinciden en la tendencia, y los datos satelitales desde los años setenta. Frente a ellas, muchos datos ambientales locales —vertidos, emisiones industriales, calidad del agua, biodiversidad— dependen de sistemas de declaración de los propios emisores y de redes de medición con cobertura irregular.</p>
+    <p>Hay además un ámbito que exige verificación específica: los compromisos corporativos de neutralidad. Detrás de una misma etiqueta caben planes muy distintos, y la comprobación pasa por preguntar qué emisiones se cuentan —incluidas las de la cadena de valor—, qué parte se reduce y qué parte se compensa, con qué proyectos y con qué verificación independiente.</p>
+    <p>Las compensaciones merecen atención propia. Su calidad depende de que el beneficio sea adicional —no habría ocurrido igualmente—, permanente y no contabilizado dos veces, condiciones que numerosas investigaciones periodísticas y académicas han cuestionado en proyectos concretos. Ese es un terreno donde el periodismo de datos y el documental de la Unidad 3 de JRN-1003 se aplican con naturalidad.</p>
+    <div class="ej"><b>COMPROBACIÓN</b>Ante un compromiso de neutralidad, pregunta qué alcance de emisiones cubre, qué porcentaje se reduce frente a lo que se compensa, con qué proyectos y quién lo verifica. Sin esas cuatro respuestas, el anuncio no es información.</div>
+
+    <h3>Contaminación, salud y umbrales</h3>
+    <p>La contaminación atmosférica conecta el asunto ambiental con el sanitario y permite una cobertura local muy concreta. Su marco de referencia son las guías de calidad del aire de la Organización Mundial de la Salud, revisadas en 2021 con umbrales sustancialmente más estrictos que los anteriores a partir de la evidencia acumulada sobre efectos en salud.</p>
+    <p>El punto que conviene explicar con precisión es que esos umbrales no separan lo seguro de lo peligroso. Para varios contaminantes no se ha identificado un nivel por debajo del cual no haya efecto, de modo que las guías señalan objetivos de reducción y no fronteras de seguridad. Titular que una ciudad «cumple los límites» sin esa aclaración transmite una tranquilidad que la evidencia no respalda.</p>
+    <p>Conviene además distinguir entre las guías de la OMS, que son recomendaciones sanitarias, y los valores límite legales de cada jurisdicción, que suelen ser menos exigentes y responden a un equilibrio entre salud, viabilidad técnica y coste. Comparar una medición con la norma legal y presentarla como conforme a la recomendación sanitaria es un error frecuente.</p>
+    <p>La cobertura útil combina tres elementos: la medición local con su estación y su período, la comparación con ambas referencias, y la traducción a efectos en salud con las cifras absolutas de la Unidad 2 de este curso, evitando tanto la alarma como la minimización.</p>
+    <div class="ej"><b>PRECISIÓN</b>Distingue siempre entre la guía sanitaria de la OMS y el límite legal aplicable. Cumplir la ley y cumplir la recomendación sanitaria son dos cosas distintas, y la diferencia suele ser la noticia.</div>
+
+    <h3>Impactos locales y reparto desigual</h3>
+    <p>El asunto climático se percibe como global y abstracto, y su cobertura funciona mejor cuando desciende a lo concreto: qué cambia en un lugar determinado, quién lo sufre primero y qué decisiones están sobre la mesa. Esa escala es también donde el periodismo local tiene ventaja sobre cualquier medio internacional.</p>
+    <p>Tres ángulos suelen ser productivos. Los <strong>impactos observables</strong>: cambios en temporadas agrícolas, disponibilidad de agua, retroceso de costa, incidencia de plagas o de enfermedades transmitidas por vectores. La <strong>adaptación</strong>: qué planes existen, con qué presupuesto, con qué plazos y quién los ejecuta, que es un asunto de rendición de cuentas más que de ciencia. Y la <strong>distribución</strong>: quién soporta los efectos y quién asume los costes de las medidas, que casi nunca son los mismos.</p>
+    <p>La dimensión distributiva es la que convierte una pieza ambiental en periodismo social. Los impactos se concentran en poblaciones con menos capacidad de protegerse —viviendas peor aisladas, trabajos a la intemperie, zonas con menos arbolado, países con menos recursos de adaptación— y esa desigualdad es documentable con datos locales.</p>
+    <p>Conviene por último resistir la tentación de la pieza catastrófica indiferenciada. Describir el impacto con precisión, situarlo en el tiempo y explicar qué decisiones lo modificarían informa mucho más que la acumulación de escenarios extremos, que produce el efecto contrario al buscado.</p>
+    <div class="ej"><b>MÉTODO</b>Baja a la escala local: qué cambia aquí, para quién y qué decisión está pendiente. Es donde el asunto deja de ser abstracto y donde hay rendición de cuentas que exigir.</div>
+
+    <h3>Escribir clima sin fatalismo</h3>
+    <p>La investigación en comunicación coincide en que el mensaje puramente catastrófico produce desconexión: quien concluye que nada puede hacerse deja de prestar atención. Y el mensaje complaciente produce inacción por la razón contraria. Entre ambos hay un espacio informativo que es el que corresponde al periodismo.</p>
+    <p>Tres criterios prácticos ayudan a situarse en él. <strong>Precisión sobre la magnitud</strong>: decir cuánto, en qué plazo y con qué incertidumbre, en lugar de adjetivos. <strong>Agencia</strong>: explicar qué decisiones concretas modifican el resultado y quién las toma, porque la información sobre responsabilidad es lo que convierte un fenómeno en un asunto público. Y <strong>especificidad</strong>: un impacto concreto en un lugar concreto se entiende mejor que una proyección global.</p>
+    <p>Conviene además cuidar el vocabulario. Términos como «catástrofe» o «colapso» tienen significados técnicos en algunos contextos y funcionan como valoración en otros; usarlos sin precisión desplaza la pieza del terreno informativo al persuasivo y da argumentos a quien quiera descalificarla.</p>
+    <p>Y hay una obligación de continuidad: el clima no es un tema de temporada. La cobertura sostenida —seguimiento de compromisos, verificación de plazos, evaluación de planes de adaptación— informa mucho más que los picos de atención asociados a cumbres internacionales o a fenómenos extremos, y es donde el periodismo aporta lo que ningún otro actor aporta.</p>
+    <div class="ej"><b>REGLA FINAL</b>Precisión, agencia y escala local. Ni catástrofe indiferenciada ni tranquilidad: cuánto, para quién, en qué plazo y qué decisión lo cambia.</div>
+    </div>
+  </section>
+
+  <section id="cas">
+    <div class="pager"><div class="plabel amber" id="cLabel"></div><div class="ptitle" id="cTitle"></div><div class="pnums" id="cNums"></div></div>
+    <div id="cases"></div>
+  </section>
+  <section id="rol">
+    <div class="pager"><div class="plabel blue" id="rLabel"></div><div class="ptitle" id="rTitle"></div><div class="pnums" id="rNums"></div></div>
+    <div id="roles"></div>
+  </section>
+
+  <section id="ent">
+    <h3>Entrevista simulada</h3>
+    <div class="box">
+      <div class="lbl">ESCENARIO</div>
+      <p>Entrevista al responsable de sostenibilidad de una empresa que anuncia neutralidad de carbono para 2035. El plan se apoya mayoritariamente en compensaciones y no detalla el alcance de emisiones que cubre.</p>
+      <p style="margin-bottom:0"><strong>Restricciones.</strong> No puedes afirmar que el plan es falso: no lo sabes todavía. Cada pregunta debe apuntar a un dato verificable del compromiso. Si aporta documentación que lo sostiene, tienes que poder reconocerlo.</p>
+    </div>
+    <div id="iv"></div>
+  </section>
+
+  <section id="pru">
+    <h3>Prueba de la unidad</h3>
+    <p style="font-size:.88rem">Veintidós ejercicios en cuatro bloques. Si fallas, se te explica por qué esa opción concreta es incorrecta y puedes volver a intentarlo cuantas veces necesites. El ejercicio no avanza hasta que aciertas.</p>
+    <div class="score" id="score">RESUELTOS 0 / 22 · ACIERTOS AL PRIMER INTENTO 0</div>
+    <div id="quiz"></div>
+
+    <h3>Entrega práctica</h3>
+    <div class="case"><span class="tag">PIEZA LOCAL CON DATOS · OBLIGATORIA</span>
+      <p>Produce una pieza sobre un impacto climático o ambiental en tu territorio. Entrega: la serie de datos utilizada con su fuente, su cobertura temporal y sus lagunas; la distinción explícita entre lo establecido, la incertidumbre científica y la decisión política; el uso correcto de la atribución, citando estudio y rango si existe o declarando su ausencia; la comparación entre guía sanitaria y límite legal cuando proceda; el análisis distributivo de quién sufre el impacto y quién asume los costes; y el texto final de quinientas palabras.</p>
+      <button class="reveal">Ver criterios de calificación</button>
+      <div class="model"><b>CRITERIOS</b>Datos con fuente, cobertura y lagunas declaradas (25%) · Separación explícita entre hecho, incertidumbre y decisión política (25%) · Uso correcto de la atribución o declaración de su ausencia (20%) · Análisis distributivo con datos locales (20%) · Redacción con magnitud, plazo y agencia, sin adjetivación catastrofista (10%). Una pieza que atribuya un fenómeno concreto al cambio climático sin estudio de atribución no aprueba.</div>
+    </div>
+  </section>
+
+  <section id="aud">
+    <h3>Auditoría de fuentes de la Unidad 3</h3>
+    <p>Cada afirmación sustantiva de la unidad con su fuente y su estado de comprobación.</p>
+    <div class="row" style="margin-bottom:16px"><span class="pill v">VERIFICADA</span><span class="hint">contrastada contra fuente externa publicada</span></div>
+    <div class="row" style="margin-bottom:16px"><span class="pill b">BIBLIOGRAFÍA</span><span class="hint">atribuida a los textos obligatorios o práctica establecida</span></div>
+    <div class="row" style="margin-bottom:24px"><span class="pill p">PENDIENTE</span><span class="hint">redactada sin precisión falsa, aún sin contraste documental primario</span></div>
+    <div id="audit"></div>
+  </section>
+
+  <footer>
+    Certificado Universitario en Comunicación Social y Periodismo de Investigación · Uso educativo y profesional<br>
+    <a href="jrn1006-u2.html">← Unidad 2: Salud, Medicina y Jerarquía de la Evidencia</a>
+  </footer>
+</main>
+</div>
+
+<script>
+
+const TERMS=[
+ {t:"Tiempo y Clima",d:"El tiempo es lo que ocurre un día concreto; el clima es la distribución estadística de las condiciones a lo largo de décadas. Confundirlos es el error más elemental de esta cobertura.",s:"Meteorología y climatología establecidas"},
+ {t:"Atribución",d:"Estimación de en qué medida el cambio climático alteró la probabilidad o la intensidad de un fenómeno concreto, con su rango de incertidumbre.",s:"World Weather Attribution"},
+ {t:"Escenario de Emisiones",d:"Trayectoria hipotética de emisiones futuras que condiciona una proyección. Ninguna cifra de calentamiento futuro significa nada sin su escenario asociado.",s:"IPCC · informes de evaluación"},
+ {t:"Proyección",d:"Resultado condicionado a un escenario, no una predicción. Publicar la cifra sin la condición produce descrédito cuando el escenario no se materializa.",s:"IPCC · práctica establecida"},
+ {t:"Lenguaje Calibrado",d:"Sistema del IPCC que asigna rangos numéricos de probabilidad a expresiones como «probable» o «muy probable». Traducirlas por sinónimos coloquiales destruye información.",s:"IPCC, guía de incertidumbres"},
+ {t:"Punto de Inflexión",d:"Umbral a partir del cual un componente del sistema climático cambia de estado de forma difícilmente reversible. Su localización exacta es objeto de investigación activa.",s:"Literatura climática · IPCC"},
+ {t:"Curva de Keeling",d:"Serie continua de mediciones de dióxido de carbono atmosférico iniciada en 1958 en Mauna Loa. Registro instrumental de referencia sobre su acumulación.",s:"Scripps Institution of Oceanography · NOAA"},
+ {t:"Argumento de Retraso",d:"Posición que acepta el fenómeno y cuestiona la urgencia o la viabilidad de actuar. Sustituyó en buena medida a la negación explícita.",s:"Oreskes y Conway · literatura sobre discurso climático"},
+ {t:"Falso Equilibrio",d:"Presentación del consenso y de su negación como dos caras de un debate abierto. Documentado en la cobertura de referencia durante décadas.",s:"Boykoff y Boykoff, 2004"},
+ {t:"Alcance de Emisiones",d:"Clasificación de las emisiones de una organización según sean directas, asociadas a la energía comprada o generadas en su cadena de valor. Determina qué cubre realmente un compromiso.",s:"Estándares de contabilidad de emisiones"},
+ {t:"Adicionalidad",d:"Condición de que la reducción compensada no habría ocurrido de todos modos. Junto con la permanencia y la no doble contabilidad, determina la calidad de una compensación.",s:"Estándares de compensación · literatura crítica"},
+ {t:"Guía frente a Límite Legal",d:"Las recomendaciones sanitarias de la OMS y los valores límite normativos son distintos: cumplir la ley no equivale a cumplir la recomendación de salud.",s:"OMS, Global Air Quality Guidelines, 2021"}
+];
+
+const CASES=[
+ {tag:"CASO 1 · IPCC · 2021",t:"Cómo se formula lo establecido",
+  d:"La contribución del grupo de trabajo I al sexto informe de evaluación del IPCC, publicada en 2021, afirma que es inequívoco que la influencia humana ha calentado la atmósfera, el océano y la tierra. El informe evalúa miles de estudios publicados, se somete a rondas de revisión abierta con miles de comentarios y su resumen para responsables de políticas se aprueba línea a línea con participación de los gobiernos. El documento emplea además un sistema de lenguaje calibrado en el que expresiones como probable o muy probable corresponden a rangos numéricos de probabilidad definidos en el propio texto.",
+  ej:"La formulación es tan contundente precisamente porque el procedimiento es conservador: para que un enunciado llegue a esa redacción, la evidencia tiene que ser abrumadora y sobrevivir a una negociación línea a línea.",
+  p:["¿Por qué el proceso hace los informes conservadores?","¿Qué implica que los gobiernos aprueben el resumen?","¿Cómo se citan los niveles de confianza?"],
+  m:"Los hace conservadores porque exigir consenso amplio empuja hacia el extremo prudente de la literatura: los hallazgos más recientes o más extremos quedan matizados o fuera, de modo que el informe suele quedarse por detrás de la investigación puntera. Que los gobiernos aprueben el resumen introduce negociación sobre la redacción, lo que conviene conocer para leer con precisión y para no atribuir al informe recomendaciones políticas que no formula. Los niveles de confianza se citan tal como aparecen, con su expresión exacta y sin traducirlos por adverbios propios, porque cada una corresponde a un rango definido y sustituirla destruye la información que aporta.",
+  k:"El IPCC evalúa, no investiga, y su procedimiento tiende a lo conservador. Cuando afirma algo sin matices, es porque la evidencia no deja margen."},
+
+ {tag:"CASO 2 · WORLD WEATHER ATTRIBUTION · DESDE 2015",t:"Atribuir un evento concreto",
+  d:"La iniciativa World Weather Attribution reúne desde 2015 a investigadores de varias instituciones para analizar, en cuestión de semanas, en qué medida el cambio climático alteró la probabilidad o la intensidad de un fenómeno extremo concreto. El método combina observaciones históricas con simulaciones de un mundo sin influencia humana, y sus resultados se expresan como un factor de aumento de probabilidad o de intensidad, con rango de incertidumbre. La iniciativa publica la metodología junto a cada análisis, y sus estudios rápidos se someten después a revisión formal.",
+  ej:"El resultado no dice que el cambio climático causó el evento: dice cuánto más probable o más intenso lo hizo. Reproducir esa formulación con exactitud es lo que distingue una pieza rigurosa de una atribución simplificada.",
+  p:["¿Qué fenómenos se atribuyen con más confianza?","¿Cómo se cita un análisis rápido aún no revisado?","¿Qué aporta esto al periodismo local?"],
+  m:"Las olas de calor se atribuyen con alta confianza porque la relación con la temperatura media es directa y las simulaciones las reproducen bien, mientras que sequías, ciclones y precipitaciones extremas presentan más dificultades metodológicas y sus resultados suelen tener rangos más amplios. Un análisis rápido se cita indicando que aún no ha pasado revisión formal, con la misma cautela que un preprint según la Unidad 1 de este curso, y comprometiéndose al seguimiento. Para el periodismo local aporta la posibilidad de vincular un episodio concreto con el fenómeno global sin generalizar, lo que convierte una cobertura meteorológica en una pieza climática con base científica.",
+  k:"La atribución permite hablar del evento concreto sin generalizar, siempre que se reproduzca el resultado con su factor, su rango y su estado de revisión."},
+
+ {tag:"CASO 3 · SCIENCE · 2023",t:"Lo que se sabía y lo que se decía",
+  d:"Un análisis publicado en <em>Science</em> en 2023 por Geoffrey Supran, Stefan Rahmstorf y Naomi Oreskes evaluó las proyecciones climáticas elaboradas internamente por científicos de Exxon entre los años setenta y noventa, comparándolas con la evolución posterior de las temperaturas. El trabajo concluyó que aquellas proyecciones internas eran notablemente precisas y coherentes con las de la ciencia académica de la época, en contraste con los mensajes públicos de la compañía en ese mismo período, que subrayaban la incertidumbre del conocimiento climático.",
+  ej:"El caso ilustra un patrón más amplio descrito en la literatura sobre fabricación de incertidumbre: la estrategia no consiste en negar la evidencia sino en sostener que la ciencia no está resuelta y que conviene esperar.",
+  p:["¿Qué convierte esto en periodismo de investigación y no solo en historia?","¿Cómo se documenta una discrepancia de este tipo?","¿Qué implica para la cobertura actual?"],
+  m:"Lo convierte en investigación que existe documentación interna contrastable con declaraciones públicas fechadas, es decir, dos series de documentos que pueden compararse con los métodos de la Unidad 3 de JRN-1003. Se documenta reuniendo los materiales internos —informes técnicos, actas, correspondencia—, las comunicaciones públicas del mismo período y una evaluación técnica independiente de la calidad de las proyecciones, y publicando la comparación con la cronología. Para la cobertura actual implica aplicar el mismo escrutinio a los compromisos presentes: comparar lo que las organizaciones declaran públicamente con lo que sus documentos internos, sus inversiones y sus actividades de presión indican.",
+  k:"La comparación entre lo que una organización sabía internamente y lo que decía en público es una estructura de investigación replicable, no un caso aislado."},
+
+ {tag:"CASO 4 · BOYKOFF Y BOYKOFF · 2004",t:"El equilibrio como sesgo",
+  d:"Maxwell Boykoff y Jules Boykoff publicaron en 2004 un análisis de la cobertura del cambio climático en la prensa estadounidense de referencia durante más de una década. Aplicando análisis de contenido, encontraron que una mayoría sustancial de los artículos presentaba de forma equilibrada la posición del consenso científico y la de quienes lo cuestionaban, en contraste con el estado de la literatura científica revisada por pares del mismo período. Los autores caracterizaron ese resultado como un sesgo producido por la aplicación mecánica de la norma de equilibrio.",
+  ej:"El sesgo no procedía de una posición ideológica sino de una buena práctica profesional mal aplicada: dar voz a las dos partes en una cuestión con evidencia asimétrica produce una imagen falsa del conocimiento.",
+  p:["¿Cómo se corrige sin excluir la discrepancia?","¿Dónde debe situarse el equilibrio?","¿Qué versión sutil del problema persiste hoy?"],
+  m:"Se corrige ponderando: indicar cuánta parte de la comunidad científica sostiene cada posición y con qué respaldo empírico, de modo que la discrepancia aparece situada en lugar de igualada. El equilibrio debe trasladarse al terreno donde existe debate real —las políticas—, donde contrastar posiciones enfrentadas es exactamente el trabajo periodístico y donde la exigencia de pluralidad está plenamente justificada. La versión sutil que persiste consiste en enfrentar a especialistas que responden a preguntas distintas, como un climatólogo y un economista crítico con las políticas, presentando el intercambio como una discusión sobre la ciencia.",
+  k:"La norma de equilibrio, aplicada a evidencia asimétrica, desinforma. El equilibrio va donde hay debate: en qué hacer, no en qué ocurre."},
+
+ {tag:"CASO 5 · MAUNA LOA · DESDE 1958",t:"La serie que lo hizo visible",
+  d:"En 1958, Charles David Keeling inició en el observatorio de Mauna Loa, en Hawái, una serie continua de mediciones de la concentración de dióxido de carbono en la atmósfera. La serie, mantenida desde entonces por la Scripps Institution of Oceanography y por la agencia oceánica y atmosférica estadounidense, muestra dos patrones superpuestos: una oscilación estacional asociada al ciclo de la vegetación del hemisferio norte y una tendencia ascendente sostenida a lo largo de las décadas.",
+  ej:"Es uno de los conjuntos de datos más citados de la ciencia contemporánea y su valor deriva de una decisión metodológica: medir lo mismo, en el mismo sitio, con el mismo método, durante décadas.",
+  p:["¿Por qué una serie larga vale más que muchas mediciones dispersas?","¿Qué explica la oscilación anual?","¿Cómo se usa en una pieza sin caer en el gráfico decorativo?"],
+  m:"Porque la comparabilidad exige constancia de método y de lugar: una serie continua permite distinguir la tendencia del ruido, mientras que mediciones dispersas con métodos distintos no son comparables entre sí, que es el problema de la Unidad 2 de JRN-1002. La oscilación anual refleja el ciclo de la vegetación del hemisferio norte, que absorbe dióxido de carbono en primavera y verano y lo libera en otoño e invierno, y su regularidad es precisamente lo que permite ver con claridad la tendencia subyacente. Se usa bien cuando el gráfico responde a una pregunta de la pieza —desde cuándo, a qué ritmo, comparado con qué— y no cuando ilustra genéricamente el asunto.",
+  k:"El valor de la serie está en la constancia del método durante décadas. Sin esa constancia, más datos no producen mejor conocimiento."},
+
+ {tag:"CASO 6 · OMS · 2021",t:"Cuando el umbral no separa seguro de peligroso",
+  d:"En 2021 la Organización Mundial de la Salud revisó sus guías mundiales de calidad del aire y estableció valores recomendados sustancialmente más estrictos que los de la versión anterior, a partir de la evidencia acumulada sobre efectos en salud a concentraciones bajas. Las guías señalan que para varios contaminantes no se ha identificado un umbral por debajo del cual no se observen efectos, de modo que los valores propuestos son objetivos de reducción y no fronteras entre lo seguro y lo peligroso. Los límites legales vigentes en muchas jurisdicciones son menos exigentes que esas recomendaciones.",
+  ej:"La distinción entre guía sanitaria y límite legal es la que decide si un titular informa o tranquiliza sin fundamento. Cumplir la norma no equivale a cumplir la recomendación de salud.",
+  p:["¿Por qué los límites legales son menos exigentes?","¿Cómo se informa de una medición local?","¿Qué añade la traducción a efectos en salud?"],
+  m:"Porque los valores legales resultan de un equilibrio entre protección de la salud, viabilidad técnica y coste económico, mientras que las guías sanitarias expresan únicamente lo que la evidencia recomienda desde el punto de vista de la salud. Una medición local se informa con su estación, su período y su método, comparada con ambas referencias, y explicando qué significa la diferencia entre ambas. La traducción a efectos en salud, con las cifras absolutas de la Unidad 2 de este curso, es lo que convierte un dato técnico en información utilizable, siempre que se evite tanto la alarma como la minimización.",
+  k:"Un umbral recomendado no separa lo seguro de lo peligroso: marca un objetivo. Y cumplir el límite legal no equivale a cumplir la recomendación sanitaria."}
+];
+
+const ROLES=[
+ {tag:"ESCENARIO 1",t:"La ola de calor y el titular",
+  d:"Una ola de calor bate récords. El editor quiere titular que es consecuencia del cambio climático. Aún no hay estudio de atribución.",
+  r:"Reportera · Editor · Climatóloga consultada",
+  ej:"<span class='who'>EDITOR:</span> Es evidente, con este calor.<br><span class='who'>REPORTERA:</span> Lo probable es que el estudio lo confirme, y todavía no existe.<br><span class='who'>CLIMATÓLOGA:</span> Podéis decir que este tipo de episodios se ha hecho más frecuente e intenso.<br><span class='who'>REPORTERA:</span> Eso sí está establecido y es lo que publicamos.",
+  m:"La distinción entre tendencia y evento concreto se resuelve con precisión de lenguaje: está establecido que las olas de calor se han hecho más frecuentes e intensas, y la atribución de un episodio determinado requiere un análisis específico. Publicar lo primero es riguroso; afirmar lo segundo sin estudio es una generalización que después se usa para descalificar toda la cobertura. Si el análisis llega días más tarde, se publica con su factor y su rango, y se enlaza con la pieza inicial, que es la práctica de seguimiento que la Unidad 1 exige para resultados provisionales.",
+  c:"Publicar lo que está establecido sin afirmar lo que aún no se ha analizado, ofreciendo la formulación exacta."},
+
+ {tag:"ESCENARIO 2",t:"El escenario extremo como titular",
+  d:"Un informe recoge proyecciones bajo varios escenarios. La cifra más alta corresponde a un escenario de emisiones muy elevadas.",
+  r:"Reportera · Redactor de titulares · Editora",
+  ej:"<span class='who'>TITULARES:</span> Cuatro grados es el titular.<br><span class='who'>REPORTERA:</span> Cuatro grados bajo un escenario que hoy se considera poco probable.<br><span class='who'>TITULARES:</span> El matiz no cabe.<br><span class='who'>EDITORA:</span> Entonces cambiamos la cifra, no quitamos el matiz.",
+  m:"Una proyección sin su escenario asociado no informa, y publicar la cifra extrema como si fuera lo esperable produce descrédito cuando no se materializa. La solución no es renunciar a titular con una cifra sino elegir la del escenario relevante —el más plausible con las políticas actuales— y explicar el rango en la entradilla. Conviene además distinguir la incertidumbre de escenario, que depende de decisiones humanas, de la científica, que se expresa en rangos: la primera es precisamente la información que da agencia al lector.",
+  c:"Negociar el titular cambiando la cifra en lugar de eliminando la condición que la hace verdadera."},
+
+ {tag:"ESCENARIO 3",t:"El debate de dos sillas",
+  d:"El programa propone enfrentar a una climatóloga con un divulgador que cuestiona el consenso, en formato de debate.",
+  r:"Reportera · Realizador · Editora",
+  ej:"<span class='who'>REALIZADOR:</span> Confrontamos las dos visiones.<br><span class='who'>REPORTERA:</span> No son dos visiones de la ciencia: una la sostiene la práctica totalidad de la literatura.<br><span class='who'>REALIZADOR:</span> ¿Y si el debate es sobre políticas?<br><span class='who'>REPORTERA:</span> Ahí sí, y ahí hace falta un economista, no un negacionista.",
+  m:"El formato de dos sillas comunica equivalencia de respaldo con independencia de lo que se diga, y aplicado a la descripción del fenómeno reproduce el sesgo documentado en 2004. La corrección consiste en trasladar el debate al terreno donde existe: qué medidas adoptar, con qué costes y con qué reparto, donde caben posiciones legítimas enfrentadas y donde el contraste es exactamente el trabajo periodístico. Y conviene comprobar que los intervinientes responden a la misma pregunta: enfrentar a un climatólogo con un economista sobre «la ciencia del clima» produce un intercambio incoherente.",
+  c:"Reconducir el formato hacia el debate real sin renunciar a la pluralidad."},
+
+ {tag:"ESCENARIO 4",t:"La neutralidad anunciada",
+  d:"Una empresa anuncia neutralidad de carbono para 2035. El plan se apoya mayoritariamente en compensaciones y no detalla el alcance de emisiones.",
+  r:"Reportera · Responsable de sostenibilidad · Editora",
+  ej:"<span class='who'>SOSTENIBILIDAD:</span> Seremos neutros en 2035.<br><span class='who'>REPORTERA:</span> ¿Qué alcance de emisiones cubre el compromiso?<br><span class='who'>SOSTENIBILIDAD:</span> Las operaciones propias.<br><span class='who'>REPORTERA:</span> ¿Y la cadena de valor, que suele ser la mayor parte?",
+  m:"Detrás de una misma etiqueta caben planes muy distintos, y la comprobación pasa por cuatro preguntas: qué alcance de emisiones cubre, qué porcentaje se reduce frente a lo que se compensa, con qué proyectos concretos y quién verifica el resultado. Las compensaciones exigen además comprobar adicionalidad, permanencia y ausencia de doble contabilidad, condiciones que investigaciones periodísticas y académicas han cuestionado en proyectos concretos. Sin esas respuestas, el anuncio no es información publicable como hecho, y su ausencia documentada es en sí misma la pieza.",
+  c:"Convertir un anuncio corporativo en un conjunto de preguntas verificables, sin descalificarlo de antemano."},
+
+ {tag:"ESCENARIO 5",t:"Cumple la ley",
+  d:"La ciudad publica que su calidad del aire cumple los límites legales. Las mediciones superan con holgura las recomendaciones sanitarias internacionales.",
+  r:"Reportera · Portavoz municipal · Salubrista consultada",
+  ej:"<span class='who'>PORTAVOZ:</span> Cumplimos la normativa vigente.<br><span class='who'>REPORTERA:</span> Y superan la recomendación sanitaria de la OMS. ¿Conocen la diferencia?<br><span class='who'>PORTAVOZ:</span> Nos regimos por la ley.<br><span class='who'>SALUBRISTA:</span> Que no coincide con lo que la evidencia recomienda.",
+  m:"La distinción entre límite legal y guía sanitaria es exacta y frecuentemente omitida: el primero resulta de un equilibrio entre salud, técnica y coste, y la segunda expresa lo que la evidencia recomienda desde el punto de vista de la salud. Informar solo del cumplimiento legal transmite una tranquilidad que la evidencia no respalda; informar solo de la superación de la guía sin explicar su naturaleza produce alarma. La pieza correcta da ambas referencias, explica la diferencia y traduce a efectos en salud con cifras absolutas.",
+  c:"Sostener una distinción técnica frente a una respuesta institucional formalmente correcta."},
+
+ {tag:"ESCENARIO 6",t:"La pieza que paraliza",
+  d:"El reportaje acumula escenarios extremos y cifras globales. En la revisión, nadie sabe decir qué se puede hacer ni quién decide.",
+  r:"Reportera · Editora · Defensora del lector",
+  ej:"<span class='who'>DEFENSORA:</span> Al terminar de leerlo, la sensación es que no hay nada que hacer.<br><span class='who'>REPORTERA:</span> Faltan las decisiones concretas y quién las toma.<br><span class='who'>EDITORA:</span> ¿Y sin eso qué informa?<br><span class='who'>REPORTERA:</span> Informa de que el mundo se acaba, que no es información.",
+  m:"El mensaje puramente catastrófico produce desconexión, y el complaciente inacción; entre ambos está el espacio informativo. Los tres criterios que lo definen son precisión sobre la magnitud —cuánto, en qué plazo, con qué incertidumbre—, agencia —qué decisiones modifican el resultado y quién las toma— y especificidad local, porque un impacto concreto se comprende mejor que una proyección global. Y conviene revisar el vocabulario: términos como colapso o catástrofe funcionan como valoración y desplazan la pieza del terreno informativo al persuasivo, dando argumentos a quien quiera descalificarla.",
+  c:"Reescribir una pieza técnicamente correcta que no informa, identificando qué le falta."}
+];
+
+const IV=[
+ {q:"¿Qué alcance de emisiones cubre exactamente su compromiso de neutralidad?",
+  m:"Distingue entre operaciones propias, energía comprada y cadena de valor, que suele ser la mayor parte del total."},
+ {q:"¿Qué porcentaje del objetivo se logra reduciendo y qué porcentaje compensando?",
+  m:"Separa la reducción real de la compensación, que es la distinción que el término neutralidad oculta."},
+ {q:"¿Con qué proyectos concretos se compensa y dónde están?",
+  m:"Permite comprobar adicionalidad, permanencia y doble contabilidad en proyectos identificables."},
+ {q:"¿Quién verifica el cumplimiento y con qué periodicidad?",
+  m:"La verificación independiente es lo que distingue un compromiso auditable de una declaración de intenciones."},
+ {q:"¿Qué objetivos intermedios tienen antes de 2035 y qué ocurre si no se cumplen?",
+  m:"Un compromiso a diez años sin hitos intermedios no es exigible mientras dure el mandato de quien lo anuncia."},
+ {q:"¿Han modificado sus inversiones o su actividad de presión en línea con ese compromiso?",
+  m:"Contrasta la declaración con la conducta, que es la comparación que produce las investigaciones más sólidas."},
+ {q:"¿Publicarán los datos de emisiones desagregados y en formato reutilizable?",
+  m:"Convierte la conversación en una petición concreta y comprobable, y su negativa es publicable."},
+ {q:"Si les enviamos por escrito estas preguntas, ¿se comprometen a responderlas?",
+  m:"Deja constancia documentada del intento antes de publicar, con la lógica de la Unidad 4 de JRN-1004."}
+];
+
+const AUDIT=[
+ ["v","La contribución del grupo de trabajo I al sexto informe de evaluación del IPCC, publicada en 2021, afirma que es inequívoco que la influencia humana ha calentado la atmósfera, el océano y la tierra.","IPCC, AR6 WGI, 2021, Resumen para responsables de políticas. Verificado."],
+ ["v","El IPCC evalúa literatura publicada en lugar de realizar investigación propia, somete sus borradores a revisión abierta y aprueba el resumen para responsables de políticas línea a línea con participación de los gobiernos; emplea además un sistema de lenguaje calibrado con rangos numéricos definidos.","IPCC, procedimientos y guía de incertidumbres. Verificado."],
+ ["v","La iniciativa World Weather Attribution analiza desde 2015 en qué medida el cambio climático alteró la probabilidad o la intensidad de fenómenos extremos concretos, y publica su metodología junto a cada análisis.","worldweatherattribution.org. Verificado."],
+ ["v","Un análisis publicado en <em>Science</em> en 2023 por Supran, Rahmstorf y Oreskes concluyó que las proyecciones climáticas elaboradas internamente por científicos de Exxon entre los años setenta y noventa eran notablemente precisas, en contraste con los mensajes públicos de la compañía en ese período.","Science, 2023. Verificado."],
+ ["v","Boykoff y Boykoff publicaron en 2004 un análisis de contenido de la prensa estadounidense de referencia que halló un tratamiento equilibrado entre el consenso científico y su negación en una mayoría sustancial de artículos, en contraste con la literatura revisada por pares.","Global Environmental Change, 2004. Verificado."],
+ ["v","La serie continua de mediciones de dióxido de carbono atmosférico iniciada por Charles David Keeling en Mauna Loa en 1958 muestra una oscilación estacional superpuesta a una tendencia ascendente sostenida.","Scripps Institution of Oceanography · NOAA. Verificado."],
+ ["v","La Organización Mundial de la Salud revisó en 2021 sus guías mundiales de calidad del aire con valores recomendados sustancialmente más estrictos, y señala que para varios contaminantes no se ha identificado un umbral sin efectos.","OMS, Global Air Quality Guidelines, 2021. Verificado."],
+ ["b","El tiempo es lo que ocurre un día concreto y el clima es la distribución estadística a lo largo de décadas; un episodio aislado no demuestra ni refuta la tendencia.","Climatología establecida."],
+ ["b","Las proyecciones de calentamiento futuro están condicionadas a escenarios de emisiones y no son predicciones.","IPCC · práctica establecida."],
+ ["b","La estrategia de fabricación de incertidumbre consiste en sostener que la ciencia no está resuelta antes que en negar frontalmente la evidencia.","Oreskes y Conway, Merchants of Doubt."],
+ ["b","La calidad de una compensación depende de la adicionalidad, la permanencia y la ausencia de doble contabilidad.","Estándares de compensación · literatura crítica."],
+ ["b","Las guías sanitarias de la OMS y los valores límite legales son referencias distintas: cumplir la ley no equivale a cumplir la recomendación de salud.","OMS, 2021 · normativa comparada."],
+ ["b","La cobertura eficaz combina precisión sobre la magnitud, agencia sobre quién decide y especificidad local, frente al mensaje catastrófico indiferenciado.","Investigación en comunicación climática · Boykoff."],
+ ["p","La afirmación de que el mensaje puramente catastrófico produce desconexión en la audiencia se apoya en la literatura de comunicación climática, cuyos resultados varían según público y contexto; no se ha realizado para esta unidad una revisión sistemática de esos estudios.","Redactado sin atribuir magnitudes a investigaciones concretas."]
+];
+
+const QUIZ=[
+/* ---------- BLOQUE A · CONCEPTOS ---------- */
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El IPCC es un organismo que:",
+ o:["Realiza investigación climática propia","Evalúa y sintetiza la literatura científica publicada, con revisión abierta y aprobación gubernamental del resumen","Fija objetivos de reducción de emisiones","Certifica compromisos corporativos"],c:1,
+ w:["No investiga: revisa lo publicado por miles de equipos.",
+    "",
+    "Los objetivos se acuerdan en negociaciones políticas, no en el informe.",
+    "La certificación de compromisos corresponde a otros mecanismos."],
+ e:"Su procedimiento tiende a lo conservador: cuando afirma algo sin matices, es porque la evidencia no deja margen."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una ola de calor récord:",
+ o:["Demuestra el cambio climático","Es un fenómeno meteorológico cuya relación con el cambio climático requiere un estudio de atribución","Refuta el cambio climático si el invierno anterior fue frío","No tiene relación con la tendencia climática"],c:1,
+ w:["Un episodio aislado no demuestra una tendencia estadística de décadas.",
+    "",
+    "Un episodio frío tampoco refuta nada, por la misma razón.",
+    "La tendencia sí modifica la probabilidad de los episodios: por eso existe la atribución."],
+ e:"Está establecido que este tipo de episodios se ha hecho más frecuente e intenso; atribuir uno concreto exige un análisis específico."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Un resultado de atribución se expresa como:",
+ o:["El porcentaje del evento causado por el cambio climático","Cuántas veces más probable o cuánto más intenso lo hizo, con su rango de incertidumbre","Una relación causal directa","Una predicción de futuros eventos"],c:1,
+ w:["No se reparte el evento en porcentajes de causa: no es así como funciona el método.",
+    "",
+    "La atribución no afirma causalidad directa de un evento singular.",
+    "No predice: analiza un episodio ya ocurrido."],
+ e:"Reproducir esa formulación con exactitud —factor, rango y estado de revisión— es lo que distingue una pieza rigurosa de una atribución simplificada."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"Una cifra de calentamiento futuro carece de sentido sin:",
+ o:["El nombre del modelo utilizado","El escenario de emisiones y el horizonte temporal asociados","El margen de error del instrumento","La institución que la publica"],c:1,
+ w:["El modelo es un detalle técnico secundario para el lector.",
+    "",
+    "El error instrumental no es la fuente principal de incertidumbre en una proyección.",
+    "La autoría importa y no sustituye a la condición del resultado."],
+ e:"«Tres grados» no significa nada; «unos tres grados hacia final de siglo bajo un escenario de emisiones altas» sí, y además indica que depende de decisiones."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"El lenguaje calibrado del IPCC significa que:",
+ o:["Los autores evitan adjetivos","Expresiones como «probable» o «muy probable» corresponden a rangos numéricos definidos en el propio informe","El texto se traduce a varios idiomas con la misma terminología","Las cifras se redondean según una convención"],c:1,
+ w:["No se trata de estilo sino de asignación de probabilidades.",
+    "",
+    "La traducción es una cuestión editorial distinta.",
+    "El redondeo no tiene relación con el sistema de confianza."],
+ e:"Sustituir esas expresiones por sinónimos coloquiales destruye la información que aportan, y el rango está publicado en el propio documento."},
+
+{blk:"BLOQUE A · CONCEPTOS", t:"mcq",
+ q:"La calidad de una compensación de emisiones depende de:",
+ o:["El precio pagado por tonelada","Adicionalidad, permanencia y ausencia de doble contabilidad","El país donde se ejecuta el proyecto","El número de toneladas compensadas"],c:1,
+ w:["El precio es un indicio débil y no acredita ninguna de las tres condiciones.",
+    "",
+    "La ubicación no determina la calidad, aunque afecte a la verificabilidad.",
+    "El volumen no dice nada sobre si la reducción es real."],
+ e:"Adicionalidad significa que la reducción no habría ocurrido igualmente. Sin ella, la compensación no compensa nada."},
+
+/* ---------- BLOQUE B · DECISIONES DE COBERTURA ---------- */
+{blk:"BLOQUE B · DECISIONES DE COBERTURA", t:"mcq",
+ s:"Una ola de calor bate récords y aún no existe estudio de atribución del episodio.",
+ q:"¿Qué puede publicarse?",
+ o:["Que el episodio es consecuencia del cambio climático","Que este tipo de episodios se ha hecho más frecuente e intenso, sin atribuir el caso concreto","Que no hay relación con el cambio climático","Que habrá que esperar años para saberlo"],c:1,
+ w:["Atribuir el episodio sin análisis es una generalización que después sirve para descalificar la cobertura.",
+    "",
+    "Negar la relación es tan inexacto como afirmarla sin estudio.",
+    "Los análisis rápidos se publican en semanas, no en años."],
+ e:"Y si el análisis llega días después, se publica con su factor y su rango, enlazando con la pieza inicial."},
+
+{blk:"BLOQUE B · DECISIONES DE COBERTURA", t:"mcq",
+ s:"Un informe ofrece proyecciones bajo varios escenarios y el titular propuesto usa la cifra del escenario de emisiones más altas.",
+ q:"¿Qué corresponde?",
+ o:["Mantenerlo: es una cifra del informe","Titular con el escenario más plausible según las políticas actuales y explicar el rango en la entradilla","Usar la cifra más baja para no alarmar","Publicar la media de todos los escenarios"],c:1,
+ w:["Presentar el extremo como lo esperable produce descrédito cuando no se materializa.",
+    "",
+    "Elegir la más baja es el error simétrico y también desinforma.",
+    "La media de escenarios no corresponde a ninguna trayectoria real y no significa nada."],
+ e:"La incertidumbre de escenario depende de decisiones humanas, y explicarla es precisamente lo que da agencia al lector."},
+
+{blk:"BLOQUE B · DECISIONES DE COBERTURA", t:"mcq",
+ s:"El programa quiere enfrentar en formato de debate a una climatóloga y a un divulgador que cuestiona el consenso.",
+ q:"¿Qué corresponde?",
+ o:["Aceptar: son dos visiones legítimas","Rechazar ese formato para la descripción del fenómeno y trasladar el debate a las políticas, donde sí existe","Aceptar si se advierte al espectador","Sustituir al divulgador por otro climatólogo escéptico"],c:1,
+ w:["No son dos visiones de la ciencia: una la sostiene la práctica totalidad de la literatura.",
+    "",
+    "La advertencia no desactiva la equivalencia que comunica el formato.",
+    "Buscar un especialista discrepante para llenar la silla reproduce el mismo sesgo."],
+ e:"El equilibrio va donde hay debate real —qué hacer—, y ahí hace falta economía, política y evaluación de costes, no negacionismo."},
+
+{blk:"BLOQUE B · DECISIONES DE COBERTURA", t:"mcq",
+ s:"Una empresa anuncia neutralidad de carbono para 2035 basada mayoritariamente en compensaciones.",
+ q:"¿Qué debe preguntarse primero?",
+ o:["Cuánto invertirá en el plan","Qué alcance de emisiones cubre el compromiso","Qué consultora lo ha diseñado","Si otras empresas del sector hacen lo mismo"],c:1,
+ w:["La cifra de inversión no informa sobre qué se reduce.",
+    "",
+    "La consultora es un dato secundario.",
+    "La comparación sectorial es contexto, no verificación."],
+ e:"Si el compromiso cubre solo las operaciones propias y excluye la cadena de valor, puede estar dejando fuera la mayor parte del total."},
+
+{blk:"BLOQUE B · DECISIONES DE COBERTURA", t:"mcq",
+ s:"El ayuntamiento informa de que la calidad del aire cumple los límites legales, aunque supera las recomendaciones sanitarias internacionales.",
+ q:"¿Cómo se informa?",
+ o:["Reproduciendo el cumplimiento legal, que es el dato oficial","Dando ambas referencias y explicando que el límite legal y la guía sanitaria responden a criterios distintos","Titulando que la ciudad incumple","Omitiendo la comparación por ser técnica"],c:1,
+ w:["Informar solo del cumplimiento legal transmite una tranquilidad que la evidencia no respalda.",
+    "",
+    "Titular incumplimiento es inexacto: la norma se cumple.",
+    "La comparación es precisamente la información relevante para el lector."],
+ e:"El límite legal equilibra salud, técnica y coste; la guía sanitaria expresa solo lo que la evidencia recomienda. La diferencia suele ser la noticia."},
+
+{blk:"BLOQUE B · DECISIONES DE COBERTURA", t:"mcq",
+ s:"El reportaje acumula escenarios extremos y cifras globales, sin indicar decisiones concretas ni responsables.",
+ q:"¿Qué le falta?",
+ o:["Más datos científicos","Agencia: qué decisiones modifican el resultado y quién las toma, y escala local","Un tono más optimista","Testimonios de afectados"],c:1,
+ w:["El problema no es la cantidad de datos sino su falta de conexión con decisiones.",
+    "",
+    "El optimismo no es un criterio informativo, igual que no lo es el catastrofismo.",
+    "Los testimonios ayudan y no sustituyen a la información sobre responsabilidad."],
+ e:"Precisión sobre la magnitud, agencia y especificidad local. Sin agencia, la pieza informa de que el mundo se acaba, que no es información."},
+
+/* ---------- BLOQUE C · DATOS Y CONTEXTO ---------- */
+{blk:"BLOQUE C · DATOS Y CONTEXTO", t:"mcq",
+ q:"El valor de la serie de mediciones de Mauna Loa deriva de:",
+ o:["La ubicación remota del observatorio","La constancia de método y lugar durante décadas, que permite distinguir tendencia de ruido","El número de mediciones diarias","La institución que la mantiene"],c:1,
+ w:["La ubicación reduce interferencias locales y no es lo que da valor a la serie.",
+    "",
+    "La frecuencia ayuda; la comparabilidad en el tiempo es lo decisivo.",
+    "La titularidad institucional no determina la calidad de la serie."],
+ e:"Es el mismo criterio de comparabilidad de la Unidad 2 de JRN-1002: sin constancia de método, más datos no producen mejor conocimiento."},
+
+{blk:"BLOQUE C · DATOS Y CONTEXTO", t:"mcq",
+ q:"Los argumentos de retraso se caracterizan por:",
+ o:["Negar que el calentamiento esté ocurriendo","Aceptar el fenómeno y cuestionar la urgencia, el coste o la utilidad de actuar","Sostener que el clima siempre ha cambiado","Atacar personalmente a los científicos"],c:1,
+ w:["Esa es la negación explícita, que ha perdido peso frente a los argumentos de retraso.",
+    "",
+    "Ese argumento pertenece a la negación clásica del fenómeno.",
+    "El ataque personal es una táctica, no un tipo de argumento sobre el asunto."],
+ e:"Se tratan como afirmaciones verificables —cuánto cuesta, en qué plazo, comparado con qué— y declarando el interés económico de quien las sostiene."},
+
+{blk:"BLOQUE C · DATOS Y CONTEXTO", t:"mcq",
+ q:"La comparación entre documentos internos de una empresa y sus mensajes públicos:",
+ o:["Es un ejercicio histórico sin valor periodístico actual","Es una estructura de investigación replicable aplicable también a compromisos presentes","Solo procede si hay un procedimiento judicial abierto","Requiere el consentimiento de la empresa"],c:1,
+ w:["El análisis publicado en 2023 muestra precisamente su valor probatorio y su vigencia metodológica.",
+    "",
+    "No depende de que exista litigio: se apoya en documentos y declaraciones fechadas.",
+    "El consentimiento no es necesario para comparar documentación obtenida legítimamente."],
+ e:"Se documenta reuniendo materiales internos, comunicaciones públicas del mismo período y una evaluación técnica independiente."},
+
+{blk:"BLOQUE C · DATOS Y CONTEXTO", t:"mcq",
+ q:"Al informar de un impacto climático local, el ángulo distributivo consiste en:",
+ o:["Comparar la ciudad con otras del país","Documentar quién sufre los efectos y quién asume los costes de las medidas, que rara vez coinciden","Repartir el espacio entre las distintas administraciones","Ofrecer datos por barrios sin interpretarlos"],c:1,
+ w:["La comparación entre territorios es contexto, no análisis distributivo.",
+    "",
+    "El reparto de declaraciones institucionales no es un análisis de impacto.",
+    "Publicar datos sin interpretación deja el trabajo a medias."],
+ e:"Es lo que convierte una pieza ambiental en periodismo social, y es documentable con datos locales de vivienda, empleo y arbolado."},
+
+{blk:"BLOQUE C · DATOS Y CONTEXTO", t:"mcq",
+ q:"Los datos ambientales locales presentan con frecuencia:",
+ o:["Exceso de cobertura y duplicidad","Cobertura desigual, definiciones cambiantes y dependencia de la declaración de los propios emisores","Actualización en tiempo real y alta fiabilidad","Formato estandarizado internacional"],c:1,
+ w:["El problema habitual es el contrario: lagunas y series discontinuas.",
+    "",
+    "La actualización inmediata es excepcional en este ámbito.",
+    "La estandarización varía enormemente entre jurisdicciones."],
+ e:"Es el mismo problema de la Unidad 1 de JRN-1002: quién produce el dato, con qué definición y qué deja fuera."},
+
+{blk:"BLOQUE C · DATOS Y CONTEXTO", t:"mcq",
+ q:"Que para un contaminante no se haya identificado un umbral sin efectos implica que:",
+ o:["Cualquier exposición es igualmente peligrosa","Los valores de referencia son objetivos de reducción y no fronteras entre lo seguro y lo peligroso","No puede regularse","Las guías carecen de utilidad"],c:1,
+ w:["El riesgo aumenta con la exposición: no todas las concentraciones equivalen.",
+    "",
+    "La regulación es posible y necesaria: fija objetivos alcanzables.",
+    "Las guías son precisamente lo que permite comparar y exigir mejoras."],
+ e:"Por eso titular que una ciudad «cumple los límites» sin esa aclaración transmite una seguridad que la evidencia no respalda."},
+
+/* ---------- BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN ---------- */
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todo</strong> lo que debe comprobarse ante un compromiso corporativo de neutralidad.",
+ o:["Qué alcance de emisiones cubre","Qué porcentaje se reduce frente a lo que se compensa","Con qué proyectos concretos se compensa","Cuántas empresas del sector han anunciado lo mismo","Quién verifica el cumplimiento y con qué periodicidad"],
+ c:[0,1,2,4],
+ w:["","","","Que otras empresas hagan anuncios similares es contexto de mercado y no verifica nada del compromiso concreto.",""],
+ e:"Sin esas cuatro respuestas, el anuncio no es información publicable como hecho, y su ausencia documentada es en sí misma la pieza."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"multi",
+ q:"Selecciona <strong>todas</strong> las afirmaciones que corresponden a lo científicamente establecido.",
+ o:["La temperatura media global ha aumentado","Ese aumento se debe a la actividad humana","Los efectos ya son observables","La política óptima es un impuesto sobre el carbono","Las olas de calor se han hecho más frecuentes e intensas"],
+ c:[0,1,2,4],
+ w:["","","","La elección de instrumentos de política es una decisión económica y política que admite alternativas con los mismos datos.",""],
+ e:"Clasificar cada afirmación como hecho, incertidumbre científica o decisión política es el primer paso de esta cobertura."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena la preparación de una pieza climática local.",
+ o:["Clasificar las afirmaciones: hecho establecido, incertidumbre científica o decisión política","Reunir las series de datos con su fuente, cobertura y lagunas","Comprobar si existe estudio de atribución para el episodio y con qué rango","Analizar quién sufre el impacto y quién asume los costes","Redactar con magnitud, plazo, agencia y escala local"],
+ c:[0,1,2,3,4],
+ e:"La clasificación va primero porque determina qué verbo puede usarse en cada frase y evita que la pieza sea descalificada en bloque."},
+
+{blk:"BLOQUE D · SELECCIÓN MÚLTIPLE Y ORDEN", t:"orden",
+ q:"Ordena de menor a mayor exigencia probatoria las siguientes afirmaciones.",
+ o:["Las olas de calor se han hecho más frecuentes","Este verano ha sido el más cálido registrado en la ciudad","El cambio climático hizo este episodio cinco veces más probable","Esta empresa conocía internamente el efecto de sus emisiones","Esta empresa financió deliberadamente la desinformación climática"],
+ c:[1,0,2,3,4],
+ e:"El registro local es una comprobación directa; la atribución requiere estudio; y la intención deliberada exige documentación interna, como en la Unidad 3 de JRN-1003."}
+];
+const el=(h)=>{const d=document.createElement('div');d.innerHTML=h;return d.firstElementChild};
+
+const aw=document.getElementById('audit');
+const LBL={v:'VERIFICADA',b:'BIBLIOGRAFÍA',p:'PENDIENTE'};
+AUDIT.forEach(function(a){aw.appendChild(el('<div class="arow"><div><span class="pill '+a[0]+'">'+LBL[a[0]]+'</span></div><div class="cl">'+a[1]+'</div><div class="sr">'+a[2]+'</div></div>'))});
+const cnt={v:0,b:0,p:0}; AUDIT.forEach(function(a){cnt[a[0]]++});
+aw.insertAdjacentHTML('afterend','<p style="margin-top:22px;font-family:var(--mono);font-size:.74rem;color:var(--text-faint);letter-spacing:.08em">TOTAL '+AUDIT.length+' AFIRMACIONES · '+cnt.v+' VERIFICADAS · '+cnt.b+' BIBLIOGRAFÍA · '+cnt.p+' PENDIENTES</p>');
+
+const tw=document.getElementById('terms');
+TERMS.forEach(function(x){tw.appendChild(el('<div class="term"><h5>'+x.t+'</h5><div class="def">'+x.d+'</div><p class="src">'+x.s+'</p></div>'))});
+
+let resueltos=0, primeros=0;
+function marcador(){
+  document.getElementById('score').textContent='RESUELTOS '+resueltos+' / '+QUIZ.length+' · ACIERTOS AL PRIMER INTENTO '+primeros;
+}
+(function(){
+  const quiz=document.getElementById('quiz');
+  let bloque='';
+  QUIZ.forEach(function(it,i){
+    if(it.blk!==bloque){bloque=it.blk;quiz.appendChild(el('<div class="blk">'+bloque+'</div>'));}
+    const sit = it.s ? '<div class="sit">'+it.s+'</div>' : '';
+    const fra = it.f ? '<div class="frag">'+it.f+'</div>' : '';
+    const card=el('<div class="q"><span class="from">EJERCICIO '+(i+1)+' DE '+QUIZ.length+'</span>'+
+      sit+fra+'<div class="stem">'+it.q+'</div><div class="opts"></div>'+
+      '<div class="acc" style="margin-top:10px"></div>'+
+      '<div class="tries"></div><div class="exp"><b>EXPLICACIÓN</b>'+it.e+'</div></div>');
+    const opts=card.querySelector('.opts'), acc=card.querySelector('.acc'), tries=card.querySelector('.tries');
+    let intentos=0, hecho=false;
+    function fallo(){ intentos++; tries.textContent='INTENTOS: '+intentos+' · vuelve a intentarlo'; }
+    function acierto(){
+      hecho=true; resueltos++; if(intentos===0) primeros++; acc.innerHTML='';
+      tries.textContent = intentos===0 ? 'CORRECTO AL PRIMER INTENTO' : 'CORRECTO TRAS '+(intentos+1)+' INTENTOS';
+      card.querySelector('.exp').classList.add('show'); marcador();
+    }
+
+    if(it.t==='mcq'){
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML=String.fromCharCode(97+j)+') '+o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('bad')) return;
+          if(j===it.c){ b.classList.add('ok'); b.insertAdjacentHTML('beforeend','<span class="mk">correcta</span>');
+            [...opts.children].forEach(function(x){x.classList.add('done')}); acierto(); }
+          else { b.classList.add('bad','done');
+            b.insertAdjacentHTML('beforeend','<span class="why">'+it.w[j]+'</span>'); fallo(); }
+        };
+        opts.appendChild(b);
+      });
+    }
+
+    if(it.t==='multi'){
+      const sel=new Set();
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.innerHTML='☐ '+o;
+        b.onclick=function(){
+          if(hecho) return;
+          if(sel.has(j)){sel.delete(j); b.classList.remove('sel'); b.innerHTML='☐ '+o;}
+          else {sel.add(j); b.classList.add('sel'); b.innerHTML='☑ '+o;}
+        };
+        opts.appendChild(b);
+      });
+      const btn=el('<button class="btn">COMPROBAR SELECCIÓN</button>');
+      btn.onclick=function(){
+        if(hecho) return;
+        const ok = it.c.length===sel.size && it.c.every(function(x){return sel.has(x)});
+        if(ok){
+          [...opts.children].forEach(function(x,j){ x.classList.add('done'); if(it.c.indexOf(j)>=0) x.classList.add('ok'); });
+          btn.style.display='none'; acierto();
+        } else {
+          let msg='';
+          [...sel].forEach(function(j){ if(it.c.indexOf(j)<0 && it.w[j]) msg+='<span class="why">'+it.w[j]+'</span>'; });
+          const faltan = it.c.filter(function(x){return !sel.has(x)}).length;
+          acc.innerHTML = msg + '<div class="tries">Selección incorrecta. Sobran '+
+            [...sel].filter(function(j){return it.c.indexOf(j)<0}).length+' y faltan '+faltan+'.</div>';
+          fallo();
+        }
+      };
+      acc.appendChild(btn);
+    }
+
+    if(it.t==='orden'){
+      let paso=0;
+      it.o.forEach(function(o,j){
+        const b=document.createElement('button');
+        b.className='opt'; b.dataset.j=j; b.innerHTML=o;
+        b.onclick=function(){
+          if(hecho||b.classList.contains('done')) return;
+          if(j===it.c[paso]){
+            paso++; b.classList.add('ok','done');
+            b.insertAdjacentHTML('afterbegin','<span class="ordslot">'+paso+'.</span>');
+            if(paso===it.c.length) acierto();
+          } else {
+            b.classList.add('bad');
+            setTimeout(function(){b.classList.remove('bad')},700);
+            acc.innerHTML='<div class="tries">Ese no es el paso '+(paso+1)+'. Piensa qué debe ocurrir antes.</div>';
+            fallo();
+          }
+        };
+        opts.appendChild(b);
+      });
+    }
+    quiz.appendChild(card);
+  });
+  marcador();
+})();
+
+function bindReveal(b){
+  b.dataset.o=b.textContent;
+  b.onclick=function(){const m=b.nextElementSibling;m.classList.toggle('show');
+    b.textContent=m.classList.contains('show')?'Ocultar':b.dataset.o;};
+}
+
+function pager(list,opts){
+  const body=document.getElementById(opts.body),nums=document.getElementById(opts.nums),
+        lab=document.getElementById(opts.label),tit=document.getElementById(opts.title);
+  list.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum '+opts.color; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const x=list[i];
+    lab.textContent=opts.word+' '+(i+1)+' DE '+list.length;
+    tit.textContent=x.t;
+    [...nums.children].forEach(function(b,k){b.classList.toggle('on',k===i)});
+    body.innerHTML=''; body.appendChild(el(opts.render(x)));
+    body.querySelectorAll('.reveal').forEach(bindReveal);
+  }
+  show(0);
+}
+
+pager(CASES,{body:'cases',nums:'cNums',label:'cLabel',title:'cTitle',color:'amber',word:'CASO DE ESTUDIO',
+  render:function(c){return '<div class="case"><span class="tag">'+c.tag+'</span><p>'+c.d+'</p>'+
+    '<div class="ej"><b>EJEMPLO</b>'+c.ej+'</div>'+
+    '<p style="margin-top:13px"><strong>Preguntas de análisis</strong></p><ol><li>'+c.p.join('</li><li>')+'</li></ol>'+
+    '<button class="reveal">Ver respuesta modelo</button><div class="model"><b>RESPUESTA MODELO</b>'+c.m+'</div>'+
+    '<div class="key"><b>LECCIÓN CLAVE</b>'+c.k+'</div></div>';}});
+
+pager(ROLES,{body:'roles',nums:'rNums',label:'rLabel',title:'rTitle',color:'blue',word:'JUEGO DE ROLES',
+  render:function(r){return '<div class="case"><span class="tag">'+r.tag+'</span><p>'+r.d+'</p>'+
+    '<p><strong>Roles:</strong> '+r.r+'</p>'+
+    '<div class="ej"><b>EJEMPLO DE INTERCAMBIO</b><div class="dlg">'+r.ej+'</div></div>'+
+    '<button class="reveal">Ver resolución modelo</button><div class="model"><b>RESOLUCIÓN MODELO</b>'+r.m+'</div>'+
+    '<div class="key"><b>CRITERIO DE EVALUACIÓN</b>'+r.c+'</div></div>';}});
+
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const ivw=document.getElementById('iv');
+IV.forEach(function(it,i){
+  const d=el('<div class="iv"><span class="tag" style="font-family:var(--mono);font-size:.6rem;letter-spacing:.13em;color:var(--text-faint);display:block;margin-bottom:8px">PREGUNTA '+(i+1)+' DE '+IV.length+'</span>'+
+    '<div class="qbox">'+it.q+'</div>'+
+    '<textarea placeholder="Escribe tu respuesta, o pulsa Grabar y dicta."></textarea>'+
+    '<div class="row"><button class="btn rec">GRABAR</button><button class="btn ver">VER RESPUESTA MODELO</button><span class="hint"></span></div>'+
+    '<div class="model"><b>RESPUESTA MODELO</b>'+it.m+'</div></div>');
+  const ta=d.querySelector('textarea'),rec=d.querySelector('.rec'),ver=d.querySelector('.ver'),
+        hint=d.querySelector('.hint'),mod=d.querySelector('.model');
+  ver.onclick=function(){mod.classList.toggle('show');ver.textContent=mod.classList.contains('show')?'OCULTAR MODELO':'VER RESPUESTA MODELO';};
+  if(!SR){rec.disabled=true;rec.style.opacity=.4;hint.textContent='El dictado requiere Chrome o Edge';}
+  else{
+    var r=null,on=false;
+    rec.onclick=function(){
+      if(on){if(r)r.stop();return;}
+      r=new SR(); r.lang='es-ES'; r.continuous=true; r.interimResults=true;
+      var base=ta.value?ta.value+' ':'';
+      r.onstart=function(){on=true;rec.classList.add('on');rec.textContent='DETENER';hint.textContent='Escuchando…';};
+      r.onresult=function(e){var s='';for(var k=e.resultIndex;k<e.results.length;k++)s+=e.results[k][0].transcript;ta.value=base+s;};
+      r.onerror=function(e){hint.textContent='Micrófono: '+e.error;};
+      r.onend=function(){on=false;rec.classList.remove('on');rec.textContent='GRABAR';hint.textContent=ta.value?'Respuesta registrada':'';};
+      r.start();
+    };
+  }
+  ivw.appendChild(d);
+});
+
+document.querySelectorAll('#pru .reveal').forEach(bindReveal);
+
+(function(){
+  const src=document.getElementById('slidesSrc'),body=document.getElementById('slidesBody'),
+        nums=document.getElementById('sNums'),lab=document.getElementById('sLabel'),tit=document.getElementById('sTitle');
+  const kids=[...src.children],pages=[];
+  kids.forEach(function(n){
+    if(n.tagName==='H3'){pages.push({t:n.textContent.trim(),nodes:[]});}
+    else if(pages.length){pages[pages.length-1].nodes.push(n);}
+  });
+  pages.forEach(function(_,i){
+    const b=document.createElement('button');
+    b.className='pnum'; b.textContent=i+1; b.onclick=function(){show(i)}; nums.appendChild(b);
+  });
+  function show(i){
+    const p=pages[i];
+    lab.textContent='DIAPOSITIVA '+(i+1)+' DE '+pages.length;
+    tit.textContent=p.t;
+    [...nums.children].forEach(function(b,k){
+      const act=(k===i); b.classList.toggle('on',act);
+      b.style.background=act?'#12291f':''; b.style.borderColor=act?'var(--green)':''; b.style.color=act?'var(--green)':'';
+    });
+    body.innerHTML='';
+    p.nodes.forEach(function(n){body.appendChild(n.cloneNode(true))});
+  }
+  show(0);
+})();
+
+document.querySelectorAll('.tab').forEach(function(b){
+  b.onclick=function(){
+    document.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on')});
+    document.querySelectorAll('section').forEach(function(s){s.classList.remove('on')});
+    b.classList.add('on'); document.getElementById(b.dataset.t).classList.add('on');
+    window.scrollTo({top:0,behavior:'smooth'});
+  };
+});
+</script>
+</body>
+</html>
