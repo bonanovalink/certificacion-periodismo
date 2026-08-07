@@ -226,6 +226,8 @@
     <h3>Limpiar no es corregir: es decidir</h3>
     <p>La palabra «limpieza» sugiere que hay una versión sucia y una limpia, y que el trabajo consiste en llegar a la segunda. Es una descripción falsa y peligrosa. Lo que existe es un conjunto de registros producido por un sistema con sus propias reglas, y una serie de decisiones que el periodista toma sobre ese conjunto para poder analizarlo.</p>
     <p>Cada una de esas decisiones —unificar dos grafías, eliminar un duplicado, excluir un valor imposible— altera el resultado. Ninguna es neutral y ninguna es evitable: sin ellas no hay análisis posible. Lo que separa un trabajo defendible de uno indefendible no es la ausencia de decisiones, sino que estén registradas, justificadas y sean reversibles.</p>
+    <p>La consecuencia organizativa es que la limpieza no puede delegarse en quien no conoce la investigación. Quien decide unificar dos grafías o excluir un registro está tomando decisiones que afectan al resultado, y para tomarlas bien hace falta saber qué se está buscando y qué está en juego en cada elección.</p>
+    <p>Conviene además fijar el momento en que la limpieza termina. Un conjunto que se sigue depurando mientras se redacta produce cifras que cambian entre borradores y notas metodológicas que no coinciden con el texto final. Cerrar la limpieza, documentar el estado del archivo y trabajar sobre esa versión evita la mayoría de las incoherencias que aparecen en el cierre.</p>
     <div class="ej"><b>PRINCIPIO OPERATIVO</b>Si no puedes volver del archivo publicado al archivo original deshaciendo tus pasos uno a uno, no limpiaste: modificaste. La diferencia es la misma que en la Unidad 2 de JRN-1001 entre trabajar sobre una copia y editar el original.</div>
 
     <h3>Perfilar antes de tocar</h3>
@@ -237,21 +239,29 @@
       <li><strong>Rangos.</strong> Máximos y mínimos de cada variable numérica y de cada fecha, buscando lo imposible.</li>
       <li><strong>Categorías.</strong> Valores únicos de cada variable de texto, que casi siempre son más de los que el diccionario declara.</li>
     </ol>
+    <p>El perfilado conviene guardarlo como documento y no solo mirarlo en pantalla: número de filas, valores ausentes por columna, duplicados detectados, rangos y categorías únicas, con la fecha en que se hizo. Ese documento es la referencia contra la que se comprobará cualquier transformación posterior y la base de la nota metodológica.</p>
+    <p>Y conviene repetirlo después de cada fase de limpieza, no solo al principio. Comparar el perfil inicial con el posterior muestra exactamente qué cambió el tratamiento —cuántas filas se perdieron, qué categorías se fusionaron— y convierte una intuición en una cifra que puede publicarse.</p>
     <div class="ej"><b>REGLA</b>El perfilado se hace antes de leer el diccionario de datos y otra vez después. La primera pasada dice qué hay; la segunda, qué debería haber. La distancia entre ambas es la primera pista de la investigación.</div>
 
     <h3>Los ausentes no son ceros</h3>
     <p>Un valor vacío puede significar cosas incompatibles entre sí: que el dato no existe, que existe y no se registró, que no aplica a ese caso, o que el sistema lo perdió. Tratarlos todos igual —o convertirlos en cero— produce resultados falsos con aritmética correcta.</p>
     <p>La pregunta correcta nunca es cuántos faltan, sino si los que faltan se parecen entre sí. Si las ausencias se concentran en una dependencia, en un período o en una categoría, no son ruido: son un patrón, y con frecuencia son la historia.</p>
+    <p>La comprobación decisiva es cruzar los valores ausentes con el resto de variables: si los vacíos se concentran en un período, una dependencia, un tipo de caso o un rango de importes, el patrón indica algo sobre el sistema que los produce y no sobre el fenómeno que se pretende medir.</p>
+    <p>Cuando hay que decidir qué hacer con ellos, las opciones razonables son tres y todas se declaran: excluir las filas afectadas indicando cuántas son, tratarlas como categoría propia —«sin dato»— o, excepcionalmente, imputar valores con un método explícito. Lo que no cabe es convertirlos en ceros, que es la opción por defecto de muchas herramientas y la que produce resultados falsos con aritmética impecable.</p>
     <div class="ej"><b>CASO TÍPICO</b>Un registro de inspecciones con el campo «resultado» vacío en el 30% de los casos. Si esos vacíos se reparten al azar, es un problema de calidad del dato. Si se concentran en las inspecciones a un solo grupo de empresas, es otra cosa.</div>
 
     <h3>Duplicados, o el mismo caso con dos caras</h3>
     <p>El duplicado exacto es el caso fácil y el menos frecuente. El difícil es el mismo sujeto escrito de varias maneras: razón social con y sin siglas, nombre con y sin tilde, dirección con abreviatura distinta, identificador con o sin ceros a la izquierda.</p>
     <p>La consecuencia es siempre la misma y siempre subestima: cuando una empresa aparece bajo cuatro grafías, ninguna de las cuatro alcanza el umbral que la haría visible en el análisis. La concentración desaparece por fragmentación.</p>
+    <p>El agrupamiento por similitud produce candidatos y no conclusiones, y conviene revisarlos uno a uno cuando el número lo permite. En conjuntos grandes, la revisión se hace por muestreo y se documenta la tasa de error detectada, que después se declara en la nota metodológica como margen del análisis.</p>
+    <p>Y conviene resistir la unificación cuando falta el identificador estable. Dos empresas con razones sociales casi idénticas pueden ser efectivamente distintas —a veces deliberadamente—, de modo que fusionarlas por parecido produce una concentración inexistente que después será el punto más fácil de impugnar.</p>
     <div class="ej"><b>MÉTODO</b>Agrupamiento por similitud —lo que OpenRefine llama <em>clustering</em>— para proponer conjuntos de valores probablemente equivalentes, seguido de revisión humana caso por caso. La máquina propone; el periodista decide y lo registra.</div>
 
     <h3>Lo imposible y lo improbable</h3>
     <p>Un valor imposible es el que no puede existir bajo ninguna interpretación: un día 32, una edad de 180 años, una fecha posterior a la extracción del archivo. Un valor improbable es raro pero admisible, y ahí está la trampa: la mayoría de los hallazgos periodísticos viven exactamente en esa zona.</p>
     <p>Por eso los atípicos no se eliminan por definición. Se aíslan, se examinan uno a uno y se decide con criterio explícito. Un contrato mil veces mayor que la media puede ser un error de captura o puede ser la nota.</p>
+    <p>Los valores imposibles conviene tratarlos como información y no solo como error: una fecha futura, una edad de tres cifras o un importe negativo indican cómo funciona el sistema de captura, y su distribución por dependencia o por período suele señalar dónde hay problemas de control interno.</p>
+    <p>Con los improbables, el procedimiento correcto es aislarlos en una tabla aparte, verificarlos contra su expediente cuando el número lo permita y decidir caso por caso con criterio escrito. Eliminarlos en bloque por su posición en la distribución es rápido y es exactamente la operación que borra los hallazgos.</p>
     <div class="ej"><b>ADVERTENCIA</b>La instrucción «eliminar valores extremos» es la manera más eficiente de borrar una investigación. Los extremos son sospechosos, no descartables.</div>
 
     <h3>Lo que el software cambia sin avisar</h3>
@@ -261,6 +271,8 @@
       <li><strong>Truncamiento por límite de filas.</strong> Los formatos antiguos tienen techo. Al alcanzarlo, los registros sobrantes desaparecen sin mensaje de error.</li>
       <li><strong>Separadores y codificación.</strong> Coma o punto decimal, y acentos que se convierten en símbolos ilegibles al abrir con la codificación equivocada.</li>
     </ul>
+    <p>La defensa es procedimental y sencilla: abrir los archivos declarando el tipo de cada columna como texto, comprobar el número de filas con una herramienta que no interprete el contenido y verificar una muestra de valores contra el original. Tres comprobaciones que ocupan cinco minutos y evitan errores irreversibles.</p>
+    <p>Conviene además desconfiar de los archivos que han pasado por varias manos. Cada apertura y guardado en una hoja de cálculo puede introducir conversiones, y el archivo que llega al periodista después de circular por tres departamentos rara vez es idéntico al que salió del sistema.</p>
     <div class="ej"><b>COMPROBACIÓN OBLIGATORIA</b>Contar las filas del archivo original con una herramienta ajena a la hoja de cálculo y comparar con lo que muestra la hoja abierta. Si no coinciden, el análisis está corriendo sobre un conjunto incompleto.</div>
 
     <h3>Auditar una planilla ajena</h3>
@@ -272,6 +284,8 @@
       <li>Revisar hojas ocultas, filas ocultas y referencias a archivos externos que ya no existen.</li>
       <li>Recalcular a mano dos o tres resultados clave con los datos de entrada.</li>
     </ol>
+    <p>La auditoría empieza por reconstruir el flujo de cálculo: qué celdas son entradas, cuáles son fórmulas y cuáles son resultados. Muchas herramientas de hoja de cálculo permiten visualizar esas dependencias, y ese mapa suele revelar de inmediato dónde están las constantes incrustadas y las referencias rotas.</p>
+    <p>Conviene además pedir la versión original del archivo y no una exportación. Un PDF del resultado oculta precisamente lo que hay que auditar —las fórmulas—, y solicitar el fichero de trabajo con el fundamento de la ley de acceso es una petición razonable y frecuentemente denegada, lo que en sí mismo es informativo.</p>
     <div class="ej"><b>POR QUÉ IMPORTA</b>El error de rango de una función de promedio —que no llega hasta la última fila— es invisible en pantalla, no produce ningún aviso y ha alterado decisiones de política pública. No es una hipótesis: está documentado.</div>
 
     <h3>El cuaderno de análisis y la reversibilidad</h3>
@@ -282,16 +296,22 @@
       <li>Cada exclusión, con el criterio y una comprobación de si lo excluido difiere de lo conservado.</li>
       <li>Los caminos que se probaron y se abandonaron, y por qué.</li>
     </ul>
+    <p>La reversibilidad exige una regla que parece obvia y se incumple todos los días: no modificar nunca el archivo original. Toda transformación se aplica sobre copias, se documenta y se puede deshacer, de modo que en cualquier momento sea posible volver al punto de partida y rehacer el camino de otra manera.</p>
+    <p>Conviene además anotar los caminos abandonados. Un análisis que se probó y se descartó, con el motivo, evita repetirlo semanas después y sirve para responder a quien pregunte por qué no se hizo de otra forma, que es una de las objeciones habituales cuando el resultado incomoda.</p>
     <div class="ej"><b>PRUEBA DE SUFICIENCIA</b>Entrega el archivo original y el cuaderno a alguien que no participó. Si no llega a tu misma cifra, el cuaderno está incompleto, y lo está aunque tu cifra sea correcta.</div>
 
     <h3>Cuando el error del registro es la noticia</h3>
     <p>La limpieza produce a menudo un hallazgo que no estaba en el plan: el propio registro está mal, y su modo de estar mal informa sobre quien lo lleva. Categorías que se usan de forma inconsistente entre dependencias, casos clasificados a la baja, campos obligatorios sistemáticamente vacíos en una oficina y no en otras.</p>
     <p>En esos casos el trabajo de limpieza deja de ser preparatorio y se convierte en la investigación. La verificación consiste entonces en reconstruir casos individuales contra su documento de origen para demostrar que la clasificación es incorrecta, no solo distinta.</p>
+    <p>El paso de la anomalía estadística al hallazgo publicable exige reconstruir casos individuales contra su documento de origen. Diez expedientes verificados uno a uno acreditan lo que ninguna diferencia porcentual demuestra, y son además lo que permite responder cuando el organismo alega que el análisis está mal hecho.</p>
+    <p>Y conviene identificar el criterio externo contra el que se mide el error: un manual de clasificación, una instrucción interna, una norma. Sin ese criterio, la afirmación de que un registro está mal clasificado se reduce a la opinión del periodista sobre cómo debería haberse clasificado.</p>
     <div class="ej"><b>UMBRAL DE PUBLICACIÓN</b>Para afirmar que un organismo clasifica mal no basta la anomalía estadística. Hacen falta casos concretos verificados contra el expediente original, y un criterio externo —una norma, un manual de clasificación— contra el cual medir el error.</div>
 
     <h3>Lo que se publica de la limpieza</h3>
     <p>La nota metodológica es el extracto público del cuaderno, y su función es que el lector pueda ponderar la solidez de la cifra sin tener que confiar en el medio.</p>
     <p>Debe decir, en lenguaje llano: de dónde salió el archivo y cuándo; qué período abarca; qué registros se excluyeron, cuántos eran y con qué criterio; qué transformaciones se aplicaron; y qué no se pudo resolver. Ese último punto es el que más se omite y el que más credibilidad aporta.</p>
+    <p>La nota metodológica funciona mejor cuando se escribe pensando en un lector concreto: otro periodista que quisiera repetir el análisis. Esa perspectiva obliga a incluir el origen exacto del archivo, la fecha de descarga, las exclusiones con su número y el efecto de cada decisión sobre el resultado final.</p>
+    <p>Conviene además publicar el archivo procesado junto al original cuando sea posible, con el cuaderno de decisiones. Esa práctica convierte al lector en auditor y suele producir correcciones útiles, además de ser la traducción operativa del principio de transparencia de método de la Unidad 1 de JRN-1001.</p>
     <div class="ej"><b>REGLA FINAL</b>Si la nota metodológica no permite a un lector competente reproducir tu cifra con el mismo archivo, no es una nota metodológica: es una declaración de buenas intenciones. Es el mismo principio de transparencia de la Unidad 1 de JRN-1001, aplicado a un archivo en lugar de a una entrevista.</div>
     </div>
   </section>
